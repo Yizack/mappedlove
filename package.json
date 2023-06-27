@@ -1,0 +1,40 @@
+{
+  "name": "mappedlove",
+  "version": "1.0.0",
+  "description": "Yizack nuxt template",
+  "author": "Yizack Rangel",
+  "type": "module",
+  "homepage": "https://github.com/Yizack/mappedlove",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Yizack/mappedlove"
+  },
+  "bugs": {
+    "url": "https://github.com/Yizack/mappedlove/issues"
+  },
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev --port=5173",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "db:migration": "drizzle-kit generate:sqlite"
+  },
+  "devDependencies": {
+    "@nuxtjs/eslint-config": "^12.0.0",
+    "@nuxtjs/turnstile": "^0.4.0",
+    "@types/leaflet": "^1.9.3",
+    "better-sqlite3": "^8.4.0",
+    "drizzle-kit": "^0.19.2",
+    "drizzle-orm": "^0.27.0",
+    "eslint": "^8.43.0",
+    "nuxt": "^3.6.1",
+    "nuxt-icon": "^0.4.1",
+    "nuxt-twemoji": "^3.3.1"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.0",
+    "leaflet": "^1.9.4",
+    "leaflet-geosearch": "^3.8.0"
+  }
+}

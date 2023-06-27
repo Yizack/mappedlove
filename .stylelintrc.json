@@ -1,0 +1,11 @@
+{
+  "rules": {
+    "declaration-block-trailing-semicolon": "always",
+    "declaration-bang-space-after": "never",
+    "block-opening-brace-space-before": "always",
+    "string-quotes": "double",
+    "declaration-colon-space-after": "always",
+    "length-zero-no-unit": true,
+    "rule-empty-line-before": ["always-multi-line", {"except": ["first-nested"]}]
+  }
+}

@@ -1,0 +1,28 @@
+.navbar {
+  --bs-navbar-active-color: var(--bs-primary-text-emphasis);
+}
+
+nav.navbar * {
+  font-weight: bold;
+}
+
+.navbar-nav .nav-item .nav-link {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-radius: var(--bs-border-radius-pill);
+  color: var(--bs-body-color);
+}
+
+.navbar-nav .nav-item .nav-link.router-link-active.router-link-exact-active {
+  color: var(--bs-primary);
+  background-color: var(--bs-tertiary-bg);
+  text-decoration: none;
+}
+
+.navbar .dropdown-item, .navbar .nav-link {
+  text-decoration: none;
+}
+
+.navbar .dropdown-item:hover, .navbar .nav-link:hover {
+  text-decoration: underline;
+}
