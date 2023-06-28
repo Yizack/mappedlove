@@ -22,8 +22,8 @@ export const bonds = sqliteTable("bonds", {
   partner1: integer("partner_1").references(() => users.id),
   partner2: integer("partner_2").references(() => users.id),
   couple_date: integer("couple_date"),
-  public: integer("public").notNull().default(0),
-  breakup: integer("breakup").notNull().default(0)
+  bonded: integer("bonded").notNull().default(0),
+  public: integer("public").notNull().default(0)
 });
 
 export const groups = sqliteTable("groups", {

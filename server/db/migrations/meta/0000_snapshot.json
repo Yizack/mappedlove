@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "sqlite",
-  "id": "31e9d4fb-4a0b-430f-9a37-25b98de7cca1",
+  "id": "673d25d3-4325-4aef-a3df-48a216590156",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "bonds": {
@@ -42,16 +42,16 @@
           "notNull": false,
           "autoincrement": false
         },
-        "public": {
-          "name": "public",
+        "bonded": {
+          "name": "bonded",
           "type": "integer",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false,
           "default": 0
         },
-        "breakup": {
-          "name": "breakup",
+        "public": {
+          "name": "public",
           "type": "integer",
           "primaryKey": false,
           "notNull": true,

@@ -4,8 +4,8 @@ CREATE TABLE `bonds` (
 	`partner_1` integer,
 	`partner_2` integer,
 	`couple_date` integer,
+	`bonded` integer DEFAULT 0 NOT NULL,
 	`public` integer DEFAULT 0 NOT NULL,
-	`breakup` integer DEFAULT 0 NOT NULL,
 	FOREIGN KEY (`partner_1`) REFERENCES `users`(`id`) ON UPDATE no action ON DELETE no action,
 	FOREIGN KEY (`partner_2`) REFERENCES `users`(`id`) ON UPDATE no action ON DELETE no action
 );
