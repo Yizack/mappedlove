@@ -36,5 +36,9 @@ export default {
   send_code: "Copy and send this code to your partner to bond your accounts and start mapping your love stories!",
   cancel: "Cancel bond",
   cancel_code: "I will use my partner's code",
-  bond_code_created: "Your bond code has been created"
+  bond_code_created: "Your bond code has been created",
+  bond_joined: "You have successfully bonded with your partner",
+  // Map
+  markers: "Markers",
+  stories: "Stories"
 };

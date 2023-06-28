@@ -1,5 +1,5 @@
 <script setup>
-definePageMeta({ layout: "app", middleware: "session" });
+definePageMeta({ layout: "app" });
 
 const markers = [
   {
