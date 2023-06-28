@@ -18,10 +18,12 @@ export const users = sqliteTable("users", {
 
 export const bonds = sqliteTable("bonds", {
   id: integer("id").primaryKey(),
-  partner1: integer("partner_1").notNull().references(() => users.id),
-  partner2: integer("partner_2").notNull().references(() => users.id),
-  couple_date: integer("couple_date").notNull(),
-  public: integer("public").notNull()
+  code: text("code").notNull(),
+  partner1: integer("partner_1").references(() => users.id),
+  partner2: integer("partner_2").references(() => users.id),
+  couple_date: integer("couple_date"),
+  public: integer("public").notNull().default(0),
+  breakup: integer("breakup").notNull().default(0)
 });
 
 export const groups = sqliteTable("groups", {

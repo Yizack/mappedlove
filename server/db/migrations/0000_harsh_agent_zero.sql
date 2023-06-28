@@ -1,9 +1,11 @@
 CREATE TABLE `bonds` (
 	`id` integer PRIMARY KEY NOT NULL,
-	`partner_1` integer NOT NULL,
-	`partner_2` integer NOT NULL,
-	`couple_date` integer NOT NULL,
-	`public` integer NOT NULL,
+	`code` text NOT NULL,
+	`partner_1` integer,
+	`partner_2` integer,
+	`couple_date` integer,
+	`public` integer DEFAULT 0 NOT NULL,
+	`breakup` integer DEFAULT 0 NOT NULL,
 	FOREIGN KEY (`partner_1`) REFERENCES `users`(`id`) ON UPDATE no action ON DELETE no action,
 	FOREIGN KEY (`partner_2`) REFERENCES `users`(`id`) ON UPDATE no action ON DELETE no action
 );
