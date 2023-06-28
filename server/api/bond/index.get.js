@@ -9,7 +9,7 @@ export default eventHandler(async (event) => {
     });
   }
   const DB = useDb();
-  returning = DB.select().from(tables.bonds).where(
+  return DB.select().from(tables.bonds).where(
     or(
       eq(tables.bonds.partner1, user.id),
       eq(tables.bonds.partner2, user.id)

@@ -1,6 +1,8 @@
 <template>
-  <div id="layout">
+  <div id="layout" class="vh-100 d-flex flex-column">
     <AppNavbar />
-    <slot />
+    <div class="container-fluid py-3 my-auto">
+      <slot />
+    </div>
   </div>
 </template>

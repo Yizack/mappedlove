@@ -22,5 +22,14 @@ export default {
   email_conflict: "Email is already registered",
   has_account: "Already have an account?",
   registered: "You have signed up successfully. Sign in to continue.",
-  error: "Something went wrong"
+  error: "Something went wrong",
+  // Bond
+  not_bonded: "You are currently not bonded",
+  bond_start: "To start mapping your love stories, you need to bond with your partner!",
+  create_bond: "Create bond",
+  or: "or",
+  bond_code: "Enter bond code",
+  bond: "Bond",
+  code: "Code",
+  ask_code: "Ask your partner for the bond code"
 };
