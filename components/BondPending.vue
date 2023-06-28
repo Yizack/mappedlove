@@ -2,7 +2,7 @@
   <section>
     <div class="text-center h-100">
       <div class="col-lg-6 mx-auto">
-        <div class="rounded-3 bg-secondary px-3 py-4 p-lg-5">
+        <div class="rounded-3 shadow bg-body px-3 py-4 p-lg-5">
           <div class="mb-4">
             <h1><strong>{{ t("your_bond_code") }}</strong></h1>
             <h5>{{ t("send_code") }}</h5>

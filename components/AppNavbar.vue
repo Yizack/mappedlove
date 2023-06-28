@@ -20,7 +20,11 @@ const logOut = () => {
         </div>
         <div class="offcanvas-body">
           <ul class="navbar-nav ms-auto mb-lg-0 gap-md-3">
-            <li />
+            <li v-for="(page, i) of pages" :key="i" class="nav-item" data-bs-dismiss="offcanvas">
+              <div class="d-grid">
+                <NuxtLink :class="`${page.button ? 'btn btn-primary rounded-pill px-4' : 'nav-link'}`" :to="page.path">{{ page.name }}</NuxtLink>
+              </div>
+            </li>
           </ul>
         </div>
       </div>
@@ -40,3 +44,22 @@ const logOut = () => {
     </div>
   </nav>
 </template>
+
+<script>
+export default {
+  data () {
+    return {
+      pages: [
+        {
+          name: "App",
+          path: "/app"
+        },
+        {
+          name: "Bond",
+          path: "/app/bond"
+        }
+      ]
+    };
+  }
+};
+</script>
