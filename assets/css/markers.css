@@ -1,0 +1,16 @@
+.marker.active {
+  background-color: var(--bs-secondary)!important;
+}
+
+.marker:hover {
+  background-color: var(--bs-tertiary-bg);
+}
+
+
+.marker.active .title {
+  color: var(--bs-primary)!important;
+}
+
+.marker.active.border, .marker.active .border-start {
+  border-color: var(--bs-primary)!important;
+}

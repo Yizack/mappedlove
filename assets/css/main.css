@@ -9,22 +9,6 @@ a:hover {
   text-decoration: underline;
 }
 
-.form-floating>.form-control~label::after {
-  background-color: transparent!important;
-}
-
-input:read-only {
-  background-color: var(--bs-tertiary-bg)!important;
-}
-
-.form-floating>:read-only~label::after {
-  background-color: var(--bs-tertiary-bg)!important;
-}
-
-.form-control::placeholder {
-  color: rgba(var(--bs-body-color-rgb),.65);
-}
-
 .nuxt-loading-indicator {
   background: repeating-linear-gradient(to right, var(--bs-primary-hover) 0%, var(--bs-primary) 50%, var(--bs-secondary) 100%)!important;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);

@@ -34,7 +34,6 @@ definePageMeta({ middleware: "authenticated" });
         <NuxtLink to="/">{{ t("go_home") }}</NuxtLink>
       </div>
     </section>
-    {{ $route.meta.email }}
     <ToastMessage v-if="submit.error" :name="SITE.name" :text="t('signin_error')" />
     <ToastMessage v-if="$route.meta.email" :name="SITE.name" :text="t('registered')" success />
   </main>

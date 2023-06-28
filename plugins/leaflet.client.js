@@ -16,9 +16,11 @@ class Leaflet {
     this.map = L.map(id, {
       center: [0, 0],
       zoom: 3,
+      minZoom: 2,
       layers: [this.tile, ...Object.values(groups)]
     });
     L.control.layers(null, groups).addTo(this.map);
+    return this.map;
   }
 
   addMarker ({ position, popup, options, group }) {
@@ -40,6 +42,14 @@ class Leaflet {
         return groups;
       }, {})
     };
+  }
+
+  setView (position, zoom) {
+    this.map.setView([...position], zoom);
+  }
+
+  getMarker (id) {
+    return Object.values(this.markers).flat().find(marker => marker.options.id === id);
   }
 
   async geoSearch (query) {

@@ -24,7 +24,9 @@ export default {
     "~/assets/css/transitions.css",
     "~/assets/css/backgrounds.css",
     "~/assets/css/buttons.css",
-    "~/assets/css/navbar.css"
+    "~/assets/css/navbar.css",
+    "~/assets/css/form.css",
+    "~/assets/css/markers.css"
   ],
   modules: [
     "nuxt-icon",

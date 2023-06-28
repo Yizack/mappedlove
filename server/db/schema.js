@@ -28,8 +28,7 @@ export const bonds = sqliteTable("bonds", {
 
 export const groups = sqliteTable("groups", {
   id: integer("id").primaryKey(),
-  name: text("name").notNull(),
-  description: text("description").notNull()
+  name: text("name").notNull()
 });
 
 export const markers = sqliteTable("markers", {
