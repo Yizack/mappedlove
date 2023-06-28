@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "sqlite",
-  "id": "c43911aa-e325-4626-a6cf-75ddeb2bb586",
+  "id": "ec88a969-1aa8-45ba-989e-a17fad269364",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "bonds": {
@@ -14,15 +14,29 @@
           "notNull": true,
           "autoincrement": false
         },
-        "user": {
-          "name": "user",
+        "partner_1": {
+          "name": "partner_1",
           "type": "integer",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
-        "partner": {
-          "name": "partner",
+        "partner_2": {
+          "name": "partner_2",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "couple_date": {
+          "name": "couple_date",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "public": {
+          "name": "public",
           "type": "integer",
           "primaryKey": false,
           "notNull": true,
@@ -31,12 +45,12 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "bonds_user_users_id_fk": {
-          "name": "bonds_user_users_id_fk",
+        "bonds_partner_1_users_id_fk": {
+          "name": "bonds_partner_1_users_id_fk",
           "tableFrom": "bonds",
           "tableTo": "users",
           "columnsFrom": [
-            "user"
+            "partner_1"
           ],
           "columnsTo": [
             "id"
@@ -44,12 +58,12 @@
           "onDelete": "no action",
           "onUpdate": "no action"
         },
-        "bonds_partner_users_id_fk": {
-          "name": "bonds_partner_users_id_fk",
+        "bonds_partner_2_users_id_fk": {
+          "name": "bonds_partner_2_users_id_fk",
           "tableFrom": "bonds",
           "tableTo": "users",
           "columnsFrom": [
-            "partner"
+            "partner_2"
           ],
           "columnsTo": [
             "id"
@@ -99,13 +113,6 @@
           "notNull": true,
           "autoincrement": false
         },
-        "user": {
-          "name": "user",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
         "lat": {
           "name": "lat",
           "type": "integer",
@@ -127,6 +134,13 @@
           "notNull": true,
           "autoincrement": false
         },
+        "user": {
+          "name": "user",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
         "title": {
           "name": "title",
           "type": "text",
@@ -140,16 +154,23 @@
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
+        },
+        "order": {
+          "name": "order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
         }
       },
       "indexes": {},
       "foreignKeys": {
-        "markers_user_bonds_id_fk": {
-          "name": "markers_user_bonds_id_fk",
+        "markers_group_groups_id_fk": {
+          "name": "markers_group_groups_id_fk",
           "tableFrom": "markers",
-          "tableTo": "bonds",
+          "tableTo": "groups",
           "columnsFrom": [
-            "user"
+            "group"
           ],
           "columnsTo": [
             "id"
@@ -157,12 +178,12 @@
           "onDelete": "no action",
           "onUpdate": "no action"
         },
-        "markers_group_groups_id_fk": {
-          "name": "markers_group_groups_id_fk",
+        "markers_user_bonds_id_fk": {
+          "name": "markers_user_bonds_id_fk",
           "tableFrom": "markers",
-          "tableTo": "groups",
+          "tableTo": "bonds",
           "columnsFrom": [
-            "group"
+            "user"
           ],
           "columnsTo": [
             "id"
@@ -183,6 +204,13 @@
           "notNull": true,
           "autoincrement": false
         },
+        "marker": {
+          "name": "marker",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
         "title": {
           "name": "title",
           "type": "text",
@@ -197,8 +225,8 @@
           "notNull": true,
           "autoincrement": false
         },
-        "marker": {
-          "name": "marker",
+        "date": {
+          "name": "date",
           "type": "integer",
           "primaryKey": false,
           "notNull": true,
@@ -268,8 +296,30 @@
           "notNull": false,
           "autoincrement": false
         },
-        "joined": {
-          "name": "joined",
+        "birth_date": {
+          "name": "birth_date",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "show_avatar": {
+          "name": "show_avatar",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "updated_at": {
+          "name": "updated_at",
           "type": "integer",
           "primaryKey": false,
           "notNull": true,
@@ -280,7 +330,8 @@
           "type": "integer",
           "primaryKey": false,
           "notNull": true,
-          "autoincrement": false
+          "autoincrement": false,
+          "default": 0
         }
       },
       "indexes": {

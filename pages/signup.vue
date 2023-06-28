@@ -1,7 +1,11 @@
+<script setup>
+definePageMeta({ middleware: "authenticated" });
+</script>
+
 <template>
   <main>
     <section class="banner banner-signup d-flex align-items-center justify-content-center wh-100 vh-100">
-      <div class="col-11 col-lg-8 m-auto p-3 p-lg-4 bg-body rounded-3 shadow">
+      <div class="col-11 col-lg-8 m-auto px-3 py-4 px-lg-4 bg-body rounded-3 shadow">
         <form class="mb-2" novalidate @submit.prevent="signUp()">
           <div class="text-center mb-4">
             <h2>{{ SITE.name }}</h2>
@@ -30,19 +34,30 @@
             <NuxtTurnstile ref="turnstile" v-model="form.turnstile" />
           </div>
           <div class="d-grid">
-            <button v-if="submit.loading" class="btn btn-primary btn-lg rounded-pill" type="button" disabled>
-              <SpinnerCircle />
+            <button class="btn btn-primary btn-lg rounded-pill" type="submit" :disabled="submit.loading">
+              <Transition name="tab" mode="out-in">
+                <SpinnerCircle v-if="submit.loading" />
+                <span v-else>{{ t("signin") }}</span>
+              </Transition>
             </button>
-            <button v-else class="btn btn-primary btn-lg rounded-pill" type="submit">{{ t('signup') }}</button>
           </div>
         </form>
+        <p class="m-0">{{ t("has_account") }} <NuxtLink to="/login">{{ t("signin") }}</NuxtLink></p>
+        <NuxtLink to="/">{{ t("go_home") }}</NuxtLink>
       </div>
     </section>
+    <ToastMessage v-if="submit.error" :name="SITE.name" :text="t('error')" />
   </main>
 </template>
 
 <script>
 export default {
+  beforeRouteLeave (to, from, next) {
+    if (to.name === "login") {
+      to.meta = from.meta;
+    }
+    next();
+  },
   data () {
     return {
       form: {
@@ -55,8 +70,7 @@ export default {
       submit: {
         loading: false,
         exists: false,
-        error: false,
-        success: false
+        error: false
       }
     };
   },
@@ -76,27 +90,29 @@ export default {
   },
   methods: {
     async signUp () {
+      this.submit.error = false;
       if (!this.isNameValid && !this.isEmailValid && !this.isPasswordCheckValid) {
         return;
       }
 
       this.submit.loading = true;
-      const user = await $fetch("/api/signup", { method: "POST", body: this.form }).catch(() => undefined);
+      const req = await $fetch("/api/signup", { method: "POST", body: this.form }).catch(() => null);
       this.submit.loading = false;
 
-      if (!user) {
+      if (!req) {
         this.submit.error = true;
         this.$refs.turnstile.reset();
         return;
       }
 
-      if (!user.email) {
+      if (!req.user) {
         this.submit.exists = true;
         this.$refs.turnstile.reset();
         return;
       }
 
-      this.submit.success = true;
+      this.$route.meta.email = req.user.email;
+      this.$router.replace("/login");
     }
   }
 };

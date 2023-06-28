@@ -19,16 +19,16 @@ export default defineEventHandler(async (event) => {
   }
 
   const DB = useDb();
-
-  const email = await DB.insert(tables.users).values({
+  const today = Date.now();
+  const user = await DB.insert(tables.users).values({
     email: form.email.toLowerCase(),
     password: hash(form.password),
     name: form.name,
-    joined: Date.now(),
-    confirmed: 0
+    createdAt: today,
+    updatedAt: today
   }).onConflictDoNothing().returning({
     email: tables.users.email
   }).get();
 
-  return { email };
+  return { user };
 });
