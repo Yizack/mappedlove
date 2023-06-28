@@ -20,3 +20,7 @@ input:read-only {
 .form-floating>:read-only~label::after {
   background-color: var(--bs-tertiary-bg)!important;
 }
+
+.form-control::placeholder {
+  color: rgba(var(--bs-body-color-rgb),.65);
+}
