@@ -27,8 +27,10 @@ export default eventHandler(async (event) => {
   const body = await readBody(event);
   const partner = partnerIdFromCode(body.code);
 
-  return DB.update(tables.bonds).set({
+  const bond = DB.update(tables.bonds).set({
     partner2: user.id,
     bonded: 1 // true
   }).where(and(eq(tables.bonds.code, body.code), eq(tables.bonds.partner1, partner))).returning().get();
+  await setUserSession(event, { user: { ...user, bond } });
+  return bond;
 });

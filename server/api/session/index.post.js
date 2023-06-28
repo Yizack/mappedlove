@@ -1,4 +1,4 @@
-import { eq, and } from "drizzle-orm";
+import { eq, and, or } from "drizzle-orm";
 
 export default defineEventHandler(async (event) => {
   const form = await readBody(event);
@@ -16,5 +16,17 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  return setUserSession(event, { user });
+  const bond = DB.select().from(tables.bonds).where(
+    or(
+      eq(tables.bonds.partner1, user.id),
+      eq(tables.bonds.partner2, user.id)
+    )
+  ).get();
+
+  return setUserSession(event, {
+    user: {
+      ...user,
+      bond
+    }
+  });
 });

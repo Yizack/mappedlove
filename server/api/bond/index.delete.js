@@ -9,5 +9,6 @@ export default eventHandler(async (event) => {
     });
   }
   const DB = useDb();
+  await setUserSession(event, { user: { ...user, bond: undefined } });
   return DB.delete(tables.bonds).where(eq(tables.bonds.partner1, user.id)).returning().get();
 });
