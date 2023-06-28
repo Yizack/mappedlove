@@ -23,7 +23,7 @@ definePageMeta({ middleware: "authenticated" });
           </div>
           <div class="d-grid">
             <button class="btn btn-primary btn-lg rounded-pill" type="submit" :disabled="submit.loading">
-              <Transition name="tab" mode="out-in">
+              <Transition name="fade" mode="out-in">
                 <SpinnerCircle v-if="submit.loading" />
                 <span v-else>{{ t("signin") }}</span>
               </Transition>
