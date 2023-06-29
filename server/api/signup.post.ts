@@ -17,11 +17,12 @@ export default defineEventHandler(async (event) => {
     });
   }
 
+  const { secure } = useRuntimeConfig();
   const DB = useDb();
   const today = Date.now();
   const user = await DB.insert(tables.users).values({
     email: form.email.toLowerCase(),
-    password: hash(form.password),
+    password: hash(form.password, secure.salt),
     name: form.name,
     createdAt: today,
     updatedAt: today
