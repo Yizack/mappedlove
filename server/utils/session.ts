@@ -5,7 +5,6 @@ export interface UserSession {
 }
 
 export const _useSession = (event: H3Event) => {
-  // @ts-ignore
   const { session } = useRuntimeConfig(event);
   return useSession(event, session);
 };

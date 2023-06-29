@@ -8,7 +8,7 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const verify = await verifyTurnstileToken(form.turnstile);
+  const verify = await verifyTurnstile(form.turnstile, event);
 
   if (!verify.success) {
     throw createError({
@@ -17,7 +17,7 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const { secure } = useRuntimeConfig();
+  const { secure } = useRuntimeConfig(event);
   const DB = useDb();
   const today = Date.now();
   const user = await DB.insert(tables.users).values({

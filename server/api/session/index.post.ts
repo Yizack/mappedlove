@@ -2,7 +2,7 @@ import { eq, and, or } from "drizzle-orm";
 
 export default defineEventHandler(async (event) => {
   const form = await readBody(event);
-  const { secure } = useRuntimeConfig();
+  const { secure } = useRuntimeConfig(event);
   const DB = useDb();
   const user = await DB.select({
     id: tables.users.id,
