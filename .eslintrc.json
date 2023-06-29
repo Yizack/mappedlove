@@ -6,7 +6,7 @@
     "jest": true
   },
   "extends": [
-    "@nuxtjs/eslint-config-typescript"
+    "@nuxtjs/eslint-config"
   ],
   "overrides": [{
     "files": ["*.vue", "*.js", "*.ts"],
