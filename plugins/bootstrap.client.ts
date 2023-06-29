@@ -17,9 +17,10 @@ class Bootstrap {
     modal.show();
   }
 
-  showToast (id: string | HTMLElement) {
+  showToast (id: HTMLElement) {
     const toast = new Toast(id);
     toast.show();
+    return id;
   }
 }
 

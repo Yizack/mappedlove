@@ -1,8 +1,8 @@
 <template>
   <div class="toast-container position-fixed bottom-0 start-0 p-3">
-    <div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div ref="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
       <div class="toast-header">
-        <strong class="me-auto">{{ name }}</strong>
+        <strong class="me-auto">{{ SITE.name }}</strong>
         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close" />
       </div>
       <div class="toast-body">
@@ -19,10 +19,6 @@
 <script lang="ts">
 export default {
   props: {
-    name: {
-      type: String,
-      required: true
-    },
     text: {
       type: String,
       default: ""
@@ -32,8 +28,18 @@ export default {
       default: false
     }
   },
+  emits: ["dispose"],
+  data () {
+    return {
+      show: true
+    };
+  },
   mounted () {
-    this.$nuxt.$bootstrap.showToast("#toast");
+    // @ts-ignore
+    const toast = this.$nuxt.$bootstrap.showToast(this.$refs.toast);
+    toast.addEventListener("hidden.bs.toast", () => {
+      this.$emit("dispose");
+    });
   }
 };
 </script>

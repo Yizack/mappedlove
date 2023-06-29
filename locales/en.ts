@@ -21,7 +21,7 @@ export default {
   create_account: "Create your account",
   email_conflict: "Email is already registered",
   has_account: "Already have an account?",
-  registered: "You have signed up successfully. Sign in to continue.",
+  registered: "You have signed up successfully, sign in to continue",
   error: "Something went wrong",
   // Bond
   not_bonded: "You are currently not bonded",
@@ -33,11 +33,15 @@ export default {
   code: "Code",
   ask_code: "Ask your partner for the bond code",
   your_bond_code: "Your bond code",
+  partner_will_use: "Your partner will use this code to bond with you",
   send_code: "Copy and send this code to your partner to bond your accounts and start mapping your love stories!",
   cancel: "Cancel bond",
   cancel_code: "I will use my partner's code",
   bond_code_created: "Your bond code has been created",
   bond_joined: "You have successfully bonded with your partner",
+  copy: "Copy",
+  copy_not_supported: "Writting to clipboard not supported in this browser",
+  copy_success: "Copied to clipboard",
   // Map
   markers: "Markers",
   stories: "Stories"

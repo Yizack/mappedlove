@@ -46,7 +46,7 @@ definePageMeta({ middleware: "authenticated" });
         <NuxtLink to="/">{{ t("go_home") }}</NuxtLink>
       </div>
     </section>
-    <ToastMessage v-if="submit.error" :name="SITE.name" :text="t('error')" />
+    <ToastMessage v-if="submit.error" :text="t('error')" @dispose="submit.error = false" />
   </main>
 </template>
 
@@ -90,7 +90,6 @@ export default {
   },
   methods: {
     async signUp () {
-      this.submit.error = false;
       if (!this.isNameValid && !this.isEmailValid && !this.isPasswordCheckValid) {
         return;
       }

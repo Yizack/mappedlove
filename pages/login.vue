@@ -34,8 +34,8 @@ definePageMeta({ middleware: "authenticated" });
         <NuxtLink to="/">{{ t("go_home") }}</NuxtLink>
       </div>
     </section>
-    <ToastMessage v-if="submit.error" :name="SITE.name" :text="t('signin_error')" />
-    <ToastMessage v-if="$route.meta.email" :name="SITE.name" :text="t('registered')" success />
+    <ToastMessage v-if="submit.error" :text="t('signin_error')" @dispose="submit.error = false" />
+    <ToastMessage v-if="$route.meta.email" :text="t('registered')" success />
   </main>
 </template>
 
@@ -56,7 +56,6 @@ export default {
   methods: {
     async signIn () {
       this.submit.loading = true;
-      this.submit.error = false;
       const login = await $fetch("/api/session", {
         method: "POST",
         body: this.form
