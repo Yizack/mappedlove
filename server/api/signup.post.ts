@@ -1,7 +1,6 @@
 export default defineEventHandler(async (event) => {
   const form = await readBody(event);
-  const config = useRuntimeConfig(event);
-
+  // @ts-ignore
   if (!form.turnstile) {
     throw createError({
       statusCode: 422,
@@ -9,7 +8,7 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const verify = await verifyTurnstile(config.turnstile.secretKey, form.turnstile);
+  const verify = await verifyTurnstileToken(form.turnstile);
 
   if (!verify.success) {
     throw createError({
@@ -26,9 +25,7 @@ export default defineEventHandler(async (event) => {
     name: form.name,
     createdAt: today,
     updatedAt: today
-  }).onConflictDoNothing().returning({
-    email: tables.users.email
-  }).get();
+  }).onConflictDoNothing().returning().get();
 
-  return { user };
+  return user ? { user: { email: user.email } } : {};
 });

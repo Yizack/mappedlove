@@ -1,17 +1,43 @@
 import { OpenStreetMapProvider } from "leaflet-geosearch";
-import L from "leaflet";
+import * as L from "leaflet";
+
+interface MarkerOptions extends L.MarkerOptions {
+  id: number
+}
+
+interface AddMarkerOptions {
+  position: [number, number],
+  popup: string,
+  options: MarkerOptions,
+  group: string,
+}
 
 class Leaflet {
-  constructor (email) {
+  searchProvider: OpenStreetMapProvider;
+  map: L.Map | null;
+  markers: { [key: string]: L.Marker[] };
+  tile: L.TileLayer;
+  icon: L.Icon;
+
+  constructor (email: string) {
     this.searchProvider = new OpenStreetMapProvider({ params: { email } });
     this.map = null;
     this.markers = {};
     this.tile = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution: "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors"
     });
+    this.icon = L.icon({
+      iconUrl: "/images/map/marker-icon-heart.png",
+      shadowUrl: "/images/map/marker-shadow.png",
+      iconSize: [25, 32],
+      shadowSize: [41, 41],
+      iconAnchor: [12.5, 31],
+      shadowAnchor: [12, 40],
+      popupAnchor: [1, -28]
+    });
   }
 
-  createMap (id) {
+  createMap (id: string | HTMLElement) {
     const groups = this.getGroups();
     this.map = L.map(id, {
       center: [0, 0],
@@ -19,14 +45,12 @@ class Leaflet {
       minZoom: 2,
       layers: [this.tile, ...Object.values(groups)]
     });
-    L.control.layers(null, groups).addTo(this.map);
+    L.control.layers(undefined, groups).addTo(this.map);
     return this.map;
   }
 
-  addMarker ({ position, popup, options, group }) {
-    if (options?.icon) {
-      options.icon = L.icon(options.icon);
-    }
+  addMarker ({ position, popup, options, group }: AddMarkerOptions) {
+    options.icon = this.icon;
     const marker = L.marker([...position], options).bindPopup(popup);
     if (!this.markers[group]) {
       this.markers[group] = [];
@@ -40,19 +64,22 @@ class Leaflet {
       ...Object.entries(this.markers).reduce((groups, [group, arr]) => {
         groups[group] = L.layerGroup(arr);
         return groups;
-      }, {})
+      }, {} as { [key: string]: L.LayerGroup })
     };
   }
 
-  setView (position, zoom) {
+  setView (position: [number, number], zoom: number) {
+    if (this.map === null) {
+      return;
+    }
     this.map.setView([...position], zoom);
   }
 
-  getMarker (id) {
-    return Object.values(this.markers).flat().find(marker => marker.options.id === id);
+  getMarker (id: number) {
+    return Object.values(this.markers).flat().find(marker => (marker.options as MarkerOptions).id === id);
   }
 
-  async geoSearch (query) {
+  async geoSearch (query: string) {
     return await this.searchProvider.search({ query }).catch(() => []);
   }
 }

@@ -1,13 +1,13 @@
 import { sha256 } from "ohash";
 
-export const hash = (password, salt) => {
+export const hash = (password: string, salt: string) => {
   return sha256(password + salt);
 };
 
-export const bondCode = (id) => {
+export const bondCode = (id: string) => {
   return `${String(id).padStart(4, "0")}-${Math.random().toString(36).substring(7).toUpperCase()}`;
 };
 
-export const partnerIdFromCode = (code) => {
+export const partnerIdFromCode = (code: string) => {
   return Number(code.split("-")[0]);
 };

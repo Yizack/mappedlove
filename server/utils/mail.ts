@@ -1,4 +1,4 @@
-export const mailChannels = async (config, message) => {
+export const mailChannels = async (config: any, message: any) => {
   const { to, subject, html } = message;
   return await $fetch("https://api.mailchannels.net/tx/v1/send", {
     method: "POST",
@@ -22,11 +22,12 @@ export const mailChannels = async (config, message) => {
   }).then(() => true).catch(err => err);
 };
 
-export const sendMail = async (config, message) => {
+export const sendMail = async (config: any, message: any) => {
   if (!process.dev) {
     return mailChannels(config, message);
   }
   else {
+    // @ts-ignore
     const nodemailer = await import("nodemailer");
     const transporter = nodemailer.createTransport({
       port: config.mail.port,
@@ -38,7 +39,7 @@ export const sendMail = async (config, message) => {
     });
 
     const verified = await new Promise((resolve, reject) => {
-      transporter.verify((error, success) => {
+      transporter.verify((error: any, success: any) => {
         if (error) {
           reject(error);
         }
@@ -60,7 +61,7 @@ export const sendMail = async (config, message) => {
         from: `"${config.mail.fromName}" <${config.mail.from}>`
       };
 
-      transporter.sendMail(mail, (err) => {
+      transporter.sendMail(mail, (err: any) => {
         if (err) {
           console.warn(err);
           reject(err);

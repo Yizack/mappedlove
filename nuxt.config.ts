@@ -38,7 +38,7 @@ export default {
     addValidateEndpoint: true
   },
   runtimeConfig: {
-    encryption: {
+    secure: {
       salt: ""
     },
     turnstile: {

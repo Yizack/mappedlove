@@ -1,10 +1,10 @@
-<script setup>
+<script setup lang="ts">
 definePageMeta({ middleware: "authenticated" });
 </script>
 
 <template>
   <main>
-    <section class="banner banner-login d-flex align-items-center justify-content-center wh-100 vh-100">
+    <section class="banner banner-fields d-flex align-items-center justify-content-center wh-100 vh-100 overflow-auto">
       <div class="col-11 col-lg-8 m-auto px-3 py-4 px-lg-4 bg-body rounded-3 shadow">
         <form class="mb-2" @submit.prevent="signIn()">
           <div class="text-center mb-4">
@@ -39,7 +39,7 @@ definePageMeta({ middleware: "authenticated" });
   </main>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   data () {
     return {
@@ -62,7 +62,7 @@ export default {
         body: this.form
       }).catch(() => ({}));
       this.submit.loading = false;
-      if (!login.user) {
+      if (!("user" in login)) {
         this.submit.error = true;
         return;
       }

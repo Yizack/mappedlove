@@ -5,23 +5,23 @@ import Modal from "bootstrap/js/dist/modal";
 import Toast from "bootstrap/js/dist/toast";
 
 class Bootstrap {
-  hideModal (id) {
+  hideModal (id: string | HTMLElement) {
     const instance = Modal.getInstance(id);
     if (instance) {
       instance.hide();
     }
   }
 
-  showModal (id) {
+  showModal (id: string | HTMLElement) {
     const modal = new Modal(id);
     modal.show();
   }
 
-  showToast (id) {
+  showToast (id: string | HTMLElement) {
     const toast = new Toast(id);
     toast.show();
   }
-};
+}
 
 const bootstrap = new Bootstrap();
 

@@ -2,7 +2,7 @@
   <div ref="map" class="w-100 rounded-3 shadow-sm border bg-body" :style="{height: size}" />
 </template>
 
-<script>
+<script lang="ts">
 export default {
   props: {
     id: {
@@ -10,33 +10,38 @@ export default {
       required: true
     },
     markers: {
-      type: Array,
+      type: Array as () => Array<any>,
       required: true
     },
     size: {
       type: String,
       default: "600px"
     },
-    open: {
+    select: {
       type: Number,
       default: 0
     }
   },
   data () {
     return {
-      map: null
+      map: new this.$nuxt.$Leaflet("") || null
     };
   },
   watch: {
-    open (id) {
+    select (id) {
       const marker = this.map.getMarker(id);
-      const { lat, lng } = marker.getLatLng();
-      marker.openPopup();
-      this.map.setView([lat, lng], 7);
+      if (marker) {
+        const { lat, lng } = marker.getLatLng();
+        marker.openPopup();
+        this.map.setView([lat, lng], 7);
+      }
     }
   },
   mounted () {
-    this.map = new this.$nuxt.$Leaflet();
+    if (!this.map) {
+      const { user } = useUserSession();
+      this.map = new this.$nuxt.$Leaflet(user.value.email);
+    }
     this.markers.forEach((marker) => {
       this.map.addMarker({
         position: [marker.lat, marker.lng],
@@ -54,7 +59,8 @@ export default {
 
     if (this.markers.length) {
       const { lat, lng } = this.markers[this.markers.length - 1];
-      this.map.createMap(this.$refs.map).setView([lat, lng], 3);
+      // @ts-ignore
+      this.map.createMap(this.$refs.map).setView([lat, lng]);
     }
   }
 };

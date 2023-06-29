@@ -21,7 +21,7 @@ export const bonds = sqliteTable("bonds", {
   code: text("code").notNull(),
   partner1: integer("partner_1").references(() => users.id),
   partner2: integer("partner_2").references(() => users.id),
-  couple_date: integer("couple_date"),
+  coupleDate: integer("couple_date"),
   bonded: integer("bonded").notNull().default(0),
   public: integer("public").notNull().default(0)
 });

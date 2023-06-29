@@ -1,11 +1,11 @@
-<script setup>
+<script setup lang="ts">
 definePageMeta({ middleware: "authenticated" });
 </script>
 
 <template>
   <main>
-    <section class="banner banner-signup d-flex align-items-center justify-content-center wh-100 vh-100">
-      <div class="col-11 col-lg-8 m-auto px-3 py-4 px-lg-4 bg-body rounded-3 shadow">
+    <section class="banner banner-fields d-flex align-items-center justify-content-center wh-100 vh-100 overflow-auto">
+      <div class="col-11 col-lg-8 px-3 py-4 px-lg-4 bg-body rounded-3 shadow">
         <form class="mb-2" novalidate @submit.prevent="signUp()">
           <div class="text-center mb-4">
             <h2>{{ SITE.name }}</h2>
@@ -50,7 +50,7 @@ definePageMeta({ middleware: "authenticated" });
   </main>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   beforeRouteLeave (to, from, next) {
     if (to.name === "login") {
@@ -101,12 +101,14 @@ export default {
 
       if (!req) {
         this.submit.error = true;
+        // @ts-ignore
         this.$refs.turnstile.reset();
         return;
       }
 
-      if (!req.user) {
+      if (!("user" in req)) {
         this.submit.exists = true;
+        // @ts-ignore
         this.$refs.turnstile.reset();
         return;
       }

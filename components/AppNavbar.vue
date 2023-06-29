@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 const { loggedIn, user, clear } = useUserSession();
 const logOut = () => {
   clear();
@@ -45,18 +45,20 @@ const logOut = () => {
   </nav>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   data () {
     return {
       pages: [
         {
           name: "App",
-          path: "/app"
+          path: "/app",
+          button: false
         },
         {
           name: "Bond",
-          path: "/app/bond"
+          path: "/app/bond",
+          button: false
         }
       ]
     };

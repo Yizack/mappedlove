@@ -1,5 +1,5 @@
-<script setup>
-definePageMeta({ layout: "app" });
+<script setup lang="ts">
+definePageMeta({ layout: "app", middleware: "session" });
 
 const markers = [
   {
@@ -26,42 +26,32 @@ const markers = [
   }
 ];
 
-const stories = [];
+const markerModal = ref(false);
+// const stories = [];
 const selected = ref(0);
 </script>
 
 <template>
-  <div class="container-fluid">
-    <div class="row g-2">
-      <div class="col-12">
-        <MapView id="map" :markers="markers" size="300px" :open="selected" />
-      </div>
-      <div class="col-12">
-        <div class="bg-body rounded-3 px-3 py-4 p-lg-4">
-          <h1>{{ t("markers") }}</h1>
-          <div class="row g-2">
-            <div v-for="marker of markers" :key="marker.id" class="col-sm-6 col-md-4 col-lg-3">
-              <div class="marker d-flex gap-2 align-items-center border rounded p-3" :class="{'active' : selected === marker.id}" role="button" @click="selected = marker.id">
-                <Icon class="flex-shrink-0" name="solar:map-point-favourite-bold-duotone" size="3rem" />
-                <div class="border-start ps-3 w-100 h-100 text-break">
-                  <h5 class="title">{{ marker.title }}</h5>
-                  <p>{{ marker.description }}</p>
-                </div>
-              </div>
-            </div>
-          </div>
+  <section>
+    <div class="container-fluid">
+      <div class="row g-2">
+        <div class="col-12">
+          <MapView id="map" :markers="markers" size="300px" :select="selected" />
         </div>
-      </div>
-      <div class="col-12">
-        <div class="bg-body rounded-3 px-3 py-4 p-lg-4">
-          <h1>{{ t("stories") }}</h1>
-          <div class="row">
-            <div v-for="marker of stories" :key="marker.id" class="col-lg-4">
-              <div class="d-flex gap-2 align-items-center border rounded p-3">
-                <Icon class="flex-shrink-0" name="solar:map-point-favourite-bold-duotone" size="3rem" />
-                <div class="border-start ps-3 w-100 h-100 text-break">
-                  <h5>{{ marker.title }}</h5>
-                  <p>{{ marker.description }}</p>
+        <div class="col-12">
+          <div class="bg-body rounded-3 px-3 py-4 p-lg-4">
+            <div class="position-relative d-flex align-items-center gap-2 mb-2">
+              <h2 class="m-0">{{ t("markers") }}</h2>
+              <AddButton />
+            </div>
+            <div class="row g-2">
+              <div v-for="marker of markers" :key="marker.id" class="col-sm-6 col-md-4 col-lg-3">
+                <div class="marker d-flex gap-2 align-items-center border rounded-3 p-2" :class="{'active' : selected === marker.id}" role="button" @click="selected = marker.id">
+                  <Icon class="flex-shrink-0 text-primary" name="solar:map-point-favourite-bold" size="3rem" />
+                  <div class="border-start ps-3 w-100 h-100 text-break">
+                    <h5 class="title">{{ marker.title }}</h5>
+                    <p>{{ marker.description }}</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -69,5 +59,6 @@ const selected = ref(0);
         </div>
       </div>
     </div>
-  </div>
+    <MarkerModal v-if="markerModal" />
+  </section>
 </template>

@@ -1,13 +1,20 @@
-import en from "~/locales/en.js";
+import en from "~/locales/en";
 
-const locales = { en };
+type LocaleStrings = {
+  [key: string]: {
+    [key: string]: string;
+  }
+}
+
+const locales: LocaleStrings = { en };
 
 class Locale {
-  constructor (code) {
+  code: string;
+  constructor (code: string) {
     this.code = String(code).toLowerCase();
   }
 
-  get (key = "") {
+  get (key: string) {
     return locales[this.code][key] || locales.en[key] || key;
   }
 
@@ -18,6 +25,6 @@ class Locale {
 
 export const locale = new Locale("en");
 
-export const t = (key) => {
+export const t = (key: string) => {
   return locale.get(key);
 };

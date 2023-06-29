@@ -1,9 +1,9 @@
-<script setup>
+<script setup lang="ts">
 definePageMeta({ layout: "app", middleware: "session" });
 const { data: bond } = await useFetch("/api/bond");
 
 const bondEvent = ref("");
-const setBond = async (event) => {
+const setBond = async (event: any) => {
   bond.value = event.bond;
   bondEvent.value = event.type;
   await useUserSession().fetch();
