@@ -24,16 +24,16 @@ export default {
   },
   data () {
     return {
-      map: new this.$nuxt.$Leaflet() || null
+      map: null as InstanceType<typeof this.$nuxt.$Leaflet> | null
     };
   },
   watch: {
     select (id) {
-      const marker = this.map.getMarker(id);
+      const marker = this.map?.getMarker(id);
       if (marker) {
         const { lat, lng } = marker.getLatLng();
         marker.openPopup();
-        this.map.setView([lat, lng], 7);
+        this.map?.setView([lat, lng], 7);
       }
     }
   },
@@ -42,7 +42,7 @@ export default {
       this.map = new this.$nuxt.$Leaflet();
     }
     this.markers.forEach((marker) => {
-      this.map.addMarker({
+      this.map?.addMarker({
         position: [marker.lat, marker.lng],
         popup: marker.title,
         group: marker.group_name,
