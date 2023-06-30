@@ -47,9 +47,20 @@ export default {
   markers: "Markers",
   add_marker: "Add marker",
   location: "Location",
+  location_info: "Please add the nearest location, you will have the option to precisely position the marker later by dragging it to the exact location.",
   // Stories
   stories: "Stories",
   add_story: "Add story",
+  // Groups
+  groups: "Groups",
+  places: "Places",
+  restaurants: "Restaurants",
+  hotels: "Hotels",
+  events: "Events",
+  activities: "Activities",
+  cities: "Cities",
+  others: "Others",
+  select_group: "Select group",
   // App
   cancel: "Cancel"
 };

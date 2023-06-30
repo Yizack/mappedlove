@@ -25,7 +25,6 @@ export default {
       search: false,
       array: [] as any[],
       text: "",
-      debounce: null as null | ReturnType<typeof setTimeout>,
       loading: false
     };
   },
@@ -37,29 +36,27 @@ export default {
     searchPlace (target: any) {
       this.loading = true;
       this.search = true;
-      if (this.debounce) {
-        clearTimeout(this.debounce);
-        this.debounce = null;
+      const time = 2000;
+      if (!target.value) {
+        return debounce("geosearch", () => {
+          this.loading = false;
+          this.array = [];
+        }, time);
       }
-      if (target.value) {
-        this.debounce = setTimeout(async () => {
-          try {
-            const { user } = useUserSession();
-            this.array = await this.$nuxt.$Leaflet.geoSearch(target.value, {
-              email: user.value.email,
-              lang: "en"
-            });
-            this.loading = false;
-          }
-          catch {
-            // error
-          }
-        }, 2000);
-      }
-      else {
-        this.array = [];
-        this.loading = false;
-      }
+      debounce("geosearch", async () => {
+        try {
+          const { user } = useUserSession();
+          this.array = await this.$nuxt.$Leaflet.geoSearch(target.value, {
+            email: user.value.email,
+            lang: "en"
+          });
+          this.loading = false;
+        }
+        catch {
+          this.array = [];
+          this.loading = false;
+        }
+      }, time);
     }
   }
 };

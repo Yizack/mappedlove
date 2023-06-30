@@ -52,7 +52,10 @@ export default {
         }
       }).on("move", (e) => {
         const { id } = e.target.options;
-        console.info(id, e.target.getLatLng());
+        const { lat, lng } = e.target.getLatLng();
+        debounce(`marker_${id}`, () => {
+          console.info(id, [lat, lng]);
+        }, 3000);
       });
     });
 

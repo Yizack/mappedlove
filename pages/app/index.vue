@@ -1,6 +1,8 @@
 <script setup lang="ts">
 definePageMeta({ layout: "app", middleware: "session" });
 
+useFetch("/api/groups", { key: "groups" });
+
 const markers = [
   {
     id: 1,

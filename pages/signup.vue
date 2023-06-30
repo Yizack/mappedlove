@@ -90,9 +90,7 @@ export default {
   },
   methods: {
     async signUp () {
-      if (!this.isNameValid && !this.isEmailValid && !this.isPasswordCheckValid) {
-        return;
-      }
+      if (!this.isNameValid && !this.isEmailValid && !this.isPasswordCheckValid) return;
 
       this.submit.loading = true;
       const req = await $fetch("/api/signup", { method: "POST", body: this.form }).catch(() => null);

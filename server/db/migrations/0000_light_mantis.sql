@@ -12,8 +12,7 @@ CREATE TABLE `bonds` (
 --> statement-breakpoint
 CREATE TABLE `groups` (
 	`id` integer PRIMARY KEY NOT NULL,
-	`name` text NOT NULL,
-	`description` text NOT NULL
+	`name` text NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE `markers` (

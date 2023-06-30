@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "sqlite",
-  "id": "2049076b-c3c9-4483-8e2f-d2c5a83af032",
+  "id": "77c38a68-80ee-4315-bf4a-381ac9fbbdbe",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "bonds": {
@@ -102,13 +102,6 @@
         },
         "name": {
           "name": "name",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "description": {
-          "name": "description",
           "type": "text",
           "primaryKey": false,
           "notNull": true,

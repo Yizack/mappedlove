@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="text-center h-100">
+    <div class="text-center">
       <div class="col-lg-6 mx-auto">
         <div class="rounded-3 shadow bg-body px-3 py-4 p-lg-5">
           <div class="mb-4">
