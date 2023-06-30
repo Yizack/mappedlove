@@ -29,7 +29,7 @@
     "no-console": ["error", {
       "allow": ["info", "warn"]
     }],
-    "brace-style": ["error", "stroustrup"],
+    "brace-style": ["error", "stroustrup", { "allowSingleLine": true }],
     "no-multi-spaces": "error",
     "space-before-blocks": "error",
     "vue/first-attribute-linebreak": ["error", {
