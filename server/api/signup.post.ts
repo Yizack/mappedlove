@@ -8,7 +8,7 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const verify = await verifyTurnstile(form.turnstile, event);
+  const verify = await verifyTurnstileToken(form.turnstile, event);
 
   if (!verify.success) {
     throw createError({
