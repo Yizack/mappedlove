@@ -7,20 +7,20 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" />
         </div>
         <div class="modal-body">
-          <form>
+          <form @submit.prevent="submitMarker()">
             <p>{{ t("location_info") }}</p>
             <GeoSearch class="mb-2" @select="selectLocation($event)" />
             <div class="form-floating mb-2">
-              <input v-model="form.title" type="text" class="form-control" :placeholder="t('title')">
+              <input v-model.trim="form.title" type="text" class="form-control" :placeholder="t('title')" required>
               <label>{{ t("title") }}</label>
             </div>
             <div class="form-floating mb-2">
-              <textarea v-model="form.description" type="text" class="form-control" :placeholder="t('description')" :style="{height: '100px'}" />
+              <textarea v-model.trim="form.description" type="text" class="form-control" :placeholder="t('description')" :style="{height: '100px'}" />
               <label>{{ t("description") }}</label>
             </div>
             <div class="form-floating mb-2">
-              <select v-model="form.group" class="form-select" :placeholder="t('group')">
-                <option :value="0" disabled>{{ t("select_group") }}</option>
+              <select v-model="form.group" class="form-select" :placeholder="t('group')" required>
+                <option value="" disabled>{{ t("select_group") }}</option>
                 <option v-for="group of $nuxt.payload.data.groups" :key="group.id" :value="group.id">{{ t(group.name) }}</option>
               </select>
               <label>{{ t("group") }}</label>
@@ -44,14 +44,14 @@ export default {
       default: () => ({})
     }
   },
-  emits: ["close"],
+  emits: ["close", "submit"],
   data () {
     return {
       form: {
         location: "",
-        lat: 0,
-        lng: 0,
-        group: 0,
+        lat: null as number | null,
+        lng: null as number | null,
+        group: "" as number | string,
         title: "",
         description: "",
         order: 0
@@ -68,6 +68,11 @@ export default {
     selectLocation (event: any) {
       this.form.lat = event.y;
       this.form.lng = event.x;
+    },
+    submitMarker () {
+      if (typeof this.form.lat === "number" && typeof this.form.lng === "number") {
+        this.$emit("submit", this.form);
+      }
     }
   }
 };

@@ -14,23 +14,16 @@ const markers = [
     title: "title",
     description: "desc",
     order: 1
-  },
-  {
-    id: 2,
-    lat: 48.8,
-    lng: 4.3,
-    group: 1,
-    group_name: "places",
-    bond: 1,
-    title: "title",
-    description: "desc",
-    order: 1
   }
 ];
 
 const markerModal = ref(false);
 // const stories = [];
 const selected = ref(0);
+
+const submitMarker = (marker: any) => {
+  console.log("fetch");
+};
 </script>
 
 <template>
@@ -59,6 +52,6 @@ const selected = ref(0);
         </div>
       </div>
     </div>
-    <MarkerModal v-if="markerModal" @close="markerModal = false" />
+    <MarkerModal v-if="markerModal" @close="markerModal = false" @submit="submitMarker($event)" />
   </section>
 </template>

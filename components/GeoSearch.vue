@@ -2,7 +2,7 @@
   <div class="position-relative">
     <div class="form-floating position-relative">
       <Icon class="position-absolute top-50 start-0 mx-2 translate-middle-y text-primary" name="solar:map-point-favourite-bold" size="2rem" />
-      <input v-model="text" class="ps-5 form-control" :placeholder="t('location')" required @input="searchPlace($event.target)">
+      <input v-model.trim="text" class="ps-5 form-control" :placeholder="t('location')" required @input="searchPlace($event.target)">
       <label class="ps-5 ms-1">{{ t("location") }}</label>
     </div>
     <ul v-if="search && text" class="geosearch bg-body position-absolute top-100 rounded-bottom border py-2 px-0 shadow w-100 m-0">
@@ -32,6 +32,7 @@ export default {
   methods: {
     select (result: any) {
       this.search = false;
+      this.text = result.label;
       this.$emit("select", result);
     },
     searchPlace (target: any) {
@@ -39,6 +40,7 @@ export default {
       this.search = true;
       const time = 2000;
       if (!target.value) {
+        this.$emit("select", { lat: null, lng: null });
         return debounce("geosearch", () => {
           this.loading = false;
           this.array = [];

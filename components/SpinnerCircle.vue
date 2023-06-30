@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex justify-content-center align-items-center">
+  <div class="d-flex justify-content-center align-items-center text-primary">
     <div class="spinner-border" :class="{'spinner-border-sm': small}" role="status">
       <span class="visually-hidden">Loading...</span>
     </div>
