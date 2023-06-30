@@ -47,7 +47,7 @@ export default {
   markers: "Markers",
   add_marker: "Add marker",
   location: "Location",
-  location_info: "Please add the nearest location, you will have the option to precisely position the marker later by dragging it to the exact location.",
+  location_info: "Please select the nearest location, you will be able to precisely position the marker later by dragging it to the exact location on the map",
   // Stories
   stories: "Stories",
   add_story: "Add story",
@@ -62,5 +62,8 @@ export default {
   others: "Others",
   select_group: "Select group",
   // App
-  cancel: "Cancel"
+  cancel: "Cancel",
+  group: "Group",
+  title: "Title",
+  description: "Description",
 };
