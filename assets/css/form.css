@@ -1,5 +1,5 @@
 
-.form-floating>.form-control~label::after {
+.form-floating>.form-control~label::after, .form-floating>.form-select~label::after {
   background-color: transparent!important;
 }
 
@@ -7,7 +7,7 @@ input:read-only {
   background-color: var(--bs-tertiary-bg)!important;
 }
 
-.form-floating>:read-only~label::after {
+.form-floating>.form-control:read-only~label::after {
   background-color: var(--bs-tertiary-bg)!important;
 }
 
