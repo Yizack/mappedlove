@@ -1,10 +1,10 @@
 <script setup lang="ts">
-definePageMeta({ layout: "start" });
+definePageMeta({ middleware: "preload" });
 </script>
 
 <template>
   <main>
-    <section class="banner banner-home text-dark py-5">
+    <section class="banner banner-home bg-secondary text-dark py-5">
       <div class="container text-center py-5">
         <h1 class="display-3"><strong>{{ t("motto") }}</strong></h1>
         <p class="display-6 m-0">Mark the places you have visited together and preserve your special moments forever</p>

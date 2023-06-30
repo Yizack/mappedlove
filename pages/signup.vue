@@ -1,5 +1,5 @@
 <script setup lang="ts">
-definePageMeta({ middleware: "authenticated" });
+definePageMeta({ layout: "access", middleware: "authenticated" });
 </script>
 
 <template>

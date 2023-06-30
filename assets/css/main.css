@@ -13,3 +13,14 @@ a:hover {
   background: repeating-linear-gradient(to right, var(--bs-primary-hover) 0%, var(--bs-primary) 50%, var(--bs-secondary) 100%)!important;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
+
+.geosearch {
+  list-style-type: none;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.hover:hover {
+  background-color: var(--bs-tertiary-bg)!important;
+}

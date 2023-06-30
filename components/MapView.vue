@@ -24,7 +24,7 @@ export default {
   },
   data () {
     return {
-      map: new this.$nuxt.$Leaflet("") || null
+      map: new this.$nuxt.$Leaflet() || null
     };
   },
   watch: {
@@ -39,8 +39,7 @@ export default {
   },
   mounted () {
     if (!this.map) {
-      const { user } = useUserSession();
-      this.map = new this.$nuxt.$Leaflet(user.value.email);
+      this.map = new this.$nuxt.$Leaflet();
     }
     this.markers.forEach((marker) => {
       this.map.addMarker({
@@ -52,8 +51,8 @@ export default {
           draggable: true
         }
       }).on("move", (e) => {
-        const { markerId } = e.target.options;
-        console.info(markerId, e.target.getLatLng());
+        const { id } = e.target.options;
+        console.info(id, e.target.getLatLng());
       });
     });
 

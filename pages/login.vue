@@ -1,10 +1,10 @@
 <script setup lang="ts">
-definePageMeta({ middleware: "authenticated" });
+definePageMeta({ layout: "access", middleware: "authenticated" });
 </script>
 
 <template>
   <main>
-    <section class="banner banner-fields d-flex align-items-center justify-content-center wh-100 vh-100 overflow-auto">
+    <section>
       <div class="col-11 col-lg-8 m-auto px-3 py-4 px-lg-4 bg-body rounded-3 shadow">
         <form class="mb-2" @submit.prevent="signIn()">
           <div class="text-center mb-4">

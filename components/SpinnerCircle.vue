@@ -22,4 +22,8 @@ export default {
   width: 1.875rem;
   height: 1.875rem;
 }
+.spinner-border-sm {
+  width: 1em;
+  height: 1em;
+}
 </style>

@@ -13,7 +13,7 @@
           </div>
         </div>
         <div class="mt-3">
-          <p>{{ t("cancel_code") }}. <span class="text-primary fw-bold" role="button" @click="cancelBond()">{{ t("cancel") }}</span></p>
+          <p>{{ t("cancel_code") }}. <span class="text-primary fw-bold" role="button" @click="cancelBond()">{{ t("cancel_bond") }}</span></p>
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 <template>
   <section>
-    <div class="text-center h-100">
-      <div class="col-lg-6 mx-auto">
+    <div class="text-center">
+      <div class="col-6 mx-auto">
         <div class="rounded-3 bg-body shadow px-3 py-4">
           <h1>
             <strong>{{ t("not_bonded") }}</strong>
@@ -13,7 +13,7 @@
       <div class="mt-2 mb-3 display-6">
         <span>{{ t("or") }}</span>
       </div>
-      <div class="col-lg-6 mx-auto">
+      <div class="col-6 mx-auto">
         <div class="rounded-3 shadow bg-body px-3 py-4 p-lg-4">
           <form @submit.prevent="joinBond()">
             <h1>

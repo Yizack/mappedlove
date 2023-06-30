@@ -13,14 +13,12 @@ interface AddMarkerOptions {
 }
 
 class Leaflet {
-  searchProvider: OpenStreetMapProvider;
   map: L.Map | null;
   markers: { [key: string]: L.Marker[] };
   tile: L.TileLayer;
   icon: L.Icon;
 
-  constructor (email: string) {
-    this.searchProvider = new OpenStreetMapProvider({ params: { email } });
+  constructor () {
     this.map = null;
     this.markers = {};
     this.tile = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -79,8 +77,12 @@ class Leaflet {
     return Object.values(this.markers).flat().find(marker => (marker.options as MarkerOptions).id === id);
   }
 
-  async geoSearch (query: string) {
-    return await this.searchProvider.search({ query }).catch(() => []);
+  static async geoSearch (query: string, options?: { email: string, lang: string }) {
+    const params = options ? {
+      email: options.email,
+      "accept-language": options.lang
+    } : undefined;
+    return await new OpenStreetMapProvider({ params }).search({ query }).catch(() => []);
   }
 }
 
