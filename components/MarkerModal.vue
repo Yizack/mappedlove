@@ -27,7 +27,10 @@
             </div>
             <div class="d-flex justify-content-between gap-2">
               <button type="button" class="btn btn-secondary btn-lg w-100" data-bs-dismiss="modal">{{ t("cancel") }}</button>
-              <button type="submit" class="btn btn-primary btn-lg w-100">{{ t("add_marker") }}</button>
+              <button type="submit" class="btn btn-primary btn-lg w-100" :disabled="submitted">
+                <SpinnerCircle v-if="submitted" class="text-light" />
+                <span v-else>{{ t("add_marker") }}</span>
+              </button>
             </div>
           </form>
         </div>
@@ -47,6 +50,7 @@ export default {
   emits: ["close", "submit"],
   data () {
     return {
+      submitted: false,
       form: {
         location: "",
         lat: null as number | null,
@@ -69,9 +73,17 @@ export default {
       this.form.lat = event.y;
       this.form.lng = event.x;
     },
-    submitMarker () {
+    async submitMarker () {
       if (typeof this.form.lat === "number" && typeof this.form.lng === "number") {
-        this.$emit("submit", this.form);
+        this.submitted = true;
+        const marker = await $fetch("/api/markers", {
+          method: "POST",
+          body: this.form
+        }).catch(() => ({}));
+        this.submitted = false;
+        if (!("id" in marker)) return;
+        this.$emit("submit", marker);
+        this.$nuxt.$bootstrap.hideModal(this.$refs.modal as HTMLElement);
       }
     }
   }

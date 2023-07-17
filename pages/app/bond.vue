@@ -1,5 +1,5 @@
 <script setup lang="ts">
-definePageMeta({ layout: "app", middleware: "session" });
+definePageMeta({ layout: "app-bond", middleware: "session" });
 const { data: bond } = await useFetch("/api/bond");
 
 const bondEvent = ref("");

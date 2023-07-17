@@ -45,7 +45,7 @@ export default {
       this.map?.addMarker({
         position: [marker.lat, marker.lng],
         popup: marker.title,
-        group: marker.group_name,
+        group: t(this.$nuxt.payload.data.groups[marker.group].name),
         options: {
           id: marker.id,
           draggable: true

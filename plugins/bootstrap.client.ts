@@ -5,7 +5,7 @@ import Modal from "bootstrap/js/dist/modal";
 import Toast from "bootstrap/js/dist/toast";
 
 class Bootstrap {
-  hideModal (id: string | HTMLElement) {
+  hideModal (id: HTMLElement) {
     const instance = Modal.getInstance(id);
     if (instance) {
       instance.hide();

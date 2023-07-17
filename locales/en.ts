@@ -66,4 +66,7 @@ export default {
   group: "Group",
   title: "Title",
   description: "Description",
+  edit: "Edit",
+  done: "Done",
+  delete: "Delete"
 };
