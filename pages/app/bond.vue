@@ -13,8 +13,8 @@ const setBond = async (event: any) => {
 <template>
   <main>
     <Transition name="tab" mode="out-in">
-      <BondStart v-if="!bond" @bond="setBond($event)" />
-      <BondPending v-else-if="bond && !bond.partner2" :code="bond.code" @bond="setBond($event)" />
+      <BondStart v-if="!bond" @bond="setBond" />
+      <BondPending v-else-if="bond && !bond.partner2" :code="bond.code" @bond="setBond" />
     </Transition>
     <ToastMessage v-if="bond && bondEvent === 'created'" :name="SITE.name" :text="t('bond_code_created')" success />
     <ToastMessage v-if="bond && bondEvent === 'joined'" :name="SITE.name" :text="t('bond_joined')" success />

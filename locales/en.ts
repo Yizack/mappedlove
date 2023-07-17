@@ -68,5 +68,6 @@ export default {
   description: "Description",
   edit: "Edit",
   done: "Done",
-  delete: "Delete"
+  delete: "Delete",
+  saved_changes: "Your changes have been saved"
 };

@@ -20,7 +20,7 @@
 
 <script lang="ts">
 export default {
-  emits: ["select"],
+  emits: ["select", "update:modelValue"],
   data () {
     return {
       search: false,
@@ -32,10 +32,10 @@ export default {
   methods: {
     select (result: any) {
       this.search = false;
-      this.text = result.label;
-      this.$emit("select", result);
+      this.$emit("select", { lat: result.y, lng: result.x });
     },
     searchPlace (target: any) {
+      this.$emit("update:modelValue", target.value.trim());
       this.loading = true;
       this.search = true;
       const time = 2000;

@@ -9,11 +9,7 @@
         <div class="modal-body">
           <form @submit.prevent="submitMarker()">
             <p>{{ t("location_info") }}</p>
-            <GeoSearch class="mb-2" @select="selectLocation($event)" />
-            <div class="form-floating mb-2">
-              <input v-model.trim="form.title" type="text" class="form-control" :placeholder="t('title')" required>
-              <label>{{ t("title") }}</label>
-            </div>
+            <GeoSearch v-model.trim="form.title" class="mb-2" @select="selectLocation" />
             <div class="form-floating mb-2">
               <textarea v-model.trim="form.description" type="text" class="form-control" :placeholder="t('description')" :style="{height: '100px'}" />
               <label>{{ t("description") }}</label>
@@ -69,9 +65,9 @@ export default {
     });
   },
   methods: {
-    selectLocation (event: any) {
-      this.form.lat = event.y;
-      this.form.lng = event.x;
+    selectLocation ({ lat, lng }: { lat: number, lng: number }) {
+      this.form.lat = lat;
+      this.form.lng = lng;
     },
     async submitMarker () {
       if (typeof this.form.lat === "number" && typeof this.form.lng === "number") {

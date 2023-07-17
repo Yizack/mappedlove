@@ -14,9 +14,16 @@ const markerModal = ref(false);
 // const stories = [];
 const selected = ref(0);
 const edit = ref(false);
+const map = ref();
+const moved = ref({
+  success: false,
+  updated: false
+});
 
 const newMarker = async (marker: any) => {
   markers.value.push(marker);
+  map.value.addMarker(marker);
+  map.value.setView([marker.lat, marker.lng], 10);
 };
 
 const deleteMarker = async (id: number) => {
@@ -27,6 +34,14 @@ const deleteMarker = async (id: number) => {
 
   if (!("id" in res)) return;
   markers.value = markers.value.filter((marker) => marker.id !== id);
+  map.value.removeMarker(id);
+};
+
+const movedPosition = (update: any) => {
+  if (update.id) {
+    moved.value.success = true;
+  }
+  moved.value.updated = true;
 };
 </script>
 
@@ -34,7 +49,7 @@ const deleteMarker = async (id: number) => {
   <section>
     <div class="row g-2">
       <div class="col-12">
-        <MapView id="map" :markers="markers" size="60vh" :select="selected" />
+        <MapView id="map" ref="map" :markers="markers" size="60vh" :select="selected" @moved="movedPosition" />
       </div>
       <div class="col-12">
         <div class="bg-body rounded-3 px-3 py-4 p-lg-4">
@@ -44,7 +59,7 @@ const deleteMarker = async (id: number) => {
             <button type="button" class="btn btn-primary btn-lg ms-auto rounded-pill" @click="edit = !edit">{{ edit ? t("done") : t("edit") }}</button>
           </div>
           <div class="row g-2">
-            <div v-for="marker of markers" :key="marker.id" class="col-sm-6 col-md-4 col-lg-3 d-flex gap-2">
+            <div v-for="marker of markers" :key="marker.id" class="col-sm-6 col-lg-4 col-xl-3 d-flex gap-2">
               <div class="marker d-flex gap-2 align-items-center border rounded-3 p-2 w-100" :class="{'active' : selected === marker.id}" role="button" @click="selected = marker.id">
                 <Icon class="flex-shrink-0 text-primary" name="solar:map-point-favourite-bold" size="3rem" />
                 <div class="border-start ps-3 w-100 h-100 text-break">
@@ -63,6 +78,7 @@ const deleteMarker = async (id: number) => {
         </div>
       </div>
     </div>
-    <MarkerModal v-if="markerModal" @close="markerModal = false" @submit="newMarker($event)" />
+    <MarkerModal v-if="markerModal" @close="markerModal = false" @submit="newMarker" />
+    <ToastMessage v-if="moved.updated" :success="moved.success" :text="t('saved_changes')" @dispose="moved.updated = false" />
   </section>
 </template>

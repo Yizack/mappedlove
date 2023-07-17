@@ -22,11 +22,13 @@ export default {
       default: 0
     }
   },
+  emits: ["moved"],
   data () {
     return {
       map: null as InstanceType<typeof this.$nuxt.$Leaflet> | null
     };
   },
+  expose: ["removeMarker", "addMarker", "setView"],
   watch: {
     select (id) {
       const marker = this.map?.getMarker(id);
@@ -40,12 +42,27 @@ export default {
   mounted () {
     if (!this.map) {
       this.map = new this.$nuxt.$Leaflet();
+      this.map.createGroups(getGroups());
+      // @ts-ignore
+      this.map.createMap(this.$refs.map);
     }
     this.markers.forEach((marker) => {
+      this.addMarker(marker);
+    });
+    const length = this.markers.length;
+    if (length) {
+      this.map.setView([this.markers[length - 1].lat, this.markers[length - 1].lng], 3);
+    }
+  },
+  methods: {
+    removeMarker (id: number) {
+      this.map?.removeMarker(id);
+    },
+    addMarker (marker: any) {
       this.map?.addMarker({
         position: [marker.lat, marker.lng],
         popup: marker.title,
-        group: t(this.$nuxt.payload.data.groups[marker.group].name),
+        group: getGroup(marker.group),
         options: {
           id: marker.id,
           draggable: true
@@ -53,16 +70,18 @@ export default {
       }).on("move", (e) => {
         const { id } = e.target.options;
         const { lat, lng } = e.target.getLatLng();
-        debounce(`marker_${id}`, () => {
-          console.info(id, [lat, lng]);
+        debounce(`marker_${id}`, async () => {
+          const update = await $fetch(`/api/markers/${id}`, {
+            method: "PUT",
+            body: { lat, lng }
+          }).catch(() => ({}));
+          if (!("id" in update)) return;
+          this.$emit("moved", update);
         }, 3000);
       });
-    });
-
-    if (this.markers.length) {
-      const { lat, lng } = this.markers[this.markers.length - 1];
-      // @ts-ignore
-      this.map.createMap(this.$refs.map).setView([lat, lng]);
+    },
+    setView (latlng: [number, number], zoom: number) {
+      this.map?.setView(latlng, zoom);
     }
   }
 };

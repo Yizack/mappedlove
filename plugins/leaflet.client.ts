@@ -17,6 +17,7 @@ class Leaflet {
   markers: { [key: string]: L.Marker[] };
   tile: L.TileLayer;
   icon: L.Icon;
+  groups: { [key: string]: L.LayerGroup };
 
   constructor () {
     this.map = null;
@@ -33,18 +34,30 @@ class Leaflet {
       shadowAnchor: [12, 40],
       popupAnchor: [1, -28]
     });
+    this.groups = {};
   }
 
   createMap (id: string | HTMLElement) {
-    const groups = this.getGroups();
     this.map = L.map(id, {
       center: [0, 0],
       zoom: 3,
       minZoom: 2,
-      layers: [this.tile, ...Object.values(groups)]
+      layers: [this.tile, ...Object.values(this.groups)]
     });
-    L.control.layers(undefined, groups).addTo(this.map);
+    L.control.layers(undefined, this.groups).addTo(this.map);
     return this.map;
+  }
+
+  createGroups (group: [{ [key: string]: string }]) {
+    group.forEach(({ name }) => {
+      this.groups[name] = L.layerGroup();
+    });
+  }
+
+  destroyMap () {
+    if (this.map === null) return;
+    this.map.remove();
+    this.map = null;
   }
 
   addMarker ({ position, popup, options, group }: AddMarkerOptions) {
@@ -54,16 +67,15 @@ class Leaflet {
       this.markers[group] = [];
     }
     this.markers[group].push(marker);
+    marker.addTo(this.groups[group]);
     return marker;
   }
-
-  getGroups () {
-    return {
-      ...Object.entries(this.markers).reduce((groups, [group, arr]) => {
-        groups[group] = L.layerGroup(arr);
-        return groups;
-      }, {} as { [key: string]: L.LayerGroup })
-    };
+  
+  removeMarker (id: number) {
+    const marker = this.getMarker(id);
+    if (marker) {
+      marker.remove();
+    }
   }
 
   setView (position: [number, number], zoom: number) {
