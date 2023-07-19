@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({ layout: "app", middleware: "session" });
 
-useFetch("/api/groups", { key: "groups" });
+await useFetch("/api/groups", { key: "groups" });
 
 const markers: Ref<Array<any>> = ref([]);
 
