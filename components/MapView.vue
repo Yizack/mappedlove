@@ -72,7 +72,7 @@ export default {
         const { lat, lng } = e.target.getLatLng();
         debounce(`marker_${id}`, async () => {
           const update = await $fetch(`/api/markers/${id}`, {
-            method: "PUT",
+            method: "PATCH",
             body: { lat, lng }
           }).catch(() => ({}));
           if (!("id" in update)) return;

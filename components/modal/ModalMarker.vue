@@ -9,7 +9,11 @@
         <div class="modal-body">
           <form @submit.prevent="submitMarker()">
             <p>{{ t("location_info") }}</p>
-            <GeoSearch v-model.trim="form.title" class="mb-2" @select="selectLocation" />
+            <GeoSearch class="mb-2" :value="location" @select="selectLocation" />
+            <div class="form-floating mb-2">
+              <input v-model.trim="form.title" type="text" class="form-control" :placeholder="t('title')" required>
+              <label>{{ t("title") }}</label>
+            </div>
             <div class="form-floating mb-2">
               <textarea v-model.trim="form.description" type="text" class="form-control" :placeholder="t('description')" :style="{height: '100px'}" />
               <label>{{ t("description") }}</label>
@@ -25,7 +29,7 @@
               <button type="button" class="btn btn-secondary btn-lg w-100" data-bs-dismiss="modal">{{ t("cancel") }}</button>
               <button type="submit" class="btn btn-primary btn-lg w-100" :disabled="submitted">
                 <SpinnerCircle v-if="submitted" class="text-light" />
-                <span v-else>{{ t("add_marker") }}</span>
+                <span v-else>{{ edit ? t("edit_marker") : t("add_marker") }}</span>
               </button>
             </div>
           </form>
@@ -47,8 +51,9 @@ export default {
   data () {
     return {
       submitted: false,
+      edit: false,
+      location: "",
       form: {
-        location: "",
         lat: null as number | null,
         lng: null as number | null,
         group: "" as number | string,
@@ -59,26 +64,37 @@ export default {
     };
   },
   mounted () {
+    if (this.marker.id) {
+      this.edit = true;
+      this.form.lat = this.marker.lat;
+      this.form.lng = this.marker.lng;
+      this.form.title = this.marker.title;
+      this.form.description = this.marker.description;
+      this.form.group = this.marker.group;
+      this.form.order = this.marker.order;
+      this.location = `${this.marker.lat}, ${this.marker.lng}`;
+    }
     const modal = this.$nuxt.$bootstrap.showModal(this.$refs.modal as HTMLElement);
     modal.addEventListener("hidden.bs.modal", () => {
       this.$emit("close", this.form);
     });
   },
   methods: {
-    selectLocation ({ lat, lng }: { lat: number, lng: number }) {
+    selectLocation ({ lat, lng, label }: { lat: number, lng: number, label: string }) {
       this.form.lat = lat;
       this.form.lng = lng;
+      this.form.title = label;
     },
     async submitMarker () {
       if (typeof this.form.lat === "number" && typeof this.form.lng === "number") {
         this.submitted = true;
-        const marker = await $fetch("/api/markers", {
-          method: "POST",
+        const marker = await $fetch(this.edit ? `/api/markers/${this.marker.id}` : "/api/markers", {
+          method: this.edit ? "PATCH" : "POST",
           body: this.form
         }).catch(() => ({}));
         this.submitted = false;
         if (!("id" in marker)) return;
-        this.$emit("submit", marker);
+        this.$emit("submit", { marker, edit: this.edit });
         this.$nuxt.$bootstrap.hideModal(this.$refs.modal as HTMLElement);
       }
     }
