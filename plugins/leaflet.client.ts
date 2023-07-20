@@ -1,6 +1,13 @@
 import { OpenStreetMapProvider } from "leaflet-geosearch";
 import * as L from "leaflet";
 
+// @ts-expect-error
+L.Popup.prototype._animateZoom = function (e) { // @ts-expect-error
+  if (!this._map) return; // @ts-expect-error
+  const pos = this._map._latLngToNewLayerPoint(this._latlng, e.zoom, e.center), anchor = this._getAnchor(); // @ts-expect-error
+  L.DomUtil.setPosition(this._container, pos.add(anchor));
+};
+
 interface MarkerOptions extends L.MarkerOptions {
   id: number
 }
@@ -42,6 +49,9 @@ class Leaflet {
       center: [0, 0],
       zoom: 3,
       minZoom: 2,
+      zoomControl: true,
+      fadeAnimation: true,
+      markerZoomAnimation: true,
       layers: [this.tile, ...Object.values(this.groups)]
     });
     L.control.layers(undefined, this.groups).addTo(this.map);
@@ -73,15 +83,11 @@ class Leaflet {
   
   removeMarker (id: number) {
     const marker = this.getMarker(id);
-    if (marker) {
-      marker.remove();
-    }
+    if (marker) marker.remove();
   }
 
   setView (position: [number, number], zoom: number) {
-    if (this.map === null) {
-      return;
-    }
+    if (this.map === null) return;
     this.map.setView([...position], zoom);
   }
 
