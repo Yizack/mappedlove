@@ -11,4 +11,13 @@ declare global {
     description: string,
     order: number
   }
+  interface MappedLoveBond {
+    id: number
+    code: string,
+    partner1: number | null,
+    partner2: number | null,
+    coupleDate: number | null,
+    bonded: number,
+    public: number
+  }
 }
