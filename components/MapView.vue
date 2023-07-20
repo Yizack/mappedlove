@@ -74,8 +74,8 @@ export default {
           const update = await $fetch(`/api/markers/${id}`, {
             method: "PATCH",
             body: { lat, lng }
-          }).catch(() => ({}));
-          if (!("id" in update)) return;
+          }).catch(() => undefined);
+          if (!update) return;
           this.$emit("moved", update);
         }, 3000);
       });

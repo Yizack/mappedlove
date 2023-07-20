@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import draggable from "vuedraggable";
-
 definePageMeta({ layout: "app", middleware: "session" });
 
 await useFetch("/api/groups", { key: "groups" });
