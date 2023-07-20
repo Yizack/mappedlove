@@ -29,7 +29,7 @@
               <button type="button" class="btn btn-secondary btn-lg w-100" data-bs-dismiss="modal">{{ t("cancel") }}</button>
               <button type="submit" class="btn btn-primary btn-lg w-100" :disabled="submitted">
                 <SpinnerCircle v-if="submitted" class="text-light" />
-                <span v-else>{{ edit ? t("edit_marker") : t("add_marker") }}</span>
+                <span v-else>{{ marker ? t("edit_marker") : t("add_marker") }}</span>
               </button>
             </div>
           </form>
@@ -43,15 +43,14 @@
 export default {
   props: {
     marker: {
-      type: Object,
-      default: () => ({})
+      type: Object as () => MappedLoveMarker | undefined,
+      default: () => (undefined)
     }
   },
   emits: ["close", "submit"],
   data () {
     return {
       submitted: false,
-      edit: false,
       location: "",
       form: {
         lat: null as number | null,
@@ -60,18 +59,20 @@ export default {
         title: "",
         description: "",
         order: 0
-      }
+      } as MappedLoveMarker
     };
   },
+  watch: {
+    marker (marker: MappedLoveMarker) {
+      if (this.marker) {
+        this.form = marker;
+        this.location = `${this.marker.lat}, ${this.marker.lng}`;
+      }
+    }
+  },
   mounted () {
-    if (this.marker.id) {
-      this.edit = true;
-      this.form.lat = this.marker.lat;
-      this.form.lng = this.marker.lng;
-      this.form.title = this.marker.title;
-      this.form.description = this.marker.description;
-      this.form.group = this.marker.group;
-      this.form.order = this.marker.order;
+    if (this.marker) {
+      this.form = this.marker;
       this.location = `${this.marker.lat}, ${this.marker.lng}`;
     }
     const modal = this.$nuxt.$bootstrap.showModal(this.$refs.modal as HTMLElement);
@@ -88,13 +89,13 @@ export default {
     async submitMarker () {
       if (typeof this.form.lat === "number" && typeof this.form.lng === "number") {
         this.submitted = true;
-        const marker = await $fetch(this.edit ? `/api/markers/${this.marker.id}` : "/api/markers", {
-          method: this.edit ? "PATCH" : "POST",
+        const marker = await $fetch(this.marker ? `/api/markers/${this.marker.id}` : "/api/markers", {
+          method: this.marker ? "PATCH" : "POST",
           body: this.form
         }).catch(() => ({}));
         this.submitted = false;
         if (!("id" in marker)) return;
-        this.$emit("submit", { marker, edit: this.edit });
+        this.$emit("submit", { marker, edit: Boolean(this.marker) });
         this.$nuxt.$bootstrap.hideModal(this.$refs.modal as HTMLElement);
       }
     }

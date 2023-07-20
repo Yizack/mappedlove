@@ -1,6 +1,6 @@
 import { eq, and } from "drizzle-orm";
 
-export default eventHandler(async (event) => {
+export default eventHandler(async (event) : Promise<MappedLoveMarker | undefined> => {
   const { user } = await requireUserSession(event);
   const { id } = getRouterParams(event);
   const DB = useDb();

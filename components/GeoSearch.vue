@@ -6,7 +6,7 @@
         <input v-model.trim="text" class="ps-5 form-control" :placeholder="t('location')" required :disabled="selected" @input="searchPlace($event.target)">
         <label class="ps-5 ms-1">{{ t("location") }}</label>
       </div>
-      <button v-if="selected" class="btn btn-primary btn-lg" type="button" @click="changeLocation"><Icon name="ic:round-close" /></button>
+      <button v-if="selected" class="btn btn-primary" type="button" @click="changeLocation"><Icon name="ic:round-close" size="1.5rem" /></button>
     </div>
     <ul v-if="search && text" class="geosearch bg-body position-absolute top-100 rounded-bottom border py-2 px-0 shadow w-100 m-0">
       <li v-if="loading">

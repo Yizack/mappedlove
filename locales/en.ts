@@ -47,6 +47,7 @@ export default {
   markers: "Markers",
   add_marker: "Add marker",
   edit_marker: "Edit marker",
+  delete_marker: "Are you sure you want to delete this marker?",
   location: "Location",
   location_info: "Please select the nearest location, you will be able to precisely position the marker later by dragging it to the exact location on the map",
   // Stories

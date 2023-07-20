@@ -1,24 +1,19 @@
 <script setup lang="ts">
-definePageMeta({ layout: "app", middleware: "session" });
+import draggable from "vuedraggable";
 
-onMounted(() => {
-  const { $bootstrap } = useNuxtApp();
-  $bootstrap.hideModalEscEvent();
-});
+definePageMeta({ layout: "app", middleware: "session" });
 
 await useFetch("/api/groups", { key: "groups" });
 
-const markers: Ref<Array<any>> = ref([]);
+const markers: Ref<MappedLoveMarker[]> = ref([]);
 
 const { data: getMarkers } = await useFetch("/api/markers");
-if (getMarkers.value) {
-  markers.value = getMarkers.value;
-}
+if (getMarkers.value) markers.value = getMarkers.value;
 
 const edit = ref(false);
 const markerModal = ref(false);
-const currentMarker = ref({});
-// const stories = [];
+const currentMarker: Ref<MappedLoveMarker | undefined> = ref();
+
 const selected = ref(0);
 
 const map = ref();
@@ -27,7 +22,7 @@ const moved = ref({
   updated: false
 });
 
-const newMarker = async ({ marker, edit }: { marker: any, edit: boolean }) => {
+const newMarker = async ({ marker, edit }: { marker: MappedLoveMarker, edit: boolean }) => {
   if (edit) {
     return markers.value = markers.value.map((item) => {
       if (item.id === marker.id) return marker;
@@ -40,7 +35,7 @@ const newMarker = async ({ marker, edit }: { marker: any, edit: boolean }) => {
 };
 
 const deleteMarker = async (id: number) => {
-  if (!confirm("Are you sure you want to delete this marker?")) return;
+  if (!confirm(t("delete_marker"))) return;
   const res = await $fetch(`/api/markers/${id}`, {
     method: "DELETE"
   }).catch(() => ({}));
@@ -50,21 +45,35 @@ const deleteMarker = async (id: number) => {
   map.value.removeMarker(id);
 };
 
-const movedPosition = (update: any) => {
+const movedPosition = (update: MappedLoveMarker) => {
   if (update.id) {
     moved.value.success = true;
   }
   moved.value.updated = true;
+  markers.value = markers.value.map((item) => {
+    if (item.id === update.id) return update;
+    return item;
+  });
+  currentMarker.value = update;
 };
 
-const editMarker = (marker: any) => {
+const editMarker = (marker: MappedLoveMarker) => {
   currentMarker.value = marker;
   markerModal.value = true;
 };
 
 const closeMarkerModal = () => {
   markerModal.value = false;
-  currentMarker.value = {};
+  currentMarker.value = undefined;
+};
+
+const move = async () => {
+  const oldArrange = markers.value.map((marker) => ({ id: marker.id, order: marker.order }));
+  const newArrange = markers.value.map((marker, index) => ({ id: marker.id, order: index }));
+  await $fetch("/api/markers/rearrange", {
+    method: "POST",
+    body: { oldArrange, newArrange }
+  }).catch(() => undefined);
 };
 </script>
 
@@ -81,23 +90,25 @@ const closeMarkerModal = () => {
             <ButtonAdd @click="markerModal = true" />
             <button type="button" class="btn btn-primary btn-lg ms-auto rounded-pill" @click="edit = !edit">{{ edit ? t("done") : t("edit") }}</button>
           </div>
-          <div class="row g-2">
-            <div v-for="marker of markers" :key="marker.id" class="col-sm-6 col-lg-4 col-xl-3 d-flex gap-2">
-              <div class="marker d-flex gap-2 align-items-center border rounded-3 p-2 w-100" :class="{'active' : selected === marker.id}" role="button" @click="selected = marker.id">
-                <Icon class="flex-shrink-0 text-primary" name="solar:map-point-favourite-bold" size="3rem" />
-                <div class="border-start ps-3 w-100 h-100 text-break">
-                  <h5 class="title">{{ marker.title }}</h5>
-                  <p>{{ marker.description }}</p>
+          <draggable v-model="markers" class="row g-2" item-key="id" @change="move">
+            <template #item="{element: marker}">
+              <div class="col-sm-6 col-lg-4 col-xl-3 d-flex gap-2">
+                <div class="marker d-flex gap-2 align-items-center border rounded-3 p-2 w-100" :class="{'active' : selected === marker.id}" role="button" @click="selected = marker.id">
+                  <Icon class="flex-shrink-0 text-primary" name="solar:map-point-favourite-bold" size="3rem" />
+                  <div class="border-start ps-3 w-100 h-100 text-break">
+                    <h5 class="title">{{ marker.title }}</h5>
+                    <p>{{ marker.description }}</p>
+                  </div>
                 </div>
+                <Transition name="fade" mode="out-in">
+                  <div v-if="edit" class="d-grid gap-1">
+                    <button class="btn btn-primary" @click="editMarker(marker)"><Icon name="solar:pen-linear" size="1.5rem" /></button>
+                    <button class="btn btn-danger" @click="deleteMarker(marker.id)"><Icon name="ic:round-close" size="1.5rem" /></button>
+                  </div>
+                </Transition>
               </div>
-              <Transition name="fade" mode="out-in">
-                <div v-if="edit" class="d-grid gap-1">
-                  <button class="btn btn-primary" @click="editMarker(marker)">{{ t("edit") }}</button>
-                  <button class="btn btn-danger" @click="deleteMarker(marker.id)">{{ t("delete") }}</button>
-                </div>
-              </Transition>
-            </div>
-          </div>
+            </template>
+          </draggable>
         </div>
       </div>
     </div>

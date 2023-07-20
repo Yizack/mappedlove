@@ -13,17 +13,14 @@ class Bootstrap {
   }
 
   hideModalEscEvent () {
-    const event = (e: KeyboardEvent) => {
+    document.addEventListener("keyup", (e) => {
       if (e.key !== "Escape") return;
       const modals = document.querySelectorAll(".modal.show");
       if (!modals.length) return;
       const id = modals[modals.length - 1].id;
       const instance = Modal.getInstance("#" + id);
       if (instance) instance.hide();
-      document.removeEventListener("keyup", event);
-    };
-
-    document.addEventListener("keyup", event);
+    });
   }
 
   showModal (id: HTMLElement) {
