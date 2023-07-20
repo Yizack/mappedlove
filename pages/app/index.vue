@@ -89,23 +89,21 @@ const move = async () => {
             <button type="button" class="btn btn-primary btn-lg ms-auto rounded-pill" @click="edit = !edit">{{ edit ? t("done") : t("edit") }}</button>
           </div>
           <draggable v-model="markers" class="row g-2" item-key="id" @change="move">
-            <template #item="{element: marker}">
-              <div class="col-sm-6 col-lg-4 col-xl-3 d-flex gap-2">
-                <div class="marker d-flex gap-2 align-items-center border rounded-3 p-2 w-100" :class="{'active' : selected === marker.id}" role="button" @click="selected = marker.id">
-                  <Icon class="flex-shrink-0 text-primary" name="solar:map-point-favourite-bold" size="3rem" />
-                  <div class="border-start ps-3 w-100 h-100 text-break">
-                    <h5 class="title">{{ marker.title }}</h5>
-                    <p>{{ marker.description }}</p>
-                  </div>
+            <div v-for="marker in markers" :key="marker.id" class="col-sm-6 col-lg-4 col-xl-3 d-flex gap-2">
+              <div class="marker d-flex gap-2 align-items-center border rounded-3 p-2 w-100" :class="{'active' : selected === marker.id}" role="button" @click="selected = marker.id">
+                <Icon class="flex-shrink-0 text-primary" name="solar:map-point-favourite-bold" size="3rem" />
+                <div class="border-start ps-3 w-100 h-100 text-break">
+                  <h5 class="title">{{ marker.title }}</h5>
+                  <p>{{ marker.description }}</p>
                 </div>
-                <Transition name="fade" mode="out-in">
-                  <div v-if="edit" class="d-grid gap-1">
-                    <button class="btn btn-primary" @click="editMarker(marker)"><Icon name="solar:pen-linear" size="1.5rem" /></button>
-                    <button class="btn btn-danger" @click="deleteMarker(marker.id)"><Icon name="ic:round-close" size="1.5rem" /></button>
-                  </div>
-                </Transition>
               </div>
-            </template>
+              <Transition name="fade" mode="out-in">
+                <div v-if="edit" class="d-grid gap-1">
+                  <button class="btn btn-primary" @click="editMarker(marker)"><Icon name="solar:pen-linear" size="1.5rem" /></button>
+                  <button class="btn btn-danger" @click="deleteMarker(marker.id)"><Icon name="ic:round-close" size="1.5rem" /></button>
+                </div>
+              </Transition>
+            </div>
           </draggable>
         </div>
       </div>
