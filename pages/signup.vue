@@ -8,7 +8,7 @@ definePageMeta({ layout: "access", middleware: "authenticated" });
       <div class="col-11 col-lg-8 m-auto px-3 py-4 px-lg-4 bg-body rounded-3 shadow">
         <Transition name="tab" mode="out-in">
           <div v-if="!needsConfirm">
-            <form class="mb-2" novalidate @submit.prevent="signUp()">
+            <form class="mb-2" novalidate data-static-form-name="signup" @submit.prevent="signUp()">
               <div class="text-center mb-4">
                 <h2 class="d-flex align-items-center gap-1 justify-content-center">
                   <Icon class="text-primary" name="solar:map-point-favourite-bold" />

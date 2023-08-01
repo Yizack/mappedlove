@@ -19,7 +19,7 @@ const mailChannels = async (config: any, message: any) => {
         value: html
       }]
     })
-  }).then(() => true).catch((err: any) => err);
+  }).then(() => true).catch(() => false);
 };
 
 const nodeMailer = async (config: any, message: any) => {
