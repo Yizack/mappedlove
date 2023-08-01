@@ -33,7 +33,7 @@ definePageMeta({ layout: "access", middleware: "authenticated" });
             </button>
           </div>
         </form>
-        <div v-if="needsConfirm" class="alert alert-warning" role="alert">
+        <div v-if="needsConfirm && !resent" class="alert alert-warning" role="alert">
           <p class="m-0">{{ t("verify_needed") }}</p>
           <a class="text-decoration-underline text-body" role="button" @click="resendVerification">{{ t("resend_verification") }}</a>
         </div>
@@ -46,6 +46,7 @@ definePageMeta({ layout: "access", middleware: "authenticated" });
     </section>
     <ToastMessage v-if="submit.error" :text="t('signin_error')" @dispose="submit.error = false" />
     <ToastMessage v-if="$route.meta.email" :text="t('registered')" success />
+    <ToastMessage v-if="resent" :text="t('resent_verification')" success />
   </main>
 </template>
 
@@ -54,6 +55,7 @@ export default {
   data () {
     return {
       needsConfirm: false,
+      resent: false,
       submit: {
         loading: false,
         error: false
@@ -70,9 +72,9 @@ export default {
       const login = await $fetch("/api/session", {
         method: "POST",
         body: this.form
-      }).catch(() => ({}));
+      }).catch(() => null);
       this.submit.loading = false;
-      if (!("user" in login)) {
+      if (!login) {
         this.submit.error = true;
         return;
       }
@@ -84,7 +86,13 @@ export default {
       this.$router.replace("/app");
     },
     async resendVerification () {
-      // verify/resend
+      const resend = await $fetch("/api/verify/resend", {
+        method: "POST",
+        body: { email: this.form.email }
+      }).catch(() => null);
+
+      if (!resend) return;
+      this.resent = true;
     }
   }
 };
