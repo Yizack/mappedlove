@@ -30,7 +30,14 @@ definePageMeta({ layout: "access", middleware: "authenticated" });
             </button>
           </div>
         </form>
-        <p class="m-0">{{ t("no_account") }} <NuxtLink to="/signup">{{ t("create_one") }}</NuxtLink></p>
+        <div v-if="needsConfirm" class="alert alert-warning" role="alert">
+          <p class="m-0">{{ t("verify_needed") }}</p>
+          <a class="text-decoration-underline text-body" role="button" @click="resendVerification">{{ t("resend_verification") }}</a>
+        </div>
+        <p class="m-0">
+          {{ t("no_account") }}
+          <NuxtLink to="/signup">{{ t("create_one") }}</NuxtLink>
+        </p>
         <NuxtLink to="/">{{ t("go_home") }}</NuxtLink>
       </div>
     </section>
@@ -43,6 +50,7 @@ definePageMeta({ layout: "access", middleware: "authenticated" });
 export default {
   data () {
     return {
+      needsConfirm: false,
       submit: {
         loading: false,
         error: false
@@ -65,8 +73,15 @@ export default {
         this.submit.error = true;
         return;
       }
+
+      const { confirmed } = login.user;
+      this.needsConfirm = Boolean(!confirmed);
+      if (!confirmed) return;
       await useUserSession().fetch();
       this.$router.replace("/app");
+    },
+    async resendVerification () {
+      // verify/resend
     }
   }
 };

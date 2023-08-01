@@ -75,8 +75,10 @@ export default {
   delete: "Delete",
   saved_changes: "Your changes have been saved",
   welcome: "Welcome",
+  verify_needed: "Your email needs to be verified to continue, check your inbox for a verification email.",
   email_verified: "Your email has been verified.",
   verifying_email: "Verifying your email...",
   verify_email: "Verify your email",
-  verify_email_info: "You are almost ready! to complete your registration, please verify your email address. An email has been sent to you with a link to verify your email."
+  verify_email_info: "You are almost ready to complete your registration! Please verify your email address by clicking the link sent to your email inbox.",
+  resend_verification: "Resend verification email"
 };

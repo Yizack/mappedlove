@@ -1,6 +1,6 @@
 import { eq, and, or } from "drizzle-orm";
 
-export default defineEventHandler(async (event) => {
+export default defineEventHandler(async (event) : Promise<MappedUser> => {
   const form = await readBody(event);
   const { secure } = useRuntimeConfig(event);
   const DB = useDb();
@@ -8,7 +8,8 @@ export default defineEventHandler(async (event) => {
     id: tables.users.id,
     name: tables.users.name,
     email: tables.users.email,
-    showAvatar: tables.users.showAvatar
+    showAvatar: tables.users.showAvatar,
+    confirmed: tables.users.confirmed
   }).from(tables.users).where(and(eq(tables.users.email, form.email), eq(tables.users.password, hash(form.password, secure.salt)))).get();
   if (!user) {
     throw createError({
@@ -24,10 +25,13 @@ export default defineEventHandler(async (event) => {
     )
   ).get();
 
-  return setUserSession(event, {
+  const userInfo: MappedUser = {
     user: {
       ...user,
       bond
     }
-  });
+  };
+
+  if (user.confirmed === 0) return userInfo;
+  return setUserSession(event, userInfo) as Promise<MappedUser>;
 });

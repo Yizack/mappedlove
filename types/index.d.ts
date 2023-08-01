@@ -1,6 +1,16 @@
 export {};
 
 declare global {
+  interface MappedUser {
+    user : {
+      id: number,
+      name: string,
+      email: string,
+      showAvatar: number,
+      confirmed: number,
+      bond?: MappedLoveBond
+    }
+  }
   interface MappedLoveMarker {
     bond?: number,
     id: number,
