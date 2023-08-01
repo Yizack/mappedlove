@@ -3,15 +3,15 @@ export const SITE = {
   cdn: process.dev ? "http://localhost:5173" : "https://cdn.mappedlove.com",
   pages: [
     {
-      name: t("home"),
+      name: "home",
       path: "/"
     },
     {
-      name: t("about"),
+      name: "about",
       path: "/about"
     },
     {
-      name: t("try"),
+      name: "try",
       path: "/login",
       button: true
     }

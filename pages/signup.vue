@@ -10,7 +10,10 @@ definePageMeta({ layout: "access", middleware: "authenticated" });
           <div v-if="!needsConfirm">
             <form class="mb-2" novalidate @submit.prevent="signUp()">
               <div class="text-center mb-4">
-                <h2>{{ SITE.name }}</h2>
+                <h2 class="d-flex align-items-center gap-1 justify-content-center">
+                  <Icon class="text-primary" name="solar:map-point-favourite-bold" />
+                  {{ SITE.name }}
+                </h2>
                 <p class="m-0">{{ t("create_account") }}</p>
               </div>
               <div class="form-floating mb-2">
