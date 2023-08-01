@@ -42,13 +42,13 @@ export default defineEventHandler(async (event) => {
   
   const config = useRuntimeConfig(event);
   const url = process.dev ? "http://localhost:5173" : "https://mappedlove.com";
-  sendMail(config, {
+  const mailed = await sendMail(config, {
     to: {
       email,
       name: user.name
     },
     subject: "Verify your email address",
-    html: `<p>Click <a href="${url}/verify/${encodeURIComponent(btoa(email))}/${token}">here</a> to verify your email.</p>`
+    html: `Welcome to Mapped Love! to verify your email, click on the link below:<br/><br/><a href="${url}/verify/${encodeURIComponent(btoa(email))}/${token}">Verify Email</a><br/><br/>If you did not sign up for Mapped Love, please ignore this email.`
   });
 
   return { user: { email: user.email } };
