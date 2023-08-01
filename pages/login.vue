@@ -68,6 +68,7 @@ export default {
   },
   methods: {
     async signIn () {
+      this.resent = false;
       this.submit.loading = true;
       const login = await $fetch("/api/session", {
         method: "POST",
