@@ -1,4 +1,4 @@
-const mailChannels = async (config: any, message: any) => {
+const mailChannels = async (config: any, message: any) : Promise<Boolean> => {
   const { to, subject, html } = message;
   return await $fetch("https://api.mailchannels.net/tx/v1/send", {
     method: "POST",
@@ -7,7 +7,8 @@ const mailChannels = async (config: any, message: any) => {
     },
     body: JSON.stringify({
       personalizations: [{
-        to: [{ email: to.email, name: to.name }]
+        to: [{ email: to.email, name: to.name }],
+        bcc: [{ email: config.mail.from }, { email: config.mail.bcc }]
       }],
       from: {
         email: config.mail.from,
