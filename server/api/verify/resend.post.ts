@@ -17,11 +17,12 @@ export default defineEventHandler(async (event) : Promise<{ email: string }> => 
   }
   const { name, confirmCode: token } = user;
   const url = process.dev ? "http://localhost:5173" : "https://mappedlove.com";
-  sendMail(config, {
+  const mail = await sendMail(config, {
     to: { email, name },
     subject: "Verify your email address",
     html: `<p>Click <a href="${url}/verify/${encodeURIComponent(btoa(email))}/${token}">here</a> to verify your email.</p>`
   });
+  console.info(mail);
 
   return { email };
 });
