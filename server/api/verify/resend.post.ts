@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) : Promise<{ email: string }> => 
     confirmCode: tables.users.confirmCode
   }).from(tables.users).where(eq(tables.users.email, email)).get();
 
-  if(!user) {
+  if (!user) {
     throw createError({
       statusCode: 404,
       message: "User not found"
