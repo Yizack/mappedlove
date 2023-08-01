@@ -5,7 +5,7 @@ const mailChannels = async (config: any, message: any) => {
     headers: {
       "content-type": "application/json"
     },
-    body: {
+    body: JSON.stringify({
       personalizations: [{
         to: [{ email: to.email, name: to.name }]
       }],
@@ -18,7 +18,7 @@ const mailChannels = async (config: any, message: any) => {
         type: "text/html",
         value: html
       }]
-    }
+    })
   }).then(() => true).catch((err: any) => err);
 };
 
