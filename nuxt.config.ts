@@ -73,5 +73,8 @@ export default defineNuxtConfig({
       login: "",
       password: "",
     }
+  },
+  experimental: {
+    inlineSSRStyles: false
   }
 });
