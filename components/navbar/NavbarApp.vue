@@ -12,7 +12,10 @@ const logOut = () => {
       <button class="navbar-toggler border-0 rounded-pill" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon" />
       </button>
-      <NuxtLink class="navbar-brand ms-2 ms-md-0 me-auto" to="/app">{{ SITE.name }}</NuxtLink>
+      <NuxtLink class="navbar-brand ms-2 ms-md-0 me-auto d-flex align-items-center gap-1" to="/app">
+        <Icon class="text-primary" name="solar:map-point-favourite-bold" />
+        {{ SITE.name }}
+      </NuxtLink>
       <div id="offcanvasNavbar" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvasNavbarLabel">
         <div class="offcanvas-header">
           <NuxtLink class="navbar-brand" to="/">{{ SITE.name }}</NuxtLink>
@@ -53,6 +56,11 @@ export default {
         {
           name: "App",
           path: "/app",
+          button: false
+        },
+        {
+          name: "Map",
+          path: "/app/map",
           button: false
         },
         {

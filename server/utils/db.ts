@@ -2,7 +2,7 @@ import { drizzle as drizzleD1, DrizzleD1Database } from "drizzle-orm/d1";
 import { drizzle, BetterSQLite3Database } from "drizzle-orm/better-sqlite3";
 // @ts-ignore
 import Database from "better-sqlite3";
-import * as tables from "~/server/db/schema.js";
+import * as tables from "~/server/db/schema";
 
 export { tables };
 

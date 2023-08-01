@@ -20,4 +20,11 @@ declare global {
     bonded: number,
     public: number
   }
+  interface MappedLoveStory {
+    id: number,
+    marker: number,
+    title: string,
+    description: string,
+    date: number
+  }
 }

@@ -17,9 +17,12 @@ export default eventHandler(async (event) : Promise<MappedLoveBond> => {
     });
   }
 
+  const today = Date.now();
   const bond = DB.insert(tables.bonds).values({
     partner1: user.id,
-    code: bondCode(user.id)
+    code: bondCode(user.id),
+    createdAt: today,
+    updatedAt: today
   }).returning().get();
 
   await setUserSession(event, { user: { ...user, bond } });

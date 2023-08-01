@@ -9,9 +9,10 @@ export const users = sqliteTable("users", {
   address: text("address"),
   birthDate: integer("birth_date"),
   showAvatar: integer("show_avatar").notNull().default(0),
+  confirmCode: text("confirm_code").notNull(),
+  confirmed: integer("confirmed").notNull().default(0),
   createdAt: integer("created_at").notNull(),
   updatedAt: integer("updated_at").notNull(),
-  confirmed: integer("confirmed").notNull().default(0)
 }, table => ({
   emailIndex: uniqueIndex("email_index").on(table.email)
 }));
@@ -23,7 +24,9 @@ export const bonds = sqliteTable("bonds", {
   partner2: integer("partner_2").references(() => users.id),
   coupleDate: integer("couple_date"),
   bonded: integer("bonded").notNull().default(0),
-  public: integer("public").notNull().default(0)
+  public: integer("public").notNull().default(0),
+  createdAt: integer("created_at").notNull(),
+  updatedAt: integer("updated_at").notNull(),
 });
 
 export const groups = sqliteTable("groups", {
@@ -39,13 +42,18 @@ export const markers = sqliteTable("markers", {
   bond: integer("user").notNull().references(() => bonds.id),
   title: text("title").notNull(),
   description: text("description").notNull(),
-  order: integer("order").notNull()
+  order: integer("order").notNull(),
+  createdAt: integer("created_at").notNull(),
+  updatedAt: integer("updated_at").notNull(),
 });
 
 export const stories = sqliteTable("stories", {
   id: integer("id").primaryKey(),
   marker: integer("marker").notNull().references(() => markers.id),
+  bond: integer("user").notNull().references(() => bonds.id),
   title: text("title").notNull(),
   description: text("description").notNull(),
-  date: integer("date").notNull()
+  date: integer("date").notNull(),
+  createdAt: integer("created_at").notNull(),
+  updatedAt: integer("updated_at").notNull(),
 });

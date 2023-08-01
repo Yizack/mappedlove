@@ -47,6 +47,14 @@ export default defineNuxtConfig({
     session: {
       name: "nuxt-session",
       password: ""
+    },
+    mail: {
+      from: "",
+      fromName: "",
+      host: "",
+      port: "",
+      login: "",
+      password: "",
     }
   }
 });

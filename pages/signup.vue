@@ -4,46 +4,55 @@ definePageMeta({ layout: "access", middleware: "authenticated" });
 
 <template>
   <main>
-    <section class="banner banner-fields d-flex align-items-center justify-content-center wh-100 vh-100 overflow-auto">
-      <div class="col-11 col-lg-8 px-3 py-4 px-lg-4 bg-body rounded-3 shadow">
-        <form class="mb-2" novalidate @submit.prevent="signUp()">
-          <div class="text-center mb-4">
-            <h2>{{ SITE.name }}</h2>
-            <p class="m-0">{{ t("create_account") }}</p>
+    <section>
+      <div class="col-11 col-lg-8 m-auto px-3 py-4 px-lg-4 bg-body rounded-3 shadow">
+        <Transition name="tab" mode="out-in">
+          <div v-if="!needsConfirm">
+            <form class="mb-2" novalidate @submit.prevent="signUp()">
+              <div class="text-center mb-4">
+                <h2>{{ SITE.name }}</h2>
+                <p class="m-0">{{ t("create_account") }}</p>
+              </div>
+              <div class="form-floating mb-2">
+                <input v-model.trim="form.name" type="text" class="form-control" :class="{'is-valid': isNameValid}" :placeholder="t('name')" autocomplete="given-name" required>
+                <label class="form-label">{{ t("name") }}</label>
+              </div>
+              <div class="form-floating mb-2 position-relative">
+                <input v-model="form.email" type="email" class="form-control" :class="{'is-valid': isEmailValid, 'is-invalid': submit.exists}" :placeholder="t('email')" autocomplete="email" required @input="submit.exists = false">
+                <label class="form-label">{{ t("email") }}</label>
+                <div v-if="submit.exists" class="invalid-tooltip">
+                  {{ t("email_conflict") }}
+                </div>
+              </div>
+              <div class="form-floating mb-2">
+                <input v-model="form.password" type="password" class="form-control" :class="{'is-valid': isPasswordValid}" :placeholder="t('password')" autocomplete="new-password" required>
+                <label class="form-label">{{ t("password") }}</label>
+              </div>
+              <div class="form-floating mb-2">
+                <input v-model="form.password_check" type="password" class="form-control" :class="{'is-valid': isPasswordCheckValid}" :placeholder="t('password_confirm')" autocomplete="off" required>
+                <label class="form-label">{{ t("password_confirm") }}</label>
+              </div>
+              <div class="text-center my-3 my-md-0">
+                <NuxtTurnstile ref="turnstile" v-model="form.turnstile" />
+              </div>
+              <div class="d-grid">
+                <button class="btn btn-primary btn-lg rounded-pill" type="submit" :disabled="submit.loading">
+                  <Transition name="tab" mode="out-in">
+                    <SpinnerCircle v-if="submit.loading" />
+                    <span v-else>{{ t("signup") }}</span>
+                  </Transition>
+                </button>
+              </div>
+            </form>
+            <p class="m-0">{{ t("has_account") }} <NuxtLink to="/login">{{ t("signin") }}</NuxtLink></p>
+            <NuxtLink to="/">{{ t("go_home") }}</NuxtLink>
           </div>
-          <div class="form-floating mb-2">
-            <input v-model.trim="form.name" type="text" class="form-control" :class="{'is-valid': isNameValid}" :placeholder="t('name')" autocomplete="given-name" required>
-            <label class="form-label">{{ t("name") }}</label>
+          <div v-else class="text-center">
+            <Icon name="solar:mailbox-bold" class="text-primary" size="5rem" />
+            <h1>{{ t("verify_email") }}!</h1>
+            <p class="m-0">{{ t("verify_email_info") }}</p>
           </div>
-          <div class="form-floating mb-2 position-relative">
-            <input v-model="form.email" type="email" class="form-control" :class="{'is-valid': isEmailValid, 'is-invalid': submit.exists}" :placeholder="t('email')" autocomplete="email" required @input="submit.exists = false">
-            <label class="form-label">{{ t("email") }}</label>
-            <div v-if="submit.exists" class="invalid-tooltip">
-              {{ t("email_conflict") }}
-            </div>
-          </div>
-          <div class="form-floating mb-2">
-            <input v-model="form.password" type="password" class="form-control" :class="{'is-valid': isPasswordValid}" :placeholder="t('password')" autocomplete="new-password" required>
-            <label class="form-label">{{ t("password") }}</label>
-          </div>
-          <div class="form-floating mb-2">
-            <input v-model="form.password_check" type="password" class="form-control" :class="{'is-valid': isPasswordCheckValid}" :placeholder="t('password_confirm')" autocomplete="off" required>
-            <label class="form-label">{{ t("password_confirm") }}</label>
-          </div>
-          <div class="text-center my-3 my-md-0">
-            <NuxtTurnstile ref="turnstile" v-model="form.turnstile" />
-          </div>
-          <div class="d-grid">
-            <button class="btn btn-primary btn-lg rounded-pill" type="submit" :disabled="submit.loading">
-              <Transition name="tab" mode="out-in">
-                <SpinnerCircle v-if="submit.loading" />
-                <span v-else>{{ t("signup") }}</span>
-              </Transition>
-            </button>
-          </div>
-        </form>
-        <p class="m-0">{{ t("has_account") }} <NuxtLink to="/login">{{ t("signin") }}</NuxtLink></p>
-        <NuxtLink to="/">{{ t("go_home") }}</NuxtLink>
+        </Transition>
       </div>
     </section>
     <ToastMessage v-if="submit.error" :text="t('error')" @dispose="submit.error = false" />
@@ -52,12 +61,6 @@ definePageMeta({ layout: "access", middleware: "authenticated" });
 
 <script lang="ts">
 export default {
-  beforeRouteLeave (to, from, next) {
-    if (to.name === "login") {
-      to.meta = from.meta;
-    }
-    next();
-  },
   data () {
     return {
       form: {
@@ -71,7 +74,8 @@ export default {
         loading: false,
         exists: false,
         error: false
-      }
+      },
+      needsConfirm: false
     };
   },
   computed: {
@@ -90,7 +94,7 @@ export default {
   },
   methods: {
     async signUp () {
-      if (!this.isNameValid && !this.isEmailValid && !this.isPasswordCheckValid) return;
+      if (!(this.isNameValid && this.isEmailValid && this.isPasswordValid && this.isPasswordCheckValid)) return;
 
       this.submit.loading = true;
       const req = await $fetch("/api/signup", { method: "POST", body: this.form }).catch(() => null);
@@ -109,9 +113,7 @@ export default {
         this.$refs.turnstile.reset();
         return;
       }
-
-      this.$route.meta.email = req.user.email;
-      this.$router.replace("/login");
+      this.needsConfirm = true;
     }
   }
 };

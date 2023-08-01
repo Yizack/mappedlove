@@ -2,7 +2,10 @@
   <div class="toast-container position-fixed bottom-0 start-0 p-3">
     <div ref="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
       <div class="toast-header">
-        <strong class="me-auto">{{ SITE.name }}</strong>
+        <strong class="me-auto d-flex gap-1 align-items-center">
+          <Icon class="text-primary" name="solar:map-point-favourite-bold" />
+          {{ SITE.name }}
+        </strong>
         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close" />
       </div>
       <div class="toast-body">

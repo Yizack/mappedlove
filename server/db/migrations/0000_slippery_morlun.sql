@@ -6,6 +6,8 @@ CREATE TABLE `bonds` (
 	`couple_date` integer,
 	`bonded` integer DEFAULT 0 NOT NULL,
 	`public` integer DEFAULT 0 NOT NULL,
+	`created_at` integer NOT NULL,
+	`updated_at` integer NOT NULL,
 	FOREIGN KEY (`partner_1`) REFERENCES `users`(`id`) ON UPDATE no action ON DELETE no action,
 	FOREIGN KEY (`partner_2`) REFERENCES `users`(`id`) ON UPDATE no action ON DELETE no action
 );
@@ -24,6 +26,8 @@ CREATE TABLE `markers` (
 	`title` text NOT NULL,
 	`description` text NOT NULL,
 	`order` integer NOT NULL,
+	`created_at` integer NOT NULL,
+	`updated_at` integer NOT NULL,
 	FOREIGN KEY (`group`) REFERENCES `groups`(`id`) ON UPDATE no action ON DELETE no action,
 	FOREIGN KEY (`user`) REFERENCES `bonds`(`id`) ON UPDATE no action ON DELETE no action
 );
@@ -31,10 +35,14 @@ CREATE TABLE `markers` (
 CREATE TABLE `stories` (
 	`id` integer PRIMARY KEY NOT NULL,
 	`marker` integer NOT NULL,
+	`user` integer NOT NULL,
 	`title` text NOT NULL,
 	`description` text NOT NULL,
 	`date` integer NOT NULL,
-	FOREIGN KEY (`marker`) REFERENCES `markers`(`id`) ON UPDATE no action ON DELETE no action
+	`created_at` integer NOT NULL,
+	`updated_at` integer NOT NULL,
+	FOREIGN KEY (`marker`) REFERENCES `markers`(`id`) ON UPDATE no action ON DELETE no action,
+	FOREIGN KEY (`user`) REFERENCES `bonds`(`id`) ON UPDATE no action ON DELETE no action
 );
 --> statement-breakpoint
 CREATE TABLE `users` (
@@ -46,9 +54,10 @@ CREATE TABLE `users` (
 	`address` text,
 	`birth_date` integer,
 	`show_avatar` integer DEFAULT 0 NOT NULL,
+	`confirm_code` text NOT NULL,
+	`confirmed` integer DEFAULT 0 NOT NULL,
 	`created_at` integer NOT NULL,
-	`updated_at` integer NOT NULL,
-	`confirmed` integer DEFAULT 0 NOT NULL
+	`updated_at` integer NOT NULL
 );
 --> statement-breakpoint
 CREATE UNIQUE INDEX `email_index` ON `users` (`email`);

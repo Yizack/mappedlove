@@ -3,7 +3,7 @@ export default {
   // Pages
   home: "Home",
   about: "About",
-  try: "Try for free",
+  try: "Try it",
   motto: "Mapping your love story",
   go_home: "Go back home",
   // Login
@@ -53,6 +53,8 @@ export default {
   // Stories
   stories: "Stories",
   add_story: "Add story",
+  select_marker_story: "Select a marker to see or edit your stories.",
+  no_stories: "No stories yet, add new stories to this marker.",
   // Groups
   groups: "Groups",
   places: "Places",
@@ -71,5 +73,10 @@ export default {
   edit: "Edit",
   done: "Done",
   delete: "Delete",
-  saved_changes: "Your changes have been saved"
+  saved_changes: "Your changes have been saved",
+  welcome: "Welcome",
+  email_verified: "Your email has been verified.",
+  verifying_email: "Verifying your email...",
+  verify_email: "Verify your email",
+  verify_email_info: "You are almost ready! to complete your registration, please verify your email address. An email has been sent to you with a link to verify your email."
 };

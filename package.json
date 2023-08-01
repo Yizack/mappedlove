@@ -18,7 +18,8 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "db:migration": "drizzle-kit generate:sqlite"
+    "db:migrate": "drizzle-kit generate:sqlite",
+    "db:seed": "tsc server/db/seed.ts && node server/db/seed.js"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.1.1",

@@ -6,6 +6,8 @@ export default eventHandler(async (event) : Promise<MappedLoveMarker> => {
   const DB = useDb();
 
   const last = await DB.select().from(tables.markers).where(eq(tables.markers.bond, user.bond.id)).orderBy(desc(tables.markers.order)).limit(1).get();
+  const today = Date.now();
+
   return DB.insert(tables.markers).values({
     lat: body.lat,
     lng: body.lng,
@@ -14,5 +16,7 @@ export default eventHandler(async (event) : Promise<MappedLoveMarker> => {
     title: body.title,
     description: body.description,
     order: last ? last.order + 1 : 0,
+    createdAt: today,
+    updatedAt: today
   }).returning().get();
 });

@@ -23,7 +23,8 @@ export default eventHandler(async (event) : Promise<MappedLoveBond> => {
 
   const bond = DB.update(tables.bonds).set({
     partner2: user.id,
-    bonded: 1 // true
+    bonded: 1, // true
+    updatedAt: Date.now()
   }).where(and(eq(tables.bonds.code, body.code), eq(tables.bonds.partner1, partner))).returning().get();
   await setUserSession(event, { user: { ...user, bond } });
   return bond;
