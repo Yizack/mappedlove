@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 definePageMeta({ layout: "access" });
 </script>
 
@@ -28,7 +28,7 @@ definePageMeta({ layout: "access" });
   </main>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   beforeRouteLeave (to, from, next) {
     if (to.name === "login") to.meta = from.meta;
@@ -38,8 +38,8 @@ export default {
     return {
       loaded: false,
       verified: false,
-      email: this.$route.params.email,
-      token: this.$route.params.token
+      email: this.$route.params.email as string,
+      token: this.$route.params.token as string
     };
   },
   async mounted () {

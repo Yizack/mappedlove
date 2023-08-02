@@ -10,8 +10,6 @@ onMounted(() => {
 <template>
   <NuxtLoadingIndicator :throttle="0" />
   <NuxtLayout>
-    <div id="page" class="flex-fill">
-      <NuxtPage />
-    </div>
+    <NuxtPage />
   </NuxtLayout>
 </template>

@@ -1,7 +1,9 @@
-<script setup>
+<script setup lang="ts">
 definePageMeta({ layout: "app", middleware: "session" });
 </script>
 
 <template>
-  Map
+  <main class="h-100">
+    Map
+  </main>
 </template>

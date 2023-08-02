@@ -42,6 +42,7 @@ export default {
   copy: "Copy",
   copy_not_supported: "Writting to clipboard not supported in this browser",
   copy_success: "Copied to clipboard",
+  our_bond: "Our bond",
   // Markers
   marker: "Marker",
   markers: "Markers",
@@ -50,6 +51,7 @@ export default {
   delete_marker: "Are you sure you want to delete this marker?",
   location: "Location",
   location_info: "Please select the nearest location, you will be able to precisely position the marker later by dragging it to the exact location on the map",
+  no_markers: "No markers yet, add new markers to start mapping your love stories.",
   // Stories
   stories: "Stories",
   add_story: "Add story",
