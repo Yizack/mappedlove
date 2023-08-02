@@ -19,7 +19,10 @@ const mailChannels = async (config: any, message: any) : Promise<Boolean> => {
         value: html
       }]
     })
-  }).then(() => true).catch(() => false);
+  }).then(() => true).catch((e) => {
+    console.warn(e);
+    return false;
+  });
 };
 
 const nodeMailer = async (config: any, message: any) => {

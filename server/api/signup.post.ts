@@ -1,3 +1,5 @@
+// @ts-ignore
+import Mustache from "mustache";
 import { randomUUID } from "crypto";
 
 export default defineEventHandler(async (event) => {
@@ -42,13 +44,16 @@ export default defineEventHandler(async (event) => {
   
   const config = useRuntimeConfig(event);
   const url = process.dev ? "http://localhost:5173" : "https://mappedlove.com";
+  const template_strings = {
+    verify_link: `${url}/verify/${encodeURIComponent(btoa(email))}/${token}`
+  };
+
+  const html = Mustache.render(templates.verify, template_strings);
+
   await sendMail(config, {
-    to: {
-      email,
-      name: user.name
-    },
+    to: { email, name: user.name},
     subject: "Verify your email address",
-    html: `Welcome to Mapped Love! to verify your email, click on the link below:<br/><br/><a href="${url}/verify/${encodeURIComponent(btoa(email))}/${token}">Verify Email</a><br/><br/>If you did not sign up for Mapped Love, please ignore this email.`
+    html
   });
 
   return { user: { email: user.email } };
