@@ -1,3 +1,5 @@
+// @ts-ignore
+import Mustache from "mustache";
 import { eq } from "drizzle-orm";
 
 export default defineEventHandler(async (event) : Promise<{ email: string }> => {
@@ -17,12 +19,18 @@ export default defineEventHandler(async (event) : Promise<{ email: string }> => 
   }
   const { name, confirmCode: token } = user;
   const url = process.dev ? "http://localhost:5173" : "https://mappedlove.com";
-  const mailed = await sendMail(config, {
+
+  const template_strings = {
+    verify_link: `${url}/verify/${encodeURIComponent(btoa(email))}/${token}`
+  };
+
+  const html = Mustache.render(templates.verify, template_strings);
+
+  await sendMail(config, {
     to: { email, name },
     subject: "Verify your email address",
-    html: `Welcome to Mapped Love! to verify your email, click on the link below:<br/><br/><a href="${url}/verify/${encodeURIComponent(btoa(email))}/${token}">Verify Email</a><br/><br/>If you did not sign up for Mapped Love, please ignore this email.`
+    html
   });
-  console.info(mailed);
 
   return { email };
 });

@@ -42,7 +42,7 @@ export default defineEventHandler(async (event) => {
   
   const config = useRuntimeConfig(event);
   const url = process.dev ? "http://localhost:5173" : "https://mappedlove.com";
-  const mailed = await sendMail(config, {
+  await sendMail(config, {
     to: {
       email,
       name: user.name

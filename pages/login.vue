@@ -87,13 +87,13 @@ export default {
       this.$router.replace("/app");
     },
     async resendVerification () {
+      this.resent = true;
       const resend = await $fetch("/api/verify/resend", {
         method: "POST",
         body: { email: this.form.email }
       }).catch(() => null);
 
       if (!resend) return;
-      this.resent = true;
     }
   }
 };
