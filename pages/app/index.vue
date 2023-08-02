@@ -103,7 +103,7 @@ const selectedMarker = computed(() : MappedLoveMarker => {
         <MapView id="map" ref="map" :markers="markers" size="60vh" :select="selected" @moved="movedPosition" />
       </div>
       <div class="col-12 col-xl-5">
-        <div class="bg-body rounded-3 px-3 py-4 p-lg-4">
+        <div class="bg-body rounded-3 px-3 py-4 p-lg-4 h-100">
           <div class="position-relative d-flex align-items-center gap-2 mb-2">
             <Icon class="text-primary" name="solar:map-point-favourite-bold" size="2rem" />
             <h2 class="m-0">{{ t("markers") }}</h2>
@@ -133,7 +133,7 @@ const selectedMarker = computed(() : MappedLoveMarker => {
         </div>
       </div>
       <div class="col-12 col-xl-7">
-        <div class="bg-body rounded-3 px-3 py-4 p-lg-4">
+        <div class="bg-body rounded-3 px-3 py-4 p-lg-4 h-100">
           <div class="position-relative d-flex align-items-center gap-2 mb-2">
             <Icon class="text-primary" name="solar:chat-square-like-bold" size="2rem" />
             <h2 class="m-0">{{ t("stories") }}</h2>

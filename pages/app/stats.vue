@@ -4,6 +4,6 @@ definePageMeta({ layout: "app", middleware: "session" });
 
 <template>
   <main class="h-100">
-    Map
+    Stats
   </main>
 </template>
