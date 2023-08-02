@@ -41,7 +41,7 @@ definePageMeta({ layout: "access", middleware: "authenticated" });
               <div class="d-grid">
                 <button class="btn btn-primary btn-lg rounded-pill" type="submit" :disabled="submit.loading">
                   <Transition name="tab" mode="out-in">
-                    <SpinnerCircle v-if="submit.loading" />
+                    <SpinnerCircle v-if="submit.loading" class="text-white" />
                     <span v-else>{{ t("signup") }}</span>
                   </Transition>
                 </button>
