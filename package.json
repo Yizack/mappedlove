@@ -13,12 +13,13 @@
     "url": "https://github.com/Yizack/mappedlove/issues"
   },
   "scripts": {
-    "build": "nuxt build",
+    "build": "pnpm email:templates && nuxt build",
     "dev": "nuxt dev --port=5173",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "db:migrate": "drizzle-kit generate:sqlite",
+    "email:templates": "node ./scripts/emailTemplates.js",
     "db:seed": "tsc server/db/seed.ts && node server/db/seed.js"
   },
   "devDependencies": {
