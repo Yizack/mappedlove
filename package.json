@@ -19,7 +19,7 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "db:migrate": "drizzle-kit generate:sqlite",
-    "email:templates": "node ./scripts/emailTemplates.js",
+    "email:templates": "tsc ./scripts/emailTemplates.ts --module nodenext && node ./scripts/emailTemplates.js",
     "db:seed": "tsc server/db/seed.ts && node server/db/seed.js"
   },
   "devDependencies": {
