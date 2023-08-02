@@ -8,8 +8,10 @@
           </h1>
           <p>{{ t("bond_start") }}</p>
           <button class="btn btn-primary btn-lg rounded-pill px-4" :disabled="submitted" @click="createBond()">
-            <SpinnerCircle v-if="submitted" class="text-white" />
-            <span v-else>{{ t("create_bond") }}</span>
+            <Transition name="tab" mode="out-in">
+              <SpinnerCircle v-if="submitted" class="text-white" />
+              <span v-else>{{ t("create_bond") }}</span>
+            </Transition>
           </button>
         </div>
       </div>
