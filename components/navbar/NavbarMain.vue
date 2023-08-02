@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-md fixed-top" :class="{'bg-body shadow': scrolled}">
-    <div class="container">
+    <div class="container-fluid container-md">
       <button class="navbar-toggler border-0 rounded-pill" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon" />
       </button>
@@ -10,7 +10,10 @@
       </NuxtLink>
       <div id="offcanvasNavbar" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvasNavbarLabel">
         <div class="offcanvas-header">
-          <NuxtLink class="navbar-brand" to="/">{{ SITE.name }}</NuxtLink>
+          <NuxtLink class="navbar-brand d-flex align-items-center gap-1" to="/">
+            <Icon class="text-primary" name="solar:map-point-favourite-bold" />
+            {{ SITE.name }}
+          </NuxtLink>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" />
         </div>
         <div class="offcanvas-body">

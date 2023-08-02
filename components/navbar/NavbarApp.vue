@@ -18,7 +18,10 @@ const logOut = () => {
       </NuxtLink>
       <div id="offcanvasNavbar" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvasNavbarLabel">
         <div class="offcanvas-header">
-          <NuxtLink class="navbar-brand" to="/">{{ SITE.name }}</NuxtLink>
+          <NuxtLink class="navbar-brand d-flex align-items-center gap-1" to="/">
+            <Icon class="text-primary" name="solar:map-point-favourite-bold" />
+            {{ SITE.name }}
+          </NuxtLink>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" />
         </div>
         <div class="offcanvas-body">
