@@ -7,8 +7,7 @@ const mailChannels = async (config: any, message: any) : Promise<Boolean> => {
     },
     body: JSON.stringify({
       personalizations: [{
-        to: [{ email: to.email, name: to.name }],
-        bcc: [{ email: config.mail.from }, { email: config.mail.bcc }]
+        to: [{ email: to.email, name: to.name }]
       }],
       from: {
         email: config.mail.from,
