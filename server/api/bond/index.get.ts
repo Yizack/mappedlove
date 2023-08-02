@@ -1,6 +1,6 @@
 import { eq, or } from "drizzle-orm";
 
-export default eventHandler(async (event) : Promise<MappedLoveBond | null> => {
+export default eventHandler(async (event) : Promise<MappedLoveBond> => {
   const { user } = await requireUserSession(event);
   const DB = useDb();
   const bond = DB.select().from(tables.bonds).where(
@@ -11,7 +11,10 @@ export default eventHandler(async (event) : Promise<MappedLoveBond | null> => {
   ).get();
 
   if (!bond) {
-    return null;
+    throw createError({
+      statusCode: 404,
+      message: "Bond not found"
+    });
   }
 
   const partner1 = await DB.select({
