@@ -9,8 +9,8 @@ const setBond = async (event: any) => {
   await useUserSession().fetch();
 };
 
-const isBonded = computed(() => {
-  return bond.value && bond.value.partner1 && bond.value.partner2;
+const isBonded = computed((): Boolean => {
+  return Boolean(bond.value && bond.value.partner1 && bond.value.partner2);
 });
 
 const partner1 = computed((): MappedLovePartner => {
