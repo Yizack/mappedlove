@@ -81,7 +81,7 @@ export default {
   email_verified: "Your email has been verified.",
   verifying_email: "Verifying your email...",
   verify_email: "Verify your email",
-  verify_email_info: "You are almost ready to complete your registration! Please verify your email address by clicking the link sent to your email inbox.",
+  verify_email_info: "You are almost ready to complete your registration! Please verify your email address by clicking the link sent to your email inbox. If you did not receive the email, please check your spam folder.",
   resend_verification: "Resend verification email",
   resent_verification: "Verification email email has been sent"
 };
