@@ -6,7 +6,7 @@ export default defineEventHandler(async (event) : Promise<{ email: string }> => 
   const { email } = await readBody(event);
   const config = useRuntimeConfig(event);
   const DB = useDb();
-  const user = DB.select({
+  const user = await DB.select({
     name: tables.users.name,
     confirmCode: tables.users.confirmCode
   }).from(tables.users).where(eq(tables.users.email, email)).get();
