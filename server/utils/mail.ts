@@ -1,5 +1,6 @@
 const mailChannels = async (config: any, message: any) : Promise<Boolean> => {
   const { to, subject, html } = message;
+  console.info(message.to, message.subject, config.mail);
   return await $fetch("https://api.mailchannels.net/tx/v1/send", {
     method: "POST",
     headers: {
