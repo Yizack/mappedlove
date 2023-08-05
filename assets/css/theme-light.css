@@ -1,4 +1,4 @@
-:root, [data-bs-theme=light] {
+:root, [data-bs-theme="light"] {
   --bs-body-color: #443c47;
   --bs-body-color-rgb : 68, 60, 71;
   --bs-dark: var(--bs-body-color);
@@ -10,7 +10,7 @@
   --bs-primary-hover: #f86363;
   --bs-link-color: #db5353;
   --bs-link-color-rgb: 219, 83, 83;
-  --bs-link-hover-color: rgb(221, 67, 67);
+  --bs-link-hover-color: rgb(221 67 67);
   --bs-link-hover-color-rgb: 221, 67, 67;
   --bs-secondary: #ffe5e5;
   --bs-secondary-rgb: 255, 229, 229;

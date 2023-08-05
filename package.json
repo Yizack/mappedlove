@@ -20,7 +20,9 @@
     "postinstall": "nuxt prepare",
     "db:migrate": "drizzle-kit generate:sqlite",
     "email:templates": "tsc ./scripts/emailTemplates.ts --module nodenext && node ./scripts/emailTemplates.js",
-    "lint": "eslint --ext .ts,.js,.vue --fix --ignore-path .gitignore ."
+    "lint": "pnpm lint:eslint && pnpm lint:stylelint",
+    "lint:eslint": "eslint --ext .ts,.js,.vue --fix --ignore-path .gitignore .",
+    "lint:stylelint": "stylelint \"**/*.css\""
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.1.1",
@@ -35,6 +37,8 @@
     "nuxt": "^3.6.5",
     "nuxt-icon": "^0.4.2",
     "nuxt-twemoji": "^3.3.1",
+    "stylelint": "^15.10.2",
+    "stylelint-config-standard": "^34.0.0",
     "typescript": "^5.1.6",
     "vue-draggable-next": "^2.2.1",
     "wrangler": "3.4.0"

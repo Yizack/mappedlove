@@ -12,5 +12,5 @@ input:read-only {
 }
 
 .form-control::placeholder {
-  color: rgba(var(--bs-body-color-rgb),.65);
+  color: rgb(var(--bs-body-color-rgb) .65);
 }

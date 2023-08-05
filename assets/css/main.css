@@ -36,7 +36,7 @@ a:hover {
 
 .nuxt-loading-indicator {
   background: repeating-linear-gradient(to right, var(--bs-primary-hover) 0%, var(--bs-primary) 50%, var(--bs-secondary) 100%)!important;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 10px rgb(255 255 255 / 50%);
 }
 
 .geosearch {
