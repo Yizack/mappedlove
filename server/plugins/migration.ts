@@ -1,10 +1,13 @@
 import { migrate } from "drizzle-orm/better-sqlite3/migrator";
 import { BetterSQLite3Database } from "drizzle-orm/better-sqlite3";
+import { seedDev } from "~/server/utils/seed";
 
 export default defineNitroPlugin(() => {
   if (process.dev) {
     try {
-      migrate(useDb() as BetterSQLite3Database, { migrationsFolder: "./server/db/migrations" });
+      const DB = useDb() as BetterSQLite3Database;
+      migrate(DB, { migrationsFolder: "./server/db/migrations" });
+      if (process.env.SEED) seedDev(DB);
     }
     catch (err) {
       console.info("Cannot migrate database", err);

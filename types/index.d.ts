@@ -39,9 +39,10 @@ declare global {
   interface MappedLoveStory {
     id: number,
     marker: number,
-    title: string,
     description: string,
-    date: number
+    image: number,
+    year: number,
+    month: number
   }
   interface MappedLoveMap {
     markers: MappedLoveMarker[],

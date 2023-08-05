@@ -20,8 +20,8 @@ export const users = sqliteTable("users", {
 export const bonds = sqliteTable("bonds", {
   id: integer("id").primaryKey(),
   code: text("code").notNull(),
-  partner1: integer("partner_1").references(() => users.id),
-  partner2: integer("partner_2").references(() => users.id),
+  partner1: integer("partner_1").references(() => users.id, { onDelete: "set null" }),
+  partner2: integer("partner_2").references(() => users.id, { onDelete: "set null" }),
   coupleDate: integer("couple_date"),
   bonded: integer("bonded").notNull().default(0),
   public: integer("public").notNull().default(0),
@@ -35,7 +35,7 @@ export const markers = sqliteTable("markers", {
   lat: integer("lat").notNull(),
   lng: integer("lng").notNull(),
   group: integer("group").notNull(),
-  bond: integer("user").notNull().references(() => bonds.id),
+  bond: integer("user").notNull().references(() => bonds.id, { onDelete: "cascade" }),
   title: text("title").notNull(),
   description: text("description").notNull(),
   order: integer("order").notNull(),
@@ -45,11 +45,12 @@ export const markers = sqliteTable("markers", {
 
 export const stories = sqliteTable("stories", {
   id: integer("id").primaryKey(),
-  marker: integer("marker").notNull().references(() => markers.id),
-  bond: integer("user").notNull().references(() => bonds.id),
-  title: text("title").notNull(),
-  description: text("description").notNull(),
-  date: integer("date").notNull(),
+  marker: integer("marker").notNull().references(() => markers.id, { onDelete: "cascade" }),
+  bond: integer("user").notNull().references(() => bonds.id, { onDelete: "cascade" }),
+  description: text("description").notNull().default(""),
+  image: integer("image").notNull().default(0),
+  year: integer("year").notNull().default(0),
+  month: integer("month").notNull().default(0),
   createdAt: integer("created_at").notNull(),
   updatedAt: integer("updated_at").notNull(),
 });

@@ -1,6 +1,6 @@
 <template>
   <div class="position-relative">
-    <div class="input-group mb-3">
+    <div class="input-group mb-2">
       <div class="form-floating position-relative">
         <Icon class="position-absolute top-50 start-0 mx-2 translate-middle-y text-primary z-3" name="solar:map-point-favourite-bold" size="2rem" />
         <input v-model.trim="text" class="ps-5 form-control" :placeholder="t('location')" required :disabled="selected" @input="searchPlace($event.target)">

@@ -41,7 +41,7 @@ export default defineEventHandler(async (event) => {
       statusMessage: "User already exists."
     });
   }
-  
+
   const config = useRuntimeConfig(event);
   const url = process.dev ? "http://localhost:5173" : "https://mappedlove.com";
   const template_strings = {

@@ -20,7 +20,7 @@
     "postinstall": "nuxt prepare",
     "db:migrate": "drizzle-kit generate:sqlite",
     "email:templates": "tsc ./scripts/emailTemplates.ts --module nodenext && node ./scripts/emailTemplates.js",
-    "db:seed": "tsc server/db/seed.ts && node server/db/seed.js"
+    "lint": "eslint --ext .ts,.js,.vue --fix --ignore-path .gitignore ."
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.1.1",

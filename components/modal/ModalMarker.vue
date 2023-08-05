@@ -8,7 +8,10 @@
         </div>
         <div class="modal-body">
           <form @submit.prevent="submitMarker()">
-            <p>{{ t("location_info") }}</p>
+            <div class="d-flex align-items-center gap-2 mb-2">
+              <Icon name="solar:info-circle-linear" class="text-primary flex-shrink-0" />
+              <p class="m-0">{{ t("location_info") }}</p>
+            </div>
             <GeoSearch class="mb-2" :value="location" @select="selectLocation" />
             <div class="form-floating mb-2">
               <input v-model.trim="form.title" type="text" class="form-control" :placeholder="t('title')" required>
@@ -42,7 +45,7 @@
 <script lang="ts">
 export default {
   props: {
-    id: {
+    markerId: {
       type: Number,
       default: () => (0)
     }
@@ -50,7 +53,7 @@ export default {
   emits: ["close", "submit"],
   data () {
     return {
-      marker: this.$nuxt.payload.data.map.markers.find((marker: MappedLoveMarker) => marker.id === this.id) as MappedLoveMarker | undefined,
+      marker: this.$nuxt.payload.data.map.markers.find((marker: MappedLoveMarker) => marker.id === this.markerId) as MappedLoveMarker | undefined,
       submitted: false,
       location: "",
       form: {

@@ -80,7 +80,7 @@ class Leaflet {
     marker.addTo(this.groups[group]);
     return marker;
   }
-  
+
   removeMarker (id: number) {
     const marker = this.getMarker(id);
     if (marker) marker.remove();

@@ -53,10 +53,12 @@ export default {
   location_info: "Please select the nearest location, you will be able to precisely position the marker later by dragging it to the exact location on the map",
   no_markers: "No markers yet, add new markers to start mapping your love stories.",
   // Stories
+  story: "Story",
   stories: "Stories",
   add_story: "Add story",
   select_marker_story: "Select a marker to see or edit your stories.",
   no_stories: "No stories yet, add new stories to this marker.",
+  story_info: "Fill your story with details, you can also add photos after saving the story to make it more memorable.",
   // Groups
   groups: "Groups",
   places: "Places",
@@ -85,5 +87,21 @@ export default {
   resend_verification: "Resend verification email",
   resent_verification: "Verification email email has been sent",
   map: "Map",
-  statistics: "Statistics"
+  statistics: "Statistics",
+  date: "Date",
+  // Dates
+  month: "Month",
+  year: "Year",
+  january: "January",
+  february: "February",
+  march: "March",
+  april: "April",
+  may: "May",
+  june: "June",
+  july: "July",
+  august: "August",
+  september: "September",
+  october: "October",
+  november: "November",
+  december: "December"
 };

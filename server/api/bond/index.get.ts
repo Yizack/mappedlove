@@ -23,7 +23,7 @@ export default eventHandler(async (event) : Promise<MappedLoveBond> => {
     showAvatar: tables.users.showAvatar,
     country: tables.users.country
   }).from(tables.users).where(eq(tables.users.id, Number(bond.partner1))).get();
-  
+
   const partner2 = await DB.select({
     id: tables.users.id,
     name: tables.users.name,

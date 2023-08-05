@@ -8,13 +8,8 @@ CREATE TABLE `bonds` (
 	`public` integer DEFAULT 0 NOT NULL,
 	`created_at` integer NOT NULL,
 	`updated_at` integer NOT NULL,
-	FOREIGN KEY (`partner_1`) REFERENCES `users`(`id`) ON UPDATE no action ON DELETE no action,
-	FOREIGN KEY (`partner_2`) REFERENCES `users`(`id`) ON UPDATE no action ON DELETE no action
-);
---> statement-breakpoint
-CREATE TABLE `groups` (
-	`id` integer PRIMARY KEY NOT NULL,
-	`name` text NOT NULL
+	FOREIGN KEY (`partner_1`) REFERENCES `users`(`id`) ON UPDATE no action ON DELETE set null,
+	FOREIGN KEY (`partner_2`) REFERENCES `users`(`id`) ON UPDATE no action ON DELETE set null
 );
 --> statement-breakpoint
 CREATE TABLE `markers` (
@@ -28,21 +23,21 @@ CREATE TABLE `markers` (
 	`order` integer NOT NULL,
 	`created_at` integer NOT NULL,
 	`updated_at` integer NOT NULL,
-	FOREIGN KEY (`group`) REFERENCES `groups`(`id`) ON UPDATE no action ON DELETE no action,
-	FOREIGN KEY (`user`) REFERENCES `bonds`(`id`) ON UPDATE no action ON DELETE no action
+	FOREIGN KEY (`user`) REFERENCES `bonds`(`id`) ON UPDATE no action ON DELETE cascade
 );
 --> statement-breakpoint
 CREATE TABLE `stories` (
 	`id` integer PRIMARY KEY NOT NULL,
 	`marker` integer NOT NULL,
 	`user` integer NOT NULL,
-	`title` text NOT NULL,
-	`description` text NOT NULL,
-	`date` integer NOT NULL,
+	`description` text DEFAULT '' NOT NULL,
+	`image` integer DEFAULT 0 NOT NULL,
+	`year` integer DEFAULT 0 NOT NULL,
+	`month` integer DEFAULT 0 NOT NULL,
 	`created_at` integer NOT NULL,
 	`updated_at` integer NOT NULL,
-	FOREIGN KEY (`marker`) REFERENCES `markers`(`id`) ON UPDATE no action ON DELETE no action,
-	FOREIGN KEY (`user`) REFERENCES `bonds`(`id`) ON UPDATE no action ON DELETE no action
+	FOREIGN KEY (`marker`) REFERENCES `markers`(`id`) ON UPDATE no action ON DELETE cascade,
+	FOREIGN KEY (`user`) REFERENCES `bonds`(`id`) ON UPDATE no action ON DELETE cascade
 );
 --> statement-breakpoint
 CREATE TABLE `users` (

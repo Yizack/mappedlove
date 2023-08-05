@@ -10,8 +10,9 @@ const edit = ref(false);
 const markerModal = ref(false);
 const storyModal = ref(false);
 const drag = ref(false);
-const currentMarker = ref(0);
 
+const currentMarker = ref(0);
+const currentStory = ref(0);
 const selected = ref(0);
 
 const map = ref();
@@ -29,7 +30,7 @@ const dragOptions = computed(() => {
   };
 });
 
-const newMarker = async ({ marker, edit }: { marker: MappedLoveMarker, edit: boolean }) => {
+const newMarker = ({ marker, edit }: { marker: MappedLoveMarker, edit: boolean }) => {
   if (edit) {
     return markers.value = markers.value.map((item) => {
       if (item.id === marker.id) return marker;
@@ -70,9 +71,21 @@ const editMarker = (marker: MappedLoveMarker) => {
   markerModal.value = true;
 };
 
-const closeMarkerModal = () => {
+const newStory = ({ story, edit }: { story: MappedLoveStory, edit: boolean }) => {
+  if (edit) {
+    return stories.value = stories.value.map((item) => {
+      if (item.id === story.id) return story;
+      return item;
+    });
+  }
+  stories.value.unshift(story);
+};
+
+const closeModal = () => {
   markerModal.value = false;
   currentMarker.value = 0;
+  storyModal.value = false;
+  currentStory.value = 0;
 };
 
 const move = async () => {
@@ -84,9 +97,19 @@ const move = async () => {
   }).catch(() => undefined);
 };
 
-const selectedMarker = computed(() : MappedLoveMarker => {
-  return markers.value.find((marker) => marker.id === selected.value) as MappedLoveMarker;
+const selectedMarker = computed(() => {
+  return {
+    ...markers.value.find(marker => marker.id === selected.value) as MappedLoveMarker,
+    stories: stories.value.filter(s => s.marker === selected.value) as MappedLoveStory[]
+  };
 });
+
+const selectMarker = (id: number) => {
+  if (selected.value === id) return;
+  selected.value = id;
+  animate.value = false;
+  animateElements();
+};
 </script>
 
 <template>
@@ -105,8 +128,8 @@ const selectedMarker = computed(() : MappedLoveMarker => {
           </div>
           <draggable v-if="markers.length" v-model="markers" class="row g-2" item-key="id" v-bind="dragOptions" :disabled="!edit" @change="move" @start="drag = true" @end="drag = false">
             <TransitionGroup type="transition" :name="!drag ? 'flip-list' : undefined">
-              <div v-for="marker in markers" :key="marker.id" class="col-6 d-flex gap-2">
-                <div class="marker border rounded-3 py-2 px-3 w-100 position-relative" :class="{'active' : selected === marker.id}" role="button" @click="selected = marker.id">
+              <div v-for="marker in markers" :key="marker.id" class="col-12 col-md-4 col-xl-6 d-flex gap-2">
+                <div class="marker border rounded-3 py-2 px-3 w-100 position-relative" :class="{'active' : selected === marker.id}" role="button" @click="selectMarker(marker.id)">
                   <Icon v-if="edit" name="tabler:grip-horizontal" size="1rem" class="position-absolute start-50 bottom-0 translate-middle-x text-primary" />
                   <div class="w-100 h-100 text-break">
                     <h5 class="title">{{ marker.title }}</h5>
@@ -130,16 +153,35 @@ const selectedMarker = computed(() : MappedLoveMarker => {
           <div class="position-relative d-flex align-items-center gap-2 mb-2">
             <Icon class="text-primary" name="solar:chat-square-like-bold" size="2rem" />
             <h2 class="m-0">{{ t("stories") }}</h2>
-            <ButtonAdd v-if="selected" @click="storyModal = true" />
+            <Transition name="bounce">
+              <ButtonAdd v-if="selected" @click="storyModal = true" />
+            </Transition>
             <button v-if="selected && stories.length" type="button" class="btn btn-primary btn-lg ms-auto rounded-pill" @click="edit = !edit">{{ edit ? t("done") : t("edit") }}</button>
           </div>
-          <h4 v-if="selected">{{ selectedMarker.title }}</h4>
-          <p v-if="!selected" class="m-0">{{ t("select_marker_story") }}</p>
-          <p v-else-if="!stories.length" class="m-0">{{ t("no_stories") }}</p>
+          <Transition name="tab-left" mode="out-in">
+            <h4 v-if="selected && animate">{{ selectedMarker.title }}</h4>
+          </Transition>
+          <Transition name="fade" mode="out-in">
+            <p v-if="!selected" class="m-0">{{ t("select_marker_story") }}</p>
+            <p v-else-if="!selectedMarker.stories.length" class="m-0">{{ t("no_stories") }}</p>
+            <div v-else-if="animate" class="row g-2">
+              <div v-for="story in stories.filter(s => s.marker === selected)" :key="story.id" class="col-12 col-md-6 col-xl-4" role="button">
+                <div class="card">
+                  <div class="card-body">
+                    <p class="card-text">{{ story.description }}</p>
+                  </div>
+                  <div class="card-footer text-body-secondary">
+                    {{ story.year }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Transition>
         </div>
       </div>
     </div>
-    <ModalMarker v-if="markerModal" :id="currentMarker" @close="closeMarkerModal" @submit="newMarker" />
+    <ModalMarker v-if="markerModal" :marker-id="currentMarker" @close="closeModal" @submit="newMarker" />
+    <ModalStory v-if="storyModal" :marker-id="selected" :story-id="currentStory" @close="closeModal" @submit="newStory" />
     <ToastMessage v-if="moved.updated" :success="moved.success" :text="t('saved_changes')" @dispose="moved.updated = false" />
   </main>
 </template>
