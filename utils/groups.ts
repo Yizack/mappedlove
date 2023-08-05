@@ -1,23 +1,30 @@
 export const groups = [
   {
-    key: "places"
+    key: "places",
+    icon: "solar:point-on-map-linear"
   },
   {
-    key: "restaurants"
+    key: "restaurants",
+    icon: "ion:fast-food-outline"
   },
   {
-    key: "hotels"
+    key: "hotels",
+    icon: "solar:sleeping-linear"
   },
   {
-    key: "events"
+    key: "events",
+    icon: "solar:ticker-star-linear"
   },
   {
-    key: "activities"
+    key: "activities",
+    icon: "solar:magic-stick-2-linear"
   },
   {
-    key: "cities"
+    key: "cities",
+    icon: "solar:city-linear"
   },
   {
-    key: "others"
+    key: "others",
+    icon: "solar:ghost-smile-linear"
   }
 ];
