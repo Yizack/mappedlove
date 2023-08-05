@@ -4,7 +4,7 @@ import { drizzle, BetterSQLite3Database } from "drizzle-orm/better-sqlite3";
 // @ts-ignore
 import Database from "better-sqlite3";
 
-export * as tables from "@/server/db/schema";
+export * as tables from "~/server/db/schema";
 
 let _db: DrizzleD1Database | BetterSQLite3Database | null = null;
 

@@ -1,18 +1,16 @@
 <script setup lang="ts">
 definePageMeta({ layout: "app", middleware: "session" });
 
-await useFetch("/api/groups", { key: "groups" });
+const { data: Map } = await useFetch("/api/bond/map", { key: "map" });
 
-const markers: Ref<MappedLoveMarker[]> = ref([]);
-
-const { data: getMarkers } = await useFetch("/api/markers");
-if (getMarkers.value) markers.value = getMarkers.value;
+const markers = ref(Map.value?.markers || []);
+const stories = ref(Map.value?.stories || []);
 
 const edit = ref(false);
 const markerModal = ref(false);
 const storyModal = ref(false);
 const drag = ref(false);
-const currentMarker: Ref<MappedLoveMarker | undefined> = ref();
+const currentMarker = ref(0);
 
 const selected = ref(0);
 
@@ -50,6 +48,7 @@ const deleteMarker = async (id: number) => {
   }).catch(() => ({}));
 
   if (!("id" in res)) return;
+  if (selected.value === id) selected.value = 0;
   markers.value = markers.value.filter((marker) => marker.id !== id);
   map.value.removeMarker(id);
 };
@@ -63,17 +62,17 @@ const movedPosition = (update: MappedLoveMarker) => {
     if (item.id === update.id) return update;
     return item;
   });
-  currentMarker.value = update;
+  currentMarker.value = update.id;
 };
 
 const editMarker = (marker: MappedLoveMarker) => {
-  currentMarker.value = marker;
+  currentMarker.value = marker.id;
   markerModal.value = true;
 };
 
 const closeMarkerModal = () => {
   markerModal.value = false;
-  currentMarker.value = undefined;
+  currentMarker.value = 0;
 };
 
 const move = async () => {
@@ -84,12 +83,6 @@ const move = async () => {
     body: { oldArrange, newArrange }
   }).catch(() => undefined);
 };
-
-const stories = ref<MappedLoveStory[]>([]);
-
-watch(selected, async (value: number) => {
-  stories.value = await $fetch(`/api/markers/${value}/stories`).catch(() => []);
-});
 
 const selectedMarker = computed(() : MappedLoveMarker => {
   return markers.value.find((marker) => marker.id === selected.value) as MappedLoveMarker;
@@ -146,7 +139,7 @@ const selectedMarker = computed(() : MappedLoveMarker => {
         </div>
       </div>
     </div>
-    <ModalMarker v-if="markerModal" :marker="currentMarker" @close="closeMarkerModal" @submit="newMarker" />
+    <ModalMarker v-if="markerModal" :id="currentMarker" @close="closeMarkerModal" @submit="newMarker" />
     <ToastMessage v-if="moved.updated" :success="moved.success" :text="t('saved_changes')" @dispose="moved.updated = false" />
   </main>
 </template>

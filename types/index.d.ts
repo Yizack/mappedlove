@@ -43,4 +43,8 @@ declare global {
     description: string,
     date: number
   }
+  interface MappedLoveMap {
+    markers: MappedLoveMarker[],
+    stories: MappedLoveStory[]
+  }
 }

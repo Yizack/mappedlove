@@ -21,7 +21,7 @@
             <div class="form-floating mb-2">
               <select v-model="form.group" class="form-select" :placeholder="t('group')" required>
                 <option value="" disabled>{{ t("select_group") }}</option>
-                <option v-for="group of $nuxt.payload.data.groups" :key="group.id" :value="group.id">{{ t(group.name) }}</option>
+                <option v-for="(group, i) of groups" :key="i" :value="i">{{ t(group.key) }}</option>
               </select>
               <label>{{ t("group") }}</label>
             </div>
@@ -42,14 +42,15 @@
 <script lang="ts">
 export default {
   props: {
-    marker: {
-      type: Object as () => MappedLoveMarker | undefined,
-      default: () => (undefined)
+    id: {
+      type: Number,
+      default: () => (0)
     }
   },
   emits: ["close", "submit"],
   data () {
     return {
+      marker: this.$nuxt.payload.data.map.markers.find((marker: MappedLoveMarker) => marker.id === this.id) as MappedLoveMarker | undefined,
       submitted: false,
       location: "",
       form: {
@@ -92,7 +93,7 @@ export default {
         const marker = await $fetch(this.marker ? `/api/markers/${this.marker.id}` : "/api/markers", {
           method: this.marker ? "PATCH" : "POST",
           body: this.form
-        }).catch(() => ({}));
+        });
         this.submitted = false;
         if (!("id" in marker)) return;
         this.$emit("submit", { marker, edit: Boolean(this.marker) });

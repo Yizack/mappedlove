@@ -58,9 +58,9 @@ class Leaflet {
     return this.map;
   }
 
-  createGroups (group: [{ [key: string]: string }]) {
-    group.forEach(({ name }) => {
-      this.groups[name] = L.layerGroup();
+  createGroups (group: { key: string }[]) {
+    group.forEach(({ key }) => {
+      this.groups[key] = L.layerGroup();
     });
   }
 

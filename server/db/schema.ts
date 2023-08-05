@@ -29,16 +29,12 @@ export const bonds = sqliteTable("bonds", {
   updatedAt: integer("updated_at").notNull(),
 });
 
-export const groups = sqliteTable("groups", {
-  id: integer("id").primaryKey(),
-  name: text("name").notNull()
-});
 
 export const markers = sqliteTable("markers", {
   id: integer("id").primaryKey(),
   lat: integer("lat").notNull(),
   lng: integer("lng").notNull(),
-  group: integer("group").notNull().references(() => groups.id),
+  group: integer("group").notNull(),
   bond: integer("user").notNull().references(() => bonds.id),
   title: text("title").notNull(),
   description: text("description").notNull(),

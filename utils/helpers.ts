@@ -9,11 +9,10 @@ export const debounce = (id: string, fn: Function, delay: number) => {
 };
 
 export const getGroups = () => {
-  const { payload } = useNuxtApp();
-  return payload.data.groups.map((group: any) => ({ name: t(group.name)}));
+  return groups.map((group: any) => ({ key: t(group.key)}));
 };
-
-export const getGroup = (id: number) => {
-  const { payload } = useNuxtApp();
-  return t(payload.data.groups[id].name);
+  
+export const getGroup = (i: number) => {
+  return t(groups[i].key);
 };
+  
