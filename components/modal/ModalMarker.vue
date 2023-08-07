@@ -88,7 +88,9 @@ export default {
     selectLocation ({ lat, lng, label }: { lat: number, lng: number, label: string }) {
       this.form.lat = lat;
       this.form.lng = lng;
-      this.form.title = label;
+      const address = label.split(", ");
+      this.form.title = address.shift() || "";
+      this.form.description = address.join(", ");
     },
     async submitMarker () {
       if (typeof this.form.lat === "number" && typeof this.form.lng === "number") {
