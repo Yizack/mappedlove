@@ -31,7 +31,13 @@ const createBond = (DB: BetterSQLite3Database, partner1: number, partner2: numbe
     bonded: 1,
     createdAt: today,
     updatedAt: today
-  }).onConflictDoNothing().run();
+  }).onConflictDoUpdate({
+    target: tables.bonds.id,
+    set: {
+      partner1,
+      partner2
+    }
+  }).run();
 };
 
 export const seedDev = async (DB: BetterSQLite3Database) => {
