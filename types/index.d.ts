@@ -1,15 +1,16 @@
 export {};
 
 declare global {
+  interface MappedLoveSession {
+    user?: MappedLoveUser
+  }
   interface MappedLoveUser {
-    user : {
-      id: number,
-      name: string,
-      email: string,
-      showAvatar: number,
-      confirmed: number,
-      bond?: MappedLoveBond
-    }
+    id: number,
+    name: string,
+    email: string,
+    showAvatar: number,
+    confirmed: number,
+    bond?: MappedLoveBond
   }
   interface MappedLovePartner {
     id: number,

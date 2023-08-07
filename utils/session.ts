@@ -1,6 +1,4 @@
-import { UserSession } from "~/server/utils/session";
-
-const useUserSessionState = () => useState<UserSession>("nuxt-session", () => ({}));
+const useUserSessionState = () => useState<MappedLoveSession>("nuxt-session", () => ({}));
 
 export const useUserSession = () => {
   const sessionState = useUserSessionState();
