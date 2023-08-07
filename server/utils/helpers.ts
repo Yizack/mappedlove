@@ -4,7 +4,7 @@ export const hash = (password: string, salt: string) => {
   return sha256(password + salt);
 };
 
-export const bondCode = (id: string) => {
+export const bondCode = (id: number) => {
   return `${String(id).padStart(4, "0")}-${Math.random().toString(36).substring(7).toUpperCase()}`;
 };
 
