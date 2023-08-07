@@ -2,6 +2,7 @@ import { eq, and } from "drizzle-orm";
 
 export default eventHandler(async (event) : Promise<MappedLoveMarker> => {
   const { user } = await requireUserSession(event);
+  if (!user.bond) throw createError({ statusCode: 400, statusMessage: "Bad Request" });
   const { id } = getRouterParams(event);
   const marker = await readBody(event);
   const DB = useDb();

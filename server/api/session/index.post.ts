@@ -1,6 +1,6 @@
 import { eq, and, or } from "drizzle-orm";
 
-export default defineEventHandler(async (event) : Promise<MappedLoveUser> => {
+export default defineEventHandler(async (event) : Promise<MappedLoveSession> => {
   const form = await readBody(event);
   const { secure } = useRuntimeConfig(event);
   const DB = useDb();
@@ -25,7 +25,7 @@ export default defineEventHandler(async (event) : Promise<MappedLoveUser> => {
     )
   ).get();
 
-  const userInfo: MappedLoveUser = {
+  const userInfo: MappedLoveSession= {
     user: {
       ...user,
       bond
@@ -33,5 +33,5 @@ export default defineEventHandler(async (event) : Promise<MappedLoveUser> => {
   };
 
   if (user.confirmed === 0) return userInfo;
-  return setUserSession(event, userInfo) as Promise<MappedLoveUser>;
+  return setUserSession(event, userInfo) as Promise<MappedLoveSession>;
 });

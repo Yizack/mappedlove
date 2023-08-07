@@ -13,13 +13,13 @@
               <p class="m-0">{{ t("story_info") }}</p>
             </div>
             <div class="form-floating mb-2">
-              <textarea v-model.trim="form.description" type="text" class="form-control" :placeholder="t('description')" :style="{height: '100px'}" />
+              <textarea v-model.trim="form.description" type="text" class="form-control" :placeholder="t('description')" :style="{height: '100px'}" required />
               <label>{{ t("description") }}</label>
             </div>
             <div class="d-flex gap-2">
               <div class="form-floating mb-2 flex-grow-1">
                 <select v-model.number="form.year" class="form-select" required>
-                  <option value="0">{{ t("year") }}</option>
+                  <option value="">{{ t("year") }}</option>
                   <option v-for="(year, i) in years" :key="i">{{ year }}</option>
                 </select>
                 <label>{{ t("year") }}</label>
@@ -27,10 +27,13 @@
               <div class="form-floating mb-2 flex-grow-1">
                 <select v-model.number="form.month" class="form-select" required>
                   <option value="0">{{ t("month") }}</option>
-                  <option v-for="(month, i) in months" :key="i">{{ t(month) }}</option>
+                  <option v-for="(month, i) in months" :key="i" :value="i + 1">{{ t(month) }}</option>
                 </select>
                 <label>{{ t("month") }}</label>
               </div>
+            </div>
+            <div class="mb-2">
+              <input type="file" class="form-control" accept=".png,.jpg,.webp,.gif" @change="addImage">
             </div>
             <div class="d-flex justify-content-between gap-2">
               <button type="button" class="btn btn-secondary btn-lg w-100" data-bs-dismiss="modal">{{ t("cancel") }}</button>
@@ -68,9 +71,10 @@ export default {
         marker: this.markerId,
         description: "",
         image: 0,
-        year: 0,
+        year: "" as number | string,
         month: 0,
-      }
+      },
+      file: null as File | null
     };
   },
   mounted () {
@@ -81,11 +85,21 @@ export default {
     });
   },
   methods: {
+    addImage (event: Event) {
+      const target = event.target as HTMLInputElement;
+      this.file = target.files ? target.files[0] : null;
+    },
     async submitStory () {
       this.submitted = true;
+      const formData = new FormData();
+      formData.append("marker", this.form.marker.toString());
+      formData.append("description", this.form.description);
+      formData.append("year", this.form.year.toString());
+      formData.append("month", this.form.month.toString());
+      if (this.file) formData.append("file", this.file);
       const story = await $fetch(this.story ? `/api/stories/${this.story.id}` : "/api/stories", {
         method: this.story ? "PATCH" : "POST",
-        body: this.form
+        body: formData
       });
       this.submitted = false;
       if (!("id" in story)) return;
