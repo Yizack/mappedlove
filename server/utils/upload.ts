@@ -1,7 +1,6 @@
-import type { H3Event } from "h3";
-import { SITE } from "~/utils/site";
+import type { MultiPartData, H3Event } from "h3";
 
-const validTypes = ["image/jpeg", "image/x-png", "image/png", "image/svg+xml", "image/gif", "image/webp"];
+const validTypes = ["image/jpeg", "image/x-png", "image/png", "image/gif", "image/webp"];
 export const checkFileType = (type: string) => {
   if (!validTypes.includes(type)) {
     throw createError({
@@ -11,31 +10,24 @@ export const checkFileType = (type: string) => {
   }
 };
 
-export const uploadImage = (async (event: H3Event) => {
-  const file = await readMultipartFormData(event);
+export const uploadImage = (async (event: H3Event, body: MultiPartData[] | undefined, outputName?: string) : Promise<string | undefined> => {
+  const file = body?.find((item) => item.name === "file");
+  if (!body || !body.length || !file) return;
 
-  if (!file || !file.length) {
-    throw createError({
-      statusCode: 400,
-      statusMessage: "Bad Request"
-    });
-  }
-
-  const { type, filename, data } = file[0];
-
+  const { type, filename, data } = file;
   checkFileType(type || "");
-
-  const dateTime = new Date().getTime();
-
+  const extention = filename?.split(".").pop()?.toLowerCase();
+  const finalName = outputName ? `${outputName}.${extention}` : filename;
   if (process.dev) {
-    const { writeFileSync } = await import("fs");
-    writeFileSync(`./public/uploads/${filename}`, data);
-    return { url: `/uploads/${filename}?updated=${dateTime}` };
+    const { writeFileSync, existsSync, mkdirSync } = await import("fs");
+    if (!existsSync("./public/uploads")) mkdirSync("./public/uploads");
+    writeFileSync(`./public/uploads/${finalName}`, data);
+    return `${finalName}`;
   }
   else if (process.env.CDN) {
     const { cloudflare } = event.context;
     const headers = new Headers({ "Content-Type": type || "" });
-    await cloudflare.env.CDN.put(`uploads/${filename}`, data, { httpMetadata: headers });
-    return { url: `${SITE.cdn}/uploads/${filename}?updated=${dateTime}` };
+    await cloudflare.env.CDN.put(`uploads/${finalName}`, data, { httpMetadata: headers });
+    return `${finalName}`;
   }
 });
