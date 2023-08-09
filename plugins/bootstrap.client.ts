@@ -8,9 +8,7 @@ import Toast from "bootstrap/js/dist/toast";
 class Bootstrap {
   hideModal (id: HTMLElement) {
     const instance = Modal.getInstance(id);
-    if (instance) {
-      instance.hide();
-    }
+    if (instance) instance.hide();
   }
 
   hideModalEscEvent () {
