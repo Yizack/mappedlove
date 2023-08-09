@@ -57,18 +57,18 @@ export default {
     return {
       pages: [
         {
-          name: "map",
+          name: "bond",
           path: "/app",
+          button: false
+        },
+        {
+          name: "map",
+          path: "/app/map",
           button: false
         },
         {
           name: "statistics",
           path: "/app/stats",
-          button: false
-        },
-        {
-          name: "bond",
-          path: "/app/bond",
           button: false
         }
       ]

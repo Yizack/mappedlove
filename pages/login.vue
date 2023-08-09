@@ -76,15 +76,15 @@ export default {
       }).catch(() => null);
       this.submit.loading = false;
 
-      if (!login || !login.user) {
+      if (!login) {
         this.submit.error = true;
         return;
       }
 
-      const { confirmed } = login.user;
+      const { confirmed } = login;
       this.needsConfirm = Boolean(!confirmed);
       if (!confirmed) return;
-      navigateTo("/app/bond", { external: true, replace: true });
+      navigateTo("/app", { external: true, replace: true });
     },
     async resendVerification () {
       this.resent = true;
