@@ -8,8 +8,8 @@ export default defineNuxtRouteMiddleware(() => {
     "heart.jpg"
   ];
 
-  banners.forEach((banner) => {
+  for (const banner of banners) {
     const img = new Image();
     img.src = `/images/illustrations/${banner}`;
-  });
+  }
 });

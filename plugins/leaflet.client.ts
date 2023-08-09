@@ -59,9 +59,9 @@ class Leaflet {
   }
 
   createGroups (group: { key: string }[]) {
-    group.forEach(({ key }) => {
+    for (const { key } of group) {
       this.groups[key] = L.layerGroup();
-    });
+    }
   }
 
   destroyMap () {

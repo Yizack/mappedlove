@@ -46,9 +46,10 @@ export default {
       // @ts-ignore
       this.map.createMap(this.$refs.map);
     }
-    this.markers.forEach((marker) => {
+
+    for (const marker of this.markers) {
       this.addMarker(marker);
-    });
+    }
     const length = this.markers.length;
     if (length) {
       this.map.setView([this.markers[length - 1].lat, this.markers[length - 1].lng], 3);

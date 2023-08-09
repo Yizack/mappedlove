@@ -2,10 +2,11 @@ import { readFileSync, writeFileSync, readdirSync } from "fs";
 
 const path = "./assets/email-templates";
 const templates : { [key: string] : string } = {};
-readdirSync(path).forEach((file) => {
+
+for (const file of readdirSync(path)) {
   const name = file.replace(".html", "");
   templates[name] = readFileSync(`${path}/${file}`, "utf8").replace(/\r\n/g, "").replace(/\s+/g, " ");
-});
+}
 
 let content;
 try {
