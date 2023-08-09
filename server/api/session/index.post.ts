@@ -25,7 +25,7 @@ export default defineEventHandler(async (event) : Promise<MappedLoveSession> => 
     )
   ).get();
 
-  const userInfo: MappedLoveSession= {
+  const userInfo = {
     user: {
       ...user,
       bond
@@ -33,5 +33,5 @@ export default defineEventHandler(async (event) : Promise<MappedLoveSession> => 
   };
 
   if (user.confirmed === 0) return userInfo;
-  return setUserSession(event, userInfo) as Promise<MappedLoveSession>;
+  return setUserSession(event, userInfo);
 });

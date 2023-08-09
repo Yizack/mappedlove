@@ -4,18 +4,18 @@ export const useUserSession = () => {
   const sessionState = useUserSessionState();
   return {
     loggedIn: computed(() => Boolean(sessionState.value.user)),
-    user: computed(() => sessionState.value.user || null),
+    user: computed(() => sessionState.value.user || null as any as MappedLoveUser),
     data: sessionState,
     fetch,
     clear
   };
 };
 
-const fetch = async () => {
+async function fetch () {
   useUserSessionState().value = await useRequestFetch()("/api/session").catch(() => ({}));
-};
+}
 
-const clear = () => {
+async function clear () {
+  await $fetch("/api/session", { method: "DELETE" });
   useUserSessionState().value = {};
-  return $fetch("/api/session", { method: "DELETE" });
-};
+}

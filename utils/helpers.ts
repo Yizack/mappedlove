@@ -42,5 +42,5 @@ export const storiesByYear = (stories: MappedLoveStory[], year: number) => {
 
 export const getStoryImageFromUser = (storyId: number) => {
   const { user } = useUserSession();
-  return `${SITE.cdn}/uploads/${user.value?.bond?.code}-${storyId}`;
+  return `${SITE.cdn}/uploads/${user.value.bond?.code}-${storyId}`;
 };

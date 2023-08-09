@@ -75,7 +75,8 @@ export default {
         body: this.form
       }).catch(() => null);
       this.submit.loading = false;
-      if (!login) {
+
+      if (!login || !login.user) {
         this.submit.error = true;
         return;
       }
