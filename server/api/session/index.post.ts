@@ -11,6 +11,7 @@ export default defineEventHandler(async (event) : Promise<MappedLoveSession> => 
     showAvatar: tables.users.showAvatar,
     confirmed: tables.users.confirmed
   }).from(tables.users).where(and(eq(tables.users.email, form.email), eq(tables.users.password, hash(form.password, secure.salt)))).get();
+
   if (!user) {
     throw createError({
       statusCode: 401,
@@ -32,6 +33,6 @@ export default defineEventHandler(async (event) : Promise<MappedLoveSession> => 
     }
   };
 
-  if (user.confirmed === 0) return userInfo;
+  if (!user.confirmed) return userInfo;
   return setUserSession(event, userInfo);
 });

@@ -21,7 +21,7 @@ export default eventHandler(async (event) : Promise<MappedLoveBond> => {
   const body = await readBody(event);
   const partner = partnerIdFromCode(body.code);
 
-  const bond = DB.update(tables.bonds).set({
+  const bond = await DB.update(tables.bonds).set({
     partner2: user.id,
     bonded: 1, // true
     updatedAt: Date.now()
