@@ -6,7 +6,7 @@ const bondEvent = ref("");
 const setBond = async (event: any) => {
   bond.value = event.bond;
   bondEvent.value = event.type;
-  await useUserSession().fetch();
+  navigateTo("/app", { external: true, replace: true });
 };
 
 const isBonded = computed((): Boolean => {

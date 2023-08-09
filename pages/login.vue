@@ -84,8 +84,7 @@ export default {
       const { confirmed } = login.user;
       this.needsConfirm = Boolean(!confirmed);
       if (!confirmed) return;
-      await useUserSession().fetch();
-      this.$router.replace("/app");
+      navigateTo("/app/bond", { external: true, replace: true });
     },
     async resendVerification () {
       this.resent = true;
