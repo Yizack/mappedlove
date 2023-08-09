@@ -32,8 +32,8 @@
                 <label>{{ t("month") }}</label>
               </div>
             </div>
-            <div class="mb-2 p-3 image-upload border rounded">
-              <div class="text-muted">{{ t("photo") }} <span class="text-danger">*</span></div>
+            <div class="mb-2 py-2 px-3 image-upload border rounded">
+              <p class="text-muted mb-1">{{ t("photo") }} <span class="text-danger">*</span></p>
               <input id="image" type="file" accept=".png,.jpg,.jpeg,.webp,.gif" @change="addImage">
               <label for="image" class="rounded bg-body-tertiary position-relative overflow-hidden w-100 border">
                 <div class="overlay position-absolute bg-body-secondary w-100 h-100">
@@ -48,7 +48,8 @@
                   <span>({{ t("mb_max") }})</span>
                   <small>{{ supported }}</small>
                 </div>
-                <img v-else class="img-fluid" :src="`${ form.id ? getStoryImageFromUser(form.id) : imageRead.toString() }`">
+                <img v-else-if="form.id && !imageRead" class="img-fluid" :src="`${getStoryImageFromUser(form.id)}?updated=${form.updatedAt}`">
+                <img v-else class="img-fluid" :src="imageRead.toString()">
               </label>
             </div>
             <div class="d-flex justify-content-between gap-2">
@@ -71,17 +72,16 @@ export default {
   props: {
     markerId: {
       type: Number,
-      default: () => (0)
+      default: () => 0
     },
-    storyId: {
-      type: Number,
-      default: () => (0)
+    story: {
+      type: Object as () => MappedLoveStory | null,
+      default: () => null
     }
   },
   emits: ["close", "submit"],
   data () {
     return {
-      story: this.$nuxt.payload.data.bondMap.stories.find((story: MappedLoveStory) => story.marker === this.markerId && story.id === this.storyId) as MappedLoveStory | undefined,
       submitted: false,
       location: "",
       supported: "PNG, JPG, WEBP, GIF",
@@ -94,6 +94,7 @@ export default {
         description: "",
         year: "" as number | string,
         month: 0,
+        updatedAt: 0 as number | undefined,
       },
       file: null as File | null
     };
@@ -118,7 +119,7 @@ export default {
       this.fileChosen = true;
     },
     async submitStory () {
-      if (!this.form.id) return this.imageNeeded = true;
+      if (!this.fileChosen && !this.form.id) return this.imageNeeded = true;
       this.submitted = true;
       const formData = new FormData();
       formData.append("marker", this.form.marker.toString());

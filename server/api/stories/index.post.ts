@@ -6,7 +6,7 @@ export default eventHandler(async (event) : Promise<MappedLoveStory> => {
   const body = await readMultipartFormData(event);
   const file = getFileFromUpload(body);
 
-  if (!body || file || !user.bond) throw createError({ statusCode: 400, statusMessage: "Bad Request" });
+  if (!body || !file || !user.bond) throw createError({ statusCode: 400, statusMessage: "Bad Request" });
 
   const DB = useDb();
   const today = Date.now();
