@@ -13,7 +13,7 @@
               <p class="m-0">{{ t("story_info") }}</p>
             </div>
             <div class="form-floating mb-2">
-              <textarea v-model.trim="form.description" type="text" class="form-control" :placeholder="t('description')" :style="{height: '100px'}" required />
+              <textarea v-model.trim="form.description" type="text" class="form-control" :placeholder="t('description')" :style="{height: '100px'}" />
               <label>{{ t("description") }}</label>
             </div>
             <div class="d-flex gap-2">
@@ -33,7 +33,7 @@
               </div>
             </div>
             <div class="mb-2 p-3 image-upload border rounded">
-              <div class="text-muted">{{ t("image") }} <span class="text-danger">*</span></div>
+              <div class="text-muted">{{ t("photo") }} <span class="text-danger">*</span></div>
               <input id="image" type="file" accept=".png,.jpg,.webp,.gif" @change="addImage">
               <label for="image" class="rounded bg-body-tertiary position-relative overflow-hidden w-100 border">
                 <div class="overlay position-absolute bg-body-secondary w-100 h-100">
@@ -48,7 +48,7 @@
                   <span>({{ t("mb_max") }})</span>
                   <small>{{ supported }}</small>
                 </div>
-                <img v-else class="img-fluid" :src="imageRead.toString()">
+                <img v-else class="img-fluid" :src="`${ form.id ? getStoryImageFromUser(form.id) : imageRead.toString() }`">
               </label>
             </div>
             <div class="d-flex justify-content-between gap-2">
@@ -62,6 +62,7 @@
         </div>
       </div>
     </div>
+    <ToastMessage v-if="imageNeeded" :success="false" :text="t('photo_needed')" @dispose="imageNeeded = false" />
   </div>
 </template>
 
@@ -85,7 +86,9 @@ export default {
       location: "",
       supported: "PNG, JPG, WEBP, GIF",
       imageRead: "" as string | ArrayBuffer,
+      imageNeeded: false,
       form: {
+        id: 0 as number | undefined,
         marker: this.markerId,
         description: "",
         image: 0,
@@ -115,6 +118,7 @@ export default {
       this.form.image = 1;
     },
     async submitStory () {
+      if (!this.form.image) return this.imageNeeded = true;
       this.submitted = true;
       const formData = new FormData();
       formData.append("marker", this.form.marker.toString());

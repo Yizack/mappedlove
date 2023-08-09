@@ -30,3 +30,17 @@ export const animateElements = () => {
     animate.value = true;
   });
 };
+
+export const yearsFromStories = (stories: MappedLoveStory[]) => {
+  const years = stories.map((story) => story.year);
+  return [...new Set(years)];
+};
+
+export const storiesByYear = (stories: MappedLoveStory[], year: number) => {
+  return stories.filter((story) => story.year === year);
+};
+
+export const getStoryImageFromUser = (storyId: number) => {
+  const { user } = useUserSession();
+  return `${SITE.cdn}/uploads/${user.value?.bond?.code}-${storyId}`;
+};

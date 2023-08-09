@@ -72,13 +72,17 @@ const editMarker = (marker: MappedLoveMarker) => {
 };
 
 const newStory = ({ story, edit }: { story: MappedLoveStory, edit: boolean }) => {
-  if (edit) {
-    return stories.value = stories.value.map((item) => {
+  if (!edit) stories.value.push(story);
+  else {
+    stories.value = stories.value.map((item) => {
       if (item.id === story.id) return story;
       return item;
     });
   }
-  stories.value.unshift(story);
+  stories.value.sort((a, b) => {
+    if (a.year === b.year) return b.month - a.month;
+    return b.year - a.year;
+  });
 };
 
 const closeModal = () => {
@@ -105,10 +109,15 @@ const selectedMarker = computed(() => {
 });
 
 const selectMarker = (id: number) => {
-  if (selected.value === id) return;
+  if (selected.value === id) return selected.value = 0;
   selected.value = id;
   animate.value = false;
   animateElements();
+};
+
+const openStory = (story: MappedLoveStory) => {
+  currentStory.value = story.id;
+  storyModal.value = true;
 };
 </script>
 
@@ -119,7 +128,7 @@ const selectMarker = (id: number) => {
         <MapView id="map" ref="map" :markers="markers" size="60vh" :select="selected" @moved="movedPosition" />
       </div>
       <div class="col-12 col-xl-5">
-        <div class="bg-body rounded-3 px-3 py-4 p-lg-4 h-100">
+        <div class="bg-body rounded-3 px-3 py-4 p-lg-4">
           <div class="position-relative d-flex align-items-center gap-2 mb-2">
             <Icon class="text-primary" name="solar:map-point-favourite-bold" size="2rem" />
             <h2 class="m-0">{{ t("markers") }}</h2>
@@ -168,19 +177,32 @@ const selectMarker = (id: number) => {
           <Transition name="fade" mode="out-in">
             <p v-if="!selected" class="m-0">{{ t("select_marker_story") }}</p>
             <p v-else-if="!selectedMarker.stories.length" class="m-0">{{ t("no_stories") }}</p>
-            <div v-else-if="animate" class="row g-2">
-              <TransitionGroup name="tab">
-                <div v-for="story in stories.filter(s => s.marker === selected)" :key="story.id" class="col-12 col-md-6 col-xl-4" role="button">
-                  <div class="card">
-                    <div class="card-body">
-                      <p class="card-text">{{ story.description }}</p>
-                    </div>
-                    <div class="card-footer text-body-secondary">
-                      {{ story.year }}
-                    </div>
+            <div v-else-if="animate">
+              <div id="accordionStories" class="accordion accordion-flush">
+                <div v-for="(year, i) in yearsFromStories(stories)" :key="i" class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button rounded-3 px-3" type="button" data-bs-toggle="collapse" :data-bs-target="`#flush-collapse-${i}`" aria-expanded="false" aria-controls="flush-collapseOne"><h5 class="m-0">{{ year }}</h5></button>
+                  </h2>
+                  <div :id="`flush-collapse-${i}`" class="accordion-collapse py-2 show">
+                    <MasonryWall :items="storiesByYear(stories, year).filter(s => s.marker === selected)" :ssr-columns="1" :gap="8" :max-columns="4" :column-width="200">
+                      <template #default="{ item: story }">
+                        <div class="card h-100">
+                          <img :src="getStoryImageFromUser(story.id)" class="card-img-top" alt="..." role="button" @click="openStory(story)">
+                          <div v-if="story.description" class="card-body border-top">
+                            <p class="card-text">{{ story.description }}</p>
+                          </div>
+                          <div class="card-footer">
+                            <small class="text-body-secondary">
+                              <span>{{ story.year }}</span>
+                              <span v-if="story.month">, {{ t(months[story.month - 1]) }}</span>
+                            </small>
+                          </div>
+                        </div>
+                      </template>
+                    </MasonryWall>
                   </div>
                 </div>
-              </TransitionGroup>
+              </div>
             </div>
           </Transition>
         </div>

@@ -1,11 +1,15 @@
+import { eq } from "drizzle-orm";
+
 export default eventHandler(async (event) : Promise<MappedLoveStory> => {
   const { user } = await requireUserSession(event);
+
   const body = await readMultipartFormData(event);
+  const file = getFileFromUpload(body);
+
+  if (!body || file || !user.bond) throw createError({ statusCode: 400, statusMessage: "Bad Request" });
+
   const DB = useDb();
   const today = Date.now();
-  if (!body) throw createError({ statusCode: 400, statusMessage: "Bad Request" });
-
-  const file = getFileFromUpload(body);
 
   const form : { [key: string]: string } = {};
 
@@ -13,8 +17,6 @@ export default eventHandler(async (event) : Promise<MappedLoveStory> => {
     if (!name || name === "file") continue;
     form[name] = data.toString();
   }
-
-  if (!user.bond) throw createError({ statusCode: 400, statusMessage: "Bad Request" });
 
   const insert = await DB.insert(tables.stories).values({
     marker: Number(form.marker),
@@ -28,6 +30,10 @@ export default eventHandler(async (event) : Promise<MappedLoveStory> => {
   }).returning().get();
 
   const filename = `${user.bond.code}-${insert.id}`;
-  await uploadImage(event, file, filename);
+  const uploaded = await uploadImage(event, file, filename);
+  if (!uploaded) {
+    await DB.delete(tables.stories).where(eq(tables.stories.id, insert.id)).run();
+    throw createError({ statusCode: 500, statusMessage: "Internal Server Error" });
+  }
   return insert;
 });

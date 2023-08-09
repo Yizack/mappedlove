@@ -68,3 +68,14 @@ main {
 .image-upload label:hover .overlay {
   opacity: .85;
 }
+
+.accordion-button:not(.collapsed) {
+  color: var(--bs-body-color);
+  background-color: var(--bs-secondary);
+  border: 1px solid var(--bs-primary);
+  border-color: var(--bs-primary);
+}
+
+.accordion-button:focus {
+  box-shadow: unset;
+}

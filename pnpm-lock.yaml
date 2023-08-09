@@ -14,9 +14,6 @@ dependencies:
   leaflet-geosearch:
     specifier: ^3.8.0
     version: 3.8.0
-  mustache:
-    specifier: ^4.2.0
-    version: 4.2.0
 
 devDependencies:
   '@nuxt/eslint-config':
@@ -31,6 +28,9 @@ devDependencies:
   '@types/leaflet':
     specifier: ^1.9.3
     version: 1.9.3
+  '@yeger/vue-masonry-wall':
+    specifier: ^4.2.1
+    version: 4.2.1(vue@3.3.4)
   better-sqlite3:
     specifier: ^8.5.0
     version: 8.5.0
@@ -43,6 +43,9 @@ devDependencies:
   eslint:
     specifier: ^8.46.0
     version: 8.46.0
+  mustache:
+    specifier: ^4.2.0
+    version: 4.2.0
   nodemailer:
     specifier: ^6.9.4
     version: 6.9.4
@@ -2074,6 +2077,25 @@ packages:
 
   /@vue/shared@3.3.4:
     resolution: {integrity: sha512-7OjdcV8vQ74eiz1TZLzZP4JwqM5fA94K6yntPS5Z25r9HDuGNzaGdgvwKYq6S+MxwF0TFRwe50fIR/MYnakdkQ==}
+    dev: true
+
+  /@yeger/vue-lib-adapter@1.1.1:
+    resolution: {integrity: sha512-Yk/vYI0UtcWV4IW1lCI/j+dZng33Q+N1N9+Fo9JQsUWgTlRATdwhQi91PAHeys0VtLIYkFw9I2FWEB+N/O+c3Q==}
+    dev: true
+
+  /@yeger/vue-masonry-wall-core@4.2.1:
+    resolution: {integrity: sha512-lamOIZjPaZyCKpb6fbwLgvxqNS41DnJcdHhD0QvZZC2twjXWKpdiHF69slhGWguSxsZo15Zv+8O3xZM3ikFIWw==}
+    dependencies:
+      '@yeger/vue-lib-adapter': 1.1.1
+    dev: true
+
+  /@yeger/vue-masonry-wall@4.2.1(vue@3.3.4):
+    resolution: {integrity: sha512-KD82rut/4uUqCwbp1fB4TxvAlqbZ+kE7axMqLduMuaq0VMaK+81H/G1JemnBlGRc9xHH638GPisDnQ/rB2g8MQ==}
+    peerDependencies:
+      vue: ^3.0.0
+    dependencies:
+      '@yeger/vue-masonry-wall-core': 4.2.1
+      vue: 3.3.4
     dev: true
 
   /abbrev@1.1.1:
@@ -4789,6 +4811,7 @@ packages:
   /mustache@4.2.0:
     resolution: {integrity: sha512-71ippSywq5Yb7/tVYyGbkBggbU8H3u5Rz56fH60jGFgr8uHwxs+aSKeqmluIVzM0m0kB7xQjKS6qPfd0b2ZoqQ==}
     hasBin: true
+    dev: true
 
   /nanoid@3.3.6:
     resolution: {integrity: sha512-BGcqMMJuToF7i1rt+2PWSNVnWIkGCU78jBG3RxO/bZlnZPK2Cmi2QaffxGO/2RvWi9sL+FAiRiXMgsyxQ1DIDA==}

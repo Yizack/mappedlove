@@ -7,7 +7,7 @@ export const isValidFileType = (type: string) => {
 
 export const getFileFromUpload = (body: MultiPartData[] | undefined) => {
   const file = body?.find((item) => item.name === "file");
-  if (!body || !body.length || !file) throw createError({ statusCode: 400, statusMessage: "Bad Request" });
+  if (!body || !body.length || !file) return;
   const { type } = file;
   if (!isValidFileType(type || "")) throw createError({ statusCode: 415, statusMessage: "Unsupported Media Type" });
   return file;
@@ -16,8 +16,7 @@ export const getFileFromUpload = (body: MultiPartData[] | undefined) => {
 export const uploadImage = (async (event: H3Event, file: MultiPartData | undefined, outputName?: string) : Promise<string | undefined> => {
   if (!file) return;
   const { type, filename, data } = file;
-  const extention = filename?.split(".").pop()?.toLowerCase();
-  const finalName = outputName ? `${outputName}.${extention}` : filename;
+  const finalName = outputName ? `${outputName}` : filename;
   if (process.dev) {
     const { writeFileSync, existsSync, mkdirSync } = await import("fs");
     if (!existsSync("./public/uploads")) mkdirSync("./public/uploads");
