@@ -41,7 +41,6 @@ declare global {
     id: number,
     marker: number,
     description: string,
-    image: number,
     year: number,
     month: number
   }

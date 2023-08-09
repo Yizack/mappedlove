@@ -34,7 +34,7 @@
             </div>
             <div class="mb-2 p-3 image-upload border rounded">
               <div class="text-muted">{{ t("photo") }} <span class="text-danger">*</span></div>
-              <input id="image" type="file" accept=".png,.jpg,.webp,.gif" @change="addImage">
+              <input id="image" type="file" accept=".png,.jpg,.jpeg,.webp,.gif" @change="addImage">
               <label for="image" class="rounded bg-body-tertiary position-relative overflow-hidden w-100 border">
                 <div class="overlay position-absolute bg-body-secondary w-100 h-100">
                   <div class="d-flex flex-column justify-content-center align-items-center h-100">
@@ -43,7 +43,7 @@
                     <small>{{ supported }}</small>
                   </div>
                 </div>
-                <div v-if="!form.image" class="d-flex flex-column justify-content-center align-items-center py-3">
+                <div v-if="!fileChosen && !form.id" class="d-flex flex-column justify-content-center align-items-center py-3">
                   <Icon name="solar:gallery-add-outline" size="2.5rem" />
                   <span>({{ t("mb_max") }})</span>
                   <small>{{ supported }}</small>
@@ -87,11 +87,11 @@ export default {
       supported: "PNG, JPG, WEBP, GIF",
       imageRead: "" as string | ArrayBuffer,
       imageNeeded: false,
+      fileChosen: false,
       form: {
         id: 0 as number | undefined,
         marker: this.markerId,
         description: "",
-        image: 0,
         year: "" as number | string,
         month: 0,
       },
@@ -115,10 +115,10 @@ export default {
       reader.onload = () => {
         this.imageRead = reader.result || "";
       };
-      this.form.image = 1;
+      this.fileChosen = true;
     },
     async submitStory () {
-      if (!this.form.image) return this.imageNeeded = true;
+      if (!this.form.id) return this.imageNeeded = true;
       this.submitted = true;
       const formData = new FormData();
       formData.append("marker", this.form.marker.toString());

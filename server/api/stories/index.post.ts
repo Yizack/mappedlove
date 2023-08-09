@@ -24,7 +24,6 @@ export default eventHandler(async (event) : Promise<MappedLoveStory> => {
     description: form.description,
     year: Number(form.year),
     month: Number(form.month),
-    image: 1,
     createdAt: today,
     updatedAt: today
   }).returning().get();
