@@ -1,10 +1,10 @@
 <script setup lang="ts">
 definePageMeta({ layout: "app", middleware: "session" });
 
-const { data: Map } = await useFetch("/api/bond/map", { key: "map" });
+const { data: bondMap } = await useFetch("/api/bond/map", { key: "bondMap" });
 
-const markers = ref(Map.value?.markers || []);
-const stories = ref(Map.value?.stories || []);
+const markers = ref(bondMap.value?.markers || []);
+const stories = ref(bondMap.value?.stories || []);
 
 const edit = ref(false);
 const markerModal = ref(false);

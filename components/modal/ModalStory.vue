@@ -81,7 +81,7 @@ export default {
   emits: ["close", "submit"],
   data () {
     return {
-      story: this.$nuxt.payload.data.map.stories.find((story: MappedLoveStory) => story.marker === this.markerId && story.id === this.storyId) as MappedLoveStory | undefined,
+      story: this.$nuxt.payload.data.bondMap.stories.find((story: MappedLoveStory) => story.marker === this.markerId && story.id === this.storyId) as MappedLoveStory | undefined,
       submitted: false,
       location: "",
       supported: "PNG, JPG, WEBP, GIF",

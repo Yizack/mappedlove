@@ -53,7 +53,7 @@ export default {
   emits: ["close", "submit"],
   data () {
     return {
-      marker: this.$nuxt.payload.data.map.markers.find((marker: MappedLoveMarker) => marker.id === this.markerId) as MappedLoveMarker | undefined,
+      marker: this.$nuxt.payload.data.bondMap.markers.find((marker: MappedLoveMarker) => marker.id === this.markerId) as MappedLoveMarker | undefined,
       submitted: false,
       location: "",
       form: {
