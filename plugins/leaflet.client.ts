@@ -9,14 +9,14 @@ L.Popup.prototype._animateZoom = function (e) { // @ts-expect-error
 };
 
 interface MarkerOptions extends L.MarkerOptions {
-  id: number
+  id: number;
 }
 
 interface AddMarkerOptions {
-  position: [number, number],
-  popup: string,
-  options: MarkerOptions,
-  group: string
+  position: [number, number];
+  popup: string;
+  options: MarkerOptions;
+  group: string;
 }
 
 class Leaflet {

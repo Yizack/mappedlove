@@ -1,4 +1,4 @@
-const deb = {} as {[key: string]: any };
+const deb = {} as Record<string, any>;
 
 export const debounce = (id: string, fn: Function, delay: number) => {
   if (deb[id]) {
