@@ -5,6 +5,8 @@ export default eventHandler(async (event) : Promise<MappedLoveStory> => {
   const today = Date.now();
   if (!body) throw createError({ statusCode: 400, statusMessage: "Bad Request" });
 
+  const file = getFileFromUpload(body);
+
   const form : { [key: string]: string } = {};
 
   for (const { name, data } of body) {
@@ -26,6 +28,6 @@ export default eventHandler(async (event) : Promise<MappedLoveStory> => {
   }).returning().get();
 
   const filename = `${user.bond.code}-${insert.id}`;
-  await uploadImage(event, body, filename);
+  await uploadImage(event, file, filename);
   return insert;
 });

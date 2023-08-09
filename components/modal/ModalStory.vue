@@ -1,6 +1,6 @@
 <template>
   <div id="modal" ref="modal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-dialog  modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <h1 id="smodalLabel" class="modal-title fs-5">{{ t("story") }}</h1>
@@ -22,7 +22,7 @@
                   <option value="">{{ t("year") }}</option>
                   <option v-for="(year, i) in years" :key="i">{{ year }}</option>
                 </select>
-                <label>{{ t("year") }}</label>
+                <label>{{ t("year") }} <span class="text-danger">*</span></label>
               </div>
               <div class="form-floating mb-2 flex-grow-1">
                 <select v-model.number="form.month" class="form-select" required>
@@ -32,8 +32,24 @@
                 <label>{{ t("month") }}</label>
               </div>
             </div>
-            <div class="mb-2">
-              <input type="file" class="form-control" accept=".png,.jpg,.webp,.gif" @change="addImage">
+            <div class="mb-2 p-3 image-upload border rounded">
+              <div class="text-muted">{{ t("image") }} <span class="text-danger">*</span></div>
+              <input id="image" type="file" accept=".png,.jpg,.webp,.gif" @change="addImage">
+              <label for="image" class="rounded bg-body-tertiary position-relative overflow-hidden w-100 border">
+                <div class="overlay position-absolute bg-body-secondary w-100 h-100">
+                  <div class="d-flex flex-column justify-content-center align-items-center h-100">
+                    <Icon class="text-primary " name="solar:gallery-add-outline" size="2.5rem" />
+                    <span>({{ t("mb_max") }})</span>
+                    <small>{{ supported }}</small>
+                  </div>
+                </div>
+                <div v-if="!form.image" class="d-flex flex-column justify-content-center align-items-center py-3">
+                  <Icon name="solar:gallery-add-outline" size="2.5rem" />
+                  <span>({{ t("mb_max") }})</span>
+                  <small>{{ supported }}</small>
+                </div>
+                <img v-else class="img-fluid" :src="imageRead.toString()">
+              </label>
             </div>
             <div class="d-flex justify-content-between gap-2">
               <button type="button" class="btn btn-secondary btn-lg w-100" data-bs-dismiss="modal">{{ t("cancel") }}</button>
@@ -67,6 +83,8 @@ export default {
       story: this.$nuxt.payload.data.map.stories.find((story: MappedLoveStory) => story.marker === this.markerId && story.id === this.storyId) as MappedLoveStory | undefined,
       submitted: false,
       location: "",
+      supported: "PNG, JPG, WEBP, GIF",
+      imageRead: "" as string | ArrayBuffer,
       form: {
         marker: this.markerId,
         description: "",
@@ -88,6 +106,13 @@ export default {
     addImage (event: Event) {
       const target = event.target as HTMLInputElement;
       this.file = target.files ? target.files[0] : null;
+      if (!this.file) return;
+      const reader = new FileReader();
+      reader.readAsDataURL(this.file);
+      reader.onload = () => {
+        this.imageRead = reader.result || "";
+      };
+      this.form.image = 1;
     },
     async submitStory () {
       this.submitted = true;

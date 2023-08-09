@@ -38,8 +38,8 @@ devDependencies:
     specifier: ^0.19.12
     version: 0.19.12
   drizzle-orm:
-    specifier: ^0.28.0
-    version: 0.28.0(better-sqlite3@8.5.0)
+    specifier: ^0.28.1
+    version: 0.28.1(better-sqlite3@8.5.0)
   eslint:
     specifier: ^8.46.0
     version: 8.46.0
@@ -50,8 +50,8 @@ devDependencies:
     specifier: ^3.6.5
     version: 3.6.5(@types/node@20.3.2)(eslint@8.46.0)(stylelint@15.10.2)(typescript@5.1.6)
   nuxt-icon:
-    specifier: ^0.4.2
-    version: 0.4.2(vue@3.3.4)
+    specifier: ^0.5.0
+    version: 0.5.0(vue@3.3.4)
   nuxt-twemoji:
     specifier: ^3.3.1
     version: 3.3.1
@@ -3036,8 +3036,8 @@ packages:
       - supports-color
     dev: true
 
-  /drizzle-orm@0.28.0(better-sqlite3@8.5.0):
-    resolution: {integrity: sha512-iNNNtWM6YwXWI5vAkgFx+FPtZvo/ZnLh8uZV1e7+Alhan5ZS0q3tqbGFP8uCMngW+hNbJqsaHsxPw6AN87urmw==}
+  /drizzle-orm@0.28.1(better-sqlite3@8.5.0):
+    resolution: {integrity: sha512-6ms2pVxvkBJtuP1BZTUCzLLkr+iK/cNgd+tCw+I5/PoM8PB9kXaYoW9yNe/cnaXb0TLJ1gDEndDIyQdRX7zCdQ==}
     peerDependencies:
       '@aws-sdk/client-rds-data': '>=3'
       '@cloudflare/workers-types': '>=3'
@@ -5023,11 +5023,11 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /nuxt-icon@0.4.2(vue@3.3.4):
-    resolution: {integrity: sha512-yFpvDA+FuUz+ixtt1eRzctTfR4sl7egZoXu7LL+CUc42qFlzCMaTZJ9eqFR2FTW8zu9tfLIZ83RJmUa1jNEWgg==}
+  /nuxt-icon@0.5.0(vue@3.3.4):
+    resolution: {integrity: sha512-ND4yh8kW4VyIbORP3cWjgVrOAvy6QSDFDTJltakdqmxVfVysNIs/bx2NzlkHeR1EOS8E/jVcemfTPmRsJ7WUVw==}
     dependencies:
       '@iconify/vue': 4.1.1(vue@3.3.4)
-      '@nuxt/kit': 3.6.1
+      '@nuxt/kit': 3.6.5
     transitivePeerDependencies:
       - rollup
       - supports-color

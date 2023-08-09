@@ -58,7 +58,8 @@ export default {
   add_story: "Add story",
   select_marker_story: "Select a marker to see or edit your stories.",
   no_stories: "No stories yet, add new stories to this marker.",
-  story_info: "Fill your story with details, you can also add photos after saving the story to make it more memorable.",
+  story_info: "Fill your story with details, and a photo make it more memorable.",
+  mb_max: "Max 8MB",
   // Groups
   groups: "Groups",
   places: "Places",
@@ -89,6 +90,7 @@ export default {
   map: "Map",
   statistics: "Statistics",
   date: "Date",
+  image: "Image",
   // Dates
   month: "Month",
   year: "Year",

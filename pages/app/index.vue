@@ -161,7 +161,6 @@ const selectMarker = (id: number) => {
             <Transition name="bounce">
               <ButtonAdd v-if="selected" @click="storyModal = true" />
             </Transition>
-            <button v-if="selected && stories.length" type="button" class="btn btn-primary btn-lg ms-auto rounded-pill" @click="edit = !edit">{{ edit ? t("done") : t("edit") }}</button>
           </div>
           <Transition name="tab-left" mode="out-in">
             <h4 v-if="selected && animate">{{ selectedMarker.title }}</h4>
@@ -170,16 +169,18 @@ const selectMarker = (id: number) => {
             <p v-if="!selected" class="m-0">{{ t("select_marker_story") }}</p>
             <p v-else-if="!selectedMarker.stories.length" class="m-0">{{ t("no_stories") }}</p>
             <div v-else-if="animate" class="row g-2">
-              <div v-for="story in stories.filter(s => s.marker === selected)" :key="story.id" class="col-12 col-md-6 col-xl-4" role="button">
-                <div class="card">
-                  <div class="card-body">
-                    <p class="card-text">{{ story.description }}</p>
-                  </div>
-                  <div class="card-footer text-body-secondary">
-                    {{ story.year }}
+              <TransitionGroup name="tab">
+                <div v-for="story in stories.filter(s => s.marker === selected)" :key="story.id" class="col-12 col-md-6 col-xl-4" role="button">
+                  <div class="card">
+                    <div class="card-body">
+                      <p class="card-text">{{ story.description }}</p>
+                    </div>
+                    <div class="card-footer text-body-secondary">
+                      {{ story.year }}
+                    </div>
                   </div>
                 </div>
-              </div>
+              </TransitionGroup>
             </div>
           </Transition>
         </div>
