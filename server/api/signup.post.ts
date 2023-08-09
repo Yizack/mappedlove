@@ -4,7 +4,6 @@ import { randomUUID } from "crypto";
 
 export default defineEventHandler(async (event) => {
   const form = await readBody(event);
-  // @ts-ignore
   if (!form.turnstile) {
     throw createError({
       statusCode: 422,

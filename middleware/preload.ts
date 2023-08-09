@@ -1,7 +1,5 @@
 export default defineNuxtRouteMiddleware(() => {
-  if (process.server) {
-    return;
-  }
+  if (process.server) return;
 
   const banners = [
     "fields.jpg",

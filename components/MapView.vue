@@ -10,7 +10,7 @@ export default {
       required: true
     },
     markers: {
-      type: Array as () => Array<any>,
+      type: Array as () => Array<MappedLoveMarker>,
       required: true
     },
     size: {
@@ -43,8 +43,7 @@ export default {
     if (!this.map) {
       this.map = new this.$nuxt.$Leaflet();
       this.map.createGroups(getGroups());
-      // @ts-ignore
-      this.map.createMap(this.$refs.map);
+      this.map.createMap(this.$refs.map as HTMLElement);
     }
 
     for (const marker of this.markers) {

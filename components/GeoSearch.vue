@@ -33,7 +33,7 @@ export default {
   data () {
     return {
       search: false,
-      array: [] as any[],
+      array: [] as Record<string, any>[],
       text: "",
       loading: false,
       selected: false

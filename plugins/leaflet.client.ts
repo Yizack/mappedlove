@@ -16,15 +16,15 @@ interface AddMarkerOptions {
   position: [number, number],
   popup: string,
   options: MarkerOptions,
-  group: string,
+  group: string
 }
 
 class Leaflet {
   map: L.Map | null;
-  markers: { [key: string]: L.Marker[] };
+  markers: Record<string, L.Marker[]>;
   tile: L.TileLayer;
   icon: L.Icon;
-  groups: { [key: string]: L.LayerGroup };
+  groups: Record<string, L.LayerGroup>;
 
   constructor () {
     this.map = null;
@@ -44,8 +44,8 @@ class Leaflet {
     this.groups = {};
   }
 
-  createMap (id: string | HTMLElement) {
-    this.map = L.map(id, {
+  createMap (element: string | HTMLElement) {
+    this.map = L.map(element, {
       center: [0, 0],
       zoom: 3,
       minZoom: 2,
@@ -58,8 +58,8 @@ class Leaflet {
     return this.map;
   }
 
-  createGroups (group: { key: string }[]) {
-    for (const { key } of group) {
+  createGroups (group: string[]) {
+    for (const key of group) {
       this.groups[key] = L.layerGroup();
     }
   }

@@ -1,4 +1,15 @@
-const mailChannels = async (config: any, message: any) : Promise<Boolean> => {
+import type { NitroRuntimeConfig } from "nitropack";
+
+interface EmailMessage {
+  to: {
+    name: string;
+    email: string;
+  };
+  subject: string;
+  html: string;
+}
+
+const mailChannels = async (config: NitroRuntimeConfig, message: EmailMessage) : Promise<Boolean> => {
   const { to, subject, html } = message;
   return await $fetch("https://api.mailchannels.net/tx/v1/send", {
     method: "POST",
@@ -25,7 +36,7 @@ const mailChannels = async (config: any, message: any) : Promise<Boolean> => {
   });
 };
 
-const nodeMailer = async (config: any, message: any) => {
+const nodeMailer = async (config: NitroRuntimeConfig, message: EmailMessage) => {
   // @ts-ignore
   const nodemailer = await import("nodemailer");
   const transporter = nodemailer.createTransport({
@@ -61,7 +72,7 @@ const nodeMailer = async (config: any, message: any) => {
   });
 };
 
-export const sendMail = async (config: any, message: any) => {
+export const sendMail = async (config: NitroRuntimeConfig, message: EmailMessage) => {
   if (process.dev) return nodeMailer(config, message);
   return mailChannels(config, message);
 };
