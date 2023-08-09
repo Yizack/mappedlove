@@ -31,7 +31,6 @@ CREATE TABLE `stories` (
 	`marker` integer NOT NULL,
 	`user` integer NOT NULL,
 	`description` text DEFAULT '' NOT NULL,
-	`image` integer DEFAULT 0 NOT NULL,
 	`year` integer DEFAULT 0 NOT NULL,
 	`month` integer DEFAULT 0 NOT NULL,
 	`created_at` integer NOT NULL,

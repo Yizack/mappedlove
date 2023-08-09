@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "sqlite",
-  "id": "0051dfa5-d24c-407c-b498-3542ea2b7b1a",
+  "id": "e3bda1d7-87ab-4c85-86af-9518d7ce6f3f",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "bonds": {
@@ -229,14 +229,6 @@
           "notNull": true,
           "autoincrement": false,
           "default": "''"
-        },
-        "image": {
-          "name": "image",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false,
-          "default": 0
         },
         "year": {
           "name": "year",
