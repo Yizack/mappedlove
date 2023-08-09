@@ -11,8 +11,8 @@ const markerModal = ref(false);
 const storyModal = ref(false);
 const drag = ref(false);
 
-const currentMarker = ref(0);
-const currentStory = ref(0);
+const currentMarker: Ref<MappedLoveMarker | null> = ref(null);
+const currentStory: Ref<MappedLoveStory | null> = ref(null);
 const selected = ref(0);
 
 const map = ref();
@@ -63,11 +63,11 @@ const movedPosition = (update: MappedLoveMarker) => {
     if (item.id === update.id) return update;
     return item;
   });
-  currentMarker.value = update.id;
+  currentMarker.value = update;
 };
 
 const editMarker = (marker: MappedLoveMarker) => {
-  currentMarker.value = marker.id;
+  currentMarker.value = marker;
   markerModal.value = true;
 };
 
@@ -87,9 +87,9 @@ const newStory = ({ story, edit }: { story: MappedLoveStory, edit: boolean }) =>
 
 const closeModal = () => {
   markerModal.value = false;
-  currentMarker.value = 0;
+  currentMarker.value = null;
   storyModal.value = false;
-  currentStory.value = 0;
+  currentStory.value = null;
 };
 
 const move = async () => {
@@ -116,7 +116,7 @@ const selectMarker = (id: number) => {
 };
 
 const openStory = (story: MappedLoveStory) => {
-  currentStory.value = story.id;
+  currentStory.value = story;
   storyModal.value = true;
 };
 </script>
@@ -187,7 +187,7 @@ const openStory = (story: MappedLoveStory) => {
                     <MasonryWall :items="storiesByYear(stories, year).filter(s => s.marker === selected)" :ssr-columns="1" :gap="8" :max-columns="4" :column-width="200">
                       <template #default="{ item: story }">
                         <div class="card h-100">
-                          <img :src="getStoryImageFromUser(story.id)" class="card-img-top" alt="..." role="button" @click="openStory(story)">
+                          <img :src="`${getStoryImageFromUser(story.id)}?updated=${story.updatedAt}`" class="card-img-top" alt="..." role="button" @click="openStory(story)">
                           <div v-if="story.description" class="card-body border-top">
                             <p class="card-text">{{ story.description }}</p>
                           </div>
@@ -208,8 +208,8 @@ const openStory = (story: MappedLoveStory) => {
         </div>
       </div>
     </div>
-    <ModalMarker v-if="markerModal" :marker-id="currentMarker" @close="closeModal" @submit="newMarker" />
-    <ModalStory v-if="storyModal" :marker-id="selected" :story-id="currentStory" @close="closeModal" @submit="newStory" />
+    <ModalMarker v-if="markerModal" :marker="currentMarker" @close="closeModal" @submit="newMarker" />
+    <ModalStory v-if="storyModal" :marker-id="selected" :story="currentStory" @close="closeModal" @submit="newStory" />
     <ToastMessage v-if="moved.updated" :success="moved.success" :text="t('saved_changes')" @dispose="moved.updated = false" />
   </main>
 </template>
