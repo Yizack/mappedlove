@@ -100,7 +100,7 @@ export default {
     };
   },
   mounted () {
-    if (this.story) this.form = this.story;
+    if (this.story) Object.assign(this.form, this.story);
     const modal = this.$nuxt.$bootstrap.showModal(this.$refs.modal as HTMLElement);
     modal.addEventListener("hidden.bs.modal", () => {
       this.$emit("close", this.form);

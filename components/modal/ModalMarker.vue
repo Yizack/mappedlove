@@ -67,15 +67,12 @@ export default {
   },
   watch: {
     marker (marker: MappedLoveMarker) {
-      if (this.marker) {
-        this.form = marker;
-        this.location = `${this.marker.lat}, ${this.marker.lng}`;
-      }
+      if (marker) this.location = `${marker.lat}, ${marker.lng}`;
     }
   },
   mounted () {
     if (this.marker) {
-      this.form = this.marker;
+      Object.assign(this.form, this.marker);
       this.location = `${this.marker.lat}, ${this.marker.lng}`;
     }
     const modal = this.$nuxt.$bootstrap.showModal(this.$refs.modal as HTMLElement);
