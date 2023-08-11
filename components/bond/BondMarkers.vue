@@ -85,14 +85,10 @@ export default {
       }).catch(() => undefined);
     },
     selectMarker (id: number) {
-      if (this.selected === id) {
-        this.selected = 0;
-        return;
-      }
-      this.selected = id;
+      this.selected = this.selected === id ? 0 : id;
       animate.value = false;
       animateElements();
-      this.$emit("select", id);
+      this.$emit("select", this.selected);
     },
     editMarker (marker: MappedLoveMarker) {
       this.currentMarker = marker;
