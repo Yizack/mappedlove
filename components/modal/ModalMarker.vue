@@ -7,7 +7,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" />
         </div>
         <div class="modal-body">
-          <form @submit.prevent="submitMarker()">
+          <form @submit.prevent="submitMarker">
             <div class="d-flex align-items-center gap-2 mb-2">
               <Icon name="solar:info-circle-linear" class="text-primary flex-shrink-0" />
               <p class="m-0">{{ t("location_info") }}</p>

@@ -6,7 +6,7 @@ definePageMeta({ layout: "access", middleware: "authenticated" });
   <main>
     <section>
       <div class="col-11 col-lg-8 m-auto px-3 py-4 px-lg-4 bg-body rounded-3 shadow">
-        <form class="mb-2" @submit.prevent="signIn()">
+        <form class="mb-2" @submit.prevent="signIn">
           <div class="text-center mb-4">
             <h2 class="d-flex align-items-center gap-1 justify-content-center">
               <Icon class="text-primary" name="solar:map-point-favourite-bold" />

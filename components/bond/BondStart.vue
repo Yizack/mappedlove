@@ -19,7 +19,7 @@
     </div>
     <div class="col-lg-6 mx-auto">
       <div class="rounded-3 shadow bg-body px-3 py-4 p-lg-5">
-        <form @submit.prevent="joinBond()">
+        <form @submit.prevent="joinBond">
           <h1>
             <strong>{{ t("bond_code") }}</strong>
           </h1>
