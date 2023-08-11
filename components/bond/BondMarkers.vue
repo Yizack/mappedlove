@@ -38,7 +38,7 @@ import { VueDraggableNext as Draggable } from "vue-draggable-next";
     </TransitionGroup>
   </Draggable>
   <p v-else class="m-0">{{ t("no_markers") }}</p>
-  <ModalMarker v-if="markerModal" :marker="currentMarker" @close="closeModal" @submit="$emit('newMarker', $event)" />
+  <ModalMarker v-if="markerModal" :marker="currentMarker" @close="closeModal" @submit="submitMarker" />
 </template>
 
 <script lang="ts">
@@ -112,6 +112,9 @@ export default {
     closeModal () {
       this.markerModal = false;
       this.currentMarker = null;
+    },
+    submitMarker (event: any) {
+      this.$emit("newMarker", event);
     }
   }
 };
