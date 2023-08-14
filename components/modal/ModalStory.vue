@@ -34,7 +34,7 @@
             </div>
             <div class="mb-2 py-2 px-3 image-upload border rounded">
               <p class="text-muted mb-1">{{ t("photo") }} <span class="text-danger">*</span></p>
-              <input id="image" type="file" accept=".png,.jpg,.jpeg,.webp,.gif" @change="addImage">
+              <input id="image" type="file" accept=".png,.jpg,.jpeg,.jfif,.webp,.gif" @change="addImage">
               <label for="image" class="rounded bg-body-tertiary position-relative overflow-hidden w-100 border">
                 <div class="overlay position-absolute bg-body-secondary w-100 h-100">
                   <div class="d-flex flex-column justify-content-center align-items-center h-100">
@@ -130,7 +130,7 @@ export default {
       const story = await $fetch(this.story ? `/api/stories/${this.story.id}` : "/api/stories", {
         method: this.story ? "PATCH" : "POST",
         body: formData
-      });
+      }).catch(() => ({}));
       this.submitted = false;
       if (!("id" in story)) return;
       this.$emit("submit", { story, edit: Boolean(this.story) });

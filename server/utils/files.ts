@@ -1,13 +1,8 @@
 import type { MultiPartData, H3Event } from "h3";
 
-export const checkFileSize = (bytes: number) => {
+export const isValidFileSize = (bytes: number) => {
   const MBsize = bytes / 1024 / 1024;
-  if (MBsize > 8) {
-    throw createError({
-      statusCode: 413,
-      statusMessage: "File too large"
-    });
-  }
+  return MBsize <= 8;
 };
 
 const validTypes = ["image/jpeg", "image/x-png", "image/png", "image/gif", "image/webp"];
@@ -26,7 +21,7 @@ export const getFileFromUpload = (body: MultiPartData[] | undefined) => {
 export const uploadImage = (async (event: H3Event, file: MultiPartData | undefined, outputName?: string) : Promise<string | undefined> => {
   if (!file) return;
   const { type, filename, data } = file;
-  checkFileSize(data.byteLength);
+  if(!isValidFileSize(data.byteLength)) return undefined;
   const finalName = outputName ? `${outputName}` : filename;
   if (process.dev) {
     const { writeFileSync, existsSync, mkdirSync } = await import("fs");

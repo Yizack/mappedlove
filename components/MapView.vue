@@ -70,7 +70,7 @@ export default {
           ?
           `
           <div id="storyCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
-            <div class="carousel-inner">`
+            <div class="carousel-inner text-center">`
               + stories.map(({ id }, index) => {
                 return `
                 <div class="carousel-item ${!index ? "active" : ""}">
