@@ -24,6 +24,7 @@ const newMarker = ({ marker, edit }: { marker: MappedLoveMarker, edit: boolean }
   markers.value.push(marker);
   map.value.addMarker(marker);
   map.value.setView([marker.lat, marker.lng], 10);
+  selected.value = marker.id;
 };
 
 const movedPosition = (marker: MappedLoveMarker) => {
@@ -37,7 +38,7 @@ const movedPosition = (marker: MappedLoveMarker) => {
 
 const removeMarker = (id: number) => {
   map.value.removeMarker(id);
-}
+};
 
 const selectedMarker = computed(() => {
   return {
@@ -58,22 +59,22 @@ const newStory = ({ story, edit }: { story: MappedLoveStory, edit: boolean }) =>
     if (a.year === b.year) return b.month - a.month;
     return b.year - a.year;
   });
-}
+};
 
 const removeStory = (id: number) => {
   stories.value = stories.value.filter((story) => story.id !== id);
-}
+};
 </script>
 
 <template>
   <main class="h-100">
     <div class="row g-2">
       <div class="col-12">
-        <MapView id="map" ref="map" :markers="markers" size="60vh" :select="selected" @moved="movedPosition" />
+        <MapView id="map" ref="map" :markers="markers" :stories="stories" size="60vh" :select="selected" @moved="movedPosition" @select="selected = $event" />
       </div>
       <div class="col-12 col-xl-5">
         <div class="bg-body rounded-3 px-3 py-4 p-lg-4">
-          <BondMarkers :all-markers="markers" @delete="removeMarker" @new="newMarker" @select="selected = $event" />
+          <BondMarkers :all-markers="markers" :selected="selected" @delete="removeMarker" @new="newMarker" @select="selected = $event" />
         </div>
       </div>
       <div class="col-12 col-xl-7">

@@ -13,6 +13,10 @@ export default {
       type: Array as () => Array<MappedLoveMarker>,
       required: true
     },
+    stories: {
+      type: Array as () => Array<MappedLoveStory>,
+      required: true
+    },
     size: {
       type: String,
       default: "600px"
@@ -22,7 +26,7 @@ export default {
       default: 0
     }
   },
-  emits: ["moved"],
+  emits: ["moved", "select"],
   data () {
     return {
       map: null as InstanceType<typeof this.$nuxt.$Leaflet> | null
@@ -59,9 +63,25 @@ export default {
       this.map?.removeMarker(id);
     },
     addMarker (marker: any) {
+      const stories = this.stories.filter(s => s.marker === marker.id) || [];
       this.map?.addMarker({
         position: [marker.lat, marker.lng],
-        popup: marker.title,
+        popup: stories.length
+          ?
+          `
+          <div id="storyCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-inner">`
+              + stories.map(({ id }, index) => {
+                return `
+                <div class="carousel-item ${!index ? "active" : ""}">
+                  <img src="${getStoryImageFromUser(id)}" class="rounded-circle" style="height: 100px; width: 100px; object-fit: cover">
+                </div>`;
+              }).join("")
+            + `</div>
+            </div>
+          </div>
+          <div class="mt-2 text-center fw-bold">${marker.title}</div>`
+          : `<div class="mt-2 text-center fw-bold">${marker.title}</div>`,
         group: getGroup(marker.group),
         options: {
           id: marker.id,
@@ -78,6 +98,9 @@ export default {
           if (!update) return;
           this.$emit("moved", update);
         }, 3000);
+      }).on("popupopen", (e) => {
+        this.$nuxt.$bootstrap.startAllCarousel();
+        this.$emit("select", e.target.options.id);
       });
     },
     setView (latlng: [number, number], zoom: number) {

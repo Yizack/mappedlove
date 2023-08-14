@@ -32,9 +32,11 @@
                       <span v-if="story.month">, {{ t(months[story.month - 1]) }}</span>
                     </small>
                   </div>
-                  <button v-if="deleteButton[story.id]" class="btn btn-sm btn-danger position-absolute top-0 end-0 m-2" @click="deleteStory(story.id)">
-                    <Icon name="solar:trash-bin-trash-linear" size="1.5rem" />
-                  </button>
+                  <Transition name="fade">
+                    <button v-if="deleteButton[story.id]" class="btn btn-sm btn-danger position-absolute top-0 end-0 m-2" @click="deleteStory(story.id)">
+                      <Icon name="solar:trash-bin-trash-linear" size="1.5rem" />
+                    </button>
+                  </Transition>
                 </div>
               </template>
             </MasonryWall>

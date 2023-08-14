@@ -48,6 +48,10 @@ export default {
       type: Array as () => MappedLoveMarker[],
       default: () => []
     },
+    selected: {
+      type: Number,
+      default: 0
+    }
   },
   emits: ["new", "delete", "select"],
   data () {
@@ -57,7 +61,6 @@ export default {
       markerModal: false,
       currentMarker: null as MappedLoveMarker | null,
       drag: false,
-      selected: 0,
       dragOptions: {
         animation: 200,
         group: "description",
@@ -85,10 +88,9 @@ export default {
       }).catch(() => undefined);
     },
     selectMarker (id: number) {
-      this.selected = this.selected === id ? 0 : id;
       animate.value = false;
       animateElements();
-      this.$emit("select", this.selected);
+      this.$emit("select", this.selected === id ? 0 : id);
     },
     editMarker (marker: MappedLoveMarker) {
       this.currentMarker = marker;
@@ -101,7 +103,7 @@ export default {
       }).catch(() => ({}));
 
       if (!("id" in res)) return;
-      if (this.selected === id) this.selected = 0;
+      if (this.selected === id) this.$emit("select", 0);
       this.markers = this.markers.filter((marker) => marker.id !== id);
       this.$emit("delete", id);
     },

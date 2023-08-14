@@ -2,6 +2,7 @@ import "bootstrap/js/dist/offcanvas";
 import "bootstrap/js/dist/dropdown";
 import "bootstrap/js/dist/tooltip";
 import "bootstrap/js/dist/collapse";
+import Carousel from "bootstrap/js/dist/carousel";
 import Modal from "bootstrap/js/dist/modal";
 import Toast from "bootstrap/js/dist/toast";
 
@@ -32,6 +33,14 @@ class Bootstrap {
     const toast = new Toast(id);
     toast.show();
     return id;
+  }
+
+  startAllCarousel () {
+    const carousels = document.querySelectorAll(".carousel");
+    for (const carousel of carousels) {
+      const carouselInstance = new Carousel(carousel);
+      carouselInstance.cycle();
+    }
   }
 }
 
