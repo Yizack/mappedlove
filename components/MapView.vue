@@ -73,8 +73,8 @@ export default {
             <div class="carousel-inner">`
               + stories.map(({ id }, index) => {
                 return `
-                <div class="carousel-item ${!index ? "active" : ""}">
-                  <img src="${getStoryImageFromUser(id)}" class="rounded-circle" style="height: 100px; width: 100px; object-fit: cover">
+                <div class="carousel-item ${!index ? "active" : ""} rounded-circle overflow-hidden position-relative" style="height: 100px; width: 100px">
+                  <img src="${getStoryImageFromUser(id)}" class="w-100 position-absolute start-50 top-50 translate-middle">
                 </div>`;
               }).join("")
             + `</div>
