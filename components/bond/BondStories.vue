@@ -69,6 +69,7 @@ export default {
   methods: {
     closeModal () {
       this.storyModal = false;
+      this.currentStory = null;
     },
     openStory (story: MappedLoveStory) {
       this.currentStory = story;
