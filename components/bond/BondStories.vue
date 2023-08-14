@@ -21,7 +21,7 @@
           <div :id="`flush-collapse-${i}`" class="accordion-collapse py-2 show">
             <MasonryWall :items="storiesByYear(stories, year)" :ssr-columns="1" :gap="8" :max-columns="4" :column-width="200">
               <template #default="{ item: story }">
-                <div class="card h-100">
+                <div class="card h-100" @mouseenter="deleteButton[story.id] = true" @mouseleave="deleteButton[story.id] = false">
                   <img :src="`${getStoryImageFromUser(story.id)}?updated=${story.updatedAt}`" class="card-img-top" alt="..." role="button" @click="openStory(story)">
                   <div v-if="story.description" class="card-body border-top">
                     <p class="card-text">{{ story.description }}</p>
@@ -32,6 +32,9 @@
                       <span v-if="story.month">, {{ t(months[story.month - 1]) }}</span>
                     </small>
                   </div>
+                  <button v-if="deleteButton[story.id]" class="btn btn-sm btn-danger position-absolute top-0 end-0 m-2" @click="deleteStory(story.id)">
+                    <Icon name="solar:trash-bin-trash-linear" size="1.5rem" />
+                  </button>
                 </div>
               </template>
             </MasonryWall>
@@ -40,7 +43,7 @@
       </div>
     </div>
   </Transition>
-  <ModalStory v-if="storyModal" :marker-id="marker.id" :story="currentStory" @close="closeModal" @submit="$emit('newStory', $event)" />
+  <ModalStory v-if="storyModal" :marker-id="marker.id" :story="currentStory" @close="closeModal" @submit="$emit('new', $event)" />
 </template>
 
 <script lang="ts">
@@ -55,9 +58,10 @@ export default {
       default: () => []
     },
   },
-  emits: ["newStory"],
+  emits: ["new", "delete"],
   data () {
     return {
+      deleteButton: {} as Record<number, boolean>,
       storyModal: false,
       currentStory: null as MappedLoveStory | null,
     };
@@ -69,6 +73,14 @@ export default {
     openStory (story: MappedLoveStory) {
       this.currentStory = story;
       this.storyModal = true;
+    },
+    async deleteStory (id: number) {
+      if (!confirm(t("delete_story"))) return;
+      const res = await $fetch(`/api/stories/${id}`, {
+        method: "DELETE"
+      }).catch(() => ({}));
+      if (!("id" in res)) return;
+      this.$emit("delete", id);
     }
   }
 };

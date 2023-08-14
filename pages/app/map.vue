@@ -35,7 +35,7 @@ const movedPosition = (marker: MappedLoveMarker) => {
   });
 };
 
-function removeMarker (id: number) {
+const removeMarker = (id: number) => {
   map.value.removeMarker(id);
 }
 
@@ -46,7 +46,7 @@ const selectedMarker = computed(() => {
   };
 });
 
-function newStory ({ story, edit }: { story: MappedLoveStory, edit: boolean }) {
+const newStory = ({ story, edit }: { story: MappedLoveStory, edit: boolean }) => {
   if (!edit) stories.value.push(story);
   else {
     stories.value = stories.value.map((item) => {
@@ -59,6 +59,10 @@ function newStory ({ story, edit }: { story: MappedLoveStory, edit: boolean }) {
     return b.year - a.year;
   });
 }
+
+const removeStory = (id: number) => {
+  stories.value = stories.value.filter((story) => story.id !== id);
+}
 </script>
 
 <template>
@@ -69,12 +73,12 @@ function newStory ({ story, edit }: { story: MappedLoveStory, edit: boolean }) {
       </div>
       <div class="col-12 col-xl-5">
         <div class="bg-body rounded-3 px-3 py-4 p-lg-4">
-          <BondMarkers :all-markers="markers" @delete="removeMarker" @new-marker="newMarker" @select="selected = $event" />
+          <BondMarkers :all-markers="markers" @delete="removeMarker" @new="newMarker" @select="selected = $event" />
         </div>
       </div>
       <div class="col-12 col-xl-7">
         <div class="bg-body rounded-3 px-3 py-4 p-lg-4 h-100">
-          <BondStories :marker="selectedMarker" :stories="selectedMarker.stories" @new-story="newStory" />
+          <BondStories :marker="selectedMarker" :stories="selectedMarker.stories" @new="newStory" @delete="removeStory" />
         </div>
       </div>
     </div>

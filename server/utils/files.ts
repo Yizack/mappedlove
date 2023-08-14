@@ -30,3 +30,14 @@ export const uploadImage = (async (event: H3Event, file: MultiPartData | undefin
     return `${finalName}`;
   }
 });
+
+export const deleteImage = (async (event: H3Event, filename: string) : Promise<void> => {
+  if (process.dev) {
+    const { unlinkSync } = await import("fs");
+    unlinkSync(`./public/uploads/${filename}`);
+  }
+  else if (process.env.CDN) {
+    const { cloudflare } = event.context;
+    await cloudflare.env.CDN.delete(`uploads/${filename}`);
+  }
+});

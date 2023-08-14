@@ -49,7 +49,7 @@ export default {
       default: () => []
     },
   },
-  emits: ["newMarker", "delete", "select"],
+  emits: ["new", "delete", "select"],
   data () {
     return {
       markers: [] as MappedLoveMarker[],
@@ -110,7 +110,7 @@ export default {
       this.currentMarker = null;
     },
     submitMarker (event: any) {
-      this.$emit("newMarker", event);
+      this.$emit("new", event);
     }
   }
 };
