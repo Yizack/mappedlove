@@ -70,11 +70,14 @@ export default {
           ?
           `
           <div id="storyCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
-            <div class="carousel-inner text-center">`
+            <div class="carousel-inner">`
               + stories.map(({ id }, index) => {
                 return `
-                <div class="carousel-item ${!index ? "active" : ""}">
-                  <img src="${getStoryImageFromUser(id)}" class="rounded-circle" width="100" height="100" style="object-fit: cover">
+                <div class="carousel-item ${!index ? "active" : ""} d-flex justify-content-center">
+                  <div class="position-relative">
+                    <img src="${getStoryImageFromUser(id)}" class="rounded-circle" width="75" height="75" style="object-fit: cover;filter: blur(0.6px);">
+                    <div class="position-absolute end-0 top-0 rounded-pill bg-primary text-white px-2 py-1 border border-white small fw-bold">${stories.length}</div>
+                  </div>
                 </div>`;
               }).join("")
             + `</div>
