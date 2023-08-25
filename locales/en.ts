@@ -43,6 +43,9 @@ export default {
   copy_not_supported: "Writting to clipboard not supported in this browser",
   copy_success: "Copied to clipboard",
   our_bond: "Our bond",
+  add_anniversary: "Add Anniversary",
+  anniversary: "Anniversary",
+  together_for: "Together for",
   // Markers
   marker: "Marker",
   markers: "Markers",
@@ -93,8 +96,13 @@ export default {
   statistics: "Statistics",
   date: "Date",
   photo: "Photo",
+  in: "In",
   // Dates
+  day: "Day",
+  days: "Days",
+  months: "Months",
   month: "Month",
+  years: "Years",
   year: "Year",
   january: "January",
   february: "February",

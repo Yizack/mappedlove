@@ -1,12 +1,6 @@
 import en from "~/locales/en";
 
-type LocaleStrings = {
-  [key: string]: {
-    [key: string]: string;
-  }
-}
-
-const locales: LocaleStrings = { en };
+const locales: Record<string, Record<string, string>> = { en };
 
 class Locale {
   code: string;

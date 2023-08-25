@@ -19,7 +19,7 @@ export const getGroup = (i: number) => {
 export const formatDate = (time: number) => {
   const timeoffset = new Date().getTimezoneOffset() * 60 * 1000;
   const date = new Date(time + timeoffset);
-  return date.toLocaleString("en", { month: "short", day: "numeric", year: "numeric" });
+  return date.toLocaleString(t("lang_code"), { month: "long", day: "numeric", year: "numeric" });
 };
 
 export const animate = ref(true);
