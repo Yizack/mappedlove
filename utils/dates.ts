@@ -41,11 +41,11 @@ export const untilNextAnniversary = (date: Date): string => {
     return t("today");
   }
 
-  if (years) {
+  if (years && months === 12) {
     return `${t("in")} ${years} ${ years > 1 ? t("years").toLowerCase() : t("year").toLowerCase()}`;
   }
 
-  if (months) {
+  if (months && days > 30) {
     return `${t("in")} ${months} ${ months > 1 ? t("months").toLowerCase() : t("month").toLowerCase()}`;
   }
 
