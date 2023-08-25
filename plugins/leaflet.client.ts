@@ -86,9 +86,8 @@ class Leaflet {
     if (marker) marker.remove();
   }
 
-  setView (position: [number, number], zoom: number) {
-    if (this.map === null) return;
-    this.map.setView([...position], zoom);
+  setView (position: [number, number], zoom?: number) {
+    this.map?.setView([...position], zoom || this.map.getZoom());
   }
 
   getMarker (id: number) {

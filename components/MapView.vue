@@ -39,7 +39,7 @@ export default {
       if (marker) {
         const { lat, lng } = marker.getLatLng();
         marker.openPopup();
-        this.map?.setView([lat, lng], 7);
+        this.setView([lat, lng]);
       }
     }
   },
@@ -55,7 +55,7 @@ export default {
     }
     const length = this.markers.length;
     if (length) {
-      this.map.setView([this.markers[length - 1].lat, this.markers[length - 1].lng], 3);
+      this.setView([this.markers[length - 1].lat, this.markers[length - 1].lng], 3);
     }
   },
   methods: {
@@ -71,11 +71,11 @@ export default {
           `
           <div id="storyCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner">`
-              + stories.map(({ id }, index) => {
+              + stories.map(({ id, updatedAt }, index) => {
                 return `
                 <div class="carousel-item ${!index ? "active" : ""} d-flex justify-content-center">
                   <div class="position-relative">
-                    <img src="${getStoryImageFromUser(id)}" class="rounded-circle" width="75" height="75" style="object-fit: cover;filter: blur(0.6px);">
+                    <img src="${getStoryImageFromUser(id)}?updated=${updatedAt}" class="rounded-circle" width="75" height="75" style="object-fit: cover;">
                     <div class="position-absolute end-0 top-0 rounded-pill bg-primary text-white px-2 py-1 border border-white small fw-bold">${stories.length}</div>
                   </div>
                 </div>`;
@@ -106,7 +106,7 @@ export default {
         this.$emit("select", e.target.options.id);
       });
     },
-    setView (latlng: [number, number], zoom: number) {
+    setView (latlng: [number, number], zoom?: number) {
       this.map?.setView(latlng, zoom);
     }
   }

@@ -12,10 +12,6 @@
               <Icon name="solar:info-circle-linear" class="text-primary flex-shrink-0" />
               <p class="m-0">{{ t("story_info") }}</p>
             </div>
-            <div class="form-floating mb-2">
-              <textarea v-model.trim="form.description" type="text" class="form-control" :placeholder="t('description')" :style="{height: '100px'}" />
-              <label>{{ t("description") }}</label>
-            </div>
             <div class="d-flex gap-2">
               <div class="form-floating mb-2 flex-grow-1">
                 <select v-model.number="form.year" class="form-select" required>
@@ -31,6 +27,10 @@
                 </select>
                 <label>{{ t("month") }}</label>
               </div>
+            </div>
+            <div class="form-floating mb-2">
+              <textarea v-model.trim="form.description" type="text" class="form-control" :placeholder="t('description')" :style="{height: '100px'}" />
+              <label>{{ t("description") }}</label>
             </div>
             <div class="mb-2 py-2 px-3 image-upload border rounded">
               <p class="text-muted mb-1">{{ t("photo") }} <span class="text-danger">*</span></p>
