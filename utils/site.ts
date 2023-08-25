@@ -1,6 +1,6 @@
 export const SITE = {
   name: "MappedLove",
-  host: process.dev ? "http://localhost:3000" : "https://mappedlove.com",
+  host: process.dev ? "http://localhost:5173" : "https://mappedlove.com",
   cdn: process.dev ? "http://localhost:5173" : "https://cdn.mappedlove.com",
   pages: [
     {
