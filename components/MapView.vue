@@ -70,17 +70,17 @@ export default {
           ?
           `
           <div id="storyCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
-            <div class="carousel-inner">`
+            <div class="carousel-inner mw-100 mx-auto">`
               + stories.map(({ id, updatedAt }, index) => {
                 return `
                 <div class="carousel-item ${!index ? "active" : ""} d-flex justify-content-center">
-                  <div class="position-relative">
-                    <img src="${getStoryImageFromUser(id)}?updated=${updatedAt}" class="rounded-circle" width="75" height="75" style="object-fit: cover;">
-                    <div class="position-absolute end-0 top-0 rounded-pill bg-primary text-white px-2 py-1 border border-white small fw-bold">${stories.length}</div>
+                  <div class="border border-primary border-2 rounded-circle">
+                    <div class="map-story" style="background-image: url('${getStoryImageFromUser(id)}?updated=${updatedAt}')"></div>
                   </div>
                 </div>`;
               }).join("")
-            + `</div>
+              + `
+              <div class="position-absolute end-0 top-0 rounded-pill bg-primary text-white px-2 py-1 small fw-bold z-1">${stories.length}</div>
             </div>
           </div>
           <div class="mt-2 text-center fw-bold">${marker.title}</div>`
