@@ -34,7 +34,7 @@ export default eventHandler(async (event) : Promise<MappedLoveBond> => {
 
   return {
     ...bond,
-    partner1,
-    partner2
+    partner1: partner1 || null,
+    partner2: partner2 || null
   };
 });

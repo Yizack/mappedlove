@@ -76,6 +76,7 @@ import "@vuepic/vue-datepicker/dist/main.css";
           </Transition>
         </div>
       </div>
+      <ToastMessage v-if="toast.show" :text="toast.text" :success="toast.success" @dispose="toast.show = false" />
     </div>
   </div>
 </template>
@@ -91,7 +92,13 @@ export default {
   data () {
     return {
       deleteButton: false,
-      coupleDate: this.bond.coupleDate ? new Date(this.bond.coupleDate): undefined
+      coupleDate: this.bond.coupleDate ? new Date(this.bond.coupleDate) : null,
+      cacheDate: null as Date | null,
+      toast: {
+        success: false,
+        show: false,
+        text: ""
+      }
     };
   },
   computed: {
@@ -105,9 +112,28 @@ export default {
       return getTogetherFor(this.coupleDate);
     }
   },
+  watch : {
+    async coupleDate (val: Date | null) {
+      if (this.cacheDate?.getTime() === val?.getTime()) return;
+      this.toast.success = true;
+      const bond = await $fetch("/api/bond", {
+        method: "PATCH",
+        body: {
+          coupleDate: val ? val.getTime() : null,
+        },
+      }).catch(() => null);
+      if (!bond) this.toast.success = false;
+      this.cacheDate = val;
+      this.toast.text = this.toast.success ? t("anniversary_update") : t("error");
+      this.toast.show = true;
+    }
+  },
+  mounted () {
+    this.cacheDate = this.coupleDate;
+  },
   methods: {
     deleteDate () {
-      this.coupleDate = undefined;
+      this.coupleDate = null;
     }
   }
 };

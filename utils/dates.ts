@@ -38,7 +38,7 @@ export const untilNextAnniversary = (date: Date): string => {
   const years = nextAnniversary.getFullYear() - today.getFullYear();
 
   if (years === 1 && months === 12 && days === 366) {
-    return t("today");
+    return t("today_exclamation");
   }
 
   if (years && months === 12) {
@@ -52,7 +52,7 @@ export const untilNextAnniversary = (date: Date): string => {
   return `${t("in")} ${days} ${ days > 1 ? t("days").toLowerCase() : t("day").toLowerCase()}`;
 };
 
-export const getTogetherFor = (date?: Date) => {
+export const getTogetherFor = (date?: Date | null) => {
   if (!date) return {};
   const today = new Date();
   const years = today.getFullYear() - date.getFullYear();

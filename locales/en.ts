@@ -46,6 +46,8 @@ export default {
   add_anniversary: "Add Anniversary",
   anniversary: "Anniversary",
   together_for: "Together for",
+  anniversary_update: "Your anniversary has been updated",
+  today_exclamation: "Today!",
   // Markers
   marker: "Marker",
   markers: "Markers",
