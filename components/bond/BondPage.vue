@@ -23,18 +23,20 @@ import "@vuepic/vue-datepicker/dist/main.css";
         </div>
         <div class="mt-5">
           <Transition name="tab" mode="out-in">
-            <ClientOnly v-if="!coupleDate">
-              <VueDatePicker v-model="coupleDate" :format="'yyyy-MM-dd'" :enable-time-picker="false" :locale="t('lang_code')">
-                <template #trigger>
-                  <div class="p-2 border rounded-3 hover" role="button">
-                    <div class="d-flex align-items-center justify-content-center gap-1">
-                      <Icon name="solar:heart-lock-outline" size="1.4rem" class="text-primary" />
-                      <strong>{{ t("add_anniversary") }}</strong>
+            <div v-if="!coupleDate">
+              <ClientOnly>
+                <VueDatePicker v-model="coupleDate" :format="'yyyy-MM-dd'" :enable-time-picker="false" :locale="t('lang_code')">
+                  <template #trigger>
+                    <div class="p-2 border rounded-3 hover" role="button">
+                      <div class="d-flex align-items-center justify-content-center gap-1">
+                        <Icon name="solar:heart-lock-outline" size="1.4rem" class="text-primary" />
+                        <strong>{{ t("add_anniversary") }}</strong>
+                      </div>
                     </div>
-                  </div>
-                </template>
-              </VueDatePicker>
-            </ClientOnly>
+                  </template>
+                </VueDatePicker>
+              </ClientOnly>
+            </div>
             <div v-else>
               <div class="p-2 d-flex gap-3 border rounded-3 mb-2 position-relative" @mouseenter="deleteButton = true" @mouseleave="deleteButton = false">
                 <div class="rounded-3 bg-secondary d-flex align-items-center justify-content-center" :style="{ width: '4.375rem', height: '4.375rem' }">
