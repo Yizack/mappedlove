@@ -3,5 +3,11 @@
   "rules": {
     "length-zero-no-unit": true,
     "rule-empty-line-before": ["always-multi-line", {"except": ["first-nested"]}]
-  }
+  },
+  "ignoreFiles": [
+    "node_modules/**/*",
+    ".nuxt/**/*",
+    "dist/**/*",
+    ".output/**/*"
+  ]
 }

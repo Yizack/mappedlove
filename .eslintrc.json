@@ -41,5 +41,11 @@
     }],
     "vue/singleline-html-element-content-newline": ["off"],
     "vue/no-multiple-template-root": ["off"]
-  }
+  },
+  "ignorePatterns": [
+    "node_modules/**/*",
+    ".nuxt/**/*",
+    "dist/**/*",
+    ".output/**/*"
+  ]
 }
