@@ -14,7 +14,7 @@
     <p v-else-if="!stories.length" class="m-0">{{ t("no_stories") }}</p>
     <div v-else-if="animate">
       <div id="accordionStories" class="accordion accordion-flush">
-        <div v-for="(year, i) in yearsFromStories(stories)" :key="i" class="accordion-item">
+        <div v-for="(year, i) of yearsFromStories(stories)" :key="i" class="accordion-item">
           <h2 class="accordion-header">
             <button class="accordion-button rounded-3 px-3" type="button" data-bs-toggle="collapse" :data-bs-target="`#flush-collapse-${i}`" aria-expanded="false" aria-controls="flush-collapseOne"><h5 class="m-0">{{ year }}</h5></button>
           </h2>

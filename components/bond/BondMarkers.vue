@@ -11,7 +11,7 @@ import { VueDraggableNext as Draggable } from "vue-draggable-next";
   </div>
   <Draggable v-if="markers.length" v-model="markers" class="row g-2" item-key="id" v-bind="dragOptions" :disabled="!edit" @change="move" @start="drag = true" @end="drag = false">
     <TransitionGroup type="transition" :name="!drag ? 'flip-list' : undefined">
-      <div v-for="marker in markers" :key="marker.id" class="col-12 col-md-4 col-xl-6 d-flex gap-2">
+      <div v-for="marker of markers" :key="marker.id" class="col-12 col-md-4 col-xl-6 d-flex gap-2">
         <div class="marker border rounded-3 py-2 px-3 w-100 position-relative" :class="{'active' : selected === marker.id}" role="button" @click="selectMarker(marker.id)">
           <Icon v-if="edit" name="tabler:grip-horizontal" size="1rem" class="position-absolute start-50 bottom-0 translate-middle-x text-primary" />
           <div class="w-100 h-100 text-break">

@@ -16,14 +16,14 @@
               <div class="form-floating mb-2 flex-grow-1">
                 <select v-model.number="form.year" class="form-select" required>
                   <option value="">{{ t("year") }}</option>
-                  <option v-for="(year, i) in years" :key="i">{{ year }}</option>
+                  <option v-for="(year, i) of years" :key="i">{{ year }}</option>
                 </select>
                 <label>{{ t("year") }} <span class="text-danger">*</span></label>
               </div>
               <div class="form-floating mb-2 flex-grow-1">
                 <select v-model.number="form.month" class="form-select" required>
                   <option value="0">{{ t("month") }}</option>
-                  <option v-for="(month, i) in months" :key="i" :value="i + 1">{{ t(month) }}</option>
+                  <option v-for="(month, i) of months" :key="i" :value="i + 1">{{ t(month) }}</option>
                 </select>
                 <label>{{ t("month") }}</label>
               </div>

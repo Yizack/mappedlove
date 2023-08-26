@@ -13,7 +13,7 @@
         <SpinnerCircle small />
       </li>
       <template v-else>
-        <li v-for="(result, index) in array" :key="index" role="button" class="py-2 px-3 hover border-bottom" @click="select(result)">
+        <li v-for="(result, index) of array" :key="index" role="button" class="py-2 px-3 hover border-bottom" @click="select(result)">
           {{ result["label"] }}
         </li>
       </template>
