@@ -13,7 +13,7 @@
     "url": "https://github.com/Yizack/mappedlove/issues"
   },
   "scripts": {
-    "build": "pnpm email:templates && nuxt build",
+    "build": "npm run email:templates && nuxt build",
     "dev": "nuxt dev --port=5173",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
@@ -21,10 +21,10 @@
     "typecheck": "nuxt typecheck",
     "db:migrate": "drizzle-kit generate:sqlite",
     "email:templates": "tsc ./scripts/emailTemplates.ts --module nodenext && node ./scripts/emailTemplates.js",
-    "lint": "pnpm lint:eslint && pnpm lint:stylelint",
+    "lint": "npm run lint:eslint && npm run lint:stylelint",
     "lint:eslint": "eslint --ext .ts,.js,.vue --fix --ignore-path .gitignore .",
     "lint:stylelint": "stylelint \"**/*.css\"",
-    "dev:cf": "wrangler pages dev dist/"
+    "dev:cf": "npm run build && wrangler dev dist/_worker.js"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.1.1",
@@ -32,14 +32,14 @@
     "@types/bootstrap": "^5.2.6",
     "@types/leaflet": "^1.9.3",
     "@vuepic/vue-datepicker": "^6.0.2",
-    "@yeger/vue-masonry-wall": "^4.2.1",
+    "@yeger/vue-masonry-wall": "^5.0.2",
     "better-sqlite3": "^8.5.2",
     "drizzle-kit": "^0.19.13",
     "drizzle-orm": "^0.28.5",
     "eslint": "^8.48.0",
     "mustache": "^4.2.0",
     "nodemailer": "^6.9.4",
-    "nuxt": "^3.6.5",
+    "nuxt": "^3.7.0",
     "nuxt-icon": "^0.5.0",
     "nuxt-twemoji": "^3.3.3",
     "stylelint": "^15.10.3",

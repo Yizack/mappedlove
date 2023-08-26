@@ -78,5 +78,8 @@ export default defineNuxtConfig({
   },
   experimental: {
     inlineSSRStyles: false
+  },
+  nitro: {
+    preset: "cloudflare-pages"
   }
 });
