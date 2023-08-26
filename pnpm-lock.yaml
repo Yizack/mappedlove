@@ -32,8 +32,8 @@ devDependencies:
     specifier: ^6.0.1
     version: 6.0.1(vue@3.3.4)
   '@yeger/vue-masonry-wall':
-    specifier: ^5.0.0
-    version: 5.0.0(vue@3.3.4)
+    specifier: ^4.2.1
+    version: 4.2.1(vue@3.3.4)
   better-sqlite3:
     specifier: ^8.5.2
     version: 8.5.2
@@ -2056,22 +2056,22 @@ packages:
       vue: 3.3.4
     dev: true
 
-  /@yeger/vue-lib-adapter@2.0.0:
-    resolution: {integrity: sha512-7ha/4B/vZWn/82aqcZLXa2UlNbrDS8+5SW73oVzTwavaQ7EJSyDdB53NMsOMM2grwLC64L46LvHQwnV3s3IYAg==}
+  /@yeger/vue-lib-adapter@1.1.1:
+    resolution: {integrity: sha512-Yk/vYI0UtcWV4IW1lCI/j+dZng33Q+N1N9+Fo9JQsUWgTlRATdwhQi91PAHeys0VtLIYkFw9I2FWEB+N/O+c3Q==}
     dev: true
 
-  /@yeger/vue-masonry-wall-core@5.0.0:
-    resolution: {integrity: sha512-aLhM5yhtfhj4Jiu8qjWrs06V/UGWinryt/Di2a5HHfSUu6izYChN47HJAXoJiKrHPGPuidZ0DV/xOgoysvE+Uw==}
+  /@yeger/vue-masonry-wall-core@4.2.1:
+    resolution: {integrity: sha512-lamOIZjPaZyCKpb6fbwLgvxqNS41DnJcdHhD0QvZZC2twjXWKpdiHF69slhGWguSxsZo15Zv+8O3xZM3ikFIWw==}
     dependencies:
-      '@yeger/vue-lib-adapter': 2.0.0
+      '@yeger/vue-lib-adapter': 1.1.1
     dev: true
 
-  /@yeger/vue-masonry-wall@5.0.0(vue@3.3.4):
-    resolution: {integrity: sha512-7G4xw0YIyvcrpluPg/gIpSOI3p5q6c7C4A+3wS9A2H/BHXx/POjCpbg9YdV/2kYgkOhCSj2syssiBvmwtEUQoQ==}
+  /@yeger/vue-masonry-wall@4.2.1(vue@3.3.4):
+    resolution: {integrity: sha512-KD82rut/4uUqCwbp1fB4TxvAlqbZ+kE7axMqLduMuaq0VMaK+81H/G1JemnBlGRc9xHH638GPisDnQ/rB2g8MQ==}
     peerDependencies:
       vue: ^3.0.0
     dependencies:
-      '@yeger/vue-masonry-wall-core': 5.0.0
+      '@yeger/vue-masonry-wall-core': 4.2.1
       vue: 3.3.4
     dev: true
 
