@@ -16,3 +16,8 @@
   --bs-secondary-rgb: 255, 229, 229;
   --placeholder-color: #a8a8a8;
 }
+
+/* stylelint-disable -- This problem is ignorable. */
+.dp__theme_light {
+  --dp-primary-color: var(--bs-primary)!important;
+}
