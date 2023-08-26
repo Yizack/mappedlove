@@ -5,7 +5,7 @@ import { seedDev } from "~/server/utils/seed";
 export default defineNitroPlugin(() => {
   if (process.dev) {
     try {
-      const DB = useDb() as BetterSQLite3Database;
+      const DB = useDb() as any as BetterSQLite3Database;
       migrate(DB, { migrationsFolder: "./server/db/migrations" });
       if (process.env.SEED) seedDev(DB);
     }

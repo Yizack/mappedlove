@@ -26,5 +26,5 @@ export const useDb = () => {
       });
     }
   }
-  return _db;
+  return _db as DrizzleD1Database;
 };
