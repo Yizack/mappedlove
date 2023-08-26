@@ -23,7 +23,8 @@
     "email:templates": "tsc ./scripts/emailTemplates.ts --module nodenext && node ./scripts/emailTemplates.js",
     "lint": "pnpm lint:eslint && pnpm lint:stylelint",
     "lint:eslint": "eslint --ext .ts,.js,.vue --fix --ignore-path .gitignore .",
-    "lint:stylelint": "stylelint \"**/*.css\""
+    "lint:stylelint": "stylelint \"**/*.css\"",
+    "dev:cf": "wrangler pages dev dist/"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.1.1",
