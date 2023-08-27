@@ -20,8 +20,8 @@ devDependencies:
     specifier: ^0.1.1
     version: 0.1.1(eslint@8.48.0)
   '@nuxtjs/turnstile':
-    specifier: ^0.5.1
-    version: 0.5.1
+    specifier: ^0.6.0
+    version: 0.6.0
   '@types/bootstrap':
     specifier: ^5.2.6
     version: 5.2.6
@@ -1649,8 +1649,8 @@ packages:
       - vue-tsc
     dev: true
 
-  /@nuxtjs/turnstile@0.5.1:
-    resolution: {integrity: sha512-nxda2G7YDCCLTvGQdotXk5zfb6LXTN2LVEUwpGcgpgRtJ9vWGwflroCm6dQzCBgPytxpQ0dELbg4Fmq6jAfHJg==}
+  /@nuxtjs/turnstile@0.6.0:
+    resolution: {integrity: sha512-dc6YDZMDE8gEWBd3PwQ7gL4mVeDt5wJuybzdrahHnPPg6znb3Pvl0gaCdG3tnodipRtvBW2zIGPSovG3RLlvxg==}
     dependencies:
       '@nuxt/kit': 3.7.0
       defu: 6.1.2
@@ -1747,6 +1747,7 @@ packages:
     dependencies:
       is-glob: 4.0.3
       micromatch: 4.0.5
+      napi-wasm: 1.1.0
     dev: true
     bundledDependencies:
       - napi-wasm
@@ -5125,6 +5126,10 @@ packages:
 
   /napi-build-utils@1.0.2:
     resolution: {integrity: sha512-ONmRUqK7zj7DWX0D9ADe03wbwOBZxNAfF20PlGfCWQcD3+/MakShIHrMqx9YwPTfxDdF1zLeL+RGZiR9kGMLdg==}
+    dev: true
+
+  /napi-wasm@1.1.0:
+    resolution: {integrity: sha512-lHwIAJbmLSjF9VDRm9GoVOy9AGp3aIvkjv+Kvz9h16QR3uSVYH78PNQUnT2U4X53mhlnV2M7wrhibQ3GHicDmg==}
     dev: true
 
   /natural-compare-lite@1.4.0:
