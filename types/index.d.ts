@@ -50,8 +50,8 @@ declare global {
     stories: MappedLoveStory[];
   }
   interface MappedLoveToast {
-    id?: number;
     message: string;
     success: boolean;
+    id?: number;
   }
 }

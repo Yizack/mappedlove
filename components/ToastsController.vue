@@ -10,7 +10,7 @@ watch(toasts, () => {
       const toast = $bootstrap.showToast(refToasts.value[i]);
       if (!toast) continue;
       toast.addEventListener("hidden.bs.toast", () => {
-        $toasts.remove(toasts[i]);
+        if (i + 1 === refToasts.value?.length) $toasts.removeAll();
       });
     }
   });
@@ -19,7 +19,7 @@ watch(toasts, () => {
 
 <template>
   <div class="toast-container bottom-0 start-0 p-3">
-    <div v-for="toast of toasts" :id="`t${toast.id}`" :key="toast.id" ref="refToasts" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div v-for="toast of toasts" :key="toast.id" ref="refToasts" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
       <div class="toast-header">
         <strong class="me-auto d-flex gap-1 align-items-center">
           <Icon class="text-primary" name="solar:map-point-favourite-bold" />
