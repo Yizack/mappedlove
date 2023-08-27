@@ -65,11 +65,6 @@ export default {
           name: "map",
           path: "/app/map",
           button: false
-        },
-        {
-          name: "statistics",
-          path: "/app/stats",
-          button: false
         }
       ]
     };

@@ -22,7 +22,9 @@
             <MasonryWall :items="storiesByYear(stories, year)" :ssr-columns="1" :gap="8" :max-columns="4" :column-width="200">
               <template #default="{ item: story }">
                 <div class="card h-100" @mouseenter="deleteButton[story.id] = true" @mouseleave="deleteButton[story.id] = false">
-                  <img :src="`${getStoryImageFromUser(story.id)}?updated=${story.updatedAt}`" class="card-img-top" alt="..." role="button" @click="openStory(story)">
+                  <div role="button">
+                    <img :src="`${getStoryImageFromUser(story.id)}?updated=${story.updatedAt}`" class="card-img-top" @click="openStory(story)">
+                  </div>
                   <div v-if="story.description" class="card-body border-top">
                     <p class="card-text">{{ story.description }}</p>
                   </div>

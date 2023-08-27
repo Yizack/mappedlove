@@ -6,16 +6,12 @@
           <h1><strong>{{ t("your_bond_code") }}</strong></h1>
           <h5>{{ t("send_code") }}</h5>
         </div>
-        <div class="input-group">
-          <input :value="code" type="text" class="form-control form-control-lg fw-bold text-uppercase" :placeholder="t('code')" readonly>
-          <button class="btn btn-primary btn-lg px-4" type="button" @click="copyCode()">{{ t("copy") }}</button>
-        </div>
+        <CopyText :text="code" :placeholder="t('code')" lg uppercase bold />
       </div>
       <div class="mt-3">
-        <p>{{ t("cancel_code") }}. <span class="text-primary fw-bold" role="button" @click="cancelBond()">{{ t("cancel_bond") }}</span></p>
+        <p>{{ t("cancel_code") }}. <span class="text-primary fw-bold" role="button" @click="cancelBond">{{ t("cancel_bond") }}</span></p>
       </div>
     </div>
-    <ToastMessage v-if="copy.toast" :success="copy.success" :text="copy.message" @dispose="copy.toast = false" />
   </div>
 </template>
 
@@ -28,31 +24,7 @@ export default {
     }
   },
   emits: ["bond"],
-  data () {
-    return {
-      copy: {
-        toast: false,
-        success: false,
-        message: ""
-      }
-    };
-  },
   methods: {
-    async copyCode () {
-      if (typeof navigator === "undefined" || !navigator.clipboard || !navigator.clipboard.writeText) {
-        this.copy = {
-          toast: true,
-          success: false,
-          message: t("copy_not_supported")
-        };
-      }
-      await navigator.clipboard.writeText(this.code);
-      this.copy = {
-        toast: true,
-        success: true,
-        message: t("copy_success")
-      };
-    },
     async cancelBond () {
       await $fetch("/api/bond", { method: "DELETE" });
       this.$emit("bond", { bond: null, type: "cancel" });

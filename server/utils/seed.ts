@@ -2,8 +2,11 @@ import { BetterSQLite3Database } from "drizzle-orm/better-sqlite3";
 
 const date = Date.now();
 
-const insertUsers = (DB: BetterSQLite3Database, c: number) => {
+const deleteUsers = (DB: BetterSQLite3Database) => {
   DB.delete(tables.users).run();
+};
+
+const insertUsers = (DB: BetterSQLite3Database, c: number) => {
   for (let i = 0; i < c; i++) {
     DB.insert(tables.users).values({
       email: `test${i+1}@test.test`,
@@ -41,6 +44,7 @@ const createBond = (DB: BetterSQLite3Database, partner1: number, partner2: numbe
 };
 
 export const seedDev = async (DB: BetterSQLite3Database) => {
+  deleteUsers(DB);
   insertUsers(DB, 2);
   createBond(DB, 1, 2);
   console.info("Database seeded");

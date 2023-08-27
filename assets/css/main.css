@@ -23,6 +23,18 @@
   background-color: var(--bs-primary);
 }
 
+::selection {
+  background: var(--bs-primary);
+  color: var(--bs-secondary);
+}
+
+img {
+  pointer-events: auto;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+}
+
 a {
   font-weight: 500;
   text-decoration: dashed underline;

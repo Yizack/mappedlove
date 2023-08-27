@@ -7,7 +7,6 @@ import "@vuepic/vue-datepicker/dist/main.css";
   <div class="row">
     <div class="col-lg-8 col-xl-6 mx-auto">
       <div class="bg-body rounded-3 px-3 py-4 p-lg-4">
-        <h1 class="text-center">{{ t("our_bond") }}</h1>
         <div class="position-relative d-flex justify-content-center py-4">
           <div class="text-center position-relative">
             <img :src="`https://picsum.photos/seed/${Date.now()}/175`" width="175" height="175" class="img-fluid rounded-circle m-0 mx-md-3 mx-lg-4" alt="Responsive image">
@@ -83,6 +82,18 @@ import "@vuepic/vue-datepicker/dist/main.css";
         </div>
       </div>
       <ToastMessage v-if="toast.show" :text="toast.text" :success="toast.success" @dispose="toast.show = false" />
+      <div class="mt-2 bg-body rounded-3 px-3 py-4 p-lg-4">
+        <h3>{{ t("bond_preferences") }}</h3>
+        <div class="form-check form-switch d-flex gap-2 align-items-center">
+          <input v-model="public" class="form-check-input" type="checkbox" role="switch" @change="changePrivacy">
+          <label class="form-check-label">{{ t("make_bond_public") }}</label>
+          <Icon name="solar:question-circle-linear" class="text-primary outline-none" role="button" size="1.3rem" data-bs-toggle="popover" :data-bs-content="t('public_bond_info')" />
+        </div>
+        <div v-if="public" class="mt-2">
+          <p class="m-0">{{ t("share_bond_info") }}</p>
+          <CopyText :text="publicURL" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -100,6 +111,7 @@ export default {
       deleteButton: false,
       coupleDate: this.bond.coupleDate ? new Date(this.bond.coupleDate) : null,
       cacheDate: null as Date | null,
+      public: Boolean(this.bond.public),
       toast: {
         success: false,
         show: false,
@@ -116,6 +128,9 @@ export default {
     },
     togetherFor () {
       return getTogetherFor(this.coupleDate);
+    },
+    publicURL () {
+      return `${SITE.host}/bond/${this.bond.code}`;
     }
   },
   watch : {
@@ -136,10 +151,29 @@ export default {
   },
   mounted () {
     this.cacheDate = this.coupleDate;
+    this.$nuxt.$bootstrap.initializePopover();
   },
   methods: {
     deleteDate () {
+      if (!confirm(t("delete_anniversary"))) return;
       this.coupleDate = null;
+    },
+    async changePrivacy () {
+      if (this.public && !confirm(t("public_bond_confirm"))) {
+        this.public = false;
+        return;
+      }
+
+      this.toast.success = true;
+      const bond = await $fetch("/api/bond", {
+        method: "PATCH",
+        body: {
+          public: Number(this.public),
+        },
+      }).catch(() => null);
+      if (!bond) this.toast.success = false;
+      this.toast.text = this.toast.success ? t("bond_preferences_update") : t("error");
+      this.toast.show = true;
     }
   }
 };

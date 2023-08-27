@@ -2,6 +2,7 @@ import "bootstrap/js/dist/offcanvas";
 import "bootstrap/js/dist/dropdown";
 import "bootstrap/js/dist/tooltip";
 import "bootstrap/js/dist/collapse";
+import Popover from "bootstrap/js/dist/popover";
 import Carousel from "bootstrap/js/dist/carousel";
 import Modal from "bootstrap/js/dist/modal";
 import Toast from "bootstrap/js/dist/toast";
@@ -41,6 +42,11 @@ class Bootstrap {
       const carouselInstance = new Carousel(carousel);
       carouselInstance.cycle();
     }
+  }
+
+  initializePopover () {
+    const popoverList = document.querySelectorAll("[data-bs-toggle=\"popover\"]");
+    [...popoverList].map(e => new Popover(e, { trigger: "focus" }));
   }
 }
 

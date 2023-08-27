@@ -48,6 +48,12 @@ export default {
   together_for: "Together for",
   anniversary_update: "Your anniversary has been updated",
   today_exclamation: "Today!",
+  delete_anniversary: "Are you sure you want to delete your anniversary date?",
+  make_bond_public: "Make bond public",
+  public_bond_info: "Enabling this option will allow any person to view your map, including all markers and stories. Anyone with the link can access, but only you and your partner will be able to edit it.",
+  bond_preferences_update: "Your bond preferences have been updated",
+  public_bond_confirm: "Are you sure you want to make your bond public?",
+  share_bond_info: "Your bond is set to public. Share the link below with your friends or family!",
   // Markers
   marker: "Marker",
   markers: "Markers",
@@ -78,6 +84,8 @@ export default {
   others: "Others",
   select_group: "Select group",
   // App
+  bond_preferences: "Bond preferences",
+  preferences: "Preferences",
   cancel: "Cancel",
   group: "Group",
   title: "Title",

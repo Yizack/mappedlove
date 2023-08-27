@@ -44,3 +44,11 @@ export const getStoryImageFromUser = (storyId: number) => {
   const { user } = useUserSession();
   return `${SITE.cdn}/uploads/${user.value.bond?.code}-${storyId}`;
 };
+
+export const copyToClipboard = async (text: string) => {
+  if (typeof navigator === "undefined" || !navigator.clipboard || !navigator.clipboard.writeText) {
+    return { success: false, message: t("copy_not_supported") };
+  }
+  await navigator.clipboard.writeText(text);
+  return { success: true, message: t("copy_success") };
+};
