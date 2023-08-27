@@ -85,7 +85,7 @@ import "@vuepic/vue-datepicker/dist/main.css";
         <h3>{{ t("bond_preferences") }}</h3>
         <div class="form-check form-switch d-flex gap-2 align-items-center">
           <input v-model="public" class="form-check-input" type="checkbox" role="switch" @change="changePrivacy">
-          <label class="form-check-label">{{ t("make_bond_public") }}</label>
+          <label class="form-check-label">{{ t("public_bond") }}</label>
           <Icon name="solar:question-circle-linear" class="text-primary outline-none" role="button" size="1.3rem" data-bs-toggle="popover" :data-bs-content="t('public_bond_info')" />
         </div>
         <div v-if="public" class="mt-2">
