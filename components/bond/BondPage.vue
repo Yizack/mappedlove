@@ -81,7 +81,6 @@ import "@vuepic/vue-datepicker/dist/main.css";
           </Transition>
         </div>
       </div>
-      <ToastMessage v-if="toast.show" :text="toast.text" :success="toast.success" @dispose="toast.show = false" />
       <div class="mt-2 bg-body rounded-3 px-3 py-4 p-lg-4">
         <h3>{{ t("bond_preferences") }}</h3>
         <div class="form-check form-switch d-flex gap-2 align-items-center">
@@ -111,12 +110,7 @@ export default {
       deleteButton: false,
       coupleDate: this.bond.coupleDate ? new Date(this.bond.coupleDate) : null,
       cacheDate: null as Date | null,
-      public: Boolean(this.bond.public),
-      toast: {
-        success: false,
-        show: false,
-        text: ""
-      }
+      public: Boolean(this.bond.public)
     };
   },
   computed: {
@@ -136,17 +130,15 @@ export default {
   watch : {
     async coupleDate (val: Date | null) {
       if (this.cacheDate?.getTime() === val?.getTime()) return;
-      this.toast.success = true;
       const bond = await $fetch("/api/bond", {
         method: "PATCH",
         body: {
           coupleDate: val ? val.getTime() : null,
         },
       }).catch(() => null);
-      if (!bond) this.toast.success = false;
       this.cacheDate = val;
-      this.toast.text = this.toast.success ? t("anniversary_update") : t("error");
-      this.toast.show = true;
+      if (!bond) this.$nuxt.$toasts.add({ message: t("error"), success: false });
+      this.$nuxt.$toasts.add({ message: t("anniversary_update"), success: true });
     }
   },
   mounted () {
@@ -164,16 +156,14 @@ export default {
         return;
       }
 
-      this.toast.success = true;
       const bond = await $fetch("/api/bond", {
         method: "PATCH",
         body: {
           public: Number(this.public),
         },
       }).catch(() => null);
-      if (!bond) this.toast.success = false;
-      this.toast.text = this.toast.success ? t("bond_preferences_update") : t("error");
-      this.toast.show = true;
+      if (!bond) this.$nuxt.$toasts.add({ message: t("error"), success: false });
+      this.$nuxt.$toasts.add({ message: t("bond_preferences_update"), success: true });
     }
   }
 };

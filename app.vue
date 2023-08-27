@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 setScrollBehavior();
 
 onMounted(() => {
@@ -12,4 +12,5 @@ onMounted(() => {
   <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>
+  <ToastsController />
 </template>

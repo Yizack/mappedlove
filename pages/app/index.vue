@@ -6,6 +6,10 @@ const bondEvent = ref("");
 const setBond = async (event: any) => {
   bond.value = event.bond;
   bondEvent.value = event.type;
+  useNuxtApp().$toasts.add({
+    message: bondEvent.value === "created" ? t("bond_code_created") : t("bond_joined"),
+    success: true,
+  });
   if (bondEvent.value === "joined") navigateTo("/app", { external: true, replace: true });
 };
 
@@ -21,7 +25,5 @@ const isBonded = computed((): Boolean => {
       <BondPending v-else-if="bond && !bond.partner2" :code="bond.code" @bond="setBond" />
       <BondPage v-else-if="isBonded" :bond="bond" />
     </Transition>
-    <ToastMessage v-if="bond && bondEvent === 'created'" :name="SITE.name" :text="t('bond_code_created')" success />
-    <ToastMessage v-if="bond && bondEvent === 'joined'" :name="SITE.name" :text="t('bond_joined')" success />
   </main>
 </template>

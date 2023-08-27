@@ -58,7 +58,6 @@ definePageMeta({ layout: "access", middleware: "authenticated" });
         </Transition>
       </div>
     </section>
-    <ToastMessage v-if="submit.error" :text="t('error')" @dispose="submit.error = false" />
   </main>
 </template>
 
@@ -75,8 +74,7 @@ export default {
       },
       submit: {
         loading: false,
-        exists: false,
-        error: false
+        exists: false
       },
       needsConfirm: false
     };
@@ -104,7 +102,7 @@ export default {
       this.submit.loading = false;
 
       if (!req) {
-        this.submit.error = true;
+        this.$nuxt.$toasts.add({ message: t("error"), success: false });
         // @ts-ignore
         this.$refs.turnstile.reset();
         return;

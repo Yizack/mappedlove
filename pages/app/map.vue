@@ -9,10 +9,6 @@ const stories = ref(bondMap.value?.stories || []);
 const selected = ref(0);
 
 const map = ref();
-const moved = reactive({
-  success: false,
-  updated: false
-});
 
 const newMarker = ({ marker, edit }: { marker: MappedLoveMarker, edit: boolean }) => {
   if (edit) {
@@ -28,8 +24,7 @@ const newMarker = ({ marker, edit }: { marker: MappedLoveMarker, edit: boolean }
 };
 
 const movedPosition = (marker: MappedLoveMarker) => {
-  if (marker.id) moved.success = true;
-  moved.updated = true;
+  useNuxtApp().$toasts.add({ success: Boolean(marker.id), message: t("saved_changes") });
   markers.value = markers.value.map((item) => {
     if (item.id === marker.id) return marker;
     return item;
@@ -83,6 +78,5 @@ const removeStory = (id: number) => {
         </div>
       </div>
     </div>
-    <ToastMessage v-if="moved.updated" :success="moved.success" :text="t('saved_changes')" @dispose="moved.updated = false" />
   </main>
 </template>

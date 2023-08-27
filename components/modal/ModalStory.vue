@@ -63,7 +63,6 @@
         </div>
       </div>
     </div>
-    <ToastMessage v-if="imageNeeded" :success="false" :text="t('photo_needed')" @dispose="imageNeeded = false" />
   </div>
 </template>
 
@@ -86,7 +85,6 @@ export default {
       location: "",
       supported: "PNG, JPG, WEBP, GIF",
       imageRead: "" as string | ArrayBuffer,
-      imageNeeded: false,
       fileChosen: false,
       form: {
         id: 0 as number | undefined,
@@ -119,7 +117,10 @@ export default {
       this.fileChosen = true;
     },
     async submitStory () {
-      if (!this.fileChosen && !this.form.id) return this.imageNeeded = true;
+      if (!this.fileChosen && !this.form.id) {
+        this.$nuxt.$toasts.add({ message: t("photo_needed"), success: false });
+        return;
+      }
       this.submitted = true;
       const formData = new FormData();
       formData.append("marker", this.form.marker.toString());

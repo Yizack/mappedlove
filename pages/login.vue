@@ -44,9 +44,6 @@ definePageMeta({ layout: "access", middleware: "authenticated" });
         <NuxtLink to="/">{{ t("go_home") }}</NuxtLink>
       </div>
     </section>
-    <ToastMessage v-if="submit.error" :text="t('signin_error')" @dispose="submit.error = false" />
-    <ToastMessage v-if="$route.meta.email" :text="t('registered')" success />
-    <ToastMessage v-if="resent" :text="t('resent_verification')" success />
   </main>
 </template>
 
@@ -66,6 +63,10 @@ export default {
       }
     };
   },
+  mounted () {
+    if (!this.$route.meta.email) return;
+    this.$nuxt.$toasts.add({ message: t("registered"), success: true });
+  },
   methods: {
     async signIn () {
       this.resent = false;
@@ -78,6 +79,7 @@ export default {
 
       if (!login) {
         this.submit.error = true;
+        this.$nuxt.$toasts.add({ message: t("signin_error"), success: false });
         return;
       }
 
@@ -88,6 +90,7 @@ export default {
     },
     async resendVerification () {
       this.resent = true;
+      this.$nuxt.$toasts.add({ message: t("resent_verification"), success: true });
       const resend = await $fetch("/api/verify/resend", {
         method: "POST",
         body: { email: this.form.email }

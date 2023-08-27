@@ -49,4 +49,9 @@ declare global {
     markers: MappedLoveMarker[];
     stories: MappedLoveStory[];
   }
+  interface MappedLoveToast {
+    id?: number;
+    message: string;
+    success: boolean;
+  }
 }
