@@ -48,10 +48,12 @@ class Leaflet {
     this.map = L.map(element, {
       center: [0, 0],
       zoom: 3,
-      minZoom: 2,
+      minZoom: 3,
       zoomControl: true,
       fadeAnimation: true,
       markerZoomAnimation: true,
+      maxBounds: [[-90, -Infinity], [90, Infinity]],
+      maxBoundsViscosity: 1,
       layers: [this.tile, ...Object.values(this.groups)]
     });
     L.control.layers(undefined, this.groups).addTo(this.map);
