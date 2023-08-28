@@ -54,4 +54,5 @@ CREATE TABLE `users` (
 	`updated_at` integer NOT NULL
 );
 --> statement-breakpoint
-CREATE UNIQUE INDEX `email_index` ON `users` (`email`);
+CREATE UNIQUE INDEX `bonds_code_unique` ON `bonds` (`code`);--> statement-breakpoint
+CREATE UNIQUE INDEX `users_email_unique` ON `users` (`email`);

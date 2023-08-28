@@ -2,7 +2,7 @@ import { sqliteTable, text, integer, uniqueIndex } from "drizzle-orm/sqlite-core
 
 export const users = sqliteTable("users", {
   id: integer("id").primaryKey(),
-  email: text("email").notNull(),
+  email: text("email").notNull().unique(),
   password: text("password").notNull(),
   name: text("name").notNull(),
   country: text("country"),
@@ -13,13 +13,11 @@ export const users = sqliteTable("users", {
   confirmed: integer("confirmed").notNull().default(0),
   createdAt: integer("created_at").notNull(),
   updatedAt: integer("updated_at").notNull(),
-}, table => ({
-  emailIndex: uniqueIndex("email_index").on(table.email)
-}));
+});
 
 export const bonds = sqliteTable("bonds", {
   id: integer("id").primaryKey(),
-  code: text("code").notNull(),
+  code: text("code").notNull().unique(),
   partner1: integer("partner_1").references(() => users.id, { onDelete: "set null" }),
   partner2: integer("partner_2").references(() => users.id, { onDelete: "set null" }),
   coupleDate: integer("couple_date"),

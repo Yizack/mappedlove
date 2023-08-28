@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "sqlite",
-  "id": "e3bda1d7-87ab-4c85-86af-9518d7ce6f3f",
+  "id": "6a80a9e0-5179-489b-ba6a-0389b67182a7",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "bonds": {
@@ -73,7 +73,15 @@
           "autoincrement": false
         }
       },
-      "indexes": {},
+      "indexes": {
+        "bonds_code_unique": {
+          "name": "bonds_code_unique",
+          "columns": [
+            "code"
+          ],
+          "isUnique": true
+        }
+      },
       "foreignKeys": {
         "bonds_partner_1_users_id_fk": {
           "name": "bonds_partner_1_users_id_fk",
@@ -384,8 +392,8 @@
         }
       },
       "indexes": {
-        "email_index": {
-          "name": "email_index",
+        "users_email_unique": {
+          "name": "users_email_unique",
           "columns": [
             "email"
           ],
