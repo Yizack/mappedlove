@@ -20,8 +20,8 @@ devDependencies:
     specifier: ^0.1.1
     version: 0.1.1(eslint@8.48.0)
   '@nuxtjs/turnstile':
-    specifier: ^0.6.0
-    version: 0.6.0
+    specifier: ^0.5.1
+    version: 0.5.1
   '@types/bootstrap':
     specifier: ^5.2.6
     version: 5.2.6
@@ -1649,8 +1649,8 @@ packages:
       - vue-tsc
     dev: true
 
-  /@nuxtjs/turnstile@0.6.0:
-    resolution: {integrity: sha512-dc6YDZMDE8gEWBd3PwQ7gL4mVeDt5wJuybzdrahHnPPg6znb3Pvl0gaCdG3tnodipRtvBW2zIGPSovG3RLlvxg==}
+  /@nuxtjs/turnstile@0.5.1:
+    resolution: {integrity: sha512-nxda2G7YDCCLTvGQdotXk5zfb6LXTN2LVEUwpGcgpgRtJ9vWGwflroCm6dQzCBgPytxpQ0dELbg4Fmq6jAfHJg==}
     dependencies:
       '@nuxt/kit': 3.7.0
       defu: 6.1.2
