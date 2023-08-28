@@ -107,6 +107,8 @@ export default {
   date: "Date",
   photo: "Photo",
   in: "In",
+  my_map: "My map",
+  settings: "Settings",
   // Dates
   day: "Day",
   days: "Days",
