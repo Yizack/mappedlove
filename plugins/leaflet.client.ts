@@ -49,14 +49,15 @@ class Leaflet {
       center: [0, 0],
       zoom: 3,
       minZoom: 3,
-      zoomControl: true,
+      zoomControl: false,
       fadeAnimation: true,
       markerZoomAnimation: true,
       maxBounds: [[-90, -Infinity], [90, Infinity]],
       maxBoundsViscosity: 1,
       layers: [this.tile, ...Object.values(this.groups)]
     });
-    L.control.layers(undefined, this.groups).addTo(this.map);
+    L.control.zoom({ position: "bottomright" }).addTo(this.map);
+    L.control.layers(undefined, this.groups, { position: "bottomleft" }).addTo(this.map);
     return this.map;
   }
 

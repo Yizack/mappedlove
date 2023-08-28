@@ -22,11 +22,12 @@
               <label>{{ t("description") }}</label>
             </div>
             <div class="form-floating mb-2">
-              <select v-model="form.group" class="form-select" :placeholder="t('group')" required>
+              <Icon :name="groups[form.group] ? groups[form.group].icon : 'solar:question-square-outline'" class="position-absolute top-50 start-0 mx-2 translate-middle-y text-primary z-3" size="2rem" />
+              <select v-model="form.group" class="form-select ps-5" :placeholder="t('group')" required>
                 <option value="" disabled>{{ t("select_group") }}</option>
                 <option v-for="(group, i) of groups" :key="i" :value="i">{{ t(group.key) }}</option>
               </select>
-              <label>{{ t("group") }}</label>
+              <label class="ps-5 ms-1">{{ t("group") }}</label>
             </div>
             <div class="d-flex justify-content-between gap-2">
               <button type="button" class="btn btn-secondary btn-lg w-100" data-bs-dismiss="modal">{{ t("cancel") }}</button>

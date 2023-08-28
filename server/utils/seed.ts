@@ -30,7 +30,7 @@ const createBond = (DB: BetterSQLite3Database, partner1: number, partner2: numbe
     id: 1,
     partner1,
     partner2,
-    code: "123",
+    code: "0001-QDZV7",
     bonded: 1,
     createdAt: today,
     updatedAt: today

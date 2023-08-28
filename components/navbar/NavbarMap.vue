@@ -8,7 +8,7 @@ const logOut = () => {
 
 <template>
   <nav class="navbar navbar-expand fixed-top">
-    <div class="container">
+    <div class="container-fluid">
       <button class="navbar-toggler border-0 rounded-pill" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon" />
       </button>

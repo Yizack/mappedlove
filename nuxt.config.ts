@@ -45,7 +45,8 @@ export default defineNuxtConfig({
     "~/assets/css/buttons.css",
     "~/assets/css/navbar.css",
     "~/assets/css/form.css",
-    "~/assets/css/markers.css"
+    "~/assets/css/markers.css",
+    "~/assets/css/leaflet.css"
   ],
   modules: [
     "nuxt-icon",

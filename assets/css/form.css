@@ -15,13 +15,7 @@ input:read-only {
   color: rgb(var(--bs-body-color-rgb) .65);
 }
 
-.form-control:focus {
-  border-color: var(--bs-primary);
-  outline: 0;
-  box-shadow: 0 0 0 0.25rem rgb(221 67 67 / 25%);
-}
-
-.form-check-input:focus {
+.form-control:focus, .form-check-input:focus, .form-select:focus {
   border-color: var(--bs-primary);
   outline: 0;
   box-shadow: 0 0 0 0.25rem rgb(221 67 67 / 25%);
