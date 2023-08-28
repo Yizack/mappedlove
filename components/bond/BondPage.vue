@@ -124,7 +124,7 @@ export default {
       return getTogetherFor(this.coupleDate);
     },
     publicURL () {
-      return `${SITE.host}/bond/${this.bond.code}`;
+      return `${SITE.host}/map/${this.bond.code}`;
     }
   },
   watch : {
@@ -137,7 +137,10 @@ export default {
         },
       }).catch(() => null);
       this.cacheDate = val;
-      if (!bond) this.$nuxt.$toasts.add({ message: t("error"), success: false });
+      if (!bond) {
+        this.$nuxt.$toasts.add({ message: t("error"), success: false });
+        return;
+      }
       this.$nuxt.$toasts.add({ message: t("anniversary_update"), success: true });
     }
   },
@@ -162,7 +165,10 @@ export default {
           public: Number(this.public),
         },
       }).catch(() => null);
-      if (!bond) this.$nuxt.$toasts.add({ message: t("error"), success: false });
+      if (!bond) {
+        this.$nuxt.$toasts.add({ message: t("error"), success: false });
+        return;
+      }
       this.$nuxt.$toasts.add({ message: t("bond_preferences_update"), success: true });
     }
   }
