@@ -5,17 +5,13 @@
 <script lang="ts">
 export default {
   props: {
-    markers: {
-      type: Array as () => Array<MappedLoveMarker>,
-      default: () => []
-    },
-    stories: {
-      type: Array as () => Array<MappedLoveStory>,
-      default: () => []
+    bond: {
+      type: Object as () => MappedLovePublicMap,
+      required: true
     },
     size: {
       type: String,
-      default: "600px"
+      default: "100vh"
     },
     select: {
       type: Number,
@@ -25,10 +21,11 @@ export default {
   emits: ["moved", "select"],
   data () {
     return {
-      map: null as InstanceType<typeof this.$nuxt.$Leaflet> | null
+      map: null as InstanceType<typeof this.$nuxt.$Leaflet> | null,
+      markers: this.bond.markers,
+      stories: this.bond.stories
     };
   },
-  expose: ["removeMarker", "addMarker", "setView"],
   watch: {
     select (id) {
       const marker = this.map?.getMarker(id);
@@ -55,48 +52,16 @@ export default {
     }
   },
   methods: {
-    removeMarker (id: number) {
-      this.map?.removeMarker(id);
-    },
     addMarker (marker: any) {
       const stories = this.stories.filter(s => s.marker === marker.id) || [];
       this.map?.addMarker({
         position: [marker.lat, marker.lng],
-        popup: stories.length
-          ?
-          `
-          <div id="storyCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
-            <div class="carousel-inner mw-100 mx-auto">`
-              + stories.map(({ id, updatedAt }, index) => {
-                return `
-                <div class="carousel-item ${!index ? "active" : ""} d-flex justify-content-center">
-                  <div class="border border-primary border-2 rounded-circle">
-                    <div class="map-story" style="background-image: url('${getStoryImageFromUser(id)}?updated=${updatedAt}')"></div>
-                  </div>
-                </div>`;
-              }).join("")
-              + `
-              <div class="position-absolute end-0 top-0 rounded-pill bg-primary text-white px-2 py-1 small fw-bold z-1">${stories.length}</div>
-            </div>
-          </div>
-          <div class="mt-2 text-center fw-bold">${marker.title}</div>`
-          : `<div class="mt-2 text-center fw-bold">${marker.title}</div>`,
+        popup: storiesCarousel(marker, stories, this.bond.code),
         group: getGroup(marker.group),
         options: {
           id: marker.id,
-          draggable: true
+          draggable: false
         }
-      }).on("move", (e) => {
-        const { id } = e.target.options;
-        const { lat, lng } = e.target.getLatLng();
-        debounce(`marker_${id}`, async () => {
-          const update = await $fetch(`/api/markers/${id}`, {
-            method: "PATCH",
-            body: { lat, lng }
-          }).catch(() => undefined);
-          if (!update) return;
-          this.$emit("moved", update);
-        }, 3000);
       }).on("popupopen", (e) => {
         this.$nuxt.$bootstrap.startAllCarousel();
         this.$emit("select", e.target.options.id);

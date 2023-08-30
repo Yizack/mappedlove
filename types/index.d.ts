@@ -54,4 +54,8 @@ declare global {
     success: boolean;
     id?: number;
   }
+  interface MappedLovePublicMap extends MappedLoveBond {
+    markers: MappedLoveMarker[];
+    stories: MappedLoveStory[];
+  }
 }
