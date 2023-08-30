@@ -9,14 +9,14 @@ import "@vuepic/vue-datepicker/dist/main.css";
       <div class="bg-body rounded-3 px-3 py-4 p-lg-4">
         <div class="position-relative d-flex justify-content-center py-4">
           <div class="text-center position-relative">
-            <img :src="`https://picsum.photos/seed/${Date.now()}/175`" width="175" height="175" class="img-fluid rounded-circle m-0 mx-md-3 mx-lg-4" alt="Responsive image">
+            <img :src="`https://picsum.photos/seed/${Date.now()}/175`" width="175" height="175" class="img-fluid rounded-circle m-0 mx-md-3 mx-lg-4 border border-5" :alt="partner1.name">
             <h4 class="text-center m-0 w-100 position-absolute top-100 px-0 px-lg-2 fst-italic fw-bold">{{ partner1.name }}</h4>
           </div>
-          <div class="position-absolute top-50 start-50 translate-middle z-1 display-1 d-flex">
-            <Icon name="solar:hearts-bold-duotone" class="img-fluid bg-white rounded-circle p-2 p-lg-3 text-primary" />
+          <div class="position-absolute top-50 start-50 translate-middle z-1 bond-heart d-flex shadow rounded-circle bg-white border border-5 border-secondary">
+            <Icon name="solar:hearts-bold-duotone" class="img-fluid p-2 p-lg-3 text-primary" />
           </div>
           <div class="text-center position-relative">
-            <img :src="`https://picsum.photos/seed/${Date.now() + 1}/175`" width="175" height="175" class="img-fluid rounded-circle m-0 mx-md-3 mx-lg-4" alt="Responsive image">
+            <img :src="`https://picsum.photos/seed/${Date.now() + 1}/175`" width="175" height="175" class="img-fluid rounded-circle m-0 mx-md-3 mx-lg-4 border border-5" :alt="partner2.name">
             <h4 class="text-center m-0 w-100 position-absolute top-100 px-0 px-lg-2 fst-italic fw-bold">{{ partner2.name }}</h4>
           </div>
         </div>

@@ -28,7 +28,10 @@ const logOut = () => {
           <ul class="navbar-nav ms-auto mb-lg-0 gap-md-3">
             <li v-for="(page, i) of pages" :key="i" class="nav-item" data-bs-dismiss="offcanvas">
               <div class="d-grid">
-                <NuxtLink :class="`${page.button ? 'btn btn-primary rounded-pill px-4' : 'nav-link'}`" :to="page.path">{{ t(page.name) }}</NuxtLink>
+                <NuxtLink :class="`${page.button ? 'btn btn-primary rounded-pill px-4' : 'nav-link d-flex align-items-center gap-1'}`" :to="page.path">
+                  <Icon v-if="page.icon" :name="page.icon" class="text-primary" />
+                  {{ t(page.name) }}
+                </NuxtLink>
               </div>
             </li>
           </ul>
@@ -59,11 +62,13 @@ export default {
         {
           name: "bond",
           path: "/app",
+          icon: "solar:hearts-bold-duotone",
           button: false
         },
         {
           name: "map",
           path: "/app/map",
+          icon: "solar:streets-map-point-bold-duotone",
           button: false
         }
       ]
