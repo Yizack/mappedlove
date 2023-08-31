@@ -30,9 +30,12 @@ export default eventHandler(async (event) : Promise<MappedLoveStory> => {
 
   const filename = `${user.bond.code}-${update.id}`;
   const uploaded = await uploadImage(event, file, filename);
+
   if (!uploaded) {
-    await DB.delete(tables.stories).where(eq(tables.stories.id, update.id)).run();
     throw createError({ statusCode: 500, statusMessage: "Internal Server Error" });
   }
+
+  uploadToCloudinary(filename, event);
+
   return update;
 });

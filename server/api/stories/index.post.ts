@@ -36,5 +36,7 @@ export default eventHandler(async (event) : Promise<MappedLoveStory> => {
     throw createError({ statusCode: 500, statusMessage: "Internal Server Error" });
   }
 
+  uploadToCloudinary(filename, event);
+
   return insert;
 });
