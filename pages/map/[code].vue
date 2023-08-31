@@ -111,8 +111,7 @@ onBeforeUnmount(() => {
                   <template #trigger>
                     <div class="px-2 py-1 border rounded-3 hover position-relative" role="button">
                       <div class="d-flex align-items-center justify-content-center gap-1">
-                        <strong v-if="filter.year">{{ filter.year }}</strong>
-                        <strong v-else>{{ t("filter_by_year") }}</strong>
+                        <strong>{{ filter.year ? filter.year : t("filter_by_year") }}</strong>
                       </div>
                     </div>
                   </template>
