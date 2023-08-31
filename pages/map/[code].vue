@@ -41,20 +41,60 @@ const storiesFiltered = computed(() => {
 const clearFilter = () => {
   filter.value.year = null;
 };
+
+const isMobile = ref(false);
+const expandCanvas = ref(false);
+const canvasHeader = ref() as Ref<HTMLElement>;
+
+onMounted(() => {
+  const touch = {
+    startX: 0,
+    startY: 0,
+    endX: 0,
+    endY: 0
+  };
+  isMobile.value = window.innerWidth < 768;
+  window.addEventListener("resize", () => {
+    isMobile.value = window.innerWidth < 768;
+  });
+
+  canvasHeader.value.addEventListener("touchstart", (event) => {
+    touch.startY = event.changedTouches[0].screenY;
+  }, { passive: true });
+
+  canvasHeader.value.addEventListener("touchend", (event) => {
+    touch.endY = event.changedTouches[0].screenY;
+    if (touch.endY < touch.startY) {
+      expandCanvas.value = true;
+      return;
+    }
+
+    if (expandCanvas.value) expandCanvas.value = false;
+
+  }, { passive: true });
+});
+
+onBeforeUnmount(() => {
+  canvasHeader.value.removeEventListener("touchstart", () => {}, false);
+  canvasHeader.value.removeEventListener("touchend", () => {}, false);
+});
 </script>
 
 <template>
   <div v-if="bond">
     <MapPublic ref="map" :bond="bond" :select="selected" @select="onSelect" />
-    <div id="mapInfo" ref="mapInfo" class="offcanvas offcanvas-start shadow" data-bs-backdrop="false" tabindex="-1" aria-labelledby="mapInfoLabel">
-      <template v-if="marker">
-        <div class="offcanvas-header">
-          <h5 id="mapInfoLabel" class="offcanvas-title d-flex align-items-center">
-            <Icon name="solar:map-point-favourite-bold" class="text-primary flex-shrink-0" size="2rem" />
-            <span>{{ marker.title }}</span>
-          </h5>
-          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" />
+    <div id="mapInfo" ref="mapInfo" class="offcanvas shadow" :class="isMobile ? 'offcanvas-bottom' : 'offcanvas-start'" data-bs-backdrop="false" tabindex="-1" aria-labelledby="mapInfoLabel" :style="{height: expandCanvas || !isMobile ? '100vh' : '30vh'}" @click="expandCanvas = isMobile ? true : false">
+      <div ref="canvasHeader" class="offcanvas-header">
+        <h5 id="mapInfoLabel" class="offcanvas-title d-flex align-items-center">
+          <Icon name="solar:map-point-favourite-bold" class="text-primary flex-shrink-0" size="2rem" />
+          <span v-if="marker">{{ marker.title }}</span>
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" />
+        <div class="position-absolute top-0 w-100 text-center my-2" :style="{height: '0.3rem'}">
+          <div v-if="isMobile" class="bg-primary h-100 rounded-pill mx-auto" :style="{width: '2rem'}" />
         </div>
+      </div>
+      <template v-if="marker">
         <div class="offcanvas-body p-0">
           <div class="p-3 border-bottom">
             <p>{{ marker.description }}</p>

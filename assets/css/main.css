@@ -111,3 +111,7 @@ main {
 .bond-heart {
   font-size: calc(4rem + 1vw);
 }
+
+.offcanvas-bottom {
+  transition: height .3s ease-in-out;
+}
