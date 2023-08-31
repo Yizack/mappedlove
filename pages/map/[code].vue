@@ -39,7 +39,7 @@ const storiesFiltered = computed(() => {
 });
 
 const clearFilter = () => {
-  filter.value.year = "";
+  filter.value.year = 0;
 };
 
 const isMobile = ref(false);
@@ -106,7 +106,7 @@ onBeforeUnmount(() => {
               <button v-if="filter.year" class="btn btn-sm btn-danger rounded-3">
                 <Icon name="ic:round-close" size="1.3rem" @click="clearFilter" />
               </button>
-              <ClientOnly>
+              <ClientOnly v-if="!isMobile || expandCanvas">
                 <VueDatePicker v-model.number="filter.year" year-picker reverse-years :year-range="[currentYear - 100, currentYear]">
                   <template #trigger>
                     <div class="px-2 py-1 border rounded-3 hover position-relative" role="button">
