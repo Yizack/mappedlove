@@ -1,10 +1,10 @@
-import { eq, asc, desc } from "drizzle-orm";
+import { eq, asc, desc, and } from "drizzle-orm";
 
 export default eventHandler(async (event) : Promise<MappedLovePublicMap> => {
   const { code } = getRouterParams(event);
 
   const DB = useDb();
-  const bond = await DB.select().from(tables.bonds).where(eq(tables.bonds.code, code)).get();
+  const bond = await DB.select().from(tables.bonds).where(and(eq(tables.bonds.code, code), eq(tables.bonds.public, 1))).get();
 
   if (!bond) throw createError({ statusCode: 404, statusMessage: "Bond not found" });
 
