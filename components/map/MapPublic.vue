@@ -1,5 +1,5 @@
 <template>
-  <div ref="map" class="w-100 shadow-sm border bg-body" :style="{height: size}" />
+  <div ref="map" class="vw-100 vh-100" />
 </template>
 
 <script lang="ts">
@@ -8,10 +8,6 @@ export default {
     bond: {
       type: Object as () => MappedLovePublicMap,
       required: true
-    },
-    size: {
-      type: String,
-      default: "100vh"
     },
     select: {
       type: Number,

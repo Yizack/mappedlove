@@ -109,6 +109,8 @@ export default {
   in: "In",
   my_map: "My map",
   settings: "Settings",
+  filter_by_year: "Filter by year",
+  filter: "Filter",
   // Dates
   day: "Day",
   days: "Days",
