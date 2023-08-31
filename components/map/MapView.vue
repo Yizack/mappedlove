@@ -66,25 +66,7 @@ export default {
       const stories = this.stories.filter(s => s.marker === marker.id) || [];
       this.map?.addMarker({
         position: [marker.lat, marker.lng],
-        popup: stories.length
-          ?
-          `
-          <div id="storyCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
-            <div class="carousel-inner mw-100 mx-auto">`
-              + stories.map(({ id, updatedAt }, index) => {
-                return `
-                <div class="carousel-item ${!index ? "active" : ""} d-flex justify-content-center">
-                  <div class="border border-primary border-2 rounded-circle">
-                    <div class="map-story" style="background-image: url('${getStoryImageFromUser(id)}?updated=${updatedAt}')"></div>
-                  </div>
-                </div>`;
-              }).join("")
-              + `
-              <div class="position-absolute end-0 top-0 rounded-pill bg-primary text-white px-2 py-1 small fw-bold z-1">${stories.length}</div>
-            </div>
-          </div>
-          <div class="mt-2 text-center fw-bold">${marker.title}</div>`
-          : `<div class="mt-2 text-center fw-bold">${marker.title}</div>`,
+        popup: storiesCarousel(marker, stories),
         group: getGroup(marker.group),
         options: {
           id: marker.id,
