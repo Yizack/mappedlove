@@ -111,6 +111,7 @@ export default {
   settings: "Settings",
   filter_by_year: "Filter by year",
   filter: "Filter",
+  map_not_found: "Map not found",
   // Dates
   day: "Day",
   days: "Days",
@@ -129,5 +130,8 @@ export default {
   september: "September",
   october: "October",
   november: "November",
-  december: "December"
+  december: "December",
+  // Error
+  error_occurred: "Sorry, an error has occured.",
+  go_back: "Go back",
 };
