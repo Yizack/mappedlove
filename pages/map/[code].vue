@@ -20,7 +20,9 @@ const selected = ref(0);
 const mapInfo = ref() as Ref<HTMLElement>;
 const marker = ref() as Ref<MappedLoveMarker | undefined>;
 const stories = ref() as Ref<MappedLoveStory[]>;
-const filterYear = ref(null as number | null);
+const filter = ref({
+  year: 0
+});
 const currentYear = new Date().getFullYear();
 
 const onSelect = (id: number) => {
@@ -32,12 +34,12 @@ const onSelect = (id: number) => {
 };
 
 const storiesFiltered = computed(() => {
-  if (!filterYear.value) return stories.value;
-  return stories.value.filter((story) => story.year === filterYear.value);
+  if (!filter.value.year) return stories.value;
+  return stories.value.filter((story) => story.year === filter.value.year);
 });
 
 const clearFilter = () => {
-  filterYear.value = null;
+  filter.value.year = "";
 };
 
 const isMobile = ref(false);
@@ -101,15 +103,15 @@ onBeforeUnmount(() => {
               <span>{{ t(groups[marker.group].key) }}</span>
             </div>
             <div class="d-flex gap-1">
-              <button v-if="filterYear" class="btn btn-sm btn-danger rounded-3">
+              <button v-if="filter.year" class="btn btn-sm btn-danger rounded-3">
                 <Icon name="ic:round-close" size="1.3rem" @click="clearFilter" />
               </button>
               <ClientOnly>
-                <VueDatePicker v-model="filterYear" year-picker reverse-years :year-range="[currentYear - 100, currentYear]">
+                <VueDatePicker v-model.number="filter.year" year-picker reverse-years :year-range="[currentYear - 100, currentYear]">
                   <template #trigger>
                     <div class="px-2 py-1 border rounded-3 hover position-relative" role="button">
                       <div class="d-flex align-items-center justify-content-center gap-1">
-                        <strong v-if="filterYear">{{ filterYear }}</strong>
+                        <strong v-if="filter.year">{{ filter.year }}</strong>
                         <strong v-else>{{ t("filter_by_year") }}</strong>
                       </div>
                     </div>
