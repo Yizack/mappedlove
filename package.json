@@ -14,7 +14,7 @@
   },
   "scripts": {
     "build": "npm run email:templates && nuxt build",
-    "dev": "nuxt dev --port=5173",
+    "dev": "nuxt dev --port=5173 --host",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
