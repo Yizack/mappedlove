@@ -41,7 +41,7 @@ const logOut = () => {
                 </ul>
               </div>
               <div v-else class="d-grid">
-                <NuxtLink class="btn btn-primary rounded-pill px-4" to="/app">{{ t("try") }}</NuxtLink>
+                <NuxtLink class="btn btn-primary rounded-pill px-4" to="/login">{{ t("try") }}</NuxtLink>
               </div>
             </li>
           </ul>
