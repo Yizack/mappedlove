@@ -1,6 +1,4 @@
 import { eq } from "drizzle-orm";
-import { uploadToCloudinary } from "~/server/utils/cloudinary";
-import { SITE } from "~/utils/site";
 
 export default eventHandler(async (event) : Promise<MappedLoveStory> => {
   const { user } = await requireUserSession(event);
@@ -38,10 +36,9 @@ export default eventHandler(async (event) : Promise<MappedLoveStory> => {
     throw createError({ statusCode: 500, statusMessage: "Internal Server Error" });
   }
 
-  const uploadedUrl = process.dev ? `public/uploads/${uploaded}` : `${SITE.cdn}/uploads/${uploaded}`;
   const { cloudinary } = useRuntimeConfig(event);
 
-  uploadToCloudinary(uploadedUrl, filename, cloudinary);
+  uploadToCloudinary(filename, cloudinary);
 
   return insert;
 });
