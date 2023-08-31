@@ -84,7 +84,7 @@ export default {
           this.$emit("moved", update);
         }, 3000);
       }).on("popupopen", (e) => {
-        this.$nuxt.$bootstrap.startAllCarousel();
+        setTimeout(() => this.$nuxt.$bootstrap.startAllCarousel());
         this.$emit("select", e.target.options.id);
       });
     },

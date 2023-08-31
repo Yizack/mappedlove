@@ -60,7 +60,7 @@ export const storiesCarousel = (marker: MappedLoveMarker, stories: MappedLoveSto
       <div class="carousel-inner mw-100 mx-auto">`
         + stories.map(({ id, updatedAt }, index) => {
           return `
-          <div class="carousel-item ${!index ? "active" : ""} d-flex justify-content-center">
+          <div class="carousel-item ${!index ? "active" : "inactive"} d-flex justify-content-center">
             <div class="border border-primary border-2 rounded-circle">
               <div class="map-story" style="background-image: url('${getStoryImageFromUser(id, code)}?updated=${updatedAt}')"></div>
             </div>

@@ -50,8 +50,6 @@ class Leaflet {
       zoom: 3,
       minZoom: L.Browser.mobile ? 2 : 3,
       zoomControl: false,
-      fadeAnimation: true,
-      markerZoomAnimation: true,
       maxBounds: [[-90, -Infinity], [90, Infinity]],
       maxBoundsViscosity: 1,
       layers: [this.tile, ...Object.values(this.groups)]

@@ -98,7 +98,7 @@ onBeforeUnmount(() => {
           <span v-if="marker">{{ marker.title }}</span>
         </h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" @click="expandCanvas = false" />
-        <div class="position-absolute top-0 w-100 text-center my-2" :style="{height: '0.3rem'}">
+        <div class="position-absolute start-0 top-0 w-100 text-center my-2" :style="{height: '0.3rem'}">
           <div v-if="isMobile" class="bg-primary h-100 rounded-pill mx-auto" :style="{width: '2rem'}" />
         </div>
       </div>
