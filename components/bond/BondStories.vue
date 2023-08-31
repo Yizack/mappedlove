@@ -23,7 +23,7 @@
               <template #default="{ item: story }">
                 <div class="card h-100" @mouseenter="deleteButton[story.id] = true" @mouseleave="deleteButton[story.id] = false">
                   <div role="button">
-                    <img :src="`${getStoryImageFromUser(story.id)}?updated=${story.updatedAt}`" class="card-img-top" @click="openStory(story)">
+                    <img :src="`${getStoryImage(story.id)}?updated=${story.updatedAt}`" class="card-img-top" @click="openStory(story)">
                   </div>
                   <div v-if="story.description" class="card-body border-top">
                     <p class="card-text">{{ story.description }}</p>

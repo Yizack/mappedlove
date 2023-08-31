@@ -27,13 +27,13 @@ export const uploadImage = (async (event: H3Event, file: MultiPartData | undefin
     const { writeFileSync, existsSync, mkdirSync } = await import("fs");
     if (!existsSync("./public/uploads")) mkdirSync("./public/uploads");
     writeFileSync(`./public/uploads/${finalName}`, data);
-    return `${finalName}`;
+    return finalName;
   }
   else if (process.env.CDN) {
     const { cloudflare } = event.context;
     const headers = new Headers({ "Content-Type": type || "" });
     await cloudflare.env.CDN.put(`uploads/${finalName}`, data, { httpMetadata: headers });
-    return `${finalName}`;
+    return finalName;
   }
 });
 

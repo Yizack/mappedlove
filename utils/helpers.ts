@@ -40,7 +40,13 @@ export const storiesByYear = (stories: MappedLoveStory[], year: number) => {
   return stories.filter((story) => story.year === year);
 };
 
-export const getStoryImageFromUser = (storyId: number, code?: string) => {
+export const getStoryImageTransform = (storyId: number, code?: string) => {
+  const { user } = useUserSession();
+  const bondCode = code || user.value.bond?.code;
+  return `https://res.cloudinary.com/dyxajqsia/image/upload/c_thumb,w_75,h_75/${bondCode}-${storyId}`;
+};
+
+export const getStoryImage = (storyId: number, code?: string) => {
   const { user } = useUserSession();
   const bondCode = code || user.value.bond?.code;
   return `${SITE.cdn}/uploads/${bondCode}-${storyId}`;
@@ -62,7 +68,7 @@ export const storiesCarousel = (marker: MappedLoveMarker, stories: MappedLoveSto
           return `
           <div class="carousel-item ${!index ? "active" : "inactive"} d-flex justify-content-center">
             <div class="border border-primary border-2 rounded-circle">
-              <div class="map-story" style="background-image: url('${getStoryImageFromUser(id, code)}?updated=${updatedAt}')"></div>
+              <div class="map-story" style="background-image: url('${getStoryImageTransform(id, code)}?updated=${updatedAt}')"></div>
             </div>
           </div>`;
         }).join("")

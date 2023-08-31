@@ -48,7 +48,7 @@
                   <span>({{ t("mb_max") }})</span>
                   <small>{{ supported }}</small>
                 </div>
-                <img v-else-if="form.id && !imageRead" class="img-fluid" :src="`${getStoryImageFromUser(form.id)}?updated=${form.updatedAt}`">
+                <img v-else-if="form.id && !imageRead" class="img-fluid" :src="`${getStoryImage(form.id)}?updated=${form.updatedAt}`">
                 <img v-else class="img-fluid" :src="imageRead.toString()">
               </label>
             </div>

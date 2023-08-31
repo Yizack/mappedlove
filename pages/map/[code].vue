@@ -140,7 +140,7 @@ onBeforeUnmount(() => {
                     <template #default="{ item: story }">
                       <div class="card h-100">
                         <div role="button">
-                          <img :src="`${getStoryImageFromUser(story.id, bond.code)}?updated=${story.updatedAt}`" class="card-img-top">
+                          <img :src="`${getStoryImage(story.id, bond.code)}?updated=${story.updatedAt}`" class="card-img-top">
                         </div>
                         <div class="card-footer">
                           <small class="text-body-secondary">

@@ -1,4 +1,6 @@
 import { eq } from "drizzle-orm";
+import { uploadToCloudinary } from "~/server/utils/cloudinary";
+import { SITE } from "~/utils/site";
 
 export default eventHandler(async (event) : Promise<MappedLoveStory> => {
   const { user } = await requireUserSession(event);
@@ -30,9 +32,16 @@ export default eventHandler(async (event) : Promise<MappedLoveStory> => {
 
   const filename = `${user.bond.code}-${insert.id}`;
   const uploaded = await uploadImage(event, file, filename);
+
   if (!uploaded) {
     await DB.delete(tables.stories).where(eq(tables.stories.id, insert.id)).run();
     throw createError({ statusCode: 500, statusMessage: "Internal Server Error" });
   }
+
+  const uploadedUrl = process.dev ? `public/uploads/${uploaded}` : `${SITE.cdn}/uploads/${uploaded}`;
+  const { cloudinary } = useRuntimeConfig(event);
+
+  uploadToCloudinary(uploadedUrl, filename, cloudinary);
+
   return insert;
 });

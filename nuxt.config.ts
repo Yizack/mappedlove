@@ -76,6 +76,11 @@ export default defineNuxtConfig({
       port: "",
       login: "",
       password: "",
+    },
+    cloudinary: {
+      name: "",
+      key: "",
+      secret: ""
     }
   },
   experimental: {
