@@ -48,7 +48,7 @@ class Leaflet {
     this.map = L.map(element, {
       center: [0, 0],
       zoom: 3,
-      minZoom: 3,
+      minZoom: isMobileScreen() ? 2 : 3,
       zoomControl: false,
       fadeAnimation: true,
       markerZoomAnimation: true,

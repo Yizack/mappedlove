@@ -72,3 +72,7 @@ export const storiesCarousel = (marker: MappedLoveMarker, stories: MappedLoveSto
     </div>
   <div class="mt-2 text-center fw-bold">${marker.title}</div>`.replace(/\n/g, "");
 };
+
+export const isMobileScreen = () => {
+  return window.innerWidth < 768;
+};

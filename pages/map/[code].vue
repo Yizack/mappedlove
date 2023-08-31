@@ -43,13 +43,14 @@ const clearFilter = () => {
 };
 
 const isMobile = ref(false);
+
 const expandCanvas = ref(false);
 const canvasHeader = ref() as Ref<HTMLElement>;
 
 onMounted(() => {
-  isMobile.value = window.innerWidth < 768;
+  isMobile.value = isMobileScreen();
   window.addEventListener("resize", () => {
-    isMobile.value = window.innerWidth < 768;
+    isMobile.value = isMobileScreen();
   });
 
   mapInfo.value.addEventListener("touchstart", () => {
