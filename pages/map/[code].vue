@@ -52,6 +52,10 @@ onMounted(() => {
     isMobile.value = window.innerWidth < 768;
   });
 
+  mapInfo.value.addEventListener("touchstart", () => {
+    if (!expandCanvas.value) expandCanvas.value = true;
+  }, { passive: true });
+
   const touch = {
     startY: 0,
     endY: 0
@@ -68,7 +72,10 @@ onMounted(() => {
       return;
     }
 
-    if (expandCanvas.value) expandCanvas.value = false;
+    if (touch.endY > touch.startY) {
+      if (expandCanvas.value) expandCanvas.value = false;
+      return;
+    }
 
   }, { passive: true });
 });
@@ -76,13 +83,14 @@ onMounted(() => {
 onBeforeUnmount(() => {
   canvasHeader.value.removeEventListener("touchstart", () => {}, false);
   canvasHeader.value.removeEventListener("touchend", () => {}, false);
+  mapInfo.value.removeEventListener("touchstart", () => {}, false);
 });
 </script>
 
 <template>
   <div v-if="bond">
     <MapPublic ref="map" :bond="bond" :select="selected" @select="onSelect" />
-    <div id="mapInfo" ref="mapInfo" class="offcanvas shadow" :class="isMobile ? 'offcanvas-bottom' : 'offcanvas-start'" data-bs-backdrop="false" tabindex="-1" aria-labelledby="mapInfoLabel" :style="{height: expandCanvas || !isMobile ? '100vh' : '30vh'}" @click="expandCanvas = isMobile ? true : false">
+    <div id="mapInfo" ref="mapInfo" class="offcanvas shadow" :class="isMobile ? 'offcanvas-bottom' : 'offcanvas-start'" data-bs-backdrop="false" tabindex="-1" aria-labelledby="mapInfoLabel" :style="{height: expandCanvas || !isMobile ? '100vh' : '30vh'}">
       <div ref="canvasHeader" class="offcanvas-header">
         <h5 id="mapInfoLabel" class="offcanvas-title d-flex align-items-center">
           <Icon name="solar:map-point-favourite-bold" class="text-primary flex-shrink-0" size="2rem" />
