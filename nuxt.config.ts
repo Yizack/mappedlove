@@ -37,6 +37,7 @@ export default defineNuxtConfig({
   css: [
     "bootstrap/dist/css/bootstrap.min.css",
     "leaflet/dist/leaflet.css",
+    "@vuepic/vue-datepicker/dist/main.css",
     "~/assets/css/main.css",
     "~/assets/css/theme-light.css",
     "~/assets/css/theme-dark.css",

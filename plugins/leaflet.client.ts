@@ -48,7 +48,7 @@ class Leaflet {
     this.map = L.map(element, {
       center: [0, 0],
       zoom: 3,
-      minZoom: isMobileScreen() ? 2 : 3,
+      minZoom: L.Browser.mobile ? 2 : 3,
       zoomControl: false,
       fadeAnimation: true,
       markerZoomAnimation: true,
@@ -90,7 +90,7 @@ class Leaflet {
   }
 
   setView (position: [number, number], zoom?: number) {
-    this.map?.setView([...position], zoom || this.map.getZoom());
+    this.map?.setView([...position], zoom);
   }
 
   getMarker (id: number) {
