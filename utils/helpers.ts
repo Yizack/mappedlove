@@ -42,7 +42,7 @@ export const storiesByYear = (stories: MappedLoveStory[], year: number) => {
 
 export const getStoryImageFromUser = (storyId: number, code?: string) => {
   const { user } = useUserSession();
-  const bondCode = user.value?.bond?.code || code;
+  const bondCode = code || user.value.bond?.code;
   return `${SITE.cdn}/uploads/${bondCode}-${storyId}`;
 };
 
