@@ -20,7 +20,7 @@ const selected = ref(0);
 const mapInfo = ref() as Ref<HTMLElement>;
 const marker = ref() as Ref<MappedLoveMarker | undefined>;
 const stories = ref() as Ref<MappedLoveStory[]>;
-const filter = ref({
+const filter = reactive({
   year: null as number | null
 });
 const currentYear = new Date().getFullYear();
@@ -34,12 +34,12 @@ const onSelect = (id: number) => {
 };
 
 const storiesFiltered = computed(() => {
-  if (!filter.value.year) return stories.value;
-  return stories.value.filter((story) => story.year === filter.value.year);
+  if (!filter.year) return stories.value;
+  return stories.value.filter((story) => story.year === filter.year);
 });
 
 const clearFilter = () => {
-  filter.value.year = null;
+  filter.year = null;
 };
 
 const isMobile = ref(false);
@@ -47,16 +47,15 @@ const expandCanvas = ref(false);
 const canvasHeader = ref() as Ref<HTMLElement>;
 
 onMounted(() => {
-  const touch = {
-    startX: 0,
-    startY: 0,
-    endX: 0,
-    endY: 0
-  };
   isMobile.value = window.innerWidth < 768;
   window.addEventListener("resize", () => {
     isMobile.value = window.innerWidth < 768;
   });
+
+  const touch = {
+    startY: 0,
+    endY: 0
+  };
 
   canvasHeader.value.addEventListener("touchstart", (event) => {
     touch.startY = event.changedTouches[0].screenY;
