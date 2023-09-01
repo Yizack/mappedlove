@@ -1,7 +1,7 @@
 import { sha256 } from "ohash";
 
-export const hash = (password: string, salt: string) => {
-  return sha256(password + salt);
+export const hash = (string: string, salt?: string) => {
+  return sha256(salt ? string + salt : string);
 };
 
 export const bondCode = (id: number) => {

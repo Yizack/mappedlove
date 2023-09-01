@@ -6,7 +6,7 @@ export default eventHandler(async (event) : Promise<MappedLoveStory | undefined>
   const { id } = getRouterParams(event);
   try {
     await deleteImage(event, `${user.bond.code}-${id}`);
-    deleteCloudinary(`${user.bond.code}-${id}`, event);
+    await deleteCloudinary(`${user.bond.code}-${id}`, event);
   }
   catch (e) {
     console.warn(e);

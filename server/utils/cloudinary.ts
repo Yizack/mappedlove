@@ -1,28 +1,55 @@
-import { v2 as cloudinary } from "cloudinary";
 import type { H3Event } from "h3";
 
-export const uploadToCloudinary = (filename: string, event: H3Event) => {
-  const { cloudinary: config } = useRuntimeConfig(event);
-  const uploadedUrl = process.dev ? `public/uploads/${filename}` : `${SITE.cdn}/uploads/${filename}`;
-  cloudinary.config({
-    cloud_name: config.name,
-    api_key: config.key,
-    api_secret: config.secret
-  });
-  const response = cloudinary.uploader.upload(uploadedUrl, { public_id: filename, invalidate: true }, (error, result) => {
-    console.warn(result);
-  });
-  return response;
+const readLocalFileToBase64URL = async (filename: string) => {
+  const { readFileSync } = await import("fs");
+  const file = readFileSync(filename);
+  const type = filename.split(".").pop();
+  return `data:image/${type};base64,${file.toString("base64")}`;
 };
 
-export const deleteCloudinary = (filename: string, event: H3Event) => {
-  const { cloudinary: config } = useRuntimeConfig(event);
-  cloudinary.config({
-    cloud_name: config.name,
-    api_key: config.key,
-    api_secret: config.secret
-  });
-  cloudinary.uploader.destroy(filename, { invalidate: true } , (error, result) => {
-    console.warn(result);
-  });
+export const uploadToCloudinary = async (filename: string, event: H3Event) => {
+  const file = process.dev ? await readLocalFileToBase64URL(`public/uploads/${filename}`) : `${SITE.cdn}/uploads/${filename}`;
+  const { cloudinary } = useRuntimeConfig(event);
+
+  const data = {
+    invalidate: String(true),
+    public_id: filename,
+    timestamp: Date.now().toString(),
+  };
+
+  const toSign = new URLSearchParams(data).toString();
+  const signature = hash(toSign + cloudinary.secret);
+
+  await $fetch(`https://api.cloudinary.com/v1_1/${cloudinary.name}/image/upload`, {
+    method: "POST",
+    body: {
+      api_key: cloudinary.key,
+      file,
+      ...data,
+      signature
+    }
+  }).catch((error) => error);
+};
+
+
+export const deleteCloudinary = async (filename: string, event: H3Event) => {
+  const { cloudinary } = useRuntimeConfig(event);
+
+  const data = {
+    invalidate: String(true),
+    public_id: filename,
+    timestamp: Date.now().toString(),
+  };
+
+  const toSign = new URLSearchParams(data).toString();
+  const signature = hash(toSign + cloudinary.secret);
+
+  await $fetch(`https://api.cloudinary.com/v1_1/${cloudinary.name}/image/destroy`, {
+    method: "POST",
+    body: {
+      api_key: cloudinary.key,
+      ...data,
+      signature
+    }
+  }).catch((error) => error);
 };
