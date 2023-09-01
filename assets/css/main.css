@@ -1,10 +1,12 @@
 body {
   height: 100%;
+  background: var(--bs-secondary);
 }
 
 :root {
   scrollbar-color: var(--bs-primary) var(--bs-secondary);
-  scrollbar-width: thin;
+  scrollbar-width: auto;
+  scroll-behavior: unset;
 }
 
 *::-webkit-scrollbar {

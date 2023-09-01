@@ -76,4 +76,4 @@ export const getTogetherFor = (date?: Date | null) => {
   }
 
   return { years, months, days };
-}
+};
