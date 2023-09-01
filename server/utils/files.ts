@@ -2,7 +2,7 @@ import type { MultiPartData, H3Event } from "h3";
 
 export const isValidFileSize = (bytes: number) => {
   const MBsize = bytes / 1024 / 1024;
-  return MBsize <= 8;
+  return MBsize <= 15;
 };
 
 const validTypes = ["image/jpeg", "image/x-png", "image/png", "image/gif", "image/webp"];

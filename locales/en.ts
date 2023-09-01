@@ -71,7 +71,7 @@ export default {
   select_marker_story: "Select a marker to see or edit your stories.",
   no_stories: "No stories yet, add new stories to this marker.",
   story_info: "Fill your story with details, and a photo make it more memorable.",
-  mb_max: "Max 8MB",
+  mb_max: "Max 15MB",
   photo_needed: "A photo is required to add a story",
   // Groups
   groups: "Groups",
