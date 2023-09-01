@@ -7,8 +7,8 @@ const readLocalFileToBase64URL = async (filename: string) => {
   return `data:image/${type};base64,${file.toString("base64")}`;
 };
 
-export const uploadToCloudinary = async (filename: string, event: H3Event) => {
-  const file = process.dev ? await readLocalFileToBase64URL(`public/uploads/${filename}`) : `${SITE.cdn}/uploads/${filename}`;
+export const uploadToCloudinary = async (filename: string, event: H3Event, time?: number) => {
+  const file = process.dev ? await readLocalFileToBase64URL(`public/uploads/${filename}`) : `${SITE.cdn}/uploads/${filename}?updated=${time}`;
   const { cloudinary } = useRuntimeConfig(event);
 
   const data = {
