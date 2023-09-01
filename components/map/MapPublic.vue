@@ -1,5 +1,5 @@
 <template>
-  <div ref="map" class="vw-100 vh-100" />
+  <div ref="map" class="w-100 h-100 position-absolute" />
 </template>
 
 <script lang="ts">
