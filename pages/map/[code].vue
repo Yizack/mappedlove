@@ -130,30 +130,34 @@ onBeforeUnmount(() => {
           </div>
           <div class="p-3">
             <h5 class="mb-3">{{ t("stories") }} <span class="badge bg-primary rounded-pill">{{ storiesFiltered.length }}</span></h5>
-            <div id="accordionStories" class="accordion accordion-flush rounded">
-              <div v-for="(year, i) of yearsFromStories(storiesFiltered)" :key="i" class="accordion-item">
-                <h5 class="accordion-header small">
-                  <button class="accordion-button rounded-3 px-3 py-2" type="button" data-bs-toggle="collapse" :data-bs-target="`#flush-collapse-${i}`" aria-expanded="false" aria-controls="flush-collapseOne"><h5 class="m-0">{{ year }}</h5></button>
-                </h5>
-                <div :id="`flush-collapse-${i}`" class="accordion-collapse py-2 show">
-                  <MasonryWall :items="storiesByYear(storiesFiltered, year)" :ssr-columns="1" :gap="4" :max-columns="1" :column-width="200">
-                    <template #default="{ item: story }">
-                      <div class="card h-100">
-                        <div role="button">
-                          <img :src="`${getStoryImage(story.id, bond.code)}?updated=${story.updatedAt}`" class="card-img-top">
-                        </div>
-                        <div class="card-footer">
-                          <small class="text-body-secondary">
-                            <span>{{ story.year }}</span>
-                            <span v-if="story.month">, {{ t(months[story.month - 1]) }}</span>
-                          </small>
-                        </div>
-                      </div>
-                    </template>
-                  </MasonryWall>
-                </div>
+            <Transition name="tab">
+              <div v-if="storiesFiltered.length" id="accordionStories" class="accordion accordion-flush rounded">
+                <TransitionGroup name="tab-left">
+                  <div v-for="(year, i) of yearsFromStories(storiesFiltered)" :key="i" class="accordion-item">
+                    <h5 class="accordion-header small">
+                      <button class="accordion-button rounded-3 px-3 py-2" type="button" data-bs-toggle="collapse" :data-bs-target="`#flush-collapse-${i}`" aria-expanded="false" aria-controls="flush-collapseOne"><h5 class="m-0">{{ year }}</h5></button>
+                    </h5>
+                    <div :id="`flush-collapse-${i}`" class="accordion-collapse py-2 show">
+                      <MasonryWall :items="storiesByYear(storiesFiltered, year)" :ssr-columns="1" :gap="4" :max-columns="1" :column-width="200">
+                        <template #default="{ item: story }">
+                          <div class="card h-100">
+                            <div role="button">
+                              <img :src="`${getStoryImage(story.id, bond.code)}?updated=${story.updatedAt}`" class="card-img-top">
+                            </div>
+                            <div class="card-footer">
+                              <small class="text-body-secondary">
+                                <span>{{ story.year }}</span>
+                                <span v-if="story.month">, {{ t(months[story.month - 1]) }}</span>
+                              </small>
+                            </div>
+                          </div>
+                        </template>
+                      </MasonryWall>
+                    </div>
+                  </div>
+                </TransitionGroup>
               </div>
-            </div>
+            </Transition>
           </div>
         </div>
       </div>

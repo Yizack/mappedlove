@@ -1,5 +1,5 @@
 <template>
-  <div id="layout" class="position-absolute w-100 h-100 d-flex flex-column">
+  <div id="layout" class="w-100 h-100">
     <NavbarApp />
     <div class="container-fluid py-3 flex-fill d-flex align-items-center">
       <slot />
