@@ -34,6 +34,7 @@ export const untilNextAnniversary = (date: Date): string => {
   }
   const diff = nextAnniversary.getTime() - today.getTime();
   const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+
   const months = nextAnniversary.getMonth() - today.getMonth() + (12 * (nextAnniversary.getFullYear() - today.getFullYear()));
   const years = nextAnniversary.getFullYear() - today.getFullYear();
 
@@ -52,11 +53,27 @@ export const untilNextAnniversary = (date: Date): string => {
   return `${t("in")} ${days} ${ days > 1 ? t("days").toLowerCase() : t("day").toLowerCase()}`;
 };
 
+
 export const getTogetherFor = (date?: Date | null) => {
   if (!date) return {};
+
   const today = new Date();
-  const years = today.getFullYear() - date.getFullYear();
-  const months = today.getMonth() - date.getMonth();
-  const days = today.getDate() - date.getDate();
+
+  let years = today.getFullYear() - date.getFullYear();
+  let months = today.getMonth() - date.getMonth();
+  let days = today.getDate() - date.getDate();
+
+
+  if (days < 0) {
+    const lastDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+    days += lastDayOfMonth;
+    months--;
+  }
+
+  if (months < 0) {
+    months += 12;
+    years--;
+  }
+
   return { years, months, days };
-};
+}
