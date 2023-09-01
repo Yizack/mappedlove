@@ -6,10 +6,19 @@ const bondEvent = ref("");
 const setBond = async (event: any) => {
   bond.value = event.bond;
   bondEvent.value = event.type;
-  useNuxtApp().$toasts.add({
-    message: bondEvent.value === "created" ? t("bond_code_created") : t("bond_joined"),
-    success: true,
-  });
+  let message = "";
+  switch (bondEvent.value) {
+  case "created":
+    message = t("bond_code_created");
+    break;
+  case "joined":
+    message = t("bond_joined");
+    break;
+  case "cancel":
+    message = t("bond_cancelled");
+    break;
+  }
+  useNuxtApp().$toasts.add({ message, success: true });
   if (bondEvent.value === "joined") navigateTo("/app", { external: true, replace: true });
 };
 

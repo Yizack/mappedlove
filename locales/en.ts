@@ -40,6 +40,7 @@ export default {
   cancel_code: "I will use my partner's code",
   bond_code_created: "Your bond code has been created",
   bond_joined: "You have successfully bonded with your partner",
+  bond_cancelled: "Your bond code has been cancelled",
   copy: "Copy",
   copy_not_supported: "Writting to clipboard not supported in this browser",
   copy_success: "Copied to clipboard",
