@@ -22,7 +22,8 @@ export default {
   email_conflict: "Email is already registered",
   has_account: "Already have an account?",
   registered: "You have signed up successfully, sign in to continue",
-  error: "Something went wrong",
+  error: "Something went wrong.",
+  check_file_size: "Check file size or try again later.",
   // Bond
   not_bonded: "You are currently not bonded",
   bond_start: "To start mapping your love stories, you need to bond with your partner!",
@@ -63,6 +64,8 @@ export default {
   location: "Location",
   location_info: "Please select the nearest location, you will be able to precisely position the marker later by dragging it to the exact location on the map",
   no_markers: "No markers yet, add new markers to start mapping your love stories.",
+  marker_added: "The marker has been added",
+  marker_updated: "The marker has been updated",
   // Stories
   story: "Story",
   stories: "Stories",
@@ -73,6 +76,8 @@ export default {
   story_info: "Fill your story with details, and a photo make it more memorable.",
   mb_max: "Max 15MB",
   photo_needed: "A photo is required to add a story",
+  story_added: "The story has been added",
+  story_updated: "The story has been updated",
   // Groups
   groups: "Groups",
   places: "Places",

@@ -97,8 +97,12 @@ export default {
           body: this.form
         });
         this.submitted = false;
-        if (!("id" in marker)) return;
+        if (!("id" in marker)) {
+          this.$nuxt.$toasts.add({ message: t("error"), success: false });
+          return;
+        }
         this.$emit("submit", { marker, edit: Boolean(this.marker) });
+        this.$nuxt.$toasts.add({ message: this.marker ? t("marker_updated") : t("marker_added"), success: true });
         this.$nuxt.$bootstrap.hideModal(this.$refs.modal as HTMLElement);
       }
     }

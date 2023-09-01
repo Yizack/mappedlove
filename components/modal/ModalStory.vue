@@ -108,13 +108,17 @@ export default {
     addImage (event: Event) {
       const target = event.target as HTMLInputElement;
       this.file = target.files ? target.files[0] : null;
-      if (!this.file) return;
+      if (!this.file) {
+        this.imageRead = "";
+        this.fileChosen = false;
+        return;
+      }
       const reader = new FileReader();
       reader.readAsDataURL(this.file);
       reader.onload = () => {
         this.imageRead = reader.result || "";
+        this.fileChosen = true;
       };
-      this.fileChosen = true;
     },
     async submitStory () {
       if (!this.fileChosen && !this.form.id) {
@@ -133,8 +137,12 @@ export default {
         body: formData
       }).catch(() => ({}));
       this.submitted = false;
-      if (!("id" in story)) return;
+      if (!("id" in story)) {
+        this.$nuxt.$toasts.add({ message: `${t("error")} ${t("check_file_size")}`, success: false });
+        return;
+      }
       this.$emit("submit", { story, edit: Boolean(this.story) });
+      this.$nuxt.$toasts.add({ message: this.story ? t("story_updated") : t("story_added"), success: true });
       this.$nuxt.$bootstrap.hideModal(this.$refs.modal as HTMLElement);
     }
   }
