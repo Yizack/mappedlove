@@ -15,6 +15,7 @@ export const uploadToCloudinary = async (filename: string, event: H3Event, time?
     invalidate: String(true),
     public_id: filename,
     timestamp: Date.now().toString(),
+    upload_preset: "mappedlove-stories",
   };
 
   const toSign = new URLSearchParams(data).toString();
