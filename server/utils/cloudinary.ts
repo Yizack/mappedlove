@@ -7,15 +7,16 @@ const readLocalFileToBase64URL = async (filename: string) => {
   return `data:image/${type};base64,${file.toString("base64")}`;
 };
 
-export const uploadToCloudinary = async (filename: string, event: H3Event, time?: number) => {
+export const uploadToCloudinary = async (filename: string, preset: string, event: H3Event) => {
+  const time = Date.now();
   const file = process.dev ? await readLocalFileToBase64URL(`public/uploads/${filename}`) : `${SITE.cdn}/uploads/${filename}?updated=${time}`;
   const { cloudinary } = useRuntimeConfig(event);
 
   const data = {
     invalidate: String(true),
     public_id: filename,
-    timestamp: Date.now().toString(),
-    upload_preset: "mappedlove-stories",
+    timestamp: time.toString(),
+    upload_preset: preset,
   };
 
   const toSign = new URLSearchParams(data).toString();
