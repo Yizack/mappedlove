@@ -1,26 +1,25 @@
-import type { H3Event } from "h3";
-
-const readLocalFileToBase64URL = async (filename: string) => {
-  const { readFileSync } = await import("fs");
-  const file = readFileSync(filename);
-  const type = filename.split(".").pop();
-  return `data:image/${type};base64,${file.toString("base64")}`;
-};
+import type { MultiPartData, H3Event } from "h3";
 
 const jsonToQueryString = (json: Record<string, any>) => {
   return Object.keys(json).map((key) => encodeURIComponent(key) + "=" + json[key]).join("&");
 };
 
-export const uploadToCloudinary = async (filename: string, preset: string, event: H3Event) => {
+const bufferToBaase64URI = (buffer: Buffer, type: string | undefined) => {
+  return `data:${type || "jpeg"};base64,${buffer.toString("base64")}`;
+};
+
+export const uploadToCloudinary = async (file: MultiPartData, filename: string, folder: string, event: H3Event) => {
+  const { type, data: fileData } = file;
   const time = Date.now();
-  const file = process.dev ? await readLocalFileToBase64URL(`public/uploads/${filename}`) : `${SITE.cdn}/uploads/${filename}?updated=${time}`;
+
   const { cloudinary } = useRuntimeConfig(event);
 
   const data = {
+    folder,
     invalidate: true,
     public_id: filename,
     timestamp: time,
-    upload_preset: preset
+    transformation: "c_thumb,h_75,w_75"
   };
 
   const toSign = jsonToQueryString(data);
@@ -30,7 +29,7 @@ export const uploadToCloudinary = async (filename: string, preset: string, event
     method: "POST",
     body: {
       api_key: cloudinary.key,
-      file,
+      file: bufferToBaase64URI(fileData, type),
       ...data,
       signature
     }

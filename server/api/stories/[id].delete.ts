@@ -5,7 +5,7 @@ export default eventHandler(async (event) : Promise<MappedLoveStory | undefined>
   if (!user.bond) throw createError({ statusCode: 400, statusMessage: "Bad Request" });
   const { id } = getRouterParams(event);
   try {
-    await deleteImage(event, `${user.bond.code}-${id}`);
+    await deleteImage(`stories/${user.bond.code}-${id}`, event);
     await deleteCloudinary(`stories/${user.bond.code}-${id}`, event);
   }
   catch (e) {

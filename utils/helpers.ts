@@ -49,7 +49,7 @@ export const getStoryImageTransform = (storyId: number, code?: string) => {
 export const getStoryImage = (storyId: number, code?: string) => {
   const { user } = useUserSession();
   const bondCode = code || user.value.bond?.code;
-  return `${SITE.cdn}/uploads/${bondCode}-${storyId}`;
+  return `${SITE.cdn}/uploads/stories/${bondCode}-${storyId}`;
 };
 
 export const copyToClipboard = async (text: string) => {
