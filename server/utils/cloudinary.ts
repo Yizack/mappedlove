@@ -7,19 +7,23 @@ const readLocalFileToBase64URL = async (filename: string) => {
   return `data:image/${type};base64,${file.toString("base64")}`;
 };
 
+const jsonToQueryString = (json: Record<string, any>) => {
+  return Object.keys(json).map((key) => encodeURIComponent(key) + "=" + json[key]).join("&");
+};
+
 export const uploadToCloudinary = async (filename: string, preset: string, event: H3Event) => {
   const time = Date.now();
   const file = process.dev ? await readLocalFileToBase64URL(`public/uploads/${filename}`) : `${SITE.cdn}/uploads/${filename}?updated=${time}`;
   const { cloudinary } = useRuntimeConfig(event);
 
   const data = {
-    invalidate: String(true),
+    invalidate: true,
     public_id: filename,
-    timestamp: time.toString(),
-    upload_preset: preset,
+    timestamp: time,
+    upload_preset: preset
   };
 
-  const toSign = new URLSearchParams(data).toString();
+  const toSign = jsonToQueryString(data);
   const signature = hash(toSign + cloudinary.secret);
 
   await $fetch(`https://api.cloudinary.com/v1_1/${cloudinary.name}/image/upload`, {
@@ -35,15 +39,16 @@ export const uploadToCloudinary = async (filename: string, preset: string, event
 
 
 export const deleteCloudinary = async (filename: string, event: H3Event) => {
+  const time = Date.now();
   const { cloudinary } = useRuntimeConfig(event);
 
   const data = {
-    invalidate: String(true),
+    invalidate: true,
     public_id: filename,
-    timestamp: Date.now().toString(),
+    timestamp: time
   };
 
-  const toSign = new URLSearchParams(data).toString();
+  const toSign = jsonToQueryString(data).toString();
   const signature = hash(toSign + cloudinary.secret);
 
   await $fetch(`https://api.cloudinary.com/v1_1/${cloudinary.name}/image/destroy`, {
