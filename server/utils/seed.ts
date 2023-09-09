@@ -13,7 +13,6 @@ const insertUsers = (DB: BetterSQLite3Database, c: number) => {
       password: process.env.SEED as string,
       name: `Test${i+1}`,
       country: null,
-      address: null,
       birthDate: null,
       showAvatar: 0,
       confirmCode: "123456",

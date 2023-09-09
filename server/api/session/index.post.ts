@@ -8,8 +8,12 @@ export default defineEventHandler(async (event) => {
     id: tables.users.id,
     name: tables.users.name,
     email: tables.users.email,
+    country: tables.users.country,
+    birthDate: tables.users.birthDate,
     showAvatar: tables.users.showAvatar,
-    confirmed: tables.users.confirmed
+    confirmed: tables.users.confirmed,
+    createdAt: tables.users.createdAt,
+    updatedAt: tables.users.updatedAt
   }).from(tables.users).where(and(eq(tables.users.email, form.email), eq(tables.users.password, hash(form.password, secure.salt)))).get();
 
   if (!user) {

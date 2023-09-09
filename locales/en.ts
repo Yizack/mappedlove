@@ -118,6 +118,11 @@ export default {
   filter_by_year: "Filter by year",
   filter: "Filter",
   map_not_found: "Map not found",
+  account: "Account",
+  country: "Country",
+  birth_date: "Birth date",
+  show_avatar: "Show avatar",
+  dark_mode: "Dark mode",
   // Dates
   day: "Day",
   days: "Days",

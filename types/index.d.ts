@@ -8,8 +8,12 @@ declare global {
     id: number;
     name: string;
     email: string;
+    country: string | null;
+    birthDate: number | null;
     showAvatar: number;
     confirmed: number;
+    createdAt: number;
+    updatedAt: number;
     bond?: MappedLoveBond;
   }
   interface MappedLovePartner {

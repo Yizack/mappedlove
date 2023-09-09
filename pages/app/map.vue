@@ -62,7 +62,7 @@ const removeStory = (id: number) => {
 </script>
 
 <template>
-  <main class="h-100">
+  <main>
     <div class="row g-2">
       <div class="col-12">
         <MapView id="map" ref="map" :markers="markers" :stories="stories" size="60vh" :select="selected" @moved="movedPosition" @select="selected = $event" />

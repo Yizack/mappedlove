@@ -41,8 +41,8 @@ devDependencies:
     specifier: ^0.19.13
     version: 0.19.13
   drizzle-orm:
-    specifier: ^0.28.5
-    version: 0.28.5(better-sqlite3@8.6.0)
+    specifier: ^0.28.6
+    version: 0.28.6(better-sqlite3@8.6.0)
   eslint:
     specifier: ^8.48.0
     version: 8.48.0
@@ -50,8 +50,8 @@ devDependencies:
     specifier: ^4.2.0
     version: 4.2.0
   nodemailer:
-    specifier: ^6.9.4
-    version: 6.9.4
+    specifier: ^6.9.5
+    version: 6.9.5
   nuxt:
     specifier: ^3.7.1
     version: 3.7.1(eslint@8.48.0)(stylelint@15.10.3)(typescript@5.2.2)
@@ -3224,8 +3224,8 @@ packages:
       - supports-color
     dev: true
 
-  /drizzle-orm@0.28.5(better-sqlite3@8.6.0):
-    resolution: {integrity: sha512-6r6Iw4c38NAmW6TiKH3TUpGUQ1YdlEoLJOQptn8XPx3Z63+vFNKfAiANqrIiYZiMjKR9+NYAL219nFrmo1duXA==}
+  /drizzle-orm@0.28.6(better-sqlite3@8.6.0):
+    resolution: {integrity: sha512-yBe+F9htrlYER7uXgDJUQsTHFoIrI5yMm5A0bg0GiZ/kY5jNXTWoEy4KQtg35cE27sw1VbgzoMWHAgCckUUUww==}
     peerDependencies:
       '@aws-sdk/client-rds-data': '>=3'
       '@cloudflare/workers-types': '>=3'
@@ -5072,8 +5072,8 @@ packages:
     resolution: {integrity: sha512-uYr7J37ae/ORWdZeQ1xxMJe3NtdmqMC/JZK+geofDrkLUApKRHPd18/TxtBOJ4A0/+uUIliorNrfYV6s1b02eQ==}
     dev: true
 
-  /nodemailer@6.9.4:
-    resolution: {integrity: sha512-CXjQvrQZV4+6X5wP6ZIgdehJamI63MFoYFGGPtHudWym9qaEHDNdPzaj5bfMCvxG1vhAileSWW90q7nL0N36mA==}
+  /nodemailer@6.9.5:
+    resolution: {integrity: sha512-/dmdWo62XjumuLc5+AYQZeiRj+PRR8y8qKtFCOyuOl1k/hckZd8durUUHs/ucKx6/8kN+wFxqKJlQ/LK/qR5FA==}
     engines: {node: '>=6.0.0'}
     dev: true
 
