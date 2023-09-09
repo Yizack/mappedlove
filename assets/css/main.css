@@ -126,3 +126,16 @@ main {
 .offcanvas-bottom {
   transition: height .3s ease-in-out;
 }
+
+.select-list {
+  max-height: 300px;
+  overflow: auto;
+}
+
+.select-list li {
+  list-style: none;
+}
+
+.select-list li:hover {
+  background-color: var(--bs-tertiary-bg);
+}

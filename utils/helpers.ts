@@ -82,3 +82,7 @@ export const storiesCarousel = (marker: MappedLoveMarker, stories: MappedLoveSto
 export const isMobileScreen = () => {
   return window.innerWidth < 768;
 };
+
+export const normalize = (text: string) => {
+  return text.normalize("NFD").replace(/[\u0300-\u036F]/g, "");
+};
