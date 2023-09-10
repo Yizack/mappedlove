@@ -6,7 +6,7 @@ export default eventHandler(async (event) : Promise<MappedLoveBond> => {
   if (!user.bond) {
     throw createError({
       statusCode: 404,
-      statusMessage: "Bond not found"
+      message: "bond_not_found"
     });
   }
 

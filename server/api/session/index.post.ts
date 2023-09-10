@@ -16,12 +16,7 @@ export default defineEventHandler(async (event) => {
     updatedAt: tables.users.updatedAt
   }).from(tables.users).where(and(eq(tables.users.email, form.email), eq(tables.users.password, hash(form.password, secure.salt)))).get();
 
-  if (!user) {
-    throw createError({
-      statusCode: 401,
-      statusMessage: "Unauthorized"
-    });
-  }
+  if (!user) throw createError({ statusCode: 401, message: "signin_error" });
 
   const bond = await DB.select().from(tables.bonds).where(
     or(

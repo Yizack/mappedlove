@@ -95,12 +95,9 @@ export default {
         const marker = await $fetch(this.marker ? `/api/markers/${this.marker.id}` : "/api/markers", {
           method: this.marker ? "PATCH" : "POST",
           body: this.form
-        });
+        }).catch(() => null);
         this.submitted = false;
-        if (!("id" in marker)) {
-          this.$nuxt.$toasts.add({ message: t("error"), success: false });
-          return;
-        }
+        if (!marker) return;
         this.$emit("submit", { marker, edit: Boolean(this.marker) });
         this.$nuxt.$toasts.add({ message: this.marker ? t("marker_updated") : t("marker_added"), success: true });
         this.$nuxt.$bootstrap.hideModal(this.$refs.modal as HTMLElement);

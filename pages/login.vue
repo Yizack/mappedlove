@@ -73,19 +73,23 @@ export default {
       this.submit.loading = true;
       const login = await $fetch("/api/session", {
         method: "POST",
-        body: this.form
+        body: this.form,
       }).catch(() => null);
-      this.submit.loading = false;
 
       if (!login) {
         this.submit.error = true;
-        this.$nuxt.$toasts.add({ message: t("signin_error"), success: false });
+        this.submit.loading = false;
         return;
       }
 
       const { confirmed } = login;
       this.needsConfirm = Boolean(!confirmed);
-      if (!confirmed) return;
+
+      if (this.needsConfirm) {
+        this.submit.loading = false;
+        return;
+      }
+
       navigateTo("/app", { external: true, replace: true });
     },
     async resendVerification () {

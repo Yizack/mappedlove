@@ -143,6 +143,7 @@ export default {
   november: "November",
   december: "December",
   // Error
-  error_occurred: "Sorry, an error has occured.",
+  error_occurred: "Sorry, an error has occured",
   go_back: "Go back",
+  unauthorized: "User session expired, please sign in again"
 };

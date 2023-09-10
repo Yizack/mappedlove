@@ -26,7 +26,8 @@ export default {
   emits: ["bond"],
   methods: {
     async cancelBond () {
-      await $fetch("/api/bond", { method: "DELETE" });
+      const bond = await $fetch("/api/bond", { method: "DELETE" });
+      if (!bond) return;
       this.$emit("bond", { bond: null, type: "cancel" });
     }
   }

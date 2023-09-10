@@ -26,7 +26,7 @@ export const requireUserSession = async (event: H3Event) => {
   if (!userSession.user) {
     throw createError({
       statusCode: 401,
-      message: "Unauthorized"
+      message: "unauthorized"
     });
   }
   return userSession as { user: MappedLoveUser };

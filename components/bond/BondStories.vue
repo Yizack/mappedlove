@@ -83,8 +83,8 @@ export default {
       if (!confirm(t("delete_story"))) return;
       const res = await $fetch(`/api/stories/${id}`, {
         method: "DELETE"
-      }).catch(() => ({}));
-      if (!("id" in res)) return;
+      }).catch(() => null);
+      if (!res) return;
       this.$emit("delete", id);
     }
   }

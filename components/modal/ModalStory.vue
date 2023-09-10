@@ -135,12 +135,9 @@ export default {
       const story = await $fetch(this.story ? `/api/stories/${this.story.id}` : "/api/stories", {
         method: this.story ? "PATCH" : "POST",
         body: formData
-      }).catch(() => ({}));
+      }).catch(() => null);
       this.submitted = false;
-      if (!("id" in story)) {
-        this.$nuxt.$toasts.add({ message: `${t("error")} ${t("check_file_size")}`, success: false });
-        return;
-      }
+      if (!story) return;
       this.$emit("submit", { story, edit: Boolean(this.story) });
       this.$nuxt.$toasts.add({ message: this.story ? t("story_updated") : t("story_added"), success: true });
       this.$nuxt.$bootstrap.hideModal(this.$refs.modal as HTMLElement);

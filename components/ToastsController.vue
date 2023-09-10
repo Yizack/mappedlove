@@ -29,8 +29,8 @@ watch(toasts, () => {
       </div>
       <div class="toast-body">
         <div class="d-flex align-items-center gap-2">
-          <Icon v-if="toast.success" name="solar:check-circle-bold" size="1.5em" class="text-success" />
-          <Icon v-else name="solar:close-circle-bold" size="1.5em" class="text-danger" />
+          <Icon v-if="toast.success" name="solar:check-circle-bold" size="1.5em" class="text-success flex-shrink-0" />
+          <Icon v-else name="solar:close-circle-bold" size="1.5em" class="text-danger flex-shrink-0" />
           <span>{{ toast.message }}</span>
         </div>
       </div>

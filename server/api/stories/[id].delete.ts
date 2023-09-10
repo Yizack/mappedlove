@@ -2,7 +2,7 @@ import { eq, and } from "drizzle-orm";
 
 export default eventHandler(async (event) : Promise<MappedLoveStory | undefined> => {
   const { user } = await requireUserSession(event);
-  if (!user.bond) throw createError({ statusCode: 400, statusMessage: "Bad Request" });
+  if (!user.bond) throw createError({ statusCode: 400, message: "bad_request" });
   const { id } = getRouterParams(event);
   try {
     await deleteImage(`stories/${user.bond.code}-${id}`, event);

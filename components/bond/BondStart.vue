@@ -6,7 +6,7 @@
           <strong>{{ t("not_bonded") }}</strong>
         </h1>
         <p>{{ t("bond_start") }}</p>
-        <button class="btn btn-primary btn-lg rounded-pill px-4" :disabled="submitted" @click="createBond()">
+        <button class="btn btn-primary btn-lg rounded-pill px-4" :disabled="submitted" @click="createBond">
           <Transition name="tab" mode="out-in">
             <SpinnerCircle v-if="submitted" class="text-white" />
             <span v-else>{{ t("create_bond") }}</span>
@@ -48,11 +48,9 @@ export default {
     async createBond () {
       this.submitted = true;
       const bond = await $fetch("/api/bond", { method: "POST" }).catch(() => null);
-      this.$emit("bond", {
-        bond,
-        type: "created"
-      });
       this.submitted = false;
+      if (!bond) return;
+      this.$emit("bond", { bond, type: "created" });
     },
     async joinBond () {
       const bond = await $fetch("/api/bond", {
@@ -61,10 +59,8 @@ export default {
           code: this.code
         }
       }).catch(() => null);
-      this.$emit("bond", {
-        bond,
-        type: "joined"
-      });
+      if (!bond) return;
+      this.$emit("bond", { bond, type: "joined" });
     }
   }
 };

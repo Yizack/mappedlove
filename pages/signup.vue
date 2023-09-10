@@ -102,7 +102,6 @@ export default {
       this.submit.loading = false;
 
       if (!req) {
-        this.$nuxt.$toasts.add({ message: t("error"), success: false });
         // @ts-ignore
         this.$refs.turnstile.reset();
         return;

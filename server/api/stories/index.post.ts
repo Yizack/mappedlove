@@ -6,7 +6,7 @@ export default eventHandler(async (event) : Promise<MappedLoveStory> => {
   const body = await readMultipartFormData(event);
   const file = getFileFromUpload(body);
 
-  if (!body || !file || !user.bond) throw createError({ statusCode: 400, statusMessage: "Bad Request" });
+  if (!body || !file || !user.bond) throw createError({ statusCode: 400, message: "bad_request" });
 
   const DB = useDb();
   const today = Date.now();
@@ -33,7 +33,7 @@ export default eventHandler(async (event) : Promise<MappedLoveStory> => {
 
   if (!uploaded) {
     await DB.delete(tables.stories).where(eq(tables.stories.id, insert.id)).run();
-    throw createError({ statusCode: 500, statusMessage: "Internal Server Error" });
+    throw createError({ statusCode: 400, message: "check_file_size" });
   }
 
   await uploadToCloudinary(file, filename, "stories", event);
