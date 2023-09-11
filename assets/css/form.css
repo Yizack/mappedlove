@@ -4,11 +4,19 @@
 }
 
 input:read-only {
-  background-color: var(--bs-tertiary-bg)!important;
+  background-color: var(--bs-tertiary-bg);
+}
+
+input:read-only:hover {
+  background-color: var(--bs-tertiary-bg);
 }
 
 .form-floating>.form-control:read-only~label::after {
   background-color: var(--bs-tertiary-bg)!important;
+}
+
+.form-floating>.form-control:read-only.bg-body~label::after {
+  background-color: var(--bs-body-color-rgb)!important;
 }
 
 .form-control::placeholder {
@@ -35,4 +43,10 @@ input:read-only {
   border-color: var(--bs-primary);
 
   --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23f86363'/%3e%3c/svg%3e");
+}
+
+.focus {
+  border-color: var(--bs-primary);
+  box-shadow: 0 0 0 0.25rem #dd434340;
+  outline: 0;
 }

@@ -120,11 +120,6 @@ export default {
   filter_by_year: "Filter by year",
   filter: "Filter",
   map_not_found: "Map not found",
-  account: "Account",
-  country: "Country",
-  birth_date: "Birth date",
-  show_avatar: "Show avatar",
-  dark_mode: "Dark mode",
   // Dates
   day: "Day",
   days: "Days",
@@ -154,4 +149,14 @@ export default {
   user_exists: "User already exists",
   user_not_found: "User not found",
   unsupported_file: "Unsupported file type",
+  // Settings
+  account: "Account",
+  current_password: "Current password",
+  new_password: "New password",
+  confirm_password: "Confirm password",
+  show_avatar: "Show avatar",
+  dark_mode: "Dark mode",
+  change_password: "Change password",
+  country: "Country",
+  birth_date: "Birth date"
 };

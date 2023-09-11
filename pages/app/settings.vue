@@ -11,11 +11,11 @@ definePageMeta({ layout: "app", middleware: "session" });
         <div class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
           <h3 class="mb-4">{{ t("account") }}</h3>
           <div class="form-floating mb-2">
-            <input class="form-control" :value="user.name">
+            <input type="text" class="form-control" :value="user.name" :placeholder="t('name')">
             <label>{{ t("name") }}</label>
           </div>
           <div class="form-floating mb-2">
-            <input class="form-control" :value="user.email" readonly>
+            <input type="text" class="form-control" :value="user.email" :placeholder="t('email')" readonly>
             <label>{{ t("email") }}</label>
           </div>
           <div class="position-relative mb-2">
@@ -41,17 +41,17 @@ definePageMeta({ layout: "app", middleware: "session" });
             </div>
           </div>
           <ClientOnly>
-            <VueDatePicker v-model="user.birthDate" :format="'yyyy-MM-dd'" :enable-time-picker="false" :locale="t('lang_code')">
+            <VueDatePicker v-model="user.birthDate" :format="'yyyy-MM-dd'" :enable-time-picker="false" :locale="t('lang_code')" @open="datePickerFocus = true" @blur="datePickerFocus = false">
               <template #trigger>
                 <div class="form-floating mb-2">
-                  <input class="form-control" :value="user.birthDate ? formatDate(user.birthDate) : ''">
+                  <input ref="datepicker" class="form-control bg-body" :class="{ 'focus': datePickerFocus }" :value="user.birthDate ? formatDate(user.birthDate) : ''" readonly>
                   <label>{{ t("birth_date") }}</label>
                 </div>
               </template>
             </VueDatePicker>
           </ClientOnly>
         </div>
-        <div class="bg-body rounded-3 px-3 py-4 p-lg-4">
+        <div class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
           <h3 class="mb-4">{{ t("preferences") }}</h3>
           <div class="form-check form-switch d-flex gap-2 align-items-center">
             <input class="form-check-input" type="checkbox" role="switch">
@@ -60,6 +60,21 @@ definePageMeta({ layout: "app", middleware: "session" });
           <div class="form-check form-switch d-flex gap-2 align-items-center">
             <input class="form-check-input" type="checkbox" role="switch">
             <label class="form-check-label">{{ t("dark_mode") }}</label>
+          </div>
+        </div>
+        <div class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
+          <h3 class="mb-4">{{ t("change_password") }}</h3>
+          <div class="form-floating mb-2">
+            <input type="password" class="form-control" :placeholder="t('current_password')" autocomplete="current-password">
+            <label>{{ t("current_password") }}</label>
+          </div>
+          <div class="form-floating mb-2">
+            <input type="password" class="form-control" :placeholder="t('new_password')" autocomplete="new-password">
+            <label>{{ t("new_password") }}</label>
+          </div>
+          <div class="form-floating">
+            <input type="password" class="form-control" :placeholder="t('confirm_password')" autocomplete="new-password">
+            <label>{{ t("confirm_password") }}</label>
           </div>
         </div>
       </div>
@@ -77,6 +92,7 @@ export default {
         search: "",
         focus: false,
       },
+      datePickerFocus: false
     };
   },
   computed: {
