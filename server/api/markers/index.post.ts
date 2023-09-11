@@ -2,7 +2,7 @@ import { eq, desc } from "drizzle-orm";
 
 export default eventHandler(async (event) : Promise<MappedLoveMarker> => {
   const { user } = await requireUserSession(event);
-  if (!user.bond) throw createError({ statusCode: 400, statusMessage: "Bad Request" });
+  if (!user.bond) throw createError({ statusCode: 404, message: "bond_not_found" });
   const body = await readBody(event);
   const DB = useDb();
 

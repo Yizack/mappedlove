@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
   if (!form.turnstile) {
     throw createError({
       statusCode: 422,
-      statusMessage: "Token not provided."
+      message: "token_missing"
     });
   }
 
@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
   if (!verify.success) {
     throw createError({
       statusCode: 400,
-      statusMessage: "Turnstile verification failed."
+      message: "turnstile_failed"
     });
   }
 
@@ -37,7 +37,7 @@ export default defineEventHandler(async (event) => {
   if (!user) {
     throw createError({
       statusCode: 400,
-      statusMessage: "User already exists."
+      message: "user_exists"
     });
   }
 

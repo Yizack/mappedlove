@@ -14,7 +14,7 @@ export const getFileFromUpload = (body: MultiPartData[] | undefined) => {
   const file = body?.find((item) => item.name === "file");
   if (!body || !body.length || !file) return;
   const { type } = file;
-  if (!isValidFileType(type || "")) throw createError({ statusCode: 415, statusMessage: "Unsupported Media Type" });
+  if (!isValidFileType(type || "")) throw createError({ statusCode: 415, message: "unsupported_file" });
   return file;
 };
 

@@ -56,6 +56,8 @@ export default {
   bond_preferences_update: "Your bond preferences have been updated",
   public_bond_confirm: "Are you sure you want to make your bond public?",
   share_bond_info: "Your bond is set to public. Share the link below with your friends or family!",
+  bond_not_found: "Bond not found",
+  bond_exists: "A bond already exists",
   // Markers
   marker: "Marker",
   markers: "Markers",
@@ -145,5 +147,11 @@ export default {
   // Error
   error_occurred: "Sorry, an error has occured",
   go_back: "Go back",
-  unauthorized: "User session expired, please sign in again"
+  unauthorized: "User session expired, please sign in again",
+  bad_request: "Bad request",
+  token_missing: "Token not provided",
+  turnstile_failed: "Turnstile verification failed",
+  user_exists: "User already exists",
+  user_not_found: "User not found",
+  unsupported_file: "Unsupported file type",
 };

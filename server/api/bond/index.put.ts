@@ -11,12 +11,7 @@ export default eventHandler(async (event) : Promise<MappedLoveBond> => {
     )
   ).get();
 
-  if (bondExists) {
-    throw createError({
-      statusCode: 409,
-      statusMessage: "Conflict"
-    });
-  }
+  if (bondExists) throw createError({ statusCode: 409, message: "bond_exists" });
 
   const body = await readBody(event);
   const partner = partnerIdFromCode(body.code);

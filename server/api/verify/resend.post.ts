@@ -11,12 +11,8 @@ export default defineEventHandler(async (event) : Promise<{ email: string }> => 
     confirmCode: tables.users.confirmCode
   }).from(tables.users).where(eq(tables.users.email, email)).get();
 
-  if (!user) {
-    throw createError({
-      statusCode: 404,
-      message: "User not found"
-    });
-  }
+  if (!user) throw createError({ statusCode: 404, message: "user_not_found" });
+
   const { name, confirmCode: token } = user;
   const url = process.dev ? "http://localhost:5173" : "https://mappedlove.com";
 

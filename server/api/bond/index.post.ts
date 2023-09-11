@@ -10,12 +10,7 @@ export default eventHandler(async (event) : Promise<MappedLoveBond> => {
     )
   ).get();
 
-  if (bondExists) {
-    throw createError({
-      statusCode: 409,
-      statusMessage: "Conflict"
-    });
-  }
+  if (bondExists) throw createError({ statusCode: 409, message: "bond_exists" });
 
   const today = Date.now();
   const bond = await DB.insert(tables.bonds).values({

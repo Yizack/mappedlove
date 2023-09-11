@@ -9,12 +9,7 @@ export default defineEventHandler(async (event) => {
     confirmed: tables.users.confirmed
   }).from(tables.users).where(eq(tables.users.email, email)).get();
 
-  if (!user) {
-    throw createError({
-      statusCode: 400,
-      statusMessage: "User not found."
-    });
-  }
+  if (!user) throw createError({ statusCode: 404, message: "user_not_found" });
 
   if (user.confirmed) return user;
 

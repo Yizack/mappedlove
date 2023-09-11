@@ -10,7 +10,7 @@ const { data: bond } = await useFetch(`/api/bond/public/${params.code}`);
 if (!bond.value) {
   throw createError({
     statusCode: 404,
-    statusMessage: t("map_not_found"),
+    message: t("map_not_found"),
     fatal: true
   });
 }

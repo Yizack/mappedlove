@@ -10,12 +10,7 @@ export default eventHandler(async (event) : Promise<MappedLoveBond> => {
     )
   ).get();
 
-  if (!bond) {
-    throw createError({
-      statusCode: 404,
-      message: "Bond not found"
-    });
-  }
+  if (!bond) throw createError({ statusCode: 404, message: "bond_not_found" });
 
   const partner1 = await DB.select({
     id: tables.users.id,
