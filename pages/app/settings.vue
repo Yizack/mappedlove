@@ -64,7 +64,12 @@ definePageMeta({ layout: "app", middleware: "session" });
               </VueDatePicker>
             </ClientOnly>
             <div class="d-grid">
-              <button class="btn btn-primary btn-lg rounded-pill">{{ t("save") }}</button>
+              <button class="btn btn-primary btn-lg rounded-pill" :disabled="submit.loading">
+                <Transition name="tab" mode="out-in">
+                  <SpinnerCircle v-if="submit.loading" class="text-white" />
+                  <span v-else>{{ t("save") }}</span>
+                </Transition>
+              </button>
             </div>
           </form>
         </div>
@@ -116,6 +121,10 @@ export default {
         search: "" as string,
         focus: false,
       },
+      submit: {
+        loading: false,
+        error: false
+      },
       datePickerFocus: false
     };
   },
@@ -149,6 +158,7 @@ export default {
       this.user.country = country.code;
     },
     async saveAccount () {
+      this.submit.loading = true;
       const account = await $fetch("/api/account", {
         method: "PATCH",
         body: {
@@ -157,6 +167,7 @@ export default {
           birthDate: this.user.birthDate
         }
       }).catch(() => null);
+      this.submit.loading = false;
       if (!account) return;
 
       Object.assign(this.session, this.user);
