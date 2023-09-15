@@ -158,5 +158,10 @@ export default {
   dark_mode: "Dark mode",
   change_password: "Change password",
   country: "Country",
-  birth_date: "Birth date"
+  birth_date: "Birth date",
+  save: "Save",
+  country_or_territory: "Country or territory",
+  no_results: "No results found",
+  name_required: "Name is required",
+  account_saved: "Account details have been saved"
 };

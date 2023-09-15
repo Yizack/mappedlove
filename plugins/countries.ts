@@ -9,7 +9,7 @@ class Countries {
     return countriesData.find(country => country.code === code)?.emoji || "";
   }
 
-  getName (code: string) {
+  getName (code: string | null) {
     return countriesData.find(country => country.code === code)?.name || "";
   }
 }

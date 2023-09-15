@@ -17,8 +17,7 @@ export const getGroup = (i: number) => {
 };
 
 export const formatDate = (time: number) => {
-  const timeoffset = new Date().getTimezoneOffset() * 60 * 1000;
-  const date = new Date(time + timeoffset);
+  const date = new Date(time);
   return date.toLocaleString(t("lang_code"), { month: "long", day: "numeric", year: "numeric" });
 };
 
@@ -83,6 +82,6 @@ export const isMobileScreen = () => {
   return window.innerWidth < 768;
 };
 
-export const normalize = (text: string) => {
+export const normalize = (text: string) : string => {
   return text.normalize("NFD").replace(/[\u0300-\u036F]/g, "");
 };
