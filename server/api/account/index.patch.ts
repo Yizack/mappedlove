@@ -5,6 +5,9 @@ export default eventHandler(async (event) : Promise<MappedLoveUser> => {
 
   const userInfo = await readBody(event);
 
+  if (userInfo.name !== undefined && !userInfo.name) throw createError({ statusCode: 400, message: "name_required" });
+
+
   if (userInfo.showAvatar !== undefined) {
     userInfo.showAvatar = Number(userInfo.showAvatar);
   }
