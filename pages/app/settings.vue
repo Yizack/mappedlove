@@ -141,6 +141,7 @@ export default {
   },
   created () {
     Object.assign(this.user, this.session);
+    this.user.showAvatar = Boolean(this.user.showAvatar);
     this.country.search = this.$nuxt.$countries.getName(this.user.country);
     this.country.code = this.user.country;
   },
