@@ -56,3 +56,16 @@ input:disabled:hover, input:disabled:focus {
   box-shadow: 0 0 0 0.25rem #dd434340;
   outline: 0;
 }
+
+[data-bs-theme="light"] .form-switch .form-check-input:checked {
+  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23f86363'/%3e%3c/svg%3e");
+}
+
+[data-bs-theme="dark"] .form-switch .form-check-input:checked {
+  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23ffafa9'/%3e%3c/svg%3e");
+}
+
+[data-bs-theme="dark"] .form-floating>:disabled~label, [data-bs-theme="dark"] .form-floating>.form-control:disabled~label {
+  /* stylelint-disable -- This problem is ignorable. */
+  color: rgba(var(--bs-body-color-rgb), 0.75);
+}
