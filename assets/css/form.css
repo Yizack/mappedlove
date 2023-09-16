@@ -7,12 +7,12 @@ input:read-only {
   background-color: var(--bs-tertiary-bg);
 }
 
-input:read-only:hover {
-  background-color: var(--bs-tertiary-bg);
-}
-
 .form-floating>.form-control:read-only~label::after {
   background-color: var(--bs-tertiary-bg)!important;
+}
+
+.form-floating>.form-control:disabled~label::after {
+  background-color: var(--bs-secondary-bg)!important;
 }
 
 .form-floating>.form-control:read-only.bg-body~label::after {
