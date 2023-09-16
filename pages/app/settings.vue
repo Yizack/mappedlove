@@ -50,7 +50,7 @@ definePageMeta({ layout: "app", middleware: "session" });
                 </ul>
               </div>
             </div>
-            <ClientOnly>
+
               <VueDatePicker v-model="user.birthDate" :format="'yyyy-MM-dd'" :enable-time-picker="false" :locale="t('lang_code')" model-type="timestamp" @open="datePickerFocus = true" @blur="datePickerFocus = false">
                 <template #trigger>
                   <div class="form-floating mb-2">
@@ -62,7 +62,7 @@ definePageMeta({ layout: "app", middleware: "session" });
                   </div>
                 </template>
               </VueDatePicker>
-            </ClientOnly>
+
             <div class="d-grid">
               <button class="btn btn-primary btn-lg rounded-pill" :disabled="submit.loading">
                 <Transition name="tab" mode="out-in">
