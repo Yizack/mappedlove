@@ -29,3 +29,14 @@ nav.navbar * {
 .navbar .dropdown-item:hover, .navbar .nav-link:hover {
   text-decoration: underline;
 }
+
+.navbar .dropdown-item.router-link-active.router-link-exact-active {
+  color: var(--button-color);
+  background-color: var(--bs-primary);
+}
+
+
+.navbar .dropdown-item.active, .navbar .dropdown-item:active {
+  color: var(--button-color);
+  background-color: var(--bs-primary);
+}
