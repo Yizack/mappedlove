@@ -32,8 +32,9 @@ class Leaflet {
     this.tile = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution: "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors"
     });
+
     this.icon = L.icon({
-      iconUrl: "/images/map/marker-icon-heart.png",
+      iconUrl: isDarkMode() ? "/images/map/marker-icon-heart-dark.png" : "/images/map/marker-icon-heart.png",
       shadowUrl: "/images/map/marker-shadow.png",
       iconSize: [25, 32],
       shadowSize: [41, 41],

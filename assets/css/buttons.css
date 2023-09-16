@@ -4,12 +4,30 @@
 }
 
 .btn-primary {
+  --bs-btn-color: var(--button-color);
+  --bs-btn-hover-color: var(--button-color);
   --bs-btn-bg: var(--bs-primary);
   --bs-btn-border-color: var(--bs-primary);
   --bs-btn-hover-bg: var(--bs-primary-hover);
   --bs-btn-hover-border-color: var(--bs-primary-hover);
+  --bs-btn-active-color: var(--button-color);
   --bs-btn-active-bg: var(--bs-primary-hover);
   --bs-btn-active-border-color: var(--bs-primary-hover);
   --bs-btn-disabled-bg: var(--bs-primary);
   --bs-btn-disabled-border-color: var(--bs-primary);
+}
+
+.btn-danger {
+  --bs-btn-color: var(--button-color);
+  --bs-btn-hover-color: var(--button-color);
+  --bs-btn-bg: var(--bs-danger);
+  --bs-btn-border-color: var(--bs-danger); 
+  --bs-btn-hover-bg: var(--bs-danger-hover);
+  --bs-btn-hover-border-color: var(--bs-danger-hover);
+  --bs-btn-active-color: var(--button-color);
+  --bs-btn-active-bg: var(--bs-danger-hover);
+  --bs-btn-active-border-color: var(--bs-danger-hover);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: var(--bs-danger);
+  --bs-btn-disabled-border-color: var(--bs-danger);
 }

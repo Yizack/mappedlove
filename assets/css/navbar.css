@@ -1,5 +1,7 @@
 .navbar {
   --bs-navbar-active-color: var(--bs-primary-text-emphasis);
+  --bs-navbar-brand-color: var(--bs-body-color);
+  --bs-emphasis-color-rgb: var(--bs-body-color);
 }
 
 nav.navbar * {

@@ -3,8 +3,8 @@
   --bs-body-color-rgb: 233, 236, 239;
   --bs-dark: #443c47;
   --bs-dark-rgb: 68, 60, 71;
-  --bs-emphasis-color: var(--bs-body-color);
-  --bs-emphasis-color-rgb: var(--bs-body-color-rgb);
+  --bs-emphasis-color: var(--bs-body-bg);
+  --bs-emphasis-color-rgb: var(--bs-body-bg-rgb);
   --bs-primary: #ffafa9;
   --bs-primary-rgb: 255, 175, 169;
   --bs-primary-hover: #ff9f98;
@@ -16,17 +16,19 @@
   --bs-secondary: #121111;
   --bs-secondary-rgb: 18, 17, 17;
   --placeholder-color: #a8a8a8;
+  --button-color: var(--bs-body-bg);
   --bs-body-bg: #232222;
   --bs-body-bg-rgb: 35, 34, 34;
   --bs-secondary-bg: #3a3939;
   --bs-secondary-bg-rgb: 58, 57, 57;
   --bs-tertiary-bg: #535252;
   --bs-tertiary-bg-rgb: 83, 82, 82;
-}
-
-[data-bs-theme="dark"] .btn-primary {
-  --bs-btn-color: var(--bs-secondary);
-  --bs-btn-hover-color: var(--bs-secondary);
+  --bs-success: #a9ffaf;
+  --bs-success-rgb: 169, 255, 175;
+  --bs-danger: #ff8894;
+  --bs-danger-rgb: 255, 136, 148;
+  --bs-danger-hover: #e97d88;
+  --bs-danger-hover-rgb: 233, 125, 136;
 }
 
 [data-bs-theme="dark"] .form-switch .form-check-input:checked {
@@ -40,4 +42,10 @@
 [data-bs-theme="dark"] .form-floating>:disabled~label, [data-bs-theme="dark"] .form-floating>.form-control:disabled~label {
   /* stylelint-disable -- This problem is ignorable. */
   color: rgba(var(--bs-body-color-rgb), 0.75);
+}
+
+[data-bs-theme="dark"] .leaflet-layer,
+[data-bs-theme="dark"] .leaflet-control-zoom-in,
+[data-bs-theme="dark"] .leaflet-control-zoom-out {
+  filter: invert(100%) hue-rotate(180deg) brightness(100%) contrast(90%);
 }

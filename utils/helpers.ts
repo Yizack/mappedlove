@@ -72,7 +72,7 @@ export const storiesCarousel = (marker: MappedLoveMarker, stories: MappedLoveSto
           </div>`;
         }).join("")
         + `
-        <div class="position-absolute end-0 top-0 rounded-pill bg-primary text-white px-2 py-1 small fw-bold z-1">${stories.length}</div>
+        <div class="position-absolute end-0 top-0 rounded-pill bg-primary text-body-emphasis px-2 py-1 small fw-bold z-1">${stories.length}</div>
       </div>
     </div>
   <div class="mt-2 text-center fw-bold">${marker.title}</div>`.replace(/\n/g, "");
@@ -84,4 +84,8 @@ export const isMobileScreen = () => {
 
 export const normalize = (text: string) : string => {
   return text.normalize("NFD").replace(/[\u0300-\u036F]/g, "");
+};
+export const isDarkMode = () => {
+  const { $colorMode } = useNuxtApp();
+  return $colorMode.preference === "dark";
 };
