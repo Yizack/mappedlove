@@ -4,8 +4,8 @@
       <button class="navbar-toggler border-0 rounded-pill" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon" />
       </button>
-      <NuxtLink class="navbar-brand ms-2 ms-md-0 me-auto d-flex align-items-center gap-1" to="/">
-        <Icon :class="`${scrolled ? 'text-primary' : 'text-body'}`" name="solar:map-point-favourite-bold" />
+      <NuxtLink class="navbar-brand ms-2 ms-md-0 me-auto d-flex align-items-center gap-1 text-dark" to="/">
+        <Icon :class="`${scrolled ? 'text-primary' : 'text-dark'}`" name="solar:map-point-favourite-bold" />
         {{ SITE.name }}
       </NuxtLink>
       <div id="offcanvasNavbar" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvasNavbarLabel">

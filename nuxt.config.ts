@@ -9,9 +9,6 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: "en"
       },
-      bodyAttrs: {
-        "data-bs-theme": "light"
-      },
       link: [
         { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
         { rel: "icon", type: "image/png", sizes: "512x512", href: "/android-chrome-512x512.png" },
@@ -52,11 +49,18 @@ export default defineNuxtConfig({
   modules: [
     "nuxt-icon",
     "@nuxtjs/turnstile",
-    "nuxt-twemoji"
+    "nuxt-twemoji",
+    "@nuxtjs/color-mode"
   ],
   turnstile: {
     siteKey: "0x4AAAAAAAGmhM7sxmb8brsQ",
     addValidateEndpoint: true
+  },
+  colorMode: {
+    preference: "light",
+    fallback: "light",
+    dataValue: "bs-theme",
+    storageKey: "nuxt-color-mode"
   },
   runtimeConfig: {
     secure: {

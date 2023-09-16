@@ -7,6 +7,14 @@ input:read-only {
   background-color: var(--bs-tertiary-bg);
 }
 
+input:read-only:hover, input:read-only:focus {
+  background-color: var(--bs-tertiary-bg);
+}
+
+input:disabled:hover, input:disabled:focus {
+  background-color: var(--bs-secondary-bg);
+}
+
 .form-floating>.form-control:read-only~label::after {
   background-color: var(--bs-tertiary-bg)!important;
 }
@@ -41,8 +49,6 @@ input:read-only {
 .form-switch .form-check-input:checked {
   background-color: var(--bs-secondary)!important;
   border-color: var(--bs-primary);
-
-  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23f86363'/%3e%3c/svg%3e");
 }
 
 .focus {

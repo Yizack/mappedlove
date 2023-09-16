@@ -1,3 +1,43 @@
-:root, [data-bs-theme="dark"] {
---bs-body-color: #e9ecef;
+[data-bs-theme="dark"] {
+  --bs-body-color: #e9ecef;
+  --bs-body-color-rgb: 233, 236, 239;
+  --bs-dark: #443c47;
+  --bs-dark-rgb: 68, 60, 71;
+  --bs-emphasis-color: var(--bs-body-color);
+  --bs-emphasis-color-rgb: var(--bs-body-color-rgb);
+  --bs-primary: #ffafa9;
+  --bs-primary-rgb: 255, 175, 169;
+  --bs-primary-hover: #ff9f98;
+  --bs-primary-hover-rgb: 255, 159, 152;
+  --bs-link-color: #ff9f98;
+  --bs-link-color-rgb: 255, 159, 152;
+  --bs-link-hover-color: #ffafa9;
+  --bs-link-hover-color-rgb: 255, 175, 169;
+  --bs-secondary: #121111;
+  --bs-secondary-rgb: 18, 17, 17;
+  --placeholder-color: #a8a8a8;
+  --bs-body-bg: #232222;
+  --bs-body-bg-rgb: 35, 34, 34;
+  --bs-secondary-bg: #3a3939;
+  --bs-secondary-bg-rgb: 58, 57, 57;
+  --bs-tertiary-bg: #535252;
+  --bs-tertiary-bg-rgb: 83, 82, 82;
+}
+
+[data-bs-theme="dark"] .btn-primary {
+  --bs-btn-color: var(--bs-secondary);
+  --bs-btn-hover-color: var(--bs-secondary);
+}
+
+[data-bs-theme="dark"] .form-switch .form-check-input:checked {
+  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23ffafa9'/%3e%3c/svg%3e");
+}
+
+[data-bs-theme="dark"] .leaflet-control-layers-selector:checked[type="checkbox"] {
+  --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%230a0808' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
+}
+
+[data-bs-theme="dark"] .form-floating>:disabled~label, [data-bs-theme="dark"] .form-floating>.form-control:disabled~label {
+  /* stylelint-disable -- This problem is ignorable. */
+  color: rgba(var(--bs-body-color-rgb), 0.75);
 }

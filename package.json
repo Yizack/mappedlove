@@ -23,11 +23,12 @@
     "email:templates": "tsc ./scripts/emailTemplates.ts --module nodenext && node ./scripts/emailTemplates.js",
     "lint": "npm run lint:eslint && npm run lint:stylelint",
     "lint:eslint": "eslint --ext .ts,.js,.vue --fix --ignore-path .gitignore .",
-    "lint:stylelint": "stylelint \"**/*.css\"",
+    "lint:stylelint": "stylelint \"**/*.css\" --fix",
     "dev:cf": "npm run build && wrangler dev dist/_worker.js"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.2.0",
+    "@nuxtjs/color-mode": "^3.3.0",
     "@nuxtjs/turnstile": "^0.6.3",
     "@types/bootstrap": "^5.2.6",
     "@types/leaflet": "^1.9.4",

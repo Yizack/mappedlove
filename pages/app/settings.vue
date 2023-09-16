@@ -80,7 +80,7 @@ definePageMeta({ layout: "app", middleware: "session" });
             <label class="form-check-label">{{ t("show_avatar") }}</label>
           </div>
           <div class="form-check form-switch d-flex gap-2 align-items-center">
-            <input class="form-check-input" type="checkbox" role="switch">
+            <input v-model="dark" class="form-check-input" type="checkbox" role="switch" @change="changeColorMode">
             <label class="form-check-label">{{ t("dark_mode") }}</label>
           </div>
         </div>
@@ -109,6 +109,7 @@ export default {
   data () {
     return {
       session: useUserSession().user,
+      dark: this.$nuxt.$colorMode.preference === "dark",
       user: {
         name: "" as string,
         email: "" as string,
@@ -185,6 +186,9 @@ export default {
 
       Object.assign(this.session, this.user);
       this.$nuxt.$toasts.add({ message: t("account_saved"), success: true });
+    },
+    changeColorMode () {
+      this.$nuxt.$colorMode.preference = this.dark ? "dark" : "light";
     }
   }
 };
