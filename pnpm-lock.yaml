@@ -12,8 +12,8 @@ dependencies:
     specifier: ^1.9.4
     version: 1.9.4
   leaflet-geosearch:
-    specifier: ^3.8.0
-    version: 3.8.0
+    specifier: ^3.9.0
+    version: 3.9.0
 
 devDependencies:
   '@nuxt/eslint-config':
@@ -26,8 +26,8 @@ devDependencies:
     specifier: ^0.6.3
     version: 0.6.3
   '@types/bootstrap':
-    specifier: ^5.2.6
-    version: 5.2.6
+    specifier: ^5.2.7
+    version: 5.2.7
   '@types/leaflet':
     specifier: ^1.9.4
     version: 1.9.4
@@ -1830,8 +1830,8 @@ packages:
     resolution: {integrity: sha512-psQR5WEZjqSFy1gxJKpiMR9ygy59jykqIAAON8Xir78t9+E4z6S/BwYsksbylzJB1nCHKLzvkROrUHk2DKnEbg==}
     dev: true
 
-  /@types/bootstrap@5.2.6:
-    resolution: {integrity: sha512-BlAc3YATdasbHoxMoBWODrSF6qwQO/E9X8wVxCCSa6rWjnaZfpkr2N6pUMCY6jj2+wf0muUtLySbvU9etX6YqA==}
+  /@types/bootstrap@5.2.7:
+    resolution: {integrity: sha512-vWs0HzobIB8Af2F0B1GXpaVLSVn1NWULDYgTIWp08Et/r2B3aAwwhFBeOs/rRFWJA38EZTXkWP3tepIjpQkpLg==}
     dependencies:
       '@popperjs/core': 2.11.8
     dev: true
@@ -4486,8 +4486,8 @@ packages:
       readable-stream: 2.3.8
     dev: true
 
-  /leaflet-geosearch@3.8.0:
-    resolution: {integrity: sha512-YYFigq2JkqaZrgEjxWyvyQy4seh0Il9xPlG+IP2Z3+K7DrQ+bYc7qDizmxKbAn2jSNUCvokz75gXj7wXcFDB9A==}
+  /leaflet-geosearch@3.9.0:
+    resolution: {integrity: sha512-6bls8jxwGE2DdFXOUBwXlC8+kI7SlT2MuNYgH5/bl5qwzEiobolsgwNvL99mspgfLZjODhH97jrXPX4LVMe4ZQ==}
     optionalDependencies:
       '@googlemaps/js-api-loader': 1.16.2
       leaflet: 1.9.4
