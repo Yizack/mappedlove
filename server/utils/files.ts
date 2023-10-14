@@ -25,7 +25,7 @@ export const uploadImage = (async (file: MultiPartData | undefined, outputName: 
   const finalName = outputName ? `${outputName}` : filename;
   if (process.dev) {
     const { writeFileSync, existsSync, mkdirSync } = await import("fs");
-    if (!existsSync(`./public/uploads/${folder}}`)) mkdirSync(`./public/uploads/${folder}`, { recursive: true });
+    if (!existsSync(`./public/uploads/${folder}`)) mkdirSync(`./public/uploads/${folder}`, { recursive: true });
     writeFileSync(`./public/uploads/${folder}/${finalName}`, data);
     return finalName;
   }
