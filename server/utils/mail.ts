@@ -22,7 +22,7 @@ const mailChannels = async (config: NitroRuntimeConfig, message: EmailMessage) :
       }],
       from: {
         email: config.mail.from,
-        name: `"${config.mail.fromName}"`
+        name: `${config.mail.fromName}`
       },
       subject,
       content: [{
