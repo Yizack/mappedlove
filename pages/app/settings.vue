@@ -64,7 +64,7 @@ definePageMeta({ layout: "app", middleware: "session" });
               </VueDatePicker>
             </ClientOnly>
             <div class="d-grid">
-              <button class="btn btn-primary btn-lg rounded-pill" :disabled="submit.loading">
+              <button class="btn btn-primary btn-lg rounded-pill" :disabled="submit.loading" type="submit">
                 <Transition name="tab" mode="out-in">
                   <SpinnerCircle v-if="submit.loading" class="text-white" />
                   <span v-else>{{ t("save") }}</span>
@@ -85,19 +85,29 @@ definePageMeta({ layout: "app", middleware: "session" });
           </div>
         </div>
         <div class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
-          <h3 class="mb-4">{{ t("change_password") }}</h3>
-          <div class="form-floating mb-2">
-            <input type="password" class="form-control" :placeholder="t('current_password')" autocomplete="current-password">
-            <label>{{ t("current_password") }}</label>
-          </div>
-          <div class="form-floating mb-2">
-            <input type="password" class="form-control" :placeholder="t('new_password')" autocomplete="new-password">
-            <label>{{ t("new_password") }}</label>
-          </div>
-          <div class="form-floating">
-            <input type="password" class="form-control" :placeholder="t('confirm_password')" autocomplete="new-password">
-            <label>{{ t("confirm_password") }}</label>
-          </div>
+          <form @submit.prevent="changePassword">
+            <h3 class="mb-4">{{ t("change_password") }}</h3>
+            <div class="form-floating mb-2">
+              <input type="password" class="form-control" :placeholder="t('current_password')" autocomplete="current-password">
+              <label>{{ t("current_password") }}</label>
+            </div>
+            <div class="form-floating mb-2">
+              <input type="password" class="form-control" :placeholder="t('new_password')" autocomplete="new-password">
+              <label>{{ t("new_password") }}</label>
+            </div>
+            <div class="form-floating mb-2">
+              <input type="password" class="form-control" :placeholder="t('confirm_password')" autocomplete="new-password">
+              <label>{{ t("confirm_password") }}</label>
+            </div>
+            <div class="d-grid">
+              <button class="btn btn-primary btn-lg rounded-pill" type="submit">
+                <Transition name="tab" mode="out-in">
+                  <SpinnerCircle v-if="submit.loading" class="text-white" />
+                  <span v-else>{{ t("change_password") }}</span>
+                </Transition>
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -111,18 +121,22 @@ export default {
       session: useUserSession().user,
       dark: this.$nuxt.$colorMode.preference === "dark",
       user: {
-        name: "" as string,
-        email: "" as string,
+        name: "",
+        email: "",
         country: null as string | null,
         birthDate: null as number | null,
-        showAvatar: false
+        showAvatar: false,
+        current_password: "",
+        new_password: "",
+        confirm_password: ""
       },
       country: {
         code: null as string | null,
-        search: "" as string,
+        search: "",
         focus: false,
       },
       submit: {
+        pass_loading: false,
         loading: false,
         error: false
       },
@@ -189,6 +203,19 @@ export default {
     },
     changeColorMode () {
       this.$nuxt.$colorMode.preference = this.dark ? "dark" : "light";
+    },
+    async changePassword () {
+      this.submit.pass_loading = true;
+      const account = await $fetch("/api/account/password", {
+        method: "PATCH",
+        body: {
+          current_password: this.user.current_password,
+          new_password: this.user.new_password
+        }
+      }).catch(() => null);
+      this.submit.pass_loading = false;
+      if (!account) return;
+      this.$nuxt.$toasts.add({ message: t("password_saved"), success: true });
     }
   }
 };
