@@ -69,3 +69,16 @@ input:disabled:hover, input:disabled:focus {
   /* stylelint-disable -- This problem is ignorable. */
   color: rgba(var(--bs-body-color-rgb), 0.75);
 }
+
+#image-upload>input {
+  display: none;
+}
+
+#image-upload label .overlay {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+#image-upload label:hover .overlay {
+  opacity: .85;
+}

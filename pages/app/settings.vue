@@ -11,6 +11,17 @@ definePageMeta({ layout: "app", middleware: "session" });
         <div class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
           <form @submit.prevent="saveAccount">
             <h3 class="mb-4">{{ t("account") }}</h3>
+            <div id="image-upload" class="text-center mb-2">
+              <input id="avatar" type="file">
+              <label for="avatar" class="rounded-circle bg-body-tertiary position-relative overflow-hidden" style="width: 175px; height: 175px;">
+                <div class="overlay position-absolute bg-dark w-100 h-100">
+                  <div class="d-flex justify-content-center align-items-center h-100 text-light">
+                    <Icon name="solar:gallery-add-outline" size="2.5rem" />
+                  </div>
+                </div>
+                <img :src="`https://picsum.photos/seed/${Date.now()}/175`" width="175" height="175" class="img-fluid rounded-circle border border-5" :alt="user.name">
+              </label>
+            </div>
             <div class="form-floating mb-2">
               <input v-model="user.name" type="text" class="form-control" :placeholder="t('name')" required>
               <label class="d-flex align-items-center gap-1">
