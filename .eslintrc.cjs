@@ -1,4 +1,4 @@
-{
+module.exports = {
   "env": {
     "browser": true,
     "node": true,
@@ -21,7 +21,7 @@
   "plugins": ["vue"],
   "rules": {
     "indent": ["error", 2],
-    "linebreak-style": ["error", "windows"],
+    "linebreak-style": ["error", process.platform === "win32" ? "windows" : "unix"],
     "quotes": ["error", "double"],
     "semi": ["error", "always"],
     "camelcase": "off",
@@ -48,4 +48,4 @@
     "dist/**/*",
     ".output/**/*"
   ]
-}
+};
