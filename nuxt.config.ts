@@ -51,7 +51,7 @@ export default defineNuxtConfig({
     "@nuxtjs/turnstile",
     "nuxt-twemoji",
     "@nuxtjs/color-mode",
-    "nuxt-simple-sitemap"
+    "@nuxtjs/sitemap"
   ],
   turnstile: {
     siteKey: "0x4AAAAAAAGmhM7sxmb8brsQ",
@@ -108,7 +108,10 @@ export default defineNuxtConfig({
     "/": { sitemap: { priority: 1 } },
     "/*/**": { sitemap: { priority: 0.8, lastmod: new Date().toISOString() } }
   },
+  features: {
+    inlineStyles: false
+  },
   experimental: {
-    inlineSSRStyles: false
+    viewTransition: true
   }
 });

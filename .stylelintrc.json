@@ -2,8 +2,8 @@
   "extends": "stylelint-config-standard",
   "rules": {
     "length-zero-no-unit": true,
-    "property-no-vendor-prefix": null,
-    "rule-empty-line-before": ["always-multi-line", {"except": ["first-nested"]}]
+    "rule-empty-line-before": ["always-multi-line", { "except": ["first-nested"] }],
+    "color-function-notation": ["modern", { "ignore": ["with-var-inside"] }]
   },
   "ignoreFiles": [
     "node_modules/**/*",

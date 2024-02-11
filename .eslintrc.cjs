@@ -33,6 +33,7 @@ module.exports = {
     "no-multi-spaces": "error",
     "space-before-blocks": "error",
     "no-trailing-spaces": "error",
+    "@typescript-eslint/consistent-type-imports": "error",
     "vue/first-attribute-linebreak": ["error", {
       "singleline": "ignore", "multiline": "ignore"
     }],
