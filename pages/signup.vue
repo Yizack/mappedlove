@@ -46,7 +46,7 @@ const signUp = async () => {
           <div v-if="!needsConfirm">
             <form class="mb-2" novalidate @submit.prevent="signUp">
               <div class="text-center mb-4">
-                <h2 class="d-flex align-items-center gap-1 justify-content-center">
+                <h2 class="d-flex align-items-center gap-1 justify-content-center fw-bold">
                   <Icon class="text-primary" name="solar:map-point-favourite-bold" />
                   {{ SITE.name }}
                 </h2>

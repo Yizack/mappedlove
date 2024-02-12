@@ -1,3 +1,20 @@
+@font-face {
+  font-family: Fredoka;
+  src: url("/fonts/Fredoka-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Fredoka;
+  font-weight: bold;
+  src: url("/fonts/Fredoka-Semibold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Fredoka;
+  font-weight: 500;
+  src: url("/fonts/Fredoka-Medium.ttf") format("truetype");
+}
+
 body {
   height: 100%;
   width: 100%;
@@ -5,6 +22,8 @@ body {
 }
 
 :root {
+  --bs-body-font-family: fredoka;
+
   scrollbar-color: var(--bs-primary) var(--bs-secondary);
   scrollbar-width: auto;
   scroll-behavior: unset;
