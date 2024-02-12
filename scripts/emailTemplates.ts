@@ -16,7 +16,6 @@ catch {
   content = "";
 }
 
-
 const keys = Object.keys(templates);
 const values = Object.values(templates);
 let result = "";
@@ -25,7 +24,6 @@ for (let i = 0; i < keys.length; i++) {
 }
 
 const write_content = `export const templates = {${result}};`;
-
 
 if (content !== write_content) writeFileSync("./server/utils/mustache.ts", write_content, "utf8");
 console.info("Email templates loaded to server.");
