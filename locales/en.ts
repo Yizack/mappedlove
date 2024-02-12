@@ -69,6 +69,7 @@ export default {
   no_markers: "No markers yet, add new markers to start mapping your love stories.",
   marker_added: "The marker has been added",
   marker_updated: "The marker has been updated",
+  marker_deleted: "The marker has been deleted",
   // Stories
   story: "Story",
   stories: "Stories",

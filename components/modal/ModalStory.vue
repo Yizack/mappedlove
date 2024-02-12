@@ -1,3 +1,82 @@
+<script setup lang="ts">
+const props = defineProps({
+  markerId: {
+    type: Number,
+    default: () => 0
+  },
+  story: {
+    type: Object as () => MappedLoveStory | null,
+    default: () => null
+  }
+});
+
+const emit = defineEmits(["close", "submit"]);
+
+const { $bootstrap, $toasts } = useNuxtApp();
+
+const submitted = ref(false);
+const modal = ref() as Ref<HTMLElement>;
+const supported = "PNG, JPG, WEBP, GIF";
+const imageRead = ref<string | ArrayBuffer>("");
+const fileChosen = ref(false);
+const file = ref<File>();
+const { form } = useFormState({
+  id: 0 as number | undefined,
+  marker: props.markerId,
+  description: "",
+  year: "" as number | string,
+  month: 0,
+  updatedAt: 0 as number | undefined,
+});
+
+const addImage = (event: Event) => {
+  const target = event.target as HTMLInputElement;
+  file.value = target.files ? target.files[0] : undefined;
+  if (!file.value) {
+    imageRead.value = "";
+    fileChosen.value = false;
+    return;
+  }
+  const reader = new FileReader();
+  reader.readAsDataURL(file.value);
+  reader.onload = () => {
+    imageRead.value = reader.result || "";
+    fileChosen.value = true;
+  };
+};
+
+const submitStory = async () => {
+  if (!fileChosen.value && !form.value.id) {
+    $toasts.add({ message: t("photo_needed"), success: false });
+    return;
+  }
+  submitted.value = true;
+  const formData = new FormData();
+  formData.append("marker", form.value.marker.toString());
+  formData.append("description", form.value.description);
+  formData.append("year", form.value.year.toString());
+  formData.append("month", form.value.month.toString());
+  if (file.value) formData.append("file", file.value);
+  const story = await $fetch(props.story ? `/api/stories/${props.story.id}` : "/api/stories", {
+    method: props.story ? "PATCH" : "POST",
+    body: formData
+  }).catch(() => null);
+  submitted.value = false;
+  if (!story) return;
+  emit("submit", { story, edit: Boolean(story) });
+  $toasts.add({ message: story ? t("story_updated") : t("story_added"), success: true });
+  $bootstrap.hideModal(modal.value);
+};
+
+onMounted(() => {
+  if (props.story) Object.assign(form.value, props.story);
+  const m = $bootstrap.showModal(modal.value);
+  m.addEventListener("hidden.bs.modal", () => {
+    emit("close", form.value);
+  });
+});
+</script>
+
 <template>
   <div id="modal" ref="modal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog  modal-dialog-centered">
@@ -65,83 +144,3 @@
     </div>
   </div>
 </template>
-
-<script lang="ts">
-export default {
-  props: {
-    markerId: {
-      type: Number,
-      default: () => 0
-    },
-    story: {
-      type: Object as () => MappedLoveStory | null,
-      default: () => null
-    }
-  },
-  emits: ["close", "submit"],
-  data () {
-    return {
-      submitted: false,
-      location: "",
-      supported: "PNG, JPG, WEBP, GIF",
-      imageRead: "" as string | ArrayBuffer,
-      fileChosen: false,
-      form: {
-        id: 0 as number | undefined,
-        marker: this.markerId,
-        description: "",
-        year: "" as number | string,
-        month: 0,
-        updatedAt: 0 as number | undefined,
-      },
-      file: null as File | null
-    };
-  },
-  mounted () {
-    if (this.story) Object.assign(this.form, this.story);
-    const modal = this.$nuxt.$bootstrap.showModal(this.$refs.modal as HTMLElement);
-    modal.addEventListener("hidden.bs.modal", () => {
-      this.$emit("close", this.form);
-    });
-  },
-  methods: {
-    addImage (event: Event) {
-      const target = event.target as HTMLInputElement;
-      this.file = target.files ? target.files[0] : null;
-      if (!this.file) {
-        this.imageRead = "";
-        this.fileChosen = false;
-        return;
-      }
-      const reader = new FileReader();
-      reader.readAsDataURL(this.file);
-      reader.onload = () => {
-        this.imageRead = reader.result || "";
-        this.fileChosen = true;
-      };
-    },
-    async submitStory () {
-      if (!this.fileChosen && !this.form.id) {
-        this.$nuxt.$toasts.add({ message: t("photo_needed"), success: false });
-        return;
-      }
-      this.submitted = true;
-      const formData = new FormData();
-      formData.append("marker", this.form.marker.toString());
-      formData.append("description", this.form.description);
-      formData.append("year", this.form.year.toString());
-      formData.append("month", this.form.month.toString());
-      if (this.file) formData.append("file", this.file);
-      const story = await $fetch(this.story ? `/api/stories/${this.story.id}` : "/api/stories", {
-        method: this.story ? "PATCH" : "POST",
-        body: formData
-      }).catch(() => null);
-      this.submitted = false;
-      if (!story) return;
-      this.$emit("submit", { story, edit: Boolean(this.story) });
-      this.$nuxt.$toasts.add({ message: this.story ? t("story_updated") : t("story_added"), success: true });
-      this.$nuxt.$bootstrap.hideModal(this.$refs.modal as HTMLElement);
-    }
-  }
-};
-</script>

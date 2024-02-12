@@ -50,13 +50,3 @@ const logOut = () => {
     </div>
   </nav>
 </template>
-
-<script lang="ts">
-export default {
-  data () {
-    return {
-
-    };
-  }
-};
-</script>

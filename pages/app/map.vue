@@ -3,6 +3,8 @@ definePageMeta({ layout: "app", middleware: "session" });
 
 const { data: bondMap } = await useFetch("/api/bond/map", { key: "bondMap" });
 
+const { $toasts } = useNuxtApp();
+
 const markers = ref(bondMap.value?.markers || []);
 const stories = ref(bondMap.value?.stories || []);
 
@@ -24,7 +26,7 @@ const newMarker = ({ marker, edit }: { marker: MappedLoveMarker, edit: boolean }
 };
 
 const movedPosition = (marker: MappedLoveMarker) => {
-  useNuxtApp().$toasts.add({ success: Boolean(marker.id), message: t("saved_changes") });
+  $toasts.add({ success: Boolean(marker.id), message: t("saved_changes") });
   markers.value = markers.value.map((item) => {
     if (item.id === marker.id) return marker;
     return item;
@@ -33,6 +35,7 @@ const movedPosition = (marker: MappedLoveMarker) => {
 
 const removeMarker = (id: number) => {
   map.value.removeMarker(id);
+  $toasts.add({ success: true, message: t("marker_deleted") });
 };
 
 const selectedMarker = computed(() => {
@@ -69,7 +72,7 @@ const removeStory = (id: number) => {
       </div>
       <div class="col-12 col-xl-5">
         <div class="bg-body rounded-3 px-3 py-4 p-lg-4">
-          <BondMarkers :all-markers="markers" :selected="selected" @delete="removeMarker" @new="newMarker" @select="selected = $event" />
+          <BondMarkers :markers="markers" :selected="selected" @delete="removeMarker" @new="newMarker" @select="selected = $event" />
         </div>
       </div>
       <div class="col-12 col-xl-7">

@@ -2,6 +2,101 @@
 import VueDatePicker from "@vuepic/vue-datepicker";
 
 definePageMeta({ layout: "app", middleware: "session" });
+
+const { $colorMode, $countries, $toasts } = useNuxtApp();
+const { user: session, fetch: sessionFetch } = useUserSession();
+const dark = ref($colorMode.preference === "dark");
+const user = ref({
+  name: "",
+  email: "",
+  country: null as string | null,
+  birthDate: null as number | null,
+  showAvatar: false,
+  current_password: "",
+  new_password: "",
+});
+
+const country = ref({
+  code: null as string | null,
+  search: "",
+  focus: false,
+});
+
+const submit = ref({ loading: false, pass_loading: false, error: false });
+const datePickerFocus = ref(false);
+
+Object.assign(user.value, session.value);
+user.value.showAvatar = Boolean(user.value.showAvatar);
+
+const countriesFilter = computed(() => {
+  return $countries.getAll().filter((c) => {
+    const normalized_input = normalize(country.value.search.toLocaleLowerCase());
+    const normalized_name = normalize(c.name.toLocaleLowerCase());
+    const wordsMatch = normalized_input.split(" ").map(char => normalized_name.includes(char)).every(Boolean);
+    if (wordsMatch) return c;
+    return false;
+  });
+});
+
+const removeCountry = () => {
+  country.value.focus = false;
+  country.value.search = "";
+  country.value.code = null;
+  user.value.country = null;
+};
+
+const selectCountry = (c: any) => {
+  country.value.focus = false;
+  country.value.search = c.name;
+  country.value.code = c.code;
+  user.value.country = c.code;
+};
+
+const saveAccount = async () => {
+  submit.value.loading = true;
+  const account = await $fetch("/api/account", {
+    method: "PATCH",
+    body: {
+      name: user.value.name,
+      country: user.value.country,
+      birthDate: user.value.birthDate,
+    },
+  }).catch(() => null);
+  submit.value.loading = false;
+  if (!account) return;
+  await sessionFetch();
+  $toasts.add({ message: t("account_saved"), success: true });
+};
+
+const showAvatar = async () => {
+  const account = await $fetch("/api/account", {
+    method: "PATCH",
+    body: {
+      showAvatar: user.value.showAvatar,
+    },
+  }).catch(() => null);
+  if (!account) return;
+  await sessionFetch();
+  $toasts.add({ message: t("account_saved"), success: true });
+};
+
+const changeColorMode = () => {
+  $colorMode.preference = dark.value ? "dark" : "light";
+};
+
+const changePassword = async () => {
+  submit.value.pass_loading = true;
+  const account = await $fetch("/api/account/password", {
+    method: "PATCH",
+    body: {
+      current_password: user.value.current_password,
+      new_password: user.value.new_password,
+    },
+  }).catch(() => null);
+  submit.value.pass_loading = false;
+  if (!account) return;
+  $toasts.add({ message: t("password_saved"), success: true });
+};
 </script>
 
 <template>
@@ -124,110 +219,3 @@ definePageMeta({ layout: "app", middleware: "session" });
     </div>
   </main>
 </template>
-
-<script lang="ts">
-export default {
-  data () {
-    return {
-      session: useUserSession().user,
-      dark: this.$nuxt.$colorMode.preference === "dark",
-      user: {
-        name: "",
-        email: "",
-        country: null as string | null,
-        birthDate: null as number | null,
-        showAvatar: false,
-        current_password: "",
-        new_password: "",
-        confirm_password: ""
-      },
-      country: {
-        code: null as string | null,
-        search: "",
-        focus: false,
-      },
-      submit: {
-        pass_loading: false,
-        loading: false,
-        error: false
-      },
-      datePickerFocus: false
-    };
-  },
-  computed: {
-    countriesFilter () {
-      return this.$nuxt.$countries.getAll().filter((country) => {
-        const normalized_input = normalize(this.country.search.toLocaleLowerCase());
-        const normalized_name = normalize(country.name.toLocaleLowerCase());
-        const wordsMatch = normalized_input.split(" ").map(char => normalized_name.includes(char)).every(Boolean);
-        if (wordsMatch) return country;
-        return false;
-      });
-    }
-  },
-  created () {
-    Object.assign(this.user, this.session);
-    this.user.showAvatar = Boolean(this.user.showAvatar);
-    this.country.search = this.$nuxt.$countries.getName(this.user.country);
-    this.country.code = this.user.country;
-  },
-  methods: {
-    removeCountry () {
-      this.country.focus = false;
-      this.country.search = "";
-      this.country.code = null;
-      this.user.country = null;
-    },
-    selectCountry (country: any) {
-      this.country.focus = false;
-      this.country.search = country.name;
-      this.country.code = country.code;
-      this.user.country = country.code;
-    },
-    async saveAccount () {
-      this.submit.loading = true;
-      const account = await $fetch("/api/account", {
-        method: "PATCH",
-        body: {
-          name: this.user.name,
-          country: this.user.country,
-          birthDate: this.user.birthDate
-        }
-      }).catch(() => null);
-      this.submit.loading = false;
-      if (!account) return;
-
-      Object.assign(this.session, this.user);
-      this.$nuxt.$toasts.add({ message: t("account_saved"), success: true });
-    },
-    async showAvatar () {
-      const account = await $fetch("/api/account", {
-        method: "PATCH",
-        body: {
-          showAvatar: this.user.showAvatar
-        }
-      }).catch(() => null);
-      if (!account) return;
-
-      Object.assign(this.session, this.user);
-      this.$nuxt.$toasts.add({ message: t("account_saved"), success: true });
-    },
-    changeColorMode () {
-      this.$nuxt.$colorMode.preference = this.dark ? "dark" : "light";
-    },
-    async changePassword () {
-      this.submit.pass_loading = true;
-      const account = await $fetch("/api/account/password", {
-        method: "PATCH",
-        body: {
-          current_password: this.user.current_password,
-          new_password: this.user.new_password
-        }
-      }).catch(() => null);
-      this.submit.pass_loading = false;
-      if (!account) return;
-      this.$nuxt.$toasts.add({ message: t("password_saved"), success: true });
-    }
-  }
-};
-</script>

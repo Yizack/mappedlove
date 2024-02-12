@@ -1,3 +1,12 @@
+<script setup lang="ts">
+defineProps({
+  small: {
+    type: Boolean,
+    default: false
+  }
+});
+</script>
+
 <template>
   <div class="d-flex justify-content-center align-items-center text-primary">
     <div class="spinner-border" :class="{'spinner-border-sm': small}" role="status">
@@ -5,17 +14,6 @@
     </div>
   </div>
 </template>
-
-<script lang="ts">
-export default {
-  props: {
-    small: {
-      type: Boolean,
-      default: false
-    }
-  }
-};
-</script>
 
 <style>
 .spinner-border {

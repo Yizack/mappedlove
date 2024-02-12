@@ -1,5 +1,44 @@
 <script setup lang="ts">
 definePageMeta({ layout: "access" });
+
+onBeforeRouteLeave((to, from, next) => {
+  if (to.name === "login") to.meta = from.meta;
+  next();
+});
+
+const loaded = ref(false);
+const verified = ref(false);
+
+const { params, meta } = useRoute();
+const emailCode = ref(params.email.toString());
+const token = ref(params.token.toString());
+
+const verifyEmail = async () => {
+  let email = "";
+  try {
+    email = atob(emailCode.value);
+  }
+  catch (e) {
+    return;
+  }
+  if (!email) return;
+  const user = await $fetch("/api/verify", {
+    method: "POST",
+    body: {
+      email: email,
+      token: token.value
+    }
+  }).catch(() => null);
+  if (!user) return;
+  verified.value = true;
+  meta.email = email;
+};
+
+onMounted(async () => {
+  if (!(emailCode.value && token.value)) return;
+  await verifyEmail();
+  loaded.value = true;
+});
 </script>
 
 <template>
@@ -27,47 +66,3 @@ definePageMeta({ layout: "access" });
     </section>
   </main>
 </template>
-
-<script lang="ts">
-export default {
-  beforeRouteLeave (to, from, next) {
-    if (to.name === "login") to.meta = from.meta;
-    next();
-  },
-  data () {
-    return {
-      loaded: false,
-      verified: false,
-      email: this.$route.params.email as string,
-      token: this.$route.params.token as string
-    };
-  },
-  async mounted () {
-    if (!(this.email && this.token)) return;
-    await this.verifyEmail();
-    this.loaded = true;
-  },
-  methods: {
-    async verifyEmail () {
-      let email = "";
-      try {
-        email = atob(this.email);
-      }
-      catch (e) {
-        return;
-      }
-      if (!email) return;
-      const user = await $fetch("/api/verify", {
-        method: "POST",
-        body: {
-          email: email,
-          token: this.token
-        }
-      }).catch(() => null);
-      if (!user) return;
-      this.verified = true;
-      this.$route.meta.email = email;
-    }
-  }
-};
-</script>

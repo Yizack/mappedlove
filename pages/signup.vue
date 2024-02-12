@@ -1,5 +1,41 @@
 <script setup lang="ts">
 definePageMeta({ layout: "access", middleware: "authenticated" });
+
+const { form, formReset } = useFormState({
+  name: "",
+  email: "",
+  password: "",
+  password_check: "",
+  turnstile: "",
+});
+
+const turnstile = ref(null);
+const submit = ref({ loading: false, exists: false });
+const needsConfirm = ref(false);
+
+const signUp = async () => {
+  if (!(isNameValid(form.value.name) && isEmailValid(form.value.email) && isPasswordValid(form.value.password) && isPasswordCheckValid(form.value.password, form.value.password_check))) return;
+
+  submit.value.loading = true;
+  const req = await $fetch("/api/signup", { method: "POST", body: form.value }).catch(() => null);
+  submit.value.loading = false;
+
+  if (!req) {
+    formReset();
+    // @ts-ignore
+    turnstile.value?.reset();
+    return;
+  }
+
+  if (!("user" in req)) {
+    submit.value.exists = true;
+    formReset();
+    // @ts-ignore
+    turnstile.value?.reset();
+    return;
+  }
+  needsConfirm.value = true;
+};
 </script>
 
 <template>
@@ -17,22 +53,22 @@ definePageMeta({ layout: "access", middleware: "authenticated" });
                 <p class="m-0">{{ t("create_account") }}</p>
               </div>
               <div class="form-floating mb-2">
-                <input v-model.trim="form.name" type="text" class="form-control" :class="{'is-valid': isNameValid}" :placeholder="t('name')" autocomplete="given-name" required>
+                <input v-model.trim="form.name" type="text" class="form-control" :class="{'is-valid': isNameValid(form.name)}" :placeholder="t('name')" autocomplete="given-name" required>
                 <label class="form-label">{{ t("name") }}</label>
               </div>
               <div class="form-floating mb-2 position-relative">
-                <input v-model="form.email" type="email" class="form-control" :class="{'is-valid': isEmailValid, 'is-invalid': submit.exists}" :placeholder="t('email')" autocomplete="email" required @input="submit.exists = false">
+                <input v-model="form.email" type="email" class="form-control" :class="{'is-valid': isEmailValid(form.email), 'is-invalid': submit.exists}" :placeholder="t('email')" autocomplete="email" required @input="submit.exists = false">
                 <label class="form-label">{{ t("email") }}</label>
                 <div v-if="submit.exists" class="invalid-tooltip">
                   {{ t("email_conflict") }}
                 </div>
               </div>
               <div class="form-floating mb-2">
-                <input v-model="form.password" type="password" class="form-control" :class="{'is-valid': isPasswordValid}" :placeholder="t('password')" autocomplete="new-password" required>
+                <input v-model="form.password" type="password" class="form-control" :class="{'is-valid': isPasswordValid(form.password)}" :placeholder="t('password')" autocomplete="new-password" required>
                 <label class="form-label">{{ t("password") }}</label>
               </div>
               <div class="form-floating mb-2">
-                <input v-model="form.password_check" type="password" class="form-control" :class="{'is-valid': isPasswordCheckValid}" :placeholder="t('password_confirm')" autocomplete="off" required>
+                <input v-model="form.password_check" type="password" class="form-control" :class="{'is-valid': isPasswordCheckValid(form.password, form.password_check)}" :placeholder="t('password_confirm')" autocomplete="off" required>
                 <label class="form-label">{{ t("password_confirm") }}</label>
               </div>
               <div class="text-center my-3 my-md-0">
@@ -60,61 +96,3 @@ definePageMeta({ layout: "access", middleware: "authenticated" });
     </section>
   </main>
 </template>
-
-<script lang="ts">
-export default {
-  data () {
-    return {
-      form: {
-        name: "",
-        email: "",
-        password: "",
-        password_check: "",
-        turnstile: ""
-      },
-      submit: {
-        loading: false,
-        exists: false
-      },
-      needsConfirm: false
-    };
-  },
-  computed: {
-    isNameValid () {
-      return this.form.name.length > 0 && this.form.name.length <= 50;
-    },
-    isPasswordValid () {
-      return this.form.password.length >= 8;
-    },
-    isPasswordCheckValid () {
-      return this.isPasswordValid && this.form.password === this.form.password_check;
-    },
-    isEmailValid () {
-      return this.form.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
-    }
-  },
-  methods: {
-    async signUp () {
-      if (!(this.isNameValid && this.isEmailValid && this.isPasswordValid && this.isPasswordCheckValid)) return;
-
-      this.submit.loading = true;
-      const req = await $fetch("/api/signup", { method: "POST", body: this.form }).catch(() => null);
-      this.submit.loading = false;
-
-      if (!req) {
-        // @ts-ignore
-        this.$refs.turnstile.reset();
-        return;
-      }
-
-      if (!("user" in req)) {
-        this.submit.exists = true;
-        // @ts-ignore
-        this.$refs.turnstile.reset();
-        return;
-      }
-      this.needsConfirm = true;
-    }
-  }
-};
-</script>

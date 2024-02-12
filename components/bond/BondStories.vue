@@ -1,9 +1,51 @@
+<script setup lang="ts">
+defineProps({
+  marker: {
+    type: Object as () => MappedLoveMarker,
+    default: () => null
+  },
+  stories: {
+    type: Array as () => MappedLoveStory[],
+    default: () => []
+  }
+});
+
+const emit = defineEmits(["new", "delete"]);
+
+const deleteButton = ref<Record<number, boolean>>({});
+const storyModal = ref(false);
+const currentStory = ref<MappedLoveStory>();
+
+const openModal = () => {
+  storyModal.value = true;
+};
+
+const closeModal = () => {
+  storyModal.value = false;
+  currentStory.value = undefined;
+};
+
+const openStory = (story: MappedLoveStory) => {
+  currentStory.value = story;
+  storyModal.value = true;
+};
+
+const deleteStory = async (id: number) => {
+  if (!confirm(t("delete_story"))) return;
+  const res = await $fetch(`/api/stories/${id}`, {
+    method: "DELETE"
+  }).catch(() => null);
+  if (!res) return;
+  emit("delete", id);
+};
+</script>
+
 <template>
   <div class="position-relative d-flex align-items-center gap-2 mb-2">
     <Icon class="text-primary" name="solar:chat-square-like-bold" size="2rem" />
     <h2 class="m-0">{{ t("stories") }}</h2>
     <Transition name="bounce">
-      <ButtonAdd v-if="marker.id" @click="storyModal = true" />
+      <ButtonAdd v-if="marker.id" @click="openModal" />
     </Transition>
   </div>
   <Transition name="tab-left" mode="out-in">
@@ -49,44 +91,3 @@
   </Transition>
   <ModalStory v-if="storyModal" :marker-id="marker.id" :story="currentStory" @close="closeModal" @submit="$emit('new', $event)" />
 </template>
-
-<script lang="ts">
-export default {
-  props: {
-    marker: {
-      type: Object as () => MappedLoveMarker,
-      default: () => null
-    },
-    stories: {
-      type: Array as () => MappedLoveStory[],
-      default: () => []
-    },
-  },
-  emits: ["new", "delete"],
-  data () {
-    return {
-      deleteButton: {} as Record<number, boolean>,
-      storyModal: false,
-      currentStory: null as MappedLoveStory | null,
-    };
-  },
-  methods: {
-    closeModal () {
-      this.storyModal = false;
-      this.currentStory = null;
-    },
-    openStory (story: MappedLoveStory) {
-      this.currentStory = story;
-      this.storyModal = true;
-    },
-    async deleteStory (id: number) {
-      if (!confirm(t("delete_story"))) return;
-      const res = await $fetch(`/api/stories/${id}`, {
-        method: "DELETE"
-      }).catch(() => null);
-      if (!res) return;
-      this.$emit("delete", id);
-    }
-  }
-};
-</script>

@@ -1,3 +1,71 @@
+<script setup lang="ts">
+const props = defineProps({
+  marker: {
+    type: Object as () => MappedLoveMarker | null,
+    default: () => null
+  }
+});
+
+const emit = defineEmits(["close", "submit"]);
+
+const { $bootstrap, $toasts } = useNuxtApp();
+
+const submitted = ref(false);
+const location = ref("");
+const modal = ref() as Ref<HTMLElement>;
+const { form } = useFormState({
+  lat: null as number | null,
+  lng: null as number | null,
+  group: "" as string | number,
+  title: "",
+  description: "",
+  order: 0
+});
+
+const groupIcon = computed(() => {
+  const groupFound = groups.find((group, i) => i === form.value.group);
+  return groupFound ? groupFound.icon : "solar:question-square-outline";
+});
+
+const selectLocation = ({ lat, lng, label }: { lat: number, lng: number, label: string }) => {
+  form.value.lat = lat;
+  form.value.lng = lng;
+  const address = label.split(", ");
+  form.value.title = address.shift() || "";
+  form.value.description = address.join(", ");
+};
+
+const submitMarker = async () => {
+  if (typeof form.value.lat === "number" && typeof form.value.lng === "number") {
+    submitted.value = true;
+    const marker = await $fetch(props.marker ? `/api/markers/${props.marker.id}` : "/api/markers", {
+      method: props.marker ? "PATCH" : "POST",
+      body: form.value
+    }).catch(() => null);
+    submitted.value = false;
+    if (!marker) return;
+    emit("submit", { marker, edit: Boolean(props.marker) });
+    $toasts.add({ message: props.marker ? t("marker_updated") : t("marker_added"), success: true });
+    $bootstrap.hideModal(modal.value);
+  }
+};
+
+onMounted(() => {
+  if (props.marker) {
+    Object.assign(form, props.marker);
+    location.value = `${props.marker.lat}, ${props.marker.lng}`;
+  }
+  const m = $bootstrap.showModal(modal.value);
+  m.addEventListener("hidden.bs.modal", () => {
+    emit("close", form);
+  });
+});
+
+watch(() => props.marker, (marker) => {
+  if (marker) location.value = `${marker.lat}, ${marker.lng}`;
+});
+</script>
+
 <template>
   <div id="modal" ref="modal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -22,7 +90,7 @@
               <label>{{ t("description") }}</label>
             </div>
             <div class="form-floating mb-2">
-              <Icon :name="groups[form.group] ? groups[form.group].icon : 'solar:question-square-outline'" class="position-absolute top-50 start-0 mx-2 translate-middle-y text-primary z-3" size="2rem" />
+              <Icon :name="groupIcon" class="position-absolute top-50 start-0 mx-2 translate-middle-y text-primary z-3" size="2rem" />
               <select v-model="form.group" class="form-select ps-5" :placeholder="t('group')" required>
                 <option value="" disabled>{{ t("select_group") }}</option>
                 <option v-for="(group, i) of groups" :key="i" :value="i">{{ t(group.key) }}</option>
@@ -42,67 +110,3 @@
     </div>
   </div>
 </template>
-
-<script lang="ts">
-export default {
-  props: {
-    marker: {
-      type: Object as () => MappedLoveMarker | null,
-      default: () => null
-    }
-  },
-  emits: ["close", "submit"],
-  data () {
-    return {
-      submitted: false,
-      location: "",
-      form: {
-        lat: null as number | null,
-        lng: null as number | null,
-        group: "" as number | string,
-        title: "",
-        description: "",
-        order: 0
-      } as MappedLoveMarker
-    };
-  },
-  watch: {
-    marker (marker: MappedLoveMarker) {
-      if (marker) this.location = `${marker.lat}, ${marker.lng}`;
-    }
-  },
-  mounted () {
-    if (this.marker) {
-      Object.assign(this.form, this.marker);
-      this.location = `${this.marker.lat}, ${this.marker.lng}`;
-    }
-    const modal = this.$nuxt.$bootstrap.showModal(this.$refs.modal as HTMLElement);
-    modal.addEventListener("hidden.bs.modal", () => {
-      this.$emit("close", this.form);
-    });
-  },
-  methods: {
-    selectLocation ({ lat, lng, label }: { lat: number, lng: number, label: string }) {
-      this.form.lat = lat;
-      this.form.lng = lng;
-      const address = label.split(", ");
-      this.form.title = address.shift() || "";
-      this.form.description = address.join(", ");
-    },
-    async submitMarker () {
-      if (typeof this.form.lat === "number" && typeof this.form.lng === "number") {
-        this.submitted = true;
-        const marker = await $fetch(this.marker ? `/api/markers/${this.marker.id}` : "/api/markers", {
-          method: this.marker ? "PATCH" : "POST",
-          body: this.form
-        }).catch(() => null);
-        this.submitted = false;
-        if (!marker) return;
-        this.$emit("submit", { marker, edit: Boolean(this.marker) });
-        this.$nuxt.$toasts.add({ message: this.marker ? t("marker_updated") : t("marker_added"), success: true });
-        this.$nuxt.$bootstrap.hideModal(this.$refs.modal as HTMLElement);
-      }
-    }
-  }
-};
-</script>

@@ -1,3 +1,14 @@
+<script setup lang="ts">
+const scrolled = ref(false);
+const maxScroll = 50;
+
+onMounted(() => {
+  onscroll = () => {
+    scrolled.value = (document.body.scrollTop > maxScroll || document.documentElement.scrollTop > maxScroll);
+  };
+});
+</script>
+
 <template>
   <nav class="navbar navbar-expand-md fixed-top" :class="{'bg-body shadow': scrolled}">
     <div class="container-fluid container-md">
@@ -18,7 +29,7 @@
         </div>
         <div class="offcanvas-body">
           <ul class="navbar-nav ms-auto mb-lg-0 gap-md-3">
-            <li v-for="(page, i) of SITE.pages" :key="i" class="nav-item" data-bs-dismiss="offcanvas">
+            <li v-for="(page, i) of SITE.pages.main" :key="i" class="nav-item" data-bs-dismiss="offcanvas">
               <div class="d-grid">
                 <NuxtLink :class="`${page.button ? 'btn btn-primary rounded-pill px-4' : 'nav-link'}`" :to="page.path">{{ t(page.name) }}</NuxtLink>
               </div>
@@ -29,19 +40,3 @@
     </div>
   </nav>
 </template>
-
-<script lang="ts">
-export default {
-  data () {
-    return {
-      scrolled: false,
-      maxScroll: 50
-    };
-  },
-  mounted () {
-    window.onscroll = () => {
-      this.scrolled = (document.body.scrollTop > this.maxScroll || document.documentElement.scrollTop > this.maxScroll);
-    };
-  }
-};
-</script>

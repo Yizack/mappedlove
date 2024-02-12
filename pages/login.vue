@@ -1,5 +1,58 @@
 <script setup lang="ts">
 definePageMeta({ layout: "access", middleware: "authenticated" });
+
+const needsConfirm = ref(false);
+const resent = ref(false);
+const submit = ref({ loading: false, error: false });
+
+const { meta } = useRoute();
+const { $toasts } = useNuxtApp();
+
+const { form } = useFormState({
+  email: meta.email || "",
+  password: "",
+});
+
+const signIn = async () => {
+  resent.value = false;
+  submit.value.loading = true;
+  const login = await $fetch("/api/session", {
+    method: "POST",
+    body: form.value,
+  }).catch(() => null);
+
+  if (!login) {
+    submit.value.error = true;
+    submit.value.loading = false;
+    return;
+  }
+
+  const { confirmed } = login;
+  needsConfirm.value = Boolean(!confirmed);
+
+  if (needsConfirm.value) {
+    submit.value.loading = false;
+    return;
+  }
+
+  navigateTo("/app", { external: true, replace: true });
+};
+
+const resendVerification = async () => {
+  resent.value = true;
+  $toasts.add({ message: t("resent_verification"), success: true });
+  const resend = await $fetch("/api/verify/resend", {
+    method: "POST",
+    body: { email: form.value.email }
+  }).catch(() => null);
+
+  if (!resend) return;
+};
+
+onMounted(() => {
+  if (!meta.email) return;
+  $toasts.add({ message: t("registered"), success: true });
+});
 </script>
 
 <template>
@@ -46,62 +99,3 @@ definePageMeta({ layout: "access", middleware: "authenticated" });
     </section>
   </main>
 </template>
-
-<script lang="ts">
-export default {
-  data () {
-    return {
-      needsConfirm: false,
-      resent: false,
-      submit: {
-        loading: false,
-        error: false
-      },
-      form: {
-        email: this.$route.meta.email || "",
-        password: ""
-      }
-    };
-  },
-  mounted () {
-    if (!this.$route.meta.email) return;
-    this.$nuxt.$toasts.add({ message: t("registered"), success: true });
-  },
-  methods: {
-    async signIn () {
-      this.resent = false;
-      this.submit.loading = true;
-      const login = await $fetch("/api/session", {
-        method: "POST",
-        body: this.form,
-      }).catch(() => null);
-
-      if (!login) {
-        this.submit.error = true;
-        this.submit.loading = false;
-        return;
-      }
-
-      const { confirmed } = login;
-      this.needsConfirm = Boolean(!confirmed);
-
-      if (this.needsConfirm) {
-        this.submit.loading = false;
-        return;
-      }
-
-      navigateTo("/app", { external: true, replace: true });
-    },
-    async resendVerification () {
-      this.resent = true;
-      this.$nuxt.$toasts.add({ message: t("resent_verification"), success: true });
-      const resend = await $fetch("/api/verify/resend", {
-        method: "POST",
-        body: { email: this.form.email }
-      }).catch(() => null);
-
-      if (!resend) return;
-    }
-  }
-};
-</script>

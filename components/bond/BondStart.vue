@@ -1,3 +1,29 @@
+<script setup lang="ts">
+const emit = defineEmits(["bond"]);
+
+const submitted = ref(false);
+const code = ref("");
+
+const createBond = async () => {
+  submitted.value = true;
+  const bond = await $fetch("/api/bond", { method: "POST" }).catch(() => null);
+  submitted.value = false;
+  if (!bond) return;
+  emit("bond", { bond, type: "created" });
+};
+
+const joinBond = async () => {
+  const bond = await $fetch("/api/bond", {
+    method: "PUT",
+    body: {
+      code: code.value
+    }
+  }).catch(() => null);
+  if (!bond) return;
+  emit("bond", { bond, type: "joined" });
+};
+</script>
+
 <template>
   <div class="text-center d-flex flex-column h-100 justify-content-center">
     <div class="col-lg-6 mx-auto">
@@ -33,35 +59,3 @@
     </div>
   </div>
 </template>
-
-<script lang="ts">
-export default {
-  emits: ["bond"],
-  data () {
-    return {
-      submitted: false,
-      joined: false,
-      code: ""
-    };
-  },
-  methods: {
-    async createBond () {
-      this.submitted = true;
-      const bond = await $fetch("/api/bond", { method: "POST" }).catch(() => null);
-      this.submitted = false;
-      if (!bond) return;
-      this.$emit("bond", { bond, type: "created" });
-    },
-    async joinBond () {
-      const bond = await $fetch("/api/bond", {
-        method: "PUT",
-        body: {
-          code: this.code
-        }
-      }).catch(() => null);
-      if (!bond) return;
-      this.$emit("bond", { bond, type: "joined" });
-    }
-  }
-};
-</script>

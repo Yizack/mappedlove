@@ -49,7 +49,7 @@ const canvasBody = ref() as Ref<HTMLElement>;
 
 onMounted(() => {
   isMobile.value = isMobileScreen();
-  window.addEventListener("resize", () => {
+  addEventListener("resize", () => {
     isMobile.value = isMobileScreen();
   });
 

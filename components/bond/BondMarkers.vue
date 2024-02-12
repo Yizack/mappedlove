@@ -1,5 +1,75 @@
 <script setup lang="ts">
 import { VueDraggableNext as Draggable } from "vue-draggable-next";
+
+const props = defineProps({
+  markers: {
+    type: Array as () => MappedLoveMarker[],
+    default: () => []
+  },
+  selected: {
+    type: Number,
+    default: 0
+  }
+});
+
+const emit = defineEmits(["new", "delete", "select" , "edit"]);
+
+const edit = ref(false);
+const markerModal = ref(false);
+const currentMarker = ref<MappedLoveMarker>();
+const drag = ref(false);
+const dragOptions = {
+  animation: 200,
+  group: "description",
+  disabled: false,
+  ghostClass: "ghost"
+};
+
+const markers = ref(props.markers);
+
+const move = async () => {
+  const oldArrange = markers.value.map((marker) => ({ id: marker.id, order: marker.order }));
+  const newArrange = markers.value.map((marker, index) => ({ id: marker.id, order: index }));
+  await $fetch("/api/markers/rearrange", {
+    method: "POST",
+    body: { oldArrange, newArrange }
+  }).catch(() => undefined);
+};
+
+const selectMarker = (id: number) => {
+  animate.value = false;
+  animateElements();
+  emit("select", props.selected === id ? 0 : id);
+};
+
+const editMarker = (marker: MappedLoveMarker) => {
+  currentMarker.value = marker;
+  markerModal.value = true;
+};
+
+const deleteMarker = async (id: number) => {
+  if (!confirm(t("delete_marker"))) return;
+  const res = await $fetch(`/api/markers/${id}`, {
+    method: "DELETE"
+  }).catch(() => ({}));
+
+  if (!("id" in res)) return;
+  if (props.selected === id) emit("select", 0);
+  markers.value = markers.value.filter((marker) => marker.id !== id);
+  emit("delete", id);
+};
+
+const closeModal = () => {
+  markerModal.value = false;
+  currentMarker.value = undefined;
+};
+
+const submitMarker = (marker: any) => emit("new", marker);
+
+watch(() => props.markers, (value) => {
+  markers.value = value;
+  currentMarker.value = markers.value.find((marker) => marker.id === currentMarker.value?.id) || undefined;
+});
 </script>
 
 <template>
@@ -40,83 +110,6 @@ import { VueDraggableNext as Draggable } from "vue-draggable-next";
   <p v-else class="m-0">{{ t("no_markers") }}</p>
   <ModalMarker v-if="markerModal" :marker="currentMarker" @close="closeModal" @submit="submitMarker" />
 </template>
-
-<script lang="ts">
-export default {
-  props: {
-    allMarkers: {
-      type: Array as () => MappedLoveMarker[],
-      default: () => []
-    },
-    selected: {
-      type: Number,
-      default: 0
-    }
-  },
-  emits: ["new", "delete", "select"],
-  data () {
-    return {
-      markers: [] as MappedLoveMarker[],
-      edit: false,
-      markerModal: false,
-      currentMarker: null as MappedLoveMarker | null,
-      drag: false,
-      dragOptions: {
-        animation: 200,
-        group: "description",
-        disabled: false,
-        ghostClass: "ghost"
-      },
-    };
-  },
-  watch: {
-    allMarkers (val) {
-      this.markers = val;
-      this.currentMarker = this.markers.find((marker) => marker.id === this.currentMarker?.id) || null;
-    }
-  },
-  created () {
-    this.markers = this.allMarkers;
-  },
-  methods: {
-    async move () {
-      const oldArrange = this.markers.map((marker) => ({ id: marker.id, order: marker.order }));
-      const newArrange = this.markers.map((marker, index) => ({ id: marker.id, order: index }));
-      await $fetch("/api/markers/rearrange", {
-        method: "POST",
-        body: { oldArrange, newArrange }
-      }).catch(() => undefined);
-    },
-    selectMarker (id: number) {
-      animate.value = false;
-      animateElements();
-      this.$emit("select", this.selected === id ? 0 : id);
-    },
-    editMarker (marker: MappedLoveMarker) {
-      this.currentMarker = marker;
-      this.markerModal = true;
-    },
-    async deleteMarker (id: number) {
-      if (!confirm(t("delete_marker"))) return;
-      const res = await $fetch(`/api/markers/${id}`, {
-        method: "DELETE"
-      }).catch(() => ({}));
-
-      if (!("id" in res)) return;
-      if (this.selected === id) this.$emit("select", 0);
-      this.markers = this.markers.filter((marker) => marker.id !== id);
-      this.$emit("delete", id);
-    },
-    closeModal () {
-      this.markerModal = false;
-      this.currentMarker = null;
-    },
-    submitMarker (event: any) {
-      this.$emit("new", event);
-    }
-  }
-};
-</script>
 
 <style>
 .list-group {

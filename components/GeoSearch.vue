@@ -1,3 +1,67 @@
+<script setup lang="ts">
+const props = defineProps({
+  value: {
+    type: String,
+    default: ""
+  }
+});
+
+const emit = defineEmits(["select"]);
+
+const { $Leaflet } = useNuxtApp();
+
+const search = ref(false);
+const array = ref<Record<string, any>[]>([]);
+const text = ref("");
+const loading = ref(false);
+const selected = ref(false);
+
+const select = (result: any) => {
+  search.value = false;
+  text.value = `${result.y}, ${result.x}`;
+  emit("select", { lat: result.y, lng: result.x, label: result.label });
+  selected.value = true;
+};
+
+const changeLocation = () => {
+  text.value = "";
+  selected.value = false;
+  emit("select", { lat: null, lng: null, label: "" });
+};
+
+const searchPlace = (target: any) => {
+  loading.value = true;
+  search.value = true;
+  const time = 2000;
+  if (!target.value) {
+    emit("select", { lat: null, lng: null, label: "" });
+    return debounce("geosearch", () => {
+      loading.value = false;
+      array.value = [];
+    }, time);
+  }
+  debounce("geosearch", async () => {
+    try {
+      const { user } = useUserSession();
+      array.value = await $Leaflet.geoSearch(target.value, {
+        email: user.value.email,
+        lang: "en"
+      });
+      loading.value = false;
+    }
+    catch {
+      array.value = [];
+      loading.value = false;
+    }
+  }, time);
+};
+
+watch(() => props.value, (val) => {
+  text.value = val;
+  selected.value = true;
+});
+</script>
+
 <template>
   <div class="position-relative">
     <div class="input-group mb-2">
@@ -20,69 +84,3 @@
     </ul>
   </div>
 </template>
-
-<script lang="ts">
-export default {
-  props: {
-    value: {
-      type: String,
-      default: ""
-    }
-  },
-  emits: ["select"],
-  data () {
-    return {
-      search: false,
-      array: [] as Record<string, any>[],
-      text: "",
-      loading: false,
-      selected: false
-    };
-  },
-  watch: {
-    value (val) {
-      this.text = val;
-      this.selected = true;
-    }
-  },
-  methods: {
-    select (result: any) {
-      this.search = false;
-      this.text = `${result.y}, ${result.x}`;
-      this.$emit("select", { lat: result.y, lng: result.x, label: result.label });
-      this.selected = true;
-    },
-    changeLocation () {
-      this.text = "";
-      this.selected = false;
-      this.$emit("select", { lat: null, lng: null, label: "" });
-    },
-    searchPlace (target: any) {
-      this.loading = true;
-      this.search = true;
-      const time = 2000;
-      if (!target.value) {
-        this.$emit("select", { lat: null, lng: null, label: "" });
-        return debounce("geosearch", () => {
-          this.loading = false;
-          this.array = [];
-        }, time);
-      }
-      debounce("geosearch", async () => {
-        try {
-          const { user } = useUserSession();
-          this.array = await this.$nuxt.$Leaflet.geoSearch(target.value, {
-            email: user.value.email,
-            lang: "en"
-          });
-          this.loading = false;
-        }
-        catch {
-          this.array = [];
-          this.loading = false;
-        }
-      }, time);
-    }
-  }
-};
-</script>

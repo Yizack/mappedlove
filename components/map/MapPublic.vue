@@ -1,71 +1,59 @@
+<script setup lang="ts">
+const props = defineProps({
+  bond: {
+    type: Object as () => MappedLovePublicMap,
+    required: true
+  },
+  select: {
+    type: Number,
+    default: 0
+  }
+});
+
+const emit = defineEmits(["moved", "select"]);
+
+const { $Leaflet, $bootstrap } = useNuxtApp();
+const leaflet = ref<InstanceType<typeof $Leaflet>>();
+const markers = ref(props.bond.markers);
+const stories = ref(props.bond.stories);
+const map = ref() as Ref<HTMLElement>;
+
+const addMarker = (marker: MappedLoveMarker) => {
+  const markerStories = stories.value.filter(s => s.marker === marker.id) || [];
+  leaflet.value?.addMarker({
+    position: [marker.lat, marker.lng],
+    popup: storiesCarousel(marker, markerStories, props.bond.code),
+    group: getGroup(marker.group),
+    options: {
+      id: marker.id,
+      draggable: false
+    }
+  }).on("popupopen", (e) => {
+    setTimeout(() => $bootstrap.startAllCarousel());
+    emit("select", e.target.options.id);
+  });
+};
+
+const setView = (latlng: [number, number], zoom?: number) => {
+  leaflet.value?.setView(latlng, zoom);
+};
+
+onMounted(() => {
+  if (!leaflet.value) {
+    leaflet.value = new $Leaflet();
+    leaflet.value.createGroups(getGroups());
+    leaflet.value.createMap(map.value);
+  }
+  for (const marker of markers.value) {
+    addMarker(marker);
+  }
+  const length = markers.value.length;
+  if (length) {
+    setView([markers.value[length - 1].lat, markers.value[length - 1].lng], 3);
+  }
+});
+</script>
+
 <template>
   <div ref="map" class="w-100 h-100 position-absolute" />
 </template>
-
-<script lang="ts">
-export default {
-  props: {
-    bond: {
-      type: Object as () => MappedLovePublicMap,
-      required: true
-    },
-    select: {
-      type: Number,
-      default: 0
-    }
-  },
-  emits: ["moved", "select"],
-  data () {
-    return {
-      map: null as InstanceType<typeof this.$nuxt.$Leaflet> | null,
-      markers: this.bond.markers,
-      stories: this.bond.stories
-    };
-  },
-  watch: {
-    select (id) {
-      const marker = this.map?.getMarker(id);
-      if (marker) {
-        const { lat, lng } = marker.getLatLng();
-        marker.openPopup();
-        this.setView([lat, lng]);
-      }
-    }
-  },
-  mounted () {
-    if (!this.map) {
-      this.map = new this.$nuxt.$Leaflet();
-      this.map.createGroups(getGroups());
-      this.map.createMap(this.$refs.map as HTMLElement);
-    }
-
-    for (const marker of this.markers) {
-      this.addMarker(marker);
-    }
-    const length = this.markers.length;
-    if (length) {
-      this.setView([this.markers[length - 1].lat, this.markers[length - 1].lng], 3);
-    }
-  },
-  methods: {
-    addMarker (marker: any) {
-      const stories = this.stories.filter(s => s.marker === marker.id) || [];
-      this.map?.addMarker({
-        position: [marker.lat, marker.lng],
-        popup: storiesCarousel(marker, stories, this.bond.code),
-        group: getGroup(marker.group),
-        options: {
-          id: marker.id,
-          draggable: false
-        }
-      }).on("popupopen", (e) => {
-        setTimeout(() => this.$nuxt.$bootstrap.startAllCarousel());
-        this.$emit("select", e.target.options.id);
-      });
-    },
-    setView (latlng: [number, number], zoom?: number) {
-      this.map?.setView(latlng, zoom);
-    }
-  }
-};
-</script>

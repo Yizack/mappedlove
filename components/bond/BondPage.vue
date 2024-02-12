@@ -1,5 +1,63 @@
 <script setup lang="ts">
 import VueDatePicker from "@vuepic/vue-datepicker";
+
+const props = defineProps({
+  bond: {
+    type: Object as () => MappedLoveBond,
+    required: true,
+  }
+});
+
+const { $toasts, $bootstrap } = useNuxtApp();
+
+const deleteButton = ref(false);
+const coupleDate = ref(props.bond.coupleDate ? new Date(props.bond.coupleDate) : undefined);
+const cacheDate = ref<Date>();
+const publicBond = ref(Boolean(props.bond.public));
+
+const partner1 = computed(() => props.bond.partner1 as MappedLovePartner);
+const partner2 = computed(() => props.bond.partner2 as MappedLovePartner);
+const togetherFor = computed(() => getTogetherFor(coupleDate.value));
+const publicURL = computed(() => `${SITE.host}/map/${props.bond.code}`);
+
+const deleteDate = () => {
+  if (!confirm(t("delete_anniversary"))) return;
+  coupleDate.value = undefined;
+};
+
+const changePrivacy = async () => {
+  if (publicBond.value && !confirm(t("public_bond_confirm"))) {
+    publicBond.value = false;
+    return;
+  }
+
+  const bond = await $fetch("/api/bond", {
+    method: "PATCH",
+    body: {
+      public: Number(publicBond.value),
+    },
+  }).catch(() => null);
+  if (!bond) return;
+  $toasts.add({ message: t("bond_preferences_update"), success: true });
+};
+
+onMounted(() => {
+  cacheDate.value = coupleDate.value;
+  $bootstrap.initializePopover();
+});
+
+watch(coupleDate, async (val: Date | undefined) => {
+  if (cacheDate.value?.getTime() === val?.getTime()) return;
+  const bond = await $fetch("/api/bond", {
+    method: "PATCH",
+    body: {
+      coupleDate: val ? val.getTime() : null,
+    },
+  }).catch(() => null);
+  cacheDate.value = val;
+  if (!bond) return;
+  $toasts.add({ message: t("anniversary_update"), success: true });
+});
 </script>
 
 <template>
@@ -83,11 +141,11 @@ import VueDatePicker from "@vuepic/vue-datepicker";
       <div class="mt-2 bg-body rounded-3 px-3 py-4 p-lg-4">
         <h3>{{ t("bond_preferences") }}</h3>
         <div class="form-check form-switch d-flex gap-2 align-items-center">
-          <input v-model="public" class="form-check-input" type="checkbox" role="switch" @change="changePrivacy">
+          <input v-model="publicBond" class="form-check-input" type="checkbox" role="switch" @change="changePrivacy">
           <label class="form-check-label">{{ t("public_bond") }}</label>
           <Icon name="solar:question-circle-linear" class="text-primary outline-none" role="button" size="1.3rem" data-bs-toggle="popover" :data-bs-content="t('public_bond_info')" />
         </div>
-        <div v-if="public" class="mt-2">
+        <div v-if="publicBond" class="mt-2">
           <p class="m-0">{{ t("share_bond_info") }}</p>
           <CopyText :text="publicURL" />
         </div>
@@ -95,75 +153,3 @@ import VueDatePicker from "@vuepic/vue-datepicker";
     </div>
   </div>
 </template>
-
-<script lang="ts">
-export default {
-  props: {
-    bond: {
-      type: Object as () => MappedLoveBond,
-      required: true,
-    },
-  },
-  data () {
-    return {
-      deleteButton: false,
-      coupleDate: this.bond.coupleDate ? new Date(this.bond.coupleDate) : null,
-      cacheDate: null as Date | null,
-      public: Boolean(this.bond.public)
-    };
-  },
-  computed: {
-    partner1 () {
-      return this.bond.partner1 as MappedLovePartner;
-    },
-    partner2 () {
-      return this.bond.partner2 as MappedLovePartner;
-    },
-    togetherFor () {
-      return getTogetherFor(this.coupleDate);
-    },
-    publicURL () {
-      return `${SITE.host}/map/${this.bond.code}`;
-    }
-  },
-  watch : {
-    async coupleDate (val: Date | null) {
-      if (this.cacheDate?.getTime() === val?.getTime()) return;
-      const bond = await $fetch("/api/bond", {
-        method: "PATCH",
-        body: {
-          coupleDate: val ? val.getTime() : null,
-        },
-      }).catch(() => null);
-      this.cacheDate = val;
-      if (!bond) return;
-      this.$nuxt.$toasts.add({ message: t("anniversary_update"), success: true });
-    }
-  },
-  mounted () {
-    this.cacheDate = this.coupleDate;
-    this.$nuxt.$bootstrap.initializePopover();
-  },
-  methods: {
-    deleteDate () {
-      if (!confirm(t("delete_anniversary"))) return;
-      this.coupleDate = null;
-    },
-    async changePrivacy () {
-      if (this.public && !confirm(t("public_bond_confirm"))) {
-        this.public = false;
-        return;
-      }
-
-      const bond = await $fetch("/api/bond", {
-        method: "PATCH",
-        body: {
-          public: Number(this.public),
-        },
-      }).catch(() => null);
-      if (!bond) return;
-      this.$nuxt.$toasts.add({ message: t("bond_preferences_update"), success: true });
-    }
-  }
-};
-</script>

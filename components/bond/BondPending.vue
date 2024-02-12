@@ -1,3 +1,20 @@
+<script setup lang="ts">
+defineProps({
+  code: {
+    type: String,
+    required: true
+  }
+});
+
+const emit = defineEmits(["bond"]);
+
+const cancelBond = async () => {
+  const bond = await $fetch("/api/bond", { method: "DELETE" }).catch(() => null);
+  if (!bond) return;
+  emit("bond", { bond: null, type: "cancel" });
+};
+</script>
+
 <template>
   <div class="text-center d-flex flex-column h-100 justify-content-center">
     <div class="col-lg-6 mx-auto">
@@ -14,22 +31,3 @@
     </div>
   </div>
 </template>
-
-<script lang="ts">
-export default {
-  props: {
-    code: {
-      type: String,
-      required: true
-    }
-  },
-  emits: ["bond"],
-  methods: {
-    async cancelBond () {
-      const bond = await $fetch("/api/bond", { method: "DELETE" });
-      if (!bond) return;
-      this.$emit("bond", { bond: null, type: "cancel" });
-    }
-  }
-};
-</script>

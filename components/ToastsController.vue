@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { $toasts, $bootstrap } = useNuxtApp();
 const toasts = $toasts?.getAll() || ref([]);
-const refToasts: Ref<HTMLElement[] | null> = ref(null);
+const refToasts = ref<HTMLElement[]>();
 
 watch(toasts, () => {
   nextTick(() => {
