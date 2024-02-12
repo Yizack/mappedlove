@@ -56,8 +56,9 @@ const searchPlace = (target: any) => {
   }, time);
 };
 
-watch(() => props.value, (val) => {
-  text.value = val;
+onMounted(() => {
+  if (!props.value) return;
+  text.value = props.value;
   selected.value = true;
 });
 </script>

@@ -8,9 +8,13 @@ import Modal from "bootstrap/js/dist/modal";
 import Toast from "bootstrap/js/dist/toast";
 
 class Bootstrap {
-  hideModal (id: HTMLElement) {
-    const instance = Modal.getInstance(id);
-    if (instance) instance.hide();
+  modals = ref<{ id: string; show: boolean }[]>([]);
+  hideModal (id: HTMLElement | string) {
+    const idModal = typeof id === "string" ? `#${id}` : id;
+    const instance = Modal.getInstance(idModal);
+    if (instance) {
+      instance.hide();
+    }
   }
 
   hideModalEscEvent () {
@@ -24,10 +28,17 @@ class Bootstrap {
     });
   }
 
-  showModal (id: HTMLElement) {
-    const modal = new Modal(id);
+  showModal (id: Element | string) {
+    const element = typeof id === "string" ? document.querySelector(`#${id}`) : id;
+    if (!element) return;
+    const instance = Modal.getInstance(element);
+    if (instance) {
+      instance.show();
+      return element;
+    }
+    const modal = new Modal(element);
     modal.show();
-    return id;
+    return element;
   }
 
   showToast (id: HTMLElement) {

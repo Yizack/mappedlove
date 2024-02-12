@@ -89,3 +89,7 @@ export const isDarkMode = () => {
   const { $colorMode } = useNuxtApp();
   return $colorMode.preference === "dark";
 };
+
+export const sleep = (ms?: number) => {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};

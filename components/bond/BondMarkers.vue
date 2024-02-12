@@ -13,10 +13,9 @@ const props = defineProps({
 });
 
 const emit = defineEmits(["new", "delete", "select" , "edit"]);
+const { $bootstrap, $toasts } = useNuxtApp();
 
 const edit = ref(false);
-const markerModal = ref(false);
-const currentMarker = ref<MappedLoveMarker>();
 const drag = ref(false);
 const dragOptions = {
   animation: 200,
@@ -24,6 +23,20 @@ const dragOptions = {
   disabled: false,
   ghostClass: "ghost"
 };
+
+const submitted = ref(false);
+const modal = ref() as Ref<HTMLElement>;
+const showModal = ref(false);
+const { form, formReset } = useFormState({
+  id: 0 as number,
+  lat: null as number | null,
+  lng: null as number | null,
+  group: "" as string | number,
+  title: "",
+  description: "",
+  order: 0,
+  location: ""
+});
 
 const markers = ref(props.markers);
 
@@ -42,9 +55,15 @@ const selectMarker = (id: number) => {
   emit("select", props.selected === id ? 0 : id);
 };
 
-const editMarker = (marker: MappedLoveMarker) => {
-  currentMarker.value = marker;
-  markerModal.value = true;
+const markerModal = (marker?: MappedLoveMarker) => {
+  if (!marker) formReset();
+  else {
+    form.value = {
+      ...marker,
+      location: `${marker.lat}, ${marker.lng}`
+    };
+  }
+  useModalController("marker", (show) => showModal.value = show);
 };
 
 const deleteMarker = async (id: number) => {
@@ -59,16 +78,37 @@ const deleteMarker = async (id: number) => {
   emit("delete", id);
 };
 
-const closeModal = () => {
-  markerModal.value = false;
-  currentMarker.value = undefined;
+const groupIcon = computed(() => {
+  const groupFound = groups.find((group, i) => i === form.value.group);
+  return groupFound ? groupFound.icon : "solar:question-square-outline";
+});
+
+const selectLocation = ({ lat, lng, label }: { lat: number, lng: number, label: string }) => {
+  form.value.lat = lat;
+  form.value.lng = lng;
+  const address = label.split(", ");
+  form.value.title = address.shift() || "";
+  form.value.description = address.join(", ");
 };
 
-const submitMarker = (marker: any) => emit("new", marker);
+const submitMarker = async (marker: any) => {
+  if (typeof form.value.lat === "number" && typeof form.value.lng === "number") {
+    submitted.value = true;
+    const marker = await $fetch(form.value.id ? `/api/markers/${form.value.id}` : "/api/markers", {
+      method: form.value.id ? "PATCH" : "POST",
+      body: form.value
+    }).catch(() => null);
+    submitted.value = false;
+    if (!marker) return;
+    emit("new", { marker, edit: Boolean(form.value.id) });
+    $toasts.add({ message: form.value.id ? t("marker_updated") : t("marker_added"), success: true });
+    $bootstrap.hideModal(modal.value);
+  }
+  emit("new", marker);
+};
 
 watch(() => props.markers, (value) => {
   markers.value = value;
-  currentMarker.value = markers.value.find((marker) => marker.id === currentMarker.value?.id) || undefined;
 });
 </script>
 
@@ -76,7 +116,7 @@ watch(() => props.markers, (value) => {
   <div class="position-relative d-flex align-items-center gap-2 mb-2">
     <Icon class="text-primary" name="solar:map-point-favourite-bold" size="2rem" />
     <h2 class="m-0">{{ t("markers") }}</h2>
-    <ButtonAdd @click="markerModal = true" />
+    <ButtonAdd @click="markerModal()" />
     <button v-if="markers.length" type="button" class="btn btn-primary btn-lg ms-auto rounded-pill" @click="edit = !edit">{{ edit ? t("done") : t("edit") }}</button>
   </div>
   <Draggable v-if="markers.length" v-model="markers" class="row g-2" item-key="id" v-bind="dragOptions" :disabled="!edit" @change="move" @start="drag = true" @end="drag = false">
@@ -96,7 +136,7 @@ watch(() => props.markers, (value) => {
         </div>
         <Transition name="fade" mode="out-in">
           <div v-if="edit" class="d-grid gap-1">
-            <button class="btn btn-sm btn-primary" @click="editMarker(marker)">
+            <button class="btn btn-sm btn-primary" @click="markerModal(marker)">
               <Icon name="solar:pen-linear" size="1.5rem" />
             </button>
             <button class="btn btn-sm btn-danger" @click="deleteMarker(marker.id)">
@@ -108,7 +148,38 @@ watch(() => props.markers, (value) => {
     </TransitionGroup>
   </Draggable>
   <p v-else class="m-0">{{ t("no_markers") }}</p>
-  <ModalMarker v-if="markerModal" :marker="currentMarker" @close="closeModal" @submit="submitMarker" />
+  <ModalController v-if="showModal" id="marker" :title="t('marker')" lg>
+    <form @submit.prevent="submitMarker">
+      <div class="d-flex align-items-center gap-2 mb-2">
+        <Icon name="solar:info-circle-linear" class="text-primary flex-shrink-0" />
+        <p class="m-0">{{ t("location_info") }}</p>
+      </div>
+      <GeoSearch class="mb-2" :value="form.location" @select="selectLocation" />
+      <div class="form-floating mb-2">
+        <input v-model.trim="form.title" type="text" class="form-control" :placeholder="t('title')" required>
+        <label>{{ t("title") }}</label>
+      </div>
+      <div class="form-floating mb-2">
+        <textarea v-model.trim="form.description" type="text" class="form-control" :placeholder="t('description')" :style="{height: '100px'}" />
+        <label>{{ t("description") }}</label>
+      </div>
+      <div class="form-floating mb-2">
+        <Icon :name="groupIcon" class="position-absolute top-50 start-0 mx-2 translate-middle-y text-primary z-3" size="2rem" />
+        <select v-model="form.group" class="form-select ps-5" :placeholder="t('group')" required>
+          <option value="" disabled>{{ t("select_group") }}</option>
+          <option v-for="(group, i) of groups" :key="i" :value="i">{{ t(group.key) }}</option>
+        </select>
+        <label class="ps-5 ms-1">{{ t("group") }}</label>
+      </div>
+      <div class="d-flex justify-content-between gap-2">
+        <button type="button" class="btn btn-secondary btn-lg w-100" data-bs-dismiss="modal">{{ t("cancel") }}</button>
+        <button type="submit" class="btn btn-primary btn-lg w-100" :disabled="submitted">
+          <SpinnerCircle v-if="submitted" class="text-light" />
+          <span v-else>{{ form.id ? t("edit_marker") : t("add_marker") }}</span>
+        </button>
+      </div>
+    </form>
+  </ModalController>
 </template>
 
 <style>
