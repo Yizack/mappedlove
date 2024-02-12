@@ -24,7 +24,6 @@ body {
 :root {
   --bs-body-font-family: fredoka;
 
-  scrollbar-color: var(--bs-primary) var(--bs-secondary);
   scrollbar-width: auto;
   scroll-behavior: unset;
 }
@@ -34,6 +33,7 @@ body {
 }
 
 *::-webkit-scrollbar-track {
+  border-radius: 8px;
   background-color: var(--bs-secondary);
 }
 
