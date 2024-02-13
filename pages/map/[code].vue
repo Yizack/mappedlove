@@ -53,7 +53,10 @@ const showModal = ref(false);
 const openStory = (story: MappedLoveStory) => {
   currentStory.value = story;
   if (isMobile.value) expandCanvas.value = false;
-  useModalController("story", (show) => showModal.value = show, () => {
+  useModalController("story", (show) => {
+    showModal.value = show;
+    if (!show) currentStory.value = undefined;
+  }, () => {
     document.querySelector(".modal-backdrop")?.classList.add("modal-map-backdrop");
   });
 };
