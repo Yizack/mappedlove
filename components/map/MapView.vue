@@ -92,5 +92,5 @@ defineExpose({ removeMarker, addMarker, setView });
 </script>
 
 <template>
-  <div ref="map" class="w-100 rounded-3 shadow-sm border bg-body" :style="{ height: size }" />
+  <div ref="map" class="w-100 shadow-sm bg-body" :style="{ height: size }" />
 </template>
