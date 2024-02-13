@@ -20,6 +20,8 @@
 @media screen and (width <= 768px) {
   .modal-map .modal-dialog {
     width: 100%;
+    height: calc(100% - 29vh);
+    min-height: 0;
   }
 
   .map-img {
