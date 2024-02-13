@@ -42,6 +42,7 @@ export const storiesByYear = (stories: MappedLoveStory[], year: number) => {
 export const getStoryImageTransform = (storyId: number, code?: string) => {
   const { user } = useUserSession();
   const bondCode = code || user.value.bond?.code;
+  if (process.dev) return `/uploads/stories/${bondCode}-${storyId}`;
   return `https://res.cloudinary.com/dyxajqsia/image/upload/stories/${bondCode}-${storyId}`;
 };
 
