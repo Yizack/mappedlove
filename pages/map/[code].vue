@@ -52,6 +52,7 @@ const showModal = ref(false);
 
 const openStory = (story: MappedLoveStory) => {
   currentStory.value = story;
+  if (isMobile.value) expandCanvas.value = false;
   useModalController("story", (show) => showModal.value = show, () => {
     document.querySelector(".modal-backdrop")?.classList.add("modal-map-backdrop");
   });
@@ -66,10 +67,6 @@ onMounted(() => {
   mapInfo.value.addEventListener("hide.bs.offcanvas", () => {
     $bootstrap.hideAllModals();
   });
-
-  canvasBody.value.addEventListener("touchstart", () => {
-    if (!expandCanvas.value) expandCanvas.value = true;
-  }, { passive: true });
 
   const touch = {
     startY: 0,
@@ -98,14 +95,15 @@ onMounted(() => {
 onBeforeUnmount(() => {
   canvasHeader.value.removeEventListener("touchstart", () => {}, false);
   canvasHeader.value.removeEventListener("touchend", () => {}, false);
-  mapInfo.value.removeEventListener("touchstart", () => {}, false);
+  canvasBody.value.removeEventListener("touchstart", () => {}, false);
+  mapInfo.value.removeEventListener("hide.bs.offcanvas", () => {}, false);
 });
 </script>
 
 <template>
   <div v-if="bond">
     <MapPublic ref="map" :bond="bond" :select="selected" @select="onSelect" />
-    <div id="mapInfo" ref="mapInfo" class="offcanvas shadow" :class="isMobile ? 'offcanvas-bottom' : 'offcanvas-start'" data-bs-backdrop="false" tabindex="-1" aria-labelledby="mapInfoLabel" :style="{height: expandCanvas || !isMobile ? '100vh' : '30vh'}">
+    <div id="mapInfo" ref="mapInfo" class="offcanvas shadow" :class="isMobile ? 'offcanvas-bottom' : 'offcanvas-start'" data-bs-backdrop="false" tabindex="-1" aria-labelledby="mapInfoLabel" :style="{ height: expandCanvas || !isMobile ? '100vh' : '30vh' }">
       <div ref="canvasHeader" class="offcanvas-header">
         <h5 id="mapInfoLabel" class="offcanvas-title d-flex align-items-center">
           <Icon name="solar:map-point-favourite-bold" class="text-primary flex-shrink-0" size="2rem" />
@@ -152,12 +150,10 @@ onBeforeUnmount(() => {
                       <button class="accordion-button rounded-3 px-3 py-2" type="button" data-bs-toggle="collapse" :data-bs-target="`#flush-collapse-${i}`" aria-expanded="false" aria-controls="flush-collapseOne"><h5 class="m-0">{{ year }}</h5></button>
                     </h5>
                     <div :id="`flush-collapse-${i}`" class="accordion-collapse py-2 show">
-                      <MasonryWall :items="storiesByYear(storiesFiltered, year)" :ssr-columns="1" :gap="4" :max-columns="1" :column-width="200">
+                      <MasonryWall :items="storiesByYear(storiesFiltered, year)" :ssr-columns="1" :gap="4" :max-columns="2" :column-width="150">
                         <template #default="{ item: story }">
-                          <div class="card h-100">
-                            <div role="button" @click="openStory(story)">
-                              <img :src="`${getStoryImage(story.id, bond.code)}?updated=${story.updatedAt}`" class="card-img-top">
-                            </div>
+                          <div class="card h-100 border-2" :class="{ 'border-primary': currentStory?.id === story.id }" role="button" @click="openStory(story)">
+                            <img :src="`${getStoryImage(story.id, bond.code)}?updated=${story.updatedAt}`" class="card-img-top">
                             <div class="card-footer">
                               <small class="text-body-secondary">
                                 <span>{{ story.year }}</span>
