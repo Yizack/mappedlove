@@ -8,13 +8,14 @@ export const useFormState = <T extends Record<string, unknown>>(initialState: T)
   return { form, formReset };
 };
 
-export const useModalController = async (id: string, show?: (value: boolean) => void) => {
+export const useModalController = async (id: string, show?: (value: boolean) => void, callback?: () => void) => {
   const { $bootstrap } = useNuxtApp();
   if (show) show(true);
   await sleep(100);
   const element = $bootstrap.showModal(id);
   if (!element) return;
   if (show) {
+    if (callback) callback();
     const hideEvent = () => {
       show(false);
       element.removeEventListener("hidden.bs.modal", hideEvent);

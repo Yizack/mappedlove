@@ -6,6 +6,7 @@ definePageMeta({ layout: "map" });
 const { params } = useRoute();
 
 const { data: bond } = await useFetch(`/api/bond/public/${params.code}`);
+const { $bootstrap } = useNuxtApp();
 
 if (!bond.value) {
   throw createError({
@@ -17,8 +18,8 @@ if (!bond.value) {
 
 const selected = ref(0);
 const mapInfo = ref() as Ref<HTMLElement>;
-const marker = ref() as Ref<MappedLoveMarker | undefined>;
-const stories = ref() as Ref<MappedLoveStory[]>;
+const marker = ref<MappedLoveMarker>();
+const stories = ref<MappedLoveStory[]>();
 const filter = ref({
   year: 0
 });
@@ -34,7 +35,7 @@ const onSelect = (id: number) => {
 
 const storiesFiltered = computed(() => {
   if (!filter.value.year) return stories.value;
-  return stories.value.filter((story) => story.year === filter.value.year);
+  return stories.value?.filter((story) => story.year === filter.value.year);
 });
 
 const clearFilter = () => {
@@ -46,11 +47,24 @@ const isMobile = ref(false);
 const expandCanvas = ref(false);
 const canvasHeader = ref() as Ref<HTMLElement>;
 const canvasBody = ref() as Ref<HTMLElement>;
+const currentStory = ref<MappedLoveStory>();
+const showModal = ref(false);
+
+const openStory = (story: MappedLoveStory) => {
+  currentStory.value = story;
+  useModalController("story", (show) => showModal.value = show, () => {
+    document.querySelector(".modal-backdrop")?.classList.add("modal-map-backdrop");
+  });
+};
 
 onMounted(() => {
   isMobile.value = isMobileScreen();
   addEventListener("resize", () => {
     isMobile.value = isMobileScreen();
+  });
+
+  mapInfo.value.addEventListener("hide.bs.offcanvas", () => {
+    $bootstrap.hideAllModals();
   });
 
   canvasBody.value.addEventListener("touchstart", () => {
@@ -128,7 +142,7 @@ onBeforeUnmount(() => {
               </ClientOnly>
             </div>
           </div>
-          <div class="p-3">
+          <div v-if="storiesFiltered" class="p-3">
             <h5 class="mb-3">{{ t("stories") }} <span class="badge bg-primary rounded-pill">{{ storiesFiltered.length }}</span></h5>
             <Transition name="tab">
               <div v-if="storiesFiltered.length" id="accordionStories" class="accordion accordion-flush rounded">
@@ -141,7 +155,7 @@ onBeforeUnmount(() => {
                       <MasonryWall :items="storiesByYear(storiesFiltered, year)" :ssr-columns="1" :gap="4" :max-columns="1" :column-width="200">
                         <template #default="{ item: story }">
                           <div class="card h-100">
-                            <div role="button">
+                            <div role="button" @click="openStory(story)">
                               <img :src="`${getStoryImage(story.id, bond.code)}?updated=${story.updatedAt}`" class="card-img-top">
                             </div>
                             <div class="card-footer">
@@ -162,5 +176,8 @@ onBeforeUnmount(() => {
         </div>
       </div>
     </div>
+    <ModalController v-if="showModal && currentStory" id="story" fullscreen map>
+      <img :src="`${getStoryImage(currentStory.id, bond.code)}?updated=${currentStory.updatedAt}`" class="map-img shadow-lg">
+    </ModalController>
   </div>
 </template>

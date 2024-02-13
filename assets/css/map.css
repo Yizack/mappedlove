@@ -1,0 +1,29 @@
+.modal-map-backdrop {
+  --bs-backdrop-zindex: 1029;
+}
+
+.modal-map {
+  z-index: 1030;
+}
+
+.modal-map .modal-dialog {
+  position: fixed;  
+  width: calc(100% - 399px);
+  top: 0;
+  right: 0;
+}
+
+.map-img {
+  height: 100%;
+}
+
+@media screen and (width <= 768px) {
+  .modal-map .modal-dialog {
+    width: 100%;
+  }
+
+  .map-img {
+    height: unset;
+    width: 100%;
+  }
+}
