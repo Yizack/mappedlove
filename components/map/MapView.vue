@@ -57,7 +57,7 @@ const addMarker = (marker: MappedLoveMarker) => {
   }).on("popupopen", (e) => {
     setTimeout(() => $bootstrap.startAllCarousel());
     emit("select", e.target.options.id);
-  });
+  }).on("popupclose", () => emit("select", 0));
 };
 
 const setView = (latlng: [number, number], zoom?: number) => {
@@ -92,5 +92,5 @@ defineExpose({ removeMarker, addMarker, setView });
 </script>
 
 <template>
-  <div ref="map" class="w-100 rounded-3 shadow-sm border bg-body" :style="{height: size}" />
+  <div ref="map" class="w-100 rounded-3 shadow-sm border bg-body" :style="{ height: size }" />
 </template>

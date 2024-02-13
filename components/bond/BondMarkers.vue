@@ -25,7 +25,6 @@ const dragOptions = {
 };
 
 const submitted = ref(false);
-const modal = ref() as Ref<HTMLElement>;
 const showModal = ref(false);
 const { form, formReset } = useFormState({
   id: 0 as number,
@@ -91,20 +90,18 @@ const selectLocation = ({ lat, lng, label }: { lat: number, lng: number, label: 
   form.value.description = address.join(", ");
 };
 
-const submitMarker = async (marker: any) => {
-  if (typeof form.value.lat === "number" && typeof form.value.lng === "number") {
-    submitted.value = true;
-    const marker = await $fetch(form.value.id ? `/api/markers/${form.value.id}` : "/api/markers", {
-      method: form.value.id ? "PATCH" : "POST",
-      body: form.value
-    }).catch(() => null);
-    submitted.value = false;
-    if (!marker) return;
-    emit("new", { marker, edit: Boolean(form.value.id) });
-    $toasts.add({ message: form.value.id ? t("marker_updated") : t("marker_added"), success: true });
-    $bootstrap.hideModal(modal.value);
-  }
-  emit("new", marker);
+const submitMarker = async () => {
+  if (typeof form.value.lat !== "number" && typeof form.value.lng !== "number") return;
+  submitted.value = true;
+  const marker = await $fetch(form.value.id ? `/api/markers/${form.value.id}` : "/api/markers", {
+    method: form.value.id ? "PATCH" : "POST",
+    body: form.value
+  }).catch(() => null);
+  submitted.value = false;
+  if (!marker) return;
+  emit("new", { marker, edit: Boolean(form.value.id) });
+  $toasts.add({ message: form.value.id ? t("marker_updated") : t("marker_added"), success: true });
+  $bootstrap.hideModal("marker");
 };
 
 watch(() => props.markers, (value) => {
