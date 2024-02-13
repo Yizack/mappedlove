@@ -21,6 +21,7 @@ export default eventHandler(async (event) : Promise<MappedLoveStory> => {
   const insert = await DB.insert(tables.stories).values({
     marker: Number(form.marker),
     bond: user.bond.id,
+    user: user.id,
     description: form.description,
     year: Number(form.year),
     month: Number(form.month),
