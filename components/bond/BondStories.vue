@@ -84,6 +84,10 @@ const submitStory = async () => {
   $toasts.add({ message: story ? t("story_updated") : t("story_added"), success: true });
   $bootstrap.hideModal("story");
 };
+
+watch(() => props.marker, () => {
+  form.value.marker = props.marker.id;
+});
 </script>
 
 <template>
