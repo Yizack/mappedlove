@@ -71,9 +71,18 @@ class Bootstrap {
   }
 
   showOffcanvas (id: HTMLElement) {
+    const instance = Offcanvas.getInstance(id);
+    if (instance) return;
     const offcanvas = new Offcanvas(id);
     offcanvas.show();
     return id;
+  }
+
+  hideOffcanvas (id: HTMLElement) {
+    const instance = Offcanvas.getInstance(id);
+    if (instance) {
+      instance.hide();
+    }
   }
 }
 

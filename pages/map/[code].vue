@@ -100,6 +100,7 @@ onBeforeUnmount(() => {
   canvasHeader.value.removeEventListener("touchend", () => {}, false);
   canvasBody.value.removeEventListener("touchstart", () => {}, false);
   mapInfo.value.removeEventListener("hide.bs.offcanvas", () => {}, false);
+  $bootstrap.hideOffcanvas(mapInfo.value);
 });
 </script>
 
