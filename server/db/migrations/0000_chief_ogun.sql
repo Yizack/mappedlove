@@ -36,7 +36,8 @@ CREATE TABLE `stories` (
 	`created_at` integer NOT NULL,
 	`updated_at` integer NOT NULL,
 	FOREIGN KEY (`marker`) REFERENCES `markers`(`id`) ON UPDATE no action ON DELETE cascade,
-	FOREIGN KEY (`user`) REFERENCES `bonds`(`id`) ON UPDATE no action ON DELETE cascade
+	FOREIGN KEY (`user`) REFERENCES `bonds`(`id`) ON UPDATE no action ON DELETE cascade,
+	FOREIGN KEY (`user`) REFERENCES `users`(`id`) ON UPDATE no action ON DELETE cascade
 );
 --> statement-breakpoint
 CREATE TABLE `users` (
@@ -45,7 +46,6 @@ CREATE TABLE `users` (
 	`password` text NOT NULL,
 	`name` text NOT NULL,
 	`country` text,
-	`address` text,
 	`birth_date` integer,
 	`show_avatar` integer DEFAULT 0 NOT NULL,
 	`confirm_code` text NOT NULL,

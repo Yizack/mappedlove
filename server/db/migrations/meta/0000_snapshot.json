@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "sqlite",
-  "id": "6a80a9e0-5179-489b-ba6a-0389b67182a7",
+  "id": "253ea184-2fab-4b36-bcd6-ba21a8ef9e2b",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "bonds": {
@@ -296,6 +296,19 @@
           ],
           "onDelete": "cascade",
           "onUpdate": "no action"
+        },
+        "stories_user_users_id_fk": {
+          "name": "stories_user_users_id_fk",
+          "tableFrom": "stories",
+          "tableTo": "users",
+          "columnsFrom": [
+            "user"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {},
@@ -334,13 +347,6 @@
         },
         "country": {
           "name": "country",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "address": {
-          "name": "address",
           "type": "text",
           "primaryKey": false,
           "notNull": false,

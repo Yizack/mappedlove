@@ -26,7 +26,6 @@ export const bonds = sqliteTable("bonds", {
   updatedAt: integer("updated_at").notNull(),
 });
 
-
 export const markers = sqliteTable("markers", {
   id: integer("id").primaryKey(),
   lat: integer("lat").notNull(),
@@ -44,6 +43,7 @@ export const stories = sqliteTable("stories", {
   id: integer("id").primaryKey(),
   marker: integer("marker").notNull().references(() => markers.id, { onDelete: "cascade" }),
   bond: integer("user").notNull().references(() => bonds.id, { onDelete: "cascade" }),
+  user: integer("user").notNull().references(() => users.id, { onDelete: "cascade" }),
   description: text("description").notNull().default(""),
   year: integer("year").notNull().default(0),
   month: integer("month").notNull().default(0),
