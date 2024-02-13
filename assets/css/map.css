@@ -8,7 +8,7 @@
 
 .modal-map .modal-dialog {
   position: fixed;  
-  width: calc(100% - 399px);
+  width: calc(100% - 400px + 1px);
   top: 0;
   right: 0;
 }
@@ -20,7 +20,7 @@
 @media screen and (width <= 768px) {
   .modal-map .modal-dialog {
     width: 100%;
-    height: calc(100% - 29vh);
+    height: calc(100% - 30vh + 1px);
     min-height: 0;
   }
 
