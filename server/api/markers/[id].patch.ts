@@ -7,7 +7,13 @@ export default eventHandler(async (event) : Promise<MappedLoveMarker> => {
   const marker = await readBody(event);
   const DB = useDb();
   return DB.update(tables.markers).set({
-    ...marker,
+    lat: marker.lat,
+    lng: marker.lng,
+    group: marker.group,
+    bond: user.bond.id,
+    title: marker.title,
+    description: marker.description,
+    order: marker.order,
     updatedAt: Date.now()
   }).where(and(eq(tables.markers.id, Number(id)), eq(tables.markers.bond, user.bond.id))).returning().get();
 });
