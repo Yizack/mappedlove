@@ -1,12 +1,8 @@
 <script setup lang="ts">
 const props = defineProps({
   marker: {
-    type: Object as () => MappedLoveMarker,
+    type: Object as () => MappedLoveSelectedMarker,
     default: () => null
-  },
-  stories: {
-    type: Array as () => MappedLoveStory[],
-    default: () => []
   }
 });
 
@@ -41,7 +37,10 @@ const { form, formReset } = useFormState({
 });
 
 const storyModal = (story?: MappedLoveStory) => {
-  if (!story) formReset();
+  if (!story) {
+    formReset();
+    form.value.marker = props.marker.id;
+  }
   else form.value = { ...story };
   useModalController("story", (show) => showModal.value = show);
 };
@@ -80,8 +79,8 @@ const submitStory = async () => {
   }).catch(() => null);
   submitted.value = false;
   if (!story) return;
-  emit("new", { story, edit: Boolean(story) });
-  $toasts.add({ message: story ? t("story_updated") : t("story_added"), success: true });
+  emit("new", { story, edit: Boolean(form.value.id) });
+  $toasts.add({ message: form.value.id ? t("story_updated") : t("story_added"), success: true });
   $bootstrap.hideModal("story");
 };
 
@@ -103,15 +102,15 @@ watch(() => props.marker, () => {
   </Transition>
   <Transition name="fade" mode="out-in">
     <p v-if="!marker.id" class="m-0">{{ t("select_marker_story") }}</p>
-    <p v-else-if="!stories.length" class="m-0">{{ t("no_stories") }}</p>
+    <p v-else-if="!marker.stories.length" class="m-0">{{ t("no_stories") }}</p>
     <div v-else-if="animate">
       <div id="accordionStories" class="accordion accordion-flush">
-        <div v-for="(year, i) of yearsFromStories(stories)" :key="i" class="accordion-item">
+        <div v-for="(year, i) of yearsFromStories(marker.stories)" :key="i" class="accordion-item">
           <h2 class="accordion-header">
             <button class="accordion-button rounded-3 px-3" type="button" data-bs-toggle="collapse" :data-bs-target="`#flush-collapse-${i}`" aria-expanded="false" aria-controls="flush-collapseOne"><h5 class="m-0">{{ year }}</h5></button>
           </h2>
           <div :id="`flush-collapse-${i}`" class="accordion-collapse py-2 show">
-            <MasonryWall :items="storiesByYear(stories, year)" :ssr-columns="1" :gap="8" :max-columns="4" :column-width="200">
+            <MasonryWall :items="storiesByYear(marker.stories, year)" :ssr-columns="1" :gap="8" :max-columns="4" :column-width="200">
               <template #default="{ item: story }">
                 <div class="card h-100" @mouseenter="deleteButton[story.id] = true" @mouseleave="deleteButton[story.id] = false">
                   <div role="button">

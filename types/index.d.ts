@@ -62,4 +62,7 @@ declare global {
     markers: MappedLoveMarker[];
     stories: MappedLoveStory[];
   }
+  interface MappedLoveSelectedMarker extends MappedLoveMarker {
+    stories: MappedLoveStory[];
+  }
 }

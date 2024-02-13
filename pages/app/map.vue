@@ -81,7 +81,7 @@ const selectMarker = (id: number) => {
       </div>
       <div class="col-12 col-xl-7">
         <div class="bg-body rounded-3 px-3 py-4 p-lg-4 h-100">
-          <BondStories :marker="selectedMarker" :stories="selectedMarker.stories" @new="newStory" @delete="removeStory" />
+          <BondStories :marker="selectedMarker" @new="newStory" @delete="removeStory" />
         </div>
       </div>
     </div>
