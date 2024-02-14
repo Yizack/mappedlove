@@ -27,7 +27,6 @@ const currentYear = new Date().getFullYear();
 
 const onSelect = (id: number) => {
   selected.value = id;
-  const { $bootstrap } = useNuxtApp();
   $bootstrap.showOffcanvas(mapInfo.value);
   marker.value = bond.value?.markers.find((marker) => marker.id === id);
   stories.value = bond.value?.stories.filter((story) => story.marker === id) || [];
