@@ -12,20 +12,24 @@ const verified = ref(false);
 const { params, meta } = useRoute();
 const emailCode = ref(params.email.toString());
 const code = ref(params.code.toString());
+const email = ref("");
+try {
+  email.value = atob(emailCode.value);
+}
+catch (e) {
+  throw createError({
+    statusCode: 400,
+    message: "Invalid email code",
+    fatal: true
+  });
+}
 
 const verifyEmail = async () => {
-  let email = "";
-  try {
-    email = atob(emailCode.value);
-  }
-  catch (e) {
-    return;
-  }
-  if (!email) return;
+  if (!email.value) return;
   const user = await $fetch("/api/verify", {
     method: "POST",
     body: {
-      email: email,
+      email: email.value,
       code: code.value
     }
   }).catch(() => null);

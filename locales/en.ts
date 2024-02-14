@@ -166,4 +166,14 @@ export default {
   name_required: "Name is required",
   account_saved: "Account details have been saved",
   password_error: "Current password does not match",
+  // Recovery
+  recovery_title: "Getting back into your account",
+  recovery_description: "Tell us some information about your account.",
+  remembered_password: "Remembered your password?",
+  recovery_email: "Recovery email sent",
+  recovery_email_info: "A recovery email has been sent to your inbox, follow the instructions to reset your password.",
+  recovery_code: "Recovery code",
+  reset_password: "Reset password",
+  invalid_recovery: "Invalid recovery code",
+  continue: "Continue"
 };

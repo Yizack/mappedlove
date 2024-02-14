@@ -75,7 +75,7 @@ onMounted(() => {
             <label class="form-label">{{ t("password") }}</label>
           </div>
           <div class="mb-2">
-            <NuxtLink to="/account">{{ t("forgot_password") }}</NuxtLink>
+            <NuxtLink to="/recovery">{{ t("forgot_password") }}</NuxtLink>
           </div>
           <div class="d-grid">
             <button class="btn btn-primary btn-lg rounded-pill" type="submit" :disabled="submit.loading">

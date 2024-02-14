@@ -1,4 +1,11 @@
 <script setup lang="ts">
+defineProps({
+  sticky: {
+    type: Boolean,
+    default: false
+  },
+});
+
 const scrolled = ref(false);
 const maxScroll = 50;
 
@@ -10,13 +17,13 @@ onMounted(() => {
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-md fixed-top" :class="{'bg-body shadow': scrolled}">
+  <nav class="navbar navbar-expand-md" :class="{ 'bg-body shadow': scrolled || sticky, 'sticky-top': sticky, 'fixed-top': !sticky }">
     <div class="container-fluid container-md">
       <button class="navbar-toggler border-0 rounded-pill" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon" />
       </button>
-      <NuxtLink :class="`navbar-brand ms-2 ms-md-0 me-auto d-flex align-items-center gap-1 ${scrolled ? 'text-body' : 'text-dark'}`" to="/">
-        <Icon :class="`${scrolled ? 'text-primary' : 'text-dark'}`" name="solar:map-point-favourite-bold" />
+      <NuxtLink :class="`navbar-brand ms-2 ms-md-0 me-auto d-flex align-items-center gap-1 ${scrolled || sticky ? 'text-body' : 'text-dark'}`" to="/">
+        <Icon :class="`${scrolled || sticky ? 'text-primary' : 'text-dark'}`" name="solar:map-point-favourite-bold" />
         {{ SITE.name }}
       </NuxtLink>
       <div id="offcanvasNavbar" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvasNavbarLabel">

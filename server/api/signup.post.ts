@@ -38,7 +38,7 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const fields = [user.email, user.updatedAt];
+  const fields = [user.id, user.email, user.updatedAt];
   const code = hash(fields.join(""), config.secure.salt);
 
   const url = process.dev ? "http://localhost:5173" : "https://mappedlove.com";
@@ -49,7 +49,7 @@ export default defineEventHandler(async (event) => {
   const html = Mustache.render(templates.verifyAccount, template_strings);
 
   await sendMail(config, {
-    to: { email, name: user.name},
+    to: { email, name: user.name },
     subject: "Verify your email address",
     html
   });

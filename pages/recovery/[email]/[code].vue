@@ -1,0 +1,76 @@
+<script setup lang="ts">
+definePageMeta({ layout: "utils" });
+
+const { params } = useRoute();
+const { $toasts } = useNuxtApp();
+
+const emailCode = ref(params.email.toString());
+const code = ref(params.code.toString());
+const submit = ref({ loading: false, error: false });
+
+const email = ref("");
+try {
+  email.value = atob(emailCode.value);
+}
+catch (e) {
+  throw createError({
+    statusCode: 400,
+    message: "Invalid email code",
+    fatal: true
+  });
+}
+
+const { form, formReset } = useFormState({
+  email: email.value,
+  code: code.value,
+  password: "",
+  confirm_password: ""
+});
+
+const resetPassword = async () => {
+  submit.value.loading = true;
+  const req = await $fetch("/api/recovery", {
+    method: "POST",
+    body: form.value
+  }).catch(() => null);
+  submit.value.loading = false;
+  if (!req) return;
+  $toasts.add({ message: "Password reset successfully", success: true });
+  formReset();
+};
+</script>
+
+<template>
+  <main>
+    <section>
+      <div class="col-11 col-lg-8 m-auto px-3 py-4 px-lg-4 bg-body rounded-3 shadow">
+        <form @submit.prevent="resetPassword">
+          <div class="form-floating mb-2">
+            <input type="email" class="form-control" :placeholder="t('email')" autocomplete="email" :value="email" readonly>
+            <label>{{ t("email") }}</label>
+          </div>
+          <div class="form-floating mb-2">
+            <input type="text" class="form-control" :placeholder="t('recovery_code')" :value="code" readonly>
+            <label>{{ t("recovery_code") }}</label>
+          </div>
+          <div class="form-floating mb-2">
+            <input v-model="form.password" type="password" class="form-control" :placeholder="t('new_password')" autocomplete="new-password" required>
+            <label>{{ t("new_password") }}</label>
+          </div>
+          <div class="form-floating mb-2">
+            <input v-model="form.confirm_password" type="password" class="form-control" :placeholder="t('confirm_password')" autocomplete="new-password" required>
+            <label>{{ t("confirm_password") }}</label>
+          </div>
+          <div class="d-grid mb-2">
+            <button class="btn btn-primary btn-lg rounded-pill" type="submit" :disabled="submit.loading">
+              <Transition name="tab" mode="out-in">
+                <SpinnerCircle v-if="submit.loading" class="text-white" />
+                <span v-else>{{ t("reset_password") }}</span>
+              </Transition>
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+</template>
