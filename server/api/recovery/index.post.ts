@@ -19,6 +19,8 @@ export default eventHandler(async (event) => {
 
   if (userHash !== form.code) throw createError({ statusCode: 403, message: "invalid_recovery" });
 
+  if (isCodeDateExpired(user.updatedAt)) throw createError({ statusCode: 403, message: "recovery_expired" });
+
   const update = await DB.update(tables.users).set({
     password: hash(form.password, secure.salt),
     updatedAt: Date.now()

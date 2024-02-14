@@ -175,5 +175,7 @@ export default {
   recovery_code: "Recovery code",
   reset_password: "Reset password",
   invalid_recovery: "Invalid recovery code",
+  recovery_expired: "Recovery code has expired, please request a new one",
+  recovery_failed: "Recovery failed",
   continue: "Continue"
 };

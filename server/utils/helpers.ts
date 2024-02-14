@@ -17,3 +17,7 @@ export const SITE = {
   host: process.dev ? "http://localhost:5173" : "https://mappedlove.com",
   cdn: process.dev ? "http://localhost:5173" : "https://cdn.mappedlove.com",
 };
+
+export const isCodeDateExpired = (date: number) => {
+  return Date.now() - date > 7 * 24 * 60 * 60 * 1000;
+};
