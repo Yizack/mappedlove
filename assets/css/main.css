@@ -60,11 +60,15 @@ img {
 }
 
 a {
+  text-decoration: dashed underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--bs-secondary);
   font-weight: 500;
 }
 
 a:hover {
   text-decoration: underline;
+  text-decoration-color: inherit;
 }
 
 .nuxt-loading-indicator {
@@ -148,15 +152,4 @@ main {
 
 .select-list li:hover {
   background-color: var(--bs-tertiary-bg);
-}
-
-a {
-  text-decoration: dashed underline;
-  text-decoration-thickness: 1px;
-  text-decoration-color: var(--bs-secondary);
-}
-
-a:hover {
-  text-decoration: underline;
-  text-decoration-color: inherit;
 }
