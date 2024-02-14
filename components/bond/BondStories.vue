@@ -86,6 +86,9 @@ const submitStory = async () => {
 
 watch(() => props.marker, () => {
   form.value.marker = props.marker.id;
+  fileChosen.value = false;
+  imageRead.value = "";
+  file.value = undefined;
 });
 </script>
 
