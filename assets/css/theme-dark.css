@@ -30,3 +30,11 @@
   --placeholder-color: #a8a8a8;
   --button-color: var(--bs-body-bg);
 }
+
+[data-bs-theme="dark"] a {
+  text-decoration: none;
+}
+
+[data-bs-theme="dark"] a:hover {
+  text-decoration: underline;
+}

@@ -10,6 +10,9 @@ const props = defineProps({
 
 const { $toasts, $bootstrap } = useNuxtApp();
 
+const existsAvatar1 = useState("existsAvatar1", () => false);
+const existsAvatar2 = useState("existsAvatar2", () => false);
+
 const deleteButton = ref(false);
 const coupleDate = ref(props.bond.coupleDate ? new Date(props.bond.coupleDate) : undefined);
 const cacheDate = ref<Date>();
@@ -17,6 +20,28 @@ const publicBond = ref(Boolean(props.bond.public));
 
 const partner1 = computed(() => props.bond.partner1 as MappedLovePartner);
 const partner2 = computed(() => props.bond.partner2 as MappedLovePartner);
+
+const requestAvatar1 = async () => {
+  if (existsAvatar1.value || !partner1.value.showAvatar) return;
+  const fetchAvatar = await $fetch(`${getAvatarImage(partner1.value.id)}?updated=`, {
+    method: "GET",
+    onResponseError: () => undefined
+  }).catch(() => null);
+  if (fetchAvatar) existsAvatar1.value = true;
+};
+
+const requestAvatar2 = async () => {
+  if (existsAvatar2.value || !partner2.value.showAvatar) return;
+  const fetchAvatar = await $fetch(`${getAvatarImage(partner2.value.id)}?updated=`, {
+    method: "GET",
+    onResponseError: () => undefined
+  }).catch(() => null);
+  if (fetchAvatar) existsAvatar2.value = true;
+};
+
+await requestAvatar1();
+await requestAvatar2();
+
 const togetherFor = computed(() => getTogetherFor(coupleDate.value));
 const publicURL = computed(() => `${SITE.host}/map/${props.bond.code}`);
 
@@ -66,15 +91,23 @@ watch(coupleDate, async (val: Date | undefined) => {
       <div class="bg-body rounded-3 px-3 py-4 p-lg-4">
         <div class="position-relative d-flex justify-content-center py-4">
           <div class="text-center position-relative">
-            <img :src="`https://picsum.photos/seed/${Date.now()}/175`" width="175" height="175" class="img-fluid rounded-circle m-0 mx-md-3 mx-lg-4 border border-5" :alt="partner1.name">
+            <div id="image-upload" class="text-center mb-2">
+              <label for="avatar" class="rounded-circle bg-body-tertiary position-relative overflow-hidden border border-5 m-0 mx-md-3 mx-lg-4" style="width: 175px; height: 175px;">
+                <img v-if="!existsAvatar1" :src="getAvatarImage(partner1.id, true)" width="175" height="175" class="img-fluid" :alt="partner2.name">
+                <img v-else :src="`${getAvatarImage(partner1.id)}?updated=`" width="175" height="175" class="img-fluid" :alt="partner2.name">
+              </label>
+            </div>
             <h4 class="text-center m-0 w-100 position-absolute top-100 px-0 px-lg-2 fst-italic fw-bold">{{ partner1.name }}</h4>
           </div>
           <div class="position-absolute top-50 start-50 translate-middle z-1 bond-heart d-flex shadow rounded-circle bg-body border border-5 border">
             <Icon name="solar:hearts-bold-duotone" class="img-fluid p-2 p-lg-3 text-primary" />
           </div>
           <div class="text-center position-relative">
-            <img :src="`https://picsum.photos/seed/${Date.now() + 1}/175`" width="175" height="175" class="img-fluid rounded-circle m-0 mx-md-3 mx-lg-4 border border-5" :alt="partner2.name">
-            <h4 class="text-center m-0 w-100 position-absolute top-100 px-0 px-lg-2 fst-italic fw-bold">{{ partner2.name }}</h4>
+            <label for="avatar" class="rounded-circle bg-body-tertiary position-relative overflow-hidden border border-5 m-0 mx-md-3 mx-lg-4" style="width: 175px; height: 175px;">
+              <img v-if="!existsAvatar2" :src="getAvatarImage(partner2.id, true)" width="175" height="175" class="img-fluid" :alt="partner2.name">
+              <img v-else :src="`${getAvatarImage(partner2.id)}?updated=`" width="175" height="175" class="img-fluid" :alt="partner2.name">
+              <h4 class="text-center m-0 w-100 position-absolute top-100 px-0 px-lg-2 fst-italic fw-bold">{{ partner2.name }}</h4>
+            </label>
           </div>
         </div>
         <div class="mt-5">

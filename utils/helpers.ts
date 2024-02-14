@@ -54,6 +54,12 @@ export const getStoryImage = (storyId: number, code?: string) => {
   return `${SITE.cdn}/uploads/stories/${bondCode}-${storyId}`;
 };
 
+export const getAvatarImage = (userId: number, defaultAvatar?: boolean) => {
+  if (!defaultAvatar) return `${SITE.cdn}/uploads/avatars/${userId}`;
+  const n = getRandomNumber({ min: 1, max: 5 });
+  return `${SITE.host}/images/defaults/avatar-${n}.jpg`;
+};
+
 export const copyToClipboard = async (text: string) => {
   if (typeof navigator === "undefined" || !navigator.clipboard || !navigator.clipboard.writeText) {
     return { success: false, message: t("copy_not_supported") };
@@ -95,4 +101,8 @@ export const isDarkMode = () => {
 
 export const sleep = (ms?: number) => {
   return new Promise((resolve) => setTimeout(resolve, ms));
+};
+
+export const getRandomNumber = ({ min, max }: { min: number, max: number }) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 };

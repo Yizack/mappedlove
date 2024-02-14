@@ -14,7 +14,7 @@ export default eventHandler(async (event) : Promise<MappedLoveUser> => {
 
   const DB = useDb();
   const update = await DB.update(tables.users).set({
-    ...userInfo,
+    showAvatar: userInfo.showAvatar,
     updatedAt: Date.now()
   }).where(eq(tables.users.id, Number(user.id))).returning({
     id: tables.users.id,

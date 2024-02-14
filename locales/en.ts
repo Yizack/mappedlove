@@ -166,6 +166,10 @@ export default {
   name_required: "Name is required",
   account_saved: "Account details have been saved",
   password_error: "Current password does not match",
+  avatar_saved: "Avatar has been saved",
+  delete_avatar: "Delete avatar",
+  avatar_deleted: "Avatar has been deleted",
+  delete_avatar_confirm: "Are you sure you want to delete your avatar?",
   // Recovery
   recovery_title: "Getting back into your account",
   recovery_description: "Tell us some information about your account.",

@@ -3,8 +3,22 @@ import VueDatePicker from "@vuepic/vue-datepicker";
 
 definePageMeta({ layout: "app", middleware: "session" });
 
-const { $colorMode, $countries, $toasts } = useNuxtApp();
 const { user: session, fetch: sessionFetch } = useUserSession();
+const { $colorMode, $countries, $toasts } = useNuxtApp();
+
+const existsAvatar = useState("existsAvatar", () => false);
+
+const requestAvatar = async () => {
+  if (existsAvatar.value) return;
+  const fetchAvatar = await $fetch(`${getAvatarImage(session.value.id)}?updated=${session.value.updatedAt}`, {
+    method: "GET",
+    onResponseError: () => undefined
+  }).catch(() => null);
+  if (fetchAvatar) existsAvatar.value = true;
+};
+
+await requestAvatar();
+
 const dark = ref($colorMode.preference === "dark");
 const user = ref({
   name: "",
@@ -97,6 +111,48 @@ const changePassword = async () => {
   if (!account) return;
   $toasts.add({ message: t("password_saved"), success: true });
 };
+
+const imageRead = ref<string | ArrayBuffer>();
+const fileChosen = ref(false);
+const file = ref<File>();
+
+const uploadAvatar = async (event: Event) => {
+  const target = event.target as HTMLInputElement;
+  file.value = target.files ? target.files[0] : undefined;
+  if (!file.value) {
+    imageRead.value = "";
+    fileChosen.value = false;
+    return;
+  }
+  const reader = new FileReader();
+  reader.readAsDataURL(file.value);
+  reader.onload = () => {
+    imageRead.value = reader.result || "";
+    fileChosen.value = true;
+  };
+
+  if (!file.value) return;
+  const formData = new FormData();
+  formData.append("file", file.value);
+  const account = await $fetch("/api/account/avatar", {
+    method: "POST",
+    body: formData,
+  }).catch(() => null);
+  if (!account) return;
+  await sessionFetch();
+  $toasts.add({ message: t("avatar_saved"), success: true });
+};
+
+const deleteAvatar = async () => {
+  if (!confirm(t("delete_avatar_confirm"))) return;
+  const account = await $fetch("/api/account/avatar", {
+    method: "DELETE",
+  }).catch(() => null);
+  if (!account) return;
+  existsAvatar.value = false;
+  await sessionFetch();
+  $toasts.add({ message: t("avatar_deleted"), success: true });
+};
 </script>
 
 <template>
@@ -107,15 +163,20 @@ const changePassword = async () => {
           <form @submit.prevent="saveAccount">
             <h3 class="mb-4">{{ t("account") }}</h3>
             <div id="image-upload" class="text-center mb-2">
-              <input id="avatar" type="file">
-              <label for="avatar" class="rounded-circle bg-body-tertiary position-relative overflow-hidden" style="width: 175px; height: 175px;">
+              <input id="avatar" type="file" accept=".png,.jpg,.jpeg,.jfif,.webp,.gif" @change="uploadAvatar">
+              <label for="avatar" class="rounded-circle bg-body-tertiary position-relative overflow-hidden border border-5" style="width: 175px; height: 175px;">
                 <div class="overlay position-absolute bg-dark w-100 h-100">
                   <div class="d-flex justify-content-center align-items-center h-100 text-light">
                     <Icon name="solar:gallery-add-outline" size="2.5rem" />
                   </div>
                 </div>
-                <img :src="`https://picsum.photos/seed/${Date.now()}/175`" width="175" height="175" class="img-fluid rounded-circle border border-5" :alt="user.name">
+                <img v-if="!existsAvatar && !fileChosen" :src="getAvatarImage(session.id, true)" width="175" height="175" class="img-fluid w-100" :alt="user.name">
+                <img v-else-if="existsAvatar && !fileChosen" :src="`${getAvatarImage(session.id)}?updated=${session.updatedAt}`" width="175" height="175" class="img-fluid w-100" :alt="user.name">
+                <img v-else-if="imageRead" :src="imageRead.toString()" width="175" height="175" class="img-fluid w-100" :alt="user.name">
               </label>
+              <div v-if="existsAvatar || fileChosen" class="text-center">
+                <a role="button" class="text-primary" @click="deleteAvatar">{{ t("delete_avatar") }}</a>
+              </div>
             </div>
             <div class="form-floating mb-2">
               <input v-model="user.name" type="text" class="form-control" :placeholder="t('name')" required>
