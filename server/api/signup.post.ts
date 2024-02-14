@@ -19,13 +19,13 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const { secure } = useRuntimeConfig(event);
+  const config = useRuntimeConfig(event);
   const DB = useDb();
   const today = Date.now();
   const email = form.email.toLowerCase();
   const user = await DB.insert(tables.users).values({
     email,
-    password: hash(form.password, secure.salt),
+    password: hash(form.password, config.secure.salt),
     name: form.name,
     createdAt: today,
     updatedAt: today
@@ -39,9 +39,8 @@ export default defineEventHandler(async (event) => {
   }
 
   const fields = [user.email, user.updatedAt];
-  const code = hash(fields.join(""), secure.salt);
+  const code = hash(fields.join(""), config.secure.salt);
 
-  const config = useRuntimeConfig(event);
   const url = process.dev ? "http://localhost:5173" : "https://mappedlove.com";
   const template_strings = {
     verify_link: `${url}/verify/${encodeURIComponent(btoa(email))}/${code}`
