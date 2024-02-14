@@ -15,7 +15,6 @@ const insertUsers = (DB: BetterSQLite3Database, c: number) => {
       country: null,
       birthDate: null,
       showAvatar: 0,
-      confirmCode: "123456",
       confirmed: 1,
       createdAt: date,
       updatedAt: date,

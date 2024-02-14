@@ -8,7 +8,6 @@ export const users = sqliteTable("users", {
   country: text("country"),
   birthDate: integer("birth_date"),
   showAvatar: integer("show_avatar").notNull().default(0),
-  confirmCode: text("confirm_code").notNull(),
   confirmed: integer("confirmed").notNull().default(0),
   createdAt: integer("created_at").notNull(),
   updatedAt: integer("updated_at").notNull(),

@@ -1,24 +1,30 @@
 import { eq, and } from "drizzle-orm";
-import { randomUUID } from "crypto";
 
 export default defineEventHandler(async (event) => {
-  const { email, token }= await readBody(event);
+  const { email, code }= await readBody(event);
   const DB = useDb();
   const user = await DB.select({
     email: tables.users.email,
-    confirmed: tables.users.confirmed
+    confirmed: tables.users.confirmed,
+    updatedAt: tables.users.updatedAt
   }).from(tables.users).where(eq(tables.users.email, email)).get();
 
   if (!user) throw createError({ statusCode: 404, message: "user_not_found" });
 
   if (user.confirmed) return user;
 
-  return DB.update(tables.users).set({
+  const { secure } = useRuntimeConfig(event);
+  const fields = [user.email, user.updatedAt];
+  const userHash = hash(fields.join(""), secure.salt);
+
+  if (userHash !== code) throw createError({ statusCode: 403, message: "invalid_code" });
+
+  const update = await DB.update(tables.users).set({
     confirmed: 1,
-    confirmCode: randomUUID(),
     updatedAt: Date.now()
-  }).where(and(eq(tables.users.email, email), eq(tables.users.confirmCode, token))).returning({
+  }).where(and(eq(tables.users.email, email))).returning({
     email: tables.users.email,
     confirmed: tables.users.confirmed
   }).get();
+  if (!update) throw createError({ statusCode: 500, message: "verification_failed" });
 });

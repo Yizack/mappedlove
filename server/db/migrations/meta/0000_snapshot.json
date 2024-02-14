@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "sqlite",
-  "id": "253ea184-2fab-4b36-bcd6-ba21a8ef9e2b",
+  "id": "3e0d4bf2-21f3-42eb-bd24-a4027ea29a5c",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "bonds": {
@@ -366,13 +366,6 @@
           "notNull": true,
           "autoincrement": false,
           "default": 0
-        },
-        "confirm_code": {
-          "name": "confirm_code",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
         },
         "confirmed": {
           "name": "confirmed",

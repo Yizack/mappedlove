@@ -11,7 +11,7 @@ const verified = ref(false);
 
 const { params, meta } = useRoute();
 const emailCode = ref(params.email.toString());
-const token = ref(params.token.toString());
+const code = ref(params.code.toString());
 
 const verifyEmail = async () => {
   let email = "";
@@ -26,7 +26,7 @@ const verifyEmail = async () => {
     method: "POST",
     body: {
       email: email,
-      token: token.value
+      code: code.value
     }
   }).catch(() => null);
   if (!user) return;
@@ -35,7 +35,7 @@ const verifyEmail = async () => {
 };
 
 onMounted(async () => {
-  if (!(emailCode.value && token.value)) return;
+  if (!(emailCode.value && code.value)) return;
   await verifyEmail();
   loaded.value = true;
 });
