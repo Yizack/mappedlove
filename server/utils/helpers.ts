@@ -1,3 +1,4 @@
+export { ErrorCode } from "~/types/enums/errors";
 import { sha256 } from "ohash";
 
 export const hash = (string: string, salt?: string) => {

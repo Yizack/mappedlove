@@ -18,7 +18,7 @@ try {
 }
 catch (e) {
   throw createError({
-    statusCode: 400,
+    statusCode: ErrorCode.BAD_REQUEST,
     message: "Invalid email code",
     fatal: true
   });

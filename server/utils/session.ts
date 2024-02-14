@@ -23,7 +23,7 @@ export const setUserSession = async (event: H3Event, data: MappedLoveSession) =>
 export const requireUserSession = async (event: H3Event) => {
   const userSession = await getUserSession(event);
 
-  if (!userSession.user) throw createError({ statusCode: 401, message: "unauthorized" });
+  if (!userSession.user) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "unauthorized" });
 
   return userSession as { user: MappedLoveUser };
 };

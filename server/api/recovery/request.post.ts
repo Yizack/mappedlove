@@ -11,7 +11,7 @@ export default eventHandler(async (event) => {
     updatedAt: Date.now()
   }).where(eq(tables.users.email, email)).returning().get();
 
-  if (!user) throw createError({ statusCode: 404, message: "user_not_found" });
+  if (!user) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "user_not_found" });
 
   const config = useRuntimeConfig(event);
   const fields = [user.id, user.email, user.updatedAt];

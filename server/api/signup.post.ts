@@ -5,7 +5,7 @@ export default defineEventHandler(async (event) => {
   const form = await readBody(event);
   if (!form.turnstile) {
     throw createError({
-      statusCode: 422,
+      statusCode: ErrorCode.UNPROCESSABLE_ENTITY,
       message: "token_missing"
     });
   }
@@ -14,7 +14,7 @@ export default defineEventHandler(async (event) => {
 
   if (!verify.success) {
     throw createError({
-      statusCode: 400,
+      statusCode: ErrorCode.BAD_REQUEST,
       message: "turnstile_failed"
     });
   }
@@ -33,7 +33,7 @@ export default defineEventHandler(async (event) => {
 
   if (!user) {
     throw createError({
-      statusCode: 400,
+      statusCode: ErrorCode.BAD_REQUEST,
       message: "user_exists"
     });
   }

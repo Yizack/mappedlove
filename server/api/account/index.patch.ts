@@ -5,7 +5,7 @@ export default eventHandler(async (event) : Promise<MappedLoveUser> => {
 
   const userInfo = await readBody(event);
 
-  if (userInfo.name !== undefined && !userInfo.name) throw createError({ statusCode: 400, message: "name_required" });
+  if (userInfo.name !== undefined && !userInfo.name) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "name_required" });
 
 
   if (userInfo.showAvatar !== undefined) {
@@ -28,7 +28,7 @@ export default eventHandler(async (event) : Promise<MappedLoveUser> => {
     updatedAt: tables.users.updatedAt,
   }).get();
 
-  if (!update) throw createError({ statusCode: 404, message: "user_not_found" });
+  if (!update) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "user_not_found" });
 
   await setUserSession(event, { user: { ...user, ...userInfo } });
 

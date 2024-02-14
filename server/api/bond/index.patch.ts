@@ -3,7 +3,7 @@ import { eq, and, or } from "drizzle-orm";
 export default eventHandler(async (event) : Promise<MappedLoveBond> => {
   const { user } = await requireUserSession(event);
 
-  if (!user.bond) throw createError({ statusCode: 404, message: "bond_not_found" });
+  if (!user.bond) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "bond_not_found" });
 
   const body = await readBody(event);
 

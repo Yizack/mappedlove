@@ -11,7 +11,7 @@ export default defineEventHandler(async (event) => {
     updatedAt: tables.users.updatedAt
   }).from(tables.users).where(eq(tables.users.email, email)).get();
 
-  if (!user) throw createError({ statusCode: 404, message: "user_not_found" });
+  if (!user) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "user_not_found" });
 
   if (user.confirmed) return user;
 
@@ -20,7 +20,7 @@ export default defineEventHandler(async (event) => {
 
   const userHash = hash(fields.join(""), secure.salt);
 
-  if (userHash !== code) throw createError({ statusCode: 403, message: "invalid_code" });
+  if (userHash !== code) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "invalid_code" });
 
   const update = await DB.update(tables.users).set({
     confirmed: 1,
@@ -30,7 +30,7 @@ export default defineEventHandler(async (event) => {
     confirmed: tables.users.confirmed
   }).get();
 
-  if (!update) throw createError({ statusCode: 500, message: "verification_failed" });
+  if (!update) throw createError({ statusCode: ErrorCode.INTERNAL_SERVER_ERROR, message: "verification_failed" });
 
   return update;
 });

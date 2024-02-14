@@ -11,6 +11,6 @@ export default eventHandler(async (event) : Promise<MappedLoveUser> => {
     updatedAt: Date.now()
   }).where(and(eq(tables.users.id, Number(user.id)), eq(tables.users.password, hash(current_password, secure.salt)))).returning().get();
 
-  if (!update) throw createError({ statusCode: 404, message: "password_error" });
+  if (!update) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "password_error" });
   return update;
 });

@@ -23,7 +23,7 @@ export const useDb = () => {
     }
     else {
       throw createError({
-        statusCode: 500,
+        statusCode: ErrorCode.INTERNAL_SERVER_ERROR,
         message: "No database configured for production"
       });
     }

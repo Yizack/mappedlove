@@ -1,3 +1,5 @@
+import type { ErrorCode } from "~/types/enums/errors";
+
 export {};
 
 declare global {
@@ -65,4 +67,5 @@ declare global {
   interface MappedLoveSelectedMarker extends MappedLoveMarker {
     stories: MappedLoveStory[];
   }
+  type ErrorCode = typeof ErrorCode;
 }

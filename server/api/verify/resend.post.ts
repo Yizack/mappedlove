@@ -7,13 +7,12 @@ export default defineEventHandler(async (event) : Promise<{ email: string }> => 
   const config = useRuntimeConfig(event);
   const DB = useDb();
   const user = await DB.select({
-    name: tables.users.name,
-    confirmCode: tables.users.confirmCode
+    name: tables.users.name
   }).from(tables.users).where(eq(tables.users.email, email)).get();
 
-  if (!user) throw createError({ statusCode: 404, message: "user_not_found" });
+  if (!user) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "user_not_found" });
 
-  const { name, confirmCode: token } = user;
+  const { name } = user;
   const url = process.dev ? "http://localhost:5173" : "https://mappedlove.com";
 
   const template_strings = {
