@@ -10,8 +10,8 @@ const props = defineProps({
 
 const { $toasts, $bootstrap } = useNuxtApp();
 
-const existsAvatar1 = useState("existsAvatar1", () => false);
-const existsAvatar2 = useState("existsAvatar2", () => false);
+const avatar1 = useState("avatar1", () => "");
+const avatar2 = useState("avatar2", () => "");
 
 const deleteButton = ref(false);
 const coupleDate = ref(props.bond.coupleDate ? new Date(props.bond.coupleDate) : undefined);
@@ -22,21 +22,27 @@ const partner1 = computed(() => props.bond.partner1 as MappedLovePartner);
 const partner2 = computed(() => props.bond.partner2 as MappedLovePartner);
 
 const requestAvatar1 = async () => {
-  if (existsAvatar1.value || !partner1.value.showAvatar) return;
-  const fetchAvatar = await $fetch(`${getAvatarImage(partner1.value.id)}?updated=`, {
+  if (avatar1.value) return;
+  if (!partner1.value.showAvatar) return avatar1.value = getDefaultAvatar();
+  const url = `${getAvatarImage(partner1.value.id)}?updated=`;
+  const fetchAvatar = await $fetch(url, {
     method: "GET",
     onResponseError: () => undefined
   }).catch(() => null);
-  if (fetchAvatar) existsAvatar1.value = true;
+  if (fetchAvatar) avatar1.value = url;
+  else avatar1.value = getDefaultAvatar();
 };
 
 const requestAvatar2 = async () => {
-  if (existsAvatar2.value || !partner2.value.showAvatar) return;
-  const fetchAvatar = await $fetch(`${getAvatarImage(partner2.value.id)}?updated=`, {
+  if (avatar2.value) return;
+  if (!partner2.value.showAvatar) return avatar2.value = getDefaultAvatar();
+  const url = `${getAvatarImage(partner2.value.id)}?updated=`;
+  const fetchAvatar = await $fetch(url, {
     method: "GET",
     onResponseError: () => undefined
   }).catch(() => null);
-  if (fetchAvatar) existsAvatar2.value = true;
+  if (fetchAvatar) avatar2.value = url;
+  else avatar2.value = getDefaultAvatar();
 };
 
 await requestAvatar1();
@@ -93,8 +99,7 @@ watch(coupleDate, async (val: Date | undefined) => {
           <div class="text-center position-relative">
             <div id="image-upload" class="text-center mb-2">
               <label for="avatar" class="rounded-circle bg-body-tertiary position-relative overflow-hidden border border-5 m-0 mx-md-3 mx-lg-4" style="width: 175px; height: 175px;">
-                <img v-if="!existsAvatar1" :src="getAvatarImage(partner1.id, true)" width="175" height="175" class="img-fluid" :alt="partner2.name">
-                <img v-else :src="`${getAvatarImage(partner1.id)}?updated=`" width="175" height="175" class="img-fluid" :alt="partner2.name">
+                <img :src="avatar1" width="175" height="175" class="img-fluid" :alt="partner2.name">
               </label>
             </div>
             <h4 class="text-center m-0 w-100 position-absolute top-100 px-0 px-lg-2 fst-italic fw-bold">{{ partner1.name }}</h4>
@@ -104,8 +109,7 @@ watch(coupleDate, async (val: Date | undefined) => {
           </div>
           <div class="text-center position-relative">
             <label for="avatar" class="rounded-circle bg-body-tertiary position-relative overflow-hidden border border-5 m-0 mx-md-3 mx-lg-4" style="width: 175px; height: 175px;">
-              <img v-if="!existsAvatar2" :src="getAvatarImage(partner2.id, true)" width="175" height="175" class="img-fluid" :alt="partner2.name">
-              <img v-else :src="`${getAvatarImage(partner2.id)}?updated=`" width="175" height="175" class="img-fluid" :alt="partner2.name">
+              <img :src="avatar2" width="175" height="175" class="img-fluid" :alt="partner2.name">
               <h4 class="text-center m-0 w-100 position-absolute top-100 px-0 px-lg-2 fst-italic fw-bold">{{ partner2.name }}</h4>
             </label>
           </div>

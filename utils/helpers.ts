@@ -54,10 +54,13 @@ export const getStoryImage = (storyId: number, code?: string) => {
   return `${SITE.cdn}/uploads/stories/${bondCode}-${storyId}`;
 };
 
-export const getAvatarImage = (userId: number, defaultAvatar?: boolean) => {
-  if (!defaultAvatar) return `${SITE.cdn}/uploads/avatars/${userId}`;
+export const getDefaultAvatar = () => {
   const n = getRandomNumber({ min: 1, max: 5 });
   return `${SITE.host}/images/defaults/avatar-${n}.jpg`;
+};
+
+export const getAvatarImage = (userId: number) => {
+  return `${SITE.cdn}/uploads/avatars/${userId}`;
 };
 
 export const copyToClipboard = async (text: string) => {
