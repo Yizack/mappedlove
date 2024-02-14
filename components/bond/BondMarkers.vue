@@ -49,9 +49,8 @@ const move = async () => {
 };
 
 const selectMarker = (id: number) => {
-  animate.value = false;
   animateElements();
-  emit("select", props.selected === id ? 0 : id);
+  emit("select", id);
 };
 
 const markerModal = (marker?: MappedLoveMarker) => {

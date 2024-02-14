@@ -96,6 +96,10 @@ class Leaflet {
     return Object.values(this.markers).flat().find(marker => (marker.options as MarkerOptions).id === id);
   }
 
+  closeAllPopups () {
+    Object.values(this.markers).flat().forEach(marker => marker.closePopup());
+  }
+
   static async geoSearch (query: string, options?: { email: string, lang: string }) {
     const params = options ? {
       email: options.email,

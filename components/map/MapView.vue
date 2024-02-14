@@ -56,8 +56,9 @@ const addMarker = (marker: MappedLoveMarker) => {
     }, 3000);
   }).on("popupopen", (e) => {
     setTimeout(() => $bootstrap.startAllCarousel());
+    if (props.select === e.target.options.id) return;
     emit("select", e.target.options.id);
-  }).on("popupclose", () => emit("select", 0));
+  });
 };
 
 const setView = (latlng: [number, number], zoom?: number) => {
@@ -81,6 +82,7 @@ onMounted(() => {
 
 watch(() => props.select, (id) => {
   const marker = leaflet.value?.getMarker(id);
+  if (!props.select) leaflet.value?.closeAllPopups();
   if (marker) {
     const { lat, lng } = marker.getLatLng();
     marker.openPopup();
