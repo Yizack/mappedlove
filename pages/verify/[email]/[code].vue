@@ -29,6 +29,7 @@ const verifyEmail = async () => {
       code: code.value
     }
   }).catch(() => null);
+
   if (!user) return;
   verified.value = true;
   meta.email = email;
