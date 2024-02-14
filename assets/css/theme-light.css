@@ -24,14 +24,3 @@
 .dp__theme_light {
   --dp-primary-color: var(--bs-primary)!important;
 }
-
-[data-bs-theme="light"] a {
-  text-decoration: dashed underline;
-  text-decoration-thickness: 1px;
-  text-decoration-color: var(--bs-secondary);
-}
-
-[data-bs-theme="light"] a:hover {
-  text-decoration: underline;
-  text-decoration-color: var(--bs-primary);
-}
