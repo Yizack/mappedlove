@@ -30,17 +30,18 @@ const user = ref({
   new_password: "",
 });
 
-const country = ref({
-  code: null as string | null,
-  search: "",
-  focus: false,
-});
-
 const submit = ref({ loading: false, pass_loading: false, error: false });
 const datePickerFocus = ref(false);
 
 Object.assign(user.value, session.value);
 user.value.showAvatar = Boolean(user.value.showAvatar);
+
+const country = ref({
+  code: user.value.country,
+  search: $countries.getName(user.value.country),
+  focus: false,
+});
+
 
 const countriesFilter = computed(() => {
   return $countries.getAll().filter((c) => {
@@ -195,7 +196,7 @@ const deleteAvatar = async () => {
             <div class="position-relative mb-2">
               <div class="input-group">
                 <span class="input-group-text">
-                  <Twemoji v-if="country.code" :emoji="$nuxt.$countries.getEmoji(user.country)" size="2rem" />
+                  <Twemoji v-if="country.code" :emoji="$countries.getEmoji(user.country)" size="2rem" />
                   <Icon v-else name="solar:magnifer-linear" size="1.5em" />
                 </span>
                 <div class="form-floating position-relative">

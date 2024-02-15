@@ -3,18 +3,21 @@ import { eq } from "drizzle-orm";
 export default eventHandler(async (event) : Promise<MappedLoveUser> => {
   const { user } = await requireUserSession(event);
 
-  const userInfo = await readBody(event);
+  const form = await readBody(event);
 
-  if (userInfo.name !== undefined && !userInfo.name) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "name_required" });
+  if (form.name !== undefined && !form.name) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "name_required" });
 
 
-  if (userInfo.showAvatar !== undefined) {
-    userInfo.showAvatar = Number(userInfo.showAvatar);
+  if (form.showAvatar !== undefined) {
+    form.showAvatar = Number(form.showAvatar);
   }
 
   const DB = useDb();
   const update = await DB.update(tables.users).set({
-    showAvatar: userInfo.showAvatar,
+    name: form.name,
+    country: form.country,
+    birthDate: form.birthDate,
+    showAvatar: form.showAvatar,
     updatedAt: Date.now()
   }).where(eq(tables.users.id, Number(user.id))).returning({
     id: tables.users.id,
@@ -30,7 +33,7 @@ export default eventHandler(async (event) : Promise<MappedLoveUser> => {
 
   if (!update) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "user_not_found" });
 
-  await setUserSession(event, { user: { ...user, ...userInfo } });
+  await setUserSession(event, { user: { ...user, ...form } });
 
   return update;
 });
