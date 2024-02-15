@@ -171,7 +171,7 @@ const deleteAvatar = async () => {
                     <Icon name="solar:gallery-add-outline" size="2.5rem" />
                   </div>
                 </div>
-                <img v-if="!existsAvatar && !fileChosen" :src="getDefaultAvatar()" width="175" height="175" class="img-fluid w-100" :alt="user.name">
+                <img v-if="!existsAvatar && !fileChosen" :src="getDefaultAvatar(session.id)" width="175" height="175" class="img-fluid w-100" :alt="user.name">
                 <img v-else-if="existsAvatar && !fileChosen" :src="`${getAvatarImage(session.id)}?updated=${session.updatedAt}`" width="175" height="175" class="img-fluid w-100" :alt="user.name">
                 <img v-else-if="imageRead" :src="imageRead.toString()" width="175" height="175" class="img-fluid w-100" :alt="user.name">
               </label>

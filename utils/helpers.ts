@@ -54,9 +54,9 @@ export const getStoryImage = (storyId: number, code?: string) => {
   return `${SITE.cdn}/uploads/stories/${bondCode}-${storyId}`;
 };
 
-export const getDefaultAvatar = () => {
-  const n = getRandomNumber({ min: 1, max: 5 });
-  return `${SITE.host}/images/defaults/avatar-${n}.jpg`;
+export const getDefaultAvatar = (id: number) => {
+  const avatarNumber = ((id % 10) % 5) + 1;
+  return `${SITE.host}/images/defaults/avatar-${avatarNumber}.jpg`;
 };
 
 export const getAvatarImage = (userId: number) => {
