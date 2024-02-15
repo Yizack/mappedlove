@@ -113,8 +113,8 @@ watch(coupleDate, async (val: Date | undefined) => {
                 <img :src="avatar2" width="175" height="175" class="img-fluid" :alt="partner2.name">
               </label>
             </div>
+            <h4 class="text-center m-0 w-100 position-absolute top-100 px-0 px-lg-2 fst-italic fw-bold">{{ partner2.name }}</h4>
           </div>
-          <h4 class="text-center m-0 w-100 position-absolute top-100 px-0 px-lg-2 fst-italic fw-bold">{{ partner2.name }}</h4>
         </div>
         <div class="mt-5">
           <Transition name="tab" mode="out-in">
