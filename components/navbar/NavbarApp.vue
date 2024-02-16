@@ -46,8 +46,8 @@ watch(() => user.value, () => {
       <div class="ms-3">
         <div v-if="loggedIn" class="nav-item dropdown">
           <button class="button btn btn-primary rounded-pill dropdown-toggle d-flex align-items-center justify-content-center" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <div v-if="user.showAvatar" id="image-upload" class="text-center d-flex">
-              <label for="avatar" class="rounded-circle bg-body-tertiary position-relative overflow-hidden" style="width: 24px; height: 24px;">
+            <div v-if="user.showAvatar" id="image-upload" class="text-center">
+              <label for="avatar" class="rounded-circle bg-body-tertiary position-relative overflow-hidden d-flex" style="width: 24px; height: 24px;">
                 <img :src="`${SITE.cdn}/uploads/avatars/${user.id}?updated=${updated}`" alt="avatar" width="24" height="24" class="img-fluid">
               </label>
             </div>
