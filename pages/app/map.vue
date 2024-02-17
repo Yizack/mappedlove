@@ -19,7 +19,6 @@ const newMarker = ({ marker, edit }: { marker: MappedLoveMarker, edit: boolean }
       return item;
     });
   }
-  markers.value.push(marker);
   map.value.addMarker(marker);
   map.value.setView([marker.lat, marker.lng], 10);
   selected.value = marker.id;

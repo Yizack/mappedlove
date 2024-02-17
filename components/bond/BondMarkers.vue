@@ -98,6 +98,7 @@ const submitMarker = async () => {
   }).catch(() => null);
   submitted.value = false;
   if (!marker) return;
+  markers.value.push(marker);
   emit("new", { marker, edit: Boolean(form.value.id) });
   $toasts.add({ message: form.value.id ? t("marker_updated") : t("marker_added"), success: true });
   $bootstrap.hideModal("marker");
