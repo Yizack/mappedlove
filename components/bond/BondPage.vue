@@ -22,7 +22,6 @@ const partner1 = computed(() => props.bond.partner1 as MappedLovePartner);
 const partner2 = computed(() => props.bond.partner2 as MappedLovePartner);
 
 const requestAvatar1 = async () => {
-  if (!partner1.value.showAvatar) return;
   if (avatar1.value) return;
   if (!partner1.value.showAvatar) return avatar1.value = getDefaultAvatar(partner1.value.id);
   const url = `${getAvatarImage(partner1.value.id)}?updated=`;
@@ -35,7 +34,6 @@ const requestAvatar1 = async () => {
 };
 
 const requestAvatar2 = async () => {
-  if (!partner2.value.showAvatar) return;
   if (avatar2.value) return;
   if (!partner2.value.showAvatar) return avatar2.value = getDefaultAvatar(partner2.value.id);
   const url = `${getAvatarImage(partner2.value.id)}?updated=`;
