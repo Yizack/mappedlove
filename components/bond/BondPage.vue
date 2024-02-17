@@ -4,7 +4,7 @@ import VueDatePicker from "@vuepic/vue-datepicker";
 const props = defineProps({
   bond: {
     type: Object as () => MappedLoveBond,
-    required: true,
+    required: true
   }
 });
 
@@ -16,7 +16,7 @@ const avatar2 = useState("avatar2", () => "");
 const deleteButton = ref(false);
 const coupleDate = ref(props.bond.coupleDate ? new Date(props.bond.coupleDate) : undefined);
 const cacheDate = ref<Date>();
-const publicBond = ref(Boolean(props.bond.public));
+const isPublic = ref(Boolean(props.bond.public));
 
 const partner1 = computed(() => props.bond.partner1 as MappedLovePartner);
 const partner2 = computed(() => props.bond.partner2 as MappedLovePartner);
@@ -24,24 +24,24 @@ const partner2 = computed(() => props.bond.partner2 as MappedLovePartner);
 const requestAvatar1 = async () => {
   if (avatar1.value) return;
   if (!partner1.value.showAvatar) return avatar1.value = getDefaultAvatar(partner1.value.id);
-  const url = `${getAvatarImage(partner1.value.id)}?updated=`;
+  const url = getAvatarImage(partner1.value.id);
   const fetchAvatar = await $fetch(url, {
     method: "GET",
     onResponseError: () => undefined
   }).catch(() => null);
-  if (fetchAvatar) avatar1.value = url;
+  if (fetchAvatar) avatar1.value = `${url}?updated=${partner1.value.updatedAt}`;
   else avatar1.value = getDefaultAvatar(partner1.value.id);
 };
 
 const requestAvatar2 = async () => {
   if (avatar2.value) return;
   if (!partner2.value.showAvatar) return avatar2.value = getDefaultAvatar(partner2.value.id);
-  const url = `${getAvatarImage(partner2.value.id)}?updated=`;
+  const url = getAvatarImage(partner2.value.id);
   const fetchAvatar = await $fetch(url, {
     method: "GET",
     onResponseError: () => undefined
   }).catch(() => null);
-  if (fetchAvatar) avatar2.value = url;
+  if (fetchAvatar) avatar2.value = `${url}?updated=${partner2.value.updatedAt}`;
   else avatar2.value = getDefaultAvatar(partner2.value.id);
 };
 
@@ -57,15 +57,15 @@ const deleteDate = () => {
 };
 
 const changePrivacy = async () => {
-  if (publicBond.value && !confirm(t("public_bond_confirm"))) {
-    publicBond.value = false;
+  if (isPublic.value && !confirm(t("public_bond_confirm"))) {
+    isPublic.value = false;
     return;
   }
 
   const bond = await $fetch("/api/bond", {
     method: "PATCH",
     body: {
-      public: Number(publicBond.value),
+      public: Number(isPublic.value),
     },
   }).catch(() => null);
   if (!bond) return;
@@ -180,11 +180,11 @@ watch(coupleDate, async (val: Date | undefined) => {
       <div class="mt-2 bg-body rounded-3 px-3 py-4 p-lg-4">
         <h3>{{ t("bond_preferences") }}</h3>
         <div class="form-check form-switch d-flex gap-2 align-items-center">
-          <input v-model="publicBond" class="form-check-input" type="checkbox" role="switch" @change="changePrivacy">
+          <input v-model="isPublic" class="form-check-input" type="checkbox" role="switch" @change="changePrivacy">
           <label class="form-check-label">{{ t("public_bond") }}</label>
           <Icon name="solar:question-circle-linear" class="text-primary outline-none" role="button" size="1.3rem" data-bs-toggle="popover" :data-bs-content="t('public_bond_info')" />
         </div>
-        <div v-if="publicBond" class="mt-2">
+        <div v-if="isPublic" class="mt-2">
           <p class="m-0">{{ t("share_bond_info") }}</p>
           <CopyText :text="publicURL" />
         </div>

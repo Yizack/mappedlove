@@ -23,6 +23,7 @@ declare global {
     name: string;
     showAvatar: number;
     country: string | null;
+    updatedAt: number;
   }
   interface MappedLoveMarker {
     bond?: number;
