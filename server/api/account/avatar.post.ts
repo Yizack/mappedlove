@@ -19,8 +19,12 @@ export default eventHandler(async (event) => {
   }
 
   const update = await DB.update(tables.users).set({
+    showAvatar: 1,
     updatedAt: today
-  }).where(eq(tables.users.id, user.id)).returning().get();
+  }).where(eq(tables.users.id, user.id)).returning({
+    showAvatar: tables.users.showAvatar,
+    updatedAt: tables.users.updatedAt
+  }).get();
 
   if (!update) throw createError({ statusCode: ErrorCode.INTERNAL_SERVER_ERROR, message: "error" });
 
@@ -29,5 +33,8 @@ export default eventHandler(async (event) => {
 
   if (!uploaded) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "check_file_size" });
 
-  return user;
+  const session = { user: { ...user, ...update } };
+  await setUserSession(event, session);
+
+  return session;
 });

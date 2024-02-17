@@ -93,6 +93,7 @@ const showAvatar = async () => {
   }).catch(() => null);
   if (!account) return;
   await sessionFetch();
+  existsAvatar.value = user.value.showAvatar;
   $toasts.add({ message: t("account_saved"), success: true });
 };
 
@@ -142,6 +143,7 @@ const uploadAvatar = async (event: Event) => {
   }).catch(() => null);
   if (!account) return;
   await sessionFetch();
+  user.value.showAvatar = true;
   $toasts.add({ message: t("avatar_saved"), success: true });
 };
 
@@ -153,6 +155,7 @@ const deleteAvatar = async () => {
   if (!account) return;
   existsAvatar.value = false;
   await sessionFetch();
+  user.value.showAvatar = false;
   $toasts.add({ message: t("avatar_deleted"), success: true });
 };
 </script>
@@ -172,7 +175,7 @@ const deleteAvatar = async () => {
                     <Icon name="solar:gallery-add-outline" size="2.5rem" />
                   </div>
                 </div>
-                <img v-if="!existsAvatar && !fileChosen" :src="getDefaultAvatar(session.id)" width="175" height="175" class="img-fluid w-100" :alt="user.name">
+                <img v-if="!user.showAvatar || (!existsAvatar && !fileChosen)" :src="getDefaultAvatar(session.id)" width="175" height="175" class="img-fluid w-100" :alt="user.name">
                 <img v-else-if="existsAvatar && !fileChosen" :src="`${getAvatarImage(session.id)}?updated=${session.updatedAt}`" width="175" height="175" class="img-fluid w-100" :alt="user.name">
                 <img v-else-if="imageRead" :src="imageRead.toString()" width="175" height="175" class="img-fluid w-100" :alt="user.name">
               </label>
