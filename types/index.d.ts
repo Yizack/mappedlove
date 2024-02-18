@@ -8,6 +8,7 @@ declare global {
   }
   interface MappedLoveUser {
     id: number;
+    hash?: string;
     name: string;
     email: string;
     country: string | null;
@@ -20,6 +21,7 @@ declare global {
   }
   interface MappedLovePartner {
     id: number;
+    hash: string;
     name: string;
     showAvatar: number;
     country: string | null;
@@ -47,10 +49,13 @@ declare global {
   interface MappedLoveStory {
     id: number;
     marker: number;
+    user: number;
+    by?: string | null;
     description: string;
     year: number;
     month: number;
     updatedAt: number;
+    createdAt: number;
   }
   interface MappedLoveMap {
     markers: MappedLoveMarker[];
@@ -62,6 +67,8 @@ declare global {
     id?: number;
   }
   interface MappedLovePublicMap extends MappedLoveBond {
+    partner1: MappedLovePartner;
+    partner2: MappedLovePartner;
     markers: MappedLoveMarker[];
     stories: MappedLoveStory[];
   }

@@ -20,6 +20,7 @@ const selected = ref(0);
 const mapInfo = ref() as Ref<HTMLElement>;
 const marker = ref<MappedLoveMarker>();
 const stories = ref<MappedLoveStory[]>();
+
 const filter = ref({
   year: 0
 });
@@ -105,6 +106,11 @@ onBeforeUnmount(() => {
 
 <template>
   <div v-if="bond">
+    <!--
+    <div class="position-absolute top-0 start-50 mt-2" :style="{ zIndex: 1000 }">
+      {{ bond.partner1 }} & {{ bond.partner2 }}
+    </div>
+    -->
     <MapPublic ref="map" :bond="bond" :select="selected" @select="onSelect" />
     <div id="mapInfo" ref="mapInfo" class="offcanvas shadow" :class="isMobile ? 'offcanvas-bottom' : 'offcanvas-start'" data-bs-backdrop="false" tabindex="-1" aria-labelledby="mapInfoLabel" :style="{ height: expandCanvas || !isMobile ? '100vh' : '30vh' }">
       <div ref="canvasHeader" class="offcanvas-header">
@@ -113,8 +119,8 @@ onBeforeUnmount(() => {
           <span v-if="marker">{{ marker.title }}</span>
         </h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" @click="expandCanvas = false" />
-        <div class="position-absolute start-0 top-0 w-100 text-center my-2" :style="{height: '0.3rem'}">
-          <div v-if="isMobile" class="bg-primary h-100 rounded-pill mx-auto" :style="{width: '2rem'}" />
+        <div class="position-absolute start-0 top-0 w-100 text-center my-2" :style="{ height: '0.3rem' }">
+          <div v-if="isMobile" class="bg-primary h-100 rounded-pill mx-auto" :style="{ width: '2rem' }" />
         </div>
       </div>
       <div ref="canvasBody" class="offcanvas-body p-0">
@@ -176,6 +182,23 @@ onBeforeUnmount(() => {
       </div>
     </div>
     <ModalController v-if="showModal && currentStory" id="story" fullscreen map>
+      <div class="position-absolute start-0 top-0 py-2 px-3 bg-light bg-opacity-50 rounded shadow m-2">
+        <div>
+          <span>{{ t("uploaded_by") }}: </span>
+          <strong>{{ currentStory.by }}</strong>
+        </div>
+        <div>
+          <span>{{ t("story_date") }}: </span>
+          <strong>
+            <span v-if="currentStory.month">{{ t(months[currentStory.month - 1]) }} {{ currentStory.year }}</span>
+            <span v-else>{{ currentStory.year }}</span>
+          </strong>
+        </div>
+        <template v-if="currentStory.description">
+          <hr class="my-1">
+          <div>{{ currentStory.description }}</div>
+        </template>
+      </div>
       <img :src="`${getStoryImage(currentStory.id, bond.code)}?updated=${currentStory.updatedAt}`" class="map-img shadow-lg">
     </ModalController>
   </div>

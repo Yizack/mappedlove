@@ -28,10 +28,21 @@ export default eventHandler(async (event) : Promise<MappedLoveBond> => {
     updatedAt: tables.users.updatedAt
   }).from(tables.users).where(eq(tables.users.id, Number(bond.partner2))).get();
 
+  const { secure } = useRuntimeConfig(event);
+  const partner1Hash = hash([partner1?.id].join(), secure.salt);
+  const partner2Hash = hash([partner2?.id].join(), secure.salt);
+
+  if (!partner1 || !partner2) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "bond_not_found" });
 
   return {
     ...bond,
-    partner1: partner1 || null,
-    partner2: partner2 || null
+    partner1: {
+      ...partner1,
+      hash: partner1Hash
+    },
+    partner2: {
+      ...partner2,
+      hash: partner2Hash
+    }
   };
 });

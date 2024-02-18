@@ -4,6 +4,7 @@ export default defineEventHandler(async (event) => {
   const form = await readBody(event);
   const { secure } = useRuntimeConfig(event);
   const DB = useDb();
+
   const user = await DB.select({
     id: tables.users.id,
     name: tables.users.name,
@@ -30,6 +31,9 @@ export default defineEventHandler(async (event) => {
   };
 
   if (!user.confirmed) return session;
-  await setUserSession(event, { user: { ...user, bond } });
+
+  const userHash = hash([user.id].join(), secure.salt);
+
+  await setUserSession(event, { user: { ...user, hash: userHash, bond } });
   return session;
 });

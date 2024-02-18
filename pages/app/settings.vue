@@ -11,7 +11,7 @@ const existsAvatar = useState("existsAvatar", () => false);
 const requestAvatar = async () => {
   if (existsAvatar.value) return;
   if (!session.value.showAvatar) return;
-  const fetchAvatar = await $fetch(`${getAvatarImage(session.value.id)}`, {
+  const fetchAvatar = await $fetch(`${getAvatarImage(session.value.hash)}`, {
     method: "GET",
     onResponseError: () => undefined
   }).catch(() => null);
@@ -176,7 +176,7 @@ const deleteAvatar = async () => {
                   </div>
                 </div>
                 <img v-if="!user.showAvatar || (!existsAvatar && !fileChosen)" :src="getDefaultAvatar(session.id)" width="175" height="175" class="img-fluid w-100" :alt="user.name">
-                <img v-else-if="existsAvatar && !fileChosen" :src="`${getAvatarImage(session.id)}?updated=${session.updatedAt}`" width="175" height="175" class="img-fluid w-100" :alt="user.name">
+                <img v-else-if="existsAvatar && !fileChosen" :src="`${getAvatarImage(session.hash)}?updated=${session.updatedAt}`" width="175" height="175" class="img-fluid w-100" :alt="user.name">
                 <img v-else-if="imageRead" :src="imageRead.toString()" width="175" height="175" class="img-fluid w-100" :alt="user.name">
               </label>
               <div v-if="existsAvatar || fileChosen" class="text-center">
