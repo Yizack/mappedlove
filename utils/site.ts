@@ -9,8 +9,8 @@ export const SITE = {
       { name: "try", path: "/login", button: true }
     ],
     app: [
-      { name: "bond", path: "/app", icon: "solar:hearts-bold-duotone", button: false },
-      { name: "map", path: "/app/map", icon: "solar:streets-map-point-bold-duotone", button: false }
+      { name: "map", path: "/app/map", icon: "solar:streets-map-point-bold-duotone", button: false },
+      { name: "bond", path: "/app", icon: "solar:hearts-bold-duotone", button: false }
     ]
   }
 };
