@@ -22,7 +22,7 @@ const addMarker = (marker: MappedLoveMarker) => {
   const markerStories = stories.value.filter(s => s.marker === marker.id) || [];
   leaflet.value?.addMarker({
     position: [marker.lat, marker.lng],
-    popup: storiesCarousel(marker, markerStories, props.bond.code),
+    popup: storiesCarousel(marker, markerStories),
     group: getGroup(marker.group),
     options: {
       id: marker.id,
@@ -30,6 +30,7 @@ const addMarker = (marker: MappedLoveMarker) => {
     }
   }).on("popupopen", (e) => {
     setTimeout(() => $bootstrap.startAllCarousel());
+    if (props.select === e.target.options.id) return;
     emit("select", e.target.options.id);
   });
 };
@@ -50,6 +51,16 @@ onMounted(() => {
   const length = markers.value.length;
   if (length) {
     setView([markers.value[length - 1].lat, markers.value[length - 1].lng], 3);
+  }
+});
+
+watch(() => props.select, (id) => {
+  const marker = leaflet.value?.getMarker(id);
+  if (!props.select) leaflet.value?.closeAllPopups();
+  if (marker) {
+    const { lat, lng } = marker.getLatLng();
+    marker.openPopup();
+    setView([lat, lng]);
   }
 });
 </script>

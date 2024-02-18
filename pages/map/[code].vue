@@ -74,6 +74,7 @@ onMounted(() => {
 
   mapInfo.value.addEventListener("hide.bs.offcanvas", () => {
     $bootstrap.hideAllModals();
+    selected.value = 0;
   });
 
   const touch = {
