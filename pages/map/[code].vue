@@ -20,10 +20,13 @@ const selected = ref(0);
 const mapInfo = ref() as Ref<HTMLElement>;
 const marker = ref<MappedLoveMarker>();
 const stories = ref<MappedLoveStory[]>();
+const partner1 = ref(bond.value.partner1);
+const partner2 = ref(bond.value.partner2);
 
 const filter = ref({
   year: 0
 });
+
 const currentYear = new Date().getFullYear();
 
 const onSelect = (id: number) => {
@@ -48,6 +51,8 @@ const expandCanvas = ref(false);
 const canvasHeader = ref() as Ref<HTMLElement>;
 const canvasBody = ref() as Ref<HTMLElement>;
 const currentStory = ref<MappedLoveStory>();
+const currentStoryUser = computed(() => [partner1.value, partner2.value].find((user) => user.id === currentStory.value?.id));
+
 const showModal = ref(false);
 
 const openStory = (story: MappedLoveStory) => {
@@ -162,7 +167,7 @@ onBeforeUnmount(() => {
                       <MasonryWall :items="storiesByYear(storiesFiltered, year)" :ssr-columns="1" :gap="4" :max-columns="2" :column-width="150">
                         <template #default="{ item: story }">
                           <div class="card h-100 border-2" :class="{ 'border-primary': currentStory?.id === story.id }" role="button" @click="openStory(story)">
-                            <img :src="`${getStoryImage(story.id, bond.code)}?updated=${story.updatedAt}`" class="card-img-top">
+                            <img :src="`${getStoryImage(story.hash)}?updated=${story.updatedAt}`" class="card-img-top">
                             <div class="card-footer">
                               <small class="text-body-secondary">
                                 <span>{{ story.year }}</span>
@@ -182,10 +187,15 @@ onBeforeUnmount(() => {
       </div>
     </div>
     <ModalController v-if="showModal && currentStory" id="story" fullscreen map>
-      <div class="position-absolute start-0 top-0 py-2 px-3 bg-light bg-opacity-50 rounded shadow m-2">
-        <div>
-          <span>{{ t("uploaded_by") }}: </span>
-          <strong>{{ currentStory.by }}</strong>
+      <div class="position-absolute start-0 top-0 py-2 px-3 bg-body bg-opacity-75 rounded shadow m-2">
+        <div class="d-flex gap-1">
+          <span>{{ t("uploaded_by") }}:</span>
+          <div v-if="currentStoryUser?.showAvatar" id="image-upload" class="text-center">
+            <label for="avatar" class="rounded-circle bg-body-tertiary position-relative overflow-hidden d-flex" style="width: 24px; height: 24px;">
+              <img :src="`${getAvatarImage(currentStoryUser?.hash)}?updated=${currentStoryUser?.updatedAt}`" alt="avatar" width="24" height="24" class="img-fluid">
+            </label>
+          </div>
+          <strong>{{ currentStoryUser?.name }}</strong>
         </div>
         <div>
           <span>{{ t("story_date") }}: </span>
@@ -199,7 +209,7 @@ onBeforeUnmount(() => {
           <div>{{ currentStory.description }}</div>
         </template>
       </div>
-      <img :src="`${getStoryImage(currentStory.id, bond.code)}?updated=${currentStory.updatedAt}`" class="map-img shadow-lg">
+      <img :src="`${getStoryImage(currentStory.hash)}?updated=${currentStory.updatedAt}`" class="map-img shadow-lg">
     </ModalController>
   </div>
 </template>

@@ -14,7 +14,6 @@ export default eventHandler(async (event) : Promise<MappedLovePublicMap> => {
     marker: tables.stories.marker,
     bond: tables.stories.bond,
     user: tables.stories.user,
-    by: tables.users.name,
     description: tables.stories.description,
     year: tables.stories.year,
     month: tables.stories.month,
@@ -43,6 +42,13 @@ export default eventHandler(async (event) : Promise<MappedLovePublicMap> => {
   const { secure } = useRuntimeConfig(event);
   const partner1Hash = hash([partner1?.id].join(), secure.salt);
   const partner2Hash = hash([partner2?.id].join(), secure.salt);
+  const storiesHashed = stories.map((story) => {
+    return {
+      ...story,
+      hash: hash([story.id, bond.code].join(), secure.salt)
+    };
+  });
+
 
   return {
     ...bond,
@@ -55,6 +61,6 @@ export default eventHandler(async (event) : Promise<MappedLovePublicMap> => {
       hash: partner2Hash
     },
     markers,
-    stories
+    stories: storiesHashed
   };
 });

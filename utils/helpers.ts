@@ -41,17 +41,13 @@ export const storiesByYear = (stories: MappedLoveStory[], year: number) => {
   return stories.filter((story) => story.year === year);
 };
 
-export const getStoryImageTransform = (storyId: number, code?: string) => {
-  const { user } = useUserSession();
-  const bondCode = code || user.value.bond?.code;
-  if (process.dev) return `/uploads/stories/${bondCode}-${storyId}`;
-  return `https://res.cloudinary.com/dyxajqsia/image/upload/stories/${bondCode}-${storyId}`;
+export const getStoryImageTransform = (hash?: string) => {
+  if (process.dev) return `/uploads/stories/${hash}`;
+  return `https://res.cloudinary.com/dyxajqsia/image/upload/stories/${hash}`;
 };
 
-export const getStoryImage = (storyId: number, code?: string) => {
-  const { user } = useUserSession();
-  const bondCode = code || user.value.bond?.code;
-  return `${SITE.cdn}/uploads/stories/${bondCode}-${storyId}`;
+export const getStoryImage = (hash?: string) => {
+  return `${SITE.cdn}/uploads/stories/${hash}`;
 };
 
 export const getDefaultAvatar = (id: number) => {
@@ -71,15 +67,15 @@ export const copyToClipboard = async (text: string) => {
   return { success: true, message: t("copy_success") };
 };
 
-export const storiesCarousel = (marker: MappedLoveMarker, stories: MappedLoveStory[], code?: string) => {
+export const storiesCarousel = (marker: MappedLoveMarker, stories: MappedLoveStory[]) => {
   return !stories.length ? `<div class="mt-2 text-center fw-bold">${marker.title}</div>` :
     `<div id="storyCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
       <div class="carousel-inner mw-100 mx-auto">`
-        + stories.map(({ id, updatedAt }, index) => {
+        + stories.map(({ hash, updatedAt }, index) => {
           return `
           <div class="carousel-item ${!index ? "active" : "inactive"} d-flex justify-content-center">
             <div class="border border-primary border-2 rounded-circle">
-              <div class="map-story" style="background-image: url('${getStoryImageTransform(id, code)}?updated=${updatedAt}')"></div>
+              <div class="map-story" style="background-image: url('${getStoryImageTransform(hash)}?updated=${updatedAt}')"></div>
             </div>
           </div>`;
         }).join("")

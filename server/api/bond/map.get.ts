@@ -6,5 +6,14 @@ export default eventHandler(async (event) : Promise<MappedLoveMap> => {
   const DB = useDb();
   const markers = await DB.select().from(tables.markers).where(eq(tables.markers.bond, user.bond.id)).orderBy(asc(tables.markers.order)).all();
   const stories = await DB.select().from(tables.stories).where(eq(tables.stories.bond, user.bond.id)).orderBy(desc(tables.stories.year), desc(tables.stories.month)).all();
-  return { markers, stories };
+
+  const { secure } = useRuntimeConfig(event);
+  const storiesHashed = stories.map((story) => {
+    return {
+      ...story,
+      hash: hash([story.id, user.bond?.code].join(), secure.salt)
+    };
+  });
+
+  return { markers, stories: storiesHashed };
 });

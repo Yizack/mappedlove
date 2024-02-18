@@ -31,14 +31,14 @@ const logOut = () => {
                 <button class="button btn btn-primary rounded-pill dropdown-toggle d-flex align-items-center justify-content-center" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <div v-if="user.showAvatar" id="image-upload" class="text-center">
                     <label for="avatar" class="rounded-circle bg-body-tertiary position-relative overflow-hidden d-flex" style="width: 24px; height: 24px;">
-                      <img :src="`${SITE.cdn}/uploads/avatars/${user.hash}?updated=${user.updatedAt}`" alt="avatar" width="24" height="24" class="img-fluid">
+                      <img :src="`${getAvatarImage(user.hash)}?updated=${user.updatedAt}`" alt="avatar" width="24" height="24" class="img-fluid">
                     </label>
                   </div>
                   <span :class="{ 'd-none d-md-inline ms-1': user.showAvatar }">{{ user.name }}</span>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
-                  <li><NuxtLink class="dropdown-item" to="/app">{{ t("bond") }}</NuxtLink></li>
                   <li><NuxtLink class="dropdown-item" to="/app/map">{{ t("my_map") }}</NuxtLink></li>
+                  <li><NuxtLink class="dropdown-item" to="/app">{{ t("bond") }}</NuxtLink></li>
                   <li><NuxtLink class="dropdown-item" to="/app/settings">{{ t("settings") }}</NuxtLink></li>
                   <li><hr class="dropdown-divider"></li>
                   <li><button class="dropdown-item" @click="logOut()"><Icon name="solar:exit-linear" /> Logout</button></li>

@@ -18,7 +18,7 @@ export default eventHandler(async (event) : Promise<MappedLoveStory> => {
     form[name] = data.toString();
   }
 
-  const insert = await DB.insert(tables.stories).values({
+  const story = await DB.insert(tables.stories).values({
     marker: Number(form.marker),
     bond: user.bond.id,
     user: user.id,
@@ -29,15 +29,19 @@ export default eventHandler(async (event) : Promise<MappedLoveStory> => {
     updatedAt: today
   }).returning().get();
 
-  const filename = `${user.bond.code}-${insert.id}`;
-  const uploaded = await uploadImage(file, filename, "stories", event);
+  const { secure } = useRuntimeConfig(event);
+  const storyHash = hash([story.id, user.bond.code].join(), secure.salt);
+  const uploaded = await uploadImage(file, storyHash, "stories", event);
 
   if (!uploaded) {
-    await DB.delete(tables.stories).where(eq(tables.stories.id, insert.id)).run();
+    await DB.delete(tables.stories).where(eq(tables.stories.id, story.id)).run();
     throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "check_file_size" });
   }
 
-  await uploadToCloudinary(file, filename, "stories", event);
+  await uploadToCloudinary(file, storyHash, "stories", event);
 
-  return insert;
+  return {
+    ...story,
+    hash: storyHash
+  };
 });
