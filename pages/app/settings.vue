@@ -6,21 +6,6 @@ definePageMeta({ layout: "app", middleware: "session" });
 const { user: session, fetch: sessionFetch } = useUserSession();
 const { $colorMode, $countries, $toasts } = useNuxtApp();
 
-const existsAvatar = useState("existsAvatar", () => false);
-
-const requestAvatar = async () => {
-  if (existsAvatar.value) return;
-  if (!session.value.showAvatar) return;
-  const url = getAvatarImage(session.value?.hash) + "?updated=" + session.value?.updatedAt;
-  const fetchAvatar = await $fetch(url, {
-    method: "GET",
-    onResponseError: () => undefined
-  }).catch(() => null);
-  if (fetchAvatar) existsAvatar.value = true;
-};
-
-await requestAvatar();
-
 const dark = ref($colorMode.preference === "dark");
 const user = ref({
   name: "",
@@ -94,7 +79,6 @@ const showAvatar = async () => {
   }).catch(() => null);
   if (!account) return;
   await sessionFetch();
-  existsAvatar.value = user.value.showAvatar;
   $toasts.add({ message: t("account_saved"), success: true });
 };
 
@@ -154,7 +138,6 @@ const deleteAvatar = async () => {
     method: "DELETE",
   }).catch(() => null);
   if (!account) return;
-  existsAvatar.value = false;
   await sessionFetch();
   user.value.showAvatar = false;
   $toasts.add({ message: t("avatar_deleted"), success: true });
@@ -176,11 +159,11 @@ const deleteAvatar = async () => {
                     <Icon name="solar:gallery-add-outline" size="2.5rem" />
                   </div>
                 </div>
-                <img v-if="!user.showAvatar || (!existsAvatar && !fileChosen)" :src="getDefaultAvatar(session.id)" width="175" height="175" class="img-fluid w-100" :alt="user.name">
-                <img v-else-if="existsAvatar && !fileChosen" :src="`${getAvatarImage(session.hash)}?updated=${session.updatedAt}`" width="175" height="175" class="img-fluid w-100" :alt="user.name">
+                <img v-if="user.showAvatar" :src="`${getAvatarImage(session.hash)}?updated=${session.updatedAt}`" width="175" height="175" class="img-fluid w-100" :alt="user.name">
+                <img v-else-if="!fileChosen" :src="getDefaultAvatar(session.id)" width="175" height="175" class="img-fluid w-100" :alt="user.name">
                 <img v-else-if="imageRead" :src="imageRead.toString()" width="175" height="175" class="img-fluid w-100" :alt="user.name">
               </label>
-              <div v-if="existsAvatar || fileChosen" class="text-center">
+              <div v-if="fileChosen || user.showAvatar" class="text-center">
                 <a role="button" class="text-primary" @click="deleteAvatar">{{ t("delete_avatar") }}</a>
               </div>
             </div>
