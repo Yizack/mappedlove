@@ -11,7 +11,8 @@ const existsAvatar = useState("existsAvatar", () => false);
 const requestAvatar = async () => {
   if (existsAvatar.value) return;
   if (!session.value.showAvatar) return;
-  const fetchAvatar = await $fetch(`${getAvatarImage(session.value.hash)}`, {
+  const url = getAvatarImage(session.value?.hash) + "?updated=" + session.value?.updatedAt;
+  const fetchAvatar = await $fetch(url, {
     method: "GET",
     onResponseError: () => undefined
   }).catch(() => null);

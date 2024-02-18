@@ -24,24 +24,24 @@ const partner2 = computed(() => props.bond.partner2 as MappedLovePartner);
 const requestAvatar1 = async () => {
   if (avatar1.value) return;
   if (!partner1.value.showAvatar) return avatar1.value = getDefaultAvatar(partner1.value.id);
-  const url = getAvatarImage(partner1.value.hash);
+  const url = getAvatarImage(partner1.value.hash) + "?updated=" + partner1.value.updatedAt;
   const fetchAvatar = await $fetch(url, {
     method: "GET",
     onResponseError: () => undefined
   }).catch(() => null);
-  if (fetchAvatar) avatar1.value = `${url}?updated=${partner1.value.updatedAt}`;
+  if (fetchAvatar) avatar1.value = url;
   else avatar1.value = getDefaultAvatar(partner1.value.id);
 };
 
 const requestAvatar2 = async () => {
   if (avatar2.value) return;
   if (!partner2.value.showAvatar) return avatar2.value = getDefaultAvatar(partner2.value.id);
-  const url = getAvatarImage(partner2.value.hash);
+  const url = getAvatarImage(partner2.value.hash) + "?updated=" + partner2.value.updatedAt;
   const fetchAvatar = await $fetch(url, {
     method: "GET",
     onResponseError: () => undefined
   }).catch(() => null);
-  if (fetchAvatar) avatar2.value = `${url}?updated=${partner2.value.updatedAt}`;
+  if (fetchAvatar) avatar2.value = url;
   else avatar2.value = getDefaultAvatar(partner2.value.id);
 };
 
