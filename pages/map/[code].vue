@@ -51,7 +51,7 @@ const expandCanvas = ref(false);
 const canvasHeader = ref() as Ref<HTMLElement>;
 const canvasBody = ref() as Ref<HTMLElement>;
 const currentStory = ref<MappedLoveStory>();
-const currentStoryUser = computed(() => [partner1.value, partner2.value].find((user) => user.id === currentStory.value?.id));
+const currentStoryUser = computed(() => [partner1.value, partner2.value].find((user) => user.id === currentStory.value?.user));
 
 const showModal = ref(false);
 
