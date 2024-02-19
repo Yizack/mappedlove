@@ -112,11 +112,9 @@ onBeforeUnmount(() => {
 
 <template>
   <div v-if="bond">
-    <!--
-    <div class="position-absolute top-0 start-50 mt-2" :style="{ zIndex: 1000 }">
-      {{ bond.partner1 }} & {{ bond.partner2 }}
+    <div class="btn btn-primary rounded-pill position-absolute bottom-0 start-50 translate-middle-x px-3 py-2 mb-4" :style="{ zIndex: 1000 }">
+      <strong>{{ bond.partner1.name }}</strong> <Icon name="solar:hearts-bold-duotone" class="img-fluid" /> <strong>{{ bond.partner2.name }}</strong>
     </div>
-    -->
     <MapPublic ref="map" :bond="bond" :select="selected" @select="onSelect" />
     <div id="mapInfo" ref="mapInfo" class="offcanvas shadow" :class="isMobile ? 'offcanvas-bottom' : 'offcanvas-start'" data-bs-backdrop="false" tabindex="-1" aria-labelledby="mapInfoLabel" :style="{ height: expandCanvas || !isMobile ? '100vh' : '30vh' }">
       <div ref="canvasHeader" class="offcanvas-header">
@@ -188,7 +186,7 @@ onBeforeUnmount(() => {
       </div>
     </div>
     <ModalController v-if="showModal && currentStory" id="story" fullscreen map>
-      <div class="position-absolute start-0 top-0 py-2 px-3 bg-body bg-opacity-75 rounded shadow m-2">
+      <div class="position-absolute start-0 top-0 py-2 px-3 bg-body bg-opacity-75 rounded shadow m-2 small">
         <div class="d-flex gap-1">
           <span>{{ t("uploaded_by") }}:</span>
           <div v-if="currentStoryUser?.showAvatar" id="image-upload" class="text-center">
