@@ -48,7 +48,7 @@ declare global {
   }
   interface MappedLoveStory {
     id: number;
-    hash: string;
+    hash?: string;
     marker: number;
     user: number;
     description: string;

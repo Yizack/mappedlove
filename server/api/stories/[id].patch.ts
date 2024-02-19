@@ -19,23 +19,24 @@ export default eventHandler(async (event) : Promise<MappedLoveStory> => {
     form[name] = data.toString();
   }
 
-  const update = await DB.update(tables.stories).set({
+  const story = await DB.update(tables.stories).set({
     description: form.description,
     year: Number(form.year),
     month: Number(form.month),
     updatedAt: today
   }).where(and(eq(tables.stories.id, Number(id)), eq(tables.stories.bond, user.bond.id))).returning().get();
 
-  if (!file) return update;
+  if (!file) return story;
 
-  const filename = `${user.bond.code}-${update.id}`;
-  const uploaded = await uploadImage(file, filename, "stories", event);
+  const { secure } = useRuntimeConfig(event);
+  const storyHash = hash([story.id, user.bond.code].join(), secure.salt);
+  const uploaded = await uploadImage(file, storyHash, "stories", event);
 
   if (!uploaded) {
     throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "check_file_size" });
   }
 
-  await uploadToCloudinary(file, filename, "stories", event);
+  await uploadToCloudinary(file, storyHash, "stories", event);
 
-  return update;
+  return story;
 });
