@@ -29,7 +29,7 @@ const file = ref<File>();
 
 const { form, formReset } = useFormState({
   id: 0 as number | undefined,
-  hash: "",
+  hash: "" as string | undefined,
   marker: props.marker.id,
   description: "",
   year: "" as number | string,
@@ -42,7 +42,7 @@ const storyModal = (story?: MappedLoveStory) => {
     formReset();
     form.value.marker = props.marker.id;
   }
-  else form.value = { ...story };
+  else form.value = { ...story, hash: story.hash };
   useModalController("story", (show) => showModal.value = show);
 };
 

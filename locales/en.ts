@@ -85,6 +85,7 @@ export default {
   uploaded_by: "Uploaded by",
   story_date: "Story date",
   created: "Created",
+  delete_story: "Are you sure you want to delete this story?",
   // Groups
   groups: "Groups",
   places: "Places",

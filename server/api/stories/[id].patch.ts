@@ -26,10 +26,12 @@ export default eventHandler(async (event) : Promise<MappedLoveStory> => {
     updatedAt: today
   }).where(and(eq(tables.stories.id, Number(id)), eq(tables.stories.bond, user.bond.id))).returning().get();
 
-  if (!file) return story;
-
   const { secure } = useRuntimeConfig(event);
   const storyHash = hash([story.id, user.bond.code].join(), secure.salt);
+  const storyPatch = { ...story, hash: storyHash };
+
+  if (!file) return storyPatch;
+
   const uploaded = await uploadImage(file, storyHash, "stories", event);
 
   if (!uploaded) {
@@ -38,5 +40,5 @@ export default eventHandler(async (event) : Promise<MappedLoveStory> => {
 
   await uploadToCloudinary(file, storyHash, "stories", event);
 
-  return story;
+  return storyPatch;
 });

@@ -8,7 +8,7 @@ declare global {
   }
   interface MappedLoveUser {
     id: number;
-    hash: string;
+    hash?: string;
     name: string;
     email: string;
     country: string | null;
