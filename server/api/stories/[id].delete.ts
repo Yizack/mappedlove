@@ -5,8 +5,10 @@ export default eventHandler(async (event) : Promise<MappedLoveStory | undefined>
   if (!user.bond) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "bond_not_found" });
   const { id } = getRouterParams(event);
   try {
-    await deleteImage(`stories/${user.bond.code}-${id}`, event);
-    await deleteCloudinary(`stories/${user.bond.code}-${id}`, event);
+    const { secure } = useRuntimeConfig(event);
+    const storyHash = hash([id, user.bond.code].join(), secure.salt);
+    await deleteImage(`stories/${storyHash}`, event);
+    await deleteCloudinary(`stories/${storyHash}`, event);
   }
   catch (e) {
     console.warn(e);
