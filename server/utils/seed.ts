@@ -11,7 +11,7 @@ const insertUsers = (DB: BetterSQLite3Database, c: number) => {
     DB.insert(tables.users).values({
       email: `test${i+1}@test.test`,
       password: process.env.SEED as string,
-      name: `Test${i+1}`,
+      name: `Name${i+1}`,
       country: null,
       birthDate: null,
       showAvatar: 0,
@@ -28,7 +28,7 @@ const createBond = (DB: BetterSQLite3Database, partner1: number, partner2: numbe
     id: 1,
     partner1,
     partner2,
-    code: "0001-QDZV7",
+    code: "QDZV1",
     bonded: 1,
     createdAt: today,
     updatedAt: today
