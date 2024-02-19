@@ -49,6 +49,7 @@ CREATE TABLE `users` (
 	`birth_date` integer,
 	`show_avatar` integer DEFAULT 0 NOT NULL,
 	`confirmed` integer DEFAULT 0 NOT NULL,
+	`premium` integer DEFAULT 0 NOT NULL,
 	`created_at` integer NOT NULL,
 	`updated_at` integer NOT NULL
 );

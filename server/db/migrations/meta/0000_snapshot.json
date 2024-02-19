@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "sqlite",
-  "id": "3e0d4bf2-21f3-42eb-bd24-a4027ea29a5c",
+  "id": "9a847f38-7d8e-404a-b0b6-e69594c1c410",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "bonds": {
@@ -369,6 +369,14 @@
         },
         "confirmed": {
           "name": "confirmed",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        },
+        "premium": {
+          "name": "premium",
           "type": "integer",
           "primaryKey": false,
           "notNull": true,
