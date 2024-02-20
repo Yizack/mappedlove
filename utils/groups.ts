@@ -27,4 +27,4 @@ export const groups = [
     key: "others",
     icon: "solar:ghost-smile-linear"
   }
-];
+].sort((a, b) => a.key.localeCompare(b.key));

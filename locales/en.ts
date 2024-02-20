@@ -1,5 +1,14 @@
 export default {
   lang_code: "en",
+  // Home
+  strip1_title: "Map Your Journey",
+  strip1_p1: "Easily mark the locations you have visited on an interactive map and create a visual representation of your journey together.",
+  strip1_p2: "Place markers on the map and add stories to them to preserve your memories.",
+  strip2_title: "Share Your Memories",
+  strip2_p1: "Upload images to your stories and share them with your friends and family turning by making your map public.",
+  strip2_p2: "Whether it's a memorable vacation, a lovely dinner, a special event, or simply everyday adventures, our tool helps you turn these moments into unforgettable experiences.",
+  strip3_title: "Create your Bond",
+  strip3_p1: "Connect your accounts by inviting your partner to join in your bond and start mapping your life moments together.",
   // Pages
   home: "Home",
   about: "About",
@@ -52,6 +61,7 @@ export default {
   today_exclamation: "Today!",
   delete_anniversary: "Are you sure you want to delete your anniversary date?",
   public_bond: "Public bond",
+  public_map: "Public map",
   public_bond_info: "Enabling this option will allow any person to view your map, including all markers and stories. Anyone with the link can access, but only you and your partner will be able to edit it.",
   bond_preferences_update: "Your bond preferences have been updated",
   public_bond_confirm: "Are you sure you want to make your bond public?",
@@ -185,5 +195,23 @@ export default {
   invalid_recovery: "Invalid recovery code",
   recovery_expired: "Recovery code has expired, please request a new one",
   recovery_failed: "Recovery failed",
-  continue: "Continue"
+  continue: "Continue",
+  // Footer
+  about_us: "About us",
+  guides: "Guides",
+  pricing: "Pricing",
+  faqs: "FAQs",
+  help: "Help",
+  contact: "Contact",
+  terms_of_use: "Terms of use",
+  privacy_policy: "Privacy policy",
+  cookie_policy: "Cookie policy",
+  support: "Support",
+  contribute: "Contribute",
+  donate: "Donate",
+  github_repository: "GitHub repository",
+  create_issue: "Create issue",
+  request_feature: "Request feature",
+  pull_requests: "Pull requests",
+  translate_help: "Help us translate",
 };

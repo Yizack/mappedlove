@@ -14,11 +14,26 @@ definePageMeta({ middleware: "preload" });
       <div class="container">
         <div class="row bg-body-tertiary">
           <div class="col-lg-6 text-center">
-            <img src="/images/illustrations/mountains.png" class="img-fluid rounded-circle shadow" height="250" width="250">
+            <img src="/images/demos/map-dashboard.jpg" class="img-fluid rounded shadow" width="720" height="405">
           </div>
-          <div class="col-lg-6 m-auto">
-            <h2>Map Your Journey</h2>
-            <p>Easily mark the locations you have visited on an interactive map and create a visual representation of your journey together.</p>
+          <div class="col-lg-6 m-auto mt-3 mt-lg-auto">
+            <h2>{{ t("strip1_title") }}</h2>
+            <p>{{ t("strip1_p1") }}</p>
+            <p>{{ t("strip1_p2") }}</p>
+            <div class="d-flex gap-3 flex-wrap mb-3 mb-lg-0">
+              <div class="text-center">
+                <div class="d-flex gap-2 align-items-center border px-3 py-2 shadow-sm rounded-pill">
+                  <Icon name="solar:map-point-favourite-bold" size="30px" class="text-primary" />
+                  <strong class="small">{{ t("markers") }}</strong>
+                </div>
+              </div>
+              <div class="text-center">
+                <div class="d-flex gap-2 align-items-center border px-3 py-2 shadow-sm rounded-pill">
+                  <Icon name="solar:chat-square-like-bold" size="30px" class="text-primary" />
+                  <strong class="small">{{ t("stories") }}</strong>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -27,11 +42,20 @@ definePageMeta({ middleware: "preload" });
       <div class="container">
         <div class="row">
           <div class="col-lg-6 m-auto">
-            <h2>Share Your Memories</h2>
-            <p>Upload photos and videos to your map and share them with your friends and family.</p>
+            <h2>{{ t("strip2_title") }}</h2>
+            <p>{{ t("strip2_p1") }}</p>
+            <p>{{ t("strip2_p2") }}</p>
+            <div class="d-flex gap-3 flex-wrap mb-3 mb-lg-0">
+              <div v-for="group in groups" :key="group.key" class="text-center">
+                <div class="d-flex gap-2 align-items-center border px-3 py-2 shadow-sm rounded-pill">
+                  <Icon :name="group.icon" size="30px" class="text-primary" />
+                  <strong class="small">{{ t(group.key) }}</strong>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="col-lg-6 text-center">
-            <img src="/images/illustrations/travelers.png" class="img-fluid rounded-circle shadow" height="250" width="250">
+            <img src="/images/demos/public-map.jpg" class="img-fluid rounded shadow" width="720" height="405">
           </div>
         </div>
       </div>
@@ -40,11 +64,31 @@ definePageMeta({ middleware: "preload" });
       <div class="container">
         <div class="row">
           <div class="col-lg-6 text-center">
-            <img src="/images/illustrations/card.png" class="img-fluid rounded-circle shadow" height="250" width="250">
+            <img src="/images/demos/bond.jpg" class="img-fluid rounded shadow" width="720" height="405">
           </div>
-          <div class="col-lg-6 m-auto">
-            <h2>Preserve Your Memories</h2>
-            <p>Keep your memories alive by creating a visual representation of your journey together.</p>
+          <div class="col-lg-6 m-auto mt-3 mt-lg-auto">
+            <h2>{{ t("strip3_title") }}</h2>
+            <p>{{ t("strip3_p1") }}</p>
+            <div class="d-flex gap-3 flex-wrap mb-3 mb-lg-0">
+              <div class="text-center">
+                <div class="d-flex gap-2 align-items-center border px-3 py-2 shadow-sm rounded-pill">
+                  <Icon name="solar:hearts-bold-duotone" size="30px" class="text-primary" />
+                  <strong class="small">{{ t("bond") }}</strong>
+                </div>
+              </div>
+              <div class="text-center">
+                <div class="d-flex gap-2 align-items-center border px-3 py-2 shadow-sm rounded-pill">
+                  <Icon name="solar:heart-lock-outline" size="30px" class="text-primary" />
+                  <strong class="small">{{ t("anniversary") }}</strong>
+                </div>
+              </div>
+              <div class="text-center">
+                <div class="d-flex gap-2 align-items-center border px-3 py-2 shadow-sm rounded-pill">
+                  <Icon name="solar:streets-map-point-bold-duotone" size="30px" class="text-primary" />
+                  <strong class="small">{{ t("public_map") }}</strong>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
