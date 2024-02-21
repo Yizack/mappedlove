@@ -20,6 +20,8 @@ export default eventHandler(async (event) : Promise<MappedLoveBond> => {
     updatedAt: tables.users.updatedAt
   }).from(tables.users).where(eq(tables.users.id, Number(bond.partner1))).get();
 
+  if (!partner1) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "bond_not_found" });
+
   const partner2 = await DB.select({
     id: tables.users.id,
     name: tables.users.name,
@@ -30,9 +32,6 @@ export default eventHandler(async (event) : Promise<MappedLoveBond> => {
 
   const { secure } = useRuntimeConfig(event);
   const partner1Hash = hash([partner1?.id].join(), secure.salt);
-  const partner2Hash = hash([partner2?.id].join(), secure.salt);
-
-  if (!partner1 || !partner2) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "bond_not_found" });
 
   return {
     ...bond,
@@ -40,9 +39,9 @@ export default eventHandler(async (event) : Promise<MappedLoveBond> => {
       ...partner1,
       hash: partner1Hash
     },
-    partner2: {
+    partner2: partner2 ? {
       ...partner2,
-      hash: partner2Hash
-    }
+      hash: hash([partner2?.id].join(), secure.salt)
+    } : null
   };
 });
