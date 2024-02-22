@@ -69,7 +69,7 @@ export const copyToClipboard = async (text: string) => {
 
 export const storiesCarousel = (marker: MappedLoveMarker, stories: MappedLoveStory[]) => {
   return !stories.length ? `<div class="mt-2 text-center fw-bold">${marker.title}</div>` :
-    `<div id="storyCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+    `<div id="story-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
       <div class="carousel-inner mw-100 mx-auto">`
         + stories.map(({ hash, updatedAt }, index) => {
           return `
@@ -80,7 +80,7 @@ export const storiesCarousel = (marker: MappedLoveMarker, stories: MappedLoveSto
           </div>`;
         }).join("")
         + `
-        <div class="position-absolute end-0 top-0 rounded-pill bg-primary text-body-emphasis px-2 py-1 small fw-bold z-1">${stories.length}</div>
+        <div class="close position-absolute end-0 top-0 rounded-pill bg-primary px-2 py-1 small fw-bold z-1">${stories.length}</div>
       </div>
     </div>
   <div class="mt-2 text-center fw-bold">${marker.title}</div>`.replace(/\n/g, "");

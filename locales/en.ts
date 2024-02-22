@@ -22,6 +22,7 @@ export default {
   forgot_password: "Forgot password?",
   no_account: "No account?",
   signin_error: "Wrong email or password",
+  logout: "Logout",
   // Register
   password_confirm: "Confirm password",
   name: "Name",
@@ -215,4 +216,7 @@ export default {
   request_feature: "Request feature",
   pull_requests: "Pull requests",
   translate_help: "Help us translate",
+  // Subscription
+  subscription: "Subscription",
+  premium: "Premium",
 };

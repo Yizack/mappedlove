@@ -54,9 +54,15 @@ watch(() => user.value, () => {
             <span :class="{ 'd-none d-md-inline ms-1': user.showAvatar }">{{ user.name }}</span>
           </button>
           <ul class="dropdown-menu dropdown-menu-end">
-            <li><NuxtLink class="dropdown-item" to="/app/settings">Settings</NuxtLink></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><button class="dropdown-item" @click="logOut()"><Icon name="solar:exit-linear" /> Logout</button></li>
+            <template v-for="(page, i) of SITE.pages.user" :key="i">
+              <li v-if="i < SITE.pages.user.length - 1">
+                <NuxtLink class="dropdown-item" :to="page.path">{{ t(page.name) }}</NuxtLink>
+              </li>
+              <template v-else>
+                <li><hr class="dropdown-divider"></li>
+                <li><button class="dropdown-item" @click="logOut()"><Icon name="solar:exit-linear" /> {{ t(page.name) }}</button></li>
+              </template>
+            </template>
           </ul>
         </div>
       </div>

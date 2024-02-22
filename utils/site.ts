@@ -12,6 +12,32 @@ export const SITE = {
     app: [
       { name: "map", path: "/app/map", icon: "solar:streets-map-point-bold-duotone", button: false },
       { name: "bond", path: "/app", icon: "solar:hearts-bold-duotone", button: false }
+    ],
+    user: [
+      { name: "settings", path: "/app/settings" },
+      { name: "premium", path: "/app/premium" },
+      { name: "logout", path: "/logout", icon: "solar:exit-linear" }
     ]
+  },
+  pricing: {
+    features: [
+      "public_map",
+      "unlimited_markers",
+      "upload_videos",
+    ],
+    plans: {
+      free: {
+        features: [
+          "public_map"
+        ],
+      },
+      premium: {
+        features: [
+          "public_map",
+          "unlimited_markers",
+          "upload_videos"
+        ]
+      }
+    }
   }
 };
