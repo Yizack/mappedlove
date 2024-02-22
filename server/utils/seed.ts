@@ -30,6 +30,7 @@ const createBond = (DB: BetterSQLite3Database, partner1: number, partner2: numbe
     partner2,
     code: "QDZV1",
     bonded: 1,
+    premium: 1,
     createdAt: today,
     updatedAt: today
   }).onConflictDoUpdate({

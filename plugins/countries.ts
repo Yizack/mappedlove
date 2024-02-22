@@ -14,9 +14,8 @@ class Countries {
   }
 }
 
-const countries = new Countries();
-
 export default defineNuxtPlugin(() => {
+  const countries = new Countries();
   return {
     provide: { countries }
   };

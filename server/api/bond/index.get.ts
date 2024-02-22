@@ -33,8 +33,26 @@ export default eventHandler(async (event) : Promise<MappedLoveBond> => {
   const { secure } = useRuntimeConfig(event);
   const partner1Hash = hash([partner1?.id].join(), secure.salt);
 
+  if (bond.premium) {
+    const today = Date.now();
+    if (!bond.nextPayment || bond.nextPayment < today) {
+      await DB.update(tables.bonds).set({
+        premium: 0,
+        nextPayment: null,
+        subscriptionId: null,
+        updatedAt: today
+      }).where(eq(tables.bonds.id, bond.id)).run();
+      bond.premium = 0;
+      bond.nextPayment = null;
+    }
+  }
+
+  await setUserSession(event, { user: { ...user, bond } });
+
   return {
     ...bond,
+    nextPayment: bond.nextPayment || undefined,
+    subscriptionId: bond.subscriptionId || undefined,
     partner1: {
       ...partner1,
       hash: partner1Hash

@@ -45,6 +45,11 @@ declare global {
     coupleDate: number | null;
     bonded: number;
     public: number;
+    premium?: number;
+    subscriptionId?: string | null;
+    nextPayment?: number | null;
+    createdAt: number;
+    updatedAt: number;
   }
   interface MappedLoveStory {
     id: number;

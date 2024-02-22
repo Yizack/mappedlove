@@ -68,6 +68,7 @@ export default {
   share_bond_info: "Your bond is set to public. Share the link below with your friends or family!",
   bond_not_found: "Bond not found",
   bond_exists: "A bond already exists",
+  cant_delete_bonded_bond: "Can't delete a bonded bond",
   // Markers
   marker: "Marker",
   markers: "Markers",

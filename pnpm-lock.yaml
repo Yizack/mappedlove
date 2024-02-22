@@ -17,6 +17,9 @@ devDependencies:
   '@nuxtjs/turnstile':
     specifier: ^0.6.3
     version: 0.6.3
+  '@paypal/paypal-js':
+    specifier: ^8.0.2
+    version: 8.0.2
   '@types/bootstrap':
     specifier: ^5.2.10
     version: 5.2.10
@@ -27,20 +30,20 @@ devDependencies:
     specifier: ^8.1.1
     version: 8.1.1(vue@3.4.19)
   '@yeger/vue-masonry-wall':
-    specifier: ^5.0.7
-    version: 5.0.7(vue@3.4.19)
+    specifier: ^5.0.8
+    version: 5.0.8(vue@3.4.19)
   better-sqlite3:
-    specifier: ^9.4.1
-    version: 9.4.1
+    specifier: ^9.4.3
+    version: 9.4.3
   bootstrap:
-    specifier: ^5.3.2
-    version: 5.3.2(@popperjs/core@2.11.8)
+    specifier: ^5.3.3
+    version: 5.3.3(@popperjs/core@2.11.8)
   drizzle-kit:
     specifier: ^0.20.14
     version: 0.20.14
   drizzle-orm:
     specifier: ^0.29.3
-    version: 0.29.3(better-sqlite3@9.4.1)
+    version: 0.29.3(better-sqlite3@9.4.3)
   eslint:
     specifier: ^8.56.0
     version: 8.56.0
@@ -48,8 +51,8 @@ devDependencies:
     specifier: ^1.9.4
     version: 1.9.4
   leaflet-geosearch:
-    specifier: ^3.11.0
-    version: 3.11.0
+    specifier: ^3.11.1
+    version: 3.11.1
   mustache:
     specifier: ^4.2.0
     version: 4.2.0
@@ -1196,14 +1199,11 @@ packages:
     resolution: {integrity: sha512-9TANp6GPoMtYzQdt54kfAyMmz1+osLlXdg2ENroU7zzrtflTLrrC/lgrIfaSe+Wu0b89GKccT7vxXA0MoAIO+Q==}
     dev: true
 
-  /@googlemaps/js-api-loader@1.16.3:
-    resolution: {integrity: sha512-JMN0UaEzAjK6h949WtgXwCm1Xxz+ikELTLRvHuP577ea9Wbx6fEn4Gv3+YHcm04JS4g1iz2tpm4Vw+7G8sUgSQ==}
+  /@googlemaps/js-api-loader@1.16.6:
+    resolution: {integrity: sha512-V8p5W9DbPQx74jWUmyYJOerhiB4C+MHekaO0ZRmc6lrOYrvY7+syLhzOWpp55kqSPeNb+qbC2h8i69aLIX6krQ==}
     requiresBuild: true
     dependencies:
-      '@rollup/plugin-terser': 0.4.4(rollup@4.12.0)
       fast-deep-equal: 3.1.3
-    transitivePeerDependencies:
-      - rollup
     dev: true
     optional: true
 
@@ -1994,6 +1994,12 @@ packages:
       '@parcel/watcher-win32-arm64': 2.4.0
       '@parcel/watcher-win32-ia32': 2.4.0
       '@parcel/watcher-win32-x64': 2.4.0
+    dev: true
+
+  /@paypal/paypal-js@8.0.2:
+    resolution: {integrity: sha512-JbWXxMsTDUE4j+JXAu04qBacjkP6/38lgGC5YKW/FBfU1v3S5EgjfF1cMCGFehcpmsU5T88rkpKDsuftrCkyCA==}
+    dependencies:
+      promise-polyfill: 8.3.0
     dev: true
 
   /@pkgjs/parseargs@0.11.0:
@@ -3252,22 +3258,22 @@ packages:
     resolution: {integrity: sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==}
     dev: true
 
-  /@yeger/vue-lib-adapter@2.0.6:
-    resolution: {integrity: sha512-OiwTDmQKaX4rTzVjSxAvd8sZ+VQB4kq52ms+Z5Keb0FetqAZanX5G1jbO8BDC8uoOrqu+vTtP4k2cOvXYhEvUw==}
+  /@yeger/vue-lib-adapter@2.0.7:
+    resolution: {integrity: sha512-DStHOVCXXOL9V/O5Fo2ajpfb9GiMmDGG/G9uS85rFfiSPwI63yTAY5EV6yRCy3lVFlXBNBBz92XKcbzEUbpm1w==}
     dev: true
 
-  /@yeger/vue-masonry-wall-core@5.0.6:
-    resolution: {integrity: sha512-ZXGRFGdY81I9y5RfmWEWKHukHPDtPRzwiLq2qdhoneGKn4zeLQr5aq32pHGJ6cx3tRgB3wvn8lsu9jviwsBUGw==}
+  /@yeger/vue-masonry-wall-core@5.0.7:
+    resolution: {integrity: sha512-llH9wKRjghRBq6ZIJUQoyIQn/Bv3XKfWH5qDKJNU0oJqeJTxKOFrDX1EyG31LHxwkxqzjnA9eor3NgYSGWu6YA==}
     dependencies:
-      '@yeger/vue-lib-adapter': 2.0.6
+      '@yeger/vue-lib-adapter': 2.0.7
     dev: true
 
-  /@yeger/vue-masonry-wall@5.0.7(vue@3.4.19):
-    resolution: {integrity: sha512-elJLhOPRF+1XOY1E5qsFVsDIc/MSyFPbIFihR/Q5lDIE9kdGWfxoVwp8vqJoWnbHGxkB50uCX/kXy+wlTM6OEQ==}
+  /@yeger/vue-masonry-wall@5.0.8(vue@3.4.19):
+    resolution: {integrity: sha512-r1F5dtN1ZPdawaMfnfSMVaePEHLdadJQtIufVjYSBjZ8QqN2r8PHedWaPHBYf3Z2vb61YZtG3ad+PBwMWBXDOQ==}
     peerDependencies:
       vue: ^3.0.0
     dependencies:
-      '@yeger/vue-masonry-wall-core': 5.0.6
+      '@yeger/vue-masonry-wall-core': 5.0.7
       vue: 3.4.19(typescript@5.3.3)
     dev: true
 
@@ -3532,8 +3538,8 @@ packages:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
     dev: true
 
-  /better-sqlite3@9.4.1:
-    resolution: {integrity: sha512-QpqiQeMI4WkE+dQ68zTMX5OzlPGc7lXIDP1iKUt4Omt9PdaVgzKYxHIJRIzt1E+RUBQoFmkip/IbvzyrxehAIg==}
+  /better-sqlite3@9.4.3:
+    resolution: {integrity: sha512-ud0bTmD9O3uWJGuXDltyj3R47Nz0OHX8iqPOT5PMspGqlu/qQFn+5S2eFBUCrySpavTjFXbi4EgrfVvPAHlImw==}
     requiresBuild: true
     dependencies:
       bindings: 1.5.0
@@ -3567,8 +3573,8 @@ packages:
     resolution: {integrity: sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==}
     dev: true
 
-  /bootstrap@5.3.2(@popperjs/core@2.11.8):
-    resolution: {integrity: sha512-D32nmNWiQHo94BKHLmOrdjlL05q1c8oxbtBphQFb9Z5to6eGRDCm0QgeaZ4zFBHzfg2++rqa2JkqCcxDy0sH0g==}
+  /bootstrap@5.3.3(@popperjs/core@2.11.8):
+    resolution: {integrity: sha512-8HLCdWgyoMguSO9o+aH+iuZ+aht+mzW0u3HIMzVu7Srrpv7EBBxTnrFlSCskwdY1+EOFQSm7uMJhNQHkdPcmjg==}
     peerDependencies:
       '@popperjs/core': ^2.11.8
     dependencies:
@@ -4292,7 +4298,7 @@ packages:
       - supports-color
     dev: true
 
-  /drizzle-orm@0.29.3(better-sqlite3@9.4.1):
+  /drizzle-orm@0.29.3(better-sqlite3@9.4.3):
     resolution: {integrity: sha512-uSE027csliGSGYD0pqtM+SAQATMREb3eSM/U8s6r+Y0RFwTKwftnwwSkqx3oS65UBgqDOM0gMTl5UGNpt6lW0A==}
     peerDependencies:
       '@aws-sdk/client-rds-data': '>=3'
@@ -4363,7 +4369,7 @@ packages:
       sqlite3:
         optional: true
     dependencies:
-      better-sqlite3: 9.4.1
+      better-sqlite3: 9.4.3
     dev: true
 
   /duplexer@0.1.2:
@@ -5809,13 +5815,11 @@ packages:
       readable-stream: 2.3.8
     dev: true
 
-  /leaflet-geosearch@3.11.0:
-    resolution: {integrity: sha512-lWmryKXg7S//7q53fMyooCAyAzYxMtozeEmjrQqtkmsPmeHphaKMuFEm/uD4ZwoblBIIMXsUnuNBLvg6bSfjqA==}
+  /leaflet-geosearch@3.11.1:
+    resolution: {integrity: sha512-cILLFLmn8C3MtGhaafGqY7CuhUG2+bGyUgfPHgNgW6fs4EvYyiIO88nO2ZqR7Hy6Ba089haLkhODpZR+/fRrPQ==}
     optionalDependencies:
-      '@googlemaps/js-api-loader': 1.16.3
+      '@googlemaps/js-api-loader': 1.16.6
       leaflet: 1.9.4
-    transitivePeerDependencies:
-      - rollup
     dev: true
 
   /leaflet@1.9.4:
@@ -7369,6 +7373,10 @@ packages:
     peerDependenciesMeta:
       bluebird:
         optional: true
+    dev: true
+
+  /promise-polyfill@8.3.0:
+    resolution: {integrity: sha512-H5oELycFml5yto/atYqmjyigJoAo3+OXwolYiH7OfQuYlAqhxNvTfiNMbV9hsC6Yp83yE5r2KTVmtrG6R9i6Pg==}
     dev: true
 
   /promise-retry@2.0.1:

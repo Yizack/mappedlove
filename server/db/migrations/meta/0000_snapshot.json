@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "sqlite",
-  "id": "9a847f38-7d8e-404a-b0b6-e69594c1c410",
+  "id": "6b2c0a8e-d1ed-4bc1-8fba-50076b3b6161",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "bonds": {
@@ -57,6 +57,28 @@
           "notNull": true,
           "autoincrement": false,
           "default": 0
+        },
+        "premium": {
+          "name": "premium",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        },
+        "subscription_id": {
+          "name": "subscription_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "next_payment": {
+          "name": "next_payment",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
         },
         "created_at": {
           "name": "created_at",
@@ -369,14 +391,6 @@
         },
         "confirmed": {
           "name": "confirmed",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false,
-          "default": 0
-        },
-        "premium": {
-          "name": "premium",
           "type": "integer",
           "primaryKey": false,
           "notNull": true,

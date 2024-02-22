@@ -6,6 +6,9 @@ CREATE TABLE `bonds` (
 	`couple_date` integer,
 	`bonded` integer DEFAULT 0 NOT NULL,
 	`public` integer DEFAULT 0 NOT NULL,
+	`premium` integer DEFAULT 0 NOT NULL,
+	`subscription_id` text,
+	`next_payment` integer,
 	`created_at` integer NOT NULL,
 	`updated_at` integer NOT NULL,
 	FOREIGN KEY (`partner_1`) REFERENCES `users`(`id`) ON UPDATE no action ON DELETE set null,
@@ -49,7 +52,6 @@ CREATE TABLE `users` (
 	`birth_date` integer,
 	`show_avatar` integer DEFAULT 0 NOT NULL,
 	`confirmed` integer DEFAULT 0 NOT NULL,
-	`premium` integer DEFAULT 0 NOT NULL,
 	`created_at` integer NOT NULL,
 	`updated_at` integer NOT NULL
 );

@@ -89,9 +89,8 @@ class Bootstrap {
   }
 }
 
-const bootstrap = new Bootstrap();
-
 export default defineNuxtPlugin(() => {
+  const bootstrap = new Bootstrap();
   return {
     provide: { bootstrap }
   };

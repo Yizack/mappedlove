@@ -9,7 +9,6 @@ export const users = sqliteTable("users", {
   birthDate: integer("birth_date"),
   showAvatar: integer("show_avatar").notNull().default(0),
   confirmed: integer("confirmed").notNull().default(0),
-  premium: integer("premium").notNull().default(0),
   createdAt: integer("created_at").notNull(),
   updatedAt: integer("updated_at").notNull(),
 });
@@ -22,6 +21,9 @@ export const bonds = sqliteTable("bonds", {
   coupleDate: integer("couple_date"),
   bonded: integer("bonded").notNull().default(0),
   public: integer("public").notNull().default(0),
+  premium: integer("premium").notNull().default(0),
+  subscriptionId: text("subscription_id"),
+  nextPayment: integer("next_payment"),
   createdAt: integer("created_at").notNull(),
   updatedAt: integer("updated_at").notNull(),
 });

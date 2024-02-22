@@ -16,11 +16,11 @@ definePageMeta({ middleware: "preload" });
           <div class="col-lg-6 text-center">
             <img src="/images/demos/map-dashboard.jpg" class="img-fluid rounded shadow" width="720" height="405">
           </div>
-          <div class="col-lg-6 m-auto mt-3 mt-lg-auto">
+          <div class="col-lg-6 m-auto mt-4 mt-lg-auto">
             <h2>{{ t("strip1_title") }}</h2>
             <p>{{ t("strip1_p1") }}</p>
             <p>{{ t("strip1_p2") }}</p>
-            <div class="d-flex gap-3 flex-wrap mb-3 mb-lg-0">
+            <div class="d-flex gap-2 gap-lg-3 flex-wrap mb-3 mb-lg-0">
               <div class="text-center">
                 <div class="d-flex gap-2 align-items-center border px-3 py-2 shadow-sm rounded-pill">
                   <Icon name="solar:map-point-favourite-bold" size="30px" class="text-primary" />
@@ -45,7 +45,7 @@ definePageMeta({ middleware: "preload" });
             <h2>{{ t("strip2_title") }}</h2>
             <p>{{ t("strip2_p1") }}</p>
             <p>{{ t("strip2_p2") }}</p>
-            <div class="d-flex gap-3 flex-wrap mb-3 mb-lg-0">
+            <div class="d-flex gap-2 gap-lg-3 flex-wrap mb-4 mb-lg-0">
               <div v-for="group in groups" :key="group.key" class="text-center">
                 <div class="d-flex gap-2 align-items-center border px-3 py-2 shadow-sm rounded-pill">
                   <Icon :name="group.icon" size="30px" class="text-primary" />
@@ -66,10 +66,10 @@ definePageMeta({ middleware: "preload" });
           <div class="col-lg-6 text-center">
             <img src="/images/demos/bond.jpg" class="img-fluid rounded shadow" width="720" height="405">
           </div>
-          <div class="col-lg-6 m-auto mt-3 mt-lg-auto">
+          <div class="col-lg-6 m-auto mt-4 mt-lg-auto">
             <h2>{{ t("strip3_title") }}</h2>
             <p>{{ t("strip3_p1") }}</p>
-            <div class="d-flex gap-3 flex-wrap mb-3 mb-lg-0">
+            <div class="d-flex gap-2 gap-lg-3 flex-wrap mb-3 mb-lg-0">
               <div class="text-center">
                 <div class="d-flex gap-2 align-items-center border px-3 py-2 shadow-sm rounded-pill">
                   <Icon name="solar:hearts-bold-duotone" size="30px" class="text-primary" />

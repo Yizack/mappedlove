@@ -17,8 +17,8 @@
         <div class="col mb-3">
           <h5>{{ t("about") }}</h5>
           <ul class="nav flex-column">
-            <li class="nav-item mb-2"><NuxtLink to="#" class="nav-link p-0 text-body-secondary">{{ t("home") }}</NuxtLink></li>
-            <li class="nav-item mb-2"><NuxtLink to="#" class="nav-link p-0 text-body-secondary">{{ t("about_us") }}</NuxtLink></li>
+            <li class="nav-item mb-2"><NuxtLink to="/" class="nav-link p-0 text-body-secondary">{{ t("home") }}</NuxtLink></li>
+            <li class="nav-item mb-2"><NuxtLink to="/about" class="nav-link p-0 text-body-secondary">{{ t("about_us") }}</NuxtLink></li>
             <li class="nav-item mb-2"><NuxtLink to="#" class="nav-link p-0 text-body-secondary">{{ t("pricing") }}</NuxtLink></li>
             <li class="nav-item mb-2"><NuxtLink to="#" class="nav-link p-0 text-body-secondary">{{ t("faqs") }}</NuxtLink></li>
           </ul>

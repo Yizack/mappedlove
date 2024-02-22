@@ -18,9 +18,8 @@ class Toasts {
   }
 }
 
-const toasts = new Toasts();
-
 export default defineNuxtPlugin(() => {
+  const toasts = new Toasts();
   return {
     provide: { toasts }
   };

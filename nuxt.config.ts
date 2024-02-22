@@ -90,6 +90,15 @@ export default defineNuxtConfig({
       name: "",
       key: "",
       secret: ""
+    },
+    paypal: {
+      secret: ""
+    },
+    public: {
+      paypal: {
+        clientId: process.env.NUXT_PAYPAL_CLIENT_ID || "",
+        planId: process.env.NUXT_PAYPAL_PLAN_ID || ""
+      }
     }
   },
   site: {
