@@ -153,3 +153,7 @@ main {
 .select-list li:hover {
   background-color: var(--bs-tertiary-bg);
 }
+
+#story-carousel .close {
+  color: var(--bs-body-bg);
+}
