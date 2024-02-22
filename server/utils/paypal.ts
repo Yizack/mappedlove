@@ -14,11 +14,11 @@ export const isValidPayPalWebhook = async (event: H3Event, headers: Partial<Reco
       Authorization: `Basic ${basicAuth}`
     },
     body: {
-      auth_algo: headers["PAYPAL-AUTH-ALGO"],
-      cert_url: headers["PAYPAL-CERT-URL"],
-      transmission_id: headers["PAYPAL-TRANSMISSION-ID"],
-      transmission_sig: headers["PAYPAL-TRANSMISSION-SIG"],
-      transmission_time: headers["PAYPAL-TRANSMISSION-TIME"],
+      auth_algo: headers["paypal-auth-algo"],
+      cert_url: headers["paypal-cert-url"],
+      transmission_id: headers["paypal-transmission-id"],
+      transmission_sig: headers["paypal-transmission-sig"],
+      transmission_time: headers["paypal-transmission-time"],
       webhook_id: data.id,
       webhook_event: data
     }

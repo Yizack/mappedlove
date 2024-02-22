@@ -26,5 +26,5 @@ export default defineEventHandler(async (event) => {
       updatedAt: today
     }).where(and(eq(tables.bonds.id, Number(webhook.resource.custom)))).run();
   }
-  return { success: true };
+  return { success: isValidWebhook };
 });
