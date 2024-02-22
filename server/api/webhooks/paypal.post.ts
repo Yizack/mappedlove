@@ -5,7 +5,7 @@ export default defineEventHandler(async (event) => {
   const headers = getHeaders(event);
 
   if (!headers) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "Invalid headers" });
-
+  console.info(webhook);
   const isValidWebhook = await isValidPayPalWebhook(event, headers, webhook);
   console.info(isValidWebhook);
   if (!isValidWebhook) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "Invalid webhook" });
