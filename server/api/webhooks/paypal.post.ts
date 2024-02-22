@@ -3,12 +3,12 @@ import { eq, and } from "drizzle-orm";
 export default defineEventHandler(async (event) => {
   const webhook = await readBody(event) as PayPalWebhookEvent;
   const headers = getHeaders(event);
-  console.info(webhook);
-  if (!headers) return;
+
+  if (!headers) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "Invalid headers" });
 
   const isValidWebhook = await isValidPayPalWebhook(event, headers, webhook);
   console.info(isValidWebhook);
-  if (!isValidWebhook) return;
+  if (!isValidWebhook) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "Invalid webhook" });
 
   const DB = useDb();
   const today = Date.now();
@@ -16,8 +16,8 @@ export default defineEventHandler(async (event) => {
   if (webhook.event_type === PayPalWebhook.PAYMENT_SALE_COMPLETED) {
     if (webhook.resource.state !== "completed" || !webhook.resource.custom || !webhook.resource.billing_agreement_id) return;
     const subscription = await getPayPalSubscription(event, webhook.resource.billing_agreement_id);
-    if (!subscription) return;
-    if (subscription.status !== "ACTIVE") return;
+    if (!subscription) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "Invalid subscription" });
+    if (subscription.status !== "ACTIVE") throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "Invalid subscription status" });
 
     await DB.update(tables.bonds).set({
       premium: 1,
@@ -26,4 +26,5 @@ export default defineEventHandler(async (event) => {
       updatedAt: today
     }).where(and(eq(tables.bonds.id, Number(webhook.resource.custom)))).run();
   }
+  return { success: true };
 });
