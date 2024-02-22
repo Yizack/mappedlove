@@ -4,7 +4,7 @@ const { clientId } = useRuntimeConfig().public.paypal;
 const baseAPI = "https://api-m.paypal.com/v1";
 
 export const isValidPayPalWebhook = async (event: H3Event, headers: Partial<Record<HTTPHeaderName, string | undefined>>, data: PayPalWebhookEvent ) => {
-  const { secret } = useRuntimeConfig(event).paypal;
+  const { secret, webhookId } = useRuntimeConfig(event).paypal;
   const basicAuth = btoa(`${clientId}:${secret}`);
   const endpoint = `${baseAPI}/notifications/verify-webhook-signature`;
 
@@ -19,7 +19,7 @@ export const isValidPayPalWebhook = async (event: H3Event, headers: Partial<Reco
       transmission_id: headers["paypal-transmission-id"],
       transmission_sig: headers["paypal-transmission-sig"],
       transmission_time: headers["paypal-transmission-time"],
-      webhook_id: data.id,
+      webhook_id: webhookId,
       webhook_event: data
     }
   }).catch(() => null);

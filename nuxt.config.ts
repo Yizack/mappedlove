@@ -92,7 +92,8 @@ export default defineNuxtConfig({
       secret: ""
     },
     paypal: {
-      secret: ""
+      secret: "",
+      webhookId: ""
     },
     public: {
       paypal: {
