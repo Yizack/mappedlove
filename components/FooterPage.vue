@@ -39,9 +39,9 @@
           <h5>{{ t("contribute") }}</h5>
           <ul class="nav flex-column">
             <li class="nav-item mb-2"><NuxtLink to="#" class="nav-link p-0 text-body-secondary">{{ t("donate") }}</NuxtLink></li>
-            <li class="nav-item mb-2"><NuxtLink to="#" class="nav-link p-0 text-body-secondary">{{ t("github_repository") }}</NuxtLink></li>
-            <li class="nav-item mb-2"><NuxtLink to="#" class="nav-link p-0 text-body-secondary">{{ t("create_issue") }}</NuxtLink></li>
-            <li class="nav-item mb-2"><NuxtLink to="#" class="nav-link p-0 text-body-secondary">{{ t("request_feature") }}</NuxtLink></li>
+            <li class="nav-item mb-2"><a href="https://github.com/Yizack/mappedlove" class="nav-link p-0 text-body-secondary" target="_blank">{{ t("github_repository") }}</a></li>
+            <li class="nav-item mb-2"><a href="https://github.com/Yizack/mappedlove/issues/new" class="nav-link p-0 text-body-secondary" target="_blank">{{ t("create_issue") }}</a></li>
+            <li class="nav-item mb-2"><a href="https://github.com/Yizack/mappedlove/issues/new" class="nav-link p-0 text-body-secondary" target="_blank">{{ t("request_feature") }}</a></li>
             <li class="nav-item mb-2"><NuxtLink to="#" class="nav-link p-0 text-body-secondary">{{ t("translate_help") }}</NuxtLink></li>
           </ul>
         </div>
