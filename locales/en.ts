@@ -217,6 +217,9 @@ export default {
   pull_requests: "Pull requests",
   translate_help: "Help us translate",
   // Subscription
+  compare_plans: "Compare plans",
   subscription: "Subscription",
   premium: "Premium",
+  unlimited_markers: "Unlimited markers",
+  upload_videos: "Upload videos"
 };

@@ -45,25 +45,27 @@ const { user } = useUserSession();
         </div>
       </div>
 
-      <h2 class="display-6 text-center mb-4">Compare plans</h2>
+      <div class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
+        <h2 class="display-6 text-center mb-4">{{ t("compare_plans") }}</h2>
 
-      <div class="table-responsive">
-        <table class="table text-center">
-          <thead>
-            <tr>
-              <th class="text-start">Features</th>
-              <th>Free</th>
-              <th>Premium</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(feature, i) of SITE.pricing.features" :key="i">
-              <th scope="row" class="text-start">{{ t(feature) }}</th>
-              <td><Icon v-if="SITE.pricing.plans.free.features.includes(feature)" class="text-primary" name="bi:check-lg" size="1.3rem" /></td>
-              <td><Icon v-if="SITE.pricing.plans.premium.features.includes(feature)" class="text-primary" name="bi:check-lg" size="1.3rem" /></td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="table text-center">
+            <thead>
+              <tr>
+                <th class="text-start">Features</th>
+                <th>Free</th>
+                <th>Premium</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(feature, i) of SITE.pricing.features" :key="i">
+                <th scope="row" class="text-start">{{ t(feature) }}</th>
+                <td><Icon v-if="SITE.pricing.plans.free.features.includes(feature)" class="text-primary" name="bi:check-lg" size="1.3rem" /></td>
+                <td><Icon v-if="SITE.pricing.plans.premium.features.includes(feature)" class="text-primary" name="bi:check-lg" size="1.3rem" /></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </main>
