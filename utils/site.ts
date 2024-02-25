@@ -20,22 +20,27 @@ export const SITE = {
     ]
   },
   pricing: {
-    features: [
-      "public_map",
-      "unlimited_markers",
-      "upload_videos",
-    ],
     plans: {
       free: {
+        name: "free",
+        price: 0,
         features: [
-          "public_map"
+          "share_public_map",
+          "free_markers_quota",
+          "free_image_upload_quota",
+          "free_summary",
+          "email_support"
         ],
       },
       premium: {
+        name: "premium",
+        price: 2,
         features: [
-          "public_map",
-          "unlimited_markers",
-          "upload_videos"
+          "share_public_map",
+          "premium_markers_quota",
+          "premium_image_upload_quota",
+          "premium_summary",
+          "email_support"
         ]
       }
     }

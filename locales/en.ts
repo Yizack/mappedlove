@@ -217,9 +217,21 @@ export default {
   pull_requests: "Pull requests",
   translate_help: "Help us translate",
   // Subscription
+  subscribe: "Subscribe",
+  price_in_usd: "Price in USD",
+  available_plans: "Available plans",
   compare_plans: "Compare plans",
   subscription: "Subscription",
+  free: "Free",
+  free_markers_quota: "Limited to 10 markers",
+  free_image_upload_quota: "2 GB per image upload",
+  free_summary: "No yearly summary",
   premium: "Premium",
-  unlimited_markers: "Unlimited markers",
-  upload_videos: "Upload videos"
+  premium_markers_quota: "Unlimited markers",
+  premium_image_upload_quota: "15 GB per image upload",
+  premium_summary: "Yearly summary",
+  share_public_map: "Share public map",
+  current_plan: "Current plan",
+  email_support: "Email support",
+  cancel_to_downgrade: "Cancel to downgrade",
 };
