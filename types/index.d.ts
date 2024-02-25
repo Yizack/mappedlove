@@ -47,7 +47,7 @@ declare global {
     public: number;
     premium?: number;
     subscriptionId?: string | null;
-    nextPayment?: number | null;
+    nextPayment: number | null;
     createdAt: number;
     updatedAt: number;
   }

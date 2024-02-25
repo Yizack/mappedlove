@@ -47,7 +47,7 @@ const joinBond = async () => {
       <div class="rounded-3 shadow bg-body px-3 py-4 p-lg-5">
         <form @submit.prevent="joinBond">
           <h1>
-            <strong>{{ t("bond_code") }}</strong>
+            <strong>{{ t("enter_bond_code") }}</strong>
           </h1>
           <p>{{ t("ask_code") }}</p>
           <div class="input-group">

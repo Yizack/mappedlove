@@ -51,7 +51,7 @@ export default eventHandler(async (event) : Promise<MappedLoveBond> => {
 
   return {
     ...bond,
-    nextPayment: bond.nextPayment || undefined,
+    nextPayment: bond.nextPayment,
     subscriptionId: bond.subscriptionId || undefined,
     partner1: {
       ...partner1,
