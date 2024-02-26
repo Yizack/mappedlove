@@ -8,6 +8,7 @@ class PayPal {
 
   async loadScript () {
     const script = await loadScript({
+      locale: t("lang_locale"),
       clientId: this.clientId,
       vault: true,
       intent: "subscription"

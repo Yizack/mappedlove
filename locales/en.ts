@@ -1,5 +1,6 @@
 export default {
   lang_code: "en",
+  lang_locale: "en_US",
   // Home
   strip1_title: "Map Your Journey",
   strip1_p1: "Easily mark the locations you have visited on an interactive map and create a visual representation of your journey together.",
