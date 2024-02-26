@@ -4,7 +4,6 @@ export default eventHandler(async (event): Promise<MappedLoveSession> => {
   const session = await requireUserSession(event);
   const { user } = session;
 
-  if (user.bond?.bonded) return session;
   const DB = useDb();
   const bond = await DB.select().from(tables.bonds).where(
     or(
@@ -13,5 +12,53 @@ export default eventHandler(async (event): Promise<MappedLoveSession> => {
     )
   ).get();
 
-  return setUserSession(event, { user: { ...user, bond } });
+  if (!bond) return setUserSession(event, { user: { ...user, bond: undefined } });
+
+  const partner1 = await DB.select({
+    id: tables.users.id,
+    name: tables.users.name,
+    showAvatar: tables.users.showAvatar,
+    country: tables.users.country,
+    updatedAt: tables.users.updatedAt
+  }).from(tables.users).where(eq(tables.users.id, Number(bond?.partner1))).get();
+
+  const partner2 = await DB.select({
+    id: tables.users.id,
+    name: tables.users.name,
+    showAvatar: tables.users.showAvatar,
+    country: tables.users.country,
+    updatedAt: tables.users.updatedAt
+  }).from(tables.users).where(eq(tables.users.id, Number(bond?.partner2))).get();
+
+  const { secure } = useRuntimeConfig(event);
+
+  if (bond?.premium) {
+    const today = Date.now();
+    if (!bond.nextPayment || bond.nextPayment < today) {
+      await DB.update(tables.bonds).set({
+        premium: 0,
+        nextPayment: null,
+        subscriptionId: null,
+        updatedAt: today
+      }).where(eq(tables.bonds.id, bond.id)).run();
+      bond.premium = 0;
+      bond.nextPayment = null;
+    }
+  }
+
+  const userBond = {
+    ...bond,
+    nextPayment: bond?.nextPayment || null,
+    subscriptionId: bond?.subscriptionId || undefined,
+    partner1: partner1 ? {
+      ...partner1,
+      hash: hash([partner1?.id].join(), secure.salt)
+    } : null,
+    partner2: partner2 ? {
+      ...partner2,
+      hash: hash([partner2?.id].join(), secure.salt)
+    } : null
+  };
+
+  return setUserSession(event, { user: { ...user, bond: userBond } });
 });

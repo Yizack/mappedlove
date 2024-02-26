@@ -1,4 +1,4 @@
-import { eq, and, or } from "drizzle-orm";
+import { eq, and } from "drizzle-orm";
 
 export default defineEventHandler(async (event) => {
   const form = await readBody(event);
@@ -19,21 +19,12 @@ export default defineEventHandler(async (event) => {
 
   if (!user) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "signin_error" });
 
-  const bond = await DB.select().from(tables.bonds).where(
-    or(
-      eq(tables.bonds.partner1, user.id),
-      eq(tables.bonds.partner2, user.id)
-    )
-  ).get();
-
   const session = {
     confirmed: user.confirmed,
   };
 
   if (!user.confirmed) return session;
 
-  const userHash = hash([user.id].join(), secure.salt);
-
-  await setUserSession(event, { user: { ...user, hash: userHash, bond } });
+  await setUserSession(event, { user: { ...user } });
   return session;
 });

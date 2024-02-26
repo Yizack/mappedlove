@@ -31,7 +31,6 @@ export default eventHandler(async (event) : Promise<MappedLoveBond> => {
   }).from(tables.users).where(eq(tables.users.id, Number(bond.partner2))).get();
 
   const { secure } = useRuntimeConfig(event);
-  const partner1Hash = hash([partner1?.id].join(), secure.salt);
 
   if (bond.premium) {
     const today = Date.now();
@@ -47,19 +46,21 @@ export default eventHandler(async (event) : Promise<MappedLoveBond> => {
     }
   }
 
-  await setUserSession(event, { user: { ...user, bond } });
-
-  return {
+  const userBond = {
     ...bond,
-    nextPayment: bond.nextPayment,
-    subscriptionId: bond.subscriptionId || undefined,
-    partner1: {
+    nextPayment: bond?.nextPayment || null,
+    subscriptionId: bond?.subscriptionId || undefined,
+    partner1: partner1 ? {
       ...partner1,
-      hash: partner1Hash
-    },
+      hash: hash([partner1?.id].join(), secure.salt)
+    } : null,
     partner2: partner2 ? {
       ...partner2,
       hash: hash([partner2?.id].join(), secure.salt)
     } : null
   };
+
+  await setUserSession(event, { user: { ...user, bond: userBond } });
+
+  return userBond;
 });
