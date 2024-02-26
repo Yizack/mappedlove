@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({ layout: "app-map", middleware: "session" });
 
-const { data: bondMap } = await useFetch("/api/bond/map", { key: "bondMap" });
+const { data: bondMap } = await useFetch("/api/bond/map");
 
 const { $toasts } = useNuxtApp();
 

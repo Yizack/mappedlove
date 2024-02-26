@@ -1,12 +1,8 @@
 <script setup lang="ts">
 definePageMeta({ layout: "app", middleware: "session" });
 const { user, fetch: sessionFetch } = useUserSession();
-const { data } = await useAsyncData("session", async () => {
-  await sessionFetch();
-  return user.value;
-});
 
-const bond = ref(data.value?.bond);
+const bond = ref(user.value?.bond);
 
 const bondEvent = ref("");
 const setBond = async (event: any) => {
@@ -30,6 +26,10 @@ const setBond = async (event: any) => {
 
 const isBonded = computed((): Boolean => {
   return Boolean(bond.value && bond.value.partner1 && bond.value.partner2);
+});
+
+onMounted(async () => {
+  await sessionFetch();
 });
 </script>
 
