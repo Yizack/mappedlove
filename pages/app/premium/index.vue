@@ -11,8 +11,8 @@ const { user } = useUserSession();
         <p class="text-center text-body-secondary">{{ t("available_plans") }}</p>
         <div class="row row-cols-1 row-cols-md-2 text-center">
           <div class="col" v-for="plan in SITE.pricing.plans">
-            <div class="card rounded-3 shadow-sm mb-3 mb-lg-0">
-              <div class="card-header py-3">
+            <div class="card rounded-3 shadow-sm mb-3 mb-lg-0" :class="{ 'border-primary': plan.name === 'premium' }">
+              <div class="card-header py-3" :class="{ 'text-bg-primary border-primary': plan.name === 'premium' }">
                 <h3 class="my-0">{{ t(plan.name) }}</h3>
               </div>
               <div class="card-body">
