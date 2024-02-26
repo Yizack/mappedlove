@@ -25,6 +25,8 @@ export default defineEventHandler(async (event) => {
 
   if (!user.confirmed) return session;
 
-  await setUserSession(event, { user: { ...user } });
+  const userHash = hash([user.id].join(), secure.salt);
+
+  await setUserSession(event, { user: { ...user, hash: userHash } });
   return session;
 });
