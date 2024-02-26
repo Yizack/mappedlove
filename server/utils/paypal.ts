@@ -1,8 +1,7 @@
 import type { H3Event, HTTPHeaderName } from "h3";
 
 const { clientId } = useRuntimeConfig().public.paypal;
-const baseAPI = "https://api-m.paypal.com/v1";
-
+const baseAPI = process.dev ? "https://api-m.sandbox.paypal.com/v1" : "https://api-m.paypal.com/v1";
 export const isValidPayPalWebhook = async (event: H3Event, headers: Partial<Record<HTTPHeaderName, string | undefined>>, data: PayPalWebhookEvent ) => {
   const { secret, webhookId } = useRuntimeConfig(event).paypal;
   const basicAuth = btoa(`${clientId}:${secret}`);

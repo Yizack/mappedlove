@@ -248,4 +248,7 @@ export default {
   payment: "Payment",
   payment_description: "Your payment will be processed by PayPal, we do not store any payment information.",
   premium_subscription: "Premium subscription",
+  subscribed: "Your bond is now Premium",
+  subscribed_info: "You have successfully upgraded your bond to Premium, enjoy the new features.",
+  subscribed_start: "Get started"
 };
