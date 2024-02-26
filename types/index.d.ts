@@ -1,4 +1,5 @@
 import type { ErrorCode } from "~/types/enums/errors";
+import type { PremiumLimits, FreeLimits } from "~/types/enums/limits";
 
 export {};
 
@@ -81,4 +82,6 @@ declare global {
     stories: MappedLoveStory[];
   }
   type ErrorCode = typeof ErrorCode;
+  type FreeLimits = typeof FreeLimits;
+  type PremiumLimits = typeof PremiumLimits;
 }

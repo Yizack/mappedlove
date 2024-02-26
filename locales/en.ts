@@ -34,7 +34,6 @@ export default {
   has_account: "Already have an account?",
   registered: "You have signed up successfully, sign in to continue",
   error: "Something went wrong.",
-  check_file_size: "Check file size or try again later.",
   // Bond
   not_bonded: "You are currently not bonded",
   bond_start: "To start mapping your love stories, you need to bond with your partner!",
@@ -85,6 +84,7 @@ export default {
   marker_added: "The marker has been added",
   marker_updated: "The marker has been updated",
   marker_deleted: "The marker has been deleted",
+  max_markers: "Your bond have reached the maximum number of markers. Upgrade to premium to add unlimited markers.",
   // Stories
   story: "Story",
   stories: "Stories",
@@ -93,7 +93,8 @@ export default {
   select_marker_story: "Select a marker to see or edit your stories.",
   no_stories: "No stories yet, add new stories to this marker.",
   story_info: "Fill your story with details, and a photo make it more memorable.",
-  mb_max: "Max 15MB",
+  max: "Max",
+  mb: "MB",
   photo_needed: "A photo is required to add a story",
   story_added: "The story has been added",
   story_updated: "The story has been updated",
@@ -220,6 +221,8 @@ export default {
   pull_requests: "Pull requests",
   translate_help: "Help us translate",
   // Subscription
+  check_file_size: "Check file size or try again later.",
+  check_file_size_free: "Check file size or upgrade to premium to add larger files.",
   subscribe: "Subscribe",
   price_in_usd: "Price in USD",
   available_plans: "Available plans",

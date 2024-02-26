@@ -1,5 +1,3 @@
-import { eq } from "drizzle-orm";
-
 export default eventHandler(async (event) : Promise<MappedLoveStory> => {
   const { user } = await requireUserSession(event);
 
@@ -31,10 +29,11 @@ export default eventHandler(async (event) : Promise<MappedLoveStory> => {
 
   const { secure } = useRuntimeConfig(event);
   const storyHash = hash([story.id, user.bond.code].join(), secure.salt);
-  const uploaded = await uploadImage(file, storyHash, "stories", event);
+  const fileSizeMaxMB = user.bond?.premium ? PremiumLimits.IMAGE_UPLOADS : FreeLimits.IMAGE_UPLOADS;
+  const uploaded = await uploadImage(file, storyHash, "stories", fileSizeMaxMB, event);
 
   if (!uploaded) {
-    await DB.delete(tables.stories).where(eq(tables.stories.id, story.id)).run();
+    if (!user.bond?.premium) throw createError({ statusCode: ErrorCode.PAYMENT_REQUIRED, message: "check_file_size_free" });
     throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "check_file_size" });
   }
 

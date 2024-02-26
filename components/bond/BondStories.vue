@@ -8,6 +8,7 @@ const props = defineProps({
 
 const emit = defineEmits(["new", "delete"]);
 const { $bootstrap, $toasts } = useNuxtApp();
+const { user } = useUserSession();
 
 const deleteButton = ref<Record<number, boolean>>({});
 
@@ -26,6 +27,7 @@ const imageRead = ref<string | ArrayBuffer>("");
 const showModal = ref(false);
 const fileChosen = ref(false);
 const file = ref<File>();
+const maxFileSize = ref(user.value.bond?.premium ? PremiumLimits.IMAGE_UPLOADS : FreeLimits.IMAGE_UPLOADS);
 
 const { form, formReset } = useFormState({
   id: 0 as number | undefined,
@@ -175,13 +177,13 @@ watch(() => props.marker, () => {
           <div class="overlay position-absolute bg-body-secondary w-100 h-100">
             <div class="d-flex flex-column justify-content-center align-items-center h-100">
               <Icon class="text-primary " name="solar:gallery-add-outline" size="2.5rem" />
-              <span>({{ t("mb_max") }})</span>
+              <span>({{ t("max") }} {{ maxFileSize }}{{ t("mb") }})</span>
               <small>{{ supported }}</small>
             </div>
           </div>
           <div v-if="!fileChosen && !form.id" class="d-flex flex-column justify-content-center align-items-center py-3">
             <Icon name="solar:gallery-add-outline" size="2.5rem" />
-            <span>({{ t("mb_max") }})</span>
+            <span>({{ t("max") }} {{ maxFileSize }}{{ t("mb") }})</span>
             <small>{{ supported }}</small>
           </div>
           <img v-else-if="form.id && !imageRead" class="img-fluid" :src="`${getStoryImage(form.hash)}?updated=${form.updatedAt}`">

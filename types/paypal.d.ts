@@ -56,8 +56,6 @@ declare global {
     method: string;
   }
 
-  type PayPalWebhook = typeof PayPalWebhook;
-
   interface PayPalSubscription {
     status: string;
     status_update_time: string;
@@ -103,4 +101,6 @@ declare global {
     plan_overridden: boolean;
     links: PayPalLink[];
   }
+
+  type PayPalWebhook = typeof PayPalWebhook;
 }

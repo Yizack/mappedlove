@@ -1,4 +1,4 @@
-import { eq, desc } from "drizzle-orm";
+import { eq, desc, count } from "drizzle-orm";
 
 export default eventHandler(async (event) : Promise<MappedLoveMarker> => {
   const { user } = await requireUserSession(event);
@@ -8,6 +8,12 @@ export default eventHandler(async (event) : Promise<MappedLoveMarker> => {
 
   const last = await DB.select().from(tables.markers).where(eq(tables.markers.bond, user.bond.id)).orderBy(desc(tables.markers.order)).limit(1).get();
   const today = Date.now();
+
+  const markers = await DB.select({
+    count: count(tables.markers.id)
+  }).from(tables.markers).where(eq(tables.markers.bond, user.bond.id)).get();
+
+  if (!user.bond.premium && markers && markers.count >= FreeLimits.MARKERS) throw createError({ statusCode: ErrorCode.PAYMENT_REQUIRED, message: "max_markers" });
 
   return DB.insert(tables.markers).values({
     lat: marker.lat,

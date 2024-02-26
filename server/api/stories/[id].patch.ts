@@ -32,9 +32,11 @@ export default eventHandler(async (event) : Promise<MappedLoveStory> => {
 
   if (!file) return storyPatch;
 
-  const uploaded = await uploadImage(file, storyHash, "stories", event);
+  const fileSizeMaxMB = user.bond?.premium ? PremiumLimits.IMAGE_UPLOADS : FreeLimits.IMAGE_UPLOADS;
+  const uploaded = await uploadImage(file, storyHash, "stories", fileSizeMaxMB, event);
 
   if (!uploaded) {
+    if (!user.bond?.premium) throw createError({ statusCode: ErrorCode.PAYMENT_REQUIRED, message: "check_file_size_free" });
     throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "check_file_size" });
   }
 

@@ -1,4 +1,5 @@
 export { ErrorCode } from "~/types/enums/errors";
+export { PremiumLimits, FreeLimits } from "~/types/enums/limits";
 
 const deb = {} as Record<string, any>;
 

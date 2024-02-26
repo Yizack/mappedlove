@@ -1,8 +1,8 @@
 import type { MultiPartData, H3Event } from "h3";
 
-export const isValidFileSize = (bytes: number) => {
+export const isValidFileSize = (bytes: number, sizeMB: number) => {
   const MBsize = bytes / 1024 / 1024;
-  return MBsize <= 15;
+  return MBsize <= sizeMB;
 };
 
 const validTypes = ["image/jpeg", "image/x-png", "image/png", "image/gif", "image/webp"];
@@ -18,10 +18,10 @@ export const getFileFromUpload = (body: MultiPartData[] | undefined) => {
   return file;
 };
 
-export const uploadImage = (async (file: MultiPartData | undefined, outputName: string, folder: string, event: H3Event) : Promise<string | undefined> => {
+export const uploadImage = (async (file: MultiPartData | undefined, outputName: string, folder: string, sizeMB: number, event: H3Event) : Promise<string | undefined> => {
   if (!file) return;
   const { type, filename, data } = file;
-  if(!isValidFileSize(data.byteLength)) return undefined;
+  if(!isValidFileSize(data.byteLength, sizeMB)) return undefined;
   const finalName = outputName ? `${outputName}` : filename;
   if (process.dev) {
     const { writeFileSync, existsSync, mkdirSync } = await import("fs");
