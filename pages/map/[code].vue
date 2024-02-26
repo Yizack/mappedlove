@@ -190,7 +190,7 @@ onBeforeUnmount(() => {
         <div class="d-flex gap-1">
           <span>{{ t("uploaded_by") }}:</span>
           <div v-if="currentStoryUser?.showAvatar" id="image-upload" class="text-center">
-            <label for="avatar" class="rounded-circle bg-body-tertiary position-relative overflow-hidden d-flex" style="width: 24px; height: 24px;">
+            <label class="rounded-circle bg-body-tertiary position-relative overflow-hidden d-flex" style="width: 24px; height: 24px;">
               <img :src="`${getAvatarImage(currentStoryUser?.hash)}?updated=${currentStoryUser?.updatedAt}`" alt="avatar" width="24" height="24" class="img-fluid">
             </label>
           </div>
