@@ -29,7 +29,7 @@ const renderButton = async () => {
       shape: "pill",
       color: "gold",
       layout: "vertical",
-      label: "paypal"
+      label: "subscribe"
     },
     createSubscription: (data, actions) => {
       return actions.subscription.create({
