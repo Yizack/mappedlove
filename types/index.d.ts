@@ -45,7 +45,7 @@ declare global {
     coupleDate: number | null;
     bonded: number;
     public: number;
-    premium?: number;
+    premium: number;
     subscriptionId?: string | null;
     nextPayment: number | null;
     createdAt: number;
