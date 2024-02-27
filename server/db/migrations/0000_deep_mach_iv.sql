@@ -15,6 +15,13 @@ CREATE TABLE `bonds` (
 	FOREIGN KEY (`partner_2`) REFERENCES `users`(`id`) ON UPDATE no action ON DELETE set null
 );
 --> statement-breakpoint
+CREATE TABLE `logins` (
+	`user` integer PRIMARY KEY NOT NULL,
+	`attempts` integer DEFAULT 1 NOT NULL,
+	`updated_at` integer NOT NULL,
+	FOREIGN KEY (`user`) REFERENCES `users`(`id`) ON UPDATE no action ON DELETE cascade
+);
+--> statement-breakpoint
 CREATE TABLE `markers` (
 	`id` integer PRIMARY KEY NOT NULL,
 	`lat` integer NOT NULL,

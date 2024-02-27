@@ -24,6 +24,7 @@ export default {
   no_account: "No account?",
   signin_error: "Wrong email or password",
   logout: "Logout",
+  many_logins_attempted: "Too many failed login attempts, please try again later",
   // Register
   password_confirm: "Confirm password",
   name: "Name",

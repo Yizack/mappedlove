@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "sqlite",
-  "id": "6b2c0a8e-d1ed-4bc1-8fba-50076b3b6161",
+  "id": "8e32e352-72b4-444c-884c-84618b10fded",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "bonds": {
@@ -129,6 +129,51 @@
             "id"
           ],
           "onDelete": "set null",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "logins": {
+      "name": "logins",
+      "columns": {
+        "user": {
+          "name": "user",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "attempts": {
+          "name": "attempts",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "logins_user_users_id_fk": {
+          "name": "logins_user_users_id_fk",
+          "tableFrom": "logins",
+          "tableTo": "users",
+          "columnsFrom": [
+            "user"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
           "onUpdate": "no action"
         }
       },

@@ -10,7 +10,7 @@ export const users = sqliteTable("users", {
   showAvatar: integer("show_avatar").notNull().default(0),
   confirmed: integer("confirmed").notNull().default(0),
   createdAt: integer("created_at").notNull(),
-  updatedAt: integer("updated_at").notNull(),
+  updatedAt: integer("updated_at").notNull()
 });
 
 export const bonds = sqliteTable("bonds", {
@@ -25,7 +25,7 @@ export const bonds = sqliteTable("bonds", {
   subscriptionId: text("subscription_id"),
   nextPayment: integer("next_payment"),
   createdAt: integer("created_at").notNull(),
-  updatedAt: integer("updated_at").notNull(),
+  updatedAt: integer("updated_at").notNull()
 });
 
 export const markers = sqliteTable("markers", {
@@ -38,7 +38,7 @@ export const markers = sqliteTable("markers", {
   description: text("description").notNull(),
   order: integer("order").notNull(),
   createdAt: integer("created_at").notNull(),
-  updatedAt: integer("updated_at").notNull(),
+  updatedAt: integer("updated_at").notNull()
 });
 
 export const stories = sqliteTable("stories", {
@@ -50,5 +50,11 @@ export const stories = sqliteTable("stories", {
   year: integer("year").notNull().default(0),
   month: integer("month").notNull().default(0),
   createdAt: integer("created_at").notNull(),
-  updatedAt: integer("updated_at").notNull(),
+  updatedAt: integer("updated_at").notNull()
+});
+
+export const logins = sqliteTable("logins", {
+  user: integer("user").notNull().primaryKey().references(() => users.id, { onDelete: "cascade" }),
+  attempts: integer("attempts").notNull().default(1),
+  updatedAt: integer("updated_at").notNull()
 });

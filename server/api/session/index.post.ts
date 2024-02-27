@@ -1,9 +1,19 @@
-import { eq, and } from "drizzle-orm";
+import { eq, and, sql } from "drizzle-orm";
 
 export default defineEventHandler(async (event) => {
   const form = await readBody(event);
   const { secure } = useRuntimeConfig(event);
   const DB = useDb();
+
+  const logins = await DB.select({
+    user: tables.logins.user,
+    attempts: tables.logins.attempts,
+    updatedAt: tables.logins.updatedAt
+  }).from(tables.logins).innerJoin(tables.users, eq(tables.users.id, tables.logins.user)).where(eq(tables.logins.user, tables.users.id)).get();
+
+  if (logins && logins.attempts % 3 === 0 && Date.now() - logins.updatedAt < 60000 * 5) {
+    throw createError({ statusCode: ErrorCode.FORBIDDEN, message: "many_logins_attempted" });
+  }
 
   const user = await DB.select({
     id: tables.users.id,
@@ -17,7 +27,24 @@ export default defineEventHandler(async (event) => {
     updatedAt: tables.users.updatedAt
   }).from(tables.users).where(and(eq(tables.users.email, form.email), eq(tables.users.password, hash(form.password, secure.salt)))).get();
 
-  if (!user) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "signin_error" });
+  if (!user) {
+    const userAttempted = await DB.select({ id: tables.users.id }).from(tables.users).where(eq(tables.users.email, form.email)).get();
+    if (userAttempted) {
+      await DB.insert(tables.logins).values({
+        user: userAttempted.id,
+        updatedAt: Date.now()
+      }).onConflictDoUpdate({
+        target: tables.logins.user,
+        set: {
+          attempts: sql`${tables.logins.attempts} + 1`,
+          updatedAt: sql`excluded.updated_at`
+        }
+      }).run();
+    }
+    throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "signin_error" });
+  }
+
+  if (logins) await DB.delete(tables.logins).where(eq(tables.logins.user, logins.user)).run();
 
   const session = {
     confirmed: user.confirmed,

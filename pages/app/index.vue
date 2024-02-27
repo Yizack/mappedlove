@@ -28,7 +28,7 @@ const isBonded = computed((): Boolean => {
   return Boolean(bond.value && bond.value.partner1 && bond.value.partner2);
 });
 
-onMounted(async () => {
+onBeforeMount(async () => {
   await sessionFetch();
 });
 </script>
