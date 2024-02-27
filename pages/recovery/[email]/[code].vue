@@ -44,7 +44,7 @@ const resetPassword = async () => {
 <template>
   <main>
     <section>
-      <div class="col-11 col-lg-8 m-auto px-3 py-4 px-lg-4 bg-body rounded-3 shadow">
+      <div class="col-md-11 col-lg-8 m-auto px-3 py-4 px-lg-4 bg-body rounded-3 shadow">
         <h2>{{ t("account_recovery") }}</h2>
         <p>{{ t("account_recovery_info") }}</p>
         <form @submit.prevent="resetPassword">
