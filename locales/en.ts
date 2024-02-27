@@ -206,7 +206,7 @@ export default {
   account_recovery: "Account recovery",
   account_recovery_info: "Enter your new password and confirm it to recover access to your account.",
   recovery_info: "This link or recovery code is unique, can only be used once and expires after 7 days.",
-  resest_success: "The password has been reset successfully",
+  reset_success: "The password has been reset successfully",
   // Footer
   about_us: "About us",
   guides: "Guides",
