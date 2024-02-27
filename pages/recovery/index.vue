@@ -31,7 +31,7 @@ const sendRecovery = async () => {
             <p>{{ t("recovery_description") }}</p>
             <form @submit.prevent="sendRecovery">
               <div class="form-floating mb-2">
-                <input v-model="form.email" type="email" class="form-control" placeholder="Email">
+                <input v-model="form.email" type="email" class="form-control" :placeholder="t('email')" autocomplete="email">
                 <label>{{ t("email") }}</label>
               </div>
               <div class="d-grid mb-2">

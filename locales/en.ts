@@ -186,6 +186,7 @@ export default {
   name_required: "Name is required",
   account_saved: "Account details have been saved",
   password_error: "Current password does not match",
+  password_changed: "The password has been changed successfully",
   avatar_saved: "Avatar has been saved",
   delete_avatar: "Delete avatar",
   avatar_deleted: "Avatar has been deleted",
@@ -205,6 +206,7 @@ export default {
   account_recovery: "Account recovery",
   account_recovery_info: "Enter your new password and confirm it to recover access to your account.",
   recovery_info: "This link or recovery code is unique, can only be used once and expires after 7 days.",
+  resest_success: "The password has been reset successfully",
   // Footer
   about_us: "About us",
   guides: "Guides",

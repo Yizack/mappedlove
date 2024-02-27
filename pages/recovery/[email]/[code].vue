@@ -36,7 +36,7 @@ const resetPassword = async () => {
   }).catch(() => null);
   submit.value.loading = false;
   if (!req) return;
-  $toasts.add({ message: "Password reset successfully", success: true });
+  $toasts.add({ message: t("reset_success"), success: true });
   formReset();
 };
 </script>

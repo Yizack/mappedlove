@@ -98,7 +98,7 @@ const changePassword = async () => {
   }).catch(() => null);
   submit.value.pass_loading = false;
   if (!account) return;
-  $toasts.add({ message: t("password_saved"), success: true });
+  $toasts.add({ message: t("password_changed"), success: true });
 };
 
 const imageRead = ref<string | ArrayBuffer>();
