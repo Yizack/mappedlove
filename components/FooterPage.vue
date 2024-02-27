@@ -1,13 +1,11 @@
 <template>
-  <div class="bg-body-secondary border-top">
+  <div class="bg-body-tertiary border-top">
     <div class="container">
       <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5">
         <div class="col mb-3">
           <NuxtLink class="navbar-brand d-flex align-items-center gap-1 text-body" to="/">
-            <h5>
-              <Icon class="text-primary" name="solar:map-point-favourite-bold" />
-              {{ SITE.name }}
-            </h5>
+            <Icon class="text-primary" name="solar:map-point-favourite-bold" size="1.3rem" />
+            <h4 class="m-0">{{ SITE.name }}</h4>
           </NuxtLink>
           <p class="text-secondary-emphasis mb-0">© {{ new Date().getFullYear() }}, {{ SITE.author }}.</p>
         </div>

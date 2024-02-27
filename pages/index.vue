@@ -10,9 +10,9 @@ definePageMeta({ middleware: "preload" });
         <p class="display-6 m-0">Mark the places you have visited together and preserve your special moments forever</p>
       </div>
     </section>
-    <section class="py-5 bg-body-tertiary">
+    <section class="py-5 bg-body">
       <div class="container">
-        <div class="row bg-body-tertiary">
+        <div class="row">
           <div class="col-lg-6 text-center">
             <img src="/images/demos/map-dashboard.jpg" class="img-fluid rounded shadow" width="720" height="405">
           </div>
@@ -22,13 +22,13 @@ definePageMeta({ middleware: "preload" });
             <p>{{ t("strip1_p2") }}</p>
             <div class="d-flex gap-2 gap-lg-3 flex-wrap mb-3 mb-lg-0">
               <div class="text-center">
-                <div class="d-flex gap-2 align-items-center border px-3 py-2 shadow-sm rounded-pill">
+                <div class="d-flex gap-2 align-items-center border px-3 py-2 shadow-sm rounded-pill bg-body">
                   <Icon name="solar:map-point-favourite-bold" size="30px" class="text-primary" />
                   <strong class="small">{{ t("markers") }}</strong>
                 </div>
               </div>
               <div class="text-center">
-                <div class="d-flex gap-2 align-items-center border px-3 py-2 shadow-sm rounded-pill">
+                <div class="d-flex gap-2 align-items-center border px-3 py-2 shadow-sm rounded-pill bg-body">
                   <Icon name="solar:chat-square-like-bold" size="30px" class="text-primary" />
                   <strong class="small">{{ t("stories") }}</strong>
                 </div>
@@ -47,7 +47,7 @@ definePageMeta({ middleware: "preload" });
             <p>{{ t("strip2_p2") }}</p>
             <div class="d-flex gap-2 gap-lg-3 flex-wrap mb-4 mb-lg-0">
               <div v-for="group in groups" :key="group.key" class="text-center">
-                <div class="d-flex gap-2 align-items-center border px-3 py-2 shadow-sm rounded-pill">
+                <div class="d-flex gap-2 align-items-center border px-3 py-2 shadow-sm rounded-pill bg-body">
                   <Icon :name="group.icon" size="30px" class="text-primary" />
                   <strong class="small">{{ t(group.key) }}</strong>
                 </div>
@@ -60,7 +60,7 @@ definePageMeta({ middleware: "preload" });
         </div>
       </div>
     </section>
-    <section class="py-5 bg-body-tertiary">
+    <section class="py-5 bg-body">
       <div class="container">
         <div class="row">
           <div class="col-lg-6 text-center">
@@ -71,19 +71,19 @@ definePageMeta({ middleware: "preload" });
             <p>{{ t("strip3_p1") }}</p>
             <div class="d-flex gap-2 gap-lg-3 flex-wrap mb-3 mb-lg-0">
               <div class="text-center">
-                <div class="d-flex gap-2 align-items-center border px-3 py-2 shadow-sm rounded-pill">
+                <div class="d-flex gap-2 align-items-center border px-3 py-2 shadow-sm rounded-pill bg-body">
                   <Icon name="solar:hearts-bold-duotone" size="30px" class="text-primary" />
                   <strong class="small">{{ t("bond") }}</strong>
                 </div>
               </div>
               <div class="text-center">
-                <div class="d-flex gap-2 align-items-center border px-3 py-2 shadow-sm rounded-pill">
+                <div class="d-flex gap-2 align-items-center border px-3 py-2 shadow-sm rounded-pill bg-body">
                   <Icon name="solar:heart-lock-outline" size="30px" class="text-primary" />
                   <strong class="small">{{ t("anniversary") }}</strong>
                 </div>
               </div>
               <div class="text-center">
-                <div class="d-flex gap-2 align-items-center border px-3 py-2 shadow-sm rounded-pill">
+                <div class="d-flex gap-2 align-items-center border px-3 py-2 shadow-sm rounded-pill bg-body">
                   <Icon name="solar:streets-map-point-bold-duotone" size="30px" class="text-primary" />
                   <strong class="small">{{ t("public_map") }}</strong>
                 </div>
