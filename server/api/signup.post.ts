@@ -48,7 +48,7 @@ export default defineEventHandler(async (event) => {
     verify_link: `${url}/verify/${encodeURIComponent(btoa(email))}/${code}`
   };
 
-  const html = Mustache.render(templates.verifyAccount, template_strings);
+  const html = Mustache.render(templates.accountVerify, template_strings);
 
   await sendMail(config, {
     to: { email, name: user.name },
