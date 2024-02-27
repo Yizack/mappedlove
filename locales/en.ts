@@ -71,7 +71,7 @@ export default {
   share_bond_info: "Your bond is set to public. Share the link below with your friends or family!",
   bond_not_found: "Bond not found",
   bond_exists: "A bond already exists",
-  cant_delete_bonded_bond: "Can't delete a bonded bond",
+  cant_delete_bonded_bond: "Can not delete a bonded bond",
   // Markers
   marker: "Marker",
   markers: "Markers",
@@ -141,6 +141,7 @@ export default {
   filter_by_year: "Filter by year",
   filter: "Filter",
   map_not_found: "Map not found",
+  password_invalid: "Password is not valid",
   // Dates
   day: "Day",
   days: "Days",
@@ -174,7 +175,6 @@ export default {
   account: "Account",
   current_password: "Current password",
   new_password: "New password",
-  confirm_password: "Confirm password",
   show_avatar: "Show avatar",
   dark_mode: "Dark mode",
   change_password: "Change password",
@@ -198,7 +198,7 @@ export default {
   recovery_email_info: "A recovery email has been sent to your inbox, follow the instructions to reset your password.",
   recovery_code: "Recovery code",
   reset_password: "Reset password",
-  invalid_recovery: "Invalid recovery code",
+  invalid_recovery: "Invalid recovery code or code has expired",
   recovery_expired: "Recovery code has expired, please request a new one",
   recovery_failed: "Recovery failed",
   continue: "Continue",

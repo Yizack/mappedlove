@@ -5,6 +5,8 @@ export default eventHandler(async (event) : Promise<MappedLoveUser> => {
   const { secure } = useRuntimeConfig(event);
   const { current_password, new_password } = await readBody(event);
 
+  if (!isPasswordValid(new_password)) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "password_invalid" });
+
   const DB = useDb();
   const update = await DB.update(tables.users).set({
     password: hash(new_password, secure.salt),

@@ -15,6 +15,7 @@ const user = ref({
   showAvatar: false,
   current_password: "",
   new_password: "",
+  confirm_password: "",
 });
 
 const submit = ref({ loading: false, pass_loading: false, error: false });
@@ -244,16 +245,16 @@ const deleteAvatar = async () => {
           <form @submit.prevent="changePassword">
             <h3 class="mb-4">{{ t("change_password") }}</h3>
             <div class="form-floating mb-2">
-              <input type="password" class="form-control" :placeholder="t('current_password')" autocomplete="current-password">
+              <input v-model="user.current_password" type="password" class="form-control" :placeholder="t('current_password')" autocomplete="current-password">
               <label>{{ t("current_password") }}</label>
             </div>
             <div class="form-floating mb-2">
-              <input type="password" class="form-control" :placeholder="t('new_password')" autocomplete="new-password">
+              <input v-model="user.new_password" type="password" class="form-control" :class="`form-control ${isPasswordValid(user.new_password) ? 'is-valid' : user.new_password ? 'is-invalid' : ''}`" :placeholder="t('new_password')" autocomplete="new-password">
               <label>{{ t("new_password") }}</label>
             </div>
             <div class="form-floating mb-2">
-              <input type="password" class="form-control" :placeholder="t('confirm_password')" autocomplete="new-password">
-              <label>{{ t("confirm_password") }}</label>
+              <input v-model="user.confirm_password" type="password" :class="`form-control ${isPasswordCheckValid(user.new_password, user.confirm_password) ? 'is-valid' : user.confirm_password ? 'is-invalid' : ''}`" :placeholder="t('password_confirm')" autocomplete="new-password">
+              <label>{{ t("password_confirm") }}</label>
             </div>
             <div class="d-grid">
               <button class="btn btn-primary btn-lg rounded-pill" type="submit">

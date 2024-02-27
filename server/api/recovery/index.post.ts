@@ -3,6 +3,8 @@ import { eq } from "drizzle-orm";
 export default eventHandler(async (event) => {
   const form = await readBody(event);
 
+  if (!isPasswordValid(form.password)) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "password_invalid" });
+
   const DB = useDb();
   const user = await DB.select({
     id: tables.users.id,

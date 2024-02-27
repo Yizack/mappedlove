@@ -1,6 +1,7 @@
 export { ErrorCode } from "~/types/enums/errors";
 export { PremiumLimits, FreeLimits } from "~/types/enums/limits";
 export { PayPalWebhook } from "~/types/enums/paypal";
+export { isPasswordValid } from "~/utils/validators";
 export { SITE } from "~/utils/site";
 import { sha256 } from "ohash";
 
