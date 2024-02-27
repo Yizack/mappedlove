@@ -202,6 +202,9 @@ export default {
   recovery_expired: "Recovery code has expired, please request a new one",
   recovery_failed: "Recovery failed",
   continue: "Continue",
+  account_recovery: "Account recovery",
+  account_recovery_info: "Enter your new password and confirm it to recover access to your account.",
+  recovery_info: "This link or recovery code is unique, can only be used once and expires after 7 days.",
   // Footer
   about_us: "About us",
   guides: "Guides",

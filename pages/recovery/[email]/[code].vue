@@ -44,6 +44,8 @@ const resetPassword = async () => {
   <main>
     <section>
       <div class="col-11 col-lg-8 m-auto px-3 py-4 px-lg-4 bg-body rounded-3 shadow">
+        <h2>{{ t("account_recovery") }}</h2>
+        <p>{{ t("account_recovery_info") }}</p>
         <form @submit.prevent="resetPassword">
           <div class="form-floating mb-2">
             <input type="email" class="form-control" :placeholder="t('email')" autocomplete="email" :value="email" readonly>
@@ -70,6 +72,7 @@ const resetPassword = async () => {
             </button>
           </div>
         </form>
+        <p class="m-0">{{ t("recovery_info") }}</p>
       </div>
     </section>
   </main>
