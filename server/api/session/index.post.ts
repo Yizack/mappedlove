@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
   }).from(tables.logins).innerJoin(tables.users, eq(tables.users.id, tables.logins.user)).where(eq(tables.logins.user, tables.users.id)).get();
 
   if (logins && logins.attempts % 3 === 0 && Date.now() - logins.updatedAt < 60000 * 5) {
-    throw createError({ statusCode: ErrorCode.FORBIDDEN, message: "many_logins_attempted" });
+    throw createError({ statusCode: ErrorCode.TOO_MANY_REQUESTS , message: "many_logins_attempted" });
   }
 
   const user = await DB.select({
