@@ -33,7 +33,7 @@ export default eventHandler(async (event) : Promise<MappedLoveUser> => {
 
   if (!update) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "user_not_found" });
 
-  await setUserSession(event, { user: { ...user, ...form } });
+  await setUserSession(event, { user: { ...user, ...update } });
 
   return update;
 });
