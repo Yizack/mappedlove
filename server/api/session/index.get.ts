@@ -37,7 +37,6 @@ export default eventHandler(async (event): Promise<MappedLoveSession> => {
     if (!bond.nextPayment || bond.nextPayment < today) {
       await DB.update(tables.bonds).set({
         premium: 0,
-        nextPayment: null,
         subscriptionId: null,
         updatedAt: today
       }).where(eq(tables.bonds.id, bond.id)).run();
