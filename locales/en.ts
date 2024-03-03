@@ -261,5 +261,7 @@ export default {
   premium_subscription: "Premium subscription",
   subscribed: "Your bond is now Premium",
   subscribed_info: "You have successfully upgraded your bond to Premium, enjoy the new features.",
-  subscribed_start: "Get started"
+  subscribed_start: "Get started",
+  future_features: "No extra charge for future premium features",
+  free_features: "Always free features"
 };

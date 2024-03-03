@@ -29,6 +29,10 @@ const { user, loggedIn } = useUserSession();
                     <span v-else-if="!loggedIn && !user?.bond?.premium">{{ t("sign_up_free") }}</span>
                     <span v-else>{{ t("current_plan") }}</span>
                   </button>
+                  <div class="mt-2 text-body-secondary">
+                    <p v-if="plan.name === 'premium'" class="m-0 small">{{ t("future_features") }}</p>
+                    <p v-else class="m-0 small">{{ t("free_features") }}</p>
+                  </div>
                 </div>
               </div>
             </div>
