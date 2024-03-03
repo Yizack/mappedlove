@@ -24,6 +24,7 @@ const { user, loggedIn } = useUserSession();
                     <li v-for="(feature, i) of plan.features" :key="i">{{ t(feature) }}</li>
                   </ul>
                   <NuxtLink v-if="!user?.bond?.premium && plan.name === 'premium'" to="/app/premium/subscribe" class="w-100 btn btn-lg btn-primary rounded-pill">{{ t("subscribe") }}</NuxtLink>
+                  <NuxtLink v-else-if="!loggedIn" to="/login" class="w-100 btn btn-lg btn-primary rounded-pill">{{ t("sign_up_free") }}</NuxtLink>
                   <button v-else type="button" class="w-100 btn btn-lg btn-primary rounded-pill" disabled>
                     <span v-if="user?.bond?.premium && plan.name === 'free'">{{ t("cancel_to_downgrade") }}</span>
                     <span v-else-if="!loggedIn && !user?.bond?.premium">{{ t("sign_up_free") }}</span>
