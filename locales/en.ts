@@ -227,6 +227,7 @@ export default {
   pull_requests: "Pull requests",
   translate_help: "Help us translate",
   // Subscription
+  sign_up_free: "Sign up for free",
   check_file_size: "Check file size or try again later.",
   check_file_size_free: "Check file size or upgrade to premium to add larger files.",
   subscribe: "Subscribe",
