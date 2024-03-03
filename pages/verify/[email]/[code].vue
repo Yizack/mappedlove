@@ -48,26 +48,24 @@ onMounted(async () => {
 
 <template>
   <main>
-    <section>
-      <div class="col-md-11 col-lg-8 m-auto px-3 py-4 px-lg-4 bg-body rounded-3 shadow text-center">
-        <Transition name="tab" mode="out-in">
-          <div v-if="!loaded">
-            <SpinnerCircle />
-            <h3 class="mb-0 mt-1">{{ t("verifying_email") }}...</h3>
-          </div>
-          <div v-else-if="verified">
-            <Icon name="solar:check-circle-bold" class="text-success" size="5rem" />
-            <h1>{{ t("welcome") }}!</h1>
-            <p class="m-0">{{ t("email_verified") }}</p>
-            <NuxtLink to="/login">{{ t("signin") }}</NuxtLink>
-          </div>
-          <div v-else>
-            <Icon name="solar:close-circle-bold" class="text-danger" size="5rem" />
-            <h1>{{ t("error") }}!</h1>
-            <NuxtLink to="/">{{ t("go_home") }}</NuxtLink>
-          </div>
-        </Transition>
-      </div>
-    </section>
+    <div class="col-md-11 col-lg-8 m-auto px-3 py-4 px-lg-4 bg-body rounded-3 shadow text-center">
+      <Transition name="tab" mode="out-in">
+        <div v-if="!loaded">
+          <SpinnerCircle />
+          <h3 class="mb-0 mt-1">{{ t("verifying_email") }}...</h3>
+        </div>
+        <div v-else-if="verified">
+          <Icon name="solar:check-circle-bold" class="text-success" size="5rem" />
+          <h1>{{ t("welcome") }}!</h1>
+          <p class="m-0">{{ t("email_verified") }}</p>
+          <NuxtLink to="/login">{{ t("signin") }}</NuxtLink>
+        </div>
+        <div v-else>
+          <Icon name="solar:close-circle-bold" class="text-danger" size="5rem" />
+          <h1>{{ t("error") }}!</h1>
+          <NuxtLink to="/">{{ t("go_home") }}</NuxtLink>
+        </div>
+      </Transition>
+    </div>
   </main>
 </template>

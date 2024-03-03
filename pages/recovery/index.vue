@@ -23,38 +23,36 @@ const sendRecovery = async () => {
 
 <template>
   <main>
-    <section>
-      <div class="col-md-11 col-lg-8 m-auto px-3 py-4 px-lg-4 bg-body rounded-3 shadow">
-        <Transition name="tab" mode="out-in">
-          <div v-if="!needsRecovery">
-            <h2>{{ t("recovery_title") }}</h2>
-            <p>{{ t("recovery_description") }}</p>
-            <form @submit.prevent="sendRecovery">
-              <div class="form-floating mb-2">
-                <input v-model="form.email" type="email" class="form-control" :placeholder="t('email')" autocomplete="email">
-                <label>{{ t("email") }}</label>
-              </div>
-              <div class="d-grid mb-2">
-                <button class="btn btn-primary btn-lg rounded-pill" type="submit" :disabled="submit.loading">
-                  <Transition name="tab" mode="out-in">
-                    <SpinnerCircle v-if="submit.loading" class="text-white" />
-                    <span v-else>{{ t("continue") }}</span>
-                  </Transition>
-                </button>
-              </div>
-            </form>
-            <p class="m-0">
-              {{ t("remembered_password") }}
-              <NuxtLink to="/login">{{ t("signin") }}</NuxtLink>
-            </p>
-          </div>
-          <div v-else class="text-center">
-            <Icon name="solar:mailbox-bold" class="text-primary" size="5rem" />
-            <h1>{{ t("recovery_email") }}!</h1>
-            <p class="m-0">{{ t("recovery_email_info") }}</p>
-          </div>
-        </Transition>
-      </div>
-    </section>
+    <div class="col-md-11 col-lg-8 m-auto px-3 py-4 px-lg-4 bg-body rounded-3 shadow">
+      <Transition name="tab" mode="out-in">
+        <div v-if="!needsRecovery">
+          <h2>{{ t("recovery_title") }}</h2>
+          <p>{{ t("recovery_description") }}</p>
+          <form @submit.prevent="sendRecovery">
+            <div class="form-floating mb-2">
+              <input v-model="form.email" type="email" class="form-control" :placeholder="t('email')" autocomplete="email">
+              <label>{{ t("email") }}</label>
+            </div>
+            <div class="d-grid mb-2">
+              <button class="btn btn-primary btn-lg rounded-pill" type="submit" :disabled="submit.loading">
+                <Transition name="tab" mode="out-in">
+                  <SpinnerCircle v-if="submit.loading" class="text-white" />
+                  <span v-else>{{ t("continue") }}</span>
+                </Transition>
+              </button>
+            </div>
+          </form>
+          <p class="m-0">
+            {{ t("remembered_password") }}
+            <NuxtLink to="/login">{{ t("signin") }}</NuxtLink>
+          </p>
+        </div>
+        <div v-else class="text-center">
+          <Icon name="solar:mailbox-bold" class="text-primary" size="5rem" />
+          <h1>{{ t("recovery_email") }}!</h1>
+          <p class="m-0">{{ t("recovery_email_info") }}</p>
+        </div>
+      </Transition>
+    </div>
   </main>
 </template>

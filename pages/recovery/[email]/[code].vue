@@ -43,38 +43,36 @@ const resetPassword = async () => {
 
 <template>
   <main>
-    <section>
-      <div class="col-md-11 col-lg-8 m-auto px-3 py-4 px-lg-4 bg-body rounded-3 shadow">
-        <h2>{{ t("account_recovery") }}</h2>
-        <p>{{ t("account_recovery_info") }}</p>
-        <form @submit.prevent="resetPassword">
-          <div class="form-floating mb-2">
-            <input type="email" class="form-control" :placeholder="t('email')" autocomplete="email" :value="email" readonly>
-            <label>{{ t("email") }}</label>
-          </div>
-          <div class="form-floating mb-2">
-            <input type="text" class="form-control" :placeholder="t('recovery_code')" :value="code" readonly>
-            <label>{{ t("recovery_code") }}</label>
-          </div>
-          <div class="form-floating mb-2">
-            <input v-model="form.password" type="password" :class="`form-control ${isPasswordValid(form.password) ? 'is-valid' : form.password.length ? 'is-invalid' : ''}`" :placeholder="t('new_password')" autocomplete="new-password" required>
-            <label>{{ t("new_password") }}</label>
-          </div>
-          <div class="form-floating mb-2">
-            <input v-model="form.password_check" type="password" :class="`form-control ${isPasswordCheckValid(form.password, form.password_check) ? 'is-valid' : form.password_check ? 'is-invalid' : ''}`" :placeholder="t('password_confirm')" autocomplete="off" required>
-            <label>{{ t("password_confirm") }}</label>
-          </div>
-          <div class="d-grid mb-2">
-            <button class="btn btn-primary btn-lg rounded-pill" type="submit" :disabled="submit.loading">
-              <Transition name="tab" mode="out-in">
-                <SpinnerCircle v-if="submit.loading" class="text-white" />
-                <span v-else>{{ t("reset_password") }}</span>
-              </Transition>
-            </button>
-          </div>
-        </form>
-        <p class="m-0">{{ t("recovery_info") }}</p>
-      </div>
-    </section>
+    <div class="col-md-11 col-lg-8 m-auto px-3 py-4 px-lg-4 bg-body rounded-3 shadow">
+      <h2>{{ t("account_recovery") }}</h2>
+      <p>{{ t("account_recovery_info") }}</p>
+      <form @submit.prevent="resetPassword">
+        <div class="form-floating mb-2">
+          <input type="email" class="form-control" :placeholder="t('email')" autocomplete="email" :value="email" readonly>
+          <label>{{ t("email") }}</label>
+        </div>
+        <div class="form-floating mb-2">
+          <input type="text" class="form-control" :placeholder="t('recovery_code')" :value="code" readonly>
+          <label>{{ t("recovery_code") }}</label>
+        </div>
+        <div class="form-floating mb-2">
+          <input v-model="form.password" type="password" :class="`form-control ${isPasswordValid(form.password) ? 'is-valid' : form.password.length ? 'is-invalid' : ''}`" :placeholder="t('new_password')" autocomplete="new-password" required>
+          <label>{{ t("new_password") }}</label>
+        </div>
+        <div class="form-floating mb-2">
+          <input v-model="form.password_check" type="password" :class="`form-control ${isPasswordCheckValid(form.password, form.password_check) ? 'is-valid' : form.password_check ? 'is-invalid' : ''}`" :placeholder="t('password_confirm')" autocomplete="off" required>
+          <label>{{ t("password_confirm") }}</label>
+        </div>
+        <div class="d-grid mb-2">
+          <button class="btn btn-primary btn-lg rounded-pill" type="submit" :disabled="submit.loading">
+            <Transition name="tab" mode="out-in">
+              <SpinnerCircle v-if="submit.loading" class="text-white" />
+              <span v-else>{{ t("reset_password") }}</span>
+            </Transition>
+          </button>
+        </div>
+      </form>
+      <p class="m-0">{{ t("recovery_info") }}</p>
+    </div>
   </main>
 </template>
