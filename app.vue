@@ -16,11 +16,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <NuxtLoadingIndicator :throttle="0" />
-  <NuxtLayout>
-    <div class="d-flex w-100">
+  <div>
+    <NuxtLoadingIndicator :throttle="0" />
+    <NuxtLayout>
       <NuxtPage />
-    </div>
-  </NuxtLayout>
-  <ToastsController />
+    </NuxtLayout>
+    <ToastsController />
+  </div>
 </template>
