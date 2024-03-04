@@ -17,6 +17,12 @@ devDependencies:
   '@nuxtjs/turnstile':
     specifier: ^0.6.3
     version: 0.6.3
+  '@paddle/paddle-js':
+    specifier: ^1.0.2
+    version: 1.0.2
+  '@paddle/paddle-node-sdk':
+    specifier: ^1.0.1
+    version: 1.0.1
   '@paypal/paypal-js':
     specifier: ^8.0.2
     version: 8.0.2
@@ -27,8 +33,8 @@ devDependencies:
     specifier: ^1.9.8
     version: 1.9.8
   '@vuepic/vue-datepicker':
-    specifier: ^8.1.1
-    version: 8.1.1(vue@3.4.19)
+    specifier: ^8.2.0
+    version: 8.2.0(vue@3.4.19)
   '@yeger/vue-masonry-wall':
     specifier: ^5.0.8
     version: 5.0.8(vue@3.4.19)
@@ -57,8 +63,8 @@ devDependencies:
     specifier: ^4.2.0
     version: 4.2.0
   nodemailer:
-    specifier: ^6.9.10
-    version: 6.9.10
+    specifier: ^6.9.11
+    version: 6.9.11
   nuxt:
     specifier: ^3.10.3
     version: 3.10.3(eslint@8.57.0)(stylelint@16.2.1)(typescript@5.3.3)(vite@5.1.4)
@@ -1903,6 +1909,19 @@ packages:
       - supports-color
     dev: true
 
+  /@paddle/paddle-js@1.0.2:
+    resolution: {integrity: sha512-H5tS4dsh6ouxbiD5XbDW2vMKfK5kpuaV0QxQrw9M2+WR2rYgutYKVAho+fpeDYRLgi8GD1JulROB7EKGavSMPw==}
+    dev: true
+
+  /@paddle/paddle-node-sdk@1.0.1:
+    resolution: {integrity: sha512-XUfQozh9Ys8PQYzoKNL3aqY05Dh9/pZ0zEhKogoKdmz9WBMo11LqdM7arEkFCKH9sHnqdXLthLShravVsTW2jg==}
+    dependencies:
+      lodash: 4.17.21
+      node-fetch: 2.7.0
+    transitivePeerDependencies:
+      - encoding
+    dev: true
+
   /@parcel/watcher-android-arm64@2.4.0:
     resolution: {integrity: sha512-+fPtO/GsbYX1LJnCYCaDVT3EOBjvSFdQN9Mrzh9zWAOOfvidPWyScTrHIZHHfJBvlHzNA0Gy0U3NXFA/M7PHUA==}
     engines: {node: '>= 10.0.0'}
@@ -3088,8 +3107,8 @@ packages:
     resolution: {integrity: sha512-/KliRRHMF6LoiThEy+4c1Z4KB/gbPrGjWwJR+crg2otgrf/egKzRaCPvJ51S5oetgsgXLfc4Rm5ZgrKHZrtMSw==}
     dev: true
 
-  /@vuepic/vue-datepicker@8.1.1(vue@3.4.19):
-    resolution: {integrity: sha512-/t9+dROb/hYN/DInff8ctIiVm5tVyuJdiWA+nWcjHOLjUhvAQ9vyJwhxAkoWX5o0EB5x5XeCME2cajfTPz86RA==}
+  /@vuepic/vue-datepicker@8.2.0(vue@3.4.19):
+    resolution: {integrity: sha512-H3X9/XRvF4/ttdgxgNhFCp9m9gt9UVsiuv8FXOfAPpfQvVlmlTHZ3yf3E5oAxzP/INVhBIJCGrkijhCl5+UAPg==}
     engines: {node: '>=18.12.0'}
     peerDependencies:
       vue: '>=3.2.0'
@@ -6530,8 +6549,8 @@ packages:
     resolution: {integrity: sha512-y10wOWt8yZpqXmOgRo77WaHEmhYQYGNA6y421PKsKYWEK8aW+cqAphborZDhqfyKrbZEN92CN1X2KbafY2s7Yw==}
     dev: true
 
-  /nodemailer@6.9.10:
-    resolution: {integrity: sha512-qtoKfGFhvIFW5kLfrkw2R6Nm6Ur4LNUMykyqu6n9BRKJuyQrqEGwdXXUAbwWEKt33dlWUGXb7rzmJP/p4+O+CA==}
+  /nodemailer@6.9.11:
+    resolution: {integrity: sha512-UiAkgiERuG94kl/3bKfE8o10epvDnl0vokNEtZDPTq9BWzIl6EFT9336SbIT4oaTBD8NmmUTLsQyXHV82eXSWg==}
     engines: {node: '>=6.0.0'}
     dev: true
 

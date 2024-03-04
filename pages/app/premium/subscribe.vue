@@ -10,57 +10,42 @@ if (!user.value.bond?.id) {
   });
 }
 
-const planId = ref("");
-const buttonId = ref("");
 const loading = ref(false);
 const paid = ref(false);
 
-const { $paypal, $toasts } = useNuxtApp();
+const { $paddle, $toasts } = useNuxtApp();
+const initialized = ref(false);
 
-const renderButton = async () => {
-  planId.value = $paypal.planId;
-  buttonId.value = `paypal-button-container-${planId.value}`;
-  const paypal = await $paypal.loadScript();
-  if (!paypal.Buttons) return;
+const checkout = async () => {
+  if (user.value.bond?.premium) return;
+  $paddle.Checkout({
+    bondId: user.value.bond?.id ?? ""
+  });
+};
 
-  const button = paypal.Buttons({
-    style: {
-      disableMaxWidth: true,
-      shape: "pill",
-      color: "gold",
-      layout: "vertical",
-      label: "subscribe"
-    },
-    createSubscription: (data, actions) => {
-      return actions.subscription.create({
-        plan_id: planId.value,
-        custom_id: String(user.value.bond?.id)
-      });
-    },
-    onApprove: async (data): Promise<void> => {
-      if (!data.subscriptionID) return;
+onMounted(() => {
+  const paddle = $paddle.initialize({
+    onCompleted: async (data) => {
+      if (!data) return;
       paid.value = true;
       loading.value = true;
       const subscribe = await $fetch("/api/bond/subscribe", {
         method: "POST",
         body: {
           bondId: user.value.bond?.id,
-          subscriptionId: data.subscriptionID
+          transactionId: data.transaction_id
         }
       });
       loading.value = false;
       if (!subscribe) return;
       await sessionFetch();
       $toasts.add({ message: t("subscribed"), success: true });
+      $paddle.close();
       return;
     }
   });
-
-  button.render("#" + buttonId.value);
-};
-
-onMounted(async () => {
-  if (!user.value.bond?.premium) renderButton();
+  if (!paddle) return;
+  initialized.value = true;
 });
 </script>
 
@@ -92,16 +77,6 @@ onMounted(async () => {
                       <strong>{{ t("bill_monthly") }}</strong>
                     </div>
                     <p class="m-0">${{ SITE.pricing.plans.premium.price }}<span class="text-body-secondary">/{{ t("month").toLowerCase() }}</span></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="mb-4">
-              <h4>{{ t("payment_method") }}</h4>
-              <div class="row row-gap-2">
-                <div class="col-lg-6">
-                  <div class="bg-body-secondary p-3 rounded border text-center" role="button">
-                    <img src="/images/paypal.png" alt="PayPal" class="img-fluid" width="100" height="100">
                   </div>
                 </div>
               </div>
@@ -153,8 +128,13 @@ onMounted(async () => {
             <div>
               <h4>{{ t("payment") }}</h4>
               <p class="text-body-secondary">{{ t("payment_description") }}</p>
-              <div class="text-center">
-                <div :id="buttonId" />
+              <div class="d-grid">
+                <button class="btn btn-lg btn-primary rounded-pill" type="button" :disabled="!initialized" @click="checkout">
+                  <Transition name="tab" mode="out-in">
+                    <span v-if="initialized">{{ t("checkout") }}</span>
+                    <SpinnerCircle v-else class="text-white" />
+                  </Transition>
+                </button>
               </div>
             </div>
           </template>

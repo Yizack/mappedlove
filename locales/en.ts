@@ -257,11 +257,13 @@ export default {
   pay_now: "Pay now",
   order_summary: "Order summary",
   payment: "Payment",
-  payment_description: "Your payment will be processed by PayPal, we do not store any payment information.",
+  payment_description: "Your payment will be processed by Paddle, we do not store any payment information.",
   premium_subscription: "Premium subscription",
   subscribed: "Your bond is now Premium",
   subscribed_info: "You have successfully upgraded your bond to Premium, enjoy the new features.",
   subscribed_start: "Get started",
   future_features: "No extra charge for future premium features",
-  free_features: "Always free features"
+  free_features: "Always free features",
+  checkout: "Checkout",
+  paddle_sdk_not_loaded: "Paddle SDK could not be loaded"
 };

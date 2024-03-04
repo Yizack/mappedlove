@@ -95,10 +95,17 @@ export default defineNuxtConfig({
       secret: "",
       webhookId: ""
     },
+    paddle: {
+      secret: ""
+    },
     public: {
       paypal: {
         clientId: process.env.NUXT_PAYPAL_CLIENT_ID || "",
         planId: process.env.NUXT_PAYPAL_PLAN_ID || ""
+      },
+      paddle: {
+        client: process.env.NUXT_PADDLE_CLIENT || "",
+        plan: process.env.NUXT_PADDLE_PLAN || ""
       }
     }
   },
