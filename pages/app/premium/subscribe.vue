@@ -19,8 +19,13 @@ const initialized = ref(false);
 const checkout = async () => {
   if (user.value.bond?.premium) return;
   $paddle.Checkout({
-    bondId: user.value.bond?.id ?? "",
-    bondCode: user.value.bond?.code ?? "",
+    customer: {
+      email: user.value.email
+    },
+    customData: {
+      bondId: user.value.bond?.id ?? "",
+      bondCode: user.value.bond?.code ?? ""
+    }
   });
 };
 
@@ -110,18 +115,13 @@ onMounted(() => {
                   <p>${{ SITE.pricing.plans.premium.price.toFixed(2) }}</p>
                 </div>
                 <div v-if="!user.bond?.nextPayment" class="d-flex justify-content-between">
-                  <p>{{ t("free_trial") }}</p>
-                  <p>$0.00</p>
-                </div>
-                <div v-if="!user.bond?.nextPayment" class="d-flex justify-content-between">
                   <p class="m-0">{{ t("payment_after_trial") }}</p>
                   <p class="m-0">${{ SITE.pricing.plans.premium.price.toFixed(2) }}</p>
                 </div>
                 <hr>
                 <div class="d-flex justify-content-between fw-bold">
                   <p class="m-0">{{ t("pay_now") }}</p>
-                  <p v-if="!user.bond?.nextPayment" class="m-0">$0.00</p>
-                  <p v-else class="m-0">${{ SITE.pricing.plans.premium.price.toFixed(2) }}</p>
+                  <p classe="m-0">${{ SITE.pricing.plans.premium.price.toFixed(2) }}</p>
                 </div>
               </div>
             </div>

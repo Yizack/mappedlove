@@ -1,4 +1,4 @@
-import { initializePaddle, type Paddle as P, type CheckoutEventsData } from "@paddle/paddle-js";
+import { initializePaddle, type Paddle as P, type CheckoutEventsData, type CheckoutCustomer } from "@paddle/paddle-js";
 
 class Paddle {
   private paddle?: P;
@@ -50,9 +50,13 @@ class Paddle {
     }
   }
 
-  async Checkout (customData?: any) {
+  async Checkout (checkout: { customer?: CheckoutCustomer, customData?: any }) {
     const items = [{ priceId: this.options.plan , quantity: 1 }];
-    this.paddle?.Checkout.open({ items, customData });
+    this.paddle?.Checkout.open({
+      items,
+      customer: checkout.customer,
+      customData: checkout.customData
+    });
   }
 
   close () {
