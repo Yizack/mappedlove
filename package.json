@@ -24,7 +24,7 @@
     "lint": "npm run lint:eslint && npm run lint:stylelint",
     "lint:eslint": "eslint --ext .ts,.js,.vue --fix --ignore-path .gitignore .",
     "lint:stylelint": "stylelint \"**/*.css\" --fix",
-    "dev:cf": "npm run build && wrangler dev dist/_worker.js"
+    "dev:cf": "npm run build && npx wrangler dev dist/_worker.js"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.2.0",
@@ -54,6 +54,7 @@
     "stylelint-config-standard": "^36.0.0",
     "tsx": "^4.7.1",
     "typescript": "^5.3.3",
-    "vue-draggable-next": "^2.2.1"
+    "vue-draggable-next": "^2.2.1",
+    "wrangler": "^3.30.1"
   }
 }
