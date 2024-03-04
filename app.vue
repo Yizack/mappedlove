@@ -17,8 +17,10 @@ onMounted(() => {
 
 <template>
   <NuxtLoadingIndicator :throttle="0" />
-  <NuxtLayout>
-    <NuxtPage />
-  </NuxtLayout>
+  <div>
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
+  </div>
   <ToastsController />
 </template>
