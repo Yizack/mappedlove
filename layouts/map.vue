@@ -1,6 +1,8 @@
 <template>
   <div id="layout">
     <NavbarMap />
-    <slot />
+    <Suspense>
+      <slot />
+    </Suspense>
   </div>
 </template>
