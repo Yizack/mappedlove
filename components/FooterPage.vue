@@ -25,11 +25,11 @@
         <div class="col mb-3">
           <h5>{{ t("help") }}</h5>
           <ul class="nav flex-column">
-            <li class="nav-item mb-2"><NuxtLink to="#" class="nav-link p-0 text-body-secondary">{{ t("contact") }}</NuxtLink></li>
-            <li class="nav-item mb-2"><NuxtLink to="#" class="nav-link p-0 text-body-secondary">{{ t("terms_of_use") }}</NuxtLink></li>
-            <li class="nav-item mb-2"><NuxtLink to="#" class="nav-link p-0 text-body-secondary">{{ t("privacy_policy") }}</NuxtLink></li>
-            <li class="nav-item mb-2"><NuxtLink to="#" class="nav-link p-0 text-body-secondary">{{ t("cookie_policy") }}</NuxtLink></li>
-            <li class="nav-item mb-2"><NuxtLink to="#" class="nav-link p-0 text-body-secondary">{{ t("support") }}</NuxtLink></li>
+            <li class="nav-item mb-2"><NuxtLink to="/contact" class="nav-link p-0 text-body-secondary">{{ t("contact") }}</NuxtLink></li>
+            <li class="nav-item mb-2"><NuxtLink to="/legal/terms" class="nav-link p-0 text-body-secondary">{{ t("terms_of_use") }}</NuxtLink></li>
+            <li class="nav-item mb-2"><NuxtLink to="/legal/privacy" class="nav-link p-0 text-body-secondary">{{ t("privacy_policy") }}</NuxtLink></li>
+            <li class="nav-item mb-2"><NuxtLink to="/legal/refund" class="nav-link p-0 text-body-secondary">{{ t("refund_policy") }}</NuxtLink></li>
+            <li class="nav-item mb-2"><NuxtLink to="/support" class="nav-link p-0 text-body-secondary">{{ t("support") }}</NuxtLink></li>
           </ul>
         </div>
 
