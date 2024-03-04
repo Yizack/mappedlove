@@ -3,5 +3,7 @@ definePageMeta({ layout: "utils" });
 </script>
 
 <template>
-hello
+  <main>
+    hello
+  </main>
 </template>
