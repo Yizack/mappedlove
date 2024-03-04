@@ -61,11 +61,11 @@ class Paddle {
 }
 
 export default defineNuxtPlugin(async () => {
-  const { client, plan } = useRuntimeConfig().public.paddle;
+  const { clientId, planId } = useRuntimeConfig().public.paddle;
 
   const paddle = new Paddle({
-    token: client,
-    plan: plan
+    token: clientId,
+    plan: planId
   });
 
   return {

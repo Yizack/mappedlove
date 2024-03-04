@@ -19,7 +19,8 @@ const initialized = ref(false);
 const checkout = async () => {
   if (user.value.bond?.premium) return;
   $paddle.Checkout({
-    bondId: user.value.bond?.id ?? ""
+    bondId: user.value.bond?.id ?? "",
+    bondCode: user.value.bond?.code ?? "",
   });
 };
 
