@@ -4,22 +4,20 @@ import { eq, and } from "drizzle-orm";
 
 export default defineEventHandler(async (event) => {
   const { user } = await requireUserSession(event);
-
   const payment = await readBody(event);
+
   if (!payment.bondId) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "bond_not_found" });
   if (!payment.transactionId) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "payment_error" });
-  const subscription = await getPaddleSubscription(event, payment.transactionId);
-  if (!subscription) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_subscription" });
-  if (subscription.status !== "active" && subscription.status !== "trialing") throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_subscription_status" });
-  if (!subscription.current_billing_period) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_subscription_period" });
+
+  const transaction = await getPaddleTransaction(event, payment.transactionId);
+  if (!transaction) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "transaction_not_found" });
 
   const DB = useDb();
   const today = Date.now();
 
   const update = await DB.update(tables.bonds).set({
     premium: 1,
-    subscriptionId: payment.subscriptionId,
-    nextPayment: new Date(subscription.current_billing_period.ends_at).getTime(),
+    nextPayment: today + 1 * 24 * 60 * 60 * 1000, // 1 day grace period
     updatedAt: today
   }).where(and(eq(tables.bonds.id, payment.bondId))).returning().get();
 

@@ -34,14 +34,14 @@ export default eventHandler(async (event): Promise<MappedLoveSession> => {
 
   if (bond?.premium) {
     const today = Date.now();
-    if (!bond.nextPayment || bond.nextPayment < today) {
+    if (!bond.nextPayment || bond.nextPayment < getGracePeriod(today, 1)) {
       await DB.update(tables.bonds).set({
         premium: 0,
         subscriptionId: null,
         updatedAt: today
       }).where(eq(tables.bonds.id, bond.id)).run();
       bond.premium = 0;
-      bond.nextPayment = null;
+      bond.subscriptionId = null;
     }
   }
 
