@@ -20,7 +20,7 @@ export default defineEventHandler(async (event) => {
 
   const subscription = await getPaddleSubscription(event, webhook.data.subscription_id);
   if (!subscription)
-    throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_subscription" });
+    throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "subscription_not_found" });
   if (subscription.status !== "active" && subscription.status !== "trialing")
     throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_subscription_status" });
   if (!subscription.current_billing_period)

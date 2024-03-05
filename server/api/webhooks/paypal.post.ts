@@ -18,9 +18,9 @@ export default defineEventHandler(async (event) => {
 
   const subscription = await getPayPalSubscription(event, webhook.resource.billing_agreement_id);
   if (!subscription)
-    throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "Invalid subscription" });
+    throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "subscription_not_found" });
   if (subscription.status !== "ACTIVE")
-    throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "Invalid subscription status" });
+    throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_subscription_status" });
 
   await DB.update(tables.bonds).set({
     premium: 1,

@@ -34,7 +34,11 @@ export default {
   email_conflict: "Email is already registered",
   has_account: "Already have an account?",
   registered: "You have signed up successfully, sign in to continue",
-  error: "Something went wrong.",
+  token_missing: "Token not provided",
+  turnstile_failed: "Turnstile verification failed",
+  user_exists: "User already exists",
+  invalid_code: "Verification code is not valid",
+  verification_failed: "Verification failed",
   // Bond
   not_bonded: "You are currently not bonded",
   bond_start: "To start mapping your love stories, you need to bond with your partner!",
@@ -103,6 +107,7 @@ export default {
   story_date: "Story date",
   created: "Created",
   delete_story: "Are you sure you want to delete this story?",
+  unsupported_file: "Unsupported file type",
   // Groups
   groups: "Groups",
   places: "Places",
@@ -114,6 +119,7 @@ export default {
   others: "Others",
   select_group: "Select group",
   // App
+  user_not_found: "User not found",
   bond_preferences: "Bond preferences",
   preferences: "Preferences",
   cancel: "Cancel",
@@ -162,16 +168,12 @@ export default {
   october: "October",
   november: "November",
   december: "December",
-  // Error
+  // Not related errors
+  error: "Something went wrong.",
   error_occurred: "Sorry, an error has occured",
   go_back: "Go back",
   unauthorized: "User session expired, please sign in again",
   bad_request: "Bad request",
-  token_missing: "Token not provided",
-  turnstile_failed: "Turnstile verification failed",
-  user_exists: "User already exists",
-  user_not_found: "User not found",
-  unsupported_file: "Unsupported file type",
   // Settings
   account: "Account",
   current_password: "Current password",
@@ -208,6 +210,7 @@ export default {
   account_recovery_info: "Enter your new password and confirm it to recover access to your account.",
   recovery_info: "This link or recovery code is unique, can only be used once and expires after 7 days.",
   reset_success: "The password has been reset successfully",
+  invalid_email_code: "Email code not valid",
   // Footer
   about_us: "About us",
   guides: "Guides",
@@ -218,6 +221,7 @@ export default {
   terms_of_use: "Terms of use",
   privacy_policy: "Privacy policy",
   cookie_policy: "Cookie policy",
+  refund_policy: "Refund policy",
   support: "Support",
   contribute: "Contribute",
   donate: "Donate",
@@ -265,5 +269,15 @@ export default {
   future_features: "No extra charge for future premium features",
   free_features: "Always free features",
   checkout: "Checkout",
-  paddle_sdk_not_loaded: "Paddle SDK could not be loaded"
+  paddle_sdk_not_loaded: "Paddle SDK could not be loaded",
+  paypal_sdk_not_loaded: "PayPal SDK could not be loaded",
+  payment_error: "Payment error occurred",
+  transaction_not_found: "Transaction not found",
+  invalid_headers: "headers are not valid",
+  invalid_webhook: "Webhook is not valid",
+  invalid_event_type: "Webhook event type is not valid",
+  invalid_webhook_data: "Webhook data is not valid",
+  subscription_not_found: "Subscription not found",
+  invalid_subscription_status: "Subscription status is not valid",
+  invalid_subscription_period: "Subscription period is not valid",
 };
