@@ -43,7 +43,7 @@ export default defineEventHandler(async (event) => {
   const fields = [user.id, user.email, user.updatedAt];
   const code = hash(fields.join(""), config.secure.salt);
 
-  const url = import.meta.dev ? "http://localhost:5173" : "https://mappedlove.com";
+  const url = import.meta.dev ? SITE.dev : SITE.host;
   const template_strings = {
     verify_link: `${url}/verify/${encodeURIComponent(btoa(email))}/${code}`
   };
