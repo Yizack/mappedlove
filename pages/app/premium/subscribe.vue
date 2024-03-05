@@ -111,17 +111,13 @@ onMounted(() => {
               <h4>{{ t("order_summary") }}</h4>
               <div class="border p-3 rounded">
                 <div class="d-flex justify-content-between">
-                  <p>{{ t("premium_subscription") }}</p>
-                  <p>${{ SITE.pricing.plans.premium.price.toFixed(2) }}</p>
-                </div>
-                <div v-if="!user.bond?.nextPayment" class="d-flex justify-content-between">
-                  <p class="m-0">{{ t("payment_after_trial") }}</p>
+                  <p class="m-0">{{ t("premium_subscription") }}</p>
                   <p class="m-0">${{ SITE.pricing.plans.premium.price.toFixed(2) }}</p>
                 </div>
                 <hr>
                 <div class="d-flex justify-content-between fw-bold">
                   <p class="m-0">{{ t("pay_now") }}</p>
-                  <p classe="m-0">${{ SITE.pricing.plans.premium.price.toFixed(2) }}</p>
+                  <p class="m-0">${{ SITE.pricing.plans.premium.price.toFixed(2) }}</p>
                 </div>
               </div>
             </div>
