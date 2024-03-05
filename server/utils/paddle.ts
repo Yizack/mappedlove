@@ -1,7 +1,7 @@
 import type { H3Event, HTTPHeaderName } from "h3";
 import { Webhooks, type ITransactionResponse, type ISubscriptionResponse } from "@paddle/paddle-node-sdk";
 
-const baseAPI = process.dev ? "https://sandbox-api.paddle.com" : "https://api.paddle.com";
+const baseAPI = import.meta.dev ? "https://sandbox-api.paddle.com" : "https://api.paddle.com";
 
 export const getPaddleTransaction = async (event: H3Event, transactionId: string) => {
   const { secret } = useRuntimeConfig(event).paddle;

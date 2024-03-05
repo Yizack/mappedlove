@@ -17,7 +17,7 @@ export default eventHandler(async (event) => {
   const fields = [user.id, user.email, user.updatedAt];
   const code = hash(fields.join(""), config.secure.salt);
 
-  const url = process.dev ? "http://localhost:5173" : "https://mappedlove.com";
+  const url = import.meta.dev ? "http://localhost:5173" : "https://mappedlove.com";
   const template_strings = {
     recovery_link: `${url}/recovery/${encodeURIComponent(btoa(user.email))}/${code}`
   };

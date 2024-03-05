@@ -73,6 +73,6 @@ const nodeMailer = async (config: NitroRuntimeConfig, message: EmailMessage) => 
 };
 
 export const sendMail = async (config: NitroRuntimeConfig, message: EmailMessage) => {
-  if (process.dev) return nodeMailer(config, message);
+  if (import.meta.dev) return nodeMailer(config, message);
   return mailChannels(config, message);
 };

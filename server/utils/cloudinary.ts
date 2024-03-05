@@ -9,7 +9,7 @@ const bufferToBaase64URI = (buffer: Buffer, type: string | undefined) => {
 };
 
 export const uploadToCloudinary = async (file: MultiPartData, filename: string, folder: string, event: H3Event) => {
-  if (process.dev) return;
+  if (import.meta.dev) return;
   const { type, data: fileData } = file;
   const time = Date.now();
 

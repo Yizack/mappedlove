@@ -3,7 +3,7 @@ import type { BetterSQLite3Database } from "drizzle-orm/better-sqlite3";
 import { seedDev } from "~/server/utils/seed";
 
 export default defineNitroPlugin(() => {
-  if (process.dev) {
+  if (import.meta.dev) {
     try {
       const DB = useDb() as any as BetterSQLite3Database;
       migrate(DB, { migrationsFolder: "./server/db/migrations" });

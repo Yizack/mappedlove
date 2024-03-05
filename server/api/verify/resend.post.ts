@@ -19,7 +19,7 @@ export default defineEventHandler(async (event) : Promise<{ email: string }> => 
   const code = hash(fields.join(""), config.secure.salt);
 
   const { name } = user;
-  const url = process.dev ? "http://localhost:5173" : "https://mappedlove.com";
+  const url = import.meta.dev ? "http://localhost:5173" : "https://mappedlove.com";
 
   const template_strings = {
     verify_link: `${url}/verify/${encodeURIComponent(btoa(email))}/${code}`

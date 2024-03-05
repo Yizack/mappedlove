@@ -10,7 +10,7 @@ class Paddle {
     const { $colorMode } = useNuxtApp();
 
     this.paddle = await initializePaddle({
-      environment: process.dev ? "sandbox" : "production",
+      environment: import.meta.dev ? "sandbox" : "production",
       token: this.options.token,
       checkout: {
         settings: {

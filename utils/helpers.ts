@@ -43,7 +43,7 @@ export const storiesByYear = (stories: MappedLoveStory[], year: number) => {
 };
 
 export const getStoryImageTransform = (hash?: string) => {
-  if (process.dev) return `/uploads/stories/${hash}`;
+  if (import.meta.dev) return `/uploads/stories/${hash}`;
   return `https://res.cloudinary.com/dyxajqsia/image/upload/stories/${hash}`;
 };
 

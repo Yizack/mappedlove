@@ -16,7 +16,7 @@ export const useDb = () => {
       // d1 in production
       _db = drizzleD1(process.env.DB);
     }
-    else if (process.dev) {
+    else if (import.meta.dev) {
       // local sqlite in development
       const sqlite = new Database("server/db/db.sqlite");
       _db = drizzle(sqlite);

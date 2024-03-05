@@ -23,7 +23,7 @@ export const uploadImage = (async (file: MultiPartData | undefined, outputName: 
   const { type, filename, data } = file;
   if(!isValidFileSize(data.byteLength, sizeMB)) return undefined;
   const finalName = outputName ? `${outputName}` : filename;
-  if (process.dev) {
+  if (import.meta.dev) {
     const { writeFileSync, existsSync, mkdirSync } = await import("fs");
     if (!existsSync(`./public/uploads/${folder}`)) mkdirSync(`./public/uploads/${folder}`, { recursive: true });
     writeFileSync(`./public/uploads/${folder}/${finalName}`, data);
@@ -38,7 +38,7 @@ export const uploadImage = (async (file: MultiPartData | undefined, outputName: 
 });
 
 export const deleteImage = (async (filename: string, event: H3Event) : Promise<void> => {
-  if (process.dev) {
+  if (import.meta.dev) {
     const { unlinkSync } = await import("fs");
     unlinkSync(`./public/uploads/${filename}`);
   }
