@@ -48,16 +48,16 @@ export const getStoryImageTransform = (hash?: string) => {
 };
 
 export const getStoryImage = (hash?: string) => {
-  return `${SITE.cdn}/uploads/stories/${hash}`;
+  return `${import.meta.dev ? SITE.dev : SITE.cdn}/uploads/stories/${hash}`;
 };
 
 export const getDefaultAvatar = (id: number) => {
   const avatarNumber = ((id % 10) % 5) + 1;
-  return `${SITE.host}/images/defaults/avatar-${avatarNumber}.jpg`;
+  return `${import.meta.dev ? SITE.dev : SITE.host}/images/defaults/avatar-${avatarNumber}.jpg`;
 };
 
 export const getAvatarImage = (hash?: string) => {
-  return `${SITE.cdn}/uploads/avatars/${hash}`;
+  return `${import.meta.dev ? SITE.dev : SITE.cdn}/uploads/avatars/${hash}`;
 };
 
 export const copyToClipboard = async (text: string) => {

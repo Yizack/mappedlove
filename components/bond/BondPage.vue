@@ -20,7 +20,7 @@ const partner2 = computed(() => props.bond.partner2 as MappedLovePartner);
 
 
 const togetherFor = computed(() => getTogetherFor(coupleDate.value));
-const publicURL = computed(() => `${SITE.host}/map/${props.bond.code}`);
+const publicURL = computed(() => `${import.meta.dev ? SITE.dev : SITE.host}/map/${props.bond.code}`);
 
 const deleteDate = () => {
   if (!confirm(t("delete_anniversary"))) return;

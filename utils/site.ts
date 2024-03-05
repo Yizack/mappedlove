@@ -1,8 +1,9 @@
 export const SITE = {
   name: "MappedLove",
   author: "Yizack Rangel",
-  host: import.meta.dev ? "http://localhost:5173" : "https://mappedlove.com",
-  cdn: import.meta.dev ? "http://localhost:5173" : "https://cdn.mappedlove.com",
+  host: "https://mappedlove.com",
+  cdn: "https://cdn.mappedlove.com",
+  dev: "http://localhost:5173",
   pages: {
     main: [
       { name: "home", path: "/" },
