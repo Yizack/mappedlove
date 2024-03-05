@@ -67,7 +67,7 @@ definePageMeta({ layout: "utils" });
           </section>
           <section id="purchases-and-payment">
             <h4>5. PURCHASES AND PAYMENT</h4>
-            <p>We accept the following forms of payment:</p>
+            <p>We accept the following forms of payment powered by <a href="https://www.paddle.com" target="_blank">Paddle.com</a>:</p>
             <ul>
               <li>Cards (including Mastercard, Visa, Maestro, American Express, Discover, Diners Club, JCB, UnionPay, and Mada)</li>
               <li>PayPal</li>
