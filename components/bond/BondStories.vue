@@ -173,7 +173,7 @@ watch(() => props.marker, () => {
       <div class="mb-2 py-2 px-3 image-upload border rounded">
         <p class="text-muted mb-1">{{ t("photo") }} <span class="text-danger">*</span></p>
         <input id="image" type="file" accept=".png,.jpg,.jpeg,.jfif,.webp,.gif" @change="addImage">
-        <label for="image" class="rounded bg-body-tertiary position-relative overflow-hidden w-100 border">
+        <label for="image" class="rounded bg-body-tertiary position-relative overflow-hidden w-100 border text-center">
           <div class="overlay position-absolute bg-body-secondary w-100 h-100">
             <div class="d-flex flex-column justify-content-center align-items-center h-100">
               <Icon class="text-primary " name="solar:gallery-add-outline" size="2.5rem" />
