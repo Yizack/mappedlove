@@ -32,7 +32,7 @@ export default eventHandler(async (event) : Promise<MappedLoveStory> => {
 
   if (!file) return storyPatch;
 
-  const fileSizeMaxMB = user.bond?.premium ? Quota.PREMIUM_IMAGE_UPLOADS : Quota.FREE_IMAGE_UPLOADS;
+  const fileSizeMaxMB = user.bond?.premium ? Quota.PREMIUM_IMAGE_FILESIZE : Quota.FREE_IMAGE_FILESIZE;
   const uploaded = await uploadImage(file, storyHash, "stories", fileSizeMaxMB, event);
 
   if (!uploaded) {
