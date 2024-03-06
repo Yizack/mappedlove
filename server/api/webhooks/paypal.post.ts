@@ -8,9 +8,6 @@ export default defineEventHandler(async (event) => {
   const isValidWebhook = await isValidPayPalWebhook(event, headers, webhook);
   if (!isValidWebhook) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_webhook" });
 
-  const DB = useDb();
-  const today = Date.now();
-
   if (webhook.event_type !== PayPalWebhook.PAYMENT_SALE_COMPLETED)
     throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_event_type" });
   if (webhook.resource.state !== "completed" || !webhook.resource.custom || !webhook.resource.billing_agreement_id)
@@ -21,6 +18,9 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "subscription_not_found" });
   if (subscription.status !== "ACTIVE")
     throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_subscription_status" });
+
+  const DB = useDb();
+  const today = Date.now();
 
   await DB.update(tables.bonds).set({
     premium: 1,

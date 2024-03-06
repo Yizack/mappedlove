@@ -10,9 +10,6 @@ export default defineEventHandler(async (event) => {
   const isValidWebhook = isValidPaddleWebhook(event, headers, rawBody);
   if (!isValidWebhook) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_webhook" });
 
-  const DB = useDb();
-  const today = Date.now();
-
   if (webhook.event_type !== EventName.TransactionCompleted)
     throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_event_type" });
   if (webhook.data.status !== "completed" || !webhook.data.custom_data || !webhook.data.subscription_id)
@@ -27,6 +24,9 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_subscription_period" });
 
   const custom_data = webhook.data.custom_data as { bondId: number };
+
+  const DB = useDb();
+  const today = Date.now();
 
   await DB.update(tables.bonds).set({
     premium: 1,
