@@ -11,7 +11,7 @@ const { user } = useUserSession();
           <h2 class="text-center">{{ t("pricing") }}</h2>
           <p class="text-center text-body-secondary">{{ t("available_plans") }}</p>
           <div class="row row-cols-1 row-cols-md-2 text-center">
-            <div v-for="plan in SITE.pricing.plans" :key="plan.name" class="col">
+            <div v-for="plan in SUBSCRIPTION.pricing.plans" :key="plan.name" class="col">
               <div class="card rounded-3 shadow-sm mb-3 mb-lg-0" :class="{ 'border-primary': plan.name === 'premium' }">
                 <div class="card-header py-3" :class="{ 'text-bg-primary border-primary': plan.name === 'premium' }">
                   <h3 class="my-0">{{ t(plan.name) }}</h3>
@@ -20,7 +20,10 @@ const { user } = useUserSession();
                   <h1 class="card-title pricing-card-title mb-0">${{ plan.price }}<small class="text-body-secondary fw-light">/{{ t("month").slice(0, 2).toLowerCase() }}</small></h1>
                   <small class="text-body-secondary">{{ t("price_in_usd") }}</small>
                   <ul class="list-unstyled mt-2 mb-4">
-                    <li v-for="(feature, i) of plan.features" :key="i">{{ t(feature) }}</li>
+                    <li v-for="(feature, i) of plan.features" :key="i">
+                      <template v-if="feature.quota">{{ t(feature.name, { quota: feature.quota }) }}</template>
+                      <template v-else>{{ t(feature.name) }}</template>
+                    </li>
                   </ul>
                   <NuxtLink v-if="!user.bond?.premium && plan.name === 'premium'" to="/app/premium/subscribe" class="w-100 btn btn-lg btn-primary rounded-pill">{{ t("subscribe") }}</NuxtLink>
                   <button v-else type="button" class="w-100 btn btn-lg btn-primary rounded-pill" disabled>

@@ -19,31 +19,5 @@ export const SITE = {
       { name: "premium", path: "/app/premium" },
       { name: "logout", path: "/logout", icon: "solar:exit-linear" }
     ]
-  },
-  pricing: {
-    plans: {
-      free: {
-        name: "free",
-        price: 0,
-        features: [
-          "share_public_map",
-          "free_markers_quota",
-          "free_image_upload_quota",
-          "free_summary",
-          "email_support"
-        ],
-      },
-      premium: {
-        name: "premium",
-        price: 2,
-        features: [
-          "share_public_map",
-          "premium_markers_quota",
-          "premium_image_upload_quota",
-          "premium_summary",
-          "email_support"
-        ]
-      }
-    }
   }
 };

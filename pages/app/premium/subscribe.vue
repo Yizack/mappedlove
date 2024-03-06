@@ -82,7 +82,7 @@ onMounted(() => {
                     <div class="d-flex justify-content-between gap-2">
                       <strong>{{ t("bill_monthly") }}</strong>
                     </div>
-                    <p class="m-0">${{ SITE.pricing.plans.premium.price }}<span class="text-body-secondary">/{{ t("month").toLowerCase() }}</span></p>
+                    <p class="m-0">${{ SUBSCRIPTION.pricing.plans.premium.price }}<span class="text-body-secondary">/{{ t("month").toLowerCase() }}</span></p>
                   </div>
                 </div>
               </div>
@@ -112,12 +112,12 @@ onMounted(() => {
               <div class="border p-3 rounded">
                 <div class="d-flex justify-content-between">
                   <p class="m-0">{{ t("premium_subscription") }}</p>
-                  <p class="m-0">${{ SITE.pricing.plans.premium.price.toFixed(2) }}</p>
+                  <p class="m-0">${{ SUBSCRIPTION.pricing.plans.premium.price.toFixed(2) }}</p>
                 </div>
                 <hr>
                 <div class="d-flex justify-content-between fw-bold">
                   <p class="m-0">{{ t("pay_now") }}</p>
-                  <p class="m-0">${{ SITE.pricing.plans.premium.price.toFixed(2) }}</p>
+                  <p class="m-0">${{ SUBSCRIPTION.pricing.plans.premium.price.toFixed(2) }}</p>
                 </div>
               </div>
             </div>

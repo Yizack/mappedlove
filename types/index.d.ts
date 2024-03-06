@@ -1,5 +1,5 @@
 import type { ErrorCode } from "~/types/enums/errors";
-import type { PremiumLimits, FreeLimits } from "~/types/enums/limits";
+import type { Quota } from "~/types/enums/quotas";
 
 export {};
 
@@ -82,6 +82,5 @@ declare global {
     stories: MappedLoveStory[];
   }
   type ErrorCode = typeof ErrorCode;
-  type FreeLimits = typeof FreeLimits;
-  type PremiumLimits = typeof PremiumLimits;
+  type Quota = typeof Quota;
 }

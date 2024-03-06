@@ -27,7 +27,7 @@ const imageRead = ref<string | ArrayBuffer>("");
 const showModal = ref(false);
 const fileChosen = ref(false);
 const file = ref<File>();
-const maxFileSize = ref(user.value.bond?.premium ? PremiumLimits.IMAGE_UPLOADS : FreeLimits.IMAGE_UPLOADS);
+const maxFileSize = ref(user.value.bond?.premium ? Quota.PREMIUM_IMAGE_UPLOADS : Quota.FREE_IMAGE_UPLOADS);
 
 const { form, formReset } = useFormState({
   id: 0 as number | undefined,

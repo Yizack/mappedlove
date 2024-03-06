@@ -21,7 +21,7 @@ export default eventHandler(async (event) => {
 
   if (!update) throw createError({ statusCode: ErrorCode.INTERNAL_SERVER_ERROR, message: "error" });
 
-  const fileSizeMaxMB = user.bond?.premium ? PremiumLimits.IMAGE_UPLOADS : FreeLimits.IMAGE_UPLOADS;
+  const fileSizeMaxMB = user.bond?.premium ? Quota.PREMIUM_IMAGE_UPLOADS : Quota.FREE_IMAGE_UPLOADS;
   const filename = `${user.hash}`;
   const uploaded = await uploadImage(file, filename, "avatars", fileSizeMaxMB, event);
 

@@ -1,5 +1,5 @@
 export { ErrorCode } from "~/types/enums/errors";
-export { PremiumLimits, FreeLimits } from "~/types/enums/limits";
+export { Quota } from "~/types/enums/quotas";
 export { PayPalWebhook } from "~/types/enums/paypal";
 export { isPasswordValid } from "~/utils/validators";
 export { SITE } from "~/utils/site";

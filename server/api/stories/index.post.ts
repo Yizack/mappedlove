@@ -29,7 +29,7 @@ export default eventHandler(async (event) : Promise<MappedLoveStory> => {
 
   const { secure } = useRuntimeConfig(event);
   const storyHash = hash([story.id, user.bond.code].join(), secure.salt);
-  const fileSizeMaxMB = user.bond?.premium ? PremiumLimits.IMAGE_UPLOADS : FreeLimits.IMAGE_UPLOADS;
+  const fileSizeMaxMB = user.bond?.premium ? Quota.PREMIUM_IMAGE_UPLOADS : Quota.FREE_IMAGE_UPLOADS;
   const uploaded = await uploadImage(file, storyHash, "stories", fileSizeMaxMB, event);
 
   if (!uploaded) {

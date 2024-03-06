@@ -25,7 +25,7 @@ export default eventHandler(async (event) : Promise<MappedLoveMarker> => {
     count: count(tables.markers.id)
   }).from(tables.markers).where(eq(tables.markers.bond, user.bond.id)).get();
 
-  if (!user.bond.premium && markers && markers.count >= FreeLimits.MARKERS) throw createError({ statusCode: ErrorCode.PAYMENT_REQUIRED, message: "max_markers" });
+  if (!user.bond.premium && markers && markers.count >= Quota.FREE_MARKERS) throw createError({ statusCode: ErrorCode.PAYMENT_REQUIRED, message: "max_markers" });
 
   return DB.insert(tables.markers).values({
     lat: marker.lat,
