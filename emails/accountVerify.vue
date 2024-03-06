@@ -1,18 +1,12 @@
 <script setup lang="ts">
-defineProps({
-  lang : {
-    type: String,
-    required: true
-  },
-  verifyLink: {
-    type: String,
-    required: true
-  }
-});
+import { EHtml, EHead, EFont, EBody, ESection, ERow, EColumn, EImg, EHeading, EText, EButton, ELink } from "vue-email";
+const domain = "mappedlove.com";
+const host = `https://${domain}`;
+const logo = `${host}/images/text-logo.png`;
 </script>
 
 <template>
-  <EHtml>
+  <EHtml lang="{{ lang }}">
     <EHead>
       <title>Email verification</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,7 +18,7 @@ defineProps({
         <ESection style="max-width: 602px; border-collapse: collapse; border: 0; border-spacing: 0; background-color: #f8f9fa;">
           <ERow style="padding: 1.2rem 0;">
             <EColumn align="center">
-              <EImg src="/images/text-logo.png" alt="MappedLove Logo" style="width: 180px;" />
+              <EImg :src="logo" alt="MappedLove Logo" style="width: 180px;" />
             </EColumn>
           </ERow>
           <ERow style="padding: 1rem 0; background-color: #ff6969;">
@@ -37,7 +31,7 @@ defineProps({
             <EText style="margin: 0 0 12px 0; font-size: 1rem;">You are almost ready to complete your registration! Simply click the link below to verify your email address and get started.</EText>
             <ERow>
               <EColumn align="center">
-                <EButton :href="verifyLink" tarte="_blank" style="display: inline-block; background: #ff6969; color: #fff; font-weight: 400; margin: 0; text-decoration: none; text-transform: none; padding: 1rem 1.5rem; border-radius: 50rem; margin-top: 1rem; font-size: 1rem;">
+                <EButton href="{{ verifyLink }}" tarte="_blank" style="display: inline-block; background: #ff6969; color: #fff; font-weight: 400; margin: 0; text-decoration: none; text-transform: none; padding: 1rem 1.5rem; border-radius: 50rem; margin-top: 1rem; font-size: 1rem;">
                   <strong>Verify my email address</strong>
                 </EButton>
               </EColumn>
@@ -45,7 +39,7 @@ defineProps({
           </ESection>
           <ERow style="padding: 15px 30px 15px 30px; background: #e9ecef; color: #443c47; font-size: 14px;">
             <EColumn align="center">
-              <ELink style="color: #443c47; text-decoration: underline;" href="/">mappedlove.com</ELink>
+              <ELink style="color: #443c47; text-decoration: underline;" :href="host">{{ domain }}</ELink>
             </EColumn>
           </ERow>
         </ESection>

@@ -1,4 +1,4 @@
-import { useCompiler } from "#vue-email";
+import Mustache from "mustache";
 import { eq } from "drizzle-orm";
 
 export default defineEventHandler(async (event) : Promise<{ email: string }> => {
@@ -27,21 +27,10 @@ export default defineEventHandler(async (event) : Promise<{ email: string }> => 
   const { name } = user;
   const url = import.meta.dev ? SITE.dev : SITE.host;
 
-  const template = await useCompiler("accountVerify.vue", {
-    props: {
-      lang: "en",
-      verifyLink: `${url}/verify/${encodeURIComponent(btoa(email))}/${code}`
-    }
+  const html = Mustache.render(templates.accountVerify, {
+    lang: "en",
+    verifyLink: `${url}/verify/${encodeURIComponent(btoa(email))}/${code}`
   });
-
-  if (!template) {
-    throw createError({
-      statusCode: ErrorCode.INTERNAL_SERVER_ERROR,
-      message: "email_template_not_found"
-    });
-  }
-
-  const html = template.html;
 
   await sendMail(config, {
     to: { email, name },

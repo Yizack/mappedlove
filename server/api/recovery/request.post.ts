@@ -1,4 +1,4 @@
-import { useCompiler } from "#vue-email";
+import Mustache from "mustache";
 import { eq } from "drizzle-orm";
 
 export default eventHandler(async (event) => {
@@ -25,21 +25,10 @@ export default eventHandler(async (event) => {
 
   const url = import.meta.dev ? SITE.dev : SITE.host;
 
-  const template = await useCompiler("accountRecovery.vue", {
-    props: {
-      lang: "en",
-      recoveryLink: `${url}/recovery/${encodeURIComponent(btoa(user.email))}/${code}`
-    }
+  const html = Mustache.render(templates.accountRecovery, {
+    lang: "en",
+    recoveryLink: `${url}/recovery/${encodeURIComponent(btoa(user.email))}/${code}`
   });
-
-  if (!template) {
-    throw createError({
-      statusCode: ErrorCode.INTERNAL_SERVER_ERROR,
-      message: "email_template_not_found"
-    });
-  }
-
-  const html = template.html;
 
   await sendMail(config, {
     to: { email, name: user.name },

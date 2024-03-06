@@ -1,4 +1,4 @@
-import { useCompiler } from "#vue-email";
+import Mustache from "mustache";
 import { eq, and } from "drizzle-orm";
 
 export default defineEventHandler(async (event) => {
@@ -33,21 +33,10 @@ export default defineEventHandler(async (event) => {
 
   if (!update) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "bond_not_found" });
 
-  const template = await useCompiler("premiumWelcome.vue", {
-    props: {
-      lang: "en",
-      // nextPayment: new Date(subscription.billing_info.next_billing_time).toLocaleDateString(),
-    }
+  const html = Mustache.render(templates.premiumWelcome, {
+    lang: "en",
+    // nextPayment: new Date(subscription.billing_info.next_billing_time).toLocaleDateString(),
   });
-
-  if (!template) {
-    throw createError({
-      statusCode: ErrorCode.INTERNAL_SERVER_ERROR,
-      message: "email_template_not_found"
-    });
-  }
-
-  const html = template.html;
 
   const config = useRuntimeConfig(event);
 
