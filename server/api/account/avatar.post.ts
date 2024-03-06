@@ -11,13 +11,6 @@ export default eventHandler(async (event) => {
   const DB = useDb();
   const today = Date.now();
 
-  const form : { [key: string]: string } = {};
-
-  for (const { name, data } of body) {
-    if (!name || name === "file") continue;
-    form[name] = data.toString();
-  }
-
   const update = await DB.update(tables.users).set({
     showAvatar: 1,
     updatedAt: today

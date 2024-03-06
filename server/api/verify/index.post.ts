@@ -1,7 +1,14 @@
 import { eq, and } from "drizzle-orm";
 
 export default defineEventHandler(async (event) => {
-  const { email, code }= await readBody(event);
+  const body = await readValidatedBody(event, (body) => z.object({
+    email: z.string(),
+    code: z.string()
+  }).safeParse(body));
+
+  if (!body.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_verification_data" });
+
+  const { email, code } = body.data;
 
   const DB = useDb();
   const user = await DB.select({

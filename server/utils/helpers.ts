@@ -3,6 +3,7 @@ export { PremiumLimits, FreeLimits } from "~/types/enums/limits";
 export { PayPalWebhook } from "~/types/enums/paypal";
 export { isPasswordValid } from "~/utils/validators";
 export { SITE } from "~/utils/site";
+export { z } from "zod";
 import { sha256 } from "ohash";
 
 export const hash = (string: string, salt?: string) => {

@@ -3,21 +3,25 @@ import { eq } from "drizzle-orm";
 export default eventHandler(async (event) : Promise<MappedLoveUser> => {
   const { user } = await requireUserSession(event);
 
-  const form = await readBody(event);
+  const body = await readValidatedBody(event, (body) => z.object({
+    name: z.string().optional(),
+    country: z.string().nullable().optional(),
+    birthDate: z.number().nullable().optional(),
+    showAvatar: z.boolean().optional()
+  }).safeParse(body));
+
+  if (!body.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_user_data" });
+
+  const form = body.data;
 
   if (form.name !== undefined && !form.name) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "name_required" });
-
-
-  if (form.showAvatar !== undefined) {
-    form.showAvatar = Number(form.showAvatar);
-  }
 
   const DB = useDb();
   const update = await DB.update(tables.users).set({
     name: form.name,
     country: form.country,
     birthDate: form.birthDate,
-    showAvatar: form.showAvatar,
+    showAvatar: form.showAvatar !== undefined ? Number(form.showAvatar) : undefined,
     updatedAt: Date.now()
   }).where(eq(tables.users.id, Number(user.id))).returning({
     id: tables.users.id,

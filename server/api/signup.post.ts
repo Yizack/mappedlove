@@ -2,7 +2,17 @@
 import Mustache from "mustache";
 
 export default defineEventHandler(async (event) => {
-  const form = await readBody(event);
+  const body = await readValidatedBody(event, (body) => z.object({
+    email: z.string(),
+    password: z.string(),
+    name: z.string(),
+    turnstile: z.string()
+  }).safeParse(body));
+
+  if (!body.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_signup_data" });
+
+  const form = body.data;
+
   if (!form.turnstile) {
     throw createError({
       statusCode: ErrorCode.UNPROCESSABLE_ENTITY,

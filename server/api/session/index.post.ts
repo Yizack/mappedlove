@@ -1,7 +1,15 @@
 import { eq, and, sql } from "drizzle-orm";
 
 export default defineEventHandler(async (event) => {
-  const form = await readBody(event);
+  const body = await readValidatedBody(event, (body) => z.object({
+    email: z.string(),
+    password: z.string()
+  }).safeParse(body));
+
+  if (!body.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_signin_data" });
+
+  const form = body.data;
+
   const { secure } = useRuntimeConfig(event);
   const DB = useDb();
 

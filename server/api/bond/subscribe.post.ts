@@ -4,10 +4,17 @@ import { eq, and } from "drizzle-orm";
 
 export default defineEventHandler(async (event) => {
   const { user } = await requireUserSession(event);
-  const payment = await readBody(event);
 
-  if (!payment.bondId) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "bond_not_found" });
-  if (!payment.transactionId) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "payment_error" });
+  const body = await readValidatedBody(event, (body) => z.object({
+    bondId: z.number(),
+    transactionId: z.string()
+  }).safeParse(body));
+
+  if (!body.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_payment_data" });
+
+  const payment = body.data;
+
+  if (payment.bondId !== user.bond?.id) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "bond_not_found" });
 
   const transaction = await getPaddleTransaction(event, payment.transactionId);
   if (!transaction) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "transaction_not_found" });
@@ -19,7 +26,11 @@ export default defineEventHandler(async (event) => {
     premium: 1,
     nextPayment: today + 1 * 24 * 60 * 60 * 1000, // 1 day grace period
     updatedAt: today
-  }).where(and(eq(tables.bonds.id, payment.bondId))).returning().get();
+  }).where(and(eq(tables.bonds.id, payment.bondId))).returning({
+    premium: tables.bonds.premium,
+    nextPayment: tables.bonds.nextPayment,
+    updatedAt: tables.bonds.updatedAt
+  }).get();
 
   if (!update) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "bond_not_found" });
 

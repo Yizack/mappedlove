@@ -1,7 +1,15 @@
 import { eq } from "drizzle-orm";
 
 export default eventHandler(async (event) => {
-  const form = await readBody(event);
+  const body = await readValidatedBody(event, (body) => z.object({
+    email: z.string(),
+    code: z.string(),
+    password: z.string()
+  }).safeParse(body));
+
+  if (!body.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_recovery_data" });
+
+  const form = body.data;
 
   if (!isPasswordValid(form.password)) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "password_invalid" });
 

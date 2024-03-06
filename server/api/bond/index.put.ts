@@ -13,14 +13,19 @@ export default eventHandler(async (event) : Promise<MappedLoveBond> => {
 
   if (bondExists) throw createError({ statusCode: ErrorCode.CONFLICT, message: "bond_exists" });
 
-  const body = await readBody(event);
-  const partner = partnerIdFromCode(body.code);
+  const body = await readValidatedBody(event, (body) => z.object({
+    code: z.string()
+  }).safeParse(body));
+
+  if (!body.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "bond_code_required" });
+
+  const partner = partnerIdFromCode(body.data.code);
 
   const bond = await DB.update(tables.bonds).set({
     partner2: user.id,
     bonded: 1, // true
     updatedAt: Date.now()
-  }).where(and(eq(tables.bonds.code, body.code), eq(tables.bonds.partner1, partner))).returning().get();
+  }).where(and(eq(tables.bonds.code, body.data.code), eq(tables.bonds.partner1, partner))).returning().get();
   await setUserSession(event, { user: { ...user, bond } });
   return bond;
 });

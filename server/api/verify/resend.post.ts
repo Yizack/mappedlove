@@ -3,7 +3,14 @@ import Mustache from "mustache";
 import { eq } from "drizzle-orm";
 
 export default defineEventHandler(async (event) : Promise<{ email: string }> => {
-  const { email } = await readBody(event);
+  const body = await readValidatedBody(event, (body) => z.object({
+    email: z.string()
+  }).safeParse(body));
+
+  if (!body.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_email" });
+
+  const { email } = body.data;
+
   const config = useRuntimeConfig(event);
   const DB = useDb();
   const user = await DB.select({
