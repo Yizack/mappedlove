@@ -12,13 +12,7 @@ const selected = ref(0);
 
 const map = ref();
 
-const newMarker = ({ marker, edit }: { marker: MappedLoveMarker, edit: boolean }) => {
-  if (edit) {
-    return markers.value = markers.value.map((item) => {
-      if (item.id === marker.id) return marker;
-      return item;
-    });
-  }
+const newMarker = ({ marker }: { marker: MappedLoveMarker }) => {
   map.value.addMarker(marker);
   map.value.setView([marker.lat, marker.lng], 10);
   selected.value = marker.id;

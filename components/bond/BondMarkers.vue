@@ -98,8 +98,15 @@ const submitMarker = async () => {
   }).catch(() => null);
   submitted.value = false;
   if (!marker) return;
-  markers.value.push(marker);
-  emit("new", { marker, edit: Boolean(form.value.id) });
+
+  if (form.value.id) {
+    const index = markers.value.findIndex((item) => item.id === form.value.id);
+    markers.value[index] = marker;
+  }
+  else {
+    markers.value.push(marker);
+    emit("new", { marker });
+  }
   $toasts.add({ message: form.value.id ? t("marker_updated") : t("marker_added"), success: true });
   $bootstrap.hideModal("marker");
 };
