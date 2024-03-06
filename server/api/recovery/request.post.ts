@@ -7,7 +7,7 @@ export default eventHandler(async (event) => {
     email: z.string()
   }).safeParse(body));
 
-  if (!body.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_recovery_data" });
+  if (!body.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "email_required" });
 
   const form = body.data;
 

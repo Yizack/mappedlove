@@ -25,6 +25,7 @@ export default {
   signin_error: "Wrong email or password",
   logout: "Logout",
   many_logins_attempted: "Too many failed login attempts, please try again later",
+  invalid_signin_data: "Signin data is not valid",
   // Register
   password_confirm: "Confirm password",
   name: "Name",
@@ -39,6 +40,8 @@ export default {
   user_exists: "User already exists",
   invalid_code: "Verification code is not valid",
   verification_failed: "Verification failed",
+  invalid_signup_data: "Signup data is not valid",
+  invalid_verification_data: "Verification data is not valid",
   // Bond
   not_bonded: "You are currently not bonded",
   bond_start: "To start mapping your love stories, you need to bond with your partner!",
@@ -77,6 +80,8 @@ export default {
   bond_not_found: "Bond not found",
   bond_exists: "A bond already exists",
   cant_delete_bonded_bond: "Can not delete a bonded bond",
+  bond_code_required: "Bond code is required",
+  invalid_bond_data: "Bond data is not valid",
   // Markers
   marker: "Marker",
   markers: "Markers",
@@ -90,6 +95,7 @@ export default {
   marker_updated: "The marker has been updated",
   marker_deleted: "The marker has been deleted",
   max_markers: "Your bond have reached the maximum number of markers. Upgrade to premium to add unlimited markers.",
+  invalid_marker_data: "Marker data is not valid",
   // Stories
   story: "Story",
   stories: "Stories",
@@ -194,6 +200,7 @@ export default {
   delete_avatar: "Delete avatar",
   avatar_deleted: "Avatar has been deleted",
   delete_avatar_confirm: "Are you sure you want to delete your avatar?",
+  invalid_user_data: "User data is not valid",
   // Recovery
   recovery_title: "Getting back into your account",
   recovery_description: "Tell us some information about your account.",
@@ -211,6 +218,8 @@ export default {
   recovery_info: "This link or recovery code is unique, can only be used once and expires after 7 days.",
   reset_success: "The password has been reset successfully",
   invalid_email_code: "Email code not valid",
+  invalid_recovery_data: "Recovery data is not valid",
+  email_required: "Email is required",
   // Footer
   about_us: "About us",
   guides: "Guides",
@@ -280,4 +289,5 @@ export default {
   subscription_not_found: "Subscription not found",
   invalid_subscription_status: "Subscription status is not valid",
   invalid_subscription_period: "Subscription period is not valid",
+  invalid_payment_data: "Payment data is not valid",
 };

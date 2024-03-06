@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) : Promise<{ email: string }> => 
     email: z.string()
   }).safeParse(body));
 
-  if (!body.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_email" });
+  if (!body.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "email_required" });
 
   const { email } = body.data;
 
