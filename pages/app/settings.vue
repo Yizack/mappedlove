@@ -88,6 +88,7 @@ const changeColorMode = () => {
 };
 
 const changePassword = async () => {
+  if (!(isPasswordValid(user.value.current_password) && isPasswordCheckValid(user.value.new_password, user.value.confirm_password))) return;
   submit.value.pass_loading = true;
   const account = await $fetch("/api/account/password", {
     method: "PATCH",
