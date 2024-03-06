@@ -17,10 +17,10 @@ export const partnerIdFromCode = (code: string) => {
   return Number(code.substring(4));
 };
 
-export const isCodeDateExpired = (date: number) => {
-  return Date.now() - date > 7 * 24 * 60 * 60 * 1000;
+export const isCodeDateExpired = (timestamp: number) => {
+  return Date.now() - timestamp > 7 * 24 * 60 * 60 * 1000;
 };
 
-export const getGracePeriod = (date: number, days: number) => {
-  return date + (days * 24 * 60 * 60 * 1000);
+export const getGracePeriod = (timestamp: number, days: number) => {
+  return timestamp + (days * 24 * 60 * 60 * 1000);
 };
