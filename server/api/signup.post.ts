@@ -1,5 +1,4 @@
-// @ts-ignore
-import Mustache from "mustache";
+import { useCompiler } from "#vue-email";
 
 export default defineEventHandler(async (event) => {
   const body = await readValidatedBody(event, (body) => z.object({
@@ -54,11 +53,22 @@ export default defineEventHandler(async (event) => {
   const code = hash(fields.join(""), config.secure.salt);
 
   const url = import.meta.dev ? SITE.dev : SITE.host;
-  const template_strings = {
-    verify_link: `${url}/verify/${encodeURIComponent(btoa(email))}/${code}`
-  };
 
-  const html = Mustache.render(templates.accountVerify, template_strings);
+  const template = await useCompiler("accountVerify.vue", {
+    props: {
+      lang: "en",
+      verifyLink: `${url}/verify/${encodeURIComponent(btoa(email))}/${code}`
+    }
+  });
+
+  if (!template) {
+    throw createError({
+      statusCode: ErrorCode.INTERNAL_SERVER_ERROR,
+      message: "email_template_not_found"
+    });
+  }
+
+  const html = template.html;
 
   await sendMail(config, {
     to: { email, name: user.name },

@@ -55,7 +55,8 @@ export default defineNuxtConfig({
     "@nuxtjs/turnstile",
     "nuxt-twemoji",
     "@nuxtjs/color-mode",
-    "@nuxtjs/sitemap"
+    "@nuxtjs/sitemap",
+    "@vue-email/nuxt"
   ],
   turnstile: {
     siteKey: "0x4AAAAAAAGmhM7sxmb8brsQ",
@@ -66,6 +67,10 @@ export default defineNuxtConfig({
     fallback: "light",
     dataValue: "bs-theme",
     storageKey: "nuxt-color-mode"
+  },
+  vueEmail: {
+    baseUrl: SITE.host,
+    autoImport: true,
   },
   runtimeConfig: {
     secure: {
