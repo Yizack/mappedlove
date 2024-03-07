@@ -93,7 +93,7 @@ watch(coupleDate, async (val: Date | undefined) => {
           <Transition name="tab" mode="out-in">
             <div v-if="!coupleDate">
               <ClientOnly>
-                <VueDatePicker v-model="coupleDate" :format="'yyyy-MM-dd'" :enable-time-picker="false" :locale="t('lang_code')">
+                <VueDatePicker v-model="coupleDate" :format="'yyyy-MM-dd'" :enable-time-picker="false" :locale="t('lang_code')" :max-date="new Date()">
                   <template #trigger>
                     <div class="p-2 border rounded-3 hover" role="button">
                       <div class="d-flex align-items-center justify-content-center gap-1">

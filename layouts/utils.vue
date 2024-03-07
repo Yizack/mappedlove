@@ -1,7 +1,7 @@
 <template>
-  <div id="layout">
+  <div id="layout" class="d-flex flex-column vh-100">
     <NavbarMain sticky />
-    <div class="container-fluid py-3">
+    <div class="container-fluid py-3 flex-fill">
       <slot />
     </div>
     <FooterPage />

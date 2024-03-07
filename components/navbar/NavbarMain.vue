@@ -27,7 +27,7 @@ onMounted(() => {
         {{ SITE.name }}
       </NuxtLink>
       <div id="offcanvasNavbar" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvasNavbarLabel">
-        <div class="offcanvas-header">
+        <div class="offcanvas-header" data-bs-dismiss="offcanvas">
           <NuxtLink class="navbar-brand d-flex align-items-center gap-1" to="/">
             <Icon class="text-primary" name="solar:map-point-favourite-bold" />
             {{ SITE.name }}
@@ -38,7 +38,7 @@ onMounted(() => {
           <ul class="navbar-nav ms-auto mb-lg-0 gap-md-3">
             <li v-for="(page, i) of SITE.pages.main" :key="i" class="nav-item" data-bs-dismiss="offcanvas">
               <div class="d-grid">
-                <NuxtLink :class="`${page.button ? 'btn btn-primary rounded-pill px-4' : 'nav-link'}`" :to="page.path">{{ t(page.name) }}</NuxtLink>
+                <NuxtLink :class="`${page.button ? 'btn btn-primary rounded-pill px-4 my-2 my-md-0' : 'nav-link'}`" :to="page.path">{{ t(page.name) }}</NuxtLink>
               </div>
             </li>
           </ul>
