@@ -35,6 +35,7 @@ export default defineEventHandler(async (event) => {
 
   const html = Mustache.render(templates.premiumWelcome, {
     lang: "en",
+    domain: SITE.domain,
     // nextPayment: new Date(subscription.billing_info.next_billing_time).toLocaleDateString(),
   });
 

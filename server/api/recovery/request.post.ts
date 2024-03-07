@@ -27,6 +27,7 @@ export default eventHandler(async (event) => {
 
   const html = Mustache.render(templates.accountRecovery, {
     lang: "en",
+    domain: SITE.domain,
     recoveryLink: `${url}/recovery/${encodeURIComponent(btoa(user.email))}/${code}`
   });
 

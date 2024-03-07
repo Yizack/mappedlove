@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { EHtml, EHead, EFont, EBody, ESection, ERow, EColumn, EImg, EHeading, EText, EButton, ELink } from "vue-email";
-const domain = "mappedlove.com";
-const host = `https://${domain}`;
-const logo = `${host}/images/text-logo.png`;
+const domain = "{{ domain }}";
 </script>
 
 <template>
@@ -18,7 +16,7 @@ const logo = `${host}/images/text-logo.png`;
         <ESection style="max-width: 602px; border-collapse: collapse; border: 0; border-spacing: 0; background-color: #f8f9fa;">
           <ERow style="padding: 1.2rem 0;">
             <EColumn align="center">
-              <EImg :src="logo" alt="MappedLove Logo" style="width: 180px;" />
+              <EImg :src="`https://${domain}/images/text-logo.png`" alt="MappedLove Logo" style="width: 180px;" />
             </EColumn>
           </ERow>
           <ERow style="padding: 1rem 0; background-color: #ff6969;">
@@ -41,7 +39,7 @@ const logo = `${host}/images/text-logo.png`;
           </ESection>
           <ERow style="padding: 15px 30px 15px 30px; background: #e9ecef; color: #443c47; font-size: 14px">
             <EColumn align="center">
-              <ELink style="color: #443c47; text-decoration: underline;" :href="host">{{ domain }}</ELink>
+              <ELink style="color: #443c47; text-decoration: underline;" :href="`https://${domain}`">{{ domain }}</ELink>
             </EColumn>
           </ERow>
         </ESection>

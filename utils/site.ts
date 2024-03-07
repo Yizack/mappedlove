@@ -1,6 +1,7 @@
 export const SITE = {
   name: "MappedLove",
   author: "Yizack Rangel",
+  domain: "mappedlove.com",
   host: "https://mappedlove.com",
   cdn: "https://cdn.mappedlove.com",
   dev: "http://localhost:5173",

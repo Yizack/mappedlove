@@ -56,6 +56,7 @@ export default defineEventHandler(async (event) => {
 
   const html = Mustache.render(templates.accountVerify, {
     lang: "en",
+    domain: SITE.domain,
     verifyLink: `${url}/verify/${encodeURIComponent(btoa(email))}/${code}`
   });
 
