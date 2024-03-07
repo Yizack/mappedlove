@@ -28,29 +28,44 @@ export const years = computed(() => {
 
 export const untilNextAnniversary = (date: Date): string => {
   const today = new Date();
-  const nextAnniversary = new Date(today.getFullYear(), date.getMonth() + 1, date.getDate());
-  if (nextAnniversary <= today) {
-    nextAnniversary.setFullYear(nextAnniversary.getFullYear() + 1);
+  const startMonth = today.getMonth();
+  const startDay = today.getDate();
+
+  const endYear = date.getFullYear();
+  const endMonth = date.getMonth();
+  const endDay = date.getDate();
+
+  let months = endMonth - startMonth;
+  let days = endDay - startDay;
+
+  if (days < 0) {
+    months--;
+    const prevMonthEndDate = new Date(endYear, endMonth, 0);
+    days += prevMonthEndDate.getDate();
   }
-  const diff = nextAnniversary.getTime() - today.getTime();
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
 
-  const months = Math.floor(days / 30.44);
-  const years = Math.floor(months / 12);
+  if (months < 0) {
+    months += 12;
+  }
 
-  if (years === 0 && months === 0 && days === 0) {
+  if (months === 0 && days === 0) {
     return t("today_exclamation");
   }
 
-  if (years > 0) {
-    return `${t("in")} ${years} ${years > 1 ? t("years").toLowerCase() : t("year").toLowerCase()}`;
-  }
+  let result = `${t("in")} `;
 
   if (months > 0) {
-    return `${t("in")} ${months} ${months > 1 ? t("months").toLowerCase() : t("month").toLowerCase()}`;
+    result += `${months} ${months > 1 ? t("months").toLowerCase() : t("month").toLowerCase()}`;
+    if (days > 0) {
+      result += ", ";
+    }
   }
 
-  return `${t("in")} ${days} ${days > 1 ? t("days").toLowerCase() : t("day").toLowerCase()}`;
+  if (days > 0) {
+    result += `${days} ${days > 1 ? t("days").toLowerCase() : t("day").toLowerCase()}`;
+  }
+
+  return result;
 };
 
 
