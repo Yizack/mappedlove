@@ -42,6 +42,7 @@ export default {
   verification_failed: "Verification failed",
   invalid_signup_data: "Signup data is not valid",
   invalid_verification_data: "Verification data is not valid",
+  read_legal: "I have read and understood",
   // Bond
   not_bonded: "You are currently not bonded",
   bond_start: "To start mapping your love stories, you need to bond with your partner!",
@@ -289,5 +290,5 @@ export default {
   subscription_not_found: "Subscription not found",
   invalid_subscription_status: "Subscription status is not valid",
   invalid_subscription_period: "Subscription period is not valid",
-  invalid_payment_data: "Payment data is not valid",
+  invalid_payment_data: "Payment data is not valid"
 };

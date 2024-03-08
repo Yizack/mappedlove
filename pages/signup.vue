@@ -43,7 +43,7 @@ const signUp = async () => {
     <div class="col-md-11 col-lg-8 m-auto px-3 py-4 px-lg-4 bg-body rounded-3 shadow">
       <Transition name="tab" mode="out-in">
         <div v-if="!needsConfirm">
-          <form class="mb-2" novalidate @submit.prevent="signUp">
+          <form class="mb-2" @submit.prevent="signUp">
             <div class="text-center mb-4">
               <h2 class="d-flex align-items-center gap-1 justify-content-center fw-bold">
                 <Icon class="text-primary" name="solar:map-point-favourite-bold" />
@@ -63,12 +63,16 @@ const signUp = async () => {
               </div>
             </div>
             <div class="form-floating mb-2">
-              <input v-model="form.password" type="password" class="form-control" :class="{'is-valid': isPasswordValid(form.password)}" :placeholder="t('password')" autocomplete="new-password" required>
+              <input v-model="form.password" type="password" class="form-control" :class="`form-control ${isPasswordValid(form.password) ? 'is-valid' : form.password ? 'is-invalid' : ''}`" :placeholder="t('password')" autocomplete="new-password" required>
               <label class="form-label">{{ t("password") }}</label>
             </div>
             <div class="form-floating mb-2">
-              <input v-model="form.password_check" type="password" class="form-control" :class="{'is-valid': isPasswordCheckValid(form.password, form.password_check)}" :placeholder="t('password_confirm')" autocomplete="off" required>
+              <input v-model="form.password_check" type="password" :class="`form-control ${isPasswordCheckValid(form.password, form.password_check) ? 'is-valid' : form.password_check ? 'is-invalid' : ''}`" :placeholder="t('password_confirm')" autocomplete="off" required>
               <label class="form-label">{{ t("password_confirm") }}</label>
+            </div>
+            <div class="form-check mb-2">
+              <input id="legal" class="form-check-input" type="checkbox" required>
+              <label class="form-check-label" for="legal">{{ t("read_legal") }} {{ SITE.name }}'s <a href="/legal/terms" target="_blank">{{ t("terms_of_use") }}</a> & <a href="/legal/privacy" target="_blank">{{ t("privacy_policy") }}</a></label>
             </div>
             <div class="text-center my-3 my-md-0">
               <NuxtTurnstile ref="turnstile" v-model="form.turnstile" />

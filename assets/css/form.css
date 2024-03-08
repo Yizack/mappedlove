@@ -7,12 +7,12 @@ input:read-only {
   background-color: var(--bs-tertiary-bg);
 }
 
-input:read-only:hover, input:read-only:focus {
-  background-color: var(--bs-tertiary-bg);
-}
-
 input:disabled:hover, input:disabled:focus {
   background-color: var(--bs-secondary-bg);
+}
+
+input:read-only:not([type="checkbox"]):hover, input:read-only:not([type="checkbox"]):focus {
+  background-color: var(--bs-tertiary-bg);
 }
 
 .form-floating>.form-control:read-only~label::after {
@@ -81,4 +81,14 @@ input:disabled:hover, input:disabled:focus {
 
 #image-upload label:hover .overlay {
   opacity: .85;
+}
+
+.form-check-input {
+  cursor: pointer;
+}
+
+
+.form-check-input:checked {
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
 }
