@@ -11,9 +11,9 @@ definePageMeta({ layout: "utils" });
           <p><small>Last updated March 08, 2024</small></p>
           <section id="agreement">
             <h4>AGREEMENT TO OUR LEGAL TERMS</h4>
-            <p>We operate the website <NuxtLink to="/">mappedlove.com</NuxtLink> (the "<strong>Site</strong>"), as well as any other related products and services that refer or link to these legal terms (the "<strong>Legal Terms</strong>") (collectively, the "<strong>Services</strong>").</p>
+            <p>We operate the website <NuxtLink to="/">{{ SITE.domain }}</NuxtLink> (the "<strong>Site</strong>"), as well as any other related products and services that refer or link to these legal terms (the "<strong>Legal Terms</strong>") (collectively, the "<strong>Services</strong>").</p>
             <p>You can contact us by email at <a :href="`mailto:legal@${SITE.domain}`">legal@{{ SITE.domain }}</a>.</p>
-            <p>These Legal Terms constitute a legally binding agreement made between you, whether personally or on behalf of an entity ("<strong>you</strong>"), and MappedLove, concerning your access to and use of the Services. You agree that by accessing the Services, you have read, understood, and agreed to be bound by all of these Legal Terms. IF YOU DO NOT AGREE WITH ALL OF THESE LEGAL TERMS, THEN YOU ARE EXPRESSLY PROHIBITED FROM USING THE SERVICES AND YOU MUST DISCONTINUE USE IMMEDIATELY.</p>
+            <p>These Legal Terms constitute a legally binding agreement made between you, whether personally or on behalf of an entity ("<strong>you</strong>"), and {{ SITE.name }}, concerning your access to and use of the Services. You agree that by accessing the Services, you have read, understood, and agreed to be bound by all of these Legal Terms. IF YOU DO NOT AGREE WITH ALL OF THESE LEGAL TERMS, THEN YOU ARE EXPRESSLY PROHIBITED FROM USING THE SERVICES AND YOU MUST DISCONTINUE USE IMMEDIATELY.</p>
             <p>Supplemental terms and conditions or documents that may be posted on the Services from time to time are hereby expressly incorporated herein by reference. We reserve the right, in our sole discretion, to make changes or modifications to these Legal Terms from time to time. We will alert you about any changes by updating the "Last updated" date of these Legal Terms, and you waive any right to receive specific notice of each such change. It is your responsibility to periodically review these Legal Terms to stay informed of updates. You will be subject to, and will be deemed to have been made aware of and to have accepted, the changes in any revised Legal Terms by your continued use of the Services after the date such revised Legal Terms are posted.</p>
             <p>The Services are intended for users who are at least 18 years old. Persons under the age of 18 are not permitted to use or register for the Services.</p>
             <p>We recommend that you print a copy of these Legal Terms for your records.</p>
@@ -174,11 +174,11 @@ definePageMeta({ layout: "utils" });
           </section>
           <section id="governing-law">
             <h4>16. GOVERNING LAW</h4>
-            <p>These Legal Terms shall be governed by and defined following the laws of Panama. MappedLove and yourself irrevocably consent that the courts of Panama shall have exclusive jurisdiction to resolve any dispute which may arise in connection with these Legal Terms.</p>
+            <p>These Legal Terms shall be governed by and defined following the laws of Panama. {{ SITE.name }} and yourself irrevocably consent that the courts of Panama shall have exclusive jurisdiction to resolve any dispute which may arise in connection with these Legal Terms.</p>
           </section>
           <section id="dispute-resolution">
             <h4>17. DISPUTE RESOLUTION</h4>
-            <p>You agree to irrevocably submit all disputes related to these Legal Terms or the legal relationship established by these Legal Terms to the jurisdiction of the Panama courts. MappedLove shall also maintain the right to bring proceedings as to the substance of the matter in the courts of the country where you reside or, if these Legal Terms are entered into in the course of your trade or profession, the state of your principal place of business.</p>
+            <p>You agree to irrevocably submit all disputes related to these Legal Terms or the legal relationship established by these Legal Terms to the jurisdiction of the Panama courts. {{ SITE.name }} shall also maintain the right to bring proceedings as to the substance of the matter in the courts of the country where you reside or, if these Legal Terms are entered into in the course of your trade or profession, the state of your principal place of business.</p>
           </section>
           <section id="corrections">
             <h4>18. CORRECTIONS</h4>

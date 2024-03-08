@@ -37,9 +37,9 @@
           <h5>{{ t("contribute") }}</h5>
           <ul class="nav flex-column">
             <li class="nav-item mb-2"><NuxtLink to="#" class="nav-link p-0 text-body-secondary">{{ t("donate") }}</NuxtLink></li>
-            <li class="nav-item mb-2"><a href="https://github.com/Yizack/mappedlove" class="nav-link p-0 text-body-secondary" target="_blank">{{ t("github_repository") }}</a></li>
-            <li class="nav-item mb-2"><a href="https://github.com/Yizack/mappedlove/issues/new" class="nav-link p-0 text-body-secondary" target="_blank">{{ t("create_issue") }}</a></li>
-            <li class="nav-item mb-2"><a href="https://github.com/Yizack/mappedlove/issues/new" class="nav-link p-0 text-body-secondary" target="_blank">{{ t("request_feature") }}</a></li>
+            <li class="nav-item mb-2"><a :href="SITE.github.repo" class="nav-link p-0 text-body-secondary" target="_blank">{{ t("github_repository") }}</a></li>
+            <li class="nav-item mb-2"><a :href="`${SITE.github.repo}/issues/new?assignees=${SITE.github.author}&labels=bug&projects=&template=bug_report.md&title=%5BBUG%5D`" class="nav-link p-0 text-body-secondary" target="_blank">{{ t("report_bug") }}</a></li>
+            <li class="nav-item mb-2"><a :href="`${SITE.github.repo}/issues/new?assignees=${SITE.github.author}&labels=enhancement&projects=&template=feature_request.md&title=%5BFEATURE%5D`" class="nav-link p-0 text-body-secondary" target="_blank">{{ t("request_feature") }}</a></li>
             <li class="nav-item mb-2"><NuxtLink to="#" class="nav-link p-0 text-body-secondary">{{ t("translate_help") }}</NuxtLink></li>
           </ul>
         </div>

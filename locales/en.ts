@@ -236,7 +236,7 @@ export default {
   contribute: "Contribute",
   donate: "Donate",
   github_repository: "GitHub repository",
-  create_issue: "Create issue",
+  report_bug: "Report a bug",
   request_feature: "Request feature",
   pull_requests: "Pull requests",
   translate_help: "Help us translate",
