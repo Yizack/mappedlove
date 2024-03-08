@@ -5,14 +5,14 @@ definePageMeta({ layout: "utils" });
 <template>
   <main>
     <div class="row">
-      <div class="col-lg-8 col-xl-10 mx-auto">
+      <div class="col-lg-8 col-xl-9 mx-auto">
         <div class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
           <h2>TERMS OF USE</h2>
-          <p><small>Last updated March 05, 2024</small></p>
+          <p><small>Last updated March 08, 2024</small></p>
           <section id="agreement">
             <h4>AGREEMENT TO OUR LEGAL TERMS</h4>
             <p>We operate the website <NuxtLink to="/">mappedlove.com</NuxtLink> (the "<strong>Site</strong>"), as well as any other related products and services that refer or link to these legal terms (the "<strong>Legal Terms</strong>") (collectively, the "<strong>Services</strong>").</p>
-            <p>You can contact us by email at <a href="mailto:support@mappedlove.com">support@mappedlove.com</a>.</p>
+            <p>You can contact us by email at <a :href="`mailto:legal@${SITE.domain}`">legal@{{ SITE.domain }}</a>.</p>
             <p>These Legal Terms constitute a legally binding agreement made between you, whether personally or on behalf of an entity ("<strong>you</strong>"), and MappedLove, concerning your access to and use of the Services. You agree that by accessing the Services, you have read, understood, and agreed to be bound by all of these Legal Terms. IF YOU DO NOT AGREE WITH ALL OF THESE LEGAL TERMS, THEN YOU ARE EXPRESSLY PROHIBITED FROM USING THE SERVICES AND YOU MUST DISCONTINUE USE IMMEDIATELY.</p>
             <p>Supplemental terms and conditions or documents that may be posted on the Services from time to time are hereby expressly incorporated herein by reference. We reserve the right, in our sole discretion, to make changes or modifications to these Legal Terms from time to time. We will alert you about any changes by updating the "Last updated" date of these Legal Terms, and you waive any right to receive specific notice of each such change. It is your responsibility to periodically review these Legal Terms to stay informed of updates. You will be subject to, and will be deemed to have been made aware of and to have accepted, the changes in any revised Legal Terms by your continued use of the Services after the date such revised Legal Terms are posted.</p>
             <p>The Services are intended for users who are at least 18 years old. Persons under the age of 18 are not permitted to use or register for the Services.</p>
@@ -36,7 +36,7 @@ definePageMeta({ layout: "utils" });
               <li>solely for your personal, non-commercial use.</li>
             </ul>
             <p>Except as set out in this section or elsewhere in our Legal Terms, no part of the Services and no Content or Marks may be copied, reproduced, aggregated, republished, uploaded, posted, publicly displayed, encoded, translated, transmitted, distributed, sold, licensed, or otherwise exploited for any commercial purpose whatsoever, without our express prior written permission.</p>
-            <p>If you wish to make any use of the Services, Content, or Marks other than as set out in this section or elsewhere in our Legal Terms, please address your request to: <a href="mailto:support@mappedlove.com">support@mappedlove.com</a>. If we ever grant you the permission to post, reproduce, or publicly display any part of our Services or Content, you must identify us as the owners or licensors of the Services or Content and ensure that any copyright or proprietary notice appears or is visible on posting, reproducing, or displaying our Content.</p>
+            <p>If you wish to make any use of the Services, Content, or Marks other than as set out in this section or elsewhere in our Legal Terms, please address your request to: <a :href="`mailto:legal@${SITE.domain}`">legal@{{ SITE.domain }}</a>. If we ever grant you the permission to post, reproduce, or publicly display any part of our Services or Content, you must identify us as the owners or licensors of the Services or Content and ensure that any copyright or proprietary notice appears or is visible on posting, reproducing, or displaying our Content.</p>
             <p>We reserve all rights not expressly granted to you in and to the Services, and Content.</p>
             <p>Any breach of these Intellectual Property Rights will constitute a material breach of our Legal Terms and your right to use our Services will terminate immediately.</p>
             <h4>Your submissions and contributions</h4>
@@ -83,7 +83,7 @@ definePageMeta({ layout: "utils" });
             <h5>Billing and Renewal</h5>
             <p>Your subscription will continue and automatically renew unless canceled. You consent to our charging your payment method on a recurring basis without requiring your prior approval for each recurring charge, until such time as you cancel the applicable order. The length of your billing cycle is monthly.</p>
             <h5>Cancellation</h5>
-            <p>To cancel your subscription, simply log in to your account, navigate to the billing section, and select the "Cancel" option. New subscriptions are eligible for a refund within 14 days of the initial purchase date. After this period, refunds may not be possible. Your cancellation will take effect at the end of the current paid term. Please review our Refund Policy: <a href="https://mappedlove.com/legal/refund" target="_blank">https://mappedlove.com/legal/refund</a>. If you have any questions or are unsatisfied with our Services, please email us at <a href="mailto:support@mappedlove.com">support@mappedlove.com</a>.</p>
+            <p>To cancel your subscription, simply log in to your account, navigate to the billing section, and select the "Cancel" option. New subscriptions are eligible for a refund within 14 days of the initial purchase date. After this period, refunds may not be possible. Your cancellation will take effect at the end of the current paid term. Please review our Refund Policy: <a href="/legal/refund" target="_blank">{{ SITE.host }}/legal/refund</a>. If you have any questions or are unsatisfied with our Services, please email us at <a :href="`mailto:legal@${SITE.domain}`">legal@{{ SITE.domain }}</a>.</p>
             <h5>Fee Changes</h5>
             <p>We may, from time to time, make changes to the subscription fee and will communicate any price changes to you in accordance with applicable law.</p>
           </section>
@@ -160,7 +160,7 @@ definePageMeta({ layout: "utils" });
           </section>
           <section id="privacy-policy">
             <h4>13. PRIVACY POLICY</h4>
-            <p>We care about data privacy and security. Please review our Privacy Policy: <a href="https://mappedlove.com/legal/privacy" target="_blank">https://mappedlove.com/legal/privacy</a>. By using the Services, you agree to be bound by our Privacy Policy, which is incorporated into these Legal Terms. Please be advised the Services are hosted in Panama and United States. If you access the Services from any other region of the world with laws or other requirements governing personal data collection, use, or disclosure that differ from applicable laws in Panama and United States, then through your continued use of the Services, you are transferring your data to Panama and United States, and you expressly consent to have your data transferred to and processed in Panama and United States.</p>
+            <p>We care about data privacy and security. Please review our Privacy Policy: <a href="/legal/privacy" target="_blank">{{ SITE.host }}/legal/privacy</a>. By using the Services, you agree to be bound by our Privacy Policy, which is incorporated into these Legal Terms. Please be advised the Services are hosted in Panama and United States. If you access the Services from any other region of the world with laws or other requirements governing personal data collection, use, or disclosure that differ from applicable laws in Panama and United States, then through your continued use of the Services, you are transferring your data to Panama and United States, and you expressly consent to have your data transferred to and processed in Panama and United States.</p>
           </section>
           <section id="term-and-termination">
             <h4>14. TERM AND TERMINATION</h4>
@@ -214,7 +214,7 @@ definePageMeta({ layout: "utils" });
           </section>
           <section id="contact-us">
             <h4>26. CONTACT US</h4>
-            In order to resolve a complaint regarding the Services or to receive further information regarding use of the Services, please contact us at: <a href="mailto:support@mappedlove.com">support@mappedlove.com</a>.
+            In order to resolve a complaint regarding the Services or to receive further information regarding use of the Services, please contact us at: <a :href="`mailto:legal@${SITE.domain}`">legal@{{ SITE.domain }}</a>.
           </section>
         </div>
       </div>

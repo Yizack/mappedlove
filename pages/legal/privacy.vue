@@ -5,31 +5,31 @@ definePageMeta({ layout: "utils" });
 <template>
   <main>
     <div class="row">
-      <div class="col-lg-8 col-xl-10 mx-auto">
+      <div class="col-lg-8 col-xl-9 mx-auto">
         <div class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
           <h2>PRIVACY POLICY</h2>
-          <p><small>Last updated March 06, 2024</small></p>
+          <p><small>Last updated March 08, 2024</small></p>
           <p>This privacy notice for MappedLove ("<strong>we</strong>," "<strong>us</strong>," or "<strong>our</strong>"), describes how and why we might collect, store, use, and/or share ("<strong>process</strong>") your information when you use our services ("<strong>Services</strong>"), such as when you:</p>
           <ul>
-            <li>Visit our website at <NuxtLink to="/">https://mappedlove.com</NuxtLink>, or any website of ours that links to this privacy notice</li>
+            <li>Visit our website at <NuxtLink to="/">{{ SITE.host }}</NuxtLink>, or any website of ours that links to this privacy notice</li>
             <!--<li>Download and use our mobile application (MappedLove), or any other application of ours that links to this privacy notice</li>-->
             <li>Engage with us in other related ways, including any sales, marketing, or events</li>
           </ul>
-          <p><strong>Questions or concerns?</strong> Reading this privacy notice will help you understand your privacy rights and choices. If you do not agree with our policies and practices, please do not use our Services. If you still have any questions or concerns, please contact us at <a href="mailto:privacy@mappedlove.com">privacy@mappedlove.com</a>.</p>
+          <p><strong>Questions or concerns?</strong> Reading this privacy notice will help you understand your privacy rights and choices. If you do not agree with our policies and practices, please do not use our Services. If you still have any questions or concerns, please contact us at <a :href="`mailto:legal@${SITE.domain}`">legal@{{ SITE.domain }}</a>.</p>
           <section id="summary-of-key-points">
             <h4>SUMMARY OF KEY POINTS</h4>
-            <p><i>This summary provides key points from our privacy notice, but you can find out more details about any of these topics by clicking the link following each key point or by using our table of contents below to find the section you are looking for.</i></p>
-            <p><strong>What personal information do we process?</strong> When you visit, use, or navigate our Services, we may process personal information depending on how you interact with us and the Services, the choices you make, and the products and features you use. Learn more about personal information you disclose to us.</p>
+            <p><strong><i>This summary provides key points from our privacy notice, but you can find out more details about any of these topics by clicking the link following each key point or by using our <a href="#table-of-contents">table of contents</a> below to find the section you are looking for.</i></strong></p>
+            <p><strong>What personal information do we process?</strong> When you visit, use, or navigate our Services, we may process personal information depending on how you interact with us and the Services, the choices you make, and the products and features you use. Learn more about <a href="#what-information-do-we-collect">personal information you disclose to us</a>.</p>
             <p><strong>Do we process any sensitive personal information?</strong> We do not process sensitive personal information.</p>
             <p><strong>Do we receive any information from third parties?</strong> We do not receive any information from third parties.</p>
-            <p><strong>How do we process your information?</strong> We process your information to provide, improve, and administer our Services, communicate with you, for security and fraud prevention, and to comply with law. We may also process your information for other purposes with your consent. We process your information only when we have a valid legal reason to do so. Learn more about how we process your information.</p>
-            <p><strong>In what situations and with which parties do we share personal information?</strong> We may share information in specific situations and with specific third parties. Learn more about when and with whom we share your personal information.</p>
+            <p><strong>How do we process your information?</strong> We process your information to provide, improve, and administer our Services, communicate with you, for security and fraud prevention, and to comply with law. We may also process your information for other purposes with your consent. We process your information only when we have a valid legal reason to do so. Learn more about <a href="#how-do-we-process-your-information">how we process your information</a>.</p>
+            <p><strong>In what situations and with which parties do we share personal information?</strong> We may share information in specific situations and with specific third parties. Learn more about <a href="#when-and-with-whom-do-we-share-your-personal-information">when and with whom we share your personal information</a>.</p>
             <p><strong>How do we keep your information safe?</strong> We have organizational and technical processes and procedures in place to protect your personal information. However, no electronic transmission over the internet or information storage technology can be guaranteed to be 100% secure, so we cannot promise or guarantee that hackers, cybercriminals, or other unauthorized third parties will not be able to defeat our security and improperly collect, access, steal, or modify your information. Learn more about how we keep your information safe.</p>
-            <p><strong>What are your rights?</strong> Depending on where you are located geographically, the applicable privacy law may mean you have certain rights regarding your personal information. Learn more about your privacy rights.</p>
-            <p><strong>How do you exercise your rights?</strong> The easiest way to exercise your rights is by visiting <NuxtLink to="/app/settings">https://mappedlove.com/app/settings</NuxtLink>, or by contacting us. We will consider and act upon any request in accordance with applicable data protection laws.</p>
+            <p><strong>What are your rights?</strong> Depending on where you are located geographically, the applicable privacy law may mean you have certain rights regarding your personal information. Learn more about <a href="#what-are-your-privacy-rights">your privacy rights</a>.</p>
+            <p><strong>How do you exercise your rights?</strong> The easiest way to exercise your rights is by accesing your account settings and review, update or delete your data or by visiting <a href="/account-data" target="_blank">{{ SITE.host }}/account-data</a>, or by contacting us. We will consider and act upon any request in accordance with applicable data protection laws. Learn more about <a href="#how-can-you-review-update-or-delete-the-data-we-collect-from-you">how can you review, update or delete the data we collect from you</a>.</p>
             <p><strong>Want to learn more about what we do with any information we collect?</strong> Review the privacy notice in full.</p>
           </section>
-          <section id="summary-of-key-points">
+          <section id="table-of-contents">
             <h4>TABLE OF CONTENTS</h4>
             <ol>
               <li><a href="#what-information-do-we-collect">WHAT INFORMATION DO WE COLLECT?</a></li>
@@ -66,7 +66,7 @@ definePageMeta({ layout: "utils" });
             <h5>Information automatically collected</h5>
             <p><strong>In Short:</strong> Some information — such as your Internet Protocol (IP) address and/or browser and device characteristics — is collected automatically when you visit our Services.</p>
             <p>We automatically collect certain information when you visit, use, or navigate the Services. This information does not reveal your specific identity (like your name or contact information) but may include device and usage information, such as your IP address, browser and device characteristics, operating system, language preferences, referring URLs, device name, country, location, information about how and when you use our Services, and other technical information. This information is primarily needed to maintain the security and operation of our Services, and for our internal analytics and reporting purposes</p>
-            <p>Like many businesses, we also collect information through cookies and similar technologies. You can find out more about this in our Cookie Notice: <NuxtLink to="/legal/cookies">https://mappedlove.com/legal/cookies</NuxtLink>.</p>
+            <p>Like many businesses, we also collect information through cookies and similar technologies. You can find out more about this in our Cookie Notice: <a href="/legal/cookies" target="_blank">{{ SITE.host }}/legal/cookies</a>.</p>
             <p>The information we collect includes:</p>
             <ul>
               <li>Log and Usage Data. Log and usage data is service-related, diagnostic, usage, and performance information our servers automatically collect when you access or use our Services and which we record in log files. Depending on how you interact with us, this log data may include your IP address, device information, browser type, and settings and information about your activity in the Services (such as the date/time stamps associated with your usage, pages and files viewed, searches, and other actions you take such as which features you use), device event information (such as system activity, error reports (sometimes called "crash dumps"), and hardware settings).</li>
@@ -119,7 +119,7 @@ definePageMeta({ layout: "utils" });
           <section id="do-we-use-cookies-and-other-tracking-technologies">
             <h4>5. DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?</h4>
             <p><strong>In Short:</strong> We may use cookies and other tracking technologies to collect and store your information.</p>
-            <p>We may use cookies and similar tracking technologies (like web beacons and pixels) to access or store information. Specific information about how we use such technologies and how you can refuse certain cookies is set out in our Cookie Notice: <NuxtLink to="/legal/cookies">https://mappedlove.com/legal/cookies</NuxtLink>.</p>
+            <p>We may use cookies and similar tracking technologies (like web beacons and pixels) to access or store information. Specific information about how we use such technologies and how you can refuse certain cookies is set out in our Cookie Notice: <a href="/legal/cookies" target="_blank">{{ SITE.host }}/legal/cookies</a>.</p>
           </section>
           <section id="how-long-do-we-keep-your-information">
             <h4>6. HOW LONG DO WE KEEP YOUR INFORMATION?</h4>
@@ -135,7 +135,7 @@ definePageMeta({ layout: "utils" });
           <section id="do-we-collect-information-from-minors">
             <h4>8. DO WE COLLECT INFORMATION FROM MINORS?</h4>
             <p><strong>In Short:</strong> We do not knowingly collect data from or market to children under 18 years of age.</p>
-            <p>We do not knowingly solicit data from or market to children under 18 years of age. By using the Services, you represent that you are at least 18 or that you are the parent or guardian of such a minor and consent to such minor dependent's use of the Services. If we learn that personal information from users less than 18 years of age has been collected, we will deactivate the account and take reasonable measures to promptly delete such data from our records. If you become aware of any data we may have collected from children under age 18, please contact us at <a href="mailto:privacy@mappedlove.com">privacy@mappedlove.com</a>.</p>
+            <p>We do not knowingly solicit data from or market to children under 18 years of age. By using the Services, you represent that you are at least 18 or that you are the parent or guardian of such a minor and consent to such minor dependent's use of the Services. If we learn that personal information from users less than 18 years of age has been collected, we will deactivate the account and take reasonable measures to promptly delete such data from our records. If you become aware of any data we may have collected from children under age 18, please contact us at <a :href="`mailto:legal@${SITE.domain}`">legal@{{ SITE.domain }}</a>.</p>
           </section>
           <section id="what-are-your-privacy-rights">
             <h4>9. WHAT ARE YOUR PRIVACY RIGHTS?</h4>
@@ -152,8 +152,8 @@ definePageMeta({ layout: "utils" });
               <li>Log in to your account settings and update your user account.</li>
               <li>Upon your request to terminate your account, we will deactivate or delete your account and information from our active databases. However, we may retain some information in our files to prevent fraud, troubleshoot problems, assist with any investigations, enforce our legal terms and/or comply with applicable legal requirements.</li>
             </ul>
-            <p><strong><u>Cookies and similar technologies:</u></strong> Most Web browsers are set to accept cookies by default. If you prefer, you can usually choose to set your browser to remove cookies and to reject cookies. If you choose to remove cookies or reject cookies, this could affect certain features or services of our Services. For further information, please see our Cookie Notice: <NuxtLink to="/legal/cookies">https://mappedlove.com/legal/cookies</NuxtLink>.</p>
-            <p>If you have questions or comments about your privacy rights, you may email us at <a href="mailto:privacy@mappedlove.com">privacy@mappedlove.com</a>.</p>
+            <p><strong><u>Cookies and similar technologies:</u></strong> Most Web browsers are set to accept cookies by default. If you prefer, you can usually choose to set your browser to remove cookies and to reject cookies. If you choose to remove cookies or reject cookies, this could affect certain features or services of our Services. For further information, please see our Cookie Notice: <a href="/legal/cookies" target="_blank">{{ SITE.host }}/legal/cookies</a>.</p>
+            <p>If you have questions or comments about your privacy rights, you may email us at <a :href="`mailto:legal@${SITE.domain}`">legal@{{ SITE.domain }}</a>.</p>
           </section>
           <section id="controls-for-do-not-track-features">
             <p>Most web browsers and some mobile operating systems and mobile applications include a Do-Not-Track ("DNT") feature or setting you can activate to signal your privacy preference not to have data about your online browsing activities monitored and collected. At this stage no uniform technology standard for recognizing and implementing DNT signals has been finalized. As such, we do not currently respond to DNT browser signals or any other mechanism that automatically communicates your choice not to be tracked online. If a standard for online tracking is adopted that we must follow in the future, we will inform you about that practice in a revised version of this privacy notice.</p>
@@ -288,7 +288,7 @@ definePageMeta({ layout: "utils" });
             <p>You may request correction of your personal data if it is incorrect or no longer relevant, or ask to restrict the processing of the data</p>
             <p>You can designate an authorized agent to make a request under the CCPA on your behalf. We may deny a request from an authorized agent that does not submit proof that they have been validly authorized to act on your behalf in accordance with the CCPA.</p>
             <p>You may request to opt-out from future selling of your personal information to third parties. Upon receiving a request to opt-out, we will act upon the request as soon as feasibly possible, but no later than 15 days from the date of the request submission.</p>
-            <p>To exercise these rights, you can contact us by at <a href="mailto:privacy@mappedlove.com">privacy@mappedlove.com</a>, or by referring to the contact details at the bottom of this document. If you have a complaint about how we handle your data, we would like to hear from you.</p>
+            <p>To exercise these rights, you can contact us by at <a :href="`mailto:legal@${SITE.domain}`">legal@{{ SITE.domain }}</a>, or by referring to the contact details at the bottom of this document. If you have a complaint about how we handle your data, we would like to hear from you.</p>
             <h5>Colorado Residents</h5>
             <p>This section applies only to Colorado residents. Under the Colorado Privacy Act (CPA), you have the rights listed below. However, these rights are not absolute, and in certain cases, we may decline your request as permitted by law.</p>
             <ul>
@@ -299,8 +299,8 @@ definePageMeta({ layout: "utils" });
               <li>Right to obtain a copy of the personal data you previously shared with us</li>
               <li>Right to opt out of the processing of your personal data if it is used for targeted advertising, the sale of personal data, or profiling in furtherance of decisions that produce legal or similarly significant effects ("profiling")</li>
             </ul>
-            <p>To submit a request to exercise these rights described above, please email <a href="mailto:privacy@mappedlove.com">privacy@mappedlove.com</a>.</p>
-            <p>If we decline to take action regarding your request and you wish to appeal our decision, please email us at <a href="mailto:privacy@mappedlove.com">privacy@mappedlove.com</a>. Within forty-five (45) days of receipt of an appeal, we will inform you in writing of any action taken or not taken in response to the appeal, including a written explanation of the reasons for the decisions.</p>
+            <p>To submit a request to exercise these rights described above, please email <a :href="`mailto:legal@${SITE.domain}`">legal@{{ SITE.domain }}</a>.</p>
+            <p>If we decline to take action regarding your request and you wish to appeal our decision, please email us at <a :href="`mailto:legal@${SITE.domain}`">legal@{{ SITE.domain }}</a>. Within forty-five (45) days of receipt of an appeal, we will inform you in writing of any action taken or not taken in response to the appeal, including a written explanation of the reasons for the decisions.</p>
             <h5>Connecticut Residents</h5>
             <p>This section applies only to Connecticut residents. Under the Connecticut Data Privacy Act (CTDPA), you have the rights listed below. However, these rights are not absolute, and in certain cases, we may decline your request as permitted by law.</p>
             <ul>
@@ -311,8 +311,8 @@ definePageMeta({ layout: "utils" });
               <li>Right to obtain a copy of the personal data you previously shared with us</li>
               <li>Right to opt out of the processing of your personal data if it is used for targeted advertising, the sale of personal data, or profiling in furtherance of decisions that produce legal or similarly significant effects ("profiling")</li>
             </ul>
-            <p>To submit a request to exercise these rights described above, please email <a href="mailto:privacy@mappedlove.com">privacy@mappedlove.com</a>.</p>
-            <p>If we decline to take action regarding your request and you wish to appeal our decision, please email us at <a href="mailto:privacy@mappedlove.com">privacy@mappedlove.com</a>. Within sixty (60) days of receipt of an appeal, we will inform you in writing of any action taken or not taken in response to the appeal, including a written explanation of the reasons for the decisions.</p>
+            <p>To submit a request to exercise these rights described above, please email <a :href="`mailto:legal@${SITE.domain}`">legal@{{ SITE.domain }}</a>.</p>
+            <p>If we decline to take action regarding your request and you wish to appeal our decision, please email us at <a :href="`mailto:legal@${SITE.domain}`">legal@{{ SITE.domain }}</a>. Within sixty (60) days of receipt of an appeal, we will inform you in writing of any action taken or not taken in response to the appeal, including a written explanation of the reasons for the decisions.</p>
             <h5>Utah Residents</h5>
             <p>This section applies only to Utah residents. Under the Utah Consumer Privacy Act (UCPA), you have the rights listed below. However, these rights are not absolute, and in certain cases, we may decline your request as permitted by law.</p>
             <ul>
@@ -322,7 +322,7 @@ definePageMeta({ layout: "utils" });
               <li>Right to obtain a copy of the personal data you previously shared with us</li>
               <li>Right to opt out of the processing of your personal data if it is used for targeted advertising or the sale of personal data</li>
             </ul>
-            <p>To submit a request to exercise these rights described above, please email <a href="mailto:privacy@mappedlove.com">privacy@mappedlove.com</a>.</p>
+            <p>To submit a request to exercise these rights described above, please email <a :href="`mailto:legal@${SITE.domain}`">legal@{{ SITE.domain }}</a>.</p>
             <h5>Virginia Residents</h5>
             <p>Under the Virginia Consumer Data Protection Act (VCDPA):</p>
             <p>"Consumer" means a natural person who is a resident of the Commonwealth acting only in an individual or household context. It does not include a natural person acting in a commercial or employment context.</p>
@@ -342,7 +342,7 @@ definePageMeta({ layout: "utils" });
             <p>We may request that you provide additional information reasonably necessary to verify you and your consumer's request. If you submit the request through an authorized agent, we may need to collect additional information to verify your identity before processing your request.</p>
             <p>Upon receiving your request, we will respond without undue delay, but in all cases, within forty-five (45) days of receipt. The response period may be extended once by forty-five (45) additional days when reasonably necessary. We will inform you of any such extension within the initial 45-day response period, together with the reason for the extension.</p>
             <p><u>Right to appeal</u></p>
-            <p>If we decline to take action regarding your request, we will inform you of our decision and reasoning behind it. If you wish to appeal our decision, please email us at privacy@mappedlove.com. Within sixty (60) days of receipt of an appeal, we will inform you in writing of any action taken or not taken in response to the appeal, including a written explanation of the reasons for the decisions. If your appeal is denied, you may contact the <a href="https://www.oag.state.va.us/consumer-protection/index.php/file-a-complaint" target="_blank">Attorney General to submit a complaint</a>.</p>
+            <p>If we decline to take action regarding your request, we will inform you of our decision and reasoning behind it. If you wish to appeal our decision, please email us at legal@mappedlove.com. Within sixty (60) days of receipt of an appeal, we will inform you in writing of any action taken or not taken in response to the appeal, including a written explanation of the reasons for the decisions. If your appeal is denied, you may contact the <a href="https://www.oag.state.va.us/consumer-protection/index.php/file-a-complaint" target="_blank">Attorney General to submit a complaint</a>.</p>
           </section>
           <section id="do-we-make-updates-to-this-notice">
             <h4>12. DO WE MAKE UPDATES TO THIS NOTICE?</h4>
@@ -351,11 +351,18 @@ definePageMeta({ layout: "utils" });
           </section>
           <section id="how-can-you-contact-us-about-this-notice">
             <h4>13. HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</h4>
-            <p>If you have questions or comments about this notice, you may email us at <a href="mailto:privacy@mappedlove.com">privacy@mappedlove.com</a>.</p>
+            <p>If you have questions or comments about this notice, you may email us at <a :href="`mailto:legal@${SITE.domain}`">legal@{{ SITE.domain }}</a>.</p>
           </section>
           <section id="how-can-you-review-update-or-delete-the-data-we-collect-from-you">
             <h4>14. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?</h4>
-            <p>You have the right to request access to the personal information we collect from you, change that information, or delete it. To request to review, update, or delete your personal information, please visit: <a href="https://mappedlove.com/app/settings">https://mappedlove.com/app/settings</a>.</p>
+            <p>You have the right to request access to the personal information we collect from you, change that information, or delete it.</p>
+            <h5>Data Deletion</h5>
+            <p>You can request to delete your account and associated data for this Service using the in-app account settings deletion option or by accessing the web-based deletion resource at <a href="/account-data?request=delete">{{ SITE.host }}/account-data?request=delete</a>.</p>
+            <p>When you delete your account, all your data is deleted from the server. This includes your name, email address, passwords, birth date, avatar, and any aditional data related to your account. We do not keep any data from you.</p>
+            <h5>Data Review</h5>
+            <p>You can request to review your account and associated data for this Service using the in-app account settings review option or by accessing the web-based review resource at <a href="/account-data?request=review">{{ SITE.host }}/account-data?request=review</a>.</p>
+            <h5>Data Update</h5>
+            <p>For updating your data, you should log in to your account and update your user account settings.</p>
           </section>
         </div>
       </div>
