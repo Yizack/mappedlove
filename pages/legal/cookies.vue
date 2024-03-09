@@ -42,7 +42,7 @@ const cookieManager = (e: Event) => {
             <tr>
               <td>{{ SITE.name }}</td>
               <td>nuxt-session</td>
-              <td>Cookie store</td>
+              <td>Cookies store</td>
               <td>Authenntication, authorization and session management</td>
               <td>Until user closes browser</td>
             </tr>
@@ -52,6 +52,12 @@ const cookieManager = (e: Event) => {
               <td>Local storage</td>
               <td>Color mode preference</td>
               <td>Persistent</td>
+            </tr>
+            <tr>
+              <td>{{ SITE.name }}</td>
+              <td>nuxt-loading-enable-animation</td>
+              <td>Local storage</td>
+              <td>Enable loading animation</td>
             </tr>
             <tr>
               <td>{{ SITE.name }}</td>
@@ -73,6 +79,20 @@ const cookieManager = (e: Event) => {
               <td>Local storage</td>
               <td>Iconify icons</td>
               <td>Persistent</td>
+            </tr>
+            <tr>
+              <td>{{ SITE.name }}</td>
+              <td>ncc_c</td>
+              <td>Cookies store</td>
+              <td>Validates user's choice about cookies</td>
+              <td>One year</td>
+            </tr>
+            <tr>
+              <td>{{ SITE.name }}</td>
+              <td>ncc_e</td>
+              <td>Cookies store</td>
+              <td>Id of enabled cookies</td>
+              <td>One year</td>
             </tr>
           </tbody>
         </table>
