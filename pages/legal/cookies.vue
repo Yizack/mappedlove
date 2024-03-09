@@ -11,7 +11,7 @@ const cookieManager = (e: Event) => {
 <template>
   <main>
     <div class="col-lg-8 col-xl-9 mx-auto bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
-      <h2>Cookie Policy Preview</h2>
+      <h2>COOKIE POLICY</h2>
       <p><small>Last updated March 09, 2024</small></p>
       <p>This Cookie Policy explains how {{ SITE.name }} ("<strong>we</strong>," "<strong>us</strong>," and "<strong>our</strong>") uses cookies and similar technologies to recognize you when you visit our website at  <NuxtLink to="/">{{ SITE.host }}</NuxtLink> ("<strong>Website</strong>"). It explains what these technologies are and why we use them, as well as your rights to control our use of them.</p>
       <p>In some cases we may use cookies to collect personal information, or that becomes personal information if we combine it with other information.</p>
