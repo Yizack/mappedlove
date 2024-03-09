@@ -69,24 +69,7 @@ export default defineNuxtConfig({
     storageKey: "nuxt-color-mode"
   },
   cookieControl: {
-    isControlButtonEnabled: false,
-    cookies: {
-      necessary: [{
-        name: {
-          en: "Strictly necessary cookies"
-        },
-        description: {
-          en: "These cookies are necessary for the website to function and cannot be disabled in our systems. They are typically only activated in response to actions taken by you that amount to a request for services, such as setting your privacy preferences, logging in, or filling out forms. You can set your browser to block these cookies or warn you about them, but some parts of the website will not work in this case. These cookies do not store any personally identifiable information."
-        },
-        links: {
-          "/legal/cookies": "Cookie policy",
-          "/legal/privacy": "Privacy policy",
-          "/legal/terms": "Terms of use",
-        },
-        targetCookieIds: ["nuxt-session", "nuxt-color-mode", "iconify-count", "iconify-version"]
-      }],
-      optional: []
-    }
+    isControlButtonEnabled: false
   },
   runtimeConfig: {
     secure: {

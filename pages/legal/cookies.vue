@@ -58,6 +58,7 @@ const cookieManager = (e: Event) => {
               <td>nuxt-loading-enable-animation</td>
               <td>Local storage</td>
               <td>Enable loading animation</td>
+              <td>Persistent</td>
             </tr>
             <tr>
               <td>{{ SITE.name }}</td>
