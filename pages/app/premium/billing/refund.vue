@@ -1,5 +1,5 @@
 <script setup lang="ts">
-definePageMeta({ layout: "utils" });
+definePageMeta({ layout: "app", middleware: "session" });
 </script>
 
 <template>

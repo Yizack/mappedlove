@@ -23,6 +23,7 @@ export const SITE = {
     user: [
       { name: "settings", path: "/app/settings" },
       { name: "premium", path: "/app/premium" },
+      { name: "billing_settings", path: "/app/premium/billing" },
       { name: "logout", path: "/logout", icon: "solar:exit-linear" }
     ]
   }

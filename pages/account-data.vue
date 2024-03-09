@@ -3,5 +3,5 @@ definePageMeta({ layout: "utils" });
 </script>
 
 <template>
-  hi
+  <UnderConstruction />
 </template>

@@ -305,5 +305,8 @@ export default {
   decline: "Decline",
   decline_all: "Decline all",
   settings_unsaved: "You have unsaved settings",
-  here: "here"
+  here: "here",
+  // Billing
+  billing_settings: "Billing settings",
+  billing: "Billing",
 };
