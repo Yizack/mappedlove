@@ -10,7 +10,7 @@ for (const file of readdirSync(path)) {
 
 let content;
 try {
-  content = readFileSync("./server/utils/mustache.ts", "utf8");
+  content = readFileSync("./server/utils/emails.ts", "utf8");
 }
 catch {
   content = "";
@@ -25,5 +25,5 @@ for (let i = 0; i < keys.length; i++) {
 
 const write_content = `export const templates = {${result}};`;
 
-if (content !== write_content) writeFileSync("./server/utils/mustache.ts", write_content, "utf8");
+if (content !== write_content) writeFileSync("./server/utils/emails.ts", write_content, "utf8");
 console.info("Email templates loaded to server.");
