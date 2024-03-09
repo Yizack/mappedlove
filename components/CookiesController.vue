@@ -20,17 +20,13 @@ moduleOptions.localeTexts = {
   }
 };
 
-moduleOptions.cookies.necessary = [{
-  id: "n",
-  name: t("cookies_necessary_title"),
-  description: t("cookies_necessary_description"),
-  links: {
-    "/legal/cookies": t("cookie_policy"),
-    "/legal/privacy": t("privacy_policy"),
-    "/legal/terms": t("terms_of_use")
-  },
-  targetCookieIds: ["nuxt-session", "nuxt-color-mode", "iconify-count", "iconify-version"]
-}];
+moduleOptions.cookies.necessary[0].name = t("cookies_necessary_title");
+moduleOptions.cookies.necessary[0].description = t("cookies_necessary_description");
+moduleOptions.cookies.necessary[0].links = {
+  "/legal/cookies": t("cookie_policy"),
+  "/legal/privacy": t("privacy_policy"),
+  "/legal/terms": t("terms_of_use")
+};
 </script>
 
 <template>
