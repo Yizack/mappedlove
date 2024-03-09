@@ -25,78 +25,80 @@ const cookieManager = (e: Event) => {
         <p>We use first- and third-party cookies for several reasons. Some cookies are required for technical reasons in order for our Website to operate, and we refer to these as "essential" or "strictly necessary" cookies. Other cookies also enable us to track and target the interests of our users to enhance the experience on our Online Properties. Third parties serve cookies through our Website for advertising, analytics, and other purposes. This is described in more detail below.</p>
         <p><strong>Operational Cookies:</strong> These cookies are critical to the operation of the {{ SITE.name }} Services. These cookies are used, for example, to maintain your login state and remember your preferences. These cookies cannot be disabled without severely affecting your use of the {{ SITE.name }} Services.</p>
         <p>Examples of operational cookies include the following:</p>
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th colspan="3">Operational cookie examples</th>
-            </tr>
-            <tr>
-              <th>Provider</th>
-              <th>Cookie ID</th>
-              <th>Type</th>
-              <th>Purpose</th>
-              <th>Expiration</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{{ SITE.name }}</td>
-              <td>nuxt-session</td>
-              <td>Cookies store</td>
-              <td>Authenntication, authorization and session management</td>
-              <td>Until user closes browser</td>
-            </tr>
-            <tr>
-              <td>{{ SITE.name }}</td>
-              <td>nuxt-color-mode</td>
-              <td>Local storage</td>
-              <td>Color mode preference</td>
-              <td>Persistent</td>
-            </tr>
-            <tr>
-              <td>{{ SITE.name }}</td>
-              <td>nuxt-loading-enable-animation</td>
-              <td>Local storage</td>
-              <td>Enable loading animation</td>
-              <td>Persistent</td>
-            </tr>
-            <tr>
-              <td>{{ SITE.name }}</td>
-              <td>iconify-count</td>
-              <td>Local storage</td>
-              <td>Iconify icons count</td>
-              <td>Persistent</td>
-            </tr>
-            <tr>
-              <td>{{ SITE.name }}</td>
-              <td>iconify-version</td>
-              <td>Local storage</td>
-              <td>Iconify icons version</td>
-              <td>Persistent</td>
-            </tr>
-            <tr>
-              <td>{{ SITE.name }}</td>
-              <td>iconify[n]</td>
-              <td>Local storage</td>
-              <td>Iconify icons</td>
-              <td>Persistent</td>
-            </tr>
-            <tr>
-              <td>{{ SITE.name }}</td>
-              <td>ncc_c</td>
-              <td>Cookies store</td>
-              <td>Validates user's choice about cookies</td>
-              <td>One year</td>
-            </tr>
-            <tr>
-              <td>{{ SITE.name }}</td>
-              <td>ncc_e</td>
-              <td>Cookies store</td>
-              <td>Id of enabled cookies</td>
-              <td>One year</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th colspan="5">Operational cookie examples</th>
+              </tr>
+              <tr>
+                <th>Provider</th>
+                <th>Cookie ID</th>
+                <th>Type</th>
+                <th>Purpose</th>
+                <th>Expiration</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{ SITE.name }}</td>
+                <td>nuxt-session</td>
+                <td>Cookies store</td>
+                <td>Authenntication, authorization and session management</td>
+                <td>Until user closes browser</td>
+              </tr>
+              <tr>
+                <td>{{ SITE.name }}</td>
+                <td>nuxt-color-mode</td>
+                <td>Local storage</td>
+                <td>Color mode preference</td>
+                <td>Persistent</td>
+              </tr>
+              <tr>
+                <td>{{ SITE.name }}</td>
+                <td>nuxt-loading-enable-animation</td>
+                <td>Local storage</td>
+                <td>Enable loading animation</td>
+                <td>Persistent</td>
+              </tr>
+              <tr>
+                <td>{{ SITE.name }}</td>
+                <td>iconify-count</td>
+                <td>Local storage</td>
+                <td>Iconify icons count</td>
+                <td>Persistent</td>
+              </tr>
+              <tr>
+                <td>{{ SITE.name }}</td>
+                <td>iconify-version</td>
+                <td>Local storage</td>
+                <td>Iconify icons version</td>
+                <td>Persistent</td>
+              </tr>
+              <tr>
+                <td>{{ SITE.name }}</td>
+                <td>iconify[n]</td>
+                <td>Local storage</td>
+                <td>Iconify icons</td>
+                <td>Persistent</td>
+              </tr>
+              <tr>
+                <td>{{ SITE.name }}</td>
+                <td>ncc_c</td>
+                <td>Cookies store</td>
+                <td>Validates user's choice about cookies</td>
+                <td>One year</td>
+              </tr>
+              <tr>
+                <td>{{ SITE.name }}</td>
+                <td>ncc_e</td>
+                <td>Cookies store</td>
+                <td>Id of enabled cookies</td>
+                <td>One year</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </section>
       <section id="how-can-i-control-cookies">
         <h4>How can I control cookies?</h4>
