@@ -24,7 +24,8 @@
           <ul class="nav flex-column">
             <li class="nav-item mb-2"><NuxtLink to="/contact" class="nav-link p-0 text-body-secondary">{{ t("contact") }}</NuxtLink></li>
             <li class="nav-item mb-2"><NuxtLink to="/support" class="nav-link p-0 text-body-secondary">{{ t("support") }}</NuxtLink></li>
-            <li class="nav-item mb-2"><NuxtLink to="#" class="nav-link p-0 text-body-secondary">{{ t("faqs") }}</NuxtLink></li>
+            <li class="nav-item mb-2"><NuxtLink to="/account-data" class="nav-link p-0 text-body-secondary">{{ t("account_data") }}</NuxtLink></li>
+            <li class="nav-item mb-2"><NuxtLink to="/faq" class="nav-link p-0 text-body-secondary">{{ t("faqs") }}</NuxtLink></li>
           </ul>
         </div>
 

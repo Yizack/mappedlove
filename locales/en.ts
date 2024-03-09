@@ -240,6 +240,7 @@ export default {
   request_feature: "Request feature",
   pull_requests: "Pull requests",
   translate_help: "Help us translate",
+  account_data: "Account data",
   // Subscription
   sign_up_free: "Sign up for free",
   check_file_size: "Check file size or try again later.",
