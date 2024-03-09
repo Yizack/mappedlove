@@ -28,6 +28,7 @@
     "dev:cf": "npm run build && npx wrangler dev dist/_worker.js"
   },
   "devDependencies": {
+    "@dargmuesli/nuxt-cookie-control": "^7.4.0",
     "@nuxt/eslint-config": "^0.2.0",
     "@nuxtjs/color-mode": "^3.3.2",
     "@nuxtjs/sitemap": "^5.1.1",

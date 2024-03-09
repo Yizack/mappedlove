@@ -2,6 +2,7 @@
 setScrollBehavior();
 
 const { $bootstrap, $toasts } = useNuxtApp();
+const locale = computed(() => t("lang_code") as "en" | "es");
 
 onMounted(() => {
   $fetch = $fetch.create({
@@ -22,5 +23,6 @@ onMounted(() => {
       <NuxtPage />
     </NuxtLayout>
     <ToastsController />
+    <CookieControl :locale="locale" />
   </div>
 </template>

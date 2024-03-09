@@ -5,6 +5,7 @@ export const SITE = {
   host: "https://mappedlove.com",
   cdn: "https://cdn.mappedlove.com",
   dev: "http://localhost:5173",
+  donate: "https://ko-fi.com/yizack",
   github: {
     author: "Yizack",
     repo: "https://github.com/Yizack/mappedlove"
