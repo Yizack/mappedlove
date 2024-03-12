@@ -81,6 +81,14 @@ declare global {
   interface MappedLoveSelectedMarker extends MappedLoveMarker {
     stories: MappedLoveStory[];
   }
+  interface MappedLoveAccountData {
+    user: MappedLoveUser & {
+      bond?: MappedLoveBond & {
+        markers?: MappedLoveMarker[];
+        stories?: MappedLoveStory[];
+      };
+    };
+  }
   type ErrorCode = typeof ErrorCode;
   type Quota = typeof Quota;
 }
