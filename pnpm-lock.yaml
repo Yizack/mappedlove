@@ -24,8 +24,8 @@ devDependencies:
     specifier: ^1.0.2
     version: 1.0.2
   '@paddle/paddle-node-sdk':
-    specifier: ^1.0.1
-    version: 1.0.1
+    specifier: ^1.0.2
+    version: 1.0.2
   '@paypal/paypal-js':
     specifier: ^8.0.2
     version: 8.0.2
@@ -102,8 +102,8 @@ devDependencies:
     specifier: ^0.8.10
     version: 0.8.10(typescript@5.4.2)(vue@3.4.21)
   wrangler:
-    specifier: ^3.32.0
-    version: 3.32.0
+    specifier: ^3.33.0
+    version: 3.33.0
   zod:
     specifier: ^3.22.4
     version: 3.22.4
@@ -2264,8 +2264,8 @@ packages:
     resolution: {integrity: sha512-H5tS4dsh6ouxbiD5XbDW2vMKfK5kpuaV0QxQrw9M2+WR2rYgutYKVAho+fpeDYRLgi8GD1JulROB7EKGavSMPw==}
     dev: true
 
-  /@paddle/paddle-node-sdk@1.0.1:
-    resolution: {integrity: sha512-XUfQozh9Ys8PQYzoKNL3aqY05Dh9/pZ0zEhKogoKdmz9WBMo11LqdM7arEkFCKH9sHnqdXLthLShravVsTW2jg==}
+  /@paddle/paddle-node-sdk@1.0.2:
+    resolution: {integrity: sha512-Ko6Jdr8BmTiYhcyCDn6g+mzJRhb7wkB170AF4Lac19Esgum9F18oHsTNQHAqtWnUFlciR6AmwMjW5lHMUhfMdA==}
     dependencies:
       lodash: 4.17.21
       node-fetch: 2.7.0
@@ -7146,8 +7146,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /miniflare@3.20240304.0:
-    resolution: {integrity: sha512-6bmFkwXbTy1x5dEfVCLg03Gd80OWUmKI8Li0BhG6nOO+bT3rlIYwctyyfXTfNMFjqbK07AnnPiMwgnfdaaAYVQ==}
+  /miniflare@3.20240304.1:
+    resolution: {integrity: sha512-U9Br62mV//dI5IiNxGX3qOf6/3tVGsWe94TF+Hy23F5w41AwF+cIgbGW4/JAQQI1rY5uNNmMoS9jqIyoSdw06Q==}
     engines: {node: '>=16.13'}
     hasBin: true
     dependencies:
@@ -10550,8 +10550,8 @@ packages:
       '@cloudflare/workerd-windows-64': 1.20240304.0
     dev: true
 
-  /wrangler@3.32.0:
-    resolution: {integrity: sha512-UaOOn3fyv5C7y0NRPmkfS9LW3KElqGvUK+wLP9MClsuRgUrbwAkLt7jIR3fqhfxkXj5FbA6rXn/qjgEbGzEndw==}
+  /wrangler@3.33.0:
+    resolution: {integrity: sha512-1A8frPJSUQjkWAN4XhbykpEtqmfDYdTWPKlc4rTchNrERLwqHF87aCYblP4m5Wm43w4eVL+H4hGUgE2TySk9MA==}
     engines: {node: '>=16.17.0'}
     hasBin: true
     peerDependencies:
@@ -10566,7 +10566,7 @@ packages:
       blake3-wasm: 2.1.5
       chokidar: 3.6.0
       esbuild: 0.17.19
-      miniflare: 3.20240304.0
+      miniflare: 3.20240304.1
       nanoid: 3.3.7
       path-to-regexp: 6.2.1
       resolve: 1.22.8
