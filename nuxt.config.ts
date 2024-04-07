@@ -51,13 +51,13 @@ export default defineNuxtConfig({
     "~/assets/css/map.css"
   ],
   modules: [
+    "@nuxt/eslint",
     "nuxt-icon",
     "@nuxtjs/turnstile",
     "nuxt-twemoji",
     "@nuxtjs/color-mode",
     "@nuxtjs/sitemap",
-    "@dargmuesli/nuxt-cookie-control",
-    "@nuxt/eslint"
+    "@dargmuesli/nuxt-cookie-control"
   ],
   turnstile: {
     siteKey: "0x4AAAAAAAGmhM7sxmb8brsQ",
