@@ -9,10 +9,10 @@ class Locales {
     this.code = code;
   }
 
-  get (key: string, values?: Record<string, any>) {
+  get (key: string, values?: Record<string, unknown>): string {
     const text = strings[this.code][key] || strings.en[key] || key;
     if (!values) return text;
-    return Object.keys(values).reduce((acc, key) => acc.replace(new RegExp(`{{\\s*${key}\\s*}}`, "gi"), values[key]), text);
+    return Object.keys(values).reduce((acc, key) => acc.replace(new RegExp(`{{\\s*${key}\\s*}}`, "gi"), String(values[key])), text);
   }
 
   setLanguage (code: Locale = "en") {
@@ -22,6 +22,6 @@ class Locales {
 
 export const locales = new Locales("en");
 
-export const t = (key: string, values?: Record<string, any>) => {
+export const t = (key: string, values?: Record<string, unknown>) => {
   return locales.get(key, values);
 };

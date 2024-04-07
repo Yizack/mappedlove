@@ -1,6 +1,6 @@
 import type { MultiPartData, H3Event } from "h3";
 
-const jsonToQueryString = (json: Record<string, any>) => {
+const jsonToQueryString = (json: Record<string, unknown>) => {
   return Object.keys(json).map((key) => encodeURIComponent(key) + "=" + json[key]).join("&");
 };
 

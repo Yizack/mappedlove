@@ -26,17 +26,17 @@ class Paddle {
       },
       eventCallback: async (event) => {
         switch(event.name) {
-        case "checkout.loaded":
-          console.info("Checkout opened");
-          break;
-        case "checkout.customer.created":
-          console.info("Customer created");
-          break;
-        case "checkout.completed":
-          await options.onCompleted(event.data);
-          break;
-        default:
-          console.info(event);
+          case "checkout.loaded":
+            console.info("Checkout opened");
+            break;
+          case "checkout.customer.created":
+            console.info("Customer created");
+            break;
+          case "checkout.completed":
+            await options.onCompleted(event.data);
+            break;
+          default:
+            console.info(event);
         }
       }
     });
@@ -50,7 +50,7 @@ class Paddle {
     }
   }
 
-  async Checkout (checkout: { customer?: CheckoutCustomer, customData?: any }) {
+  async Checkout (checkout: { customer?: CheckoutCustomer, customData?: Record<string, string | number | boolean> }) {
     const items = [{ priceId: this.options.plan , quantity: 1 }];
     this.paddle?.Checkout.open({
       items,

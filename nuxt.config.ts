@@ -56,7 +56,8 @@ export default defineNuxtConfig({
     "nuxt-twemoji",
     "@nuxtjs/color-mode",
     "@nuxtjs/sitemap",
-    "@dargmuesli/nuxt-cookie-control"
+    "@dargmuesli/nuxt-cookie-control",
+    "@nuxt/eslint"
   ],
   turnstile: {
     siteKey: "0x4AAAAAAAGmhM7sxmb8brsQ",

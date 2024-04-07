@@ -5,26 +5,26 @@ const { user, fetch: sessionFetch } = useUserSession();
 const bond = ref(user.value?.bond);
 
 const bondEvent = ref("");
-const setBond = async (event: any) => {
+const setBond = async (event: { bond: MappedLoveBond, type: string }) => {
   bond.value = event.bond;
   bondEvent.value = event.type;
   let message = "";
   switch (bondEvent.value) {
-  case "created":
-    message = t("bond_code_created");
-    break;
-  case "joined":
-    message = t("bond_joined");
-    break;
-  case "cancel":
-    message = t("bond_cancelled");
-    break;
+    case "created":
+      message = t("bond_code_created");
+      break;
+    case "joined":
+      message = t("bond_joined");
+      break;
+    case "cancel":
+      message = t("bond_cancelled");
+      break;
   }
   useNuxtApp().$toasts.add({ message, success: true });
   if (bondEvent.value === "joined") navigateTo("/app", { external: true, replace: true });
 };
 
-const isBonded = computed((): Boolean => {
+const isBonded = computed((): boolean => {
   return Boolean(bond.value && bond.value.partner1 && bond.value.partner2);
 });
 

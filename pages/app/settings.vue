@@ -48,7 +48,7 @@ const removeCountry = () => {
   user.value.country = null;
 };
 
-const selectCountry = (c: any) => {
+const selectCountry = (c: { name: string, code: string }) => {
   country.value.focus = false;
   country.value.search = c.name;
   country.value.code = c.code;

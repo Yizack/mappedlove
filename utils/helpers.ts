@@ -1,9 +1,9 @@
 export { ErrorCode } from "~/types/enums/errors";
 export { Quota } from "~/types/enums/quotas";
 
-const deb = {} as Record<string, any>;
+const deb = {} as Record<string, NodeJS.Timeout | undefined>;
 
-export const debounce = (id: string, fn: Function, delay: number) => {
+export const debounce = (id: string, fn: () => void, delay: number) => {
   if (deb[id]) {
     clearTimeout(deb[id]);
     deb[id] = undefined;
@@ -12,7 +12,7 @@ export const debounce = (id: string, fn: Function, delay: number) => {
 };
 
 export const getGroups = () => {
-  return groups.map((group: any) => t(group.key));
+  return groups.map((group: typeof groups[number]) => t(group.key));
 };
 
 export const getGroup = (i: number) => {

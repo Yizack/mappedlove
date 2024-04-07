@@ -9,7 +9,7 @@ interface EmailMessage {
   html: string;
 }
 
-const mailChannels = async (config: NitroRuntimeConfig, message: EmailMessage) : Promise<Boolean> => {
+const mailChannels = async (config: NitroRuntimeConfig, message: EmailMessage) : Promise<boolean> => {
   const { to, subject, html } = message;
   return await $fetch("https://api.mailchannels.net/tx/v1/send", {
     method: "POST",
@@ -37,7 +37,7 @@ const mailChannels = async (config: NitroRuntimeConfig, message: EmailMessage) :
 };
 
 const nodeMailer = async (config: NitroRuntimeConfig, message: EmailMessage) => {
-  // @ts-ignore
+  // @ts-expect-error - no types
   const nodemailer = await import("nodemailer");
   const transporter = nodemailer.createTransport({
     port: config.mail.port,
@@ -49,7 +49,7 @@ const nodeMailer = async (config: NitroRuntimeConfig, message: EmailMessage) => 
   });
 
   const verified = await new Promise((resolve, reject) => {
-    transporter.verify((error: any, success: any) => {
+    transporter.verify((error: unknown, success: unknown) => {
       if (error) return reject(error);
       return resolve(success);
     });
@@ -65,7 +65,7 @@ const nodeMailer = async (config: NitroRuntimeConfig, message: EmailMessage) => 
       from: `"${config.mail.fromName}" <${config.mail.from}>`
     };
 
-    transporter.sendMail(mail, (err: any) => {
+    transporter.sendMail(mail, (err: unknown) => {
       if (err) return reject(err);
       return resolve(true);
     });

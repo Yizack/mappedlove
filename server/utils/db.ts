@@ -3,7 +3,7 @@ import { drizzle as drizzleD1 } from "drizzle-orm/d1";
 import type { BetterSQLite3Database } from "drizzle-orm/better-sqlite3";
 import { drizzle } from "drizzle-orm/better-sqlite3";
 
-// @ts-ignore
+// @ts-expect-error - no types
 import Database from "better-sqlite3";
 
 export * as tables from "~/server/db/schema";

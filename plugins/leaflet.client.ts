@@ -1,10 +1,10 @@
 import { OpenStreetMapProvider } from "leaflet-geosearch";
 import * as L from "leaflet";
 
-// @ts-expect-error
-L.Popup.prototype._animateZoom = function (e) { // @ts-expect-error
-  if (!this._map) return; // @ts-expect-error
-  const pos = this._map._latLngToNewLayerPoint(this._latlng, e.zoom, e.center), anchor = this._getAnchor(); // @ts-expect-error
+// @ts-expect-error - no types
+L.Popup.prototype._animateZoom = function (e) { // @ts-expect-error - no types
+  if (!this._map) return; // @ts-expect-error - no types
+  const pos = this._map._latLngToNewLayerPoint(this._latlng, e.zoom, e.center), anchor = this._getAnchor(); // @ts-expect-error - no types
   L.DomUtil.setPosition(this._container, pos.add(anchor));
 };
 

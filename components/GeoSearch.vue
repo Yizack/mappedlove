@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { SearchResult } from "leaflet-geosearch/dist/providers/provider.js";
+
 const props = defineProps({
   value: {
     type: String,
@@ -11,12 +13,12 @@ const emit = defineEmits(["select"]);
 const { $Leaflet } = useNuxtApp();
 
 const search = ref(false);
-const array = ref<Record<string, any>[]>([]);
+const array = ref<SearchResult<unknown>[]>([]);
 const text = ref("");
 const loading = ref(false);
 const selected = ref(false);
 
-const select = (result: any) => {
+const select = (result: Record<string, unknown>) => {
   search.value = false;
   text.value = `${result.y}, ${result.x}`;
   emit("select", { lat: result.y, lng: result.x, label: result.label });
@@ -29,7 +31,8 @@ const changeLocation = () => {
   emit("select", { lat: null, lng: null, label: "" });
 };
 
-const searchPlace = (target: any) => {
+const searchPlace = (event: Event) => {
+  const target = event.target as HTMLInputElement;
   loading.value = true;
   search.value = true;
   const time = 2000;
@@ -68,7 +71,7 @@ onMounted(() => {
     <div class="input-group mb-2">
       <div class="form-floating position-relative">
         <Icon class="position-absolute top-50 start-0 mx-2 translate-middle-y text-primary z-3" name="solar:map-point-favourite-bold" size="2rem" />
-        <input v-model.trim="text" class="ps-5 form-control" :placeholder="t('location')" required :disabled="selected" @input="searchPlace($event.target)">
+        <input v-model.trim="text" class="ps-5 form-control" :placeholder="t('location')" required :disabled="selected" @input="searchPlace">
         <label class="ps-5 ms-1">{{ t("location") }}</label>
       </div>
       <button v-if="selected" class="btn btn-primary" type="button" @click="changeLocation"><Icon name="ic:round-close" size="1.5rem" /></button>

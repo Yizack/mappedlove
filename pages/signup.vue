@@ -22,7 +22,7 @@ const signUp = async () => {
 
   if (!req) {
     formReset();
-    // @ts-ignore
+    // @ts-expect-error turnstile is not null
     turnstile.value?.reset();
     return;
   }
@@ -30,7 +30,7 @@ const signUp = async () => {
   if (!("user" in req)) {
     submit.value.exists = true;
     formReset();
-    // @ts-ignore
+    // @ts-expect-error turnstile is not null
     turnstile.value?.reset();
     return;
   }
