@@ -20,11 +20,11 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "typecheck": "nuxt typecheck",
-    "db:migrate": "drizzle-kit generate:sqlite",
+    "db:migrate": "drizzle-kit generate:sqlite --config=.config/drizzle.json",
     "email:templates": "npx vue-email export --out=./server/email-templates && tsx ./scripts/emailTemplates.ts",
     "lint": "npm run lint:eslint && npm run lint:stylelint",
-    "lint:eslint": "eslint --fix",
-    "lint:stylelint": "stylelint \"**/*.css\" --fix",
+    "lint:eslint": "eslint --fix --config .config/eslint.mjs",
+    "lint:stylelint": "stylelint \"**/*.css\" --fix --config .config/stylelint.json",
     "dev:cf": "npm run build && npx wrangler dev dist/_worker.js"
   },
   "devDependencies": {

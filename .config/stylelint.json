@@ -6,9 +6,9 @@
     "color-function-notation": ["modern", { "ignore": ["with-var-inside"] }]
   },
   "ignoreFiles": [
-    "node_modules/**/*",
-    ".nuxt/**/*",
-    "dist/**/*",
-    ".output/**/*"
+    "../node_modules/**/*",
+    "../.nuxt/**/*",
+    "../dist/**/*",
+    "../.output/**/*"
   ]
 }
