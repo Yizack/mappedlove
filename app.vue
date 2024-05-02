@@ -4,6 +4,7 @@ setScrollBehavior();
 const { $bootstrap, $toasts } = useNuxtApp();
 
 onMounted(() => {
+  // eslint-disable-next-line no-global-assign
   $fetch = $fetch.create({
     onResponseError: ({ response }) => {
       const message = response.status === 500 ? t("error") : t(response._data.message);

@@ -59,6 +59,11 @@ export default defineNuxtConfig({
     "@nuxtjs/sitemap",
     "@dargmuesli/nuxt-cookie-control"
   ],
+  eslint: {
+    config: {
+      autoInit: false
+    }
+  },
   turnstile: {
     siteKey: "0x4AAAAAAAGmhM7sxmb8brsQ",
     addValidateEndpoint: true
@@ -98,6 +103,8 @@ export default defineNuxtConfig({
       port: "",
       login: "",
       password: "",
+      dkimKey: "",
+      dkimSelector: ""
     },
     cloudinary: {
       name: "",

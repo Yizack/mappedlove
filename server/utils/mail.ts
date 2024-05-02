@@ -18,7 +18,10 @@ const mailChannels = async (config: NitroRuntimeConfig, message: EmailMessage) :
     },
     body: JSON.stringify({
       personalizations: [{
-        to: [{ email: to.email, name: to.name }]
+        to: [{ email: to.email, name: to.name }],
+        dkim_domain: SITE.domain,
+        dkim_private_key: config.mail.dkimKey,
+        dkim_selector: config.mail.dkimSelector
       }],
       from: {
         email: config.mail.from,
