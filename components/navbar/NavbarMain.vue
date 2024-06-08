@@ -17,7 +17,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-md" :class="{ 'bg-body shadow': scrolled || sticky, 'sticky-top': sticky, 'fixed-top': !sticky }">
+  <nav class="navbar navbar-expand-md" :class="{ 'bg-body shadow-sm': scrolled || sticky, 'sticky-top': sticky, 'fixed-top': !sticky }">
     <div class="container-fluid container-md">
       <button class="navbar-toggler border-0 rounded-pill" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon" />
