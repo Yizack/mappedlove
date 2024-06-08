@@ -68,9 +68,9 @@ const deleteMarker = async (id: number) => {
   if (!confirm(t("delete_marker"))) return;
   const res = await $fetch(`/api/markers/${id}`, {
     method: "DELETE"
-  }).catch(() => ({}));
+  }).catch(() => null);
 
-  if (!("id" in res)) return;
+  if (!res || !res.id) return;
   if (props.selected === id) emit("select", 0);
   markers.value = markers.value.filter((marker) => marker.id !== id);
   emit("delete", id);
@@ -167,13 +167,17 @@ watch(() => props.markers, (value) => {
         <textarea v-model.trim="form.description" type="text" class="form-control" :placeholder="t('description')" :style="{height: '100px'}" />
         <label>{{ t("description") }}</label>
       </div>
-      <div class="form-floating mb-2">
-        <Icon :name="groupIcon" class="position-absolute top-50 start-0 mx-2 translate-middle-y text-primary z-3" size="2rem" />
-        <select v-model="form.group" class="form-select ps-5" :placeholder="t('group')" required>
-          <option value="" disabled>{{ t("select_group") }}</option>
-          <option v-for="(group, i) of groups" :key="i" :value="i">{{ t(group.key) }}</option>
-        </select>
-        <label class="ps-5 ms-1">{{ t("group") }}</label>
+      <div class="input-group mb-2">
+        <span class="input-group-text bg-body">
+          <Icon :name="groupIcon" class="text-primary" size="2rem" />
+        </span>
+        <div class="form-floating">
+          <select v-model="form.group" class="form-select" :placeholder="t('group')" required>
+            <option value="" disabled>{{ t("select_group") }}</option>
+            <option v-for="(group, i) of groups" :key="i" :value="i">{{ t(group.key) }}</option>
+          </select>
+          <label>{{ t("group") }}</label>
+        </div>
       </div>
       <div class="d-flex justify-content-between gap-2">
         <button type="button" class="btn btn-secondary btn-lg w-100" data-bs-dismiss="modal">{{ t("cancel") }}</button>

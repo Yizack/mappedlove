@@ -69,10 +69,12 @@ onMounted(() => {
 <template>
   <div class="position-relative">
     <div class="input-group mb-2">
+      <span class="input-group-text bg-body">
+        <Icon class="text-primary" name="solar:map-point-favourite-bold" size="2rem" />
+      </span>
       <div class="form-floating position-relative">
-        <Icon class="position-absolute top-50 start-0 mx-2 translate-middle-y text-primary z-3" name="solar:map-point-favourite-bold" size="2rem" />
-        <input v-model.trim="text" class="ps-5 form-control" :placeholder="t('location')" required :disabled="selected" @input="searchPlace">
-        <label class="ps-5 ms-1">{{ t("location") }}</label>
+        <input v-model.trim="text" class="form-control" :placeholder="t('location')" required :disabled="selected" @input="searchPlace">
+        <label>{{ t("location") }}</label>
       </div>
       <button v-if="selected" class="btn btn-primary" type="button" @click="changeLocation"><Icon name="ic:round-close" size="1.5rem" /></button>
     </div>
