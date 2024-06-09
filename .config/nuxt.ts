@@ -136,6 +136,13 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       routes: ["/sitemap.xml"],
+    },
+    cloudflare: {
+      pages: {
+        routes: {
+          exclude: ["/docs/*"]
+        }
+      }
     }
   },
   sitemap: {

@@ -14,7 +14,7 @@
     "url": "https://github.com/Yizack/mappedlove/issues"
   },
   "scripts": {
-    "build": "npm run email:templates && nuxt build",
+    "build": "npm run email:templates && npm run docs:build && nuxt build",
     "dev": "nuxt dev --port=5173 --host",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
@@ -25,7 +25,10 @@
     "lint": "npm run lint:eslint && npm run lint:stylelint",
     "lint:eslint": "eslint --fix --config .config/eslint.mjs",
     "lint:stylelint": "stylelint \"**/*.css\" --fix --config .config/stylelint.json",
-    "cf:dev": "npm run build && wrangler pages dev dist"
+    "cf:dev": "npm run build && wrangler pages dev dist",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:serve": "vitepress serve docs"
   },
   "devDependencies": {
     "@dargmuesli/nuxt-cookie-control": "^8.4.1",
@@ -57,6 +60,7 @@
     "stylelint-config-standard": "^36.0.0",
     "tsx": "^4.15.1",
     "typescript": "^5.4.5",
+    "vitepress": "^1.2.3",
     "vue-draggable-next": "^2.2.1",
     "vue-email": "^0.8.11",
     "wrangler": "^3.60.0",
