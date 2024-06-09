@@ -44,7 +44,7 @@ const cookieManager = (e: Event) => {
                 <td>{{ SITE.name }}</td>
                 <td>nuxt-session</td>
                 <td>Cookies store</td>
-                <td>Authenntication, authorization and session management</td>
+                <td>Authentication, authorization and session management</td>
                 <td>Until user closes browser</td>
               </tr>
               <tr>

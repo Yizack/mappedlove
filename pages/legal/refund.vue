@@ -7,8 +7,8 @@ definePageMeta({ layout: "utils" });
     <div class="col-lg-8 col-xl-9 mx-auto bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
       <h2>REFUND POLICY</h2>
       <p><small>Last updated March 09, 2024</small></p>
-      <section id="refund-elegibility">
-        <h4>Refund elegibility</h4>
+      <section id="refund-eligibility">
+        <h4>Refund eligibility</h4>
         <p>You are elegible to request a refund if you meet the following conditions:</p>
         <ul>
           <li>you have purchased the product or service within the last 14 days;</li>
@@ -27,7 +27,7 @@ definePageMeta({ layout: "utils" });
       </section>
       <section id="how-can-i-request-a-refund">
         <h4>How can I request a refund?</h4>
-        <p>Before requesting a refund, please cancel your subscription by accesing your <NuxtLink to="/app/premium/billing">account billing settings</NuxtLink> and clicking on the "Cancel subscription" button.</p>
+        <p>Before requesting a refund, please cancel your subscription by accessing your <NuxtLink to="/app/premium/billing">account billing settings</NuxtLink> and clicking on the "Cancel subscription" button.</p>
         <p>To request a refund, please go to your <NuxtLink to="/app/premium/billing">account billing settings</NuxtLink>. There you will find a "Request a refund" button. Click on it and fill in the form with the required information.</p>
         <p>Once we receive your refund request, we will review it and notify you that we have received your request. We will immediately notify you on the status of your refund after reviewing your request.</p>
       </section>
