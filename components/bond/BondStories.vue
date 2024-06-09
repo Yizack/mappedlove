@@ -120,7 +120,7 @@ watch(() => props.marker, () => {
               <template #default="{ item: story }">
                 <div class="card h-100" @mouseenter="deleteButton[story.id] = true" @mouseleave="deleteButton[story.id] = false">
                   <div role="button">
-                    <img :src="`${getStoryImage(story.hash)}?updated=${story.updatedAt}`" class="card-img-top" @click="storyModal(story)">
+                    <img :src="`${getStoryImage(user.bond?.id, story.hash)}?updated=${story.updatedAt}`" class="card-img-top" @click="storyModal(story)">
                   </div>
                   <div v-if="story.description" class="card-body border-top">
                     <p class="card-text">{{ story.description }}</p>
@@ -186,7 +186,7 @@ watch(() => props.marker, () => {
             <span>({{ t("max") }} {{ maxFileSize }}{{ t("mb") }})</span>
             <small>{{ supported }}</small>
           </div>
-          <img v-else-if="form.id && !imageRead" class="img-fluid" :src="`${getStoryImage(form.hash)}?updated=${form.updatedAt}`">
+          <img v-else-if="form.id && !imageRead" class="img-fluid" :src="`${getStoryImage(user.bond?.id, form.hash)}?updated=${form.updatedAt}`">
           <img v-else class="img-fluid" :src="imageRead.toString()">
         </label>
       </div>

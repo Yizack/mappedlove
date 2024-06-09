@@ -70,7 +70,7 @@ watch(coupleDate, async (val: Date | undefined) => {
           <div class="text-center position-relative">
             <div id="image-upload" class="text-center mb-2">
               <label class="rounded-circle bg-body-tertiary position-relative overflow-hidden border border-5 m-0 mx-md-3 mx-lg-4" style="width: 175px; height: 175px;">
-                <img v-if="partner1.showAvatar" :src="`${getAvatarImage(partner1.hash)}?updated=${partner1.updatedAt}`" width="175" height="175" class="img-fluid" :alt="partner1.name">
+                <img v-if="partner1.showAvatar" :src="`${getAvatarImage(partner1.id, partner1.hash)}?updated=${partner1.updatedAt}`" width="175" height="175" class="img-fluid" :alt="partner1.name">
                 <img v-else :src="getDefaultAvatar(partner1.id)" width="175" height="175" class="img-fluid" :alt="partner1.name">
               </label>
             </div>
@@ -82,7 +82,7 @@ watch(coupleDate, async (val: Date | undefined) => {
           <div class="text-center position-relative">
             <div id="image-upload" class="text-center mb-2">
               <label class="rounded-circle bg-body-tertiary position-relative overflow-hidden border border-5 m-0 mx-md-3 mx-lg-4" style="width: 175px; height: 175px;">
-                <img v-if="partner2.showAvatar" :src="`${getAvatarImage(partner2.hash)}?updated=${partner2.updatedAt}`" width="175" height="175" class="img-fluid" :alt="partner1.name">
+                <img v-if="partner2.showAvatar" :src="`${getAvatarImage(partner2.id, partner2.hash)}?updated=${partner2.updatedAt}`" width="175" height="175" class="img-fluid" :alt="partner1.name">
                 <img v-else :src="getDefaultAvatar(partner2.id)" width="175" height="175" class="img-fluid" :alt="partner2.name">
               </label>
             </div>

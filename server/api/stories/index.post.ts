@@ -30,14 +30,14 @@ export default eventHandler(async (event) : Promise<MappedLoveStory> => {
   const { secure } = useRuntimeConfig(event);
   const storyHash = hash([story.id, user.bond.code].join(), secure.salt);
   const fileSizeMaxMB = user.bond?.premium ? Quota.PREMIUM_IMAGE_FILESIZE : Quota.FREE_IMAGE_FILESIZE;
-  const uploaded = await uploadImage(file, storyHash, "stories", fileSizeMaxMB, event);
+  const uploaded = await uploadImage(file, storyHash, `stories/${user.bond.id}`, fileSizeMaxMB, event);
 
   if (!uploaded) {
     if (!user.bond?.premium) throw createError({ statusCode: ErrorCode.PAYMENT_REQUIRED, message: "check_file_size_free" });
     throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "check_file_size" });
   }
 
-  await uploadToCloudinary(file, storyHash, "stories", event);
+  await uploadToCloudinary(file, storyHash, `stories/${user.bond.id}`, event);
 
   return {
     ...story,

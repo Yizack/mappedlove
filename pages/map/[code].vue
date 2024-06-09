@@ -166,7 +166,7 @@ onBeforeUnmount(() => {
                       <MasonryWall :items="storiesByYear(storiesFiltered, year)" :ssr-columns="1" :gap="4" :max-columns="2" :column-width="150">
                         <template #default="{ item: story }">
                           <div class="card h-100 border-2" :class="{ 'border-primary': currentStory?.id === story.id }" role="button" @click="openStory(story)">
-                            <img :src="`${getStoryImage(story.hash)}?updated=${story.updatedAt}`" class="card-img-top">
+                            <img :src="`${getStoryImage(bond.id, story.hash)}?updated=${story.updatedAt}`" class="card-img-top">
                             <div class="card-footer">
                               <small class="text-body-secondary">
                                 <span>{{ story.year }}</span>
@@ -191,7 +191,7 @@ onBeforeUnmount(() => {
           <span>{{ t("uploaded_by") }}:</span>
           <div v-if="currentStoryUser?.showAvatar" id="image-upload" class="text-center">
             <label class="rounded-circle bg-body-tertiary position-relative overflow-hidden d-flex" style="width: 24px; height: 24px;">
-              <img :src="`${getAvatarImage(currentStoryUser?.hash)}?updated=${currentStoryUser?.updatedAt}`" alt="avatar" width="24" height="24" class="img-fluid">
+              <img :src="`${getAvatarImage(currentStoryUser.id, currentStoryUser.hash)}?updated=${currentStoryUser.updatedAt}`" alt="avatar" width="24" height="24" class="img-fluid">
             </label>
           </div>
           <strong>{{ currentStoryUser?.name }}</strong>
@@ -208,7 +208,7 @@ onBeforeUnmount(() => {
           <div>{{ currentStory.description }}</div>
         </template>
       </div>
-      <img :src="`${getStoryImage(currentStory.hash)}?updated=${currentStory.updatedAt}`" class="map-img shadow-lg">
+      <img :src="`${getStoryImage(bond.id, currentStory.hash)}?updated=${currentStory.updatedAt}`" class="map-img shadow-lg">
     </ModalController>
   </div>
 </template>

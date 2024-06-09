@@ -23,7 +23,7 @@ export default eventHandler(async (event) => {
 
   const fileSizeMaxMB = user.bond?.premium ? Quota.PREMIUM_IMAGE_FILESIZE : Quota.FREE_IMAGE_FILESIZE;
   const filename = `${user.hash}`;
-  const uploaded = await uploadImage(file, filename, "avatars", fileSizeMaxMB, event);
+  const uploaded = await uploadImage(file, filename, `avatars/${user.id}`, fileSizeMaxMB, event);
 
   if (!uploaded) {
     if (!user.bond?.premium) throw createError({ statusCode: ErrorCode.PAYMENT_REQUIRED, message: "check_file_size_free" });

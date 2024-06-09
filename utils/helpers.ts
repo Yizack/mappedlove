@@ -42,13 +42,15 @@ export const storiesByYear = (stories: MappedLoveStory[], year: number) => {
   return stories.filter((story) => story.year === year);
 };
 
-export const getStoryImageTransform = (hash?: string) => {
-  if (import.meta.dev) return `/uploads/stories/${hash}`;
-  return `https://res.cloudinary.com/dyxajqsia/image/upload/stories/${hash}`;
+export const getStoryImageTransform = (...params: unknown[]) => {
+  const path = params.join("/");
+  if (import.meta.dev) return `/uploads/stories/${path}`;
+  return `https://res.cloudinary.com/dyxajqsia/image/upload/stories/${path}`;
 };
 
-export const getStoryImage = (hash?: string) => {
-  return `${import.meta.dev ? SITE.dev : SITE.cdn}/uploads/stories/${hash}`;
+export const getStoryImage = (...params: unknown[]) => {
+  const path = params.join("/");
+  return `${import.meta.dev ? SITE.dev : SITE.cdn}/uploads/stories/${path}`;
 };
 
 export const getDefaultAvatar = (id: number) => {
@@ -56,8 +58,9 @@ export const getDefaultAvatar = (id: number) => {
   return `${import.meta.dev ? SITE.dev : SITE.host}/images/defaults/avatar-${avatarNumber}.jpg`;
 };
 
-export const getAvatarImage = (hash?: string) => {
-  return `${import.meta.dev ? SITE.dev : SITE.cdn}/uploads/avatars/${hash}`;
+export const getAvatarImage = (...params: unknown[]) => {
+  const path = params.join("/");
+  return `${import.meta.dev ? SITE.dev : SITE.cdn}/uploads/avatars/${path}`;
 };
 
 export const copyToClipboard = async (text: string) => {
@@ -68,7 +71,7 @@ export const copyToClipboard = async (text: string) => {
   return { success: true, message: t("copy_success") };
 };
 
-export const storiesCarousel = (marker: MappedLoveMarker, stories: MappedLoveStory[]) => {
+export const storiesCarousel = (marker: MappedLoveMarker, stories: MappedLoveStory[], bond_id?: number) => {
   return !stories.length ? `<div class="mt-2 text-center fw-bold">${marker.title}</div>` :
     `<div id="story-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
       <div class="carousel-inner mw-100 mx-auto">`
@@ -76,7 +79,7 @@ export const storiesCarousel = (marker: MappedLoveMarker, stories: MappedLoveSto
           return `
           <div class="carousel-item ${!index ? "active" : "inactive"} d-flex justify-content-center">
             <div class="border border-primary border-2 rounded-circle">
-              <div class="map-story" style="background-image: url('${getStoryImageTransform(hash)}?updated=${updatedAt}')"></div>
+              <div class="map-story" style="background-image: url('${getStoryImageTransform(bond_id, hash)}?updated=${updatedAt}')"></div>
             </div>
           </div>`;
         }).join("")
