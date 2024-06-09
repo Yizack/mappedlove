@@ -25,7 +25,7 @@ export default {
   signin_error: "Wrong email or password",
   logout: "Logout",
   many_logins_attempted: "Too many failed login attempts, please try again later",
-  invalid_signin_data: "Signin data is not valid",
+  invalid_signin_data: "Sign in data is not valid",
   // Register
   password_confirm: "Confirm password",
   name: "Name",
@@ -63,7 +63,7 @@ export default {
   bond_joined: "You have successfully bonded with your partner",
   bond_cancelled: "Your bond code has been cancelled",
   copy: "Copy",
-  copy_not_supported: "Writting to clipboard not supported in this browser",
+  copy_not_supported: "Writing to clipboard not supported in this browser",
   copy_success: "Copied to clipboard",
   our_bond: "Our bond",
   add_anniversary: "Add Anniversary",
@@ -177,7 +177,7 @@ export default {
   december: "December",
   // Not related errors
   error: "Something went wrong.",
-  error_occurred: "Sorry, an error has occured",
+  error_occurred: "Sorry, an error has occurred",
   go_back: "Go back",
   unauthorized: "User session expired, please sign in again",
   bad_request: "Bad request",
@@ -293,7 +293,7 @@ export default {
   invalid_subscription_period: "Subscription period is not valid",
   invalid_payment_data: "Payment data is not valid",
   // Cookies
-  cookies_banner_description: "We use our own cookies and third-party cookies so that we can display this website correctly and better understand how this website is used, with a view to improving the services we offer. A decision on cookie usage permissions can be changed anytime using the Cookie Constent Manager located in our Cookie policy page.",
+  cookies_banner_description: "We use our own cookies and third-party cookies so that we can display this website correctly and better understand how this website is used, with a view to improving the services we offer. A decision on cookie usage permissions can be changed anytime using the Cookie Consent Manager located in our Cookie policy page.",
   cookies_necessary: "Necessary cookies",
   cookies_necessary_title: "Strictly necessary cookies",
   cookies_necessary_description: "These cookies are necessary for the website to function and cannot be disabled in our systems. They are typically only activated in response to actions taken by you that amount to a request for services, such as setting your privacy preferences, logging in, or filling out forms. You can set your browser to block these cookies or warn you about them, but some parts of the website will not work in this case. These cookies do not store any personally identifiable information.",
