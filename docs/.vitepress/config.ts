@@ -5,7 +5,7 @@ export default defineConfig({
   outDir: "../public/docs",
   base: "/docs/",
   lang: "en-US",
-  title: "MappedLove Docs",
+  title: "MappedLove Support",
   description: "Find all the information you need about MappedLove",
   cleanUrls: true,
   themeConfig: {
@@ -20,7 +20,7 @@ export default defineConfig({
           {
             text: "Technical Support",
             items: [
-              { text: "I want to report a bug", link: "/troubleshooting/bug-report" },
+              { text: "🚩 I want to report a bug", link: "/troubleshooting/bug-report" },
             ]
           }
         ]
@@ -32,8 +32,8 @@ export default defineConfig({
           {
             text: "Account",
             items: [
-              { text: "Create an account", link: "/using-the-app/sign-up" },
-              { text: "Change password", link: "/using-the-app/change-password" },
+              { text: "😎 Create an account", link: "/using-the-app/sign-up" },
+              { text: "🗝️ Change password", link: "/using-the-app/change-password" },
             ]
           },
         ]

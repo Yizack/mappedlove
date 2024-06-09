@@ -1,4 +1,4 @@
-# Create an account
+# 😎 Create an account
 
 To use MappedLove, you need to create an account. This page explains how to sign up for an account and how to log in to your account.
 

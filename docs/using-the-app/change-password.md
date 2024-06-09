@@ -1,4 +1,4 @@
-# Change your password
+# 🗝️ Change your password
 
 To change your password, follow these steps:
 - Go to your [Account Settings](https://mappedlove.com/app/settings) page.

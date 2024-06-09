@@ -1,4 +1,4 @@
-# I want to report a bug
+# 🚩 I want to report a bug
 
 Though we try to test our app extensively before releasing any updates, from time to time you might encounter an unexpected issue with MappedLove.
 
