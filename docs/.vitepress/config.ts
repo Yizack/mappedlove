@@ -8,6 +8,13 @@ export default defineConfig({
   title: "MappedLove Support",
   description: "Find all the information you need about MappedLove",
   cleanUrls: true,
+  vite: {
+    resolve: {
+      alias: {
+        "~": "."
+      }
+    }
+  },
   themeConfig: {
     nav: [
 
