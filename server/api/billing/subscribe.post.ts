@@ -17,6 +17,11 @@ export default defineEventHandler(async (event) => {
 
   const transaction = await getPaddleTransaction(event, payment.transactionId);
   if (!transaction) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "transaction_not_found" });
+  if (transaction.status !== "paid" && transaction.status !== "ready") {
+    if (!transaction.subscription_id) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "subscription_not_found" });
+    const subscription = await getPaddleSubscription(event, transaction.subscription_id);
+    if (subscription && subscription.status !== "active") throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "subscription_not_active" });
+  }
 
   const DB = useDb();
   const today = Date.now();
@@ -33,7 +38,7 @@ export default defineEventHandler(async (event) => {
 
   if (!update) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "bond_not_found" });
 
-  if(transaction.origin === "web") {
+  if(transaction.origin === "web" && user.bond?.premium === 0) {
     const html = Mustache.render(templates.premiumWelcome, {
       lang: "en",
       domain: SITE.domain

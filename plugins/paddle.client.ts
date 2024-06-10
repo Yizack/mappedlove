@@ -6,7 +6,7 @@ class Paddle {
     this.options = options;
   }
 
-  async initialize (options: { onCompleted: (data?: CheckoutEventsData) => Promise<void> }) {
+  async initialize (options: { onCompleted: (data?: CheckoutEventsData) => Promise<void>, onError?: () => void }) {
     const { $colorMode } = useNuxtApp();
 
     this.paddle = await initializePaddle({
@@ -25,6 +25,7 @@ class Paddle {
         }
       },
       eventCallback: async (event) => {
+        if (!event.name && options.onError) options.onError();
         switch(event.name) {
           case "checkout.loaded":
             console.info("Checkout opened");

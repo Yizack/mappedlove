@@ -12,7 +12,10 @@ if (!user.value.bond?.id) {
 
 const loading = ref(false);
 const paid = ref(false);
+
 const { _ptxn } = useRoute().query;
+const isPtxnValid = ref(false);
+if (_ptxn) loading.value = true;
 
 const { $paddle, $toasts } = useNuxtApp();
 const initialized = ref(false);
@@ -31,28 +34,32 @@ const checkout = async () => {
   });
 };
 
-onMounted(() => {
-  const paddle = $paddle.initialize({
+onMounted(async () => {
+  await $paddle.initialize({
     onCompleted: async (data) => {
-      if (!data) return;
-      paid.value = true;
       loading.value = true;
-      const subscribe = await $fetch("/api/bond/subscribe", {
+      if (!data) return;
+      isPtxnValid.value = true;
+      const subscribe = await $fetch("/api/billing/subscribe", {
         method: "POST",
         body: {
           bondId: user.value.bond?.id,
           transactionId: data.transaction_id
         }
-      });
+      }).catch(() => null);
       loading.value = false;
       if (!subscribe) return;
+      paid.value = true;
       await sessionFetch();
+      if (_ptxn) return;
       $toasts.add({ message: t("subscribed"), success: true });
       $paddle.close();
-      return;
+    },
+    onError: () => {
+      isPtxnValid.value = false;
+      loading.value = false;
     }
   });
-  if (!paddle) return;
   initialized.value = true;
 });
 </script>
@@ -63,6 +70,20 @@ onMounted(() => {
       <div class="col-lg-8 col-xl-6 mx-auto">
         <div class="bg-body rounded-3 px-3 py-4 p-lg-4">
           <SpinnerCircle v-if="loading" />
+          <template v-else-if="_ptxn">
+            <div v-if="isPtxnValid" class="text-center">
+              <Icon name="solar:check-circle-bold" class="text-success" size="5rem" />
+              <h1>{{ t("transaction_completed") }}!</h1>
+              <p class="m-0">{{ t("transaction_completed_info") }}</p>
+              <NuxtLink to="/app/premium/billing">{{ t("billing_information") }}</NuxtLink>
+            </div>
+            <div v-else class="text-center">
+              <Icon name="solar:close-circle-bold" class="text-danger" size="5rem" />
+              <h1>{{ t("transaction_failed") }}!</h1>
+              <p class="m-0">{{ t("error") }}</p>
+              <NuxtLink to="/app/premium/billing">{{ t("billing_information") }}</NuxtLink>
+            </div>
+          </template>
           <template v-else-if="user.bond?.premium">
             <div class="text-center">
               <Icon name="solar:check-circle-bold" class="text-success" size="5rem" />
