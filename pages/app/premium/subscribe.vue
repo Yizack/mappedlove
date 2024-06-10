@@ -12,6 +12,7 @@ if (!user.value.bond?.id) {
 
 const loading = ref(false);
 const paid = ref(false);
+const { _ptxn } = useRoute().query;
 
 const { $paddle, $toasts } = useNuxtApp();
 const initialized = ref(false);
@@ -23,6 +24,7 @@ const checkout = async () => {
       email: user.value.email
     },
     customData: {
+      userId: user.value.id,
       bondId: user.value.bond?.id ?? "",
       bondCode: user.value.bond?.code ?? ""
     }

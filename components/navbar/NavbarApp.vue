@@ -13,14 +13,17 @@ watch(() => user.value, () => {
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-md sticky-top bg-body shadow-sm">
+  <nav v-if="user" class="navbar navbar-expand-md sticky-top bg-body shadow-sm">
     <div class="container-fluid">
       <button class="navbar-toggler border-0 rounded-pill" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon" />
       </button>
-      <NuxtLink class="navbar-brand ms-2 ms-md-0 me-auto d-flex align-items-center gap-1" to="/app">
+      <NuxtLink class="navbar-brand ms-2 ms-md-0 me-auto d-flex align-items-center gap-1 position-relative" to="/app">
         <Icon class="text-primary" name="solar:map-point-favourite-bold" />
         {{ SITE.name }}
+        <span v-if="user.bond?.premium" class="badge text-primary position-absolute start-100 translate-middle p-0" style="top: 8px;">
+          <small>{{ t("premium") }}</small>
+        </span>
       </NuxtLink>
       <div id="offcanvasNavbar" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvasNavbarLabel">
         <div class="offcanvas-header" data-bs-dismiss="offcanvas">

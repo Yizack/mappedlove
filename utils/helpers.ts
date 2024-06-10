@@ -19,8 +19,9 @@ export const getGroup = (i: number) => {
   return t(groups[i].key);
 };
 
-export const formatDate = (time: number) => {
+export const formatDate = (time: number, showTime?: boolean) => {
   const date = new Date(time);
+  if (showTime) return date.toLocaleString(t("lang_code"), { month: "long", day: "numeric", year: "numeric", hour: "numeric", minute: "numeric", hour12: false });
   return date.toLocaleString(t("lang_code"), { month: "long", day: "numeric", year: "numeric" });
 };
 
@@ -108,4 +109,10 @@ export const sleep = (ms?: number) => {
 
 export const getRandomNumber = ({ min, max }: { min: number, max: number }) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
+export const paddleToCurrency = (value: number, currency?: string) => {
+  const valueTransformed = value / 100;
+  if (!currency) return valueTransformed.toFixed(2);
+  return valueTransformed.toLocaleString(t("lang_code"), { style: "currency", currency: currency });
 };

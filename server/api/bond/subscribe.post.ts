@@ -33,22 +33,23 @@ export default defineEventHandler(async (event) => {
 
   if (!update) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "bond_not_found" });
 
-  const html = Mustache.render(templates.premiumWelcome, {
-    lang: "en",
-    domain: SITE.domain,
-    // nextPayment: new Date(subscription.billing_info.next_billing_time).toLocaleDateString(),
-  });
+  if(transaction.origin === "web") {
+    const html = Mustache.render(templates.premiumWelcome, {
+      lang: "en",
+      domain: SITE.domain
+    });
 
-  const config = useRuntimeConfig(event);
+    const config = useRuntimeConfig(event);
 
-  await sendMail(config, {
-    to: {
-      email: user.email,
-      name: user.name
-    },
-    subject: "Premium subscription activated!",
-    html
-  });
+    await sendMail(config, {
+      to: {
+        email: user.email,
+        name: user.name
+      },
+      subject: "Premium subscription activated!",
+      html
+    });
+  }
 
   await setUserSession(event, { user: { ...user, bond: { ...user.bond, ...update } }});
 

@@ -245,6 +245,7 @@ const deleteAvatar = async () => {
         <div class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
           <form @submit.prevent="changePassword">
             <h3 class="mb-4">{{ t("change_password") }}</h3>
+            <input :value="user.email" type="text" autocomplete="email" hidden>
             <div class="form-floating mb-2">
               <input v-model="user.current_password" type="password" class="form-control" :placeholder="t('current_password')" autocomplete="current-password">
               <label>{{ t("current_password") }}</label>
