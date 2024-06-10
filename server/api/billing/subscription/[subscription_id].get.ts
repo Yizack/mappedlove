@@ -5,7 +5,7 @@ export default defineEventHandler(async (event) => {
   const transactions = await getPaddleTransactions(event, subscription_id);
   const isManageable = (subscription?.custom_data as Record<string, unknown>)?.userId === user.id;
 
-  const output = {
+  return {
     subscription: subscription ? {
       id: subscription.id,
       status: subscription.status,
@@ -30,5 +30,4 @@ export default defineEventHandler(async (event) => {
       checkout: isManageable ? transaction.checkout : null
     })) : []
   };
-  return output;
 });

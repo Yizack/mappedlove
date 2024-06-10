@@ -158,10 +158,10 @@ main {
   color: var(--bs-body-bg);
 }
 
-.table tbody tr:last-child td, .table tbody tr:last-child th  {
-  border-bottom: 0;
-}
-
 td, th {
   vertical-align: middle;
+}
+
+.table tbody tr:last-child td, .table tbody tr:last-child th  {
+  border-bottom: 0;
 }

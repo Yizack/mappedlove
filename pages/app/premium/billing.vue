@@ -5,7 +5,7 @@ const { user } = useUserSession();
 const isValidSubscription = computed(() => Boolean(user.value.bond?.subscriptionId));
 const isPremium = computed(() => Boolean(user.value.bond?.premium));
 
-const { data: billing } = await useFetch(`/api/billing/${user.value.bond?.subscriptionId}`, {
+const { data: billing } = await useFetch(`/api/billing/subscription/${user.value.bond?.subscriptionId}`, {
   immediate: isValidSubscription.value,
   default: () => ({
     subscription: null,
