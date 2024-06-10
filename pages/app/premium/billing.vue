@@ -45,12 +45,21 @@ const { data: billing } = await useFetch(`/api/billing/${user.value.bond?.subscr
             <p>{{ billing.subscription.current_billing_period.ends_at ? formatDate(new Date(billing.subscription.current_billing_period.ends_at).getTime(), true) : null }}</p>
           </div>
         </div>
-        <div v-if="user.bond?.premium && billing?.subscription?.management_urls" class="gap-2 d-flex flex-column flex-lg-row">
-          <template v-if="billing.subscription.scheduled_change?.action !== 'cancel' && billing.subscription.status !== 'canceled'">
-            <a v-if="billing.subscription.management_urls.update_payment_method" class="btn btn-lg btn-secondary w-100 rounded-pill" :href="billing.subscription.management_urls.update_payment_method">{{ t("update_payment_method") }}</a>
-            <a v-if="billing.subscription.management_urls.cancel" class="btn btn-lg btn-danger w-100 rounded-pill" :href="billing.subscription.management_urls.cancel">{{ t("subscription_cancel") }}</a>
-          </template>
-        </div>
+        <template v-if="user.bond?.premium">
+          <div v-if="billing?.subscription?.scheduled_change?.action === 'cancel'">
+            <a class="btn btn-lg btn-primary w-100 rounded-pill">{{ t("request_refund") }}</a>
+            <div class="d-flex align-items-center gap-1 justify-content-center">
+              <span><Icon name="solar:info-circle-bold" /></span>
+              <a href="/legal/refund" target="_blank">{{ t("refund_info") }}</a>
+            </div>
+          </div>
+          <div v-else-if="billing?.subscription?.management_urls" class="gap-2 d-flex flex-column flex-lg-row">
+            <template v-if="billing.subscription.status !== 'canceled'">
+              <a v-if="billing.subscription.management_urls.update_payment_method" class="btn btn-lg btn-secondary w-100 rounded-pill" :href="billing.subscription.management_urls.update_payment_method">{{ t("update_payment_method") }}</a>
+              <a v-if="billing.subscription.management_urls.cancel" class="btn btn-lg btn-danger w-100 rounded-pill" :href="billing.subscription.management_urls.cancel">{{ t("subscription_cancel") }}</a>
+            </template>
+          </div>
+        </template>
         <div v-else class="d-grid">
           <NuxtLink class="btn btn-lg btn-primary rounded-pill" to="/app/premium">{{ t("upgrade") }}</NuxtLink>
         </div>

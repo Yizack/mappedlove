@@ -336,5 +336,7 @@ export default {
   action: "Action",
   upgrade: "Upgrade",
   canceled: "Canceled",
-  until: "Until"
+  until: "Until",
+  request_refund: "Request a refund",
+  refund_info: "Read our Refund Policy before requesting a refund.",
 };
