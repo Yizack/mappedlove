@@ -83,6 +83,7 @@ export default {
   cant_delete_bonded_bond: "Can not delete a bonded bond",
   bond_code_required: "Bond code is required",
   invalid_bond_data: "Bond data is not valid",
+  partner_code_not_found: "Partner code not found",
   // Markers
   marker: "Marker",
   markers: "Markers",

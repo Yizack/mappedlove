@@ -26,6 +26,9 @@ export default eventHandler(async (event) : Promise<MappedLoveBond> => {
     bonded: 1, // true
     updatedAt: Date.now()
   }).where(and(eq(tables.bonds.code, body.data.code), eq(tables.bonds.partner1, partner))).returning().get();
+
+  if (!bond) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "partner_code_not_found" });
+
   await setUserSession(event, { user: { ...user, bond } });
   return bond;
 });
