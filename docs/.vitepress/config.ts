@@ -41,6 +41,7 @@ export default defineConfig({
             items: [
               { text: "😎 Create an account", link: "/using-the-app/sign-up" },
               { text: "🗝️ Change password", link: "/using-the-app/change-password" },
+              { text: "💟 Link our accounts", link: "/using-the-app/link-accounts" },
             ]
           },
         ]
