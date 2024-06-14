@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "7461420b-fce4-45e1-b1b9-5b3cd67bc4d3",
+  "id": "e347ab87-ba1d-48c2-a84c-a70da9f01210",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "bonds": {
@@ -441,6 +441,14 @@
           "notNull": true,
           "autoincrement": false,
           "default": 0
+        },
+        "active": {
+          "name": "active",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
         },
         "created_at": {
           "name": "created_at",
