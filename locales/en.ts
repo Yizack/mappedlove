@@ -74,7 +74,7 @@ export default {
   delete_anniversary: "Are you sure you want to delete your anniversary date?",
   public_bond: "Public bond",
   public_map: "Public map",
-  public_bond_info: "Enabling this option will allow any person to view your map, including all markers and stories. Anyone with the link can access, but only you and your partner will be able to edit it.",
+  public_bond_info: "Enabling this option will allow any person to view your map, including all markers and stories. Anyone with the link can access, but only you and your partner are able to make changes.",
   bond_preferences_update: "Your bond preferences have been updated",
   public_bond_confirm: "Are you sure you want to make your bond public?",
   share_bond_info: "Your bond is set to public. Share the link below with your friends or family!",
@@ -354,5 +354,6 @@ export default {
   canceled: "Canceled",
   until: "Until",
   request_refund: "Request a refund",
-  refund_info: "Read our Refund Policy before requesting a refund."
+  refund_info: "Read our Refund Policy before requesting a refund.",
+  invoice_not_found: "Invoice not found"
 };
