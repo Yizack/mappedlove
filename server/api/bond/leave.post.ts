@@ -7,6 +7,12 @@ export default eventHandler(async (event) => {
 
   const partnerNumber = (user.bond.partner1 as MappedLovePartner).id === user.id ? 1 : 2;
 
+  if (partnerNumber === 1 && user.bond.subscriptionId) {
+    const subscription = await getPaddleSubscription(event, user.bond.subscriptionId);
+    if (!subscription) throw createError({ statusCode: ErrorCode.INTERNAL_SERVER_ERROR, message: "error" });
+    if (subscription.status === "active") throw createError({ statusCode: ErrorCode.FORBIDDEN, message: "premium_owner_leaving" });
+  }
+
   const DB = useDb();
   const bond = await DB.update(tables.bonds).set({
     [`partner${partnerNumber}`]: null,

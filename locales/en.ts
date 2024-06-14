@@ -92,6 +92,7 @@ export default {
   partner_left_info2: "For now you still have access to all shared markers, stories and premium features within this bond except for the public map and yearly summary.",
   cancel_code_left: "I would like to delete everything instead",
   delete_bond: "Delete bond",
+  premium_owner_leaving: "Please cancel your premium subscription before leaving the bond",
   // Markers
   marker: "Marker",
   markers: "Markers",
