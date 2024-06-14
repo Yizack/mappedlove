@@ -22,6 +22,8 @@ const partner2 = computed(() => props.bond.partner2 as MappedLovePartner);
 const togetherFor = computed(() => getTogetherFor(coupleDate.value));
 const publicURL = computed(() => `${import.meta.dev ? SITE.dev : SITE.host}/map/${props.bond.code}`);
 
+const emit = defineEmits(["bond"]);
+
 const deleteDate = () => {
   if (!confirm(t("delete_anniversary"))) return;
   coupleDate.value = undefined;
@@ -41,6 +43,15 @@ const changePrivacy = async () => {
   }).catch(() => null);
   if (!bond) return;
   $toasts.add({ message: t("bond_preferences_update"), success: true });
+};
+
+const leaveBond = async () => {
+  if (!confirm(t("leave_bond_confirm"))) return;
+  const bond = await $fetch("/api/bond/leave", {
+    method: "POST",
+  }).catch(() => null);
+  if (!bond) return;
+  emit("bond", { bond: null, type: "leave" });
 };
 
 onMounted(() => {
@@ -150,7 +161,7 @@ watch(coupleDate, async (val: Date | undefined) => {
           </Transition>
         </div>
       </div>
-      <div class="mt-2 bg-body rounded-3 px-3 py-4 p-lg-4">
+      <div class="my-2 bg-body rounded-3 px-3 py-4 p-lg-4">
         <h3>{{ t("bond_preferences") }}</h3>
         <div class="form-check form-switch d-flex gap-2 align-items-center">
           <input v-model="isPublic" class="form-check-input" type="checkbox" role="switch" @change="changePrivacy">
@@ -162,6 +173,10 @@ watch(coupleDate, async (val: Date | undefined) => {
           <CopyText :text="publicURL" />
         </div>
       </div>
+      <a href="#" class="d-flex align-items-center justify-content-end gap-2" @click="leaveBond">
+        <Icon name="solar:exit-bold" />
+        {{ t("leave_bond") }}
+      </a>
     </div>
   </div>
 </template>

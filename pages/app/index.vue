@@ -19,6 +19,9 @@ const setBond = async (event: { bond: MappedLoveBond, type: string }) => {
     case "cancel":
       message = t("bond_cancelled");
       break;
+    case "leave":
+      message = t("bond_left");
+      break;
   }
   useNuxtApp().$toasts.add({ message, success: true });
   if (bondEvent.value === "joined") navigateTo("/app", { external: true, replace: true });
@@ -37,8 +40,8 @@ onBeforeMount(async () => {
   <main class="h-100">
     <Transition name="tab" mode="out-in">
       <BondStart v-if="!bond" @bond="setBond" />
-      <BondPending v-else-if="bond && !bond.partner2" :code="bond.code" @bond="setBond" />
-      <BondPage v-else-if="isBonded" :bond="bond" />
+      <BondPending v-else-if="!isBonded || (bond && !bond.partner2)" :bond="bond" @bond="setBond" />
+      <BondPage v-else-if="isBonded" :bond="bond" @bond="setBond" />
     </Transition>
   </main>
 </template>
