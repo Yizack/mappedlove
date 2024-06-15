@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "e347ab87-ba1d-48c2-a84c-a70da9f01210",
+  "id": "03e0aaff-a433-4304-a9f1-fd301d15dbf4",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "bonds": {
@@ -12,7 +12,7 @@
           "type": "integer",
           "primaryKey": true,
           "notNull": true,
-          "autoincrement": false
+          "autoincrement": true
         },
         "code": {
           "name": "code",
@@ -188,7 +188,7 @@
           "type": "integer",
           "primaryKey": true,
           "notNull": true,
-          "autoincrement": false
+          "autoincrement": true
         },
         "lat": {
           "name": "lat",
@@ -281,7 +281,7 @@
           "type": "integer",
           "primaryKey": true,
           "notNull": true,
-          "autoincrement": false
+          "autoincrement": true
         },
         "marker": {
           "name": "marker",
@@ -389,7 +389,7 @@
           "type": "integer",
           "primaryKey": true,
           "notNull": true,
-          "autoincrement": false
+          "autoincrement": true
         },
         "email": {
           "name": "email",
@@ -441,14 +441,6 @@
           "notNull": true,
           "autoincrement": false,
           "default": 0
-        },
-        "active": {
-          "name": "active",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false,
-          "default": 1
         },
         "created_at": {
           "name": "created_at",

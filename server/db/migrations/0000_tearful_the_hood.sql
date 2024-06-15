@@ -1,5 +1,5 @@
 CREATE TABLE `bonds` (
-	`id` integer PRIMARY KEY NOT NULL,
+	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`code` text NOT NULL,
 	`partner_1` integer,
 	`partner_2` integer,
@@ -23,7 +23,7 @@ CREATE TABLE `logins` (
 );
 --> statement-breakpoint
 CREATE TABLE `markers` (
-	`id` integer PRIMARY KEY NOT NULL,
+	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`lat` integer NOT NULL,
 	`lng` integer NOT NULL,
 	`group` integer NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE `markers` (
 );
 --> statement-breakpoint
 CREATE TABLE `stories` (
-	`id` integer PRIMARY KEY NOT NULL,
+	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`marker` integer NOT NULL,
 	`user` integer NOT NULL,
 	`description` text DEFAULT '' NOT NULL,
@@ -51,7 +51,7 @@ CREATE TABLE `stories` (
 );
 --> statement-breakpoint
 CREATE TABLE `users` (
-	`id` integer PRIMARY KEY NOT NULL,
+	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`email` text NOT NULL,
 	`password` text NOT NULL,
 	`name` text NOT NULL,
@@ -59,7 +59,6 @@ CREATE TABLE `users` (
 	`birth_date` integer,
 	`show_avatar` integer DEFAULT 0 NOT NULL,
 	`confirmed` integer DEFAULT 0 NOT NULL,
-	`active` integer DEFAULT 1 NOT NULL,
 	`created_at` integer NOT NULL,
 	`updated_at` integer NOT NULL
 );

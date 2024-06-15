@@ -9,6 +9,7 @@ const deleteUsers = (DB: BetterSQLite3Database) => {
 const insertUsers = (DB: BetterSQLite3Database, c: number) => {
   for (let i = 0; i < c; i++) {
     DB.insert(tables.users).values({
+      id: i + 1,
       email: `test${i+1}@test.test`,
       password: process.env.SEED as string,
       name: `Name${i+1}`,
