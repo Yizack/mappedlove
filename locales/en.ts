@@ -212,6 +212,11 @@ export default {
   avatar_deleted: "Avatar has been deleted",
   delete_avatar_confirm: "Are you sure you want to delete your avatar?",
   invalid_user_data: "User data is not valid",
+  danger_zone: "Danger zone",
+  delete_account: "Delete account",
+  delete_account_info: "Deleting your account will permanently remove all your data. Be careful! This action cannot be undone.",
+  delete_account_confirm: "Are you sure you want to delete your account?",
+  premium_deleting: "Please cancel your premium subscription before deleting your account",
   // Recovery
   recovery_title: "Getting back into your account",
   recovery_description: "Tell us some information about your account.",

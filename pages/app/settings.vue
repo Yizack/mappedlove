@@ -3,7 +3,7 @@ import VueDatePicker from "@vuepic/vue-datepicker";
 
 definePageMeta({ layout: "app", middleware: "session" });
 
-const { user: session, fetch: sessionFetch } = useUserSession();
+const { user: session, fetch: sessionFetch, clear } = useUserSession();
 const { $colorMode, $countries, $toasts } = useNuxtApp();
 
 const dark = ref($colorMode.preference === "dark");
@@ -20,6 +20,7 @@ const user = ref({
 
 const submit = ref({ loading: false, pass_loading: false, error: false });
 const datePickerFocus = ref(false);
+const dangerZone = ref(false);
 
 Object.assign(user.value, session.value);
 user.value.showAvatar = Boolean(user.value.showAvatar);
@@ -143,6 +144,18 @@ const deleteAvatar = async () => {
   await sessionFetch();
   user.value.showAvatar = false;
   $toasts.add({ message: t("avatar_deleted"), success: true });
+};
+
+const deleteAccount = async () => {
+  if (!confirm(t("delete_account_confirm"))) return;
+  submit.value.loading = true;
+  const account = await $fetch("/api/account", {
+    method: "DELETE",
+  }).catch(() => null);
+  submit.value.loading = false;
+  if (!account) return;
+  await clear();
+  navigateTo("/");
 };
 </script>
 
@@ -268,6 +281,27 @@ const deleteAvatar = async () => {
             </div>
           </form>
         </div>
+        <Transition name="tab" mode="out-in">
+          <div v-if="!dangerZone" class="bg-body rounded-3 px-3 py-4 p-lg-4 position-relative mb-2" role="button" @click="dangerZone = !dangerZone">
+            <div class="position-relative">
+              <h5 class="mb-0 text-center">{{ t("danger_zone") }}</h5>
+              <Icon name="solar:alt-arrow-right-outline" size="2rem" class="position-absolute end-0 translate-middle-y top-50" />
+            </div>
+          </div>
+          <div v-else class="bg-body rounded-3 px-3 py-4 p-lg-4">
+            <h3 class="mb-4">{{ t("danger_zone") }}</h3>
+            <h5>{{ t("delete_account") }}</h5>
+            <p>{{ t("delete_account_info") }}</p>
+            <div class="d-grid">
+              <button class="btn btn-danger btn-lg rounded-pill" @click="deleteAccount">
+                <Transition name="tab" mode="out-in">
+                  <SpinnerCircle v-if="submit.loading" class="text-white" />
+                  <span v-else>{{ t("delete_account") }}</span>
+                </Transition>
+              </button>
+            </div>
+          </div>
+        </Transition>
       </div>
     </div>
   </main>
