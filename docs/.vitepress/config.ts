@@ -1,11 +1,13 @@
 import { defineConfig } from "vitepress";
+import { SITE } from "./../../utils/site";
 
 // refer https://vitepress.dev/reference/site-config for details
 export default defineConfig({
   outDir: "../public/docs",
   base: "/docs/",
   lang: "en-US",
-  title: "MappedLove Support",
+  title:  `${SITE.name} Support`,
+  titleTemplate: SITE.name,
   description: "Find all the information you need about MappedLove",
   cleanUrls: true,
   lastUpdated: true,

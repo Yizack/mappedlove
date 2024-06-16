@@ -1,3 +1,3 @@
-# MappedLove
+# Support
 
 More info coming soon
