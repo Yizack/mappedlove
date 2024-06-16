@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "03e0aaff-a433-4304-a9f1-fd301d15dbf4",
+  "id": "310d6a78-6873-4843-94c3-64642027ec77",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "bonds": {
@@ -302,8 +302,7 @@
           "type": "text",
           "primaryKey": false,
           "notNull": true,
-          "autoincrement": false,
-          "default": "''"
+          "autoincrement": false
         },
         "year": {
           "name": "year",
@@ -355,19 +354,6 @@
           "name": "stories_user_bonds_id_fk",
           "tableFrom": "stories",
           "tableTo": "bonds",
-          "columnsFrom": [
-            "user"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        },
-        "stories_user_users_id_fk": {
-          "name": "stories_user_users_id_fk",
-          "tableFrom": "stories",
-          "tableTo": "users",
           "columnsFrom": [
             "user"
           ],

@@ -40,14 +40,13 @@ CREATE TABLE `stories` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`marker` integer NOT NULL,
 	`user` integer NOT NULL,
-	`description` text DEFAULT '' NOT NULL,
+	`description` text NOT NULL,
 	`year` integer DEFAULT 0 NOT NULL,
 	`month` integer DEFAULT 0 NOT NULL,
 	`created_at` integer NOT NULL,
 	`updated_at` integer NOT NULL,
 	FOREIGN KEY (`marker`) REFERENCES `markers`(`id`) ON UPDATE no action ON DELETE cascade,
-	FOREIGN KEY (`user`) REFERENCES `bonds`(`id`) ON UPDATE no action ON DELETE cascade,
-	FOREIGN KEY (`user`) REFERENCES `users`(`id`) ON UPDATE no action ON DELETE cascade
+	FOREIGN KEY (`user`) REFERENCES `bonds`(`id`) ON UPDATE no action ON DELETE cascade
 );
 --> statement-breakpoint
 CREATE TABLE `users` (
