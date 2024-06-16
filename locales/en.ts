@@ -93,6 +93,7 @@ export default {
   cancel_code_left: "I would like to delete everything instead",
   delete_bond: "Delete bond",
   premium_owner_leaving: "Please cancel your premium subscription before leaving the bond",
+  need_bond: "You need a bond to access this page",
   // Markers
   marker: "Marker",
   markers: "Markers",
