@@ -40,7 +40,7 @@ CREATE TABLE `stories` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`marker` integer NOT NULL,
 	`user` integer NOT NULL,
-	`description` text NOT NULL,
+	`description` text,
 	`year` integer DEFAULT 0 NOT NULL,
 	`month` integer DEFAULT 0 NOT NULL,
 	`created_at` integer NOT NULL,

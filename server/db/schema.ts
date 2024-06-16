@@ -46,7 +46,7 @@ export const stories = sqliteTable("stories", {
   marker: integer("marker").notNull().references(() => markers.id, { onDelete: "cascade" }),
   bond: integer("user").notNull().references(() => bonds.id, { onDelete: "cascade" }),
   user: integer("user").notNull(),
-  description: text("description").notNull(),
+  description: text("description"),
   year: integer("year").notNull().default(0),
   month: integer("month").notNull().default(0),
   createdAt: integer("created_at").notNull(),
