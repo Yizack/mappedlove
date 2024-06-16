@@ -1,5 +1,5 @@
 import type { H3Event, HTTPHeaderName } from "h3";
-import { Webhooks, type ITransactionResponse, type ISubscriptionResponse, type TransactionOrigin, type TransactionInvoicePDF } from "@paddle/paddle-node-sdk";
+import { Webhooks, type ITransactionResponse, type ISubscriptionResponse, type TransactionOrigin, type TransactionInvoicePDF, type IAdjustmentResponse } from "@paddle/paddle-node-sdk";
 
 const baseAPI = import.meta.dev ? "https://sandbox-api.paddle.com" : "https://api.paddle.com";
 
@@ -70,4 +70,18 @@ export const getPaddleTransactionInvoice = async (event: H3Event, transactionId:
   if (!invoice) return null;
 
   return invoice.data;
+};
+
+export const getPaddleAdjustments = async (event: H3Event, subscriptionId: string) => {
+  const { secret } = useRuntimeConfig(event).paddle;
+
+  const adjustments = await $fetch<{ data: IAdjustmentResponse[] }>(`${baseAPI}/adjustments?subscription_id=${subscriptionId}`, {
+    headers: {
+      Authorization: `Bearer ${secret}`
+    }
+  }).catch(() => null);
+
+  if (!adjustments) return null;
+
+  return adjustments.data;
 };

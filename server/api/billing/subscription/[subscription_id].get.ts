@@ -3,6 +3,7 @@ export default defineEventHandler(async (event) => {
   const { subscription_id } = getRouterParams(event);
   const subscription = await getPaddleSubscription(event, subscription_id);
   const transactions = await getPaddleTransactions(event, subscription_id);
+  const adjustments = await getPaddleAdjustments(event, subscription_id);
   const isManageable = (subscription?.custom_data as Record<string, unknown>)?.userId === user.id;
 
   return {
@@ -28,6 +29,16 @@ export default defineEventHandler(async (event) => {
         }
       },
       checkout: isManageable ? transaction.checkout : null
+    })) : [],
+    adjustments: adjustments ? adjustments.map((adjustment) => ({
+      reason: adjustment.reason,
+      invoice_number: transactions?.find((transaction) => transaction.id === adjustment.transaction_id)?.invoice_number,
+      created_at: adjustment.created_at,
+      status: adjustment.status,
+      totals: {
+        total: adjustment.totals?.total,
+        currency_code: adjustment.totals?.currency_code
+      }
     })) : []
   };
 });

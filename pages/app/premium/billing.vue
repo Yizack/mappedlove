@@ -9,7 +9,8 @@ const { data: billing } = await useFetch(`/api/billing/subscription/${user.value
   immediate: isValidSubscription.value,
   default: () => ({
     subscription: null,
-    transactions: []
+    transactions: [],
+    adjustments: []
   })
 });
 
@@ -20,6 +21,27 @@ if (!billing.value) {
     fatal: true
   });
 }
+
+const loading = ref(false);
+
+const { form: refundForm } = useFormState({
+  reason: ""
+});
+
+const requestRefund = async () => {
+  if (!confirm(t("refund_confirm"))) return;
+  loading.value = true;
+  const res = await $fetch("/api/billing/refund", {
+    method: "POST",
+    body: refundForm.value
+  }).catch(() => null);
+  loading.value = false;
+  if (!res) return;
+  const { $toasts, $bootstrap } = useNuxtApp();
+  $toasts.add({ message: t("refund_requested"), success: true });
+  $bootstrap.hideModal("refund");
+  refundForm.value.reason = "";
+};
 
 useSeo({
   title: `${t("billing")} | ${SITE.name}`,
@@ -76,7 +98,7 @@ useSeo({
             <p class="mb-0"><strong>{{ t("billing_manageable") }}</strong></p>
           </div>
           <div v-else-if="billing.subscription?.scheduled_change?.action === 'cancel'" class="text-center">
-            <a class="btn btn-lg btn-primary w-100 rounded-pill">{{ t("request_refund") }}</a>
+            <button class="btn btn-lg btn-primary w-100 rounded-pill" @click="useModalController('refund');">{{ t("request_refund") }}</button>
             <a href="/legal/refund" target="_blank" class="small">{{ t("refund_info") }}</a>
           </div>
           <div v-else-if="billing.subscription?.management_urls" class="d-flex flex-column flex-lg-row gap-2">
@@ -133,6 +155,57 @@ useSeo({
           <p class="m-0 text-primary"><i>{{ t("transactions_not_found") }}</i></p>
         </div>
       </div>
+      <div v-if="billing.subscription?.scheduled_change?.action === 'cancel' || billing.subscription?.status === 'canceled'" class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
+        <h3>{{ t("adjustments") }}</h3>
+        <p>{{ t("adjustments_info") }}</p>
+        <div v-if="billing.adjustments.length" class="table-responsive border rounded">
+          <table class="table table-hover m-0">
+            <thead>
+              <tr>
+                <th>{{ t("reason") }}</th>
+                <th>{{ t("reference") }}</th>
+                <th>{{ t("date") }}</th>
+                <th>{{ t("status") }}</th>
+                <th>{{ t("amount") }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(adjustment, i) in billing.adjustments" :key="i">
+                <td>{{ adjustment.reason }}</td>
+                <td>{{ adjustment.invoice_number }}</td>
+                <td>{{ formatDate(new Date(adjustment.created_at).getTime(), true) }}</td>
+                <td>
+                  <span :class="`badge border rounded-pill ${adjustment.status === 'approved' ? 'bg-success-subtle text-success border-success' : 'bg-secondary text-primary border-primary'}`">{{ t(adjustment.status) }}</span>
+                </td>
+                <td>
+                  <span v-if="adjustment.totals.total">{{ paddleToCurrency(Number(adjustment.totals.total), adjustment.totals.currency_code) }}</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div v-else class="text-center">
+          <p class="m-0 text-primary"><i>{{ t("adjustments_not_found") }}</i></p>
+        </div>
+      </div>
     </div>
+    <ModalController v-if="billing.subscription?.scheduled_change?.action === 'cancel' || billing.subscription?.status === 'canceled'" id="refund" :title="t('request_refund')">
+      <form @submit.prevent="requestRefund">
+        <div class="d-flex align-items-center gap-2 mb-2">
+          <Icon name="solar:info-circle-linear" class="text-primary flex-shrink-0" />
+          <p class="m-0">{{ t("refund_info") }}</p>
+        </div>
+        <div class="form-floating mb-2">
+          <textarea v-model.trim="refundForm.reason" type="text" class="form-control" :placeholder="t('reason')" :style="{height: '100px'}" required />
+          <label>{{ t("reason") }} <span class="text-danger">*</span></label>
+        </div>
+        <button type="submit" class="btn btn-primary w-100 rounded-pill">
+          <Transition name="tab" mode="out-in">
+            <SpinnerCircle v-if="loading" class="text-white" />
+            <span v-else>{{ t("request") }}</span>
+          </Transition>
+        </button>
+      </form>
+    </ModalController>
   </div>
 </template>
