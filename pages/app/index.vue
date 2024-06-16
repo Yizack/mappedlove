@@ -2,11 +2,11 @@
 definePageMeta({ layout: "app", middleware: "session" });
 const { user, fetch: sessionFetch } = useUserSession();
 
-const bond = ref(user.value?.bond);
+const bond = computed(() => user.value.bond);
 
 const bondEvent = ref("");
 const setBond = async (event: { bond: MappedLoveBond, type: string }) => {
-  bond.value = event.bond;
+  user.value.bond = event.bond;
   bondEvent.value = event.type;
   let message = "";
   switch (bondEvent.value) {
