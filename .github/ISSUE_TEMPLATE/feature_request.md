@@ -1,7 +1,7 @@
 ---
 name: Feature request
 about: Suggest an idea for this project
-title: "[FEATURE]"
+title: "[FEATURE] I want to see ..."
 labels: enhancement
 assignees: Yizack
 
