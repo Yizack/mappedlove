@@ -5,10 +5,8 @@ const logOut = () => {
   navigateTo("/", { replace: true });
 };
 
-const updated = ref(user.value.updatedAt);
-
 watch(() => user.value, () => {
-  updated.value = Date.now();
+  user.value.updatedAt = Date.now();
 });
 </script>
 

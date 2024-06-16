@@ -19,7 +19,7 @@ export default eventHandler(async (event) => {
 
     const session = { user: { ...user, ...update } };
     await setUserSession(event, session);
-    return session;
+    return session.user;
   }
   catch (e) {
     console.warn(e);

@@ -3,11 +3,11 @@ import VueDatePicker from "@vuepic/vue-datepicker";
 
 definePageMeta({ layout: "app", middleware: "session" });
 
-const { user: session, fetch: sessionFetch, clear } = useUserSession();
+const { user, clear } = useUserSession();
 const { $colorMode, $countries, $toasts } = useNuxtApp();
 
 const dark = ref($colorMode.preference === "dark");
-const user = ref({
+const userForm = ref({
   name: "",
   email: "",
   country: null as string | null,
@@ -22,12 +22,12 @@ const submit = ref({ loading: false, pass_loading: false, error: false });
 const datePickerFocus = ref(false);
 const dangerZone = ref(false);
 
-Object.assign(user.value, session.value);
-user.value.showAvatar = Boolean(user.value.showAvatar);
+Object.assign(userForm.value, user.value);
+userForm.value.showAvatar = Boolean(user.value.showAvatar);
 
 const country = ref({
-  code: user.value.country,
-  search: $countries.getName(user.value.country),
+  code: userForm.value.country,
+  search: $countries.getName(userForm.value.country),
   focus: false,
 });
 
@@ -46,14 +46,14 @@ const removeCountry = () => {
   country.value.focus = false;
   country.value.search = "";
   country.value.code = null;
-  user.value.country = null;
+  userForm.value.country = null;
 };
 
 const selectCountry = (c: { name: string, code: string }) => {
   country.value.focus = false;
   country.value.search = c.name;
   country.value.code = c.code;
-  user.value.country = c.code;
+  userForm.value.country = c.code;
 };
 
 const saveAccount = async () => {
@@ -61,14 +61,17 @@ const saveAccount = async () => {
   const account = await $fetch("/api/account", {
     method: "PATCH",
     body: {
-      name: user.value.name,
-      country: user.value.country,
-      birthDate: user.value.birthDate,
+      name: userForm.value.name,
+      country: userForm.value.country,
+      birthDate: userForm.value.birthDate,
     },
   }).catch(() => null);
   submit.value.loading = false;
   if (!account) return;
-  await sessionFetch();
+  user.value.name = account.name;
+  user.value.country = account.country;
+  user.value.birthDate = account.birthDate;
+  user.value.updatedAt = account.updatedAt;
   $toasts.add({ message: t("account_saved"), success: true });
 };
 
@@ -76,11 +79,11 @@ const showAvatar = async () => {
   const account = await $fetch("/api/account", {
     method: "PATCH",
     body: {
-      showAvatar: user.value.showAvatar,
+      showAvatar: userForm.value.showAvatar,
     },
   }).catch(() => null);
   if (!account) return;
-  await sessionFetch();
+  user.value.showAvatar = account.showAvatar;
   $toasts.add({ message: t("account_saved"), success: true });
 };
 
@@ -89,13 +92,13 @@ const changeColorMode = () => {
 };
 
 const changePassword = async () => {
-  if (!(isPasswordValid(user.value.current_password) && isPasswordCheckValid(user.value.new_password, user.value.confirm_password))) return;
+  if (!(isPasswordValid(userForm.value.current_password) && isPasswordCheckValid(userForm.value.new_password, userForm.value.confirm_password))) return;
   submit.value.pass_loading = true;
   const account = await $fetch("/api/account/password", {
     method: "PATCH",
     body: {
-      current_password: user.value.current_password,
-      new_password: user.value.new_password,
+      current_password: userForm.value.current_password,
+      new_password: userForm.value.new_password,
     },
   }).catch(() => null);
   submit.value.pass_loading = false;
@@ -115,11 +118,13 @@ const uploadAvatar = async (event: Event) => {
     fileChosen.value = false;
     return;
   }
+
   const reader = new FileReader();
   reader.readAsDataURL(file.value);
   reader.onload = () => {
     imageRead.value = reader.result || "";
     fileChosen.value = true;
+    target.value = "";
   };
 
   if (!file.value) return;
@@ -129,9 +134,13 @@ const uploadAvatar = async (event: Event) => {
     method: "POST",
     body: formData,
   }).catch(() => null);
-  if (!account) return;
-  await sessionFetch();
-  user.value.showAvatar = true;
+  if (!account) {
+    imageRead.value = "";
+    fileChosen.value = false;
+    return;
+  }
+  user.value.showAvatar = 1;
+  user.value.updatedAt = account.updatedAt;
   $toasts.add({ message: t("avatar_saved"), success: true });
 };
 
@@ -141,8 +150,10 @@ const deleteAvatar = async () => {
     method: "DELETE",
   }).catch(() => null);
   if (!account) return;
-  await sessionFetch();
-  user.value.showAvatar = false;
+  user.value.showAvatar = 0;
+  fileChosen.value = false;
+  user.value.updatedAt = account.updatedAt;
+  imageRead.value = "";
   $toasts.add({ message: t("avatar_deleted"), success: true });
 };
 
@@ -180,16 +191,16 @@ useSeo({
                     <Icon name="solar:gallery-add-outline" size="2.5rem" />
                   </div>
                 </div>
-                <img v-if="user.showAvatar" :src="`${getAvatarImage(session.id, session.hash)}?updated=${session.updatedAt}`" width="175" height="175" class="img-fluid w-100" :alt="user.name">
-                <img v-else-if="!fileChosen" :src="getDefaultAvatar(session.id)" width="175" height="175" class="img-fluid w-100" :alt="user.name">
-                <img v-else-if="imageRead" :src="imageRead.toString()" width="175" height="175" class="img-fluid w-100" :alt="user.name">
+                <img v-if="imageRead" :src="imageRead.toString()" width="175" height="175" class="img-fluid w-100" :alt="userForm.name">
+                <img v-else-if="user.showAvatar" :src="`${getAvatarImage(user.id, user.hash)}?updated=${user.updatedAt}`" width="175" height="175" class="img-fluid w-100" :alt="user.name">
+                <img v-else-if="!fileChosen" :src="getDefaultAvatar(user.id)" width="175" height="175" class="img-fluid w-100" :alt="userForm.name">
               </label>
-              <div v-if="fileChosen || user.showAvatar" class="text-center">
+              <div v-if="user.showAvatar" class="text-center">
                 <a role="button" class="text-primary" @click="deleteAvatar">{{ t("delete_avatar") }}</a>
               </div>
             </div>
             <div class="form-floating mb-2">
-              <input v-model="user.name" type="text" class="form-control" :placeholder="t('name')" required>
+              <input v-model="userForm.name" type="text" class="form-control" :placeholder="t('name')" required>
               <label class="d-flex align-items-center gap-1">
                 <Icon name="solar:user-circle-linear" />
                 <span>{{ t("name") }}</span>
@@ -205,7 +216,7 @@ useSeo({
             <div class="position-relative mb-2">
               <div class="input-group">
                 <span class="input-group-text">
-                  <Twemoji v-if="country.code" :emoji="$countries.getEmoji(user.country)" size="2rem" />
+                  <Twemoji v-if="country.code" :emoji="$countries.getEmoji(userForm.country)" size="2rem" />
                   <Icon v-else name="solar:magnifer-linear" size="1.5em" />
                 </span>
                 <div class="form-floating position-relative">
@@ -228,10 +239,10 @@ useSeo({
               </div>
             </div>
             <ClientOnly>
-              <VueDatePicker v-model="user.birthDate" :format="'yyyy-MM-dd'" :enable-time-picker="false" :locale="t('lang_code')" model-type="timestamp" @open="datePickerFocus = true" @blur="datePickerFocus = false">
+              <VueDatePicker v-model="userForm.birthDate" :format="'yyyy-MM-dd'" :enable-time-picker="false" :locale="t('lang_code')" model-type="timestamp" @open="datePickerFocus = true" @blur="datePickerFocus = false">
                 <template #trigger>
                   <div class="form-floating mb-2">
-                    <input ref="datepicker" class="form-control bg-body" :class="{ 'focus': datePickerFocus }" :value="user.birthDate ? formatDate(user.birthDate) : ''" readonly>
+                    <input ref="datepicker" class="form-control bg-body" :class="{ 'focus': datePickerFocus }" :value="userForm.birthDate ? formatDate(userForm.birthDate) : ''" readonly>
                     <label class="d-flex align-items-center gap-1">
                       <Icon name="solar:confetti-minimalistic-line-duotone" />
                       <span>{{ t("birth_date") }}</span>
@@ -253,7 +264,7 @@ useSeo({
         <div class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
           <h3 class="mb-4">{{ t("preferences") }}</h3>
           <div class="form-check form-switch d-flex gap-2 align-items-center">
-            <input v-model="user.showAvatar" class="form-check-input" type="checkbox" role="switch" @change="showAvatar">
+            <input v-model="userForm.showAvatar" class="form-check-input" type="checkbox" role="switch" @change="showAvatar">
             <label class="form-check-label">{{ t("show_avatar") }}</label>
           </div>
           <div class="form-check form-switch d-flex gap-2 align-items-center">
@@ -264,17 +275,17 @@ useSeo({
         <div class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
           <form @submit.prevent="changePassword">
             <h3 class="mb-4">{{ t("change_password") }}</h3>
-            <input :value="user.email" type="text" autocomplete="email" hidden>
+            <input :value="userForm.email" type="text" autocomplete="email" hidden>
             <div class="form-floating mb-2">
-              <input v-model="user.current_password" type="password" class="form-control" :placeholder="t('current_password')" autocomplete="current-password">
+              <input v-model="userForm.current_password" type="password" class="form-control" :placeholder="t('current_password')" autocomplete="current-password">
               <label>{{ t("current_password") }}</label>
             </div>
             <div class="form-floating mb-2">
-              <input v-model="user.new_password" type="password" class="form-control" :class="`form-control ${isPasswordValid(user.new_password) ? 'is-valid' : user.new_password ? 'is-invalid' : ''}`" :placeholder="t('new_password')" autocomplete="new-password">
+              <input v-model="userForm.new_password" type="password" class="form-control" :class="`form-control ${isPasswordValid(userForm.new_password) ? 'is-valid' : userForm.new_password ? 'is-invalid' : ''}`" :placeholder="t('new_password')" autocomplete="new-password">
               <label>{{ t("new_password") }}</label>
             </div>
             <div class="form-floating mb-2">
-              <input v-model="user.confirm_password" type="password" :class="`form-control ${isPasswordCheckValid(user.new_password, user.confirm_password) ? 'is-valid' : user.confirm_password ? 'is-invalid' : ''}`" :placeholder="t('password_confirm')" autocomplete="new-password">
+              <input v-model="userForm.confirm_password" type="password" :class="`form-control ${isPasswordCheckValid(userForm.new_password, userForm.confirm_password) ? 'is-valid' : userForm.confirm_password ? 'is-invalid' : ''}`" :placeholder="t('password_confirm')" autocomplete="new-password">
               <label>{{ t("password_confirm") }}</label>
             </div>
             <div class="d-grid">
