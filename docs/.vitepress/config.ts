@@ -19,9 +19,7 @@ export default defineConfig({
     }
   },
   themeConfig: {
-    nav: [
-
-    ],
+    nav: [],
     sidebar: [
       {
         text: "Troubleshooting",
@@ -30,7 +28,7 @@ export default defineConfig({
           {
             text: "Technical Support",
             items: [
-              { text: "🚩 I want to report a bug", link: "/troubleshooting/bug-report" },
+              { text: "🚩 I want to report a bug", link: "/support/bug-report" },
             ]
           }
         ]
@@ -42,11 +40,19 @@ export default defineConfig({
           {
             text: "Account",
             items: [
-              { text: "😎 Create an account", link: "/using-the-app/sign-up" },
-              { text: "🗝️ Change password", link: "/using-the-app/change-password" },
-              { text: "💟 Link our accounts", link: "/using-the-app/link-accounts" },
+              { text: "😎 Create an account", link: "/account/sign-up" },
+              { text: "🗝️ Change password", link: "/account/change-password" },
+              { text: "💟 Link our accounts", link: "/account/link-accounts" }
             ]
           },
+          {
+            text: "Mapping",
+            items: [
+              { text: "📍 Add markers", link: "/mapping/add-markers" },
+              { text: "📝 Add stories", link: "/mapping/add-stories" },
+              { text: "🗺️ Share our map", link: "/mapping/share-our-map" }
+            ]
+          }
         ]
       }
     ],

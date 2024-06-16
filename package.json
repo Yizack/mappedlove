@@ -27,7 +27,7 @@
     "lint:stylelint": "stylelint \"**/*.css\" --fix --config .config/stylelint.json",
     "cf:dev": "npm run build && wrangler pages dev dist",
     "docs:dev": "vitepress dev docs",
-    "docs:build": "git fetch --unshallow && vitepress build docs",
+    "docs:build": "(git fetch --unshallow || git fetch --all) && vitepress build docs",
     "docs:serve": "vitepress serve docs"
   },
   "devDependencies": {
