@@ -36,6 +36,13 @@ const signUp = async () => {
   }
   needsConfirm.value = true;
 };
+
+useSeo({
+  title: `${t("signup")} | ${SITE.name}`,
+  name: t("signup"),
+  description: t("seo_signup_description"),
+  path: "/signup",
+});
 </script>
 
 <template>

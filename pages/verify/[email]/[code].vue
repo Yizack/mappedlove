@@ -44,6 +44,12 @@ onMounted(async () => {
   await verifyEmail();
   loaded.value = true;
 });
+
+useSeo({
+  title: `${t("verify_email")} | ${SITE.name}`,
+  path: `/verify/${emailCode.value}/${code.value}`,
+  robots: false
+});
 </script>
 
 <template>
@@ -52,7 +58,7 @@ onMounted(async () => {
       <Transition name="tab" mode="out-in">
         <div v-if="!loaded">
           <SpinnerCircle />
-          <h3 class="mb-0 mt-1">{{ t("verifying_email") }}...</h3>
+          <h3 class="mb-0 mt-1">{{ t("verifying_email") }}</h3>
         </div>
         <div v-else-if="verified">
           <Icon name="solar:check-circle-bold" class="text-success" size="5rem" />

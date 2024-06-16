@@ -62,6 +62,12 @@ onMounted(async () => {
   });
   initialized.value = true;
 });
+
+useSeo({
+  title: `${t("subscribe")} | ${SITE.name}`,
+  path: "/app/premium/subscribe",
+  robots: false
+});
 </script>
 
 <template>

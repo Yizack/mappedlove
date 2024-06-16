@@ -14,6 +14,12 @@ onMounted(() => {
 
   $bootstrap.hideModalEscEvent();
 });
+
+useSeo({
+  title: SITE.name,
+  name: SITE.name,
+  description: t("seo_home_description")
+});
 </script>
 
 <template>

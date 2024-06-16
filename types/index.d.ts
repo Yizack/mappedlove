@@ -91,4 +91,15 @@ declare global {
   }
   type ErrorCode = typeof ErrorCode;
   type Quota = typeof Quota;
+  interface SeoOptions {
+    title?: string;
+    description?: string;
+    path?: string;
+    name?: string;
+    image?: string;
+    imageWidth?: number;
+    imageHeight?: number;
+    imageAlt?: string;
+    robots?: boolean;
+  };
 }

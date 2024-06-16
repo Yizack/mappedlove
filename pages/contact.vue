@@ -1,5 +1,12 @@
 <script setup lang="ts">
 definePageMeta({ layout: "utils" });
+
+useSeo({
+  title: `${t("contact")} | ${SITE.name}`,
+  name: t("contact"),
+  description: t("seo_contact_description"),
+  path: "/contact",
+});
 </script>
 
 <template>

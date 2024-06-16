@@ -6,6 +6,13 @@ const cookieManager = (e: Event) => {
   e.preventDefault();
   isModalActive.value = true;
 };
+
+useSeo({
+  title: `${t("cookie_policy")} | ${SITE.name}`,
+  name: t("cookie_policy"),
+  description: t("seo_cookie_description"),
+  path: "/legal/cookie",
+});
 </script>
 
 <template>

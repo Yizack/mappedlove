@@ -1,5 +1,12 @@
 <script setup lang="ts">
 definePageMeta({ layout: "utils" });
+
+useSeo({
+  title: `${t("refund_policy")} | ${SITE.name}`,
+  name: t("refund_policy"),
+  description: t("seo_refund_description"),
+  path: "/legal/refund",
+});
 </script>
 
 <template>

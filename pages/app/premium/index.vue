@@ -1,6 +1,12 @@
 <script setup lang="ts">
 definePageMeta({ layout: "app", middleware: "session" });
 const { user } = useUserSession();
+
+useSeo({
+  title: `${t("premium")} | ${SITE.name}`,
+  path: "/app/premium",
+  robots: false
+});
 </script>
 
 <template>

@@ -157,6 +157,12 @@ const deleteAccount = async () => {
   await clear();
   navigateTo("/");
 };
+
+useSeo({
+  title: `${t("settings")} | ${SITE.name}`,
+  path: "/app/settings",
+  robots: false
+});
 </script>
 
 <template>

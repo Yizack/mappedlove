@@ -39,6 +39,12 @@ const resetPassword = async () => {
   $toasts.add({ message: t("reset_success"), success: true });
   formReset();
 };
+
+useSeo({
+  title: `${t("account_recovery")} | ${SITE.name}`,
+  path: `/recovery/${emailCode.value}/${code.value}`,
+  robots: false
+});
 </script>
 
 <template>

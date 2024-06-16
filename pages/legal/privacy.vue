@@ -1,5 +1,12 @@
 <script setup lang="ts">
 definePageMeta({ layout: "utils" });
+
+useSeo({
+  title: `${t("privacy_policy")} | ${SITE.name}`,
+  name: t("privacy_policy"),
+  description: t("seo_privacy_description"),
+  path: "/legal/privacy",
+});
 </script>
 
 <template>

@@ -108,6 +108,13 @@ onBeforeUnmount(() => {
   mapInfo.value.removeEventListener("hide.bs.offcanvas", () => {}, false);
   $bootstrap.hideOffcanvas(mapInfo.value);
 });
+
+useSeo({
+  title: `${partner1.value.name} & ${partner1.value.name} | ${SITE.name}`,
+  name: `${partner1.value.name} & ${partner1.value.name}`,
+  description: t("seo_map_description"),
+  path: `/map/${params.code}`,
+});
 </script>
 
 <template>

@@ -6,6 +6,7 @@ export const SITE = {
   cdn: "https://cdn.mappedlove.com",
   dev: "http://localhost:5173",
   donate: "https://ko-fi.com/yizack",
+  cover: "https://mappedlove.com/images/promo-cover.jpg",
   github: {
     author: "Yizack",
     repo: "https://github.com/Yizack/mappedlove"
@@ -13,7 +14,7 @@ export const SITE = {
   pages: {
     main: [
       { name: "home", path: "/" },
-      { name: "about", path: "/about"},
+      { name: "about_us", path: "/about"},
       { name: "try", path: "/login", button: true }
     ],
     app: [

@@ -34,6 +34,12 @@ const isBonded = computed((): boolean => {
 onBeforeMount(async () => {
   await sessionFetch();
 });
+
+useSeo({
+  title: `${t("bond")} | ${SITE.name}`,
+  path: "/app",
+  robots: false
+});
 </script>
 
 <template>

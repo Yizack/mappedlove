@@ -12,7 +12,7 @@ export default {
   strip3_p1: "Connect your accounts by inviting your partner to join in your bond and start mapping your life moments together.",
   // Pages
   home: "Home",
-  about: "About",
+  about_us: "About us",
   try: "Try it",
   motto: "Mapping your love story",
   go_home: "Go back home",
@@ -237,10 +237,8 @@ export default {
   invalid_recovery_data: "Recovery data is not valid",
   email_required: "Email is required",
   // Footer
-  about_us: "About us",
   guides: "Guides",
   pricing: "Pricing",
-  faqs: "FAQs",
   help: "Help",
   contact: "Contact",
   terms_of_use: "Terms of use",
@@ -256,6 +254,7 @@ export default {
   pull_requests: "Pull requests",
   translate_help: "Help us translate",
   account_data: "Account data",
+  legal: "Legal",
   // Subscription
   sign_up_free: "Sign up for free",
   check_file_size: "Check file size or try again later.",
@@ -360,5 +359,18 @@ export default {
   until: "Until",
   request_refund: "Request a refund",
   refund_info: "Read our Refund Policy before requesting a refund.",
-  invoice_not_found: "Invoice not found"
+  invoice_not_found: "Invoice not found",
+  // SEO
+  seo_home_description: "Web app made for couples. Mark the places you have visited together upload images and preserve your special moments forever.",
+  seo_login_description: "Sign in to your account and take the next step with your partner.",
+  seo_signup_description: "Create your account, login and bond with your partner to start mapping your love stories.",
+  seo_pricing_description: "Upgrade your bond to premium and enjoy unlimited markers, larger image uploads, yearly summary and more.",
+  seo_contact_description: "Contact us for any questions, feedback or support.",
+  seo_about_description: "Learn more about us.",
+  seo_recovery_description: "Recover your account by resetting your password.",
+  seo_map_description: "Our public map, markers, stories and memories.",
+  seo_terms_description: "Read our terms of use.",
+  seo_refund_description: "Read our refund policy.",
+  seo_cookie_description: "Read our cookie policy.",
+  seo_privacy_description: "Read our privacy policy.",
 };

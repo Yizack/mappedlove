@@ -20,6 +20,12 @@ if (!billing.value) {
     fatal: true
   });
 }
+
+useSeo({
+  title: `${t("billing")} | ${SITE.name}`,
+  path: "/app/premium/billing",
+  robots: false
+});
 </script>
 
 <template>

@@ -53,6 +53,13 @@ onMounted(() => {
   if (!meta.email) return;
   $toasts.add({ message: t("registered"), success: true });
 });
+
+useSeo({
+  title: `${t("signin")} | ${SITE.name}`,
+  name: t("signin"),
+  description: t("seo_login_description"),
+  path: "/login",
+});
 </script>
 
 <template>

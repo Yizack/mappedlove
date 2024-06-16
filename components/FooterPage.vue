@@ -11,7 +11,7 @@
         </div>
 
         <div class="col mb-3">
-          <h5>{{ t("about") }}</h5>
+          <h5>{{ t("about_us") }}</h5>
           <ul class="nav flex-column">
             <li class="nav-item mb-2"><NuxtLink to="/" class="nav-link p-0 text-body-secondary">{{ t("home") }}</NuxtLink></li>
             <li class="nav-item mb-2"><NuxtLink to="/about" class="nav-link p-0 text-body-secondary">{{ t("about_us") }}</NuxtLink></li>
@@ -25,7 +25,6 @@
             <li class="nav-item mb-2"><NuxtLink to="/contact" class="nav-link p-0 text-body-secondary">{{ t("contact") }}</NuxtLink></li>
             <li class="nav-item mb-2"><a href="/docs" class="nav-link p-0 text-body-secondary">{{ t("support") }}</a></li>
             <li class="nav-item mb-2"><NuxtLink to="/account-data" class="nav-link p-0 text-body-secondary">{{ t("account_data") }}</NuxtLink></li>
-            <li class="nav-item mb-2"><NuxtLink to="/faq" class="nav-link p-0 text-body-secondary">{{ t("faqs") }}</NuxtLink></li>
           </ul>
         </div>
 
@@ -46,7 +45,7 @@
             <li class="nav-item mb-2"><a :href="SITE.github.repo" class="nav-link p-0 text-body-secondary" target="_blank">{{ t("github_repository") }}</a></li>
             <li class="nav-item mb-2"><a :href="`${SITE.github.repo}/issues/new?assignees=${SITE.github.author}&labels=bug&projects=&template=bug_report.md&title=%5BBUG%5D`" class="nav-link p-0 text-body-secondary" target="_blank">{{ t("report_bug") }}</a></li>
             <li class="nav-item mb-2"><a :href="`${SITE.github.repo}/issues/new?assignees=${SITE.github.author}&labels=enhancement&projects=&template=feature_request.md&title=%5BFEATURE%5D`" class="nav-link p-0 text-body-secondary" target="_blank">{{ t("request_feature") }}</a></li>
-            <li class="nav-item mb-2"><NuxtLink to="#" class="nav-link p-0 text-body-secondary">{{ t("translate_help") }}</NuxtLink></li>
+            <!--<li class="nav-item mb-2"><NuxtLink to="#" class="nav-link p-0 text-body-secondary">{{ t("translate_help") }}</NuxtLink></li>-->
           </ul>
         </div>
       </footer>

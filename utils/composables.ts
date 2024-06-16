@@ -23,3 +23,34 @@ export const useModalController = async (id: string, show?: (value: boolean) => 
     element.addEventListener("hidden.bs.modal", hideEvent);
   }
 };
+
+export const useSeo = (options: SeoOptions) => {
+  useSeoMeta({
+    title: options.title,
+    description: options.description,
+    // Open Graph
+    ogUrl: SITE.host + options.path,
+    ogType: "website",
+    ogTitle: options.title,
+    ogSiteName: options.name,
+    ogDescription: options.description,
+    ogImage: options.image || SITE.cover,
+    ogImageWidth: options.imageWidth || 750,
+    ogImageHeight: options.imageHeight || 375,
+    ogImageAlt: options.imageAlt || t("motto"),
+    // Twitter
+    twitterCard: "summary_large_image",
+    //twitterSite: `@${SITE.twitter}`,
+    twitterTitle: options.title,
+    twitterDescription: options.description,
+    twitterImage: options.image || SITE.cover
+  });
+
+  options.robots = options.robots === undefined ? true : options.robots;
+  useHead({
+    meta: options.robots ? [] : [{ name: "robots", content: "noindex, nofollow" }],
+    link: [
+      { rel: "canonical", href: SITE.host + options.path }
+    ]
+  });
+};

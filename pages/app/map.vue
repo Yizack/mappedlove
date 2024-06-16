@@ -59,6 +59,12 @@ const removeStory = (id: number) => {
 const selectMarker = (id: number) => {
   selected.value = selected.value === id ? 0 : id;
 };
+
+useSeo({
+  title: `${t("map")} | ${SITE.name}`,
+  path: "/app/map",
+  robots: false
+});
 </script>
 
 <template>
