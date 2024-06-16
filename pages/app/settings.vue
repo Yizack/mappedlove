@@ -140,6 +140,7 @@ const uploadAvatar = async (event: Event) => {
     return;
   }
   user.value.showAvatar = 1;
+  userForm.value.showAvatar = true;
   user.value.updatedAt = account.updatedAt;
   $toasts.add({ message: t("avatar_saved"), success: true });
 };
@@ -151,6 +152,7 @@ const deleteAvatar = async () => {
   }).catch(() => null);
   if (!account) return;
   user.value.showAvatar = 0;
+  userForm.value.showAvatar = false;
   fileChosen.value = false;
   user.value.updatedAt = account.updatedAt;
   imageRead.value = "";
