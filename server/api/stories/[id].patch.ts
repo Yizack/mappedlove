@@ -20,7 +20,7 @@ export default eventHandler(async (event) : Promise<MappedLoveStory> => {
   }
 
   const story = await DB.update(tables.stories).set({
-    description: form.description,
+    description: form.description || null,
     year: Number(form.year),
     month: Number(form.month),
     updatedAt: today

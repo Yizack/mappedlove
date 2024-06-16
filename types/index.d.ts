@@ -57,7 +57,7 @@ declare global {
     hash?: string;
     marker: number;
     user: number;
-    description: string;
+    description: string | null;
     year: number;
     month: number;
     updatedAt: number;

@@ -20,7 +20,7 @@ export default eventHandler(async (event) : Promise<MappedLoveStory> => {
     marker: Number(form.marker),
     bond: user.bond.id,
     user: user.id,
-    description: form.description,
+    description: form.description || null,
     year: Number(form.year),
     month: Number(form.month),
     createdAt: today,

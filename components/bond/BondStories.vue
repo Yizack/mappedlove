@@ -33,7 +33,7 @@ const { form, formReset } = useFormState({
   id: 0 as number | undefined,
   hash: "" as string | undefined,
   marker: props.marker.id,
-  description: "",
+  description: "" as string | null,
   year: "" as number | string,
   month: 0,
   updatedAt: 0 as number | undefined,
@@ -72,7 +72,7 @@ const submitStory = async () => {
   submitted.value = true;
   const formData = new FormData();
   formData.append("marker", form.value.marker.toString());
-  formData.append("description", form.value.description);
+  formData.append("description", form.value.description || "");
   formData.append("year", form.value.year.toString());
   formData.append("month", form.value.month.toString());
   if (file.value) formData.append("file", file.value);
