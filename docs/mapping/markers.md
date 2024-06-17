@@ -1,8 +1,8 @@
-# 📍 Add markers
+# 📍 Markers
 
 Markers are used to indicate a specific location on the map.
 
-## Getting started
+## Adding markers
 
 1. Navigate to the [Map](https://mappedlove.com/app/map) tab to start adding markers to the map.
 2. Press the `+` button adjacent to the **Markers** section header

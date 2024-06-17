@@ -50,9 +50,9 @@ export default defineConfig({
           {
             text: "Mapping",
             items: [
-              { text: "📍 Add markers", link: "/mapping/add-markers" },
-              { text: "📝 Add stories", link: "/mapping/add-stories" },
-              { text: "🗺️ Sharing our map", link: "/mapping/sharing-our-map" }
+              { text: "📍 Markers", link: "/mapping/markers" },
+              { text: "📝 Stories", link: "/mapping/stories" },
+              { text: "🗺️ Public map", link: "/mapping/public-map" }
             ]
           }
         ]

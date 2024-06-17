@@ -1,8 +1,8 @@
-# 📝 Add stories
+# 📝 Stories
 
 Stories are photos shared with your partner, encapsulated within markers, designed to preserve memories of shared moments, trips, and activities.
 
-## Getting started
+## Adding stories
 
 1. Navigate to the [Map](https://mappedlove.com/app/map) to begin adding stories to your markers.
 2. In the markers section, select the marker you wish to associate with a new story.
