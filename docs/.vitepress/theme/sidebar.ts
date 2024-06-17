@@ -2,13 +2,20 @@ import type { DefaultTheme } from "vitepress/theme";
 
 export const sidebar: DefaultTheme.Sidebar = [
   {
-    text: "Troubleshooting",
+    text: "Looking for help",
     collapsed: false,
     items: [
       {
         text: "Technical Support",
         items: [
           { text: "🚩 I want to report a bug", link: "/support/bug-report" },
+          { text: "✅ Basic troubleshooting", link: "/support/basic" },
+        ]
+      },
+      {
+        text: "Contribute",
+        items: [
+          { text: "💡 Suggest new features", link: "/contribute/suggest-features" }
         ]
       }
     ]
@@ -32,6 +39,14 @@ export const sidebar: DefaultTheme.Sidebar = [
           { text: "📍 Markers", link: "/mapping/markers" },
           { text: "📝 Stories", link: "/mapping/stories" },
           { text: "🗺️ Public map", link: "/mapping/public-map" }
+        ]
+      },
+      {
+        text: "Premium",
+        items: [
+          { text: "🚀 Upgrade to Premium", link: "/premium/upgrade" },
+          { text: "🔧 Manage subscription", link: "/premium/manage-subscription" },
+          { text: "📅 Billing history", link: "/premium/billing-history" },
         ]
       }
     ]
