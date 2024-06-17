@@ -52,7 +52,7 @@ export default defineConfig({
             items: [
               { text: "📍 Add markers", link: "/mapping/add-markers" },
               { text: "📝 Add stories", link: "/mapping/add-stories" },
-              { text: "🗺️ Share our map", link: "/mapping/share-our-map" }
+              { text: "🗺️ Sharing our map", link: "/mapping/sharing-our-map" }
             ]
           }
         ]
