@@ -1,10 +1,15 @@
 <script setup lang="ts">
 import { EHtml, EHead, EFont, EBody, ESection, ERow, EColumn, EImg, EHeading, EText, EButton, ELink } from "vue-email";
-const domain = "{{ domain }}";
+
+defineProps({
+  lang: { type: String, default: "{{ lang }}" },
+  recoveryLink: { type: String, default: "{{ recoveryLink }}" },
+  domain: { type: String, default: "{{ domain }}" }
+});
 </script>
 
 <template>
-  <EHtml lang="{{ lang }}">
+  <EHtml :lang="lang">
     <EHead>
       <title>Account Recovery</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,7 +34,7 @@ const domain = "{{ domain }}";
             <EText style="margin: 0 0 12px 0; font-size: 1rem;">We have received your recovery account request. To regain access to your account, please click on the link provided below.</EText>
             <ERow>
               <EColumn align="center">
-                <EButton href="{{ recoveryLink }}" tarte="_blank" style="display: inline-block; background: #ff6969; color: #fff; font-weight: 400; margin: 0; text-decoration: none;text-transform: none; padding: 1rem 1.5rem; border-radius: 50rem; margin: 1rem 0 1rem 0; font-size: 1rem;">
+                <EButton :href="recoveryLink" target="_blank" style="display: inline-block; background: #ff6969; color: #fff; font-weight: 400; margin: 0; text-decoration: none;text-transform: none; padding: 1rem 1.5rem; border-radius: 50rem; margin: 1rem 0 1rem 0; font-size: 1rem;">
                   <strong>Reset my password</strong>
                 </EButton>
               </EColumn>

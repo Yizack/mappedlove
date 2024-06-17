@@ -1,10 +1,15 @@
 <script setup lang="ts">
 import { EHtml, EHead, EFont, EBody, ESection, ERow, EColumn, EImg, EHeading, EText, EButton, ELink } from "vue-email";
-const domain = "{{ domain }}";
+
+defineProps({
+  lang: { type: String, default: "{{ lang }}" },
+  downloadLink: { type: String, default: "{{ downloadLink }}" },
+  domain: { type: String, default: "{{ domain }}" }
+});
 </script>
 
 <template>
-  <EHtml lang="{{ lang }}">
+  <EHtml :lang="lang">
     <EHead>
       <title>Account Data</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,7 +34,7 @@ const domain = "{{ domain }}";
             <EText style="margin: 0 0 12px 0; font-size: 1rem;">Here is your requested account data. Click the link below to download.</EText>
             <ERow>
               <EColumn align="center">
-                <EButton href="{{ downloadLink }}" tarte="_blank" style="display: inline-block; background: #ff6969; color: #fff; font-weight: 400; margin: 0; text-decoration: none; text-transform: none; padding: 1rem 1.5rem; border-radius: 50rem; margin-top: 1rem; font-size: 1rem;">
+                <EButton :href="downloadLink" target="_blank" style="display: inline-block; background: #ff6969; color: #fff; font-weight: 400; margin: 0; text-decoration: none; text-transform: none; padding: 1rem 1.5rem; border-radius: 50rem; margin-top: 1rem; font-size: 1rem;">
                   <strong>Download my data</strong>
                 </EButton>
               </EColumn>

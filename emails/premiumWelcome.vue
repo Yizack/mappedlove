@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import { EHtml, EHead, EFont, EBody, ESection, ERow, EColumn, EImg, EHeading, EText, ELink } from "vue-email";
-const domain = "{{ domain }}";
+
+defineProps({
+  lang: { type: String, default: "{{ lang }}" },
+  domain: { type: String, default: "{{ domain }}" }
+});
 </script>
 
 <template>
-  <EHtml>
+  <EHtml :lang="lang">
     <EHead>
       <title>Premium</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">

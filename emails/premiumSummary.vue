@@ -1,7 +1,12 @@
 <script setup lang="ts">
 import { EHtml, EHead, EFont, EBody, ESection, ERow, EColumn, EImg, EHeading, EText, ELink } from "vue-email";
-const domain = "{{ domain }}";
-const year = "{{ year }}";
+
+defineProps({
+  lang: { type: String, default: "{{ lang }}" },
+  year: { type: String, default: "{{ year }}" },
+  summaryLink: { type: String, default: "{{ summaryLink }}" },
+  domain: { type: String, default: "{{ domain }}" }
+});
 /*
 const createMustacheIterator = (name: string, properties: string[]) => {
   const obj: Record<string, string> = {
@@ -27,7 +32,7 @@ const summary = createMustacheIterator("summary", [
 </script>
 
 <template>
-  <EHtml>
+  <EHtml :lang="lang">
     <EHead>
       <title>Yearly Summary</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -52,7 +57,7 @@ const summary = createMustacheIterator("summary", [
             <EText style="margin: 0 0 12px 0; font-size: 1rem;">You can now view your Bond Summary by clicking the button below. Log in now to discover your summary and relive your cherished memories!</EText>
             <ERow>
               <EColumn align="center">
-                <EButton href="{{ summaryLink }}" tarte="_blank" style="display: inline-block; background: #ff6969; color: #fff; font-weight: 400; margin: 0; text-decoration: none; text-transform: none; padding: 1rem 1.5rem; border-radius: 50rem; margin-top: 1rem; font-size: 1rem;">
+                <EButton :href="summaryLink" target="_blank" style="display: inline-block; background: #ff6969; color: #fff; font-weight: 400; margin: 0; text-decoration: none; text-transform: none; padding: 1rem 1.5rem; border-radius: 50rem; margin-top: 1rem; font-size: 1rem;">
                   <strong>Get your Bond Summary</strong>
                 </EButton>
               </EColumn>
