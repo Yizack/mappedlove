@@ -19,7 +19,9 @@ export default defineConfig({
     }
   },
   themeConfig: {
-    nav: [],
+    nav: [
+      { text: SITE.domain, link: SITE.host },
+    ],
     sidebar: [
       {
         text: "Troubleshooting",
