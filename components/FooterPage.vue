@@ -5,7 +5,7 @@
         <div class="col mb-3">
           <NuxtLink class="navbar-brand d-flex align-items-center gap-1 text-body" to="/">
             <Icon class="text-primary" name="solar:map-point-favourite-bold" size="1.3rem" />
-            <h4 class="m-0">{{ SITE.name }}</h4>
+            <p class="m-0 h4">{{ SITE.name }}</p>
           </NuxtLink>
           <p class="text-secondary-emphasis mb-0">© {{ new Date().getFullYear() }}, {{ SITE.author }}.</p>
         </div>

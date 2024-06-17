@@ -2,6 +2,7 @@ export default {
   lang_code: "en",
   lang_locale: "en_US",
   // Home
+  home_description: "Mark the places you have visited together and preserve your special moments forever",
   strip1_title: "Map Your Journey",
   strip1_p1: "Easily mark the locations you have visited on an interactive map and create a visual representation of your journey together.",
   strip1_p2: "Place markers on the map and add stories to them to preserve your memories.",

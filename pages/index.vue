@@ -13,14 +13,14 @@ useSeo({
     <section class="banner banner-home bg-secondary text-dark py-5">
       <div class="container text-center py-5">
         <h1 class="display-3"><strong>{{ t("motto") }}</strong></h1>
-        <p class="display-6 m-0">Mark the places you have visited together and preserve your special moments forever</p>
+        <p class="display-6 m-0">{{ t("home_description") }}</p>
       </div>
     </section>
     <section class="py-5 bg-body">
       <div class="container">
         <div class="row">
           <div class="col-lg-6 text-center">
-            <img src="/images/demos/map-dashboard.jpg" class="img-fluid rounded shadow" width="720" height="405">
+            <img src="/images/demos/map-dashboard.jpg" class="img-fluid rounded shadow" width="720" height="405" :alt="t('strip1_title')">
           </div>
           <div class="col-lg-6 m-auto mt-4 mt-lg-auto">
             <h2>{{ t("strip1_title") }}</h2>
@@ -61,7 +61,7 @@ useSeo({
             </div>
           </div>
           <div class="col-lg-6 text-center">
-            <img src="/images/demos/public-map.jpg" class="img-fluid rounded shadow" width="720" height="405">
+            <img src="/images/demos/public-map.jpg" class="img-fluid rounded shadow" width="720" height="405" :alt="t('strip2_title')">
           </div>
         </div>
       </div>
@@ -70,7 +70,7 @@ useSeo({
       <div class="container">
         <div class="row">
           <div class="col-lg-6 text-center">
-            <img src="/images/demos/bond.jpg" class="img-fluid rounded shadow" width="720" height="405">
+            <img src="/images/demos/bond.jpg" class="img-fluid rounded shadow" width="720" height="405" :alt="t('strip3_title')">
           </div>
           <div class="col-lg-6 m-auto mt-4 mt-lg-auto">
             <h2>{{ t("strip3_title") }}</h2>
