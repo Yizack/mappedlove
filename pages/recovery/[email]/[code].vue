@@ -42,7 +42,6 @@ const resetPassword = async () => {
 
 useSeo({
   title: `${t("account_recovery")} | ${SITE.name}`,
-  path: `/recovery/${emailCode.value}/${code.value}`,
   robots: false
 });
 </script>

@@ -10,8 +10,7 @@ const cookieManager = (e: Event) => {
 useSeo({
   title: `${t("cookie_policy")} | ${SITE.name}`,
   name: t("cookie_policy"),
-  description: t("seo_cookie_description"),
-  path: "/legal/cookie",
+  description: t("seo_cookie_description")
 });
 </script>
 

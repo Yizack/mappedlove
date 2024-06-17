@@ -113,7 +113,6 @@ useSeo({
   title: `${partner1.value.name} & ${partner1.value.name} | ${SITE.name}`,
   name: `${partner1.value.name} & ${partner1.value.name}`,
   description: t("seo_map_description"),
-  path: `/map/${params.code}`,
   robots: false
 });
 </script>

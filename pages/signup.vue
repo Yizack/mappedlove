@@ -40,8 +40,7 @@ const signUp = async () => {
 useSeo({
   title: `${t("signup")} | ${SITE.name}`,
   name: t("signup"),
-  description: t("seo_signup_description"),
-  path: "/signup",
+  description: t("seo_signup_description")
 });
 </script>
 

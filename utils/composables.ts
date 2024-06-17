@@ -25,11 +25,12 @@ export const useModalController = async (id: string, show?: (value: boolean) => 
 };
 
 export const useSeo = (options: SeoOptions) => {
+  const path = useRoute().path.replace(/\/$/, "");
   useSeoMeta({
     title: options.title,
     description: options.description,
     // Open Graph
-    ogUrl: SITE.host + options.path,
+    ogUrl: SITE.host + path,
     ogType: "website",
     ogTitle: options.title,
     ogSiteName: options.name,
@@ -50,7 +51,7 @@ export const useSeo = (options: SeoOptions) => {
   useHead({
     meta: options.robots ? [] : [{ name: "robots", content: "noindex, nofollow" }],
     link: [
-      { rel: "canonical", href: SITE.host + options.path }
+      { rel: "canonical", href: SITE.host + path }
     ]
   });
 };

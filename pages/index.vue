@@ -1,5 +1,11 @@
 <script setup lang="ts">
 definePageMeta({ middleware: "preload" });
+
+useSeo({
+  title: `${SITE.name} | ${t("motto")}`,
+  name: `${SITE.name} | ${t("motto")}`,
+  description: t("seo_home_description")
+});
 </script>
 
 <template>

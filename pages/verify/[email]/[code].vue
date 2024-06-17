@@ -47,7 +47,6 @@ onMounted(async () => {
 
 useSeo({
   title: `${t("verify_email")} | ${SITE.name}`,
-  path: `/verify/${emailCode.value}/${code.value}`,
   robots: false
 });
 </script>

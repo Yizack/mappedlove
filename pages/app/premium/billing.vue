@@ -45,7 +45,6 @@ const requestRefund = async () => {
 
 useSeo({
   title: `${t("billing")} | ${SITE.name}`,
-  path: "/app/premium/billing",
   robots: false
 });
 </script>

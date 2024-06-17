@@ -23,8 +23,7 @@ const sendRecovery = async () => {
 useSeo({
   title: `${t("forgot_password")} | ${SITE.name}`,
   name: t("forgot_password"),
-  description: t("seo_recovery_description"),
-  path: "/recovery",
+  description: t("seo_recovery_description")
 });
 </script>
 

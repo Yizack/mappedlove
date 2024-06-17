@@ -37,7 +37,6 @@ onBeforeMount(async () => {
 
 useSeo({
   title: `${t("bond")} | ${SITE.name}`,
-  path: "/app",
   robots: false
 });
 </script>

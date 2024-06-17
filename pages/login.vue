@@ -57,8 +57,7 @@ onMounted(() => {
 useSeo({
   title: `${t("signin")} | ${SITE.name}`,
   name: t("signin"),
-  description: t("seo_login_description"),
-  path: "/login",
+  description: t("seo_login_description")
 });
 </script>
 

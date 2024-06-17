@@ -4,7 +4,6 @@ const { user } = useUserSession();
 
 useSeo({
   title: `${t("premium")} | ${SITE.name}`,
-  path: "/app/premium",
   robots: false
 });
 </script>

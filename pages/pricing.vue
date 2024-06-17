@@ -6,8 +6,7 @@ const { user, loggedIn } = useUserSession();
 useSeo({
   title: `${t("pricing")} | ${SITE.name}`,
   name: t("pricing"),
-  description: t("seo_pricing_description"),
-  path: "/pricing",
+  description: t("seo_pricing_description")
 });
 </script>
 

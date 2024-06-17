@@ -62,7 +62,6 @@ const selectMarker = (id: number) => {
 
 useSeo({
   title: `${t("map")} | ${SITE.name}`,
-  path: "/app/map",
   robots: false
 });
 </script>

@@ -4,8 +4,7 @@ definePageMeta({ layout: "utils" });
 useSeo({
   title: `${t("terms_of_use")} | ${SITE.name}`,
   name: t("terms_of_use"),
-  description: t("seo_terms_description"),
-  path: "/legal/terms",
+  description: t("seo_terms_description")
 });
 </script>
 
