@@ -69,7 +69,8 @@ useSeo({
                   {{ t("canceled") }}
                 </span>
               </p>
-              <p v-else class="mb-0"><span :class="`badge border rounded-pill ${billing.subscription?.status === 'active' ? 'bg-success-subtle text-success border-success' : 'bg-secondary text-primary border-primary'}`">{{ t(billing.subscription.status) }}</span>
+              <p v-else class="mb-0">
+                <span :class="`badge border rounded-pill ${billing.subscription?.status === 'active' ? 'bg-success-subtle text-success border-success' : 'bg-secondary text-primary border-primary'}`">{{ t(billing.subscription.status) }}</span>
               </p>
             </div>
             <div v-if="isPremium && billing.subscription" class="col-lg-6">

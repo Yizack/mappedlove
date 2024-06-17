@@ -6,7 +6,8 @@ export default withNuxt([{
     "node_modules/**/*",
     ".nuxt/**/*",
     "dist/**/*",
-    ".output/**/*"
+    ".output/**/*",
+    "public/**/*"
   ],
   rules: {
     "indent": ["error", 2, { "SwitchCase": 1 }],
@@ -33,6 +34,7 @@ export default withNuxt([{
     "vue/singleline-html-element-content-newline": ["off"],
     "vue/no-multiple-template-root": ["off"],
     "vue/html-closing-bracket-spacing": ["error", { "selfClosingTag": "always" }],
-    "vue/html-indent": ["error", 2]
+    "vue/html-indent": ["error", 2],
+    "vue/multiline-html-element-content-newline": ["error"]
   }
 }]);
