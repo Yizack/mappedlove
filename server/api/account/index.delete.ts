@@ -5,7 +5,7 @@ export default eventHandler(async (event) => {
 
   if (user.bond && user.bond.subscriptionId) {
     const subscription = await getPaddleSubscription(event, user.bond.subscriptionId);
-    if (subscription && subscription.status === "active") throw createError({ statusCode: ErrorCode.FORBIDDEN, message: "premium_deleting" });
+    if (subscription && subscription.status === "active" && subscription.scheduled_change?.action !== "cancel") throw createError({ statusCode: ErrorCode.FORBIDDEN, message: "premium_deleting" });
   }
 
   const DB = useDb();
