@@ -9,6 +9,15 @@ export default defineConfig({
   title:  `${SITE.name} Support`,
   titleTemplate: SITE.name,
   description: "Find all the information you need about MappedLove",
+  head: [
+    ["meta", { property: "og:type", content: "website" }],
+    ["meta", { property: "og:description", content: "Find all the information you need about MappedLove" }],
+    ["meta", { property: "og:image", content: SITE.cover }],
+    ["meta", { property: "og:image:width", content: "750" }],
+    ["meta", { property: "og:image:height", content: "375" }],
+    ["meta", { name: "twitter:card", content: "summary_large_image" }],
+    ["meta", { name: "twitter:image", content: SITE.cover }]
+  ],
   cleanUrls: true,
   lastUpdated: true,
   vite: {
