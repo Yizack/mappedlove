@@ -1,4 +1,4 @@
-import { defineConfig } from "vitepress";
+import { defineConfig, type HeadConfig } from "vitepress";
 import { SITE } from "./../../utils/site";
 
 // refer https://vitepress.dev/reference/site-config for details
@@ -9,15 +9,26 @@ export default defineConfig({
   title:  `${SITE.name} Support`,
   titleTemplate: SITE.name,
   description: "Find all the information you need about MappedLove",
-  head: [
-    ["meta", { property: "og:type", content: "website" }],
-    ["meta", { property: "og:description", content: "Find all the information you need about MappedLove" }],
-    ["meta", { property: "og:image", content: SITE.cover }],
-    ["meta", { property: "og:image:width", content: "750" }],
-    ["meta", { property: "og:image:height", content: "375" }],
-    ["meta", { name: "twitter:card", content: "summary_large_image" }],
-    ["meta", { name: "twitter:image", content: SITE.cover }]
-  ],
+  transformHead: ({ pageData }) => {
+    const head: HeadConfig[] = [];
+    const path = pageData.relativePath.replace(/\.md$/, "").replace(/index$/, "");
+    const tags: HeadConfig[] = [
+      ["meta", { property: "og:url", content: `${SITE.host}/docs` + path }],
+      ["meta", { property: "og:type", content: "website" }],
+      ["meta", { property: "og:title", content: `${pageData.title} | ${SITE.name} Support` }],
+      ["meta", { property: "og:description", content: "Find all the information you need about MappedLove" }],
+      ["meta", { property: "og:image", content: SITE.cover }],
+      ["meta", { property: "og:image:width", content: "750" }],
+      ["meta", { property: "og:image:height", content: "375" }],
+      ["meta", { property: "og:image:alt", content: "Mapping your love story" }],
+      ["meta", { name: "twitter:card", content: "summary_large_image" }],
+      ["meta", { name: "twitter:title", content: `${pageData.title} | ${SITE.name} Support` }],
+      ["meta", { name: "twitter:image", content: SITE.cover }],
+      ["link", { rel: "canonical", href: `${SITE.host}/docs/${path}` }],
+    ];
+    head.push(...tags);
+    return head;
+  },
   cleanUrls: true,
   lastUpdated: true,
   vite: {
