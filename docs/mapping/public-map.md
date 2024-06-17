@@ -2,7 +2,8 @@
 
 Share your map with others by sending them the link. While anyone with the link can access and view the map, editing privileges are exclusive to you and your partner.
 
-Your public map will not be indexed by search engines, ensuring that your shared memories remain private and secure and only accessible to those with the link.
+> [!NOTE]
+> Your public map will not be indexed by search engines, ensuring that your shared memories remain private and secure and only accessible to those with the link.
 
 ## Sharing your map
 
