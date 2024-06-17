@@ -27,4 +27,4 @@ Stories are organized by year, and their associated photos are showcased in a ca
 
 ---
 
-That's it! You've successfully learned how to add, edit, and delete stories associated with your map markers. 📸
+That is it! You have successfully learned how to add, edit, and delete stories associated with your map markers. 📸

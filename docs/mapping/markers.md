@@ -35,4 +35,4 @@ Markers are used to indicate a specific location on the map.
 
 ---
 
-That's it! You have successfully learned how to add, edit, rearrange, and delete markers on the map. 🗺️
+That is it! You have successfully learned how to add, edit, rearrange, and delete markers on the map. 🗺️
