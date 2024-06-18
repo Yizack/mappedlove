@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
   const headers = getHeaders(event);
 
   if (!headers) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_headers" });
-  const isValidWebhook = isValidPaddleWebhook(event, headers, rawBody);
+  const isValidWebhook = await isValidPaddleWebhook(event, headers, rawBody);
   if (!isValidWebhook) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_webhook" });
 
   if (webhook.event_type !== EventName.TransactionCompleted)
