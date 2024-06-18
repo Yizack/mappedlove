@@ -21,7 +21,7 @@ export default defineNuxtConfig({
         { rel: "manifest", href: "/site.webmanifest" },
         { rel: "mask-icon", href: "/safari-pinned-tab.svg", color: "#ff6969" },
         { rel: "preconnect", href: SITE.cdn },
-        { rel: "prefetch", href: SITE.cdn },
+        { rel: "preconnect", href: "https://res.cloudinary.com" },
       ],
       meta: [
         { name: "robots", content: "index, follow" },
