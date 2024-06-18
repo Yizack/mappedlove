@@ -57,7 +57,8 @@ export default defineNuxtConfig({
     "nuxt-twemoji",
     "@nuxtjs/color-mode",
     "@nuxtjs/sitemap",
-    "@dargmuesli/nuxt-cookie-control"
+    "@dargmuesli/nuxt-cookie-control",
+    "nuxt-auth-utils"
   ],
   eslint: {
     config: {

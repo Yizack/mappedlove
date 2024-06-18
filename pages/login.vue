@@ -82,13 +82,17 @@ useSeo({
         <div class="mb-2">
           <NuxtLink to="/recovery">{{ t("forgot_password") }}</NuxtLink>
         </div>
-        <div class="d-grid">
+        <div class="d-grid gap-2">
           <button class="btn btn-primary btn-lg rounded-pill" type="submit" :disabled="submit.loading">
             <Transition name="tab" mode="out-in">
               <SpinnerCircle v-if="submit.loading" class="text-white" />
               <span v-else>{{ t("signin") }}</span>
             </Transition>
           </button>
+          <a href="/auth/google" class="btn btn-outline-dark btn-lg rounded-pill">
+            <Icon name="logos:google-icon" class="me-2" />
+            {{ t("signin_google") }}
+          </a>
         </div>
       </form>
       <div v-if="needsConfirm && !resent" class="alert alert-warning" role="alert">
