@@ -33,6 +33,7 @@ export default {
   password_confirm: "Confirm password",
   name: "Name",
   signup: "Sign up",
+  signup_google: "Sign up with Google",
   create_one: "Create one",
   create_account: "Create your account",
   email_conflict: "Email is already registered",

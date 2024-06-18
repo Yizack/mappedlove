@@ -3,11 +3,12 @@ import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core";
 export const users = sqliteTable("users", {
   id: integer("id").primaryKey({ autoIncrement: true }),
   email: text("email").notNull().unique(),
-  password: text("password").notNull(),
+  password: text("password"),
   name: text("name").notNull(),
   country: text("country"),
   birthDate: integer("birth_date"),
   showAvatar: integer("show_avatar").notNull().default(0),
+  auth: integer("auth").notNull().default(0),
   confirmed: integer("confirmed").notNull().default(0),
   createdAt: integer("created_at").notNull(),
   updatedAt: integer("updated_at").notNull()

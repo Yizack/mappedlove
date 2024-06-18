@@ -83,13 +83,18 @@ useSeo({
             <div class="text-center my-3 my-md-0">
               <NuxtTurnstile ref="turnstile" v-model="form.turnstile" />
             </div>
-            <div class="d-grid">
+            <div class="d-grid gap-2">
               <button class="btn btn-primary btn-lg rounded-pill" type="submit" :disabled="submit.loading">
                 <Transition name="tab" mode="out-in">
                   <SpinnerCircle v-if="submit.loading" class="text-white" />
                   <span v-else>{{ t("signup") }}</span>
                 </Transition>
               </button>
+              <span class="text-center fw-semibold">{{ t("or") }}</span>
+              <a href="/auth/google-signup" class="btn btn-outline-dark btn-lg rounded-pill">
+                <Icon name="logos:google-icon" class="me-2" />
+                {{ t("signup_google") }}
+              </a>
             </div>
           </form>
           <p class="m-0">{{ t("has_account") }} <NuxtLink to="/login">{{ t("signin") }}</NuxtLink></p>

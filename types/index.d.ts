@@ -18,6 +18,7 @@ declare global {
     confirmed: number;
     createdAt: number;
     updatedAt: number;
+    auth?: number;
     bond?: MappedLoveBond;
   }
   interface MappedLovePartner {

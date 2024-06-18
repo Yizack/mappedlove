@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "44876170-5018-4e5f-b0ad-8fabb2976746",
+  "id": "87514337-41f8-4a16-b8b5-b2bb2cf65b3e",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "bonds": {
@@ -388,7 +388,7 @@
           "name": "password",
           "type": "text",
           "primaryKey": false,
-          "notNull": true,
+          "notNull": false,
           "autoincrement": false
         },
         "name": {
@@ -414,6 +414,14 @@
         },
         "show_avatar": {
           "name": "show_avatar",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        },
+        "auth": {
+          "name": "auth",
           "type": "integer",
           "primaryKey": false,
           "notNull": true,

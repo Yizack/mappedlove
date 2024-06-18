@@ -52,11 +52,12 @@ CREATE TABLE `stories` (
 CREATE TABLE `users` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`email` text NOT NULL,
-	`password` text NOT NULL,
+	`password` text,
 	`name` text NOT NULL,
 	`country` text,
 	`birth_date` integer,
 	`show_avatar` integer DEFAULT 0 NOT NULL,
+	`auth` integer DEFAULT 0 NOT NULL,
 	`confirmed` integer DEFAULT 0 NOT NULL,
 	`created_at` integer NOT NULL,
 	`updated_at` integer NOT NULL

@@ -7,9 +7,7 @@ export default oauth.googleEventHandler({
     ]
   },
   async onSuccess(event, { user: _user }) {
-
     const DB = useDb();
-
     const user = await DB.select({
       id: tables.users.id,
       name: tables.users.name,
@@ -17,14 +15,15 @@ export default oauth.googleEventHandler({
       country: tables.users.country,
       birthDate: tables.users.birthDate,
       showAvatar: tables.users.showAvatar,
+      auth: tables.users.auth,
       confirmed: tables.users.confirmed,
       createdAt: tables.users.createdAt,
       updatedAt: tables.users.updatedAt
     }).from(tables.users).where(and(eq(tables.users.email, _user.email))).get();
 
-    if (!user) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "signin_auth_error" });
+    if (!user) return sendRedirect(event, "/login?account=false");
 
-    if (!user.confirmed) return sendRedirect(event, "/login");
+    if (!user.confirmed) return sendRedirect(event, "/login?confirmed=false");
 
     const { secure } = useRuntimeConfig(event);
     const userHash = hash([user.id].join(), secure.salt);
