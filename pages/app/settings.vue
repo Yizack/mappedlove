@@ -117,6 +117,9 @@ const setupPassword = async () => {
   }).catch(() => null);
   submit.value.pass_loading = false;
   if (!account) return;
+  user.value.auth = undefined;
+  userForm.value.new_password = "";
+  userForm.value.confirm_password = "";
   $toasts.add({ message: t("password_setup"), success: true });
 };
 
@@ -287,54 +290,56 @@ useSeo({
             <label class="form-check-label">{{ t("dark_mode") }}</label>
           </div>
         </div>
-        <div v-if="!user.auth" class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
-          <form @submit.prevent="changePassword">
-            <h3 class="mb-4">{{ t("change_password") }}</h3>
-            <input :value="userForm.email" type="text" autocomplete="email" hidden>
-            <div class="form-floating mb-2">
-              <input v-model="userForm.current_password" type="password" class="form-control" :placeholder="t('current_password')" autocomplete="current-password">
-              <label>{{ t("current_password") }}</label>
-            </div>
-            <div class="form-floating mb-2">
-              <input v-model="userForm.new_password" type="password" class="form-control" :class="`form-control ${isPasswordValid(userForm.new_password) ? 'is-valid' : userForm.new_password ? 'is-invalid' : ''}`" :placeholder="t('new_password')" autocomplete="new-password">
-              <label>{{ t("new_password") }}</label>
-            </div>
-            <div class="form-floating mb-2">
-              <input v-model="userForm.confirm_password" type="password" :class="`form-control ${isPasswordCheckValid(userForm.new_password, userForm.confirm_password) ? 'is-valid' : userForm.confirm_password ? 'is-invalid' : ''}`" :placeholder="t('password_confirm')" autocomplete="new-password">
-              <label>{{ t("password_confirm") }}</label>
-            </div>
-            <div class="d-grid">
-              <button class="btn btn-primary btn-lg rounded-pill" type="submit">
-                <Transition name="tab" mode="out-in">
-                  <SpinnerCircle v-if="submit.loading" class="text-white" />
-                  <span v-else>{{ t("change_password") }}</span>
-                </Transition>
-              </button>
-            </div>
-          </form>
-        </div>
-        <div v-else class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
-          <form @submit.prevent="setupPassword">
-            <h3 class="mb-4">{{ t("setup_password") }}</h3>
-            <input :value="userForm.email" type="text" autocomplete="email" hidden>
-            <div class="form-floating mb-2">
-              <input v-model="userForm.new_password" type="password" class="form-control" :class="`form-control ${isPasswordValid(userForm.new_password) ? 'is-valid' : userForm.new_password ? 'is-invalid' : ''}`" :placeholder="t('new_password')" autocomplete="new-password">
-              <label>{{ t("new_password") }}</label>
-            </div>
-            <div class="form-floating mb-2">
-              <input v-model="userForm.confirm_password" type="password" :class="`form-control ${isPasswordCheckValid(userForm.new_password, userForm.confirm_password) ? 'is-valid' : userForm.confirm_password ? 'is-invalid' : ''}`" :placeholder="t('password_confirm')" autocomplete="new-password">
-              <label>{{ t("password_confirm") }}</label>
-            </div>
-            <div class="d-grid">
-              <button class="btn btn-primary btn-lg rounded-pill" type="submit">
-                <Transition name="tab" mode="out-in">
-                  <SpinnerCircle v-if="submit.loading" class="text-white" />
-                  <span v-else>{{ t("setup_password") }}</span>
-                </Transition>
-              </button>
-            </div>
-          </form>
-        </div>
+        <Transition name="tab" mode="out-in">
+          <div v-if="!user.auth" class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
+            <form @submit.prevent="changePassword">
+              <h3 class="mb-4">{{ t("change_password") }}</h3>
+              <input :value="userForm.email" type="text" autocomplete="email" hidden>
+              <div class="form-floating mb-2">
+                <input v-model="userForm.current_password" type="password" class="form-control" :placeholder="t('current_password')" autocomplete="current-password">
+                <label>{{ t("current_password") }}</label>
+              </div>
+              <div class="form-floating mb-2">
+                <input v-model="userForm.new_password" type="password" class="form-control" :class="`form-control ${isPasswordValid(userForm.new_password) ? 'is-valid' : userForm.new_password ? 'is-invalid' : ''}`" :placeholder="t('new_password')" autocomplete="new-password">
+                <label>{{ t("new_password") }}</label>
+              </div>
+              <div class="form-floating mb-2">
+                <input v-model="userForm.confirm_password" type="password" :class="`form-control ${isPasswordCheckValid(userForm.new_password, userForm.confirm_password) ? 'is-valid' : userForm.confirm_password ? 'is-invalid' : ''}`" :placeholder="t('password_confirm')" autocomplete="new-password">
+                <label>{{ t("password_confirm") }}</label>
+              </div>
+              <div class="d-grid">
+                <button class="btn btn-primary btn-lg rounded-pill" type="submit">
+                  <Transition name="tab" mode="out-in">
+                    <SpinnerCircle v-if="submit.pass_loading" class="text-white" />
+                    <span v-else>{{ t("change_password") }}</span>
+                  </Transition>
+                </button>
+              </div>
+            </form>
+          </div>
+          <div v-else class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
+            <form @submit.prevent="setupPassword">
+              <h3 class="mb-4">{{ t("setup_password") }}</h3>
+              <input :value="userForm.email" type="text" autocomplete="email" hidden>
+              <div class="form-floating mb-2">
+                <input v-model="userForm.new_password" type="password" class="form-control" :class="`form-control ${isPasswordValid(userForm.new_password) ? 'is-valid' : userForm.new_password ? 'is-invalid' : ''}`" :placeholder="t('new_password')" autocomplete="new-password">
+                <label>{{ t("new_password") }}</label>
+              </div>
+              <div class="form-floating mb-2">
+                <input v-model="userForm.confirm_password" type="password" :class="`form-control ${isPasswordCheckValid(userForm.new_password, userForm.confirm_password) ? 'is-valid' : userForm.confirm_password ? 'is-invalid' : ''}`" :placeholder="t('password_confirm')" autocomplete="new-password">
+                <label>{{ t("password_confirm") }}</label>
+              </div>
+              <div class="d-grid">
+                <button class="btn btn-primary btn-lg rounded-pill" type="submit">
+                  <Transition name="tab" mode="out-in">
+                    <SpinnerCircle v-if="submit.pass_loading" class="text-white" />
+                    <span v-else>{{ t("setup_password") }}</span>
+                  </Transition>
+                </button>
+              </div>
+            </form>
+          </div>
+        </Transition>
         <Transition name="tab" mode="out-in">
           <div v-if="!dangerZone" class="bg-body rounded-3 px-3 py-4 p-lg-4 position-relative mb-2" role="button" @click="dangerZone = !dangerZone">
             <div class="position-relative">
