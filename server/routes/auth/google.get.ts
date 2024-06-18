@@ -21,9 +21,9 @@ export default oauth.googleEventHandler({
       updatedAt: tables.users.updatedAt
     }).from(tables.users).where(and(eq(tables.users.email, _user.email))).get();
 
-    if (!user) return sendRedirect(event, "/login?account=false");
+    if (!user) return sendRedirect(event, "/login?error=signin_auth_error");
 
-    if (!user.confirmed) return sendRedirect(event, "/login?confirmed=false");
+    if (!user.confirmed) return sendRedirect(event, "/login?error=verify_needed");
 
     const { secure } = useRuntimeConfig(event);
     const userHash = hash([user.id].join(), secure.salt);

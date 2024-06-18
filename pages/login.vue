@@ -1,9 +1,9 @@
 <script setup lang="ts">
 definePageMeta({ layout: "access", middleware: "authenticated" });
 
-const { confirmed, account } = useRoute().query;
+const { error } = useRoute().query;
 
-const needsConfirm = ref(confirmed === "false" ? true : false);
+const needsConfirm = ref(error === "verify_needed" ? true : false);
 const resent = ref(false);
 const submit = ref({ loading: false, error: false });
 
@@ -52,8 +52,7 @@ const resendVerification = async () => {
 };
 
 onMounted(() => {
-  if (account === "false") $toasts.add({ message: t("signin_auth_error"), success: false });
-
+  if(error) $toasts.add({ message: t(error.toString()), success: false });
   if (!meta.email) return;
   $toasts.add({ message: t("registered"), success: true });
 });

@@ -21,12 +21,7 @@ export default oauth.googleEventHandler({
       updatedAt: today
     }).onConflictDoNothing().returning().get();
 
-    if (!user) {
-      throw createError({
-        statusCode: ErrorCode.BAD_REQUEST,
-        message: "user_exists"
-      });
-    }
+    if (!user) return sendRedirect(event, "/signup?error=user_exists");
 
     const fields = [user.id, user.email, user.updatedAt];
     const code = hash(fields.join(""), config.secure.salt);
