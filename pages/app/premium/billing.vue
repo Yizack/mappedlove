@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({ layout: "app", middleware: "session" });
 
-const { user } = useUserSession();
+const { user } = useUserSession() as MappedLoveSessionComposable;
 const isValidSubscription = computed(() => Boolean(user.value.bond?.subscriptionId));
 const isPremium = computed(() => Boolean(user.value.bond?.premium));
 

@@ -3,7 +3,7 @@ import VueDatePicker from "@vuepic/vue-datepicker";
 
 definePageMeta({ layout: "app", middleware: "session" });
 
-const { user, clear } = useUserSession();
+const { user, clear } = useUserSession() as MappedLoveSessionComposable;
 const { $colorMode, $countries, $toasts } = useNuxtApp();
 
 const dark = ref($colorMode.preference === "dark");

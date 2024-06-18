@@ -24,7 +24,7 @@ export const useModalController = async (id: string, show?: (value: boolean) => 
   }
 };
 
-export const useSeo = (options: SeoOptions) => {
+export const useSeo = (options: MappedLoveSeoOptions) => {
   const path = useRoute().path.replace(/\/$/, "");
   useSeoMeta({
     title: options.title,

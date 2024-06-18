@@ -8,7 +8,7 @@ const props = defineProps({
 
 const emit = defineEmits(["new", "delete"]);
 const { $bootstrap, $toasts } = useNuxtApp();
-const { user } = useUserSession();
+const { user } = useUserSession() as MappedLoveSessionComposable;
 
 const deleteButton = ref<Record<number, boolean>>({});
 

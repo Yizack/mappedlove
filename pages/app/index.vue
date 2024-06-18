@@ -1,6 +1,6 @@
 <script setup lang="ts">
 definePageMeta({ layout: "app", middleware: "session" });
-const { user, fetch: sessionFetch } = useUserSession();
+const { user, fetch: sessionFetch } = useUserSession() as MappedLoveSessionComposable;
 
 const bond = computed(() => user.value.bond);
 

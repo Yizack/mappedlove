@@ -45,7 +45,7 @@ const searchPlace = (event: Event) => {
   }
   debounce("geosearch", async () => {
     try {
-      const { user } = useUserSession();
+      const { user } = useUserSession() as MappedLoveSessionComposable;
       array.value = await $Leaflet.geoSearch(target.value, {
         email: user.value.email,
         lang: "en"

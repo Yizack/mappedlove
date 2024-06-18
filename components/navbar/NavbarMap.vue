@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { loggedIn, user, clear } = useUserSession();
+const { loggedIn, user, clear } = useUserSession() as MappedLoveSessionComposable;
 const logOut = () => {
   clear();
   navigateTo("/", { replace: true });
