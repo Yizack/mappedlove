@@ -273,7 +273,7 @@ useSeo({
             <label class="form-check-label">{{ t("dark_mode") }}</label>
           </div>
         </div>
-        <div v-if="user.auth" class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
+        <div v-if="!user.auth" class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
           <form @submit.prevent="changePassword">
             <h3 class="mb-4">{{ t("change_password") }}</h3>
             <input :value="userForm.email" type="text" autocomplete="email" hidden>
