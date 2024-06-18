@@ -106,6 +106,20 @@ const changePassword = async () => {
   $toasts.add({ message: t("password_changed"), success: true });
 };
 
+const setupPassword = async () => {
+  if (!(isPasswordValid(userForm.value.new_password) && isPasswordCheckValid(userForm.value.new_password, userForm.value.confirm_password))) return;
+  submit.value.pass_loading = true;
+  const account = await $fetch("/api/account/password", {
+    method: "POST",
+    body: {
+      new_password: userForm.value.new_password,
+    },
+  }).catch(() => null);
+  submit.value.pass_loading = false;
+  if (!account) return;
+  $toasts.add({ message: t("password_setup"), success: true });
+};
+
 const imageRead = ref<string | ArrayBuffer>();
 const fileChosen = ref(false);
 const file = ref<File>();
@@ -294,6 +308,28 @@ useSeo({
                 <Transition name="tab" mode="out-in">
                   <SpinnerCircle v-if="submit.loading" class="text-white" />
                   <span v-else>{{ t("change_password") }}</span>
+                </Transition>
+              </button>
+            </div>
+          </form>
+        </div>
+        <div v-else class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
+          <form @submit.prevent="setupPassword">
+            <h3 class="mb-4">{{ t("setup_password") }}</h3>
+            <input :value="userForm.email" type="text" autocomplete="email" hidden>
+            <div class="form-floating mb-2">
+              <input v-model="userForm.new_password" type="password" class="form-control" :class="`form-control ${isPasswordValid(userForm.new_password) ? 'is-valid' : userForm.new_password ? 'is-invalid' : ''}`" :placeholder="t('new_password')" autocomplete="new-password">
+              <label>{{ t("new_password") }}</label>
+            </div>
+            <div class="form-floating mb-2">
+              <input v-model="userForm.confirm_password" type="password" :class="`form-control ${isPasswordCheckValid(userForm.new_password, userForm.confirm_password) ? 'is-valid' : userForm.confirm_password ? 'is-invalid' : ''}`" :placeholder="t('password_confirm')" autocomplete="new-password">
+              <label>{{ t("password_confirm") }}</label>
+            </div>
+            <div class="d-grid">
+              <button class="btn btn-primary btn-lg rounded-pill" type="submit">
+                <Transition name="tab" mode="out-in">
+                  <SpinnerCircle v-if="submit.loading" class="text-white" />
+                  <span v-else>{{ t("setup_password") }}</span>
                 </Transition>
               </button>
             </div>
