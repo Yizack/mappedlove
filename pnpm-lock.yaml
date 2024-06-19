@@ -84,8 +84,8 @@ importers:
         specifier: ^0.6.10
         version: 0.6.10(nuxt@3.12.2(@opentelemetry/api@1.9.0)(@parcel/watcher@2.4.1)(@types/node@20.14.2)(@unocss/reset@0.60.4)(better-sqlite3@11.0.0)(drizzle-orm@0.31.2(@opentelemetry/api@1.9.0)(better-sqlite3@11.0.0))(encoding@0.1.13)(eslint@9.5.0)(floating-vue@5.2.2(@nuxt/kit@3.11.2(rollup@4.18.0))(vue@3.4.27(typescript@5.4.5)))(ioredis@5.4.1)(magicast@0.3.4)(optionator@0.9.4)(rollup@4.18.0)(sortablejs@1.15.2)(stylelint@16.6.1(typescript@5.4.5))(terser@5.31.1)(typescript@5.4.5)(unocss@0.60.4(@unocss/webpack@0.60.4(rollup@4.18.0)(webpack@5.91.0(esbuild@0.17.19)))(postcss@8.4.38)(rollup@4.18.0)(vite@5.2.13(@types/node@20.14.2)(terser@5.31.1)))(vite@5.2.13(@types/node@20.14.2)(terser@5.31.1)))(rollup@4.18.0)(vite@5.2.13(@types/node@20.14.2)(terser@5.31.1))(vue@3.4.27(typescript@5.4.5))
       nuxt-twemoji:
-        specifier: ^3.5.0
-        version: 3.5.0(rollup@4.18.0)
+        specifier: ^3.5.2
+        version: 3.5.2(magicast@0.3.4)(rollup@4.18.0)
       stylelint:
         specifier: ^16.6.1
         version: 16.6.1(typescript@5.4.5)
@@ -4776,8 +4776,8 @@ packages:
   nuxt-site-config@2.2.12:
     resolution: {integrity: sha512-a2pmr4NEa1ZgZoD0guKrX+gpVpntOpqBTRBJ6zv+PqAwvltdeau2zRZBGZ2N7kFnGaGolonb2fBN+YzQh3dSDQ==}
 
-  nuxt-twemoji@3.5.0:
-    resolution: {integrity: sha512-Hyc+aVPUtzOrezoEa+89HuE3JoORlsaDwdfQ7sCkyGcjKY7wWAaC52zWRdqYHjEootvfdIAtK+deL3FMyXpTCg==}
+  nuxt-twemoji@3.5.2:
+    resolution: {integrity: sha512-aLkBa7Amp7FXmGH2qe1z0uDm/qb92/UAXVIZJ3O/VUKZIYS74/y8NBjHGiJl3O5qZxD1rVgf6wuW5yI8beVgIQ==}
 
   nuxt@3.12.2:
     resolution: {integrity: sha512-DkQvGbILEUwvXJ9TG2iTMvyO6D9ABLyA5bJ+ns8ZgWatfSXC7hXnL//PTYF7neYUzyYn0e5fLHcXgRLa/9YoLA==}
@@ -11979,11 +11979,12 @@ snapshots:
       - vue
       - webpack
 
-  nuxt-twemoji@3.5.0(rollup@4.18.0):
+  nuxt-twemoji@3.5.2(magicast@0.3.4)(rollup@4.18.0):
     dependencies:
-      '@nuxt/kit': 3.11.2(rollup@4.18.0)
+      '@nuxt/kit': 3.12.2(magicast@0.3.4)(rollup@4.18.0)
       '@twemoji/api': 15.1.0
     transitivePeerDependencies:
+      - magicast
       - rollup
       - supports-color
 
