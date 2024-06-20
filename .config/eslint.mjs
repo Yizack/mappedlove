@@ -16,6 +16,7 @@ export default withNuxt([{
     "@stylistic/linebreak-style": ["error", process.platform === "win32" ? "windows" : "unix"],
     "@stylistic/quotes": ["error", "double"],
     "@stylistic/semi": ["error", "always"],
+    "@stylistic/no-extra-semi": "error",
     "@stylistic/comma-dangle": ["error", "never"],
     "@stylistic/space-before-function-paren": ["error", "always"],
     "@stylistic/multiline-ternary": ["error", "never"],
