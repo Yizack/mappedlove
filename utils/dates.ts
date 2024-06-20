@@ -68,7 +68,6 @@ export const untilNextAnniversary = (date: Date): string => {
   return result;
 };
 
-
 export const getTogetherFor = (date?: Date | null) => {
   if (!date) return {};
 
@@ -77,7 +76,6 @@ export const getTogetherFor = (date?: Date | null) => {
   let years = today.getFullYear() - date.getFullYear();
   let months = today.getMonth() - date.getMonth();
   let days = today.getDate() - date.getDate();
-
 
   if (days < 0) {
     const lastDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 0).getDate();

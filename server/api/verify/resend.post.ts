@@ -1,8 +1,8 @@
 import Mustache from "mustache";
 import { eq } from "drizzle-orm";
 
-export default defineEventHandler(async (event) : Promise<{ email: string }> => {
-  const body = await readValidatedBody(event, (body) => z.object({
+export default defineEventHandler(async (event): Promise<{ email: string }> => {
+  const body = await readValidatedBody(event, body => z.object({
     email: z.string()
   }).safeParse(body));
 

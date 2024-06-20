@@ -1,7 +1,7 @@
 import type { MultiPartData, H3Event } from "h3";
 
 const jsonToQueryString = (json: Record<string, unknown>) => {
-  return Object.keys(json).map((key) => encodeURIComponent(key) + "=" + json[key]).join("&");
+  return Object.keys(json).map(key => encodeURIComponent(key) + "=" + json[key]).join("&");
 };
 
 const bufferToBaase64URI = (buffer: Buffer, type: string | undefined) => {
@@ -34,9 +34,8 @@ export const uploadToCloudinary = async (file: MultiPartData, filename: string, 
       ...data,
       signature
     }
-  }).catch((error) => error);
+  }).catch(error => error);
 };
-
 
 export const deleteCloudinary = async (filename: string, event: H3Event) => {
   const time = Date.now();
@@ -58,5 +57,5 @@ export const deleteCloudinary = async (filename: string, event: H3Event) => {
       ...data,
       signature
     }
-  }).catch((error) => error);
+  }).catch(error => error);
 };

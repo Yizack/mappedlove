@@ -1,19 +1,19 @@
 class Toasts {
   toasts: Ref<MappedLoveToast[]> = ref([]);
   id = 1;
-  add(toast: MappedLoveToast) {
+  add (toast: MappedLoveToast) {
     this.toasts.value.unshift({ ...toast, id: this.id++ });
   }
 
-  remove(toast: MappedLoveToast) {
+  remove (toast: MappedLoveToast) {
     this.toasts.value.splice(this.toasts.value.indexOf(toast), 1);
   }
 
-  removeAll() {
+  removeAll () {
     this.toasts.value.splice(0, this.toasts.value.length);
   }
 
-  getAll() {
+  getAll () {
     return this.toasts.value;
   }
 }

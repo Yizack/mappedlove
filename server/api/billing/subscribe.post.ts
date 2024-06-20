@@ -4,7 +4,7 @@ import { eq, and } from "drizzle-orm";
 export default defineEventHandler(async (event) => {
   const { user } = await requireUserSession(event);
 
-  const body = await readValidatedBody(event, (body) => z.object({
+  const body = await readValidatedBody(event, body => z.object({
     bondId: z.number(),
     transactionId: z.string()
   }).safeParse(body));
@@ -38,7 +38,7 @@ export default defineEventHandler(async (event) => {
 
   if (!update) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "bond_not_found" });
 
-  if(transaction.origin === "web" && user.bond?.premium === 0) {
+  if (transaction.origin === "web" && user.bond?.premium === 0) {
     const html = Mustache.render(templates.premiumWelcome, {
       lang: "en",
       domain: SITE.domain
@@ -56,7 +56,7 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  await setUserSession(event, { user: { ...user, bond: { ...user.bond, ...update } }});
+  await setUserSession(event, { user: { ...user, bond: { ...user.bond, ...update } } });
 
   return { success: true };
 });

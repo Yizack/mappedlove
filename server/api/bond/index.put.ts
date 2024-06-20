@@ -1,6 +1,6 @@
 import { eq, or, and, sql } from "drizzle-orm";
 
-export default eventHandler(async (event) : Promise<MappedLoveBond> => {
+export default eventHandler(async (event): Promise<MappedLoveBond> => {
   const { user } = await requireUserSession(event);
 
   const DB = useDb();
@@ -13,7 +13,7 @@ export default eventHandler(async (event) : Promise<MappedLoveBond> => {
 
   if (bondExists) throw createError({ statusCode: ErrorCode.CONFLICT, message: "bond_exists" });
 
-  const body = await readValidatedBody(event, (body) => z.object({
+  const body = await readValidatedBody(event, body => z.object({
     code: z.string()
   }).safeParse(body));
 

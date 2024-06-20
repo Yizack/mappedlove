@@ -13,9 +13,9 @@ export default defineEventHandler(async (event) => {
       current_billing_period: subscription.current_billing_period,
       management_urls: isManageable ? subscription.management_urls : null,
       scheduled_change: subscription.scheduled_change,
-      is_manageable: isManageable,
+      is_manageable: isManageable
     } : null,
-    transactions: transactions ? transactions.map((transaction) => ({
+    transactions: transactions ? transactions.map(transaction => ({
       id: isManageable ? transaction.id : null,
       invoice_number: transaction.invoice_number,
       status: transaction.status,
@@ -23,16 +23,16 @@ export default defineEventHandler(async (event) => {
       created_at: transaction.created_at,
       origin: transaction.origin,
       details: {
-        totals:  {
+        totals: {
           total: transaction.details?.totals?.total,
           currency_code: transaction.details?.totals?.currency_code
         }
       },
       checkout: isManageable ? transaction.checkout : null
     })) : [],
-    adjustments: adjustments ? adjustments.map((adjustment) => ({
+    adjustments: adjustments ? adjustments.map(adjustment => ({
       reason: adjustment.reason,
-      invoice_number: transactions?.find((transaction) => transaction.id === adjustment.transaction_id)?.invoice_number,
+      invoice_number: transactions?.find(transaction => transaction.id === adjustment.transaction_id)?.invoice_number,
       created_at: adjustment.created_at,
       status: adjustment.status,
       totals: {

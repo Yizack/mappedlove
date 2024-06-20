@@ -7,7 +7,7 @@ export default oauth.googleEventHandler({
       "https://www.googleapis.com/auth/userinfo.profile"
     ]
   },
-  async onSuccess(event, { user: google }) {
+  async onSuccess (event, { user: google }) {
     const config = useRuntimeConfig(event);
     const DB = useDb();
     const today = Date.now();
@@ -42,8 +42,8 @@ export default oauth.googleEventHandler({
 
     return sendRedirect(event, "/login");
   },
-  onError(event, error) {
+  onError (event, error) {
     console.warn("Google OAuth error:", error);
     return sendRedirect(event, "/");
-  },
+  }
 });

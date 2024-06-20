@@ -36,7 +36,7 @@ const { form, formReset } = useFormState({
   description: "" as string | null,
   year: "" as number | string,
   month: 0,
-  updatedAt: 0 as number | undefined,
+  updatedAt: 0 as number | undefined
 });
 
 const storyModal = (story?: MappedLoveStory) => {
@@ -45,7 +45,7 @@ const storyModal = (story?: MappedLoveStory) => {
     form.value.marker = props.marker.id;
   }
   else form.value = { ...story, hash: story.hash };
-  useModalController("story", (show) => showModal.value = show);
+  useModalController("story", show => showModal.value = show);
 };
 
 const addImage = (event: Event) => {
@@ -167,7 +167,7 @@ watch(() => props.marker, () => {
         </div>
       </div>
       <div class="form-floating mb-2">
-        <textarea v-model.trim="form.description" type="text" class="form-control" :placeholder="t('description')" :style="{height: '100px'}" />
+        <textarea v-model.trim="form.description" type="text" class="form-control" :placeholder="t('description')" :style="{ height: '100px' }" />
         <label>{{ t("description") }}</label>
       </div>
       <div class="mb-2 py-2 px-3 image-upload border rounded">

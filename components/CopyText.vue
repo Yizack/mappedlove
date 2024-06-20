@@ -35,6 +35,6 @@ const copyText = async () => {
 <template>
   <div class="input-group">
     <input ref="textToCopy" :value="text" type="text" class="form-control" :class="{ 'form-control-lg': lg, 'fw-bold': bold, 'text-uppercase': uppercase }" :placeholder="placeholder" readonly>
-    <button class="btn btn-primary px-4" :class="{'btn-lg': lg}" type="button" @click="copyText"><Icon name="solar:clipboard-text-bold" size="1.5rem" /></button>
+    <button class="btn btn-primary px-4" :class="{ 'btn-lg': lg }" type="button" @click="copyText"><Icon name="solar:clipboard-text-bold" size="1.5rem" /></button>
   </div>
 </template>

@@ -18,7 +18,6 @@ const isPublic = ref(Boolean(props.bond.public));
 const partner1 = computed(() => props.bond.partner1 as MappedLovePartner);
 const partner2 = computed(() => props.bond.partner2 as MappedLovePartner);
 
-
 const togetherFor = computed(() => getTogetherFor(coupleDate.value));
 const publicURL = computed(() => `${import.meta.dev ? SITE.dev : SITE.host}/map/${props.bond.code}`);
 
@@ -38,8 +37,8 @@ const changePrivacy = async () => {
   const bond = await $fetch("/api/bond", {
     method: "PATCH",
     body: {
-      public: Number(isPublic.value),
-    },
+      public: Number(isPublic.value)
+    }
   }).catch(() => null);
   if (!bond) return;
   $toasts.add({ message: t("bond_preferences_update"), success: true });
@@ -48,7 +47,7 @@ const changePrivacy = async () => {
 const leaveBond = async () => {
   if (!confirm(t("leave_bond_confirm"))) return;
   const bond = await $fetch("/api/bond/leave", {
-    method: "POST",
+    method: "POST"
   }).catch(() => null);
   if (!bond) return;
   emit("bond", { bond: null, type: "leave" });
@@ -64,8 +63,8 @@ watch(coupleDate, async (val: Date | undefined) => {
   const bond = await $fetch("/api/bond", {
     method: "PATCH",
     body: {
-      coupleDate: val ? val.getTime() : null,
-    },
+      coupleDate: val ? val.getTime() : null
+    }
   }).catch(() => null);
   cacheDate.value = val;
   if (!bond) return;

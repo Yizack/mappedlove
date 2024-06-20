@@ -1,9 +1,9 @@
 import { eq } from "drizzle-orm";
 
-export default eventHandler(async (event) : Promise<MappedLoveUser> => {
+export default eventHandler(async (event): Promise<MappedLoveUser> => {
   const { user } = await requireUserSession(event);
 
-  const body = await readValidatedBody(event, (body) => z.object({
+  const body = await readValidatedBody(event, body => z.object({
     name: z.string().optional(),
     country: z.string().nullable().optional(),
     birthDate: z.number().nullable().optional(),
@@ -32,7 +32,7 @@ export default eventHandler(async (event) : Promise<MappedLoveUser> => {
     showAvatar: tables.users.showAvatar,
     confirmed: tables.users.confirmed,
     createdAt: tables.users.createdAt,
-    updatedAt: tables.users.updatedAt,
+    updatedAt: tables.users.updatedAt
   }).get();
 
   if (!update) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "user_not_found" });

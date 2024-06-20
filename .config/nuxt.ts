@@ -21,7 +21,7 @@ export default defineNuxtConfig({
         { rel: "manifest", href: "/site.webmanifest" },
         { rel: "mask-icon", href: "/safari-pinned-tab.svg", color: "#ff6969" },
         { rel: "preconnect", href: SITE.cdn },
-        { rel: "preconnect", href: "https://res.cloudinary.com" },
+        { rel: "preconnect", href: "https://res.cloudinary.com" }
       ],
       meta: [
         { name: "robots", content: "index, follow" },
@@ -30,7 +30,7 @@ export default defineNuxtConfig({
         { name: "application-name", content: SITE.name },
         { name: "msapplication-TileColor", content: "#ff6969" },
         { name: "theme-color", content: "#ffffff" },
-        { name: "apple-mobile-web-app-capable", content: SITE.name },
+        { name: "apple-mobile-web-app-capable", content: SITE.name }
       ]
     }
   },
@@ -62,7 +62,8 @@ export default defineNuxtConfig({
   ],
   eslint: {
     config: {
-      autoInit: false
+      autoInit: false,
+      stylistic: true
     }
   },
   turnstile: {
@@ -136,7 +137,7 @@ export default defineNuxtConfig({
   },
   nitro: {
     prerender: {
-      routes: ["/sitemap.xml"],
+      routes: ["/sitemap.xml"]
     },
     cloudflare: {
       pages: {

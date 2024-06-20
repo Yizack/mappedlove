@@ -1,6 +1,6 @@
 import { eq, asc, desc, and } from "drizzle-orm";
 
-export default eventHandler(async (event) : Promise<MappedLovePublicMap> => {
+export default eventHandler(async (event): Promise<MappedLovePublicMap> => {
   const { code } = getRouterParams(event);
 
   const DB = useDb();
@@ -18,7 +18,7 @@ export default eventHandler(async (event) : Promise<MappedLovePublicMap> => {
     year: tables.stories.year,
     month: tables.stories.month,
     createdAt: tables.stories.createdAt,
-    updatedAt: tables.stories.updatedAt,
+    updatedAt: tables.stories.updatedAt
   }).from(tables.stories).leftJoin(tables.users, eq(tables.users.id, tables.stories.user)).where(eq(tables.stories.bond, bond.id)).orderBy(desc(tables.stories.year), desc(tables.stories.month)).all();
 
   const partner1 = await DB.select({
@@ -26,7 +26,7 @@ export default eventHandler(async (event) : Promise<MappedLovePublicMap> => {
     name: tables.users.name,
     showAvatar: tables.users.showAvatar,
     country: tables.users.country,
-    updatedAt: tables.users.updatedAt,
+    updatedAt: tables.users.updatedAt
   }).from(tables.users).where(eq(tables.users.id, bond.partner1)).get();
 
   const partner2 = await DB.select({
@@ -34,7 +34,7 @@ export default eventHandler(async (event) : Promise<MappedLovePublicMap> => {
     name: tables.users.name,
     showAvatar: tables.users.showAvatar,
     country: tables.users.country,
-    updatedAt: tables.users.updatedAt,
+    updatedAt: tables.users.updatedAt
   }).from(tables.users).where(eq(tables.users.id, bond.partner2)).get();
 
   if (!partner1 || !partner2) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "bond_not_found" });
@@ -48,7 +48,6 @@ export default eventHandler(async (event) : Promise<MappedLovePublicMap> => {
       hash: hash([story.id, bond.code].join(), secure.salt)
     };
   });
-
 
   return {
     ...bond,

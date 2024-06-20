@@ -102,7 +102,7 @@ class Leaflet {
 
   static async geoSearch (query: string, options?: { email: string, lang: string }) {
     const params = options ? {
-      email: options.email,
+      "email": options.email,
       "accept-language": options.lang
     } : undefined;
     return await new OpenStreetMapProvider({ params }).search({ query }).catch(() => []);

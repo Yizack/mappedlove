@@ -2,12 +2,12 @@ import type { H3Event, HTTPHeaderName } from "h3";
 
 const { clientId } = useRuntimeConfig().public.paypal;
 const baseAPI = import.meta.dev ? "https://api-m.sandbox.paypal.com/v1" : "https://api-m.paypal.com/v1";
-export const isValidPayPalWebhook = async (event: H3Event, headers: Partial<Record<HTTPHeaderName, string | undefined>>, data: PayPalWebhookEvent ) => {
+export const isValidPayPalWebhook = async (event: H3Event, headers: Partial<Record<HTTPHeaderName, string | undefined>>, data: PayPalWebhookEvent) => {
   const { secret, webhookId } = useRuntimeConfig(event).paypal;
   const basicAuth = btoa(`${clientId}:${secret}`);
   const endpoint = `${baseAPI}/notifications/verify-webhook-signature`;
 
-  const response = await $fetch<{ verification_status: string; }>(endpoint, {
+  const response = await $fetch<{ verification_status: string }>(endpoint, {
     method: "POST",
     headers: {
       Authorization: `Basic ${basicAuth}`

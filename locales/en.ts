@@ -390,5 +390,5 @@ export default {
   seo_terms_description: "Read our terms of use.",
   seo_refund_description: "Read our refund policy.",
   seo_cookie_description: "Read our cookie policy.",
-  seo_privacy_description: "Read our privacy policy.",
+  seo_privacy_description: "Read our privacy policy."
 };

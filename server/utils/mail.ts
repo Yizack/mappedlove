@@ -9,7 +9,7 @@ interface EmailMessage {
   html: string;
 }
 
-const mailChannels = async (config: NitroRuntimeConfig, message: EmailMessage) : Promise<boolean> => {
+const mailChannels = async (config: NitroRuntimeConfig, message: EmailMessage): Promise<boolean> => {
   const { to, subject, html } = message;
   return await $fetch("https://api.mailchannels.net/tx/v1/send", {
     method: "POST",

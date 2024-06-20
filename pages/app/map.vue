@@ -53,7 +53,7 @@ const newStory = ({ story, edit }: { story: MappedLoveStory, edit: boolean }) =>
 };
 
 const removeStory = (id: number) => {
-  stories.value = stories.value.filter((story) => story.id !== id);
+  stories.value = stories.value.filter(story => story.id !== id);
 };
 
 const selectMarker = (id: number) => {

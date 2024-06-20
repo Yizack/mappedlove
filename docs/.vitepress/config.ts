@@ -7,7 +7,7 @@ export default defineConfig({
   outDir: "../public/docs",
   base: "/docs/",
   lang: "en-US",
-  title:  `${SITE.name} Support`,
+  title: `${SITE.name} Support`,
   titleTemplate: SITE.name,
   description: "Find all the information you need about MappedLove",
   transformHead: ({ pageData }) => {
@@ -25,7 +25,7 @@ export default defineConfig({
       ["meta", { name: "twitter:card", content: "summary_large_image" }],
       ["meta", { name: "twitter:title", content: `${pageData.title} | ${SITE.name} Support` }],
       ["meta", { name: "twitter:image", content: SITE.cover }],
-      ["link", { rel: "canonical", href: `${SITE.host}/docs/${path}` }],
+      ["link", { rel: "canonical", href: `${SITE.host}/docs/${path}` }]
     ];
     head.push(...tags);
     return head;
@@ -41,7 +41,7 @@ export default defineConfig({
   },
   themeConfig: {
     nav: [
-      { text: SITE.domain, link: SITE.host },
+      { text: SITE.domain, link: SITE.host }
     ],
     sidebar,
     socialLinks: [

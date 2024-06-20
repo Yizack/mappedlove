@@ -15,7 +15,7 @@ const userForm = ref({
   showAvatar: false,
   current_password: "",
   new_password: "",
-  confirm_password: "",
+  confirm_password: ""
 });
 
 const submit = ref({ loading: false, pass_loading: false, error: false });
@@ -28,9 +28,8 @@ userForm.value.showAvatar = Boolean(user.value.showAvatar);
 const country = ref({
   code: userForm.value.country,
   search: $countries.getName(userForm.value.country),
-  focus: false,
+  focus: false
 });
-
 
 const countriesFilter = computed(() => {
   return $countries.getAll().filter((c) => {
@@ -63,8 +62,8 @@ const saveAccount = async () => {
     body: {
       name: userForm.value.name,
       country: userForm.value.country,
-      birthDate: userForm.value.birthDate,
-    },
+      birthDate: userForm.value.birthDate
+    }
   }).catch(() => null);
   submit.value.loading = false;
   if (!account) return;
@@ -79,8 +78,8 @@ const showAvatar = async () => {
   const account = await $fetch("/api/account", {
     method: "PATCH",
     body: {
-      showAvatar: userForm.value.showAvatar,
-    },
+      showAvatar: userForm.value.showAvatar
+    }
   }).catch(() => null);
   if (!account) return;
   user.value.showAvatar = account.showAvatar;
@@ -98,8 +97,8 @@ const changePassword = async () => {
     method: "PATCH",
     body: {
       current_password: userForm.value.current_password,
-      new_password: userForm.value.new_password,
-    },
+      new_password: userForm.value.new_password
+    }
   }).catch(() => null);
   submit.value.pass_loading = false;
   if (!account) return;
@@ -112,8 +111,8 @@ const setupPassword = async () => {
   const account = await $fetch("/api/account/password", {
     method: "POST",
     body: {
-      new_password: userForm.value.new_password,
-    },
+      new_password: userForm.value.new_password
+    }
   }).catch(() => null);
   submit.value.pass_loading = false;
   if (!account) return;
@@ -149,7 +148,7 @@ const uploadAvatar = async (event: Event) => {
   formData.append("file", file.value);
   const account = await $fetch("/api/account/avatar", {
     method: "POST",
-    body: formData,
+    body: formData
   }).catch(() => null);
   if (!account) {
     imageRead.value = "";
@@ -165,7 +164,7 @@ const uploadAvatar = async (event: Event) => {
 const deleteAvatar = async () => {
   if (!confirm(t("delete_avatar_confirm"))) return;
   const account = await $fetch("/api/account/avatar", {
-    method: "DELETE",
+    method: "DELETE"
   }).catch(() => null);
   if (!account) return;
   user.value.showAvatar = 0;
@@ -180,7 +179,7 @@ const deleteAccount = async () => {
   if (!confirm(t("delete_account_confirm"))) return;
   submit.value.loading = true;
   const account = await $fetch("/api/account", {
-    method: "DELETE",
+    method: "DELETE"
   }).catch(() => null);
   submit.value.loading = false;
   if (!account) return;
@@ -260,7 +259,7 @@ useSeo({
               <VueDatePicker v-model="userForm.birthDate" :format="'yyyy-MM-dd'" :enable-time-picker="false" :locale="t('lang_code')" model-type="timestamp" @open="datePickerFocus = true" @blur="datePickerFocus = false">
                 <template #trigger>
                   <div class="form-floating mb-2">
-                    <input ref="datepicker" class="form-control bg-body" :class="{ 'focus': datePickerFocus }" :value="userForm.birthDate ? formatDate(userForm.birthDate) : ''" readonly>
+                    <input ref="datepicker" class="form-control bg-body" :class="{ focus: datePickerFocus }" :value="userForm.birthDate ? formatDate(userForm.birthDate) : ''" readonly>
                     <label class="d-flex align-items-center gap-1">
                       <Icon name="solar:confetti-minimalistic-line-duotone" />
                       <span>{{ t("birth_date") }}</span>

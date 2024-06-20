@@ -1,4 +1,5 @@
 import type { PayPalWebhook } from "~/types/enums/paypal";
+
 export {};
 
 declare global {
@@ -30,7 +31,7 @@ declare global {
       parent_payment?: string;
       update_time: string;
       soft_descriptor?: string;
-    }
+    };
   }
 
   interface PayPalAmount {
@@ -79,7 +80,7 @@ declare global {
           admin_area_1: string;
           postal_code: string;
           country_code: string;
-        }
+        };
       };
     };
     billing_info: {

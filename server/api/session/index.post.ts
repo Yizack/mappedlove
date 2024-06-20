@@ -1,7 +1,7 @@
 import { eq, and, sql } from "drizzle-orm";
 
 export default defineEventHandler(async (event) => {
-  const body = await readValidatedBody(event, (body) => z.object({
+  const body = await readValidatedBody(event, body => z.object({
     email: z.string(),
     password: z.string()
   }).safeParse(body));
@@ -20,7 +20,7 @@ export default defineEventHandler(async (event) => {
   }).from(tables.logins).innerJoin(tables.users, eq(tables.users.id, tables.logins.user)).where(eq(tables.logins.user, tables.users.id)).get();
 
   if (logins && logins.attempts % 3 === 0 && Date.now() - logins.updatedAt < 60000 * 5) {
-    throw createError({ statusCode: ErrorCode.TOO_MANY_REQUESTS , message: "many_logins_attempted" });
+    throw createError({ statusCode: ErrorCode.TOO_MANY_REQUESTS, message: "many_logins_attempted" });
   }
 
   const user = await DB.select({
@@ -55,7 +55,7 @@ export default defineEventHandler(async (event) => {
   if (logins) await DB.delete(tables.logins).where(eq(tables.logins.user, logins.user)).run();
 
   const session = {
-    confirmed: user.confirmed,
+    confirmed: user.confirmed
   };
 
   if (!user.confirmed) return session;

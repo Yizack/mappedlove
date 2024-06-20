@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync, readdirSync } from "fs";
 
 const path = "./server/email-templates";
-const templates : { [key: string] : string } = {};
+const templates: { [key: string]: string } = {};
 
 for (const file of readdirSync(path)) {
   const name = file.replace(".html", "");

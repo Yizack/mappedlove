@@ -3,7 +3,7 @@ defineProps({
   sticky: {
     type: Boolean,
     default: false
-  },
+  }
 });
 
 const scrolled = ref(false);

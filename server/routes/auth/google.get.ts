@@ -3,10 +3,10 @@ import { eq, and } from "drizzle-orm";
 export default oauth.googleEventHandler({
   config: {
     scope: [
-      "https://www.googleapis.com/auth/userinfo.email",
+      "https://www.googleapis.com/auth/userinfo.email"
     ]
   },
-  async onSuccess(event, { user: _user }) {
+  async onSuccess (event, { user: _user }) {
     const DB = useDb();
     const user = await DB.select({
       id: tables.users.id,
@@ -31,8 +31,8 @@ export default oauth.googleEventHandler({
 
     return sendRedirect(event, "/app");
   },
-  onError(event, error) {
+  onError (event, error) {
     console.warn("Google OAuth error:", error);
     return sendRedirect(event, "/");
-  },
+  }
 });

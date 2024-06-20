@@ -32,13 +32,13 @@ const currentYear = new Date().getFullYear();
 const onSelect = (id: number) => {
   selected.value = id;
   $bootstrap.showOffcanvas(mapInfo.value);
-  marker.value = bond.value?.markers.find((marker) => marker.id === id);
-  stories.value = bond.value?.stories.filter((story) => story.marker === id) || [];
+  marker.value = bond.value?.markers.find(marker => marker.id === id);
+  stories.value = bond.value?.stories.filter(story => story.marker === id) || [];
 };
 
 const storiesFiltered = computed(() => {
   if (!filter.value.year) return stories.value;
-  return stories.value?.filter((story) => story.year === filter.value.year);
+  return stories.value?.filter(story => story.year === filter.value.year);
 });
 
 const clearFilter = () => {
@@ -51,7 +51,7 @@ const expandCanvas = ref(false);
 const canvasHeader = ref() as Ref<HTMLElement>;
 const canvasBody = ref() as Ref<HTMLElement>;
 const currentStory = ref<MappedLoveStory>();
-const currentStoryUser = computed(() => [partner1.value, partner2.value].find((user) => user.id === currentStory.value?.user));
+const currentStoryUser = computed(() => [partner1.value, partner2.value].find(user => user.id === currentStory.value?.user));
 
 const showModal = ref(false);
 
@@ -97,7 +97,6 @@ onMounted(() => {
       if (expandCanvas.value) expandCanvas.value = false;
       return;
     }
-
   }, { passive: true });
 });
 

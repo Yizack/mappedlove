@@ -18,7 +18,6 @@ export default eventHandler(async (event) => {
     updatedAt: tables.users.updatedAt
   }).from(tables.users).where(eq(tables.users.email, decodedEmail)).get();
 
-
   if (!user) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "user_not_found" });
 
   const config = useRuntimeConfig(event);
@@ -56,7 +55,6 @@ export default eventHandler(async (event) => {
       country: tables.users.country,
       updatedAt: tables.users.updatedAt
     }).from(tables.users).where(eq(tables.users.id, Number(bond?.partner2))).get();
-
 
     const bondData = {
       ...bond,

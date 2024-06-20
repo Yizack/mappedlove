@@ -86,7 +86,7 @@ useSeo({
               <p class="mb-0">{{ user.bond?.code }}</p>
             </div>
             <div v-if="isPremium && billing.subscription?.current_billing_period" class="col-lg-6">
-              <h5 v-if="billing.subscription.scheduled_change?.action === 'cancel'">{{t("until") }}</h5>
+              <h5 v-if="billing.subscription.scheduled_change?.action === 'cancel'">{{ t("until") }}</h5>
               <h5 v-else>{{ t("next_payment") }}</h5>
               <p class="mb-0">{{ billing.subscription.current_billing_period.ends_at ? formatDate(new Date(billing.subscription.current_billing_period.ends_at).getTime(), true) : null }}</p>
             </div>
@@ -196,7 +196,7 @@ useSeo({
           <p class="m-0">{{ t("refund_info") }}</p>
         </div>
         <div class="form-floating mb-2">
-          <textarea v-model.trim="refundForm.reason" type="text" class="form-control" :placeholder="t('reason')" :style="{height: '100px'}" required />
+          <textarea v-model.trim="refundForm.reason" type="text" class="form-control" :placeholder="t('reason')" :style="{ height: '100px' }" required />
           <label>{{ t("reason") }} <span class="text-danger">*</span></label>
         </div>
         <button type="submit" class="btn btn-primary w-100 rounded-pill">

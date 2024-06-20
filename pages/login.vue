@@ -12,7 +12,7 @@ const { $toasts } = useNuxtApp();
 
 const { form } = useFormState({
   email: meta.email || "",
-  password: "",
+  password: ""
 });
 
 const signIn = async () => {
@@ -20,7 +20,7 @@ const signIn = async () => {
   submit.value.loading = true;
   const login = await $fetch("/api/session", {
     method: "POST",
-    body: form.value,
+    body: form.value
   }).catch(() => null);
 
   if (!login) {
@@ -52,7 +52,7 @@ const resendVerification = async () => {
 };
 
 onMounted(() => {
-  if(error) $toasts.add({ message: t(error.toString()), success: false });
+  if (error) $toasts.add({ message: t(error.toString()), success: false });
   if (!meta.email) return;
   $toasts.add({ message: t("registered"), success: true });
 });
@@ -75,11 +75,11 @@ useSeo({
           </h2>
         </div>
         <div class="form-floating mb-2">
-          <input v-model="form.email" type="email" class="form-control" :placeholder="t('email')" autocomplete="email" :class="{'is-invalid': submit.error}" required>
+          <input v-model="form.email" type="email" class="form-control" :placeholder="t('email')" autocomplete="email" :class="{ 'is-invalid': submit.error }" required>
           <label class="form-label">{{ t("email") }}</label>
         </div>
         <div class="form-floating mb-2">
-          <input v-model="form.password" type="password" class="form-control" :placeholder="t('password')" autocomplete="current-password" :class="{'is-invalid': submit.error}" required>
+          <input v-model="form.password" type="password" class="form-control" :placeholder="t('password')" autocomplete="current-password" :class="{ 'is-invalid': submit.error }" required>
           <label class="form-label">{{ t("password") }}</label>
         </div>
         <div class="mb-2">

@@ -45,7 +45,7 @@
             <li class="nav-item mb-2"><a :href="SITE.github.repo" class="nav-link p-0 text-body-secondary" target="_blank">{{ t("github_repository") }}</a></li>
             <li class="nav-item mb-2"><a :href="`${SITE.github.repo}/issues/new?assignees=${SITE.github.author}&labels=bug&projects=&template=bug_report.md&title=%5BBUG%5D+I+found+a+bug+in+...`" class="nav-link p-0 text-body-secondary" target="_blank">{{ t("report_bug") }}</a></li>
             <li class="nav-item mb-2"><a :href="`${SITE.github.repo}/issues/new?assignees=${SITE.github.author}&labels=enhancement&projects=&template=feature_request.md&title=%5BFEATURE%5D+I+want+to+see+...`" class="nav-link p-0 text-body-secondary" target="_blank">{{ t("request_feature") }}</a></li>
-            <!--<li class="nav-item mb-2"><NuxtLink to="#" class="nav-link p-0 text-body-secondary">{{ t("translate_help") }}</NuxtLink></li>-->
+            <!-- <li class="nav-item mb-2"><NuxtLink to="#" class="nav-link p-0 text-body-secondary">{{ t("translate_help") }}</NuxtLink></li> -->
           </ul>
         </div>
       </footer>

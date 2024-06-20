@@ -10,15 +10,15 @@ const insertUsers = (DB: BetterSQLite3Database, c: number) => {
   for (let i = 0; i < c; i++) {
     DB.insert(tables.users).values({
       id: i + 1,
-      email: `test${i+1}@test.test`,
+      email: `test${i + 1}@test.test`,
       password: process.env.SEED as string,
-      name: `Name${i+1}`,
+      name: `Name${i + 1}`,
       country: null,
       birthDate: null,
       showAvatar: 0,
       confirmed: 1,
       createdAt: date,
-      updatedAt: date,
+      updatedAt: date
     }).run();
   }
 };

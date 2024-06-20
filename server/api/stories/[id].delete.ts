@@ -1,6 +1,6 @@
 import { eq, and } from "drizzle-orm";
 
-export default eventHandler(async (event) : Promise<MappedLoveStory | undefined> => {
+export default eventHandler(async (event): Promise<MappedLoveStory | undefined> => {
   const { user } = await requireUserSession(event);
   if (!user.bond) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "bond_not_found" });
   const { id } = getRouterParams(event);

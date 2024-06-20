@@ -1,7 +1,7 @@
 import { loadScript } from "@paypal/paypal-js";
 
 class PayPal {
-  constructor(public clientId: string, public planId: string) {
+  constructor (public clientId: string, public planId: string) {
     this.clientId = clientId;
     this.planId = planId;
   }

@@ -9,7 +9,7 @@ export const sidebar: DefaultTheme.Sidebar = [
         text: "Technical Support",
         items: [
           { text: "🚩 I want to report a bug", link: "/support/bug-report" },
-          { text: "✅ Basic troubleshooting", link: "/support/basic" },
+          { text: "✅ Basic troubleshooting", link: "/support/basic" }
         ]
       },
       {
@@ -46,7 +46,7 @@ export const sidebar: DefaultTheme.Sidebar = [
         items: [
           { text: "🚀 Upgrade to Premium", link: "/premium/upgrade" },
           { text: "🔧 Manage subscription", link: "/premium/manage-subscription" },
-          { text: "📅 Billing history", link: "/premium/billing-history" },
+          { text: "📅 Billing history", link: "/premium/billing-history" }
         ]
       }
     ]

@@ -10,7 +10,7 @@ export const SUBSCRIPTION = {
           { name: "free_image_upload_quota", quota: Quota.FREE_IMAGE_FILESIZE },
           { name: "free_summary" },
           { name: "email_support" }
-        ],
+        ]
       },
       premium: {
         name: "premium",

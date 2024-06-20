@@ -1,7 +1,7 @@
 import en from "~/locales/en";
 // import es from "~/locales/es";
 
-const strings: Record<Locale, Record<string, string>> = { en, /*es*/ };
+const strings: Record<Locale, Record<string, string>> = { en /* es */ };
 
 class Locales {
   code: Locale;

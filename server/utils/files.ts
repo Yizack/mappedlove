@@ -11,17 +11,17 @@ export const isValidFileType = (type: string) => {
 };
 
 export const getFileFromUpload = (body: MultiPartData[] | undefined) => {
-  const file = body?.find((item) => item.name === "file");
+  const file = body?.find(item => item.name === "file");
   if (!body || !body.length || !file) return;
   const { type } = file;
   if (!isValidFileType(type || "")) throw createError({ statusCode: ErrorCode.UNSUPPORTED_FILE, message: "unsupported_file" });
   return file;
 };
 
-export const uploadImage = (async (file: MultiPartData | undefined, outputName: string, folder: string, sizeMB: number, event: H3Event) : Promise<string | undefined> => {
+export const uploadImage = async (file: MultiPartData | undefined, outputName: string, folder: string, sizeMB: number, event: H3Event): Promise<string | undefined> => {
   if (!file) return;
   const { type, filename, data } = file;
-  if(!isValidFileSize(data.byteLength, sizeMB)) return undefined;
+  if (!isValidFileSize(data.byteLength, sizeMB)) return undefined;
   const finalName = outputName ? `${outputName}` : filename;
   if (import.meta.dev) {
     const { writeFileSync, existsSync, mkdirSync } = await import("fs");
@@ -35,9 +35,9 @@ export const uploadImage = (async (file: MultiPartData | undefined, outputName: 
     await cloudflare.env.CDN.put(`uploads/${folder}/${finalName}`, data, { httpMetadata: headers });
     return finalName;
   }
-});
+};
 
-export const deleteImage = (async (filename: string, event: H3Event) : Promise<void> => {
+export const deleteImage = async (filename: string, event: H3Event): Promise<void> => {
   if (import.meta.dev) {
     const { unlinkSync } = await import("fs");
     unlinkSync(`./public/uploads/${filename}`);
@@ -46,4 +46,4 @@ export const deleteImage = (async (filename: string, event: H3Event) : Promise<v
     const { cloudflare } = event.context;
     await cloudflare.env.CDN.delete(`uploads/${filename}`);
   }
-});
+};

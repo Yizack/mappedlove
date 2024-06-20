@@ -41,7 +41,7 @@ export const useSeo = (options: MappedLoveSeoOptions) => {
     ogImageAlt: options.imageAlt || t("motto"),
     // Twitter
     twitterCard: "summary_large_image",
-    //twitterSite: `@${SITE.twitter}`,
+    // twitterSite: `@${SITE.twitter}`,
     twitterTitle: options.title,
     twitterDescription: options.description,
     twitterImage: options.image || SITE.cover

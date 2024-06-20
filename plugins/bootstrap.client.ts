@@ -8,7 +8,7 @@ import Modal from "bootstrap/js/dist/modal";
 import Toast from "bootstrap/js/dist/toast";
 
 class Bootstrap {
-  modals = ref<{ id: string; show: boolean }[]>([]);
+  modals = ref<{ id: string, show: boolean }[]>([]);
   hideModal (id: HTMLElement | string) {
     const idModal = typeof id === "string" ? `#${id}` : id;
     const instance = Modal.getInstance(idModal);

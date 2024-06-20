@@ -1,6 +1,6 @@
 import { eq, and } from "drizzle-orm";
 
-export default eventHandler(async (event) : Promise<MappedLoveStory> => {
+export default eventHandler(async (event): Promise<MappedLoveStory> => {
   const { user } = await requireUserSession(event);
 
   const body = await readMultipartFormData(event);
@@ -12,7 +12,7 @@ export default eventHandler(async (event) : Promise<MappedLoveStory> => {
   const today = Date.now();
 
   const { id } = getRouterParams(event);
-  const form : { [key: string]: string } = {};
+  const form: { [key: string]: string } = {};
 
   for (const { name, data } of body) {
     if (!name || name === "file") continue;

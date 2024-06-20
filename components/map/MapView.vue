@@ -22,7 +22,6 @@ const props = defineProps({
   }
 });
 
-
 const emit = defineEmits(["moved", "select"]);
 
 const { $Leaflet, $bootstrap } = useNuxtApp();

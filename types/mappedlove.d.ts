@@ -39,7 +39,7 @@ declare global {
     order: number;
   }
   interface MappedLoveBond {
-    id: number
+    id: number;
     code: string;
     partner1: MappedLovePartner | number | null;
     partner2: MappedLovePartner | number | null;

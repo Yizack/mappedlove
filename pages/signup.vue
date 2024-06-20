@@ -8,7 +8,7 @@ const { form, formReset } = useFormState({
   email: "",
   password: "",
   password_check: "",
-  turnstile: "",
+  turnstile: ""
 });
 
 const turnstile = ref(null);
@@ -66,11 +66,11 @@ useSeo({
               <p class="m-0">{{ t("create_account") }}</p>
             </div>
             <div class="form-floating mb-2">
-              <input v-model.trim="form.name" type="text" class="form-control" :class="{'is-valid': isNameValid(form.name)}" :placeholder="t('name')" autocomplete="given-name" required>
+              <input v-model.trim="form.name" type="text" class="form-control" :class="{ 'is-valid': isNameValid(form.name) }" :placeholder="t('name')" autocomplete="given-name" required>
               <label class="form-label">{{ t("name") }}</label>
             </div>
             <div class="form-floating mb-2 position-relative">
-              <input v-model="form.email" type="email" class="form-control" :class="{'is-valid': isEmailValid(form.email), 'is-invalid': submit.exists}" :placeholder="t('email')" autocomplete="email" required @input="submit.exists = false">
+              <input v-model="form.email" type="email" class="form-control" :class="{ 'is-valid': isEmailValid(form.email), 'is-invalid': submit.exists }" :placeholder="t('email')" autocomplete="email" required @input="submit.exists = false">
               <label class="form-label">{{ t("email") }}</label>
               <div v-if="submit.exists" class="invalid-tooltip">
                 {{ t("email_conflict") }}

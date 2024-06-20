@@ -3,7 +3,7 @@ useNuxtApp();
 
 defineProps({
   id: { type: String, required: true },
-  title: { type: String, default: ""},
+  title: { type: String, default: "" },
   lg: { type: Boolean, default: false },
   fullscreen: { type: Boolean, default: false },
   map: { type: Boolean, default: false }

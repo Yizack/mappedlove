@@ -6,7 +6,7 @@ export default eventHandler(async (event) => {
   const body = await readMultipartFormData(event);
   const file = getFileFromUpload(body);
 
-  if (!body || !file ) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "bad_request" });
+  if (!body || !file) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "bad_request" });
 
   const DB = useDb();
   const today = Date.now();

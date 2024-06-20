@@ -2,7 +2,7 @@ import { initializePaddle, type Paddle as P, type CheckoutEventsData, type Check
 
 class Paddle {
   private paddle?: P;
-  constructor (private options: { token: string, plan: string}) {
+  constructor (private options: { token: string, plan: string }) {
     this.options = options;
   }
 
@@ -26,7 +26,7 @@ class Paddle {
       },
       eventCallback: async (event) => {
         if (!event.name && options.onError) options.onError();
-        switch(event.name) {
+        switch (event.name) {
           case "checkout.loaded":
             console.info("Checkout opened");
             break;
@@ -52,7 +52,7 @@ class Paddle {
   }
 
   async Checkout (checkout: { customer?: CheckoutCustomer, customData?: Record<string, string | number | boolean> }) {
-    const items = [{ priceId: this.options.plan , quantity: 1 }];
+    const items = [{ priceId: this.options.plan, quantity: 1 }];
     this.paddle?.Checkout.open({
       items,
       customer: checkout.customer,

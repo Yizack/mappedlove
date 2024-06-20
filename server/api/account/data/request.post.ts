@@ -2,7 +2,7 @@ import Mustache from "mustache";
 import { eq } from "drizzle-orm";
 
 export default eventHandler(async (event) => {
-  const body = await readValidatedBody(event, (body) => z.object({
+  const body = await readValidatedBody(event, body => z.object({
     email: z.string()
   }).safeParse(body));
 

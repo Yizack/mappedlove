@@ -14,7 +14,7 @@ export const SITE = {
   pages: {
     main: [
       { name: "home", path: "/" },
-      { name: "about_us", path: "/about"},
+      { name: "about_us", path: "/about" },
       { name: "try", path: "/login", button: true }
     ],
     app: [

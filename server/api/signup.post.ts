@@ -1,7 +1,7 @@
 import Mustache from "mustache";
 
 export default defineEventHandler(async (event) => {
-  const body = await readValidatedBody(event, (body) => z.object({
+  const body = await readValidatedBody(event, body => z.object({
     email: z.string(),
     password: z.string(),
     name: z.string(),
