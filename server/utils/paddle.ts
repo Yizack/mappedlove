@@ -56,16 +56,16 @@ export const isValidPaddleWebhook = async (event: H3Event, headers: Partial<Reco
   const { ts: webhookTimestamp, h1: webhookSignature } = signatureHeaders;
   if (new Date().getTime() > new Date((webhookTimestamp + 5) * 1000).getTime()) return false;
 
-  const webhookPayload = `${webhookTimestamp}:${body}`;
+  const payloadWithTime = `${webhookTimestamp}:${body}`;
   const encoder = new TextEncoder();
   const algorithm = { name: "HMAC", hash: "SHA-256" };
 
   const key = await crypto.subtle.importKey("raw", encoder.encode(webhookId), algorithm, false, ["sign"]);
-  const signature = await crypto.subtle.sign(algorithm.name, key, encoder.encode(webhookPayload));
+  const hmac = await crypto.subtle.sign(algorithm.name, key, encoder.encode(payloadWithTime));
 
-  const hmac = Buffer.from(signature).toString("hex");
+  const computedHash = Buffer.from(hmac).toString("hex");
 
-  return hmac === webhookSignature;
+  return computedHash === webhookSignature;
 };
 
 export const getPaddleTransactions = async (event: H3Event, subscriptionId: string) => {
