@@ -1,4 +1,4 @@
-import type { H3Event, HTTPHeaderName } from "h3";
+import type { H3Event } from "h3";
 import type { ITransactionResponse, ISubscriptionResponse, TransactionOrigin, TransactionInvoicePDF, IAdjustmentResponse } from "@paddle/paddle-node-sdk";
 
 const baseAPI = import.meta.dev ? "https://sandbox-api.paddle.com" : "https://api.paddle.com";
@@ -29,43 +29,6 @@ export const getPaddleSubscription = async (event: H3Event, subscriptionId: stri
   if (!subscription) return null;
 
   return subscription.data;
-};
-
-const extractHeaders = (header: string) => {
-  const parts = header.split(";");
-  let ts = "";
-  let h1 = "";
-  for (const part of parts) {
-    const [key, value] = part.split("=");
-    if (value) {
-      if (key === "ts") ts = value;
-      else if (key === "h1") h1 = value;
-    }
-  }
-  if (!(ts && h1)) return null;
-  return { ts: parseInt(ts), h1 };
-};
-
-export const isValidPaddleWebhook = async (event: H3Event, headers: Partial<Record<HTTPHeaderName, string | undefined>>, body?: string) => {
-  const { webhookId } = useRuntimeConfig(event).paddle;
-  const paddleSignature = headers["paddle-signature"];
-  if (!body || !paddleSignature) return false;
-
-  const signatureHeaders = extractHeaders(paddleSignature);
-  if (!signatureHeaders) return false;
-  const { ts: webhookTimestamp, h1: webhookSignature } = signatureHeaders;
-  if (new Date().getTime() > new Date((webhookTimestamp + 5) * 1000).getTime()) return false;
-
-  const payloadWithTime = `${webhookTimestamp}:${body}`;
-  const encoder = new TextEncoder();
-  const algorithm = { name: "HMAC", hash: "SHA-256" };
-
-  const key = await crypto.subtle.importKey("raw", encoder.encode(webhookId), algorithm, false, ["sign"]);
-  const hmac = await crypto.subtle.sign(algorithm.name, key, encoder.encode(payloadWithTime));
-
-  const computedHash = Buffer.from(hmac).toString("hex");
-
-  return computedHash === webhookSignature;
 };
 
 export const getPaddleTransactions = async (event: H3Event, subscriptionId: string) => {

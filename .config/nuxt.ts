@@ -58,7 +58,8 @@ export default defineNuxtConfig({
     "@nuxtjs/color-mode",
     "@nuxtjs/sitemap",
     "@dargmuesli/nuxt-cookie-control",
-    "nuxt-auth-utils"
+    "nuxt-auth-utils",
+    "nuxt-webhook-validators"
   ],
   eslint: {
     config: {
@@ -120,6 +121,11 @@ export default defineNuxtConfig({
     paddle: {
       secret: "",
       webhookId: ""
+    },
+    webhook: {
+      paddle: {
+        webhookId: process.env.NUXT_PADDLE_WEBHOOK_ID || ""
+      }
     },
     public: {
       paypal: {

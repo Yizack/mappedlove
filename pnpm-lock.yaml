@@ -86,6 +86,9 @@ importers:
       nuxt-twemoji:
         specifier: ^3.5.2
         version: 3.5.2(magicast@0.3.4)(rollup@4.18.0)
+      nuxt-webhook-validators:
+        specifier: ^0.0.1
+        version: 0.0.1(magicast@0.3.4)(rollup@4.18.0)
       stylelint:
         specifier: ^16.6.1
         version: 16.6.1(typescript@5.5.2)
@@ -4778,6 +4781,9 @@ packages:
 
   nuxt-twemoji@3.5.2:
     resolution: {integrity: sha512-aLkBa7Amp7FXmGH2qe1z0uDm/qb92/UAXVIZJ3O/VUKZIYS74/y8NBjHGiJl3O5qZxD1rVgf6wuW5yI8beVgIQ==}
+
+  nuxt-webhook-validators@0.0.1:
+    resolution: {integrity: sha512-ImojVvft1RTNvJ6Y1knExHvPZyKBxDngR6d2qG+bdSIaYOcvIJ1xir6ed+yaQ1Be0ael5NksvwhtJPM0HLeLhw==}
 
   nuxt@3.12.2:
     resolution: {integrity: sha512-DkQvGbILEUwvXJ9TG2iTMvyO6D9ABLyA5bJ+ns8ZgWatfSXC7hXnL//PTYF7neYUzyYn0e5fLHcXgRLa/9YoLA==}
@@ -11983,6 +11989,15 @@ snapshots:
     dependencies:
       '@nuxt/kit': 3.12.2(magicast@0.3.4)(rollup@4.18.0)
       '@twemoji/api': 15.1.0
+    transitivePeerDependencies:
+      - magicast
+      - rollup
+      - supports-color
+
+  nuxt-webhook-validators@0.0.1(magicast@0.3.4)(rollup@4.18.0):
+    dependencies:
+      '@nuxt/kit': 3.12.2(magicast@0.3.4)(rollup@4.18.0)
+      defu: 6.1.4
     transitivePeerDependencies:
       - magicast
       - rollup
