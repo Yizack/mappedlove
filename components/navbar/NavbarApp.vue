@@ -4,10 +4,6 @@ const logOut = () => {
   clear();
   navigateTo("/", { replace: true });
 };
-
-watch(() => user.value, () => {
-  user.value.updatedAt = Date.now();
-});
 </script>
 
 <template>
