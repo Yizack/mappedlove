@@ -52,7 +52,7 @@ export default defineNuxtConfig({
   ],
   modules: [
     "@nuxt/eslint",
-    "nuxt-icon",
+    "@nuxt/icon",
     "@nuxtjs/turnstile",
     "nuxt-twemoji",
     "@nuxtjs/color-mode",
