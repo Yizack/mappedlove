@@ -61,6 +61,9 @@ export default defineNuxtConfig({
     "nuxt-auth-utils",
     "nuxt-webhook-validators"
   ],
+  icon: {
+    mode: "svg"
+  },
   eslint: {
     config: {
       autoInit: false,
