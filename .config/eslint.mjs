@@ -2,13 +2,6 @@ import withNuxt from "../.nuxt/eslint.config.mjs";
 
 export default withNuxt([{
   files: ["**/*.vue", "**/*.js", "**/*.ts", "**/*.mjs"],
-  ignores: [
-    "node_modules/**/*",
-    ".nuxt/**/*",
-    "dist/**/*",
-    ".output/**/*",
-    "public/**/*"
-  ],
   rules: {
     "camelcase": "off",
     "no-console": ["error", { allow: ["info", "warn"] }],

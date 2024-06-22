@@ -25,6 +25,7 @@
     "lint": "npm run lint:eslint && npm run lint:stylelint",
     "lint:eslint": "eslint --fix --config .config/eslint.mjs",
     "lint:stylelint": "stylelint \"**/*.css\" --fix --config .config/stylelint.json",
+    "lint:eslint:inspect": "npx @eslint/config-inspector --config .config/eslint.mjs",
     "cf:dev": "npm run build && wrangler pages dev dist",
     "docs:dev": "vitepress dev docs",
     "docs:build": "(git fetch --unshallow || git fetch --all) && vitepress build docs",
