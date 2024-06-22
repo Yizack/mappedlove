@@ -1,3 +1,4 @@
+import vue from "@vitejs/plugin-vue";
 import { SITE } from "../utils/site";
 
 export default defineNuxtConfig({
@@ -154,6 +155,9 @@ export default defineNuxtConfig({
           exclude: ["/docs/*"]
         }
       }
+    },
+    rollupConfig: {
+      plugins: [vue()]
     }
   },
   sitemap: {

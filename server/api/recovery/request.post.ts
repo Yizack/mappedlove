@@ -1,5 +1,6 @@
-import Mustache from "mustache";
+import { render } from "@vue-email/render";
 import { eq } from "drizzle-orm";
+import accountRecovery from "~/emails/accountRecovery.vue";
 
 export default eventHandler(async (event) => {
   const body = await readValidatedBody(event, body => z.object({
@@ -25,7 +26,7 @@ export default eventHandler(async (event) => {
 
   const url = import.meta.dev ? SITE.dev : SITE.host;
 
-  const html = Mustache.render(templates.accountRecovery, {
+  const html = await render(accountRecovery, {
     lang: "en",
     domain: SITE.domain,
     recoveryLink: `${url}/recovery/${encodeURIComponent(btoa(user.email))}/${code}`
