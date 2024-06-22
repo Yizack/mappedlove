@@ -1,5 +1,6 @@
-import Mustache from "mustache";
+import { render } from "@vue-email/render";
 import { eq, and } from "drizzle-orm";
+import premiumWelcome from "~/emails/premiumWelcome.vue";
 
 export default defineEventHandler(async (event) => {
   const { user } = await requireUserSession(event);
@@ -39,7 +40,7 @@ export default defineEventHandler(async (event) => {
   if (!update) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "bond_not_found" });
 
   if (transaction.origin === "web" && user.bond?.premium === 0) {
-    const html = Mustache.render(templates.premiumWelcome, {
+    const html = await render(premiumWelcome, {
       lang: "en",
       domain: SITE.domain
     });

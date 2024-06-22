@@ -1,5 +1,6 @@
-import Mustache from "mustache";
+import { render } from "@vue-email/render";
 import { eq } from "drizzle-orm";
+import accountData from "~/emails/accountData.vue";
 
 export default eventHandler(async (event) => {
   const body = await readValidatedBody(event, body => z.object({
@@ -24,7 +25,7 @@ export default eventHandler(async (event) => {
   const userHash = hash([user.id].join(), config.secure.salt);
   const url = import.meta.dev ? SITE.dev : SITE.host;
 
-  const html = Mustache.render(templates.accountData, {
+  const html = await render(accountData, {
     lang: "en",
     domain: SITE.domain,
     downloadLink: `${url}/account-data/${encodeURIComponent(btoa(email))}/${userHash}`

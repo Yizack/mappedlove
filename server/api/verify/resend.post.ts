@@ -1,5 +1,6 @@
-import Mustache from "mustache";
+import { render } from "@vue-email/render";
 import { eq } from "drizzle-orm";
+import accountVerify from "~/emails/accountVerify.vue";
 
 export default defineEventHandler(async (event): Promise<{ email: string }> => {
   const body = await readValidatedBody(event, body => z.object({
@@ -27,7 +28,7 @@ export default defineEventHandler(async (event): Promise<{ email: string }> => {
   const { name } = user;
   const url = import.meta.dev ? SITE.dev : SITE.host;
 
-  const html = Mustache.render(templates.accountVerify, {
+  const html = await render(accountVerify, {
     lang: "en",
     domain: SITE.domain,
     verifyLink: `${url}/verify/${encodeURIComponent(btoa(email))}/${code}`
