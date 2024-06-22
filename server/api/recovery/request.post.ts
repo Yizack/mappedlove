@@ -1,4 +1,5 @@
-import Mustache from "mustache";
+// import Mustache from "mustache";
+import { compile } from "handlebars/runtime";
 import { eq } from "drizzle-orm";
 
 export default eventHandler(async (event) => {
@@ -25,7 +26,9 @@ export default eventHandler(async (event) => {
 
   const url = import.meta.dev ? SITE.dev : SITE.host;
 
-  const html = Mustache.render(templates.accountRecovery, {
+  const render = compile(templates.accountRecovery);
+
+  const html = render({
     lang: "en",
     domain: SITE.domain,
     recoveryLink: `${url}/recovery/${encodeURIComponent(btoa(user.email))}/${code}`
