@@ -1,5 +1,5 @@
 import { defineConfig, type HeadConfig } from "vitepress";
-import { SITE } from "./../../utils/site";
+import { SITE } from "./../../app/utils/site";
 import { sidebar } from "./theme/sidebar";
 
 // refer https://vitepress.dev/reference/site-config for details
@@ -35,7 +35,7 @@ export default defineConfig({
   vite: {
     resolve: {
       alias: {
-        "~": "."
+        "~": "./app"
       }
     }
   },
