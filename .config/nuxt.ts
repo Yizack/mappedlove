@@ -39,18 +39,7 @@ export default defineNuxtConfig({
   css: [
     "leaflet/dist/leaflet.css",
     "@vuepic/vue-datepicker/dist/main.css",
-    "~/assets/scss/bootstrap.scss",
-    "~/assets/scss/main.scss",
-    "~/assets/scss/theme-light.scss",
-    "~/assets/scss/theme-dark.scss",
-    "~/assets/scss/transitions.scss",
-    "~/assets/scss/backgrounds.scss",
-    "~/assets/scss/buttons.scss",
-    "~/assets/scss/navbar.scss",
-    "~/assets/scss/form.scss",
-    "~/assets/scss/markers.scss",
-    "~/assets/scss/leaflet.scss",
-    "~/assets/scss/map.scss"
+    "~/assets/scss/mappedlove.scss"
   ],
   modules: [
     "@nuxt/eslint",
