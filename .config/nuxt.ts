@@ -37,9 +37,9 @@ export default defineNuxtConfig({
     }
   },
   css: [
+    "~/assets/scss/app.scss",
     "leaflet/dist/leaflet.css",
-    "@vuepic/vue-datepicker/dist/main.css",
-    "~/assets/scss/mappedlove.scss"
+    "@vuepic/vue-datepicker/dist/main.css"
   ],
   modules: [
     "@nuxt/eslint",
