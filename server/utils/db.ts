@@ -6,7 +6,7 @@ import { drizzle } from "drizzle-orm/better-sqlite3";
 // @ts-expect-error - no types
 import Database from "better-sqlite3";
 
-export * as tables from "~/server/db/schema";
+export * as tables from "../db/schema";
 
 let _db: DrizzleD1Database | BetterSQLite3Database | null = null;
 

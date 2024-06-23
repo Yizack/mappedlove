@@ -1,5 +1,5 @@
-export { ErrorCode } from "~/types/enums/errors";
-export { Quota } from "~/types/enums/quotas";
+export { ErrorCode } from "~~/types/enums/errors";
+export { Quota } from "~~/types/enums/quotas";
 
 const deb = {} as Record<string, NodeJS.Timeout | undefined>;
 

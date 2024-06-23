@@ -1,6 +1,6 @@
 import { migrate } from "drizzle-orm/better-sqlite3/migrator";
 import type { BetterSQLite3Database } from "drizzle-orm/better-sqlite3";
-import { seedDev } from "~/server/utils/seed";
+import { seedDev } from "../utils/seed";
 
 export default defineNitroPlugin(() => {
   if (import.meta.dev) {
