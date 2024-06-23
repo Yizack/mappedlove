@@ -1,9 +1,10 @@
 {
-  "extends": "stylelint-config-standard",
+  "extends": "stylelint-config-standard-scss",
   "rules": {
     "length-zero-no-unit": true,
     "rule-empty-line-before": ["always-multi-line", { "except": ["first-nested"] }],
-    "color-function-notation": ["modern", { "ignore": ["with-var-inside"] }]
+    "color-function-notation": ["modern", { "ignore": ["with-var-inside"] }],
+    "scss/double-slash-comment-empty-line-before": "never"
   },
   "ignoreFiles": [
     "../node_modules/**/*",
