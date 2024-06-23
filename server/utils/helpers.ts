@@ -4,7 +4,6 @@ export { SITE } from "~/utils/site";
 export { ErrorCode } from "~~/types/enums/errors";
 export { Quota } from "~~/types/enums/quotas";
 export { isPasswordValid } from "~/utils/validators";
-export { PayPalWebhook } from "~~/types/enums/paypal";
 export { z } from "zod";
 
 export const hash = (string: string, salt?: string) => {

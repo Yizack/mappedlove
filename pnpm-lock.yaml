@@ -35,9 +35,6 @@ importers:
       '@paddle/paddle-node-sdk':
         specifier: ^1.4.1
         version: 1.4.1(encoding@0.1.13)
-      '@paypal/paypal-js':
-        specifier: ^8.1.0
-        version: 8.1.0
       '@types/bootstrap':
         specifier: ^5.2.10
         version: 5.2.10
@@ -1755,9 +1752,6 @@ packages:
   '@parcel/watcher@2.4.1':
     resolution: {integrity: sha512-HNjmfLQEVRZmHRET336f20H/8kOozUGwk7yajvsonjNxbj2wBTK1WsQuHkD5yYh9RxFGL2EyDHryOihOwUoKDA==}
     engines: {node: '>= 10.0.0'}
-
-  '@paypal/paypal-js@8.1.0':
-    resolution: {integrity: sha512-f64bom5xYwmxyeKPJUFS/XpM0tXojQEgjRIADPqe1R9WmK+PFqL4SEkT85cGU0ZXLVx4EGbjwREHhqEOR+OstA==}
 
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
@@ -5094,9 +5088,6 @@ packages:
       bluebird:
         optional: true
 
-  promise-polyfill@8.3.0:
-    resolution: {integrity: sha512-H5oELycFml5yto/atYqmjyigJoAo3+OXwolYiH7OfQuYlAqhxNvTfiNMbV9hsC6Yp83yE5r2KTVmtrG6R9i6Pg==}
-
   promise-retry@2.0.1:
     resolution: {integrity: sha512-y+WKFlBR8BGXnsNlIHFGPZmyDf3DFMoLhaflAnyZgV6rG6xu+JwesTo2Q9R6XwYmtmwAFCkAk3e35jEdoeh/3g==}
     engines: {node: '>=10'}
@@ -8082,10 +8073,6 @@ snapshots:
       '@parcel/watcher-win32-arm64': 2.4.1
       '@parcel/watcher-win32-ia32': 2.4.1
       '@parcel/watcher-win32-x64': 2.4.1
-
-  '@paypal/paypal-js@8.1.0':
-    dependencies:
-      promise-polyfill: 8.3.0
 
   '@pkgjs/parseargs@0.11.0':
     optional: true
@@ -12212,8 +12199,6 @@ snapshots:
   process@0.11.10: {}
 
   promise-inflight@1.0.1: {}
-
-  promise-polyfill@8.3.0: {}
 
   promise-retry@2.0.1:
     dependencies:

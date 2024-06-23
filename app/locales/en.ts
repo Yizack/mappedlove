@@ -302,7 +302,6 @@ export default {
   free_features: "Always free features",
   checkout: "Checkout",
   paddle_sdk_not_loaded: "Paddle SDK could not be loaded",
-  paypal_sdk_not_loaded: "PayPal SDK could not be loaded",
   payment_error: "Payment error occurred",
   transaction_not_found: "Transaction not found",
   invalid_headers: "headers are not valid",
