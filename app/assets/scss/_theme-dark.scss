@@ -1,34 +1,46 @@
-[data-bs-theme="dark"] {
-  --bs-body-color: #e9ecef;
-  --bs-body-color-rgb: 233, 236, 239;
-  --bs-dark: #443c47;
-  --bs-dark-rgb: 68, 60, 71;
-  --bs-primary: #ffafa9;
-  --bs-primary-rgb: 255, 175, 169;
-  --bs-primary-hover: #ff9f98;
-  --bs-primary-hover-rgb: 255, 159, 152;
-  --bs-link-color: #ff9f98;
-  --bs-link-color-rgb: 255, 159, 152;
-  --bs-link-hover-color: #ffafa9;
-  --bs-link-hover-color-rgb: 255, 175, 169;
-  --bs-secondary: #121111;
-  --bs-secondary-rgb: 18, 17, 17;
-  --bs-body-bg: #232222;
-  --bs-body-bg-rgb: 35, 34, 34;
-  --bs-secondary-bg: #3a3939;
-  --bs-secondary-bg-rgb: 58, 57, 57;
-  --bs-tertiary-bg: #535252;
-  --bs-tertiary-bg-rgb: 83, 82, 82;
-  --bs-success: #a9ffaf;
-  --bs-success-rgb: 169, 255, 175;
-  --bs-danger: #ff8894;
-  --bs-danger-rgb: 255, 136, 148;
-  --bs-danger-hover: #e97d88;
-  --bs-danger-hover-rgb: 233, 125, 136;
-  --placeholder-color: #a8a8a8;
-  --button-color: var(--bs-body-bg);
-}
+$body-color: #e9ecef;
+$primary: #ffafa9;
+$primary-hover: #ff9f98;
+$link-color: #ff9f98;
+$link-hover-color: #ffafa9;
+$accent: #121111;
+$danger-hover: #e97d88;
+$placeholder-color: #a8a8a8;
+$btn-color: var(--bs-body-bg);
+$dark: #443c47;
+$danger: #ff8894;
+$body-bg: #232222;
+$tertiary-bg: #535252;
+$success: #a9ffaf;
 
-[data-bs-theme="dark"] a {
-  text-decoration: none;
+@include color-mode(dark) {
+  --bs-body-color: #{$body-color};
+  --bs-body-color-rgb: #{to-rgb($body-color)};
+  --bs-primary: #{$primary};
+  --bs-primary-rgb: #{to-rgb($primary)};
+  --bs-primary-hover: #{$primary-hover};
+  --bs-link-color: #{$link-color};
+  --bs-link-color-rgb: #{to-rgb($link-color)};
+  --bs-link-hover-color: #{$link-hover-color};
+  --bs-link-hover-color-rgb: #{to-rgb($link-hover-color)};
+  --bs-secondary: #{$accent};
+  --bs-secondary-rgb: #{to-rgb($accent)};
+  --bs-danger-hover : #{$danger-hover};
+  --bs-danger-hover-rgb: #{to-rgb($danger-hover)};
+  --placeholder-color: #{$placeholder-color};
+  --btn-color: #{$btn-color};
+  --bs-danger: #{$danger};
+  --bs-danger-rgb: #{to-rgb($danger)};
+  --bs-dark: #{$dark};
+  --bs-dark-rgb: #{to-rgb($dark)};
+  --bs-body-bg: #{$body-bg};
+  --bs-body-bg-rgb: #{to-rgb($body-bg)};
+  --bs-tertiary-bg: #{$tertiary-bg};
+  --bs-tertiary-bg-rgb: #{to-rgb($tertiary-bg)};
+  --bs-success: #{$success};
+  --bs-success-rgb: #{to-rgb($success)};
+
+  a {
+    text-decoration: none;
+  }
 }

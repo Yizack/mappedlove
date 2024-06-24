@@ -5,13 +5,17 @@
   background-repeat: no-repeat;
 }
 
-[data-bs-theme="light"] .banner-home {
-  background-image: url("/images/illustrations/heart.jpg");
+@include color-mode(light) {
+  .banner-home {
+    background-image: url("/images/illustrations/heart.jpg");
+  }
 }
 
-[data-bs-theme="dark"] .banner-home {
-  background-image: url("/images/illustrations/heart.jpg");
-  background-blend-mode: difference;
+@include color-mode(dark) {
+  .banner-home {
+    background-image: url("/images/illustrations/heart.jpg");
+    background-blend-mode: difference;
+  }
 }
 
 .banner-access {

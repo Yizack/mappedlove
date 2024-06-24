@@ -1,24 +1,34 @@
-[data-bs-theme="light"] {
-  --bs-body-color: #443c47;
-  --bs-body-color-rgb: 68, 60, 71;
+$body-color: #443c47;
+$primary: #ff6969;
+$primary-hover: #f86363;
+$link-color: #db5353;
+$link-hover-color: #dd4343;
+$accent: #ffe5e5;
+$danger-hover: #bb2d3b;
+$placeholder-color: #a8a8a8;
+$btn-color: #fff;
+
+@include color-mode(light) {
+  --bs-body-color: #{$body-color};
+  --bs-body-color-rgb: #{to-rgb($body-color)};
+  --bs-primary: #{$primary};
+  --bs-primary-rgb: #{to-rgb($primary)};
+  --bs-primary-hover: #{$primary-hover};
+  --bs-link-color: #{$link-color};
+  --bs-link-color-rgb: #{to-rgb($link-color)};
+  --bs-link-hover-color: #{$link-hover-color};
+  --bs-link-hover-color-rgb: #{to-rgb($link-hover-color)};
+  --bs-secondary: #{$accent};
+  --bs-secondary-rgb: #{to-rgb($accent)};
+  --bs-danger-hover : #{$danger-hover};
+  --bs-danger-hover-rgb: #{to-rgb($danger-hover)};
+  --placeholder-color: #{$placeholder-color};
+  --btn-color: #{$btn-color};
   --bs-dark: var(--bs-body-color);
   --bs-dark-rgb: var(--bs-body-color-rgb);
-  --bs-primary: #ff6969;
-  --bs-primary-rgb: 255, 105, 105;
-  --bs-primary-hover: #f86363;
-  --bs-link-color: #db5353;
-  --bs-link-color-rgb: 219, 83, 83;
-  --bs-link-hover-color: #dd4343;
-  --bs-link-hover-color-rgb: 221, 67, 67;
-  --bs-secondary: #ffe5e5;
-  --bs-secondary-rgb: 255, 229, 229;
-  --bs-danger-hover : #bb2d3b;
-  --bs-danger-hover-rgb: 187, 45, 59;
-  --placeholder-color: #a8a8a8;
-  --button-color: #fff;
 }
 
 /* stylelint-disable -- This problem is ignorable. */
 .dp__theme_light {
-  --dp-primary-color: var(--bs-primary)!important;
+  --dp-primary-color: #{$primary}!important;
 }
