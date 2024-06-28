@@ -1,6 +1,6 @@
 import { eq, asc, desc, and } from "drizzle-orm";
 
-export default defineEventHandler(async (event): Promise<MappedLovePublicMap> => {
+export default defineCachedEventHandler(async (event): Promise<MappedLovePublicMap> => {
   const { code } = getRouterParams(event);
 
   const DB = useDb();
@@ -62,4 +62,4 @@ export default defineEventHandler(async (event): Promise<MappedLovePublicMap> =>
     markers,
     stories: storiesHashed
   };
-});
+}, { maxAge: 60 * 60 * 1 }); // Cache public map for 1 hour
