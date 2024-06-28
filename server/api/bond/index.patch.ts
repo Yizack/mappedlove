@@ -21,7 +21,7 @@ export default eventHandler(async (event): Promise<MappedLoveBond> => {
     updatedAt: Date.now()
   }).where(and(eq(tables.bonds.code, user.bond.code), or(eq(tables.bonds.partner1, user.id), eq(tables.bonds.partner2, user.id)))).returning().get();
 
-  await setUserSession(event, {
+  await setUserSessionNullable(event, {
     user: {
       ...user,
       bond: {

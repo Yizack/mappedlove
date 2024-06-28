@@ -11,6 +11,6 @@ export default eventHandler(async (event): Promise<MappedLoveBond | undefined> =
   }
 
   const DB = useDb();
-  await setUserSession(event, { user: { ...user, bond: undefined } });
+  await setUserSessionNullable(event, { user: { ...user, bond: undefined } });
   return DB.delete(tables.bonds).where(eq(tables.bonds.partner1, user.id)).returning().get();
 });

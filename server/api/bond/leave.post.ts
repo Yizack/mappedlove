@@ -21,6 +21,6 @@ export default eventHandler(async (event) => {
 
   if (!bond) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "bond_not_found" });
 
-  await setUserSession(event, { user: { ...user, bond: undefined } });
+  await setUserSessionNullable(event, { user: { ...user, bond: undefined } });
   return { success: true };
 });

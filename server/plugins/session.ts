@@ -62,6 +62,6 @@ export default defineNitroPlugin(() => {
       } : null
     };
 
-    await setUserSession(event, { user: { ...user, bond: userBond } });
+    await setUserSessionNullable(event, { user: { ...user, bond: userBond } });
   });
 });
