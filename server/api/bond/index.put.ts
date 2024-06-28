@@ -1,6 +1,6 @@
 import { eq, or, and, sql } from "drizzle-orm";
 
-export default eventHandler(async (event): Promise<MappedLoveBond> => {
+export default defineEventHandler(async (event): Promise<MappedLoveBond> => {
   const { user } = await requireUserSession(event);
 
   const DB = useDb();

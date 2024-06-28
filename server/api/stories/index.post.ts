@@ -1,4 +1,4 @@
-export default eventHandler(async (event): Promise<MappedLoveStory> => {
+export default defineEventHandler(async (event): Promise<MappedLoveStory> => {
   const { user } = await requireUserSession(event);
 
   const body = await readMultipartFormData(event);

@@ -2,7 +2,7 @@ import { render } from "@vue-email/render";
 import { eq } from "drizzle-orm";
 import accountData from "~/emails/accountData.vue";
 
-export default eventHandler(async (event) => {
+export default defineEventHandler(async (event) => {
   const body = await readValidatedBody(event, body => z.object({
     email: z.string()
   }).safeParse(body));

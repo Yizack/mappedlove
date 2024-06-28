@@ -1,6 +1,6 @@
 import { eq, asc, desc, and } from "drizzle-orm";
 
-export default eventHandler(async (event): Promise<MappedLovePublicMap> => {
+export default defineEventHandler(async (event): Promise<MappedLovePublicMap> => {
   const { code } = getRouterParams(event);
 
   const DB = useDb();

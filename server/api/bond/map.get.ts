@@ -1,6 +1,6 @@
 import { eq, asc, desc } from "drizzle-orm";
 
-export default eventHandler(async (event): Promise<MappedLoveMap> => {
+export default defineEventHandler(async (event): Promise<MappedLoveMap> => {
   const { user } = await requireUserSession(event);
   if (!user.bond) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "bond_not_found" });
   const DB = useDb();

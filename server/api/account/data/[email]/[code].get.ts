@@ -1,6 +1,6 @@
 import { eq, or } from "drizzle-orm";
 
-export default eventHandler(async (event) => {
+export default defineEventHandler(async (event) => {
   const { code, email } = getRouterParams(event);
 
   const decodedEmail = atob(decodeURIComponent(email));

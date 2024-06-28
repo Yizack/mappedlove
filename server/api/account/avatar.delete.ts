@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
 
-export default eventHandler(async (event) => {
+export default defineEventHandler(async (event) => {
   const { user } = await requireUserSession(event);
   if (!user) throw createError({ statusCode: ErrorCode.FORBIDDEN, message: "forbidden" });
 

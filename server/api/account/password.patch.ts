@@ -1,6 +1,6 @@
 import { eq, and } from "drizzle-orm";
 
-export default eventHandler(async (event): Promise<MappedLoveUser> => {
+export default defineEventHandler(async (event): Promise<MappedLoveUser> => {
   const { user } = await requireUserSession(event);
   const { secure } = useRuntimeConfig(event);
   const body = await readValidatedBody(event, body => z.object({
