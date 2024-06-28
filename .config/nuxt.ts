@@ -93,6 +93,12 @@ export default defineNuxtConfig({
       name: "nuxt-session",
       password: ""
     },
+    oauth: {
+      google: {
+        clientId: "",
+        clientSecret: ""
+      }
+    },
     mail: {
       from: "",
       fromName: "",
