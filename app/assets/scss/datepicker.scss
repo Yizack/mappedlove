@@ -1,0 +1,12 @@
+.dp__theme_dark {
+  --dp-primary-color: var(--bs-primary)!important;
+  --dp-primary-text-color: var(--bs-body-bg)!important;
+}
+
+.dp__theme_light {
+  --dp-primary-color: var(--bs-primary)!important;
+}
+
+.dp__action_button {
+  font-weight: bold;
+}

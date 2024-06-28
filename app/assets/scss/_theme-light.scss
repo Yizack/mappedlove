@@ -27,8 +27,3 @@ $btn-color: #fff;
   --bs-dark: var(--bs-body-color);
   --bs-dark-rgb: var(--bs-body-color-rgb);
 }
-
-/* stylelint-disable -- This problem is ignorable. */
-.dp__theme_light {
-  --dp-primary-color: #{$primary}!important;
-}
