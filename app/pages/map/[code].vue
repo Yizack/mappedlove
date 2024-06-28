@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import VueDatePicker from "@vuepic/vue-datepicker";
-
 definePageMeta({ layout: "map" });
 
 const { params } = useRoute();
@@ -147,7 +145,7 @@ useSeo({
                 <Icon name="ic:round-close" size="1.3rem" @click="clearFilter" />
               </button>
               <ClientOnly v-if="!isMobile || expandCanvas">
-                <VueDatePicker v-model.number="filter.year" year-picker reverse-years :year-range="[currentYear - 100, currentYear]">
+                <VueDatePicker v-model.number="filter.year" year-picker reverse-years :year-range="[currentYear - 100, currentYear]" :dark="$colorMode.preference === 'dark'">
                   <template #trigger>
                     <div class="px-2 py-1 border rounded-3 hover position-relative" role="button">
                       <div class="d-flex align-items-center justify-content-center gap-1">

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import VueDatePicker from "@vuepic/vue-datepicker";
-
 const props = defineProps({
   bond: {
     type: Object as () => MappedLoveBond,
@@ -103,7 +101,7 @@ watch(coupleDate, async (val: Date | undefined) => {
           <Transition name="tab" mode="out-in">
             <div v-if="!coupleDate">
               <ClientOnly>
-                <VueDatePicker v-model="coupleDate" :format="'yyyy-MM-dd'" :enable-time-picker="false" :locale="t('lang_code')" :max-date="new Date()">
+                <VueDatePicker v-model="coupleDate" :format="'yyyy-MM-dd'" :enable-time-picker="false" :locale="t('lang_code')" :max-date="new Date()" :dark="$colorMode.preference === 'dark'">
                   <template #trigger>
                     <div class="p-2 border rounded-3 hover" role="button">
                       <div class="d-flex align-items-center justify-content-center gap-1">
@@ -136,7 +134,7 @@ watch(coupleDate, async (val: Date | undefined) => {
                       <Icon name="solar:trash-bin-trash-linear" size="1.5rem" class="text-danger" />
                     </button>
                     <ClientOnly>
-                      <VueDatePicker v-model="coupleDate" :format="'yyyy-MM-dd'" :enable-time-picker="false" :locale="t('lang_code')">
+                      <VueDatePicker v-model="coupleDate" :format="'yyyy-MM-dd'" :enable-time-picker="false" :locale="t('lang_code')" :dark="$colorMode.preference === 'dark'">
                         <template #trigger>
                           <button class="btn btn-sm border-0" :title="t('delete')">
                             <Icon name="solar:pen-outline" size="1.5rem" />
