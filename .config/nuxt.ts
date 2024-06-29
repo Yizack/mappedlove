@@ -132,8 +132,13 @@ export default defineNuxtConfig({
     url: SITE.host
   },
   nitro: {
+    preset: "cloudflare-pages",
     prerender: {
-      routes: ["/sitemap.xml"]
+      routes: [
+        "/", "/about", "/account-data", "/contact", "/login", "/pricing", "/recovery",
+        "/signup", "/legal/privacy", "/legal/terms", "/legal/cookies", "/legal/refund",
+        "/sitemap.xml"
+      ]
     },
     cloudflare: {
       pages: {
