@@ -29,6 +29,7 @@ Connect your accounts by inviting your partner to join your bond, and start mapp
 ## Credits
 
 - Special thanks to [Nuxt](https://nuxt.com/), the [Vue](https://vuejs.org/) framework for bringing the best development experience.
+- Serverless hosted on [Cloudflare Pages](https://pages.cloudflare.com/).
 - Mapping capabilities with [Leaflet](https://leafletjs.com/).
 - Location searching from [leaflet-geosearch](https://github.com/smeijer/leaflet-geosearch).
 - [Paddle](https://www.paddle.com/), our payment processor, allows us to offer our premium plan seamlessly.
