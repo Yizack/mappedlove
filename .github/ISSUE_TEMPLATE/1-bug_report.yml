@@ -18,7 +18,7 @@ body:
   - type: textarea
     id: reproduce
     attributes:
-      label: To Reproduce
+      label: Reproduction
       description: Please provide steps to reproduce the behavior you are reporting.
       placeholder: |
         1. Go to '...'
@@ -28,7 +28,7 @@ body:
     validations:
       required: true
   - type: textarea
-    id: expected_behavior
+    id: expected
     attributes:
       label: Expected behavior
       description: A clear and concise description of what you expected to happen.
@@ -44,15 +44,13 @@ body:
     validations:
       required: false
   - type: textarea
-    id: desktop
+    id: environment
     attributes:
-      label: Desktop
-      description: Please complete the following information
+      label: Environment information
+      description: Please complete the following information.
       value: |
-        - OS: 
-        - Browser: 
-        - Version:
-        - Device:
+        - Operating System: [e.g. Windows 11]
+        - Browser: [e.g. Chrome 126.0.6478.127]
     validations:
       required: true
   - type: textarea
