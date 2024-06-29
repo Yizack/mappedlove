@@ -1,12 +1,12 @@
 /* stylelint-disable selector-class-pattern */
 
 .dp__theme_dark {
-  --dp-primary-color: var(--bs-primary)!important;
-  --dp-primary-text-color: var(--bs-body-bg)!important;
+  --dp-primary-color: var(--bs-primary);
+  --dp-primary-text-color: var(--bs-body-bg);
 }
 
 .dp__theme_light {
-  --dp-primary-color: var(--bs-primary)!important;
+  --dp-primary-color: var(--bs-primary);
 }
 
 .dp__action_button {
