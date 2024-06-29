@@ -45,10 +45,10 @@ export default defineConfig({
     ],
     sidebar,
     socialLinks: [
-      { icon: "github", link: "https://github.com/Yizack/mappedlove" }
+      { icon: "github", link: SITE.github.repo }
     ],
     editLink: {
-      pattern: "https://github.com/Yizack/mappedlove/edit/main/docs/:path",
+      pattern: `${SITE.github.repo}/edit/main/docs/:path`,
       text: "Edit this page on GitHub"
     },
     search: {

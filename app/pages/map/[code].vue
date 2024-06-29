@@ -120,9 +120,9 @@ useSeo({
       <strong>{{ bond.partner1.name }}</strong> <Icon name="solar:hearts-bold-duotone" class="img-fluid" /> <strong>{{ bond.partner2.name }}</strong>
     </div>
     <MapPublic ref="map" :bond="bond" :select="selected" @select="onSelect" />
-    <div id="mapInfo" ref="mapInfo" class="offcanvas shadow" :class="isMobile ? 'offcanvas-bottom' : 'offcanvas-start'" data-bs-backdrop="false" tabindex="-1" aria-labelledby="mapInfoLabel" :style="{ height: expandCanvas || !isMobile ? '100vh' : '30vh' }">
+    <div ref="mapInfo" class="offcanvas shadow" :class="isMobile ? 'offcanvas-bottom' : 'offcanvas-start'" data-bs-backdrop="false" tabindex="-1" aria-labelledby="mapLabel" :style="{ height: expandCanvas || !isMobile ? '100vh' : '30vh' }">
       <div ref="canvasHeader" class="offcanvas-header">
-        <h5 id="mapInfoLabel" class="offcanvas-title d-flex align-items-center">
+        <h5 id="mapLabel" class="offcanvas-title d-flex align-items-center">
           <Icon name="solar:map-point-favourite-bold" class="text-primary flex-shrink-0" size="2rem" />
           <span v-if="marker">{{ marker.title }}</span>
         </h5>

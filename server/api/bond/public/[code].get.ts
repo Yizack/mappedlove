@@ -62,4 +62,4 @@ export default defineCachedEventHandler(async (event): Promise<MappedLovePublicM
     markers,
     stories: storiesHashed
   };
-}, { maxAge: 60 * 60 * 1 }); // Cache public map for 1 hour
+}, { maxAge: 60 * 5 }); // Cache public map for 5 minutes

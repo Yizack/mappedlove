@@ -165,3 +165,7 @@ td, th {
 .table tbody tr:last-child td, .table tbody tr:last-child th  {
   border-bottom: 0;
 }
+
+.badge.bg-primary {
+  color: var(--bs-body-bg)
+}
