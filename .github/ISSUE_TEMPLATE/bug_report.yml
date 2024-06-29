@@ -1,0 +1,65 @@
+name: "🐛 Bug report"
+description: Report an issue or a bug you have encountered
+labels: ["bug"]
+assignees: Yizack
+
+body:
+  - type: markdown
+    attributes:
+      value: Thank you for taking the time to fill out this bug report!
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug
+      description: A clear and concise description of what the bug is.
+      placeholder: I have an issue when...
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: To Reproduce
+      description: Please provide steps to reproduce the behavior you are reporting.
+      placeholder: |
+        1. Go to '...'
+        2. Click on '....'
+        3. Scroll down to '....'
+        4. See error
+    validations:
+      required: true
+  - type: textarea
+    id: expected_behavior
+    attributes:
+      label: Expected behavior
+      description: A clear and concise description of what you expected to happen.
+      placeholder: I expected...
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: If applicable, add screenshots to help explain your problem.
+      placeholder: Drag and drop your images here
+    validations:
+      required: false
+  - type: textarea
+    id: desktop
+    attributes:
+      label: Desktop
+      description: Please complete the following information
+      value: |
+        - OS: 
+        - Browser: 
+        - Version:
+        - Device:
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Add any other context about the problem here.
+      placeholder: I have tried...
+    validations:
+      required: false
