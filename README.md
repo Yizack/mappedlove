@@ -36,6 +36,7 @@ Connect your accounts by inviting your partner to join your bond, and start mapp
 - Maling handled by [MailChannels](https://www.mailchannels.com/) on [Cloudflare](https://www.cloudflare.com/).
 - Rendering email templates with [vue-email](https://vuemail.net/).
 - Image cropping and resizing by [Cloudinary](https://cloudinary.com/) for the carousel view on the map markers.
+- Styling with [Bootstrap](https://getbootstrap.com/).
 - And more!
 
 ## License
