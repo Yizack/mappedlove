@@ -2,7 +2,7 @@
 
 # MappedLove
 
-Web app made for couples. Mark the places you have visited together upload images and preserve your special moments forever.
+Web app made for couples. Mark the places you have visited together, upload images, and, preserve your special moments forever.
 
 ## Map Your Journey
 
