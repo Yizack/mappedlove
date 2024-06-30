@@ -86,8 +86,6 @@ export default defineNuxtConfig({
       secretKey: ""
     },
     session: {
-      name: "nuxt-session",
-      password: "",
       maxAge: 60 * 60 * 24 * 7 // 1 week
     },
     oauth: {

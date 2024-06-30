@@ -25,7 +25,7 @@
     "lint:eslint": "eslint --config .config/eslint.mjs",
     "lint:stylelint": "stylelint \"**/*.{css,scss,sass}\" --config .config/stylelint.json",
     "lint:eslint:inspect": "npx @eslint/config-inspector --config .config/eslint.mjs",
-    "cf:dev": "npm run build && wrangler pages dev dist",
+    "cf:dev": "set NITRO_PRESET=cloudflare-pages&&npm run build && wrangler pages dev dist",
     "docs:dev": "vitepress dev docs",
     "docs:build": "(git fetch --unshallow || git fetch --all) && vitepress build docs",
     "docs:serve": "vitepress serve docs"
