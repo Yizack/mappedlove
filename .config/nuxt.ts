@@ -50,9 +50,7 @@ export default defineNuxtConfig({
     "nuxt-auth-utils",
     "nuxt-webhook-validators"
   ],
-  icon: {
-    mode: "svg"
-  },
+  icon: { mode: "svg" },
   eslint: {
     config: {
       autoInit: false,
@@ -89,7 +87,8 @@ export default defineNuxtConfig({
     },
     session: {
       name: "nuxt-session",
-      password: ""
+      password: "",
+      maxAge: 60 * 60 * 24 * 7 // 1 week
     },
     oauth: {
       google: {
@@ -132,13 +131,8 @@ export default defineNuxtConfig({
     url: SITE.host
   },
   nitro: {
-    preset: "cloudflare-pages",
     prerender: {
-      routes: [
-        "/", "/about", "/account-data", "/contact", "/login", "/pricing", "/recovery",
-        "/signup", "/legal/privacy", "/legal/terms", "/legal/cookies", "/legal/refund",
-        "/sitemap.xml"
-      ]
+      routes: ["/sitemap.xml"]
     },
     cloudflare: {
       pages: {
