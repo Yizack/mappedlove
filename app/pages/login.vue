@@ -1,13 +1,12 @@
 <script setup lang="ts">
 definePageMeta({ layout: "access", middleware: "authenticated" });
 
-const { error } = useRoute().query;
+const { query, meta } = useRoute("login");
 
-const needsConfirm = ref(error === "verify_needed" ? true : false);
+const needsConfirm = ref(query.error === "verify_needed" ? true : false);
 const resent = ref(false);
 const submit = ref({ loading: false, error: false });
 
-const { meta } = useRoute();
 const { $toasts } = useNuxtApp();
 
 const { form } = useFormState({
@@ -52,7 +51,7 @@ const resendVerification = async () => {
 };
 
 onMounted(() => {
-  if (error) $toasts.add({ message: t(error.toString()), success: false });
+  if (query.error) $toasts.add({ message: t(query.error.toString()), success: false });
   if (!meta.email) return;
   $toasts.add({ message: t("registered"), success: true });
 });

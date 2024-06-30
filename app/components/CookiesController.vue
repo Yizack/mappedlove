@@ -20,9 +20,9 @@ moduleOptions.localeTexts = {
   }
 };
 
-moduleOptions.cookies.necessary[0].name = t("cookies_necessary_title");
-moduleOptions.cookies.necessary[0].description = t("cookies_necessary_description");
-moduleOptions.cookies.necessary[0].links = {
+moduleOptions.cookies.necessary[0]!.name = t("cookies_necessary_title");
+moduleOptions.cookies.necessary[0]!.description = t("cookies_necessary_description");
+moduleOptions.cookies.necessary[0]!.links = {
   "/legal/cookies": t("cookie_policy"),
   "/legal/privacy": t("privacy_policy"),
   "/legal/terms": t("terms_of_use")

@@ -14,6 +14,12 @@ class Countries {
   }
 }
 
+declare module "#app" {
+  interface NuxtApp {
+    $countries: Countries;
+  }
+}
+
 export default defineNuxtPlugin(() => {
   const countries = new Countries();
   return {

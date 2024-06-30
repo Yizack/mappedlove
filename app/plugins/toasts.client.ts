@@ -18,6 +18,12 @@ class Toasts {
   }
 }
 
+declare module "#app" {
+  interface NuxtApp {
+    $toasts: Toasts;
+  }
+}
+
 export default defineNuxtPlugin(() => {
   const toasts = new Toasts();
   return {

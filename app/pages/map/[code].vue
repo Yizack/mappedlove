@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({ layout: "map" });
 
-const { params } = useRoute();
+const { params } = useRoute("map-code");
 
 const { data: bond } = await useFetch(`/api/bond/public/${params.code}`);
 const { $bootstrap } = useNuxtApp();
@@ -81,11 +81,11 @@ onMounted(() => {
   };
 
   canvasHeader.value.addEventListener("touchstart", (event) => {
-    touch.startY = event.changedTouches[0].screenY;
+    touch.startY = event.changedTouches[0]!.screenY;
   }, { passive: true });
 
   canvasHeader.value.addEventListener("touchend", (event) => {
-    touch.endY = event.changedTouches[0].screenY;
+    touch.endY = event.changedTouches[0]!.screenY;
     if (touch.endY < touch.startY) {
       expandCanvas.value = true;
       return;
@@ -135,10 +135,10 @@ useSeo({
         <div v-if="marker">
           <div class="p-3 border-bottom">
             <p>{{ marker.description }}</p>
-            <div class="d-flex gap-1 mb-2" :title="t(groups[marker.group].key)">
+            <div class="d-flex gap-1 mb-2" :title="t(groups[marker.group]!.key)">
               <strong>{{ t("group") }}:</strong>
-              <Icon :name="groups[marker.group].icon" class="text-primary" size="1.5rem" />
-              <span>{{ t(groups[marker.group].key) }}</span>
+              <Icon :name="groups[marker.group]!.icon" class="text-primary" size="1.5rem" />
+              <span>{{ t(groups[marker.group]!.key) }}</span>
             </div>
             <div class="d-flex gap-1">
               <button v-if="filter.year" class="btn btn-sm btn-danger rounded-3">
@@ -174,7 +174,7 @@ useSeo({
                             <div class="card-footer">
                               <small class="text-body-secondary">
                                 <span>{{ story.year }}</span>
-                                <span v-if="story.month">, {{ t(months[story.month - 1]) }}</span>
+                                <span v-if="story.month">, {{ t(months[story.month - 1]!) }}</span>
                               </small>
                             </div>
                           </div>
@@ -203,7 +203,7 @@ useSeo({
         <div>
           <span>{{ t("story_date") }}: </span>
           <strong>
-            <span v-if="currentStory.month">{{ t(months[currentStory.month - 1]) }} {{ currentStory.year }}</span>
+            <span v-if="currentStory.month">{{ t(months[currentStory.month - 1]!) }} {{ currentStory.year }}</span>
             <span v-else>{{ currentStory.year }}</span>
           </strong>
         </div>

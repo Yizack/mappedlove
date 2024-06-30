@@ -128,7 +128,7 @@ watch(() => props.marker, () => {
                   <div class="card-footer">
                     <small class="text-body-secondary">
                       <span>{{ story.year }}</span>
-                      <span v-if="story.month">, {{ t(months[story.month - 1]) }}</span>
+                      <span v-if="story.month">, {{ t(months[story.month - 1]!) }}</span>
                     </small>
                   </div>
                   <Transition name="fade">

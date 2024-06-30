@@ -159,5 +159,8 @@ export default defineNuxtConfig({
   },
   features: {
     inlineStyles: false
+  },
+  experimental: {
+    typedPages: true
   }
 });

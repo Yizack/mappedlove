@@ -50,7 +50,7 @@ onMounted(() => {
   }
   const length = markers.value.length;
   if (length) {
-    setView([markers.value[length - 1].lat, markers.value[length - 1].lng], 3);
+    setView([markers.value[length - 1]!.lat, markers.value[length - 1]!.lng], 3);
   }
 });
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({ layout: "access", middleware: "authenticated" });
 
-const { error } = useRoute().query;
+const { query } = useRoute("signup");
 
 const { form, formReset } = useFormState({
   name: "",
@@ -40,9 +40,9 @@ const signUp = async () => {
 };
 
 onMounted(() => {
-  if (!error) return;
+  if (!query.error) return;
   const { $toasts } = useNuxtApp();
-  $toasts.add({ message: t(error.toString()), success: false });
+  $toasts.add({ message: t(query.error.toString()), success: false });
 });
 
 useSeo({

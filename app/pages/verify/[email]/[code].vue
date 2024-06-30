@@ -9,9 +9,9 @@ onBeforeRouteLeave((to, from, next) => {
 const loaded = ref(false);
 const verified = ref(false);
 
-const { params, meta } = useRoute();
-const emailCode = ref(params.email.toString());
-const code = ref(params.code.toString());
+const { params, meta } = useRoute("verify-email-code");
+const emailCode = ref(params.email);
+const code = ref(params.code);
 const email = ref("");
 try {
   email.value = atob(emailCode.value);

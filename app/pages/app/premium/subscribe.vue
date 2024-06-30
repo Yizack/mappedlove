@@ -13,9 +13,9 @@ if (!user.value.bond?.id) {
 const loading = ref(false);
 const paid = ref(false);
 
-const { _ptxn } = useRoute().query;
+const { query } = useRoute("app-premium-subscribe");
 const isPtxnValid = ref(false);
-if (_ptxn) loading.value = true;
+if (query._ptxn) loading.value = true;
 
 const { $paddle, $toasts } = useNuxtApp();
 const initialized = ref(false);
@@ -51,7 +51,7 @@ onMounted(async () => {
       if (!subscribe) return;
       paid.value = true;
       await sessionFetch();
-      if (_ptxn) return;
+      if (query._ptxn) return;
       $toasts.add({ message: t("subscribed"), success: true });
       $paddle.close();
     },
@@ -75,7 +75,7 @@ useSeo({
       <div class="col-lg-8 col-xl-6 mx-auto">
         <div class="bg-body rounded-3 px-3 py-4 p-lg-4">
           <SpinnerCircle v-if="loading" />
-          <template v-else-if="_ptxn">
+          <template v-else-if="query._ptxn">
             <div v-if="isPtxnValid" class="text-center">
               <Icon name="solar:check-circle-bold" class="text-success" size="5rem" />
               <h1>{{ t("transaction_completed") }}!</h1>

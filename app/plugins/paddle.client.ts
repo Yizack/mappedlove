@@ -65,6 +65,12 @@ class Paddle {
   }
 }
 
+declare module "#app" {
+  interface NuxtApp {
+    $paddle: Paddle;
+  }
+}
+
 export default defineNuxtPlugin(async () => {
   const { clientId, planId } = useRuntimeConfig().public.paddle;
 

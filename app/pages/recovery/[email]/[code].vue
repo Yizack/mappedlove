@@ -1,11 +1,11 @@
 <script setup lang="ts">
 definePageMeta({ layout: "utils" });
 
-const { params } = useRoute();
+const { params } = useRoute("recovery-email-code");
 const { $toasts } = useNuxtApp();
 
-const emailCode = ref(params.email.toString());
-const code = ref(params.code.toString());
+const emailCode = ref(params.email);
+const code = ref(params.code);
 const submit = ref({ loading: false, error: false });
 
 const email = ref("");

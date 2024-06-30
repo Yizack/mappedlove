@@ -3,7 +3,7 @@ import { eq, or } from "drizzle-orm";
 export default defineEventHandler(async (event) => {
   const { code, email } = getRouterParams(event);
 
-  const decodedEmail = atob(decodeURIComponent(email));
+  const decodedEmail = atob(decodeURIComponent(email!));
   const DB = useDb();
 
   const user = await DB.select({

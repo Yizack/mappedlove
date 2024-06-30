@@ -16,7 +16,7 @@ export const getGroups = () => {
 };
 
 export const getGroup = (i: number) => {
-  return t(groups[i].key);
+  return t(groups[i]!.key);
 };
 
 export const formatDate = (time: number, showTime?: boolean) => {

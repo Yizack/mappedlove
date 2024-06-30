@@ -78,8 +78,8 @@ class Leaflet {
     if (!this.markers[group]) {
       this.markers[group] = [];
     }
-    this.markers[group].push(marker);
-    marker.addTo(this.groups[group]);
+    this.markers[group]!.push(marker);
+    marker.addTo(this.groups[group]!);
     return marker;
   }
 
@@ -106,6 +106,12 @@ class Leaflet {
       "accept-language": options.lang
     } : undefined;
     return await new OpenStreetMapProvider({ params }).search({ query }).catch(() => []);
+  }
+}
+
+declare module "#app" {
+  interface NuxtApp {
+    $Leaflet: typeof Leaflet;
   }
 }
 

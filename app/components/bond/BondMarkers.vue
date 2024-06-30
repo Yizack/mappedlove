@@ -130,8 +130,8 @@ watch(() => props.markers, (value) => {
           <Icon v-if="edit" name="tabler:grip-horizontal" size="1rem" class="position-absolute start-50 bottom-0 translate-middle-x text-primary" />
           <div class="w-100 h-100 text-break">
             <h5 class="d-flex align-items-center gap-1">
-              <span class="d-flex" :title="t(groups[marker.group].key)">
-                <Icon :name="groups[marker.group].icon" class="text-primary" size="1.5rem" />
+              <span class="d-flex" :title="t(groups[marker.group]!.key)">
+                <Icon :name="groups[marker.group]!.icon" class="text-primary" size="1.5rem" />
               </span>
               {{ marker.title }}
             </h5>

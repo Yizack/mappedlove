@@ -75,7 +75,7 @@ onMounted(() => {
   }
   const length = props.markers.length;
   if (length) {
-    setView([props.markers[length - 1].lat, props.markers[length - 1].lng], 3);
+    setView([props.markers[length - 1]!.lat, props.markers[length - 1]!.lng], 3);
   }
 });
 
