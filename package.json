@@ -28,7 +28,8 @@
     "cf:dev": "set NITRO_PRESET=cloudflare-pages&&npm run build && wrangler pages dev dist",
     "docs:dev": "vitepress dev docs",
     "docs:build": "(git fetch --unshallow || git fetch --all) && vitepress build docs",
-    "docs:serve": "vitepress serve docs"
+    "docs:serve": "vitepress serve docs",
+    "test:types": "vue-tsc --noEmit"
   },
   "devDependencies": {
     "@dargmuesli/nuxt-cookie-control": "^8.4.2",
