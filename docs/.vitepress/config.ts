@@ -12,7 +12,9 @@ export default defineConfig({
   description: "Find all the information you need about MappedLove",
   transformHead: ({ pageData }) => {
     const head: HeadConfig[] = [];
-    const path = pageData.relativePath.replace(/\.md$/, "").replace(/index$/, "");
+    const relativePath = pageData.relativePath.replace(/\.md$/, "").replace(/index$/, "");
+    const path = relativePath === "index" ? "" : `/${relativePath}`;
+
     const tags: HeadConfig[] = [
       ["meta", { property: "og:url", content: `${SITE.host}/docs` + path }],
       ["meta", { property: "og:type", content: "website" }],
@@ -25,7 +27,7 @@ export default defineConfig({
       ["meta", { name: "twitter:card", content: "summary_large_image" }],
       ["meta", { name: "twitter:title", content: `${pageData.title} | ${SITE.name} Support` }],
       ["meta", { name: "twitter:image", content: SITE.cover }],
-      ["link", { rel: "canonical", href: `${SITE.host}/docs/${path}` }]
+      ["link", { rel: "canonical", href: `${SITE.host}/docs` + path }]
     ];
     head.push(...tags);
     return head;
