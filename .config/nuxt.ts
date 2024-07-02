@@ -3,6 +3,7 @@ import { SITE } from "../app/utils/site";
 
 export default defineNuxtConfig({
   future: { compatibilityVersion: 4 },
+  compatibilityDate: "2024-07-02",
   app: {
     head: {
       charset: "utf-8",

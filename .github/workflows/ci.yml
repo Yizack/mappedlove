@@ -39,8 +39,8 @@ jobs:
           node-version: 20
           cache: "pnpm"
 
-      - name: Install dependencies
+      - name: 📦 Install dependencies
         run: pnpm install
 
-      - name: Lint
+      - name: 🔎 Lint
         run: pnpm lint:eslint && pnpm lint:stylelint
