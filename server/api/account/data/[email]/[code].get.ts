@@ -1,7 +1,10 @@
 export default defineEventHandler(async (event) => {
-  const { code, email } = getRouterParams(event);
+  const { code, email } = await getValidatedRouterParams(event, z.object({
+    code: z.string(),
+    email: z.string()
+  }).parse);
 
-  const decodedEmail = atob(decodeURIComponent(email!));
+  const decodedEmail = atob(decodeURIComponent(email));
   const DB = useDb();
 
   const user = await DB.select({

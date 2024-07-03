@@ -1,8 +1,10 @@
 export default defineCachedEventHandler(async (event): Promise<MappedLovePublicMap> => {
-  const { code } = getRouterParams(event);
+  const { code } = await getValidatedRouterParams(event, z.object({
+    code: z.string().min(5).toUpperCase()
+  }).parse);
 
   const DB = useDb();
-  const bond = await DB.select().from(tables.bonds).where(and(eq(tables.bonds.code, code!), eq(tables.bonds.public, 1))).get();
+  const bond = await DB.select().from(tables.bonds).where(and(eq(tables.bonds.code, code), eq(tables.bonds.public, 1))).get();
 
   if (!bond || (!bond.partner1 || !bond.partner2)) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "bond_not_found" });
 

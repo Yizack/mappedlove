@@ -130,6 +130,7 @@ export default {
   created: "Created",
   delete_story: "Are you sure you want to delete this story?",
   unsupported_file: "Unsupported file type",
+  story_not_found: "Story not found",
   // Groups
   groups: "Groups",
   places: "Places",

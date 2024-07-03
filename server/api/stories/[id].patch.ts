@@ -9,7 +9,10 @@ export default defineEventHandler(async (event): Promise<MappedLoveStory> => {
   const DB = useDb();
   const today = Date.now();
 
-  const { id } = getRouterParams(event);
+  const { id } = await getValidatedRouterParams(event, z.object({
+    id: z.number({ coerce: true })
+  }).parse);
+
   const form: { [key: string]: string } = {};
 
   for (const { name, data } of body) {
@@ -22,7 +25,9 @@ export default defineEventHandler(async (event): Promise<MappedLoveStory> => {
     year: Number(form.year),
     month: Number(form.month),
     updatedAt: today
-  }).where(and(eq(tables.stories.id, Number(id)), eq(tables.stories.bond, user.bond.id))).returning().get();
+  }).where(and(eq(tables.stories.id, id), eq(tables.stories.bond, user.bond.id))).returning().get();
+
+  if (!story) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "story_not_found" });
 
   const { secure } = useRuntimeConfig(event);
   const storyHash = hash([story.id, user.bond.code].join(), secure.salt);
