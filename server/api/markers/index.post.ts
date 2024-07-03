@@ -1,5 +1,3 @@
-import { eq, desc, count } from "drizzle-orm";
-
 export default defineEventHandler(async (event): Promise<MappedLoveMarker> => {
   const { user } = await requireUserSession(event);
   if (!user.bond) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "bond_not_found" });

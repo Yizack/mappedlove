@@ -1,5 +1,3 @@
-import { eq, asc, desc, and } from "drizzle-orm";
-
 export default defineCachedEventHandler(async (event): Promise<MappedLovePublicMap> => {
   const { code } = getRouterParams(event);
 
@@ -8,7 +6,7 @@ export default defineCachedEventHandler(async (event): Promise<MappedLovePublicM
 
   if (!bond || (!bond.partner1 || !bond.partner2)) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "bond_not_found" });
 
-  const markers = await DB.select().from(tables.markers).where(eq(tables.markers.bond, bond.id)).orderBy(asc(tables.markers.order)).all();
+  const markers = await DB.select().from(tables.markers).where(eq(tables.markers.bond, bond.id)).orderBy(tables.markers.order).all();
   const stories = await DB.select({
     id: tables.stories.id,
     marker: tables.stories.marker,

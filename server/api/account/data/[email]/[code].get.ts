@@ -1,5 +1,3 @@
-import { eq, or } from "drizzle-orm";
-
 export default defineEventHandler(async (event) => {
   const { code, email } = getRouterParams(event);
 

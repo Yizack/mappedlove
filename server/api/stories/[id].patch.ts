@@ -1,5 +1,3 @@
-import { eq, and } from "drizzle-orm";
-
 export default defineEventHandler(async (event): Promise<MappedLoveStory> => {
   const { user } = await requireUserSession(event);
 

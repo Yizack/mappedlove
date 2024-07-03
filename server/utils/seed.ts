@@ -1,17 +1,14 @@
-import type { BetterSQLite3Database } from "drizzle-orm/better-sqlite3";
-
+const DB = useDb();
 const date = Date.now();
+const testPassword = process.env.TEST_PASSWORD;
+const testEmail = process.env.TEST_EMAIL;
 
-const deleteUsers = (DB: BetterSQLite3Database) => {
-  DB.delete(tables.users).run();
-};
-
-const insertUsers = (DB: BetterSQLite3Database, c: number) => {
+const insertTestUsers = (c: number) => {
   for (let i = 0; i < c; i++) {
     DB.insert(tables.users).values({
       id: i + 1,
-      email: `test${i + 1}@test.test`,
-      password: process.env.SEED as string,
+      email: i === 0 && testEmail ? testEmail : `test${i + 1}@test.test`,
+      password: testPassword ? hash(testPassword, useRuntimeConfig().secure.salt) : null,
       name: `Name${i + 1}`,
       country: null,
       birthDate: null,
@@ -23,8 +20,7 @@ const insertUsers = (DB: BetterSQLite3Database, c: number) => {
   }
 };
 
-const createBond = (DB: BetterSQLite3Database, partner1: number, partner2: number) => {
-  const today = Date.now();
+const createTestBond = (partner1: number, partner2: number) => {
   DB.insert(tables.bonds).values({
     id: 1,
     partner1,
@@ -32,8 +28,8 @@ const createBond = (DB: BetterSQLite3Database, partner1: number, partner2: numbe
     code: "QDZV1",
     bonded: 1,
     premium: 0,
-    createdAt: today,
-    updatedAt: today
+    createdAt: date,
+    updatedAt: date
   }).onConflictDoUpdate({
     target: tables.bonds.id,
     set: {
@@ -43,9 +39,9 @@ const createBond = (DB: BetterSQLite3Database, partner1: number, partner2: numbe
   }).run();
 };
 
-export const seedDev = async (DB: BetterSQLite3Database) => {
-  deleteUsers(DB);
-  insertUsers(DB, 2);
-  createBond(DB, 1, 2);
+export const seedDev = () => {
+  DB.delete(tables.users).run();
+  insertTestUsers(2);
+  createTestBond(1, 2);
   console.info("Database seeded");
 };

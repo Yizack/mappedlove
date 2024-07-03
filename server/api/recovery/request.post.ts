@@ -1,5 +1,4 @@
 import { render } from "@vue-email/render";
-import { eq } from "drizzle-orm";
 import accountRecovery from "~/emails/accountRecovery.vue";
 
 export default defineEventHandler(async (event) => {

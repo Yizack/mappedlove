@@ -1,5 +1,3 @@
-import { eq, or } from "drizzle-orm";
-
 export default defineNitroPlugin(() => {
   sessionHooks.hook("fetch", async (session, event) => {
     const { user } = session;

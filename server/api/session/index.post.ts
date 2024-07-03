@@ -1,5 +1,3 @@
-import { eq, and, sql } from "drizzle-orm";
-
 export default defineEventHandler(async (event) => {
   const body = await readValidatedBody(event, body => z.object({
     email: z.string(),

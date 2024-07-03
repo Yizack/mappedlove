@@ -1,5 +1,3 @@
-import { eq, and } from "drizzle-orm";
-
 export default oauth.googleEventHandler({
   config: {
     scope: [

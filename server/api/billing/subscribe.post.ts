@@ -1,5 +1,4 @@
 import { render } from "@vue-email/render";
-import { eq, and } from "drizzle-orm";
 import premiumWelcome from "~/emails/premiumWelcome.vue";
 
 export default defineEventHandler(async (event) => {

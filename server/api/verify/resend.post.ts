@@ -1,5 +1,4 @@
 import { render } from "@vue-email/render";
-import { eq } from "drizzle-orm";
 import accountVerify from "~/emails/accountVerify.vue";
 
 export default defineEventHandler(async (event): Promise<{ email: string }> => {

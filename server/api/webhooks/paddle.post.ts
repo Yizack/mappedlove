@@ -1,4 +1,3 @@
-import { eq, and } from "drizzle-orm";
 import { type IEventsResponse, type ITransactionNotificationResponse, EventName } from "@paddle/paddle-node-sdk";
 
 export default defineEventHandler(async (event) => {
