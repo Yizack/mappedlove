@@ -7,7 +7,7 @@ onMounted(() => {
   // eslint-disable-next-line no-global-assign
   $fetch = $fetch.create({
     onResponseError: ({ response }) => {
-      const message = response.status === 500 ? t("error") : t(response._data.message);
+      const message = response.status === 500 ? t("error_any") : t(response._data.message);
       $toasts.add({ message, success: false });
     }
   });

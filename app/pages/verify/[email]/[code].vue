@@ -67,7 +67,7 @@ useSeo({
         </div>
         <div v-else>
           <Icon name="solar:close-circle-bold" class="text-danger" size="5rem" />
-          <h1>{{ t("error") }}!</h1>
+          <h1>{{ t("error_any") }}!</h1>
           <NuxtLink to="/">{{ t("go_home") }}</NuxtLink>
         </div>
       </Transition>

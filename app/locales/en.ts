@@ -141,6 +141,7 @@ export default {
   others: "Others",
   select_group: "Select group",
   // App
+  error: "Error",
   user_not_found: "User not found",
   bond_preferences: "Bond preferences",
   preferences: "Preferences",
@@ -191,7 +192,7 @@ export default {
   november: "November",
   december: "December",
   // Not related errors
-  error: "Something went wrong.",
+  error_any: "Something went wrong.",
   error_occurred: "Sorry, an error has occurred",
   go_back: "Go back",
   unauthorized: "User session expired, please sign in again",

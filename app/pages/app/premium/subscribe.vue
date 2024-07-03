@@ -85,7 +85,7 @@ useSeo({
             <div v-else class="text-center">
               <Icon name="solar:close-circle-bold" class="text-danger" size="5rem" />
               <h1>{{ t("transaction_failed") }}!</h1>
-              <p class="m-0">{{ t("error") }}</p>
+              <p class="m-0">{{ t("error_any") }}</p>
               <NuxtLink to="/app/premium/billing">{{ t("billing_information") }}</NuxtLink>
             </div>
           </template>
