@@ -15,7 +15,6 @@ export default defineEventHandler(async (event): Promise<MappedLoveMarker> => {
   const marker = body.data;
   const DB = useDb();
 
-  const last = await DB.select().from(tables.markers).where(eq(tables.markers.bond, user.bond.id)).orderBy(desc(tables.markers.order)).limit(1).get();
   const today = Date.now();
 
   const markers = await DB.select({
@@ -24,6 +23,8 @@ export default defineEventHandler(async (event): Promise<MappedLoveMarker> => {
 
   if (!user.bond.premium && markers && markers.count >= Quota.FREE_MARKERS) throw createError({ statusCode: ErrorCode.PAYMENT_REQUIRED, message: "max_markers" });
 
+  const last = DB.select({ order: tables.markers.order }).from(tables.markers).where(eq(tables.markers.bond, user.bond.id)).orderBy(desc(tables.markers.order)).limit(1);
+
   return DB.insert(tables.markers).values({
     lat: marker.lat,
     lng: marker.lng,
@@ -31,7 +32,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveMarker> => {
     bond: user.bond.id,
     title: marker.title,
     description: marker.description,
-    order: last ? last.order + 1 : 0,
+    order: sql`COALESCE((${last}) + 1, 0)`,
     createdAt: today,
     updatedAt: today
   }).returning().get();
