@@ -30,8 +30,7 @@ export const uploadImage = async (file: MultiPartData | undefined, outputName: s
   }
   else if (process.env.CDN) {
     const { cloudflare } = event.context;
-    const headers = new Headers({ "Content-Type": type || "" });
-    await cloudflare.env.CDN.put(`uploads/${folder}/${finalName}`, data, { httpMetadata: headers });
+    await cloudflare.env.CDN.put(`uploads/${folder}/${finalName}`, data, { httpMetadata: { contentType: type } });
     return finalName;
   }
 };
