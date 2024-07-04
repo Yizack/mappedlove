@@ -3,6 +3,7 @@ import { SITE } from "../app/utils/site";
 
 export default defineNuxtConfig({
   future: { compatibilityVersion: 4 },
+  devtools: { enabled: true },
   compatibilityDate: "2024-07-02",
   app: {
     head: {
@@ -52,10 +53,7 @@ export default defineNuxtConfig({
     "nuxt-webhook-validators",
     "@nuxthub/core"
   ],
-  hub: {
-    database: true,
-    blob: true
-  },
+  hub: { database: true, blob: true },
   icon: { mode: "svg" },
   eslint: {
     config: {
@@ -148,6 +146,9 @@ export default defineNuxtConfig({
     rollupConfig: {
       // @ts-expect-error Type instantiation is excessively deep and possibly infinite.
       plugins: [vue()]
+    },
+    experimental: {
+      tasks: true
     }
   },
   sitemap: {
