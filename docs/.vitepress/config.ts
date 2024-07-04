@@ -10,6 +10,10 @@ export default defineConfig({
   title: `${SITE.name} Support`,
   titleTemplate: SITE.name,
   description: "Find all the information you need about MappedLove",
+  appearance: {
+    // @ts-expect-error not fully supported yet
+    initialValue: "light"
+  },
   transformHead: ({ pageData }) => {
     const head: HeadConfig[] = [];
     const relativePath = pageData.relativePath.replace(/\.md$/, "").replace(/index$/, "");
