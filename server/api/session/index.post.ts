@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
   const form = body.data;
 
   const { secure } = useRuntimeConfig(event);
-  const DB = useDb();
+  const DB = useDB();
 
   const logins = await DB.select({
     user: tables.logins.user,

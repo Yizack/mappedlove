@@ -5,6 +5,6 @@ export default defineEventHandler(async (event): Promise<MappedLoveMarker | unde
     id: z.number({ coerce: true })
   }).parse);
 
-  const DB = useDb();
+  const DB = useDB();
   return DB.delete(tables.markers).where(and(eq(tables.markers.id, id), eq(tables.markers.bond, user.bond.id))).returning().get();
 });

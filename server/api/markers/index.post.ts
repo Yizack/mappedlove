@@ -13,7 +13,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveMarker> => {
   if (!body.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_marker_data" });
 
   const marker = body.data;
-  const DB = useDb();
+  const DB = useDB();
 
   const today = Date.now();
 

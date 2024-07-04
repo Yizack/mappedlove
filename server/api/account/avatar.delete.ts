@@ -4,7 +4,7 @@ export default defineEventHandler(async (event) => {
 
   try {
     await deleteImage(`avatars/${user.id}/${user.hash}`, event);
-    const DB = useDb();
+    const DB = useDB();
     const update = await DB.update(tables.users).set({
       showAvatar: 0,
       updatedAt: Date.now()

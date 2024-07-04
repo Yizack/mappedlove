@@ -6,7 +6,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveStory> => {
 
   if (!body || !user.bond) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "bad_request" });
 
-  const DB = useDb();
+  const DB = useDB();
   const today = Date.now();
 
   const { id } = await getValidatedRouterParams(event, z.object({

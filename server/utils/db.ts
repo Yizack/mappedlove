@@ -4,6 +4,6 @@ import * as schema from "../database/schema";
 export { sql, eq, and, or, desc, count } from "drizzle-orm";
 export const tables = schema;
 
-export const useDb = () => {
+export const useDB = () => {
   return drizzle(hubDatabase(), { schema });
 };

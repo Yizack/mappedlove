@@ -9,7 +9,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveUser> => {
 
   const form = body.data;
 
-  const DB = useDb();
+  const DB = useDB();
   const update = await DB.update(tables.users).set({
     password: hash(form.new_password, secure.salt),
     auth: 0,

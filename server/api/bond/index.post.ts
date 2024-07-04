@@ -1,6 +1,6 @@
 export default defineEventHandler(async (event): Promise<MappedLoveBond> => {
   const { user } = await requireUserSession(event);
-  const DB = useDb();
+  const DB = useDB();
   const bondExists = await DB.select().from(tables.bonds).where(
     or(
       eq(tables.bonds.partner1, user.id),

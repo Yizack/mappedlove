@@ -14,6 +14,6 @@ export default defineEventHandler(async (event): Promise<MappedLoveStory | undef
   catch (e) {
     console.warn(e);
   }
-  const DB = useDb();
+  const DB = useDB();
   return DB.delete(tables.stories).where(and(eq(tables.stories.id, id), eq(tables.stories.bond, user.bond.id))).returning().get();
 });

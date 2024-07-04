@@ -2,7 +2,7 @@ export default defineNitroPlugin(() => {
   sessionHooks.hook("fetch", async (session, event) => {
     const { user } = session;
 
-    const DB = useDb();
+    const DB = useDB();
     const bond = await DB.select().from(tables.bonds).where(
       or(
         eq(tables.bonds.partner1, user.id),

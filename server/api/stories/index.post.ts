@@ -12,7 +12,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveStory> => {
     throw createError({ statusCode: ErrorCode.PAYMENT_REQUIRED, message: "check_file_size" });
   }
 
-  const DB = useDb();
+  const DB = useDB();
   const today = Date.now();
 
   const form: { [key: string]: string } = {};

@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: ErrorCode.PAYMENT_REQUIRED, message: "check_file_size" });
   }
 
-  const DB = useDb();
+  const DB = useDB();
   const today = Date.now();
 
   const update = await DB.update(tables.users).set({

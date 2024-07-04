@@ -11,7 +11,7 @@ export default defineEventHandler(async (event): Promise<{ email: string }> => {
   const { email } = body.data;
 
   const config = useRuntimeConfig(event);
-  const DB = useDb();
+  const DB = useDB();
   const user = await DB.select({
     id: tables.users.id,
     name: tables.users.name,

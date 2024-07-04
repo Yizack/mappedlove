@@ -3,7 +3,7 @@ import { migrate } from "drizzle-orm/d1/migrator";
 export default defineNitroPlugin(async () => {
   if (!import.meta.dev) return;
   onHubReady(async () => {
-    await migrate(useDb(), { migrationsFolder: "server/database/migrations" })
+    await migrate(useDB(), { migrationsFolder: "server/database/migrations" })
       .then(() => {
         console.info("Database migrations done");
       })

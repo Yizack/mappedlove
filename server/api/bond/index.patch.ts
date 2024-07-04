@@ -12,7 +12,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveBond> => {
 
   const form = body.data;
 
-  const DB = useDb();
+  const DB = useDB();
   const bond = await DB.update(tables.bonds).set({
     coupleDate: form.coupleDate,
     public: form.public,

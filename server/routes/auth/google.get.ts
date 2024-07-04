@@ -5,7 +5,7 @@ export default oauth.googleEventHandler({
     ]
   },
   async onSuccess (event, { user: _user }) {
-    const DB = useDb();
+    const DB = useDB();
     const user = await DB.select({
       id: tables.users.id,
       name: tables.users.name,

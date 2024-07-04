@@ -24,7 +24,7 @@ export default defineEventHandler(async (event) => {
 
   const custom_data = webhook.data.custom_data as { bondId: number, bondCode: string };
 
-  const DB = useDb();
+  const DB = useDB();
   const today = Date.now();
 
   await DB.update(tables.bonds).set({

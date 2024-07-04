@@ -5,7 +5,7 @@ export default defineEventHandler(async (event) => {
   }).parse);
 
   const decodedEmail = atob(decodeURIComponent(email));
-  const DB = useDb();
+  const DB = useDB();
 
   const user = await DB.select({
     id: tables.users.id,

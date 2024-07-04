@@ -2,7 +2,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveMarker[]> => 
   const { user } = await requireUserSession(event);
   if (!user.bond) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "bond_not_found" });
   const { oldArrange, newArrange }: { oldArrange: MappedLoveMarker[], newArrange: MappedLoveMarker[] } = await readBody(event);
-  const DB = useDb();
+  const DB = useDB();
 
   const rearranged: MappedLoveMarker[] = [];
   const today = Date.now();

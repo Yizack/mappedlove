@@ -14,7 +14,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveUser> => {
 
   if (form.name !== undefined && !form.name) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "name_required" });
 
-  const DB = useDb();
+  const DB = useDB();
   const update = await DB.update(tables.users).set({
     name: form.name,
     country: form.country,

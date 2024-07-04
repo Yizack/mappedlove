@@ -23,7 +23,7 @@ export default defineEventHandler(async (event) => {
     if (subscription && subscription.status !== "active") throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "subscription_not_active" });
   }
 
-  const DB = useDb();
+  const DB = useDB();
   const today = Date.now();
 
   const update = await DB.update(tables.bonds).set({

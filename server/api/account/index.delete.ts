@@ -6,7 +6,7 @@ export default defineEventHandler(async (event) => {
     if (subscription && subscription.status === "active" && subscription.scheduled_change?.action !== "cancel") throw createError({ statusCode: ErrorCode.FORBIDDEN, message: "premium_deleting" });
   }
 
-  const DB = useDb();
+  const DB = useDB();
   const deleted = await DB.delete(tables.users).where(eq(tables.users.id, user.id)).run();
 
   if (!deleted.changes) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "user_not_found" });

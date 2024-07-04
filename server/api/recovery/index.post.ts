@@ -11,7 +11,7 @@ export default defineEventHandler(async (event) => {
 
   if (!isPasswordValid(form.password)) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "password_invalid" });
 
-  const DB = useDb();
+  const DB = useDB();
   const user = await DB.select({
     id: tables.users.id,
     email: tables.users.email,

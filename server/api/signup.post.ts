@@ -32,7 +32,7 @@ export default defineEventHandler(async (event) => {
   if (!isPasswordValid(form.password)) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "password_invalid" });
 
   const config = useRuntimeConfig(event);
-  const DB = useDb();
+  const DB = useDB();
   const today = Date.now();
   const email = form.email.toLowerCase();
   const user = await DB.insert(tables.users).values({

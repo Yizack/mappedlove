@@ -10,7 +10,7 @@ export default oauth.googleEventHandler({
   },
   async onSuccess (event, { user: google }) {
     const config = useRuntimeConfig(event);
-    const DB = useDb();
+    const DB = useDB();
     const today = Date.now();
     const email = google.email.toLowerCase();
     const user = await DB.insert(tables.users).values({

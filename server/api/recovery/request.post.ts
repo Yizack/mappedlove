@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
 
   const email = form.email.toLowerCase();
 
-  const DB = useDb();
+  const DB = useDB();
   const user = await DB.update(tables.users).set({
     updatedAt: Date.now()
   }).where(eq(tables.users.email, email)).returning().get();

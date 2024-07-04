@@ -11,7 +11,7 @@ export default defineEventHandler(async (event) => {
   const form = body.data;
   const email = form.email.toLowerCase();
 
-  const DB = useDb();
+  const DB = useDB();
 
   const user = await DB.select({
     id: tables.users.id,
