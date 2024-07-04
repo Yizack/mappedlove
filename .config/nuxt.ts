@@ -52,6 +52,10 @@ export default defineNuxtConfig({
     "nuxt-webhook-validators",
     "@nuxthub/core"
   ],
+  hub: {
+    database: true,
+    blob: true
+  },
   icon: { mode: "svg" },
   eslint: {
     config: {
