@@ -12,5 +12,5 @@ Additionally, if you have a GitHub account, you can report bugs directly in the 
 
 1. Log in to your MappedLove account.
 2. In the top right corner, click on your profile picture to reveal the dropdown menu.
-3. From the dropdown menu, choose "[Settings](https://mappedlove.com/app/settings)" to access your account settings.
+3. From the dropdown menu, press on <a href="/app/settings">Settings</a> to access your account settings.
 4. Within the Account section, you can find your MappedLove ID displayed.

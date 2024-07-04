@@ -7,7 +7,7 @@ Share your map with others by sending them the link. While anyone with the link 
 
 ## Sharing your map
 
-1. Navigate to the [Bond](https://mappedlove.com/app) tab to access the bond options.
+1. Navigate to the <a href="/app">Bond</a> tab to access the bond options.
 2. Scroll down to the **Bond preferences** section.
 3. Turn on the **Public bond** toggle to display the shareable link.
 4. Copy the link and share it!

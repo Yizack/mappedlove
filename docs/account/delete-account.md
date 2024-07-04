@@ -8,7 +8,7 @@
 
 To delete your account, follow these steps:
 
-1. Go to your [Account Settings](https://mappedlove.com/app/settings) page.
+1. Go to your <a href="/app/settings">Account Settings</a> page.
 2. Scroll down to the **Danger zone** section and click on it to expand it.
 3. Click the **Delete account** button.
 4. Confirm that you want to delete your account by clicking the **Delete account** button.

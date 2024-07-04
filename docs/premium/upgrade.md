@@ -3,11 +3,11 @@
 > [!NOTE]
 > Premium features are available for your bond, ensuring they are accessible to both you and your partner.
 
-If you are interested in our Premium plan, visit the [Premium page](https://mappedlove.com/app/premium) to learn more about the features and benefits of upgrading.
+If you are interested in our Premium plan, visit the <a href="/app/premium">Premium page</a> to learn more about the features and benefits of upgrading.
 
 To upgrade to Premium, follow these steps:
 
-1. Navigate to the [Premium page](https://mappedlove.com/app/premium).
+1. Navigate to the <a href="/app/premium">Premium page</a>.
 2. Initiate the subscription process by clicking the **Subscribe** button, which will direct you to the payment page.
 3. Confirm the subscription details and initiate the payment by clicking the **Checkout** button.
 4. A dialog box will appear for an order summary; here, input your personal information.

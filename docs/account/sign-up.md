@@ -4,7 +4,7 @@ To use MappedLove, you need to create an account. This page explains how to sign
 
 ## Signing up
 
-To create an account go to the [Sign Up](https://mappedlove.com/signup) page and fill in the form with the required information.
+To create an account go to the <a href="/signup">Sign Up</a> page and fill in the form with the required information.
 
 The sign-up form requires the following information:
 1. **Name**: Any name you want to use.
@@ -23,4 +23,4 @@ If you do not receive the email, first check your spam folder. If it is still no
 
 ## Logging in
 
-After you have confirmed your email address, you can log in to your account by going to the [Log In](https://mappedlove.com/login) page and entering your email and password.
+After you have confirmed your email address, you can log in to your account by going to the <a href="/login">Login</a> page and entering your email and password.

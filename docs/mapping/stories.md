@@ -4,7 +4,7 @@ Stories are photos shared with your partner, encapsulated within markers, design
 
 ## Adding stories
 
-1. Navigate to the [Map](https://mappedlove.com/app/map) to begin adding stories to your markers.
+1. Navigate to the <a href="/app/map">Map</a> to begin adding stories to your markers.
 2. In the markers section, select the marker you wish to associate with a new story.
 3. Press the `+` icon adjacent to the **Stories** section header.
 4. A dialog box will appear, presenting a form for story details.
