@@ -33,14 +33,15 @@ Connect your accounts by inviting your partner to join your bond, and start mapp
 - Mapping capabilities with [Leaflet](https://leafletjs.com/).
 - Location searching from [leaflet-geosearch](https://github.com/smeijer/leaflet-geosearch).
 - [Paddle](https://www.paddle.com/), our payment processor, allows us to offer our premium plan seamlessly.
-- Maling handled by [MailChannels](https://www.mailchannels.com/) on [Cloudflare](https://www.cloudflare.com/).
+- Mailing handled by [MailChannels](https://www.mailchannels.com/) on [Cloudflare](https://www.cloudflare.com/).
 - Rendering email templates with [vue-email](https://vuemail.net/).
 - Image cropping and resizing by [Cloudinary](https://cloudinary.com/) for the carousel view on the map markers.
 - Styling with [Bootstrap](https://getbootstrap.com/).
+- Support page generated with [VitePress](https://vitepress.dev/).
 - And more!
 
 ## License
 
 Made with ❤️
 
-Open Source app and published under [MIT License](LICENSE).
+Open Source app and published under [MIT License](https://github.com/Yizack/mappedlove/blob/main/LICENSE).
