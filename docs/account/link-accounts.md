@@ -7,7 +7,7 @@ In MappedLove if you do not have a bond, you can not use at all any of our featu
 Follow these steps to create a bond code:
 
 1. Log in to your MappedLove account.
-2. Stay on the <a href="/app">Bond</a> page.
+2. Stay on the <a href="/app" target="_blank">Bond</a> page.
 3. Click on the **Create bond** button.
 4. Copy the bond code and share it with your partner.
 
@@ -16,6 +16,6 @@ Follow these steps to create a bond code:
 Follow these steps to enter your partner's bond code:
 
 1. Log in to your MappedLove account.
-2. Stay on the <a href="/app">Bond</a> page.
+2. Stay on the <a href="/app" target="_blank">Bond</a> page.
 3. Enter your partner's bond code in the **CODE** field.
 4. Click on the **Bond** button.

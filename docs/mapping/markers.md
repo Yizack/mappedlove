@@ -4,7 +4,7 @@ Markers are used to indicate a specific location on the map.
 
 ## Adding markers
 
-1. Navigate to the <a href="/app/map">Map</a> tab to start adding markers to the map.
+1. Navigate to the <a href="/app/map" target="_blank">Map</a> tab to start adding markers to the map.
 2. Press the `+` button adjacent to the **Markers** section header
 3. A dialog box will appear, presenting a form for entering marker details.
 4. Utilize the **Location** field to search and set the marker's position, location search is powered by [OpenStreetMap](https://www.openstreetmap.org).
