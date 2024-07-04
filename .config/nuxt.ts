@@ -49,7 +49,8 @@ export default defineNuxtConfig({
     "@nuxtjs/sitemap",
     "@dargmuesli/nuxt-cookie-control",
     "nuxt-auth-utils",
-    "nuxt-webhook-validators"
+    "nuxt-webhook-validators",
+    "@nuxthub/core"
   ],
   icon: { mode: "svg" },
   eslint: {
