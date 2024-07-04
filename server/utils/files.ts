@@ -18,10 +18,9 @@ export const getFileFromUpload = (body: MultiPartData[] | undefined) => {
   return file;
 };
 
-export const uploadImage = async (file: MultiPartData | undefined, outputName: string, folder: string, sizeMB: number, event: H3Event): Promise<string | undefined> => {
+export const uploadImage = async (file: MultiPartData | undefined, outputName: string, folder: string, event: H3Event): Promise<string | undefined> => {
   if (!file) return;
   const { type, filename, data } = file;
-  if (!isValidFileSize(data.byteLength, sizeMB)) return undefined;
   const finalName = outputName ? `${outputName}` : filename;
   if (import.meta.dev) {
     const { writeFileSync, existsSync, mkdirSync } = await import("fs");

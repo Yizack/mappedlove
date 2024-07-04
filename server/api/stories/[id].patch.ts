@@ -36,11 +36,15 @@ export default defineEventHandler(async (event): Promise<MappedLoveStory> => {
   if (!file) return storyPatch;
 
   const fileSizeMaxMB = user.bond?.premium ? Quota.PREMIUM_IMAGE_FILESIZE : Quota.FREE_IMAGE_FILESIZE;
-  const uploaded = await uploadImage(file, storyHash, `stories/${user.bond.id}`, fileSizeMaxMB, event);
+  if (!isValidFileSize(file.data.byteLength, fileSizeMaxMB)) {
+    if (!user.bond?.premium) throw createError({ statusCode: ErrorCode.PAYMENT_REQUIRED, message: "check_file_size_free" });
+    throw createError({ statusCode: ErrorCode.PAYMENT_REQUIRED, message: "check_file_size" });
+  }
+
+  const uploaded = await uploadImage(file, storyHash, `stories/${user.bond.id}`, event);
 
   if (!uploaded) {
-    if (!user.bond?.premium) throw createError({ statusCode: ErrorCode.PAYMENT_REQUIRED, message: "check_file_size_free" });
-    throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "check_file_size" });
+    throw createError({ statusCode: ErrorCode.INTERNAL_SERVER_ERROR, message: "error_any" });
   }
 
   await uploadToCloudinary(file, storyHash, `stories/${user.bond.id}`, event);

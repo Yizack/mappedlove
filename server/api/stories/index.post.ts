@@ -6,6 +6,12 @@ export default defineEventHandler(async (event): Promise<MappedLoveStory> => {
 
   if (!body || !file || !user.bond) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "bad_request" });
 
+  const fileSizeMaxMB = user.bond?.premium ? Quota.PREMIUM_IMAGE_FILESIZE : Quota.FREE_IMAGE_FILESIZE;
+  if (!isValidFileSize(file.data.byteLength, fileSizeMaxMB)) {
+    if (!user.bond?.premium) throw createError({ statusCode: ErrorCode.PAYMENT_REQUIRED, message: "check_file_size_free" });
+    throw createError({ statusCode: ErrorCode.PAYMENT_REQUIRED, message: "check_file_size" });
+  }
+
   const DB = useDb();
   const today = Date.now();
 
@@ -29,12 +35,11 @@ export default defineEventHandler(async (event): Promise<MappedLoveStory> => {
 
   const { secure } = useRuntimeConfig(event);
   const storyHash = hash([story.id, user.bond.code].join(), secure.salt);
-  const fileSizeMaxMB = user.bond?.premium ? Quota.PREMIUM_IMAGE_FILESIZE : Quota.FREE_IMAGE_FILESIZE;
-  const uploaded = await uploadImage(file, storyHash, `stories/${user.bond.id}`, fileSizeMaxMB, event);
+  const uploaded = await uploadImage(file, storyHash, `stories/${user.bond.id}`, event);
 
   if (!uploaded) {
-    if (!user.bond?.premium) throw createError({ statusCode: ErrorCode.PAYMENT_REQUIRED, message: "check_file_size_free" });
-    throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "check_file_size" });
+    await DB.delete(tables.stories).where(eq(tables.stories.id, story.id)).run();
+    throw createError({ statusCode: ErrorCode.INTERNAL_SERVER_ERROR, message: "error_any" });
   }
 
   await uploadToCloudinary(file, storyHash, `stories/${user.bond.id}`, event);
