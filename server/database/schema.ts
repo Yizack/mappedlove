@@ -34,7 +34,7 @@ export const markers = sqliteTable("markers", {
   lat: integer("lat").notNull(),
   lng: integer("lng").notNull(),
   group: integer("group").notNull(),
-  bond: integer("user").notNull().references(() => bonds.id, { onDelete: "cascade" }),
+  bond: integer("bond").notNull().references(() => bonds.id, { onDelete: "cascade" }),
   title: text("title").notNull(),
   description: text("description").notNull(),
   order: integer("order").notNull(),

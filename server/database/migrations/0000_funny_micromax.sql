@@ -27,13 +27,13 @@ CREATE TABLE `markers` (
 	`lat` integer NOT NULL,
 	`lng` integer NOT NULL,
 	`group` integer NOT NULL,
-	`user` integer NOT NULL,
+	`bond` integer NOT NULL,
 	`title` text NOT NULL,
 	`description` text NOT NULL,
 	`order` integer NOT NULL,
 	`created_at` integer NOT NULL,
 	`updated_at` integer NOT NULL,
-	FOREIGN KEY (`user`) REFERENCES `bonds`(`id`) ON UPDATE no action ON DELETE cascade
+	FOREIGN KEY (`bond`) REFERENCES `bonds`(`id`) ON UPDATE no action ON DELETE cascade
 );
 --> statement-breakpoint
 CREATE TABLE `stories` (

@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "87514337-41f8-4a16-b8b5-b2bb2cf65b3e",
+  "id": "5e7cbbd6-cacd-4ce8-920a-3f77f24e6272",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "bonds": {
@@ -211,8 +211,8 @@
           "notNull": true,
           "autoincrement": false
         },
-        "user": {
-          "name": "user",
+        "bond": {
+          "name": "bond",
           "type": "integer",
           "primaryKey": false,
           "notNull": true,
@@ -256,12 +256,12 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "markers_user_bonds_id_fk": {
-          "name": "markers_user_bonds_id_fk",
+        "markers_bond_bonds_id_fk": {
+          "name": "markers_bond_bonds_id_fk",
           "tableFrom": "markers",
           "tableTo": "bonds",
           "columnsFrom": [
-            "user"
+            "bond"
           ],
           "columnsTo": [
             "id"
