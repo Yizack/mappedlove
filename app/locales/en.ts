@@ -173,6 +173,7 @@ export default {
   filter: "Filter",
   map_not_found: "Map not found",
   password_invalid: "Password is not valid",
+  mappedlove_id: "MappedLove ID",
   // Dates
   day: "Day",
   days: "Days",

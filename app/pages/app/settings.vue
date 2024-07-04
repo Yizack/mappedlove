@@ -266,6 +266,7 @@ useSeo({
                 </template>
               </VueDatePicker>
             </ClientOnly>
+            <CopyText class="mb-2" :text="user.id.toString()" :placeholder="t('mappedlove_id')" floating />
             <div class="d-grid">
               <button class="btn btn-primary btn-lg rounded-pill" :disabled="submit.loading" type="submit">
                 <Transition name="tab" mode="out-in">

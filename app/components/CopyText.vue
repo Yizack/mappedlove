@@ -16,6 +16,10 @@ const props = defineProps({
     type: Boolean,
     default: false
   },
+  floating: {
+    type: Boolean,
+    default: false
+  },
   bold: {
     type: Boolean,
     default: false
@@ -33,8 +37,19 @@ const copyText = async () => {
 </script>
 
 <template>
-  <div class="input-group">
+  <div v-if="floating" class="input-group">
+    <div class="form-floating">
+      <input ref="textToCopy" :value="text" type="text" class="form-control" :class="{ 'form-control-lg': lg, 'fw-bold': bold, 'text-uppercase': uppercase }" :placeholder="placeholder" readonly>
+      <label>{{ placeholder }}</label>
+    </div>
+    <button class="btn btn-primary px-4" :class="{ 'btn-lg': lg }" type="button" @click="copyText">
+      <Icon name="solar:clipboard-text-bold" size="1.5rem" />
+    </button>
+  </div>
+  <div v-else class="input-group">
     <input ref="textToCopy" :value="text" type="text" class="form-control" :class="{ 'form-control-lg': lg, 'fw-bold': bold, 'text-uppercase': uppercase }" :placeholder="placeholder" readonly>
-    <button class="btn btn-primary px-4" :class="{ 'btn-lg': lg }" type="button" @click="copyText"><Icon name="solar:clipboard-text-bold" size="1.5rem" /></button>
+    <button class="btn btn-primary px-4" :class="{ 'btn-lg': lg }" type="button" @click="copyText">
+      <Icon name="solar:clipboard-text-bold" size="1.5rem" />
+    </button>
   </div>
 </template>
