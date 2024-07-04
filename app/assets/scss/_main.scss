@@ -169,3 +169,11 @@ td, th {
 .badge.bg-primary {
   color: var(--bs-body-bg)
 }
+
+.scale-hover img {
+  transition: transform .4s ease-in-out;
+}
+
+.scale-hover:hover img {
+  transform: scale(1.1);
+}

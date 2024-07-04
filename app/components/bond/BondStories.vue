@@ -119,7 +119,7 @@ watch(() => props.marker, () => {
             <MasonryWall :items="storiesByYear(marker.stories, year)" :ssr-columns="1" :gap="8" :max-columns="4" :column-width="200">
               <template #default="{ item: story }">
                 <div class="card h-100" @mouseenter="deleteButton[story.id] = true" @mouseleave="deleteButton[story.id] = false">
-                  <div role="button">
+                  <div role="button" class="overflow-hidden scale-hover">
                     <img :src="`${getStoryImage(user.bond?.id, story.hash)}?updated=${story.updatedAt}`" class="card-img-top" @click="storyModal(story)">
                   </div>
                   <div v-if="story.description" class="card-body border-top">

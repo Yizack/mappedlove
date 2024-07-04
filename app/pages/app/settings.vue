@@ -200,7 +200,7 @@ useSeo({
             <h3 class="mb-4">{{ t("account") }}</h3>
             <div id="image-upload" class="text-center mb-2">
               <input id="avatar" type="file" accept=".png,.jpg,.jpeg,.jfif,.webp,.gif" @change="uploadAvatar">
-              <label for="avatar" class="rounded-circle bg-body-tertiary position-relative overflow-hidden border border-5" style="width: 175px; height: 175px;">
+              <label for="avatar" class="rounded-circle bg-body-tertiary position-relative overflow-hidden border border-5" :class="{ 'scale-hover': user.showAvatar }" style="width: 175px; height: 175px;">
                 <div class="overlay position-absolute bg-dark w-100 h-100">
                   <div class="d-flex justify-content-center align-items-center h-100 text-light">
                     <Icon name="solar:gallery-add-outline" size="2.5rem" />
