@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
   const DB = useDB();
   const deleted = await DB.delete(tables.users).where(eq(tables.users.id, user.id)).run();
 
-  if (!deleted.changes) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "user_not_found" });
+  if (!deleted.success) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "user_not_found" });
 
   await clearUserSession(event);
 
