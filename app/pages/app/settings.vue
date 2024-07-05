@@ -207,7 +207,7 @@ useSeo({
                   </div>
                 </div>
                 <img v-if="imageRead" :src="imageRead.toString()" width="175" height="175" class="img-fluid w-100" :alt="userForm.name">
-                <img v-else-if="user.showAvatar" :src="`${getAvatarImage(user.id, user.hash)}?updated=${user.updatedAt}`" width="175" height="175" class="img-fluid w-100" :alt="user.name">
+                <img v-else-if="user.showAvatar && user.hash" :src="`${getAvatarImage(user.hash)}?updated=${user.updatedAt}`" width="175" height="175" class="img-fluid w-100" :alt="user.name">
                 <img v-else-if="!fileChosen" :src="getDefaultAvatar(user.id)" width="175" height="175" class="img-fluid w-100" :alt="userForm.name">
               </label>
               <div v-if="user.showAvatar" class="text-center">

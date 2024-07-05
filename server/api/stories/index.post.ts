@@ -35,14 +35,20 @@ export default defineEventHandler(async (event): Promise<MappedLoveStory> => {
 
   const { secure } = useRuntimeConfig(event);
   const storyHash = hash([story.id, user.bond.code].join(), secure.salt);
-  const uploaded = await uploadImage(file, storyHash, `stories/${user.bond.id}`, event);
+  const uploaded = await uploadImage(event, file, { name: storyHash, folder: "stories",
+    customMetadata: {
+      bondId: user.bond.id.toString(),
+      userId: user.id.toString(),
+      storyId: story.id.toString()
+    }
+  });
 
   if (!uploaded) {
     await DB.delete(tables.stories).where(eq(tables.stories.id, story.id)).run();
     throw createError({ statusCode: ErrorCode.INTERNAL_SERVER_ERROR, message: "error_any" });
   }
 
-  await uploadToCloudinary(file, storyHash, `stories/${user.bond.id}`, event);
+  await uploadToCloudinary(event, file, { filename: storyHash, folder: "stories" });
 
   return {
     ...story,

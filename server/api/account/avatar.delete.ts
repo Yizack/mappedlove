@@ -3,7 +3,7 @@ export default defineEventHandler(async (event) => {
   if (!user) throw createError({ statusCode: ErrorCode.FORBIDDEN, message: "forbidden" });
 
   try {
-    await deleteImage(`avatars/${user.id}/${user.hash}`, event);
+    await deleteImage(event, `avatars/${user.hash}`);
     const DB = useDB();
     const update = await DB.update(tables.users).set({
       showAvatar: 0,

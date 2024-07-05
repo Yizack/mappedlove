@@ -25,8 +25,7 @@ export default defineEventHandler(async (event) => {
 
   if (!update) throw createError({ statusCode: ErrorCode.INTERNAL_SERVER_ERROR, message: "error" });
 
-  const filename = `${user.hash}`;
-  const uploaded = await uploadImage(file, filename, `avatars/${user.id}`, event);
+  const uploaded = await uploadImage(event, file, { name: user.hash!, folder: "avatars", customMetadata: { userId: user.id.toString() } });
 
   if (!uploaded) {
     throw createError({ statusCode: ErrorCode.INTERNAL_SERVER_ERROR, message: "error_any" });

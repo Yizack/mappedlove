@@ -18,10 +18,11 @@ export const getFileFromUpload = (body: MultiPartData[] | undefined) => {
   return file;
 };
 
-export const uploadImage = async (file: MultiPartData | undefined, outputName: string, folder: string, event: H3Event): Promise<string | undefined> => {
+export const uploadImage = async (event: H3Event, file: MultiPartData, options: { name?: string, folder: string, customMetadata?: Record<string, string> }): Promise<string | undefined> => {
+  const { name, folder, customMetadata } = options;
   if (!file) return;
   const { type, filename, data } = file;
-  const finalName = outputName ? `${outputName}` : filename;
+  const finalName = name ? name : filename;
   if (import.meta.dev) {
     const { writeFileSync, existsSync, mkdirSync } = await import("fs");
     if (!existsSync(`./public/uploads/${folder}`)) mkdirSync(`./public/uploads/${folder}`, { recursive: true });
@@ -30,18 +31,18 @@ export const uploadImage = async (file: MultiPartData | undefined, outputName: s
   }
   else if (process.env.CDN) {
     const { cloudflare } = event.context;
-    await cloudflare.env.CDN.put(`uploads/${folder}/${finalName}`, data, { httpMetadata: { contentType: type } });
+    await cloudflare.env.CDN.put(`uploads/${folder}/${finalName}`, data, { httpMetadata: { contentType: type }, customMetadata });
     return finalName;
   }
 };
 
-export const deleteImage = async (filename: string, event: H3Event): Promise<void> => {
+export const deleteImage = async (event: H3Event, filepath: string): Promise<void> => {
   if (import.meta.dev) {
     const { unlinkSync } = await import("fs");
-    unlinkSync(`./public/uploads/${filename}`);
+    unlinkSync(`./public/uploads/${filepath}`);
   }
   else if (process.env.CDN) {
     const { cloudflare } = event.context;
-    await cloudflare.env.CDN.delete(`uploads/${filename}`);
+    await cloudflare.env.CDN.delete(`uploads/${filepath}`);
   }
 };

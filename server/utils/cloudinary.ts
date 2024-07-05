@@ -8,7 +8,8 @@ const bufferToBaase64URI = (buffer: Buffer, type: string | undefined) => {
   return `data:${type || "jpeg"};base64,${buffer.toString("base64")}`;
 };
 
-export const uploadToCloudinary = async (file: MultiPartData, filename: string, folder: string, event: H3Event) => {
+export const uploadToCloudinary = async (event: H3Event, file: MultiPartData, options: { filename: string, folder: string }) => {
+  const { filename, folder } = options;
   if (import.meta.dev) return;
   const { type, data: fileData } = file;
   const time = Date.now();
@@ -37,13 +38,13 @@ export const uploadToCloudinary = async (file: MultiPartData, filename: string, 
   }).catch(error => error);
 };
 
-export const deleteCloudinary = async (filename: string, event: H3Event) => {
+export const deleteCloudinary = async (event: H3Event, filepath: string) => {
   const time = Date.now();
   const { cloudinary } = useRuntimeConfig(event);
 
   const data = {
     invalidate: true,
-    public_id: filename,
+    public_id: filepath,
     timestamp: time
   };
 

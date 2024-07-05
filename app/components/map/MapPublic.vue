@@ -22,7 +22,7 @@ const addMarker = (marker: MappedLoveMarker) => {
   const markerStories = stories.value.filter(s => s.marker === marker.id) || [];
   leaflet.value?.addMarker({
     position: [marker.lat, marker.lng],
-    popup: storiesCarousel(marker, markerStories, props.bond.id),
+    popup: storiesCarousel(marker, markerStories),
     group: getGroup(marker.group),
     options: {
       id: marker.id,
