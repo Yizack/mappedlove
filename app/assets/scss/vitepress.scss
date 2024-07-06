@@ -18,10 +18,37 @@
 :root {
   --vp-c-brand-1: #ff6969;
   --vp-c-brand-2: #f86363;
+  --accent: #ffe5e5;
   --vp-font-family-base: fredoka;
 }
 
 html.dark {
   --vp-c-brand-1: #ff9f98;
   --vp-c-brand-2: #ff9f98;
+  --accent: var(--vp-sidebar-bg-color);
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: var(--accent);
+}
+
+*::-webkit-scrollbar-thumb {
+  height: 56px;
+  border-radius: 8px;
+  border: 0 solid transparent;
+  background-clip: content-box;
+  background-color: var(--vp-c-brand-1);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: var(--vp-c-brand-1);
+}
+
+::selection {
+  background: var(--vp-c-brand-1);
+  color: var(--accent);
 }
