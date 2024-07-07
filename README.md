@@ -26,6 +26,7 @@ Connect your accounts by inviting your partner to join your bond, and start mapp
 
 ![Create your Bond](https://github.com/Yizack/mappedlove/assets/16264115/0c69cc68-30b9-4810-9d66-891a26e9f869)
 
+<!-- #region credits-license -->
 ## Credits
 
 - Special thanks to [Nuxt](https://nuxt.com/), the [Vue](https://vuejs.org/) framework for bringing the best development experience.
@@ -45,3 +46,4 @@ Connect your accounts by inviting your partner to join your bond, and start mapp
 Made with ❤️
 
 Open Source app and published under [MIT License](https://github.com/Yizack/mappedlove/blob/main/LICENSE).
+<!-- #endregion credits-license -->

@@ -6,5 +6,4 @@ Welcome to MappedLove Support page! Here, you'll find quick guides and resources
 
 To begin, simply click on any topic listed in the left sidebar. You'll find detailed information and quick step-by-step guides to help you resolve or understand any doubt or issues you may have.
 
-<!-- TODO: https://vitepress.dev/guide/markdown#markdown-file-inclusion -->
-<!--@include: ../README.md{28,}-->
+<!--@include: ../README.md#credits-license-->
