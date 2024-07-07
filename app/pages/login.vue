@@ -91,9 +91,9 @@ useSeo({
               <span v-else>{{ t("signin") }}</span>
             </Transition>
           </button>
-          <a href="/auth/google" class="btn btn-outline-dark btn-lg rounded-pill">
-            <Icon name="logos:google-icon" class="me-2" />
-            {{ t("signin_google") }}
+          <a href="/auth/google" class="btn btn-outline-dark btn-lg rounded-pill d-flex align-items-center justify-content-center gap-2">
+            <Icon name="logos:google-icon" />
+            <span>{{ t("signin_google") }}</span>
           </a>
         </div>
       </form>

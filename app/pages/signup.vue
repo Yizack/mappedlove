@@ -99,9 +99,9 @@ useSeo({
                 </Transition>
               </button>
               <span class="text-center fw-semibold">{{ t("or") }}</span>
-              <a href="/auth/google-signup" class="btn btn-outline-dark btn-lg rounded-pill">
-                <Icon name="logos:google-icon" class="me-2" />
-                {{ t("signup_google") }}
+              <a href="/auth/google-signup" class="btn btn-outline-dark btn-lg rounded-pill d-flex align-items-center justify-content-center gap-2">
+                <Icon name="logos:google-icon" />
+                <span>{{ t("signup_google") }}</span>
               </a>
             </div>
           </form>
