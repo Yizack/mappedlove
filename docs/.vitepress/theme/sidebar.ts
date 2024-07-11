@@ -30,7 +30,7 @@ export const sidebar: DefaultTheme.Sidebar = [
           { text: "😎 Create an account", link: "/account/sign-up" },
           { text: "🗝️ Change password", link: "/account/change-password" },
           { text: "💟 Link our accounts", link: "/account/link-accounts" },
-          { text: "🔐 Delete my account", link: "/account/delete-account" },
+          { text: "🛑 Delete my account", link: "/account/delete-account" },
           { text: "🔓 Account recovery", link: "/account/account-recovery" }
         ]
       },

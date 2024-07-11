@@ -1,4 +1,4 @@
-# 🔐 Delete my account
+# 🛑 Delete my account
 
 > [!IMPORTANT]
 > Ensure you have no active subscriptions before proceeding with account deletion. Cancel any existing subscriptions to avoid complications during the deletion process.
