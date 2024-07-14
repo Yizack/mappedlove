@@ -61,11 +61,11 @@ useSeo({
           <label>{{ t("recovery_code") }}</label>
         </div>
         <div class="form-floating mb-2">
-          <input v-model="form.password" type="password" :class="`form-control ${isPasswordValid(form.password) ? 'is-valid' : form.password.length ? 'is-invalid' : ''}`" :placeholder="t('new_password')" autocomplete="new-password" required>
+          <input v-model="form.password" type="password" class="form-control" :class="isPasswordValid(form.password) ? 'is-valid' : form.password.length ? 'is-invalid' : ''" :placeholder="t('new_password')" autocomplete="new-password" required>
           <label>{{ t("new_password") }}</label>
         </div>
         <div class="form-floating mb-2">
-          <input v-model="form.password_check" type="password" :class="`form-control ${isPasswordCheckValid(form.password, form.password_check) ? 'is-valid' : form.password_check ? 'is-invalid' : ''}`" :placeholder="t('password_confirm')" autocomplete="off" required>
+          <input v-model="form.password_check" type="password" class="form-control" :class="isPasswordCheckValid(form.password, form.password_check) ? 'is-valid' : form.password_check ? 'is-invalid' : ''" :placeholder="t('password_confirm')" autocomplete="off" required>
           <label>{{ t("password_confirm") }}</label>
         </div>
         <div class="d-grid mb-2">

@@ -22,8 +22,8 @@ onMounted(() => {
       <button class="navbar-toggler border-0 rounded-pill" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon" />
       </button>
-      <NuxtLink :class="`navbar-brand ms-2 ms-md-0 me-auto d-flex align-items-center gap-1 ${scrolled || sticky ? 'text-body' : 'text-dark'}`" to="/">
-        <Icon :class="`${scrolled || sticky ? 'text-primary' : 'text-dark'}`" name="solar:map-point-favourite-bold" />
+      <NuxtLink class="navbar-brand ms-2 ms-md-0 me-auto d-flex align-items-center gap-1" :class="scrolled || sticky ? 'text-body' : 'text-dark'" to="/">
+        <Icon :class="scrolled || sticky ? 'text-primary' : 'text-dark'" name="solar:map-point-favourite-bold" />
         {{ SITE.name }}
       </NuxtLink>
       <div id="offcanvasNavbar" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvasNavbarLabel">
@@ -38,7 +38,7 @@ onMounted(() => {
           <ul class="navbar-nav ms-auto mb-lg-0 gap-md-3">
             <li v-for="(page, i) of SITE.pages.main" :key="i" class="nav-item" data-bs-dismiss="offcanvas">
               <div class="d-grid">
-                <NuxtLink :class="`${page.button ? 'btn btn-primary rounded-pill px-4 my-2 my-md-0' : 'nav-link'}`" :to="page.path">{{ t(page.name) }}</NuxtLink>
+                <NuxtLink :class="page.button ? 'btn btn-primary rounded-pill px-4 my-2 my-md-0' : 'nav-link'" :to="page.path">{{ t(page.name) }}</NuxtLink>
               </div>
             </li>
           </ul>

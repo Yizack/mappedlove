@@ -77,11 +77,11 @@ useSeo({
               </div>
             </div>
             <div class="form-floating mb-2">
-              <input v-model="form.password" type="password" class="form-control" :class="`form-control ${isPasswordValid(form.password) ? 'is-valid' : form.password ? 'is-invalid' : ''}`" :placeholder="t('password')" autocomplete="new-password" required>
+              <input v-model="form.password" type="password" class="form-control" :class="isPasswordValid(form.password) ? 'is-valid' : form.password ? 'is-invalid' : ''" :placeholder="t('password')" autocomplete="new-password" required>
               <label class="form-label">{{ t("password") }}</label>
             </div>
             <div class="form-floating mb-2">
-              <input v-model="form.password_check" type="password" :class="`form-control ${isPasswordCheckValid(form.password, form.password_check) ? 'is-valid' : form.password_check ? 'is-invalid' : ''}`" :placeholder="t('password_confirm')" autocomplete="off" required>
+              <input v-model="form.password_check" type="password" class="form-control" :class="isPasswordCheckValid(form.password, form.password_check) ? 'is-valid' : form.password_check ? 'is-invalid' : ''" :placeholder="t('password_confirm')" autocomplete="off" required>
               <label class="form-label">{{ t("password_confirm") }}</label>
             </div>
             <div class="form-check mb-2">

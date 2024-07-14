@@ -70,7 +70,7 @@ useSeo({
                 </span>
               </p>
               <p v-else class="mb-0">
-                <span :class="`badge border rounded-pill ${billing.subscription?.status === 'active' ? 'bg-success-subtle text-success border-success' : 'bg-secondary text-primary border-primary'}`">{{ t(billing.subscription.status) }}</span>
+                <span class="badge border rounded-pill" :class="billing.subscription?.status === 'active' ? 'bg-success-subtle text-success border-success' : 'bg-secondary text-primary border-primary'">{{ t(billing.subscription.status) }}</span>
               </p>
             </div>
             <div v-if="isPremium && billing.subscription" class="col-lg-6">
@@ -133,7 +133,7 @@ useSeo({
                 <td>{{ transaction.invoice_number }}</td>
                 <td>{{ formatDate(new Date(transaction.billed_at ? transaction.billed_at : transaction.created_at).getTime(), true) }}</td>
                 <td>
-                  <span :class="`badge border rounded-pill ${transaction.status === 'completed' ? 'bg-success-subtle text-success border-success' : 'bg-secondary text-primary border-primary'}`">{{ t(transaction.status) }}</span>
+                  <span class="badge border rounded-pill" :class="transaction.status === 'completed' ? 'bg-success-subtle text-success border-success' : 'bg-secondary text-primary border-primary'">{{ t(transaction.status) }}</span>
                 </td>
                 <td>
                   <span v-if="transaction.details?.totals">{{ paddleToCurrency(Number(transaction.details.totals.total), transaction.details.totals.currency_code) }}</span>
@@ -175,7 +175,7 @@ useSeo({
                 <td>{{ adjustment.invoice_number }}</td>
                 <td>{{ formatDate(new Date(adjustment.created_at).getTime(), true) }}</td>
                 <td>
-                  <span :class="`badge border rounded-pill ${adjustment.status === 'approved' ? 'bg-success-subtle text-success border-success' : 'bg-secondary text-primary border-primary'}`">{{ t(adjustment.status) }}</span>
+                  <span class="badge border rounded-pill" :class="adjustment.status === 'approved' ? 'bg-success-subtle text-success border-success' : 'bg-secondary text-primary border-primary'">{{ t(adjustment.status) }}</span>
                 </td>
                 <td>
                   <span v-if="adjustment.totals.total">{{ paddleToCurrency(Number(adjustment.totals.total), adjustment.totals.currency_code) }}</span>

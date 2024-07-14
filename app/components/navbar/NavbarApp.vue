@@ -31,7 +31,7 @@ const logOut = () => {
           <ul class="navbar-nav ms-auto mb-lg-0 gap-md-3">
             <li v-for="(page, i) of SITE.pages.app" :key="i" class="nav-item" data-bs-dismiss="offcanvas">
               <div class="d-grid">
-                <NuxtLink :class="`${page.button ? 'btn btn-primary rounded-pill px-4' : 'nav-link d-flex align-items-center gap-1'}`" :to="page.path">
+                <NuxtLink :class="page.button ? 'btn btn-primary rounded-pill px-4' : 'nav-link d-flex align-items-center gap-1'" :to="page.path">
                   <Icon v-if="page.icon" :name="page.icon" class="text-primary" />
                   {{ t(page.name) }}
                 </NuxtLink>
