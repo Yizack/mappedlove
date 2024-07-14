@@ -22,7 +22,7 @@ export default defineEventHandler(async (event) => {
   if (!subscription.current_billing_period)
     throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_subscription_period" });
 
-  const custom_data = webhook.data.custom_data as { bondId: number, bondCode: string };
+  const customData = webhook.data.custom_data as { bondId: number, bondCode: string };
 
   const DB = useDB();
   const today = Date.now();
@@ -32,7 +32,7 @@ export default defineEventHandler(async (event) => {
     subscriptionId: subscription.id,
     nextPayment: new Date(subscription.current_billing_period.ends_at).getTime(),
     updatedAt: today
-  }).where(and(eq(tables.bonds.code, custom_data.bondCode), eq(tables.bonds.id, custom_data.bondId))).run();
+  }).where(and(eq(tables.bonds.code, customData.bondCode), eq(tables.bonds.id, customData.bondId))).run();
 
   return { success: isValidWebhook };
 });
