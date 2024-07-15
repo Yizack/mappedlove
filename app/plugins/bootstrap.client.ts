@@ -36,7 +36,7 @@ class Bootstrap {
     });
   }
 
-  showModal (id: Element | string) {
+  showModal (id: HTMLElement | string) {
     const element = typeof id === "string" ? document.querySelector(`#${id}`) : id;
     if (!element) return;
     const instance = Modal.getInstance(element);
