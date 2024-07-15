@@ -63,7 +63,7 @@ export default defineNuxtConfig({
   },
   turnstile: {
     siteKey: "0x4AAAAAAAGmhM7sxmb8brsQ",
-    addValidateEndpoint: true
+    addValidateEndpoint: false
   },
   colorMode: {
     preference: "light",
