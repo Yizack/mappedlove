@@ -54,7 +54,7 @@ export default defineNuxtConfig({
     "@nuxthub/core"
   ],
   hub: { database: true, blob: true },
-  icon: { mode: "svg" },
+  icon: { mode: "svg", serverBundle: "remote" },
   eslint: {
     config: {
       autoInit: false,
