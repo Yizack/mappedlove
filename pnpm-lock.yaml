@@ -14,9 +14,6 @@ importers:
       '@dargmuesli/nuxt-cookie-control':
         specifier: ^8.4.5
         version: 8.4.5(magicast@0.3.4)(rollup@4.18.1)(webpack@5.93.0(esbuild@0.17.19))
-      '@iconify-json/solar':
-        specifier: ^1.1.9
-        version: 1.1.9
       '@nuxt/eslint':
         specifier: ^0.3.13
         version: 0.3.13(eslint@9.7.0)(magicast@0.3.4)(rollup@4.18.1)(typescript@5.5.3)(vite@5.3.4(@types/node@20.14.11)(sass@1.77.8)(terser@5.31.3))
@@ -1375,9 +1372,6 @@ packages:
 
   '@iconify-json/ri@1.1.21':
     resolution: {integrity: sha512-ssU2CRaB4T83Q3cncCZtITholhYkH6gEL5XLmdMII6Xzn8bTCpDCkt+HdX4URc24uUMD0PGIaNLJUIAgdfLMjQ==}
-
-  '@iconify-json/solar@1.1.9':
-    resolution: {integrity: sha512-BcWzZqA02BiQduYizqU/J4v4RNs0MkjZUGpMbejpozH8YQSt3+S/LfV6zfVRonx/2DhXTVSqiLa1abDRAZtojQ==}
 
   '@iconify-json/tabler@1.1.118':
     resolution: {integrity: sha512-nDOjYG75BlagOe4e+V3K4qVFujdPOeYzi6ZB3sYz0xbdIkpSF/4YvKGdLDr4tmkwGUTV8fhlHVfMpRoDoBnnnA==}
@@ -6757,10 +6751,6 @@ snapshots:
       '@iconify/types': 2.0.0
 
   '@iconify-json/ri@1.1.21':
-    dependencies:
-      '@iconify/types': 2.0.0
-
-  '@iconify-json/solar@1.1.9':
     dependencies:
       '@iconify/types': 2.0.0
 
