@@ -24,9 +24,7 @@ export const useModalController = (id: string, visible: Ref<boolean | undefined>
         element.addEventListener("hidden.bs.modal", hideEvent, { once: true });
       }
     },
-    hide: () => {
-      $bootstrap.hideModal(id);
-    }
+    hide: () => $bootstrap.hideModal(id)
   };
 };
 
