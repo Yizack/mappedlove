@@ -139,7 +139,7 @@ export default defineNuxtConfig({
     cloudflare: {
       pages: {
         routes: {
-          exclude: ["/docs/*"]
+          exclude: ["/docs/*", "/images/*", "/fonts/*"]
         }
       }
     },
