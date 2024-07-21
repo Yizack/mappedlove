@@ -56,53 +56,59 @@ const showModal = ref(false);
 const openStory = (story: MappedLoveStory) => {
   currentStory.value = story;
   if (isMobile.value) expandCanvas.value = false;
-  useModalController("story", (show) => {
-    showModal.value = show;
-    if (!show) currentStory.value = undefined;
-  }, () => {
+  useModalController("story", showModal).show(() => {
     document.querySelector(".modal-backdrop")?.classList.add("modal-map-backdrop");
   });
 };
 
+watch(showModal, (show) => {
+  if (!show) currentStory.value = undefined;
+});
+
+const mapInfoHandler = () => {
+  $bootstrap.hideAllModals();
+  selected.value = 0;
+};
+
+const touch = {
+  startY: 0,
+  endY: 0
+};
+
+const touchStartHandler = (event: TouchEvent) => {
+  touch.startY = event.changedTouches[0]!.screenY;
+};
+
+const touchEndHandler = (event: TouchEvent) => {
+  touch.endY = event.changedTouches[0]!.screenY;
+  if (touch.endY < touch.startY) {
+    expandCanvas.value = true;
+    return;
+  }
+
+  if (touch.endY > touch.startY) {
+    if (expandCanvas.value) expandCanvas.value = false;
+    return;
+  }
+};
+
+const resizeHandler = () => {
+  isMobile.value = isMobileScreen();
+};
+
 onMounted(() => {
   isMobile.value = isMobileScreen();
-  addEventListener("resize", () => {
-    isMobile.value = isMobileScreen();
-  });
-
-  mapInfo.value.addEventListener("hide.bs.offcanvas", () => {
-    $bootstrap.hideAllModals();
-    selected.value = 0;
-  });
-
-  const touch = {
-    startY: 0,
-    endY: 0
-  };
-
-  canvasHeader.value.addEventListener("touchstart", (event) => {
-    touch.startY = event.changedTouches[0]!.screenY;
-  }, { passive: true });
-
-  canvasHeader.value.addEventListener("touchend", (event) => {
-    touch.endY = event.changedTouches[0]!.screenY;
-    if (touch.endY < touch.startY) {
-      expandCanvas.value = true;
-      return;
-    }
-
-    if (touch.endY > touch.startY) {
-      if (expandCanvas.value) expandCanvas.value = false;
-      return;
-    }
-  }, { passive: true });
+  addEventListener("resize", resizeHandler);
+  mapInfo.value.addEventListener("hide.bs.offcanvas", mapInfoHandler);
+  canvasHeader.value.addEventListener("touchstart", touchStartHandler, { passive: true });
+  canvasHeader.value.addEventListener("touchend", touchEndHandler, { passive: true });
 });
 
 onBeforeUnmount(() => {
-  canvasHeader.value.removeEventListener("touchstart", () => {}, false);
-  canvasHeader.value.removeEventListener("touchend", () => {}, false);
-  canvasBody.value.removeEventListener("touchstart", () => {}, false);
-  mapInfo.value.removeEventListener("hide.bs.offcanvas", () => {}, false);
+  removeEventListener("resize", resizeHandler);
+  canvasHeader.value.removeEventListener("touchstart", touchStartHandler);
+  canvasHeader.value.removeEventListener("touchend", touchEndHandler);
+  mapInfo.value.removeEventListener("hide.bs.offcanvas", mapInfoHandler);
   $bootstrap.hideOffcanvas(mapInfo.value);
 });
 

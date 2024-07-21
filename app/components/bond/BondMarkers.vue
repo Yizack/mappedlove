@@ -13,7 +13,7 @@ const props = defineProps({
 });
 
 const emit = defineEmits(["new", "delete", "select", "edit"]);
-const { $bootstrap, $toasts } = useNuxtApp();
+const { $toasts } = useNuxtApp();
 
 const edit = ref(false);
 const drag = ref(false);
@@ -61,7 +61,7 @@ const markerModal = (marker?: MappedLoveMarker) => {
       location: `${marker.lat}, ${marker.lng}`
     };
   }
-  useModalController("marker", show => showModal.value = show);
+  useModalController("marker", showModal).show();
 };
 
 const deleteMarker = async (id: number) => {
@@ -108,7 +108,7 @@ const submitMarker = async () => {
     emit("new", { marker });
   }
   $toasts.add({ message: form.value.id ? t("marker_updated") : t("marker_added"), success: true });
-  $bootstrap.hideModal("marker");
+  useModalController("marker").hide();
 };
 
 watch(() => props.markers, (value) => {

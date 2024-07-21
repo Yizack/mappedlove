@@ -37,9 +37,9 @@ const requestRefund = async () => {
   }).catch(() => null);
   loading.value = false;
   if (!res) return;
-  const { $toasts, $bootstrap } = useNuxtApp();
+  const { $toasts } = useNuxtApp();
   $toasts.add({ message: t("refund_requested"), success: true });
-  $bootstrap.hideModal("refund");
+  useModalController("refund").hide();
   refundForm.value.reason = "";
 };
 
@@ -98,7 +98,7 @@ useSeo({
             <p class="mb-0"><strong>{{ t("billing_manageable") }}</strong></p>
           </div>
           <div v-else-if="billing.subscription?.scheduled_change?.action === 'cancel'" class="text-center">
-            <button class="btn btn-lg btn-primary w-100 rounded-pill" @click="useModalController('refund');">{{ t("request_refund") }}</button>
+            <button class="btn btn-lg btn-primary w-100 rounded-pill" @click="useModalController('refund').show();">{{ t("request_refund") }}</button>
             <a href="/legal/refund" target="_blank" class="small">{{ t("refund_info") }}</a>
           </div>
           <div v-else-if="billing.subscription?.management_urls" class="d-flex flex-column flex-lg-row gap-2">

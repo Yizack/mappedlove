@@ -7,7 +7,7 @@ const props = defineProps({
 });
 
 const emit = defineEmits(["new", "delete"]);
-const { $bootstrap, $toasts } = useNuxtApp();
+const { $toasts } = useNuxtApp();
 const { user } = useUserSession() as MappedLoveSessionComposable;
 
 const deleteButton = ref<Record<number, boolean>>({});
@@ -45,7 +45,7 @@ const storyModal = (story?: MappedLoveStory) => {
     form.value.marker = props.marker.id;
   }
   else form.value = { ...story, hash: story.hash };
-  useModalController("story", show => showModal.value = show);
+  useModalController("story", showModal).show();
 };
 
 const addImage = (event: Event) => {
@@ -84,7 +84,7 @@ const submitStory = async () => {
   if (!story) return;
   emit("new", { story, edit: Boolean(form.value.id) });
   $toasts.add({ message: form.value.id ? t("story_updated") : t("story_added"), success: true });
-  $bootstrap.hideModal("story");
+  useModalController("story").hide();
 };
 
 watch(() => props.marker, () => {

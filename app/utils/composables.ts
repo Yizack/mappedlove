@@ -8,20 +8,26 @@ export const useFormState = <T extends Record<string, unknown>>(initialState: T)
   return { form, formReset };
 };
 
-export const useModalController = async (id: string, show?: (value: boolean) => void, callback?: () => void) => {
+export const useModalController = (id: string, visible: Ref<boolean | undefined> = ref()) => {
   const { $bootstrap } = useNuxtApp();
-  if (show) show(true);
-  await sleep(100);
-  const element = $bootstrap.showModal(id);
-  if (!element) return;
-  if (show) {
-    if (callback) callback();
-    const hideEvent = () => {
-      show(false);
-      element.removeEventListener("hidden.bs.modal", hideEvent);
-    };
-    element.addEventListener("hidden.bs.modal", hideEvent);
-  }
+  return {
+    show: async (callback?: () => void) => {
+      if (!visible.value) visible.value = true;
+      await sleep(100);
+      const element = $bootstrap.showModal(id);
+      if (!element) return;
+      if (visible.value) {
+        if (typeof callback === "function") callback();
+        const hideEvent = () => {
+          visible.value = false;
+        };
+        element.addEventListener("hidden.bs.modal", hideEvent, { once: true });
+      }
+    },
+    hide: () => {
+      $bootstrap.hideModal(id);
+    }
+  };
 };
 
 export const useSeo = (options: MappedLoveSeoOptions) => {
