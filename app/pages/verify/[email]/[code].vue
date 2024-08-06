@@ -19,6 +19,7 @@ try {
   email.value = atob(emailCode.value);
 }
 catch (e) {
+  console.warn(e);
   throw createError({
     statusCode: ErrorCode.BAD_REQUEST,
     message: t("invalid_email_code"),

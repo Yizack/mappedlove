@@ -120,7 +120,7 @@ watch(() => props.marker, () => {
               <template #default="{ item: story }">
                 <div class="card h-100" @mouseenter="deleteButton[story.id] = true" @mouseleave="deleteButton[story.id] = false">
                   <div role="button" class="overflow-hidden scale-hover">
-                    <img :src="`${getStoryImage(story.hash)}?updated=${story.updatedAt}`" class="card-img-top" @click="storyModal(story)">
+                    <img :src="`${getStoryImage(story.hash!)}?updated=${story.updatedAt}`" class="card-img-top" @click="storyModal(story)">
                   </div>
                   <div v-if="story.description" class="card-body border-top">
                     <p class="card-text">{{ story.description }}</p>
