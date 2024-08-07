@@ -12,8 +12,8 @@ importers:
         specifier: ^4.20240806.0
         version: 4.20240806.0
       '@dargmuesli/nuxt-cookie-control':
-        specifier: ^8.4.6
-        version: 8.4.6(magicast@0.3.4)(rollup@4.19.0)(webpack@5.93.0(esbuild@0.17.19))
+        specifier: ^8.4.7
+        version: 8.4.7(magicast@0.3.4)(rollup@4.19.0)(webpack@5.93.0(esbuild@0.17.19))
       '@nuxt/eslint':
         specifier: ^0.5.0
         version: 0.5.0(eslint@9.8.0)(magicast@0.3.4)(rollup@4.19.0)(typescript@5.5.4)(vite@5.3.4(@types/node@20.14.11)(sass@1.77.8)(terser@5.31.3))
@@ -54,8 +54,8 @@ importers:
         specifier: ^9.0.1
         version: 9.0.1(vue@3.4.33(typescript@5.5.4))
       '@yeger/vue-masonry-wall':
-        specifier: ^5.0.13
-        version: 5.0.13(vue@3.4.33(typescript@5.5.4))
+        specifier: ^5.0.14
+        version: 5.0.14(vue@3.4.33(typescript@5.5.4))
       bootstrap:
         specifier: ^5.3.3
         version: 5.3.3(@popperjs/core@2.11.8)
@@ -448,8 +448,8 @@ packages:
     peerDependencies:
       postcss-selector-parser: ^6.0.13
 
-  '@dargmuesli/nuxt-cookie-control@8.4.6':
-    resolution: {integrity: sha512-41XYyAUM5GYnK5C1+uZ0pp+1u9Sudzn8REVoHya0j2DPZmupCkYndG8h/zQSh9QYT8Nwwi3rVpvSoNwOAC/Uqg==}
+  '@dargmuesli/nuxt-cookie-control@8.4.7':
+    resolution: {integrity: sha512-iekeuyhrsC+CIHVv9VvsyZAdhwQqh5yEfIbBDNuJLTWkx8FwP/rlvZfEC9HxratnxXaiN/Keike0CVImU3ZkJw==}
     engines: {node: '>=16'}
 
   '@docsearch/css@3.6.1':
@@ -2485,11 +2485,11 @@ packages:
   '@yeger/vue-lib-adapter@2.0.9':
     resolution: {integrity: sha512-FIaKvP596mg8J9bsphng4Ulr+EMghBG2RNrBrJCFvz9uV7YI6X0vNJ0vV/8SqL6Boe92VpRjG+puKe/HYKsnTg==}
 
-  '@yeger/vue-masonry-wall-core@5.0.10':
-    resolution: {integrity: sha512-s4dwP4/mvcwNqa1/2uSSXU8bSaKS1nHb+JmF17fFLFNvacZTk6b3mcW8yjM38sxzhQ+tv7rthMTrF3W+6abRgw==}
+  '@yeger/vue-masonry-wall-core@5.0.11':
+    resolution: {integrity: sha512-3/4v3fyn+KhiUS56CujJCiwjvtIZz8oAaJ5NaQluZ98dJIkYmNiMZutJ9gG4C4xjedXr9IznNjkTv4GD1UeO9Q==}
 
-  '@yeger/vue-masonry-wall@5.0.13':
-    resolution: {integrity: sha512-2VAVIpDCLFZITpE4iA3W0YkhZsUpGzufzoU3FGIQ5/YkqJrm2DVgyanEgAzEBe8bwzF0x8kXdO8vHznjCkqVsQ==}
+  '@yeger/vue-masonry-wall@5.0.14':
+    resolution: {integrity: sha512-UVwAC/T07Pj1HHBEnVm2m5HPq6mZGZjBXI72sdJdb7sU8wZ9SUnEOLd7Zm275eHhdqQZ+6b7hVgRMvfscu1k5g==}
     peerDependencies:
       vue: ^3.0.0
 
@@ -6279,7 +6279,7 @@ snapshots:
     dependencies:
       postcss-selector-parser: 6.1.1
 
-  '@dargmuesli/nuxt-cookie-control@8.4.6(magicast@0.3.4)(rollup@4.19.0)(webpack@5.93.0(esbuild@0.17.19))':
+  '@dargmuesli/nuxt-cookie-control@8.4.7(magicast@0.3.4)(rollup@4.19.0)(webpack@5.93.0(esbuild@0.17.19))':
     dependencies:
       '@nuxt/kit': 3.12.4(magicast@0.3.4)(rollup@4.19.0)
       css-vars-ponyfill: 2.4.9
@@ -8579,14 +8579,14 @@ snapshots:
 
   '@yeger/vue-lib-adapter@2.0.9': {}
 
-  '@yeger/vue-masonry-wall-core@5.0.10':
+  '@yeger/vue-masonry-wall-core@5.0.11':
     dependencies:
       '@yeger/debounce': 2.0.9
       '@yeger/vue-lib-adapter': 2.0.9
 
-  '@yeger/vue-masonry-wall@5.0.13(vue@3.4.33(typescript@5.5.4))':
+  '@yeger/vue-masonry-wall@5.0.14(vue@3.4.33(typescript@5.5.4))':
     dependencies:
-      '@yeger/vue-masonry-wall-core': 5.0.10
+      '@yeger/vue-masonry-wall-core': 5.0.11
       vue: 3.4.33(typescript@5.5.4)
 
   abbrev@1.1.1: {}
