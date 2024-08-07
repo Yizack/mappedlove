@@ -39,6 +39,7 @@ $success: #a9ffaf;
   --bs-tertiary-bg-rgb: #{to-rgb($tertiary-bg)};
   --bs-success: #{$success};
   --bs-success-rgb: #{to-rgb($success)};
+  --switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='#{encode-hash($primary)}'/%3e%3c/svg%3e");
 
   a {
     text-decoration: none;

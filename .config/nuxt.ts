@@ -8,7 +8,7 @@ export default defineNuxtConfig({
   app: {
     head: {
       charset: "utf-8",
-      viewport: "width=device-width, initial-scale=1, maximum-scale=1",
+      viewport: "width=device-width, initial-scale=1",
       title: SITE.name,
       htmlAttrs: {
         lang: "en"
@@ -23,16 +23,15 @@ export default defineNuxtConfig({
         { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon-32x32.png" },
         { rel: "icon", type: "image/png", sizes: "16x16", href: "/favicon-16x16.png" },
         { rel: "manifest", href: "/site.webmanifest" },
-        { rel: "mask-icon", href: "/safari-pinned-tab.svg", color: "#ff6969" },
+        { rel: "mask-icon", href: "/safari-pinned-tab.svg", color: "#c25050" },
         { rel: "preconnect", href: SITE.cdn },
         { rel: "preconnect", href: "https://res.cloudinary.com" }
       ],
       meta: [
         { name: "robots", content: "index, follow" },
-        { name: "theme-color", content: "#ff6969" },
         { name: "apple-mobile-web-app-title", content: SITE.name },
         { name: "application-name", content: SITE.name },
-        { name: "msapplication-TileColor", content: "#ff6969" },
+        { name: "msapplication-TileColor", content: "#ffffff" },
         { name: "theme-color", content: "#ffffff" },
         { name: "apple-mobile-web-app-capable", content: SITE.name }
       ]

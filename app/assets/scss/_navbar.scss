@@ -15,13 +15,17 @@ nav.navbar * {
 .navbar-nav .nav-item .nav-link {
   padding-left: 1rem;
   padding-right: 1rem;
+  border-width: 1px;
   border-radius: var(--bs-border-radius-pill);
+  border-style: solid;
+  border-color: transparent;
   color: var(--bs-body-color);
 }
 
 .navbar-nav .nav-item .nav-link.router-link-active.router-link-exact-active {
   color: var(--bs-primary);
-  background-color: var(--bs-secondary);
+  background-color: var(--btn-color);
+  border-color: var(--bs-primary);
   text-decoration: none;
 }
 

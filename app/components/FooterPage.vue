@@ -11,7 +11,7 @@
         </div>
 
         <div class="col mb-3">
-          <h5>{{ t("about_us") }}</h5>
+          <p class="h5">{{ t("about_us") }}</p>
           <ul class="nav flex-column">
             <li class="nav-item mb-2"><NuxtLink to="/" class="nav-link p-0 text-body-secondary">{{ t("home") }}</NuxtLink></li>
             <li class="nav-item mb-2"><NuxtLink to="/about" class="nav-link p-0 text-body-secondary">{{ t("about_us") }}</NuxtLink></li>
@@ -20,7 +20,7 @@
         </div>
 
         <div class="col mb-3">
-          <h5>{{ t("help") }}</h5>
+          <p class="h5">{{ t("help") }}</p>
           <ul class="nav flex-column">
             <li class="nav-item mb-2"><NuxtLink to="/contact" class="nav-link p-0 text-body-secondary">{{ t("contact") }}</NuxtLink></li>
             <li class="nav-item mb-2"><a href="/docs" class="nav-link p-0 text-body-secondary">{{ t("support") }}</a></li>
@@ -29,7 +29,7 @@
         </div>
 
         <div class="col mb-3">
-          <h5>{{ t("legal") }}</h5>
+          <p class="h5">{{ t("legal") }}</p>
           <ul class="nav flex-column">
             <li class="nav-item mb-2"><NuxtLink to="/legal/terms" class="nav-link p-0 text-body-secondary">{{ t("terms_of_use") }}</NuxtLink></li>
             <li class="nav-item mb-2"><NuxtLink to="/legal/privacy" class="nav-link p-0 text-body-secondary">{{ t("privacy_policy") }}</NuxtLink></li>
@@ -39,7 +39,7 @@
         </div>
 
         <div class="col mb-3">
-          <h5>{{ t("contribute") }}</h5>
+          <p class="h5">{{ t("contribute") }}</p>
           <ul class="nav flex-column">
             <li class="nav-item mb-2"><NuxtLink :to="SITE.donate" class="nav-link p-0 text-body-secondary">{{ t("donate") }}</NuxtLink></li>
             <li class="nav-item mb-2"><a :href="SITE.github.repo" class="nav-link p-0 text-body-secondary" target="_blank">{{ t("github_repository") }}</a></li>
