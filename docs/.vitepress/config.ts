@@ -18,7 +18,6 @@ export default defineConfig({
     const head: HeadConfig[] = [];
     const relativePath = pageData.relativePath.replace(/\.md$/, "").replace(/index$/, "");
     const path = relativePath === "index" ? "" : `/${relativePath}`;
-
     const tags: HeadConfig[] = [
       ["meta", { property: "og:url", content: `${SITE.host}/docs` + path }],
       ["meta", { property: "og:type", content: "website" }],
@@ -36,6 +35,10 @@ export default defineConfig({
     head.push(...tags);
     return head;
   },
+  head: [
+    ["meta", { name: "robots", content: "index, follow" }],
+    ["meta", { name: "theme-color", content: "#c25050" }]
+  ],
   cleanUrls: true,
   lastUpdated: true,
   vite: {
