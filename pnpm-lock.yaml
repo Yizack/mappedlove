@@ -81,8 +81,8 @@ importers:
         specifier: ^3.12.4
         version: 3.12.4(@parcel/watcher@2.4.1)(@types/node@20.14.11)(drizzle-orm@0.33.0(@cloudflare/workers-types@4.20240806.0))(eslint@9.9.0(jiti@1.21.6))(ioredis@5.4.1)(magicast@0.3.4)(optionator@0.9.4)(rollup@4.19.0)(sass@1.77.8)(stylelint@16.8.1(typescript@5.5.4))(terser@5.31.3)(typescript@5.5.4)(vite@5.3.4(@types/node@20.14.11)(sass@1.77.8)(terser@5.31.3))(vue-tsc@2.0.29(typescript@5.5.4))
       nuxt-auth-utils:
-        specifier: ^0.3.2
-        version: 0.3.2(magicast@0.3.4)(rollup@4.19.0)
+        specifier: ^0.3.3
+        version: 0.3.3(magicast@0.3.4)(rollup@4.19.0)
       nuxt-twemoji:
         specifier: 3.6.1
         version: 3.6.1(magicast@0.3.4)(rollup@4.19.0)
@@ -114,8 +114,8 @@ importers:
         specifier: ^2.0.29
         version: 2.0.29(typescript@5.5.4)
       wrangler:
-        specifier: ^3.70.0
-        version: 3.70.0(@cloudflare/workers-types@4.20240806.0)
+        specifier: ^3.71.0
+        version: 3.71.0(@cloudflare/workers-types@4.20240806.0)
       zod:
         specifier: ^3.23.8
         version: 3.23.8
@@ -4373,8 +4373,8 @@ packages:
     engines: {node: ^16.10.0 || >=18.0.0}
     hasBin: true
 
-  nuxt-auth-utils@0.3.2:
-    resolution: {integrity: sha512-A2gRelkEQxLoosIUw6TFFsMaq06XJ6dVdUYKRSKzxfMepBUq5v7GXiw+gZ9TVAXb0YjN9obmqJOBzf2qNI77yw==}
+  nuxt-auth-utils@0.3.3:
+    resolution: {integrity: sha512-Th+RO+IESJ07uPX3MLfimGSyM3CZsyP0DCQhInXeOSNmURDE3OWdbPneygPxzk4ITLZ8snKXM/mPNoSl5fiiAw==}
 
   nuxt-site-config-kit@2.2.15:
     resolution: {integrity: sha512-uN+JOijDt0u35rBhI3GhRHvPKncm2Nu/P3QMRIi+mwt4F/tQtlvLa1XUANkeEy8InTnPTVgs6dSDSqHP4sBXzg==}
@@ -5783,8 +5783,8 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
-  wrangler@3.70.0:
-    resolution: {integrity: sha512-aMtCEXmH02SIxbxOFGGuJ8ZemmG9W+IcNRh5D4qIKgzSxqy0mt9mRoPNPSv1geGB2/8YAyeLGPf+tB4lxz+ssg==}
+  wrangler@3.71.0:
+    resolution: {integrity: sha512-WHWBmU2z0p1hRtSIIP5HEeoR+6aNpuZR82HMXAwpfeiyijjfkMyt/TUs8gvIOKC3x3+ETQQIdVeX2al5KtrIxQ==}
     engines: {node: '>=16.17.0'}
     hasBin: true
     peerDependencies:
@@ -10606,7 +10606,7 @@ snapshots:
     optionalDependencies:
       fsevents: 2.3.3
 
-  nuxt-auth-utils@0.3.2(magicast@0.3.4)(rollup@4.19.0):
+  nuxt-auth-utils@0.3.3(magicast@0.3.4)(rollup@4.19.0):
     dependencies:
       '@nuxt/kit': 3.12.4(magicast@0.3.4)(rollup@4.19.0)
       defu: 6.1.4
@@ -12301,7 +12301,7 @@ snapshots:
       '@cloudflare/workerd-linux-arm64': 1.20240806.0
       '@cloudflare/workerd-windows-64': 1.20240806.0
 
-  wrangler@3.70.0(@cloudflare/workers-types@4.20240806.0):
+  wrangler@3.71.0(@cloudflare/workers-types@4.20240806.0):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.3.4
       '@cloudflare/workers-shared': 0.1.0
