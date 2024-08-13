@@ -93,7 +93,7 @@ const submitMarker = async () => {
   if (typeof form.value.lat !== "number" && typeof form.value.lng !== "number") return;
   submitted.value = true;
   const marker = await $fetch(form.value.id ? `/api/markers/${form.value.id}` : "/api/markers", {
-    method: form.value.id ? "PATCH" : "POST",
+    method: form.value.id ? "PUT" : "POST",
     body: form.value
   }).catch(() => null);
   submitted.value = false;

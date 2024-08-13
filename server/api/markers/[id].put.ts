@@ -7,7 +7,11 @@ export default defineEventHandler(async (event): Promise<MappedLoveMarker> => {
 
   const body = await readValidatedBody(event, body => z.object({
     lat: z.number(),
-    lng: z.number()
+    lng: z.number(),
+    group: z.number(),
+    title: z.string(),
+    description: z.string(),
+    order: z.number()
   }).safeParse(body));
 
   if (!body.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_marker_data" });
@@ -18,7 +22,11 @@ export default defineEventHandler(async (event): Promise<MappedLoveMarker> => {
   return DB.update(tables.markers).set({
     lat: marker.lat,
     lng: marker.lng,
+    group: marker.group,
     bond: user.bond.id,
+    title: marker.title,
+    description: marker.description,
+    order: marker.order,
     updatedAt: Date.now()
   }).where(and(eq(tables.markers.id, id), eq(tables.markers.bond, user.bond.id))).returning().get();
 });
