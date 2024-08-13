@@ -21,8 +21,8 @@ const selected = ref(false);
 const select = (result: Record<string, unknown>) => {
   search.value = false;
   text.value = `${result.y}, ${result.x}`;
-  emit("select", { lat: result.y, lng: result.x, label: result.label });
   selected.value = true;
+  emit("select", { lat: result.y, lng: result.x, label: result.label });
 };
 
 const changeLocation = () => {
@@ -31,38 +31,33 @@ const changeLocation = () => {
   emit("select", { lat: null, lng: null, label: "" });
 };
 
-const searchPlace = (event: Event) => {
-  const target = event.target as HTMLInputElement;
-  loading.value = true;
-  search.value = true;
-  const time = 2000;
-  if (!target.value) {
-    emit("select", { lat: null, lng: null, label: "" });
-    return debounce("geosearch", () => {
-      loading.value = false;
-      array.value = [];
-    }, time);
+watchDebounced(text, async (value) => {
+  try {
+    if (!search.value) return;
+    if (!value) throw new Error("No text provided");
+    const { user } = useUserSession() as MappedLoveSessionComposable;
+    array.value = await $Leaflet.geoSearch(value, {
+      email: user.value.email,
+      lang: "en"
+    });
+    loading.value = false;
   }
-  debounce("geosearch", async () => {
-    try {
-      const { user } = useUserSession() as MappedLoveSessionComposable;
-      array.value = await $Leaflet.geoSearch(target.value, {
-        email: user.value.email,
-        lang: "en"
-      });
-      loading.value = false;
-    }
-    catch {
-      array.value = [];
-      loading.value = false;
-    }
-  }, time);
-};
+  catch {
+    emit("select", { lat: null, lng: null, label: "" });
+    array.value = [];
+    loading.value = false;
+  }
+}, { debounce: 2000 });
+
+watch(text, (value) => {
+  if (!value || selected.value) return;
+  search.value = true;
+  loading.value = true;
+});
 
 onMounted(() => {
-  if (!props.value) return;
+  if (props.value) selected.value = true;
   text.value = props.value;
-  selected.value = true;
 });
 </script>
 
@@ -73,10 +68,12 @@ onMounted(() => {
         <Icon class="text-primary" name="solar:map-point-favourite-bold" size="2rem" />
       </span>
       <div class="form-floating position-relative">
-        <input v-model.trim="text" class="form-control" :placeholder="t('location')" required :disabled="selected" @input="searchPlace">
+        <input v-model.trim="text" class="form-control" :placeholder="t('location')" required :disabled="selected">
         <label>{{ t("location") }}</label>
       </div>
-      <button v-if="selected" class="btn btn-primary" type="button" @click="changeLocation"><Icon name="ic:round-close" size="1.5rem" /></button>
+      <button v-if="selected" class="btn btn-primary" type="button" @click="changeLocation">
+        <Icon name="ic:round-close" size="1.5rem" />
+      </button>
     </div>
     <ul v-if="search && text" class="geosearch bg-body position-absolute top-100 rounded-bottom border py-2 px-0 shadow w-100 m-0">
       <li v-if="loading">

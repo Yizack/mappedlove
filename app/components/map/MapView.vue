@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { LeafletEvent } from "leaflet";
+
 const props = defineProps({
   id: {
     type: String,
@@ -26,7 +28,8 @@ const emit = defineEmits(["moved", "select"]);
 
 const { $Leaflet, $bootstrap } = useNuxtApp();
 const leaflet = ref<InstanceType<typeof $Leaflet>>();
-const map = ref() as Ref<HTMLElement>;
+const map = ref<HTMLElement>();
+const movedMarker = ref<LeafletEvent>();
 
 const removeMarker = (id: number) => {
   leaflet.value?.removeMarker(id);
@@ -43,22 +46,25 @@ const addMarker = (marker: MappedLoveMarker) => {
       draggable: true
     }
   }).on("move", (e) => {
-    const { id } = e.target.options;
-    const { lat, lng } = e.target.getLatLng();
-    debounce(`marker_${id}`, async () => {
-      const update = await $fetch(`/api/markers/${id}`, {
-        method: "PATCH",
-        body: { lat, lng }
-      }).catch(() => null);
-      if (!update) return;
-      emit("moved", update);
-    }, 3000);
+    movedMarker.value = e;
   }).on("popupopen", (e) => {
     setTimeout(() => $bootstrap.startAllCarousel());
     if (props.select === e.target.options.id) return;
     emit("select", e.target.options.id);
   });
 };
+
+watchDebounced(movedMarker, async (e) => {
+  if (!e) return;
+  const { id } = e.target.options;
+  const { lat, lng } = e.target.getLatLng();
+  const update = await $fetch(`/api/markers/${id}`, {
+    method: "PATCH",
+    body: { lat, lng }
+  }).catch(() => null);
+  if (!update) return;
+  emit("moved", update);
+}, { debounce: 3000 });
 
 const setView = (latlng: [number, number], zoom?: number) => {
   leaflet.value?.setView(latlng, zoom);
@@ -68,6 +74,7 @@ onMounted(() => {
   if (!leaflet.value) {
     leaflet.value = new $Leaflet();
     leaflet.value.createGroups(getGroups());
+    if (!map.value) return;
     leaflet.value.createMap(map.value);
   }
   for (const marker of props.markers) {

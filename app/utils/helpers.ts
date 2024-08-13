@@ -1,15 +1,6 @@
 export { ErrorCode } from "~~/types/enums/errors";
 export { Quota } from "~~/types/enums/quotas";
-
-const deb = {} as Record<string, NodeJS.Timeout | undefined>;
-
-export const debounce = (id: string, fn: () => void, delay: number) => {
-  if (deb[id]) {
-    clearTimeout(deb[id]);
-    deb[id] = undefined;
-  }
-  deb[id] = setTimeout(() => fn(), delay);
-};
+export { watchDebounced } from "@vueuse/core";
 
 export const getGroups = () => {
   return groups.map((group: typeof groups[number]) => t(group.key));
