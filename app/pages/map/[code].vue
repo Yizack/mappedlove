@@ -177,7 +177,7 @@ useSeo({
                         <template #default="{ item: story }">
                           <div class="card h-100 border-2" :class="{ 'border-primary': currentStory?.id === story.id }" role="button" @click="openStory(story)">
                             <div class="overflow-hidden scale-hover">
-                              <img :src="`${getStoryImage(story.hash)}?updated=${story.updatedAt}`" class="card-img-top">
+                              <img :src="`${getStoryImage(story.hash!)}?updated=${story.updatedAt}`" class="card-img-top">
                             </div>
                             <div class="card-footer">
                               <small class="text-body-secondary">
