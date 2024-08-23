@@ -98,6 +98,7 @@ export default defineNuxtConfig({
       }
     },
     mail: {
+      apiKey: "",
       from: "",
       fromName: "",
       host: "",

@@ -14,7 +14,9 @@ const mailChannels = async (config: RuntimeConfig, message: EmailMessage): Promi
   return await $fetch("https://api.mailchannels.net/tx/v1/send", {
     method: "POST",
     headers: {
-      "content-type": "application/json"
+      "X-API-Key": config.mail.apiKey,
+      "Accept": "application/json",
+      "Content-Type": "application/json"
     },
     body: JSON.stringify({
       personalizations: [{
