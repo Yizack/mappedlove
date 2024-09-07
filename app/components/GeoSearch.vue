@@ -13,12 +13,12 @@ const emit = defineEmits(["select"]);
 const { $Leaflet } = useNuxtApp();
 
 const search = ref(false);
-const array = ref<SearchResult<unknown>[]>([]);
+const array = ref<SearchResult[]>([]);
 const text = ref("");
 const loading = ref(false);
 const selected = ref(false);
 
-const select = (result: Record<string, unknown>) => {
+const select = (result: SearchResult) => {
   search.value = false;
   text.value = `${result.y}, ${result.x}`;
   selected.value = true;
