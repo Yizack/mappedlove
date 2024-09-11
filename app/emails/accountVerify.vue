@@ -11,7 +11,7 @@ defineProps({
 <template>
   <Html :lang="lang">
     <Head>
-      <title>mail verification</title>
+      <title>Email verification</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="x-apple-disable-message-reformatting">
       <Font font-family="Arial" />
@@ -26,7 +26,7 @@ defineProps({
           </Row>
           <Row style="padding: 1rem 0; background-color: #c25050;">
             <Column align="center">
-              <Heading as="h1" style="color: #fff; font-size: 2rem;">mail verification</Heading>
+              <Heading as="h1" style="color: #fff; font-size: 2rem;">Email verification</Heading>
             </Column>
           </Row>
           <Section style="padding: 36px 30px 36px 30px; background-color: #f8f9fa;">
