@@ -44,3 +44,23 @@ jobs:
 
       - name: 🔎 Lint
         run: pnpm lint:eslint && pnpm lint:stylelint
+
+  test:
+      runs-on: ubuntu-latest
+  
+      steps:
+        - uses: actions/checkout@v4
+        - run: corepack enable
+        - uses: actions/setup-node@v4
+          with:
+            node-version: 20
+            cache: "pnpm"
+  
+        - name: 📦 Install dependencies
+          run: pnpm install
+  
+        # - name: 🧪 Run test suite
+        # run: pnpm test
+  
+        - name: 🧪 Test types
+          run: pnpm test:types
