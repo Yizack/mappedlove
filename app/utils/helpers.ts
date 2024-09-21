@@ -1,6 +1,6 @@
 export { ErrorCode } from "~~/types/enums/errors";
 export { Quota } from "~~/types/enums/quotas";
-export { watchDebounced } from "@vueuse/core";
+export { watchDebounced, useMagicKeys } from "@vueuse/core";
 
 export const getGroups = () => {
   return groups.map((group: typeof groups[number]) => t(group.key));
