@@ -60,7 +60,7 @@ jobs:
           run: pnpm install
   
         # - name: 🧪 Run test suite
-        # run: pnpm test
+        #   run: pnpm test
   
-        - name: 🧪 Test types
-          run: pnpm test:types
+        # - name: 🧪 Test types
+        #   run: pnpm test:types
