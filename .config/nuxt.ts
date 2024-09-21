@@ -169,5 +169,12 @@ export default defineNuxtConfig({
   },
   experimental: {
     typedPages: true
+  },
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: { quietDeps: true }
+      }
+    }
   }
 });
