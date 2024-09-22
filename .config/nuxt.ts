@@ -53,7 +53,11 @@ export default defineNuxtConfig({
     "@nuxthub/core"
   ],
   hub: { database: true, blob: true },
-  icon: { mode: "svg", serverBundle: "remote" },
+  icon: {
+    mode: "svg",
+    serverBundle: "remote",
+    clientBundle: { scan: true, sizeLimitKb: 2048 }
+  },
   eslint: {
     config: {
       autoInit: false,
@@ -173,7 +177,10 @@ export default defineNuxtConfig({
   vite: {
     css: {
       preprocessorOptions: {
-        scss: { quietDeps: true }
+        scss: {
+          api: "modern-compiler",
+          silenceDeprecations: ["mixed-decls", "color-functions"]
+        }
       }
     }
   }
