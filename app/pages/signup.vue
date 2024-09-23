@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { NuxtTurnstile } from "#components";
+
 definePageMeta({ layout: "access", middleware: "authenticated" });
 
 const { query } = useRoute("signup");
@@ -11,7 +13,7 @@ const { form, formReset } = useFormState({
   turnstile: ""
 });
 
-const turnstile = ref(null);
+const turnstile = ref<InstanceType<typeof NuxtTurnstile>>();
 const submit = ref({ loading: false, exists: false });
 const needsConfirm = ref(false);
 
@@ -24,7 +26,6 @@ const signUp = async () => {
 
   if (!req) {
     formReset();
-    // @ts-expect-error turnstile is not null
     turnstile.value?.reset();
     return;
   }
@@ -32,7 +33,6 @@ const signUp = async () => {
   if (!("user" in req)) {
     submit.value.exists = true;
     formReset();
-    // @ts-expect-error turnstile is not null
     turnstile.value?.reset();
     return;
   }
