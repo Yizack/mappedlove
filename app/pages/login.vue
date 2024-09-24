@@ -9,7 +9,7 @@ const submit = ref({ loading: false, error: false });
 
 const { $toasts } = useNuxtApp();
 
-const { form } = useFormState({
+const form = useFormState({
   email: meta.email || "",
   password: ""
 });

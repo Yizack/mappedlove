@@ -4,7 +4,7 @@ definePageMeta({ layout: "utils", middleware: "authenticated" });
 const submit = ref({ loading: false, error: false });
 const needsRecovery = ref(false);
 
-const { form, formReset } = useFormState({
+const form = useFormState({
   email: ""
 });
 
@@ -16,7 +16,7 @@ const sendRecovery = async () => {
   }).catch(() => null);
   submit.value.loading = false;
   if (!req) return;
-  formReset();
+  form.reset();
   needsRecovery.value = true;
 };
 

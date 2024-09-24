@@ -29,7 +29,7 @@ const fileChosen = ref(false);
 const file = ref<File>();
 const maxFileSize = computed(() => user.value.bond?.premium ? Quota.PREMIUM_IMAGE_FILESIZE : Quota.FREE_IMAGE_FILESIZE);
 
-const { form, formReset } = useFormState({
+const form = useFormState({
   id: 0 as number | undefined,
   hash: "" as string | undefined,
   marker: props.marker.id,
@@ -41,7 +41,7 @@ const { form, formReset } = useFormState({
 
 const storyModal = (story?: MappedLoveStory) => {
   if (!story) {
-    formReset();
+    form.reset();
     form.value.marker = props.marker.id;
   }
   else form.value = { ...story, hash: story.hash };

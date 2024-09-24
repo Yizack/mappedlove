@@ -1,17 +1,22 @@
 export const useFormState = <T extends Record<string, unknown>>(initialState: T) => {
-  const form = ref({ ...initialState });
-
-  function formReset (...fields: (keyof T)[]) {
-    if (!fields.length) {
-      Object.assign(form.value, initialState);
-      return;
+  const data = ref<T>({ ...initialState });
+  const methods = {
+    /**
+     * Reset all fields or specific fields
+     * @param fields
+     */
+    reset (...fields: (keyof T)[]) {
+      if (!fields.length) {
+        data.value = { ...initialState };
+        return;
+      }
+      for (const field of fields) {
+        data.value[field] = initialState[field];
+      }
     }
-    fields.forEach((field) => {
-      form.value[field] = initialState[field];
-    });
-  }
-
-  return { form, formReset };
+  };
+  Object.assign(data, methods);
+  return data as Ref<T> & typeof methods;
 };
 
 export const useModalController = (id: string, visible: Ref<boolean | undefined> = ref()) => {

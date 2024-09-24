@@ -21,7 +21,7 @@ catch (e) {
   });
 }
 
-const { form, formReset } = useFormState({
+const form = useFormState({
   email: email.value,
   code: code.value,
   password: "",
@@ -38,7 +38,7 @@ const resetPassword = async () => {
   submit.value.loading = false;
   if (!req) return;
   $toasts.add({ message: t("reset_success"), success: true });
-  formReset();
+  form.reset();
 };
 
 useSeo({

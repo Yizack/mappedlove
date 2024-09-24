@@ -5,7 +5,7 @@ definePageMeta({ layout: "access", middleware: "authenticated" });
 
 const { query } = useRoute("signup");
 
-const { form, formReset } = useFormState({
+const form = useFormState({
   name: "",
   email: "",
   password: "",
@@ -25,14 +25,14 @@ const signUp = async () => {
   submit.value.loading = false;
 
   if (!req) {
-    formReset();
+    form.reset();
     turnstile.value?.reset();
     return;
   }
 
   if (!("user" in req)) {
     submit.value.exists = true;
-    formReset();
+    form.reset();
     turnstile.value?.reset();
     return;
   }

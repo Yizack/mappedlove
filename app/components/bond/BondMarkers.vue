@@ -26,7 +26,7 @@ const dragOptions = {
 
 const submitted = ref(false);
 const showModal = ref(false);
-const { form, formReset } = useFormState({
+const form = useFormState({
   id: 0 as number,
   lat: null as number | null,
   lng: null as number | null,
@@ -54,7 +54,7 @@ const selectMarker = (id: number) => {
 };
 
 const markerModal = (marker?: MappedLoveMarker) => {
-  if (!marker) formReset();
+  if (!marker) form.reset();
   else {
     form.value = {
       ...marker,

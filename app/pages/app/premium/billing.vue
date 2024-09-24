@@ -24,7 +24,7 @@ if (!billing.value) {
 
 const loading = ref(false);
 
-const { form: refundForm } = useFormState({
+const refundForm = useFormState({
   reason: ""
 });
 
