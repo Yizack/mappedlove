@@ -1,8 +1,14 @@
 export const useFormState = <T extends Record<string, unknown>>(initialState: T) => {
-  const form = ref({ ...initialState }) as Ref<T>;
+  const form = ref({ ...initialState });
 
-  function formReset () {
-    form.value = { ...initialState };
+  function formReset (...fields: (keyof T)[]) {
+    if (!fields.length) {
+      Object.assign(form.value, initialState);
+      return;
+    }
+    fields.forEach((field) => {
+      form.value[field] = initialState[field];
+    });
   }
 
   return { form, formReset };
