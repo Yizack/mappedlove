@@ -1,4 +1,4 @@
-export default oauthGoogleEventHandler({
+export default defineOAuthGoogleEventHandler({
   config: {
     scope: [
       "https://www.googleapis.com/auth/userinfo.email"

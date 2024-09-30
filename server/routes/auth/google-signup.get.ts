@@ -1,7 +1,7 @@
 import { render } from "@vue-email/render";
 import accountVerify from "~/emails/accountVerify.vue";
 
-export default oauthGoogleEventHandler({
+export default defineOAuthGoogleEventHandler({
   config: {
     scope: [
       "https://www.googleapis.com/auth/userinfo.email",
