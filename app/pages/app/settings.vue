@@ -198,7 +198,7 @@ useSeo({
         <div class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
           <form @submit.prevent="saveAccount">
             <h3 class="mb-4">{{ t("account") }}</h3>
-            <div id="image-upload" class="text-center mb-2">
+            <div class="image-upload text-center mb-2">
               <input id="avatar" type="file" accept=".png,.jpg,.jpeg,.jfif,.webp,.gif" @change="uploadAvatar">
               <label for="avatar" class="rounded-circle bg-body-tertiary position-relative overflow-hidden border border-5" :class="{ 'scale-hover': user.showAvatar }" style="width: 175px; height: 175px;">
                 <div class="overlay position-absolute bg-dark w-100 h-100">

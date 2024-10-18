@@ -65,16 +65,18 @@ input:read-only:not([type="checkbox"]):hover, input:read-only:not([type="checkbo
   }
 }
 
-#image-upload>input {
+.image-upload>input {
   display: none;
 }
 
-#image-upload label .overlay {
+
+.image-upload label .overlay {
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
 }
 
-#image-upload label:hover .overlay {
+
+.image-upload label:hover .overlay {
   opacity: .85;
 }
 

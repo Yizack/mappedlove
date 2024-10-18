@@ -76,7 +76,7 @@ watch(coupleDate, async (val: Date | undefined) => {
       <div class="bg-body rounded-3 px-3 py-4 p-lg-4">
         <div class="position-relative d-flex justify-content-center py-4">
           <div class="text-center position-relative">
-            <div id="image-upload" class="text-center mb-2">
+            <div class="image-upload text-center mb-2">
               <label class="rounded-circle bg-body-tertiary position-relative overflow-hidden border border-5 m-0 mx-md-3 mx-lg-4" :class="{ 'scale-hover': partner1.showAvatar }" style="width: 175px; height: 175px;">
                 <img v-if="partner1.showAvatar" :src="`${getAvatarImage(partner1.hash)}?updated=${partner1.updatedAt}`" width="175" height="175" class="img-fluid" :alt="partner1.name">
                 <img v-else :src="getDefaultAvatar(partner1.id)" width="175" height="175" class="img-fluid" :alt="partner1.name">
@@ -88,7 +88,7 @@ watch(coupleDate, async (val: Date | undefined) => {
             <Icon name="solar:hearts-bold-duotone" class="img-fluid p-2 p-lg-3 text-primary" />
           </div>
           <div class="text-center position-relative">
-            <div id="image-upload" class="text-center mb-2">
+            <div class="image-upload text-center mb-2">
               <label class="rounded-circle bg-body-tertiary position-relative overflow-hidden border border-5 m-0 mx-md-3 mx-lg-4" :class="{ 'scale-hover': partner2.showAvatar }" style="width: 175px; height: 175px;">
                 <img v-if="partner2.showAvatar" :src="`${getAvatarImage(partner2.hash)}?updated=${partner2.updatedAt}`" width="175" height="175" class="img-fluid" :alt="partner2.name">
                 <img v-else :src="getDefaultAvatar(partner2.id)" width="175" height="175" class="img-fluid" :alt="partner2.name">
