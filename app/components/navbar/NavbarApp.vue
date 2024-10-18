@@ -43,7 +43,7 @@ const logOut = () => {
       <div class="ms-3">
         <div v-if="loggedIn" class="nav-item dropdown">
           <button class="button btn btn-primary rounded-pill dropdown-toggle d-flex align-items-center justify-content-center" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <div v-if="user.showAvatar && user.hash" id="image-upload" class="text-center">
+            <div v-if="user.showAvatar && user.hash" class="image-upload text-center">
               <label class="rounded-circle bg-body-tertiary position-relative overflow-hidden d-flex" style="width: 24px; height: 24px;">
                 <img :src="`${getAvatarImage(user.hash)}?updated=${user.updatedAt}`" alt="avatar" width="24" height="24" class="img-fluid">
               </label>
