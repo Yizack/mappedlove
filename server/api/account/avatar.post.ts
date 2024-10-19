@@ -1,13 +1,17 @@
 export default defineEventHandler(async (event) => {
   const { user } = await requireUserSession(event);
 
-  const body = await readMultipartFormData(event);
-  const file = getFileFromUpload(body);
+  const formData = await readFormData(event);
+  const file = formData.get("file") as File;
 
-  if (!body || !file) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "bad_request" });
+  if (!file) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "bad_request" });
+
+  ensureBlob(file, {
+    types: ["image/jpeg", "image/png", "image/gif", "image/webp"]
+  });
 
   const fileSizeMaxMB = user.bond?.premium ? Quota.PREMIUM_IMAGE_FILESIZE : Quota.FREE_IMAGE_FILESIZE;
-  if (!isValidFileSize(file.data.byteLength, fileSizeMaxMB)) {
+  if (!isValidFileSize(file, fileSizeMaxMB)) {
     if (!user.bond?.premium) throw createError({ statusCode: ErrorCode.PAYMENT_REQUIRED, message: "check_file_size_free" });
     throw createError({ statusCode: ErrorCode.PAYMENT_REQUIRED, message: "check_file_size" });
   }
@@ -25,7 +29,7 @@ export default defineEventHandler(async (event) => {
 
   if (!update) throw createError({ statusCode: ErrorCode.INTERNAL_SERVER_ERROR, message: "error" });
 
-  const uploaded = await uploadImage(event, file, { name: user.hash!, folder: "avatars", customMetadata: { userId: user.id.toString() } });
+  const uploaded = await uploadImage(file, { name: user.hash!, folder: "avatars", customMetadata: { userId: user.id.toString() } });
 
   if (!uploaded) {
     throw createError({ statusCode: ErrorCode.INTERNAL_SERVER_ERROR, message: "error_any" });

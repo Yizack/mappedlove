@@ -1,48 +1,27 @@
-import type { MultiPartData, H3Event } from "h3";
+import type { BlobSize } from "@nuxthub/core";
 
-export const isValidFileSize = (bytes: number, sizeMB: number) => {
-  const MBsize = bytes / 1024 / 1024;
-  return MBsize <= sizeMB;
-};
-
-const validTypes = ["image/jpeg", "image/x-png", "image/png", "image/gif", "image/webp"];
-export const isValidFileType = (type: string) => {
-  return validTypes.includes(type);
-};
-
-export const getFileFromUpload = (body: MultiPartData[] | undefined) => {
-  const file = body?.find(item => item.name === "file");
-  if (!body || !body.length || !file) return;
-  const { type } = file;
-  if (!isValidFileType(type || "")) throw createError({ statusCode: ErrorCode.UNSUPPORTED_FILE, message: "unsupported_file" });
-  return file;
-};
-
-export const uploadImage = async (event: H3Event, file: MultiPartData, options: { name?: string, folder: string, customMetadata?: Record<string, string> }): Promise<string | undefined> => {
+export const uploadImage = async (file: File, options: { name?: string, folder: string, customMetadata?: Record<string, string> }) => {
   const { name, folder, customMetadata } = options;
   if (!file) return;
-  const { type, filename, data } = file;
-  const finalName = name ? name : filename;
-  if (import.meta.dev) {
-    const { writeFileSync, existsSync, mkdirSync } = await import("fs");
-    if (!existsSync(`./public/uploads/${folder}`)) mkdirSync(`./public/uploads/${folder}`, { recursive: true });
-    writeFileSync(`./public/uploads/${folder}/${finalName}`, data);
-    return finalName;
-  }
-  else if (process.env.CDN) {
-    const { cloudflare } = event.context;
-    await cloudflare.env.CDN.put(`uploads/${folder}/${finalName}`, data, { httpMetadata: { contentType: type }, customMetadata });
-    return finalName;
-  }
+  const finalName = name ? name : file.name;
+
+  await hubBlob().put(`/${folder}/${finalName}`, file, {
+    addRandomSuffix: false,
+    contentType: file.type,
+    prefix: "uploads",
+    customMetadata
+  });
+
+  return finalName;
 };
 
-export const deleteImage = async (event: H3Event, filepath: string): Promise<void> => {
-  if (import.meta.dev) {
-    const { unlinkSync } = await import("fs");
-    unlinkSync(`./public/uploads/${filepath}`);
-  }
-  else if (process.env.CDN) {
-    const { cloudflare } = event.context;
-    await cloudflare.env.CDN.delete(`uploads/${filepath}`);
-  }
+export const deleteImage = async (filepath: string) => {
+  return hubBlob().delete(`uploads/${filepath}`);
+};
+
+export const isValidFileSize = (file: File, size: BlobSize) => {
+  const [value, unit] = size.split(/(?<=\d)(?=[A-Z])/);
+  if (!value) return false;
+  const bytes = parseInt(value) * (2 ** (["B", "KB", "MB", "GB"].indexOf(unit || "") * 10));
+  return file.size <= bytes;
 };

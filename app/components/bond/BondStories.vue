@@ -27,7 +27,10 @@ const imageRead = ref<string | ArrayBuffer>("");
 const showModal = ref(false);
 const fileChosen = ref(false);
 const file = ref<File>();
-const maxFileSize = computed(() => user.value.bond?.premium ? Quota.PREMIUM_IMAGE_FILESIZE : Quota.FREE_IMAGE_FILESIZE);
+const maxFileSize = computed(() => {
+  const size = user.value.bond?.premium ? Quota.PREMIUM_IMAGE_FILESIZE : Quota.FREE_IMAGE_FILESIZE;
+  return size.replace("MB", t("mb"));
+});
 
 const form = useFormState({
   id: 0 as number | undefined,
@@ -177,13 +180,13 @@ watch(() => props.marker, () => {
           <div class="overlay position-absolute bg-body-secondary w-100 h-100">
             <div class="d-flex flex-column justify-content-center align-items-center h-100">
               <Icon class="text-primary" name="solar:gallery-add-outline" size="2.5rem" />
-              <span>({{ t("max") }} {{ maxFileSize }}{{ t("mb") }})</span>
+              <span>({{ t("max") }} {{ maxFileSize }})</span>
               <small>{{ supported }}</small>
             </div>
           </div>
           <div v-if="!fileChosen && !form.id" class="d-flex flex-column justify-content-center align-items-center py-3">
             <Icon name="solar:gallery-add-outline" size="2.5rem" />
-            <span>({{ t("max") }} {{ maxFileSize }}{{ t("mb") }})</span>
+            <span>({{ t("max") }} {{ maxFileSize }})</span>
             <small>{{ supported }}</small>
           </div>
           <img v-else-if="form.id && !imageRead" class="img-fluid" :src="`${getStoryImage(form.hash!)}?updated=${form.updatedAt}`">

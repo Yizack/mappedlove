@@ -179,7 +179,7 @@ export default defineNuxtConfig({
       preprocessorOptions: {
         scss: {
           api: "modern-compiler",
-          silenceDeprecations: ["mixed-decls", "color-functions"]
+          silenceDeprecations: ["mixed-decls", "color-functions", "import", "global-builtin"]
         }
       }
     }

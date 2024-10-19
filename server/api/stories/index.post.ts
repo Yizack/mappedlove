@@ -2,12 +2,17 @@ export default defineEventHandler(async (event): Promise<MappedLoveStory> => {
   const { user } = await requireUserSession(event);
 
   const body = await readMultipartFormData(event);
-  const file = getFileFromUpload(body);
+  const formData = await readFormData(event);
+  const file = formData.get("file") as File;
 
   if (!body || !file || !user.bond) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "bad_request" });
 
+  ensureBlob(file, {
+    types: ["image/jpeg", "image/png", "image/gif", "image/webp"]
+  });
+
   const fileSizeMaxMB = user.bond?.premium ? Quota.PREMIUM_IMAGE_FILESIZE : Quota.FREE_IMAGE_FILESIZE;
-  if (!isValidFileSize(file.data.byteLength, fileSizeMaxMB)) {
+  if (!isValidFileSize(file, fileSizeMaxMB)) {
     if (!user.bond?.premium) throw createError({ statusCode: ErrorCode.PAYMENT_REQUIRED, message: "check_file_size_free" });
     throw createError({ statusCode: ErrorCode.PAYMENT_REQUIRED, message: "check_file_size" });
   }
@@ -35,7 +40,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveStory> => {
 
   const { secure } = useRuntimeConfig(event);
   const storyHash = hash([story.id, user.bond.code].join(), secure.salt);
-  const uploaded = await uploadImage(event, file, { name: storyHash, folder: "stories",
+  const uploaded = await uploadImage(file, { name: storyHash, folder: "stories",
     customMetadata: {
       bondId: user.bond.id.toString(),
       userId: user.id.toString(),

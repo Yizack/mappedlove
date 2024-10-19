@@ -1,17 +1,17 @@
-import type { MultiPartData, H3Event } from "h3";
+import type { H3Event } from "h3";
 
 const jsonToQueryString = (json: Record<string, unknown>) => {
   return Object.keys(json).map(key => encodeURIComponent(key) + "=" + json[key]).join("&");
 };
 
-const bufferToBaase64URI = (buffer: Buffer, type: string | undefined) => {
+const bufferToBase64URI = (buffer: Buffer, type: string | undefined) => {
   return `data:${type || "jpeg"};base64,${buffer.toString("base64")}`;
 };
 
-export const uploadToCloudinary = async (event: H3Event, file: MultiPartData, options: { filename: string, folder: string }) => {
+export const uploadToCloudinary = async (event: H3Event, file: File, options: { filename: string, folder: string }) => {
   const { filename, folder } = options;
   if (import.meta.dev) return;
-  const { type, data: fileData } = file;
+  const { type } = file;
   const time = Date.now();
 
   const { cloudinary } = useRuntimeConfig(event);
@@ -31,7 +31,7 @@ export const uploadToCloudinary = async (event: H3Event, file: MultiPartData, op
     method: "POST",
     body: {
       api_key: cloudinary.key,
-      file: bufferToBaase64URI(fileData, type),
+      file: bufferToBase64URI(Buffer.from(await file.arrayBuffer()), type),
       ...data,
       signature
     }
