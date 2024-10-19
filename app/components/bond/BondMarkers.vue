@@ -25,7 +25,8 @@ const dragOptions = {
 };
 
 const submitted = ref(false);
-const showModal = ref(false);
+const markerController = useModalController("marker");
+
 const form = useFormState({
   id: 0 as number,
   lat: null as number | null,
@@ -61,7 +62,7 @@ const markerModal = (marker?: MappedLoveMarker) => {
       location: `${marker.lat}, ${marker.lng}`
     };
   }
-  useModalController("marker", showModal).show();
+  markerController.value.show();
 };
 
 const deleteMarker = async (id: number) => {
@@ -108,7 +109,7 @@ const submitMarker = async () => {
     emit("new", { marker });
   }
   $toasts.add({ message: form.value.id ? t("marker_updated") : t("marker_added"), success: true });
-  useModalController("marker").hide();
+  markerController.value.hide();
 };
 
 watch(() => props.markers, (value) => {
@@ -152,7 +153,7 @@ watch(() => props.markers, (value) => {
     </TransitionGroup>
   </Draggable>
   <p v-else class="m-0">{{ t("no_markers") }}</p>
-  <ModalController v-if="showModal" id="marker" :title="t('marker')" lg>
+  <ModalController id="marker" v-model="markerController" :title="t('marker')" lg>
     <form @submit.prevent="submitMarker">
       <div class="d-flex align-items-center gap-2 mb-2">
         <Icon name="solar:info-circle-linear" class="text-primary flex-shrink-0" />

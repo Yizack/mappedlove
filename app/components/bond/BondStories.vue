@@ -24,7 +24,7 @@ const deleteStory = async (id: number) => {
 const submitted = ref(false);
 const supported = "PNG, JPG, WEBP, GIF";
 const imageRead = ref<string | ArrayBuffer>("");
-const showModal = ref(false);
+const storyController = useModalController("story");
 const fileChosen = ref(false);
 const file = ref<File>();
 const maxFileSize = computed(() => {
@@ -48,7 +48,7 @@ const storyModal = (story?: MappedLoveStory) => {
     form.value.marker = props.marker.id;
   }
   else form.value = { ...story, hash: story.hash };
-  useModalController("story", showModal).show();
+  storyController.value.show();
 };
 
 const addImage = (event: Event) => {
@@ -87,7 +87,7 @@ const submitStory = async () => {
   if (!story) return;
   emit("new", { story, edit: Boolean(form.value.id) });
   $toasts.add({ message: form.value.id ? t("story_updated") : t("story_added"), success: true });
-  useModalController("story").hide();
+  storyController.value.hide();
 };
 
 watch(() => props.marker, () => {
@@ -147,7 +147,7 @@ watch(() => props.marker, () => {
       </div>
     </div>
   </Transition>
-  <ModalController v-if="showModal" id="story" :title="t('story')">
+  <ModalController id="story" v-model="storyController" :title="t('story')">
     <form @submit.prevent="submitStory">
       <div class="d-flex align-items-center gap-2 mb-2">
         <Icon name="solar:info-circle-linear" class="text-primary flex-shrink-0" />

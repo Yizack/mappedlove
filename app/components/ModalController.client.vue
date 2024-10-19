@@ -1,5 +1,12 @@
 <script setup lang="ts">
+interface ControllerModalModel {
+  isVisible: boolean;
+  show: (callback?: () => void) => Promise<void>;
+  hide: () => void;
+}
+
 defineProps({
+  modelValue: { type: Object as () => ControllerModalModel, required: true },
   id: { type: String, required: true },
   title: { type: String, default: "" },
   lg: { type: Boolean, default: false },
@@ -9,7 +16,7 @@ defineProps({
 </script>
 
 <template>
-  <div :id="id" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true" :class="{ 'modal-map': map }">
+  <div v-if="modelValue.isVisible" :id="id" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true" :class="{ 'modal-map': map }">
     <div class="modal-dialog modal-dialog-centered" :class="{ 'modal-lg': lg, 'modal-fullscreen': fullscreen }">
       <div class="modal-content">
         <div v-if="title" class="modal-header">

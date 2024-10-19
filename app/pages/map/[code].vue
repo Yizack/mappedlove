@@ -51,17 +51,17 @@ const canvasBody = ref() as Ref<HTMLElement>;
 const currentStory = ref<MappedLoveStory>();
 const currentStoryUser = computed(() => [partner1.value, partner2.value].find(user => user.id === currentStory.value?.user));
 
-const showModal = ref(false);
+const storyController = useModalController("story");
 
 const openStory = (story: MappedLoveStory) => {
   currentStory.value = story;
   if (isMobile.value) expandCanvas.value = false;
-  useModalController("story", showModal).show(() => {
+  storyController.value.show(() => {
     document.querySelector(".modal-backdrop")?.classList.add("modal-map-backdrop");
   });
 };
 
-watch(showModal, (show) => {
+watch(() => storyController.value.isVisible, (show) => {
   if (!show) currentStory.value = undefined;
 });
 
@@ -197,7 +197,7 @@ useSeo({
         </div>
       </div>
     </div>
-    <ModalController v-if="showModal && currentStory" id="story" fullscreen map>
+    <ModalController v-if="currentStory" id="story" v-model="storyController" fullscreen map>
       <div class="position-absolute start-0 top-0 py-2 px-3 bg-body bg-opacity-75 rounded shadow m-2 small">
         <div class="d-flex gap-1">
           <span>{{ t("uploaded_by") }}:</span>
