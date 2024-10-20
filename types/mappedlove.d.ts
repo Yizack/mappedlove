@@ -1,25 +1,10 @@
-import type { UserSessionComposable } from "#auth-utils";
+import type { UserSessionComposable, User, UserSession } from "#auth-utils";
 
 export {};
 
 declare global {
-  interface MappedLoveSession {
-    user?: MappedLoveUser;
-  }
-  interface MappedLoveUser {
-    id: number;
-    hash?: string;
-    name: string;
-    email: string;
-    country: string | null;
-    birthDate: number | null;
-    showAvatar: number;
-    confirmed: number;
-    createdAt: number;
-    updatedAt: number;
-    auth?: number;
-    bond?: MappedLoveBond;
-  }
+  type MappedLoveSession = UserSession;
+  type MappedLoveUser = User;
   interface MappedLovePartner {
     id: number;
     hash: string;
