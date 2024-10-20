@@ -1,8 +1,6 @@
 import { sha256 } from "ohash";
 
 export { SITE } from "~/utils/site";
-export { ErrorCode } from "~~/types/enums/errors";
-export { Quota } from "~~/types/enums/quotas";
 export { isPasswordValid } from "~/utils/validators";
 export { z } from "zod";
 

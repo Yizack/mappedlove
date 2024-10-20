@@ -1,5 +1,5 @@
-import type { ErrorCode } from "~/types/enums/errors";
-import type { Quota } from "~/types/enums/quotas";
+import type { ErrorCode } from "~~/server/utils/errors";
+import type { Quota } from "~/server/utils/quotas";
 
 export {};
 

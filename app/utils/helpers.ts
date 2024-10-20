@@ -1,5 +1,5 @@
-export { ErrorCode } from "~~/types/enums/errors";
-export { Quota } from "~~/types/enums/quotas";
+export { ErrorCode } from "~~/server/utils/errors";
+export { Quota } from "~~/server/utils/quotas";
 export { watchDebounced, useMagicKeys } from "@vueuse/core";
 
 export const getGroups = () => {
