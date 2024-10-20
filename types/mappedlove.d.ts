@@ -52,11 +52,6 @@ declare global {
     markers: MappedLoveMarker[];
     stories: MappedLoveStory[];
   }
-  interface MappedLoveToast {
-    message: string;
-    success: boolean;
-    id?: number;
-  }
   interface MappedLovePublicMap extends MappedLoveBond {
     partner1: MappedLovePartner;
     partner2: MappedLovePartner;

@@ -1,11 +1,17 @@
+interface Toast {
+  message: string;
+  success?: boolean;
+  id?: number;
+}
+
 class Toasts {
-  toasts: Ref<MappedLoveToast[]> = ref([]);
+  toasts: Ref<Toast[]> = ref([]);
   id = 1;
-  add (toast: MappedLoveToast) {
+  add (toast: Toast) {
     this.toasts.value.unshift({ ...toast, id: this.id++ });
   }
 
-  remove (toast: MappedLoveToast) {
+  remove (toast: Toast) {
     this.toasts.value.splice(this.toasts.value.indexOf(toast), 1);
   }
 
