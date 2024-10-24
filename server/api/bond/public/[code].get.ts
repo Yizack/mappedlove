@@ -65,11 +65,6 @@ export default defineCachedEventHandler(async (event): Promise<MappedLovePublicM
 }, {
   group: "api",
   name: "public-map",
-  getKey: event => {
-    const params = getRouterParams(event);
-    if (!params.code) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "bond_not_found" });
-    return params.code;
-  },
-  swr: true,
+  getKey: event => event.path,
   maxAge: 60 * 5
 }); // Cache public map for 5 minutes
