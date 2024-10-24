@@ -52,7 +52,7 @@ onMounted(async () => {
       paid.value = true;
       await sessionFetch();
       if (query._ptxn) return;
-      $toasts.add({ message: t("subscribed"), success: true });
+      $toasts.add({ message: t("subscribed") });
       $paddle.close();
     },
     onError: () => {

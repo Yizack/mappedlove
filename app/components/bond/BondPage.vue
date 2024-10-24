@@ -39,7 +39,7 @@ const changePrivacy = async () => {
     }
   }).catch(() => null);
   if (!bond) return;
-  $toasts.add({ message: t("bond_preferences_update"), success: true });
+  $toasts.add({ message: t("bond_preferences_update") });
 };
 
 const leaveBond = async () => {
@@ -66,7 +66,7 @@ watch(coupleDate, async (val: Date | undefined) => {
   }).catch(() => null);
   cacheDate.value = val;
   if (!bond) return;
-  $toasts.add({ message: t("anniversary_update"), success: true });
+  $toasts.add({ message: t("anniversary_update") });
 });
 </script>
 

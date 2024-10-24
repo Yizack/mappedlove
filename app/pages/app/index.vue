@@ -23,7 +23,7 @@ const setBond = async (event: { bond: MappedLoveBond, type: string }) => {
       message = t("bond_left");
       break;
   }
-  useNuxtApp().$toasts.add({ message, success: true });
+  useNuxtApp().$toasts.add({ message });
   if (bondEvent.value === "joined") navigateTo("/app", { external: true, replace: true });
 };
 

@@ -8,6 +8,7 @@ class Toasts {
   toasts: Ref<Toast[]> = ref([]);
   id = 1;
   add (toast: Toast) {
+    toast.success ??= true;
     this.toasts.value.unshift({ ...toast, id: this.id++ });
   }
 

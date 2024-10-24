@@ -108,7 +108,7 @@ const submitMarker = async () => {
     markers.value.push(marker);
     emit("new", { marker });
   }
-  $toasts.add({ message: form.value.id ? t("marker_updated") : t("marker_added"), success: true });
+  $toasts.add({ message: form.value.id ? t("marker_updated") : t("marker_added") });
   markerController.value.hide();
 };
 

@@ -69,7 +69,7 @@ const saveAccount = async () => {
   user.value.country = account.country;
   user.value.birthDate = account.birthDate;
   user.value.updatedAt = account.updatedAt;
-  $toasts.add({ message: t("account_saved"), success: true });
+  $toasts.add({ message: t("account_saved") });
 };
 
 const showAvatar = async () => {
@@ -81,7 +81,7 @@ const showAvatar = async () => {
   }).catch(() => null);
   if (!account) return;
   user.value.showAvatar = account.showAvatar;
-  $toasts.add({ message: t("account_saved"), success: true });
+  $toasts.add({ message: t("account_saved") });
 };
 
 const changeColorMode = () => {
@@ -100,7 +100,7 @@ const changePassword = async () => {
   }).catch(() => null);
   submit.value.pass_loading = false;
   if (!account) return;
-  $toasts.add({ message: t("password_changed"), success: true });
+  $toasts.add({ message: t("password_changed") });
 };
 
 const setupPassword = async () => {
@@ -117,7 +117,7 @@ const setupPassword = async () => {
   user.value.auth = undefined;
   userForm.value.new_password = "";
   userForm.value.confirm_password = "";
-  $toasts.add({ message: t("password_setup"), success: true });
+  $toasts.add({ message: t("password_setup") });
 };
 
 const imageRead = ref<string | ArrayBuffer>();
@@ -156,7 +156,7 @@ const uploadAvatar = async (event: Event) => {
   user.value.showAvatar = 1;
   userForm.value.showAvatar = true;
   user.value.updatedAt = account.updatedAt;
-  $toasts.add({ message: t("avatar_saved"), success: true });
+  $toasts.add({ message: t("avatar_saved") });
 };
 
 const deleteAvatar = async () => {
@@ -170,7 +170,7 @@ const deleteAvatar = async () => {
   fileChosen.value = false;
   user.value.updatedAt = account.updatedAt;
   imageRead.value = "";
-  $toasts.add({ message: t("avatar_deleted"), success: true });
+  $toasts.add({ message: t("avatar_deleted") });
 };
 
 const deleteAccount = async () => {

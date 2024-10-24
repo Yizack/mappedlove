@@ -19,7 +19,7 @@ const deleteStory = async (id: number) => {
   }).catch(() => null);
   if (!res) return;
   emit("delete", id);
-  $toasts.add({ message: t("story_deleted"), success: true });
+  $toasts.add({ message: t("story_deleted") });
 };
 
 const submitted = ref(false);
@@ -87,7 +87,7 @@ const submitStory = async () => {
   submitted.value = false;
   if (!story) return;
   emit("new", { story, edit: Boolean(form.value.id) });
-  $toasts.add({ message: form.value.id ? t("story_updated") : t("story_added"), success: true });
+  $toasts.add({ message: form.value.id ? t("story_updated") : t("story_added") });
   storyController.value.hide();
 };
 

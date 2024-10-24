@@ -40,7 +40,7 @@ const requestRefund = async () => {
   loading.value = false;
   if (!res) return;
   const { $toasts } = useNuxtApp();
-  $toasts.add({ message: t("refund_requested"), success: true });
+  $toasts.add({ message: t("refund_requested") });
   refundController.value.hide();
   refundForm.value.reason = "";
 };

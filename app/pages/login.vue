@@ -41,7 +41,7 @@ const signIn = async () => {
 
 const resendVerification = async () => {
   resent.value = true;
-  $toasts.add({ message: t("resent_verification"), success: true });
+  $toasts.add({ message: t("resent_verification") });
   const resend = await $fetch("/api/verify/resend", {
     method: "POST",
     body: { email: form.value.email }
@@ -53,7 +53,7 @@ const resendVerification = async () => {
 onMounted(() => {
   if (query.error) $toasts.add({ message: t(query.error.toString()), success: false });
   if (!meta.email) return;
-  $toasts.add({ message: t("registered"), success: true });
+  $toasts.add({ message: t("registered") });
 });
 
 useSeo({
