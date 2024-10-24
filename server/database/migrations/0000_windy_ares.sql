@@ -15,6 +15,7 @@ CREATE TABLE `bonds` (
 	FOREIGN KEY (`partner_2`) REFERENCES `users`(`id`) ON UPDATE no action ON DELETE set null
 );
 --> statement-breakpoint
+CREATE UNIQUE INDEX `bonds_code_unique` ON `bonds` (`code`);--> statement-breakpoint
 CREATE TABLE `logins` (
 	`user` integer PRIMARY KEY NOT NULL,
 	`attempts` integer DEFAULT 1 NOT NULL,
@@ -39,6 +40,7 @@ CREATE TABLE `markers` (
 CREATE TABLE `stories` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`marker` integer NOT NULL,
+	`bond` integer NOT NULL,
 	`user` integer NOT NULL,
 	`description` text,
 	`year` integer DEFAULT 0 NOT NULL,
@@ -46,7 +48,7 @@ CREATE TABLE `stories` (
 	`created_at` integer NOT NULL,
 	`updated_at` integer NOT NULL,
 	FOREIGN KEY (`marker`) REFERENCES `markers`(`id`) ON UPDATE no action ON DELETE cascade,
-	FOREIGN KEY (`user`) REFERENCES `bonds`(`id`) ON UPDATE no action ON DELETE cascade
+	FOREIGN KEY (`bond`) REFERENCES `bonds`(`id`) ON UPDATE no action ON DELETE cascade
 );
 --> statement-breakpoint
 CREATE TABLE `users` (
@@ -63,5 +65,4 @@ CREATE TABLE `users` (
 	`updated_at` integer NOT NULL
 );
 --> statement-breakpoint
-CREATE UNIQUE INDEX `bonds_code_unique` ON `bonds` (`code`);--> statement-breakpoint
 CREATE UNIQUE INDEX `users_email_unique` ON `users` (`email`);
