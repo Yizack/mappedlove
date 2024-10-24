@@ -1,5 +1,5 @@
 import { render } from "@vue-email/render";
-import accountRecovery from "~/emails/accountRecovery.vue";
+import accountRecovery from "~~/emails//accountRecovery.vue";
 
 export default defineEventHandler(async (event) => {
   const body = await readValidatedBody(event, body => z.object({

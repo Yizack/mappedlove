@@ -1,5 +1,5 @@
 import { render } from "@vue-email/render";
-import accountVerify from "~/emails/accountVerify.vue";
+import accountVerify from "~~/emails//accountVerify.vue";
 
 export default defineOAuthGoogleEventHandler({
   config: {
