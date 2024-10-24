@@ -125,6 +125,7 @@ export default {
   photo_needed: "A photo is required to add a story",
   story_added: "The story has been added",
   story_updated: "The story has been updated",
+  story_deleted: "The story has been deleted",
   uploaded_by: "Uploaded by",
   story_date: "Story date",
   created: "Created",

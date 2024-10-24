@@ -19,6 +19,7 @@ const deleteStory = async (id: number) => {
   }).catch(() => null);
   if (!res) return;
   emit("delete", id);
+  $toasts.add({ message: t("story_deleted"), success: true });
 };
 
 const submitted = ref(false);
