@@ -113,8 +113,8 @@ onBeforeUnmount(() => {
 });
 
 useSeo({
-  title: `${partner1.value.name} & ${partner1.value.name} | ${SITE.name}`,
-  name: `${partner1.value.name} & ${partner1.value.name}`,
+  title: `${partner1.value.name} & ${partner2.value.name} | ${SITE.name}`,
+  name: `${partner1.value.name} & ${partner2.value.name}`,
   description: t("seo_map_description"),
   robots: false
 });
