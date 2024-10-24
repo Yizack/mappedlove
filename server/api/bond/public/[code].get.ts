@@ -62,4 +62,10 @@ export default defineCachedEventHandler(async (event): Promise<MappedLovePublicM
     markers,
     stories: storiesHashed
   };
-}, { maxAge: 60 * 5 }); // Cache public map for 5 minutes
+}, {
+  group: "api",
+  name: "public-map",
+  getKey: event => getRouterParams(event).code,
+  swr: true,
+  maxAge: 60 * 5
+}); // Cache public map for 5 minutes

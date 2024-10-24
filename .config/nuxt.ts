@@ -52,7 +52,7 @@ export default defineNuxtConfig({
     "nuxt-webhook-validators",
     "@nuxthub/core"
   ],
-  hub: { database: true, blob: true },
+  hub: { database: true, blob: true, cache: true },
   icon: {
     mode: "svg",
     serverBundle: "remote",
