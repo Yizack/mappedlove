@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { Locale } from "#cookie-control/types";
+
 const { moduleOptions } = useCookieControl();
 const locale = t("lang_code") as Locale;
 
