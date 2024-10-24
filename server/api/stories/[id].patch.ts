@@ -6,11 +6,11 @@ export default defineEventHandler(async (event): Promise<MappedLoveStory> => {
   const file = formData.get("file") as File;
 
   if (!body || !user.bond) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "bad_request" });
-
-  ensureBlob(file, {
-    types: ["image/jpeg", "image/png", "image/gif", "image/webp"]
-  });
-
+  if (file) {
+    ensureBlob(file, {
+      types: ["image/jpeg", "image/png", "image/gif", "image/webp"]
+    });
+  }
   const DB = useDB();
   const today = Date.now();
 
