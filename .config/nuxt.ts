@@ -55,7 +55,6 @@ export default defineNuxtConfig({
   hub: { database: true, blob: true, cache: true },
   icon: {
     mode: "svg",
-    serverBundle: "remote",
     clientBundle: { scan: true, sizeLimitKb: 2048 }
   },
   eslint: {

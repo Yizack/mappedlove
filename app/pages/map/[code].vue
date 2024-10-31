@@ -148,7 +148,7 @@ useSeo({
             </div>
             <div class="d-flex gap-1">
               <button v-if="filter.year" class="btn btn-sm btn-danger rounded-3">
-                <Icon name="ic:round-close" size="1.3rem" @click="clearFilter" />
+                <Icon name="tabler:x" size="1.3rem" @click="clearFilter" />
               </button>
               <ClientOnly v-if="!isMobile || expandCanvas">
                 <VueDatePicker v-model.number="filter.year" year-picker reverse-years :year-range="[currentYear - 100, currentYear]" :dark="$colorMode.preference === 'dark'">

@@ -240,7 +240,7 @@ useSeo({
                     <Icon name="solar:planet-3-linear" />
                     <span>{{ t("country_or_territory") }}</span>
                   </label>
-                  <button v-if="country.focus" type="button" class="btn btn-danger position-absolute end-0 top-50 translate-middle-y p-2 me-2 d-flex" @click="removeCountry()"><Icon name="ic:round-close" size="1.3rem" /></button>
+                  <button v-if="country.focus" type="button" class="btn btn-danger position-absolute end-0 top-50 translate-middle-y p-2 me-2 d-flex" @click="removeCountry()"><Icon name="tabler:x" size="1.3rem" /></button>
                 </div>
               </div>
               <div v-if="country.focus" class="position-relative z-3 mt-2">
