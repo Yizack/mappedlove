@@ -1,3 +1,5 @@
+@use "bootstrap" as bs;
+
 .form-floating>.form-control~label::after, .form-floating>.form-select~label::after {
   background-color: transparent!important;
 }
@@ -58,7 +60,7 @@ input:read-only:not([type="checkbox"]):hover, input:read-only:not([type="checkbo
   outline: 0;
 }
 
-@include color-mode(dark) {
+@include bs.color-mode(dark) {
   .form-floating>:disabled~label, .form-floating>.form-control:disabled~label {
     /* stylelint-disable -- This problem is ignorable. */
     color: rgba(var(--bs-body-color-rgb), 0.75);

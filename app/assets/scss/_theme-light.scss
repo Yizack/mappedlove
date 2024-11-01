@@ -1,3 +1,5 @@
+@use "bootstrap" as bs;
+
 $body-color: #443c47;
 $primary: #c25050;
 $primary-hover: #a54444;
@@ -10,7 +12,7 @@ $placeholder-color: #a8a8a8;
 $btn-color: #fff;
 $success: #409b6e;
 
-@include color-mode(light) {
+@include bs.color-mode(light) {
   --bs-body-color: #{$body-color};
   --bs-body-color-rgb: #{to-rgb($body-color)};
   --bs-primary: #{$primary};
