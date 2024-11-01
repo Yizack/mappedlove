@@ -17,30 +17,30 @@ $success: #a9ffaf;
 
 @include bs.color-mode(dark) {
   --bs-body-color: #{$body-color};
-  --bs-body-color-rgb: #{to-rgb($body-color)};
+  --bs-body-color-rgb: #{bs.to-rgb($body-color)};
   --bs-primary: #{$primary};
-  --bs-primary-rgb: #{to-rgb($primary)};
+  --bs-primary-rgb: #{bs.to-rgb($primary)};
   --bs-primary-hover: #{$primary-hover};
   --bs-link-color: #{$link-color};
-  --bs-link-color-rgb: #{to-rgb($link-color)};
+  --bs-link-color-rgb: #{bs.to-rgb($link-color)};
   --bs-link-hover-color: #{$link-hover-color};
-  --bs-link-hover-color-rgb: #{to-rgb($link-hover-color)};
+  --bs-link-hover-color-rgb: #{bs.to-rgb($link-hover-color)};
   --bs-secondary: #{$accent};
-  --bs-secondary-rgb: #{to-rgb($accent)};
+  --bs-secondary-rgb: #{bs.to-rgb($accent)};
   --bs-danger-hover : #{$danger-hover};
-  --bs-danger-hover-rgb: #{to-rgb($danger-hover)};
+  --bs-danger-hover-rgb: #{bs.to-rgb($danger-hover)};
   --placeholder-color: #{$placeholder-color};
   --btn-color: #{$btn-color};
   --bs-danger: #{$danger};
-  --bs-danger-rgb: #{to-rgb($danger)};
+  --bs-danger-rgb: #{bs.to-rgb($danger)};
   --bs-dark: #{$dark};
-  --bs-dark-rgb: #{to-rgb($dark)};
+  --bs-dark-rgb: #{bs.to-rgb($dark)};
   --bs-body-bg: #{$body-bg};
-  --bs-body-bg-rgb: #{to-rgb($body-bg)};
+  --bs-body-bg-rgb: #{bs.to-rgb($body-bg)};
   --bs-tertiary-bg: #{$tertiary-bg};
-  --bs-tertiary-bg-rgb: #{to-rgb($tertiary-bg)};
+  --bs-tertiary-bg-rgb: #{bs.to-rgb($tertiary-bg)};
   --bs-success: #{$success};
-  --bs-success-rgb: #{to-rgb($success)};
+  --bs-success-rgb: #{bs.to-rgb($success)};
   --switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='#{encode-hash($primary)}'/%3e%3c/svg%3e");
 
   a {
