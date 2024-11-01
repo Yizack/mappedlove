@@ -1,3 +1,6 @@
+@use "bootstrap" as bs;
+@use "leaflet/dist/leaflet.css";
+
 .leaflet-control-container a {
   text-decoration: none;
 }
@@ -72,7 +75,7 @@
   background: var(--bs-body-bg);
 }
 
-@include color-mode(light) {
+@include bs.color-mode(light) {
   .leaflet-control-layers-selector:checked[type="checkbox"] {
     --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
   }
@@ -83,7 +86,7 @@
   
 }
 
-@include color-mode(dark) {
+@include bs.color-mode(dark) {
   .leaflet-control-layers-selector:checked[type="checkbox"] {
     --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%230a0808' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
   }

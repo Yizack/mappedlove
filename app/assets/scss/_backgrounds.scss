@@ -1,3 +1,5 @@
+@use "bootstrap" as bs;
+
 .banner {
   background-size: cover;
   background-position-x: center;
@@ -5,13 +7,13 @@
   background-repeat: no-repeat;
 }
 
-@include color-mode(light) {
+@include bs.color-mode(light) {
   .banner-home {
     background-image: url("/images/illustrations/heart.jpg");
   }
 }
 
-@include color-mode(dark) {
+@include bs.color-mode(dark) {
   .banner-home {
     background-image: url("/images/illustrations/heart.jpg");
     background-blend-mode: difference;
