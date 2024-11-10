@@ -1,5 +1,5 @@
 import vue from "@vitejs/plugin-vue";
-import { SITE } from "../app/utils/site";
+import { SITE } from "../shared/utils/site";
 
 export default defineNuxtConfig({
   future: { compatibilityVersion: 4 },

@@ -1,5 +1,5 @@
-import type { ErrorCode } from "~~/server/utils/errors";
-import type { Quota } from "~/server/utils/quotas";
+import type { ErrorCode } from "#shared/utils/errors";
+import type { Quota } from "#shared/utils/quotas";
 
 export {};
 

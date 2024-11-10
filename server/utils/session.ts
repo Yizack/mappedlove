@@ -1,5 +1,4 @@
-import type { H3Event } from "h3";
-import { useSession } from "h3";
+import { useSession, type H3Event } from "h3";
 import type { UserSession } from "#auth-utils";
 
 export const setUserSessionNullable = async (event: H3Event, data: UserSession) => {
