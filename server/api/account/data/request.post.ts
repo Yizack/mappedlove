@@ -30,7 +30,8 @@ export default defineEventHandler(async (event) => {
     downloadLink: `${url}/account-data/${encodeURIComponent(btoa(email))}/${userHash}`
   });
 
-  await sendMail(config, {
+  const mailchannels = useMailChannels(event);
+  await mailchannels.send({
     to: { email, name: user.name },
     subject: "Account data request",
     html

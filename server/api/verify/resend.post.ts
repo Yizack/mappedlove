@@ -33,7 +33,8 @@ export default defineEventHandler(async (event): Promise<{ email: string }> => {
     verifyLink: `${url}/verify/${encodeURIComponent(btoa(email))}/${code}`
   });
 
-  await sendMail(config, {
+  const mailchannels = useMailChannels(event);
+  await mailchannels.send({
     to: { email, name },
     subject: "Verify your email address",
     html

@@ -44,9 +44,8 @@ export default defineEventHandler(async (event) => {
       domain: SITE.domain
     });
 
-    const config = useRuntimeConfig(event);
-
-    await sendMail(config, {
+    const mailchannels = useMailChannels(event);
+    await mailchannels.send({
       to: {
         email: user.email,
         name: user.name

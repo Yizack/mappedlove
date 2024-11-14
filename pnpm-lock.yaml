@@ -80,15 +80,15 @@ importers:
       leaflet-geosearch:
         specifier: ^4.0.0
         version: 4.0.0
-      nodemailer:
-        specifier: ^6.9.16
-        version: 6.9.16
       nuxt:
         specifier: ^3.14.159
         version: 3.14.159(@parcel/watcher@2.5.0)(@types/node@22.9.0)(drizzle-orm@0.36.1(@cloudflare/workers-types@4.20241106.0))(eslint@9.14.0(jiti@2.4.0))(ioredis@5.4.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.25.0)(sass@1.80.6)(stylelint@16.10.0(typescript@5.6.3))(terser@5.36.0)(typescript@5.6.3)(vite@5.4.10(@types/node@22.9.0)(sass@1.80.6)(terser@5.36.0))(vue-tsc@2.1.10(typescript@5.6.3))(webpack-sources@3.2.3)
       nuxt-auth-utils:
         specifier: ^0.5.2
         version: 0.5.2(magicast@0.3.5)(rollup@4.25.0)(webpack-sources@3.2.3)
+      nuxt-mailchannels:
+        specifier: ^0.1.4
+        version: 0.1.4(magicast@0.3.5)(rollup@4.25.0)(webpack-sources@3.2.3)
       nuxt-twemoji:
         specifier: 3.6.2
         version: 3.6.2(magicast@0.3.5)(rollup@4.25.0)(webpack-sources@3.2.3)
@@ -4465,10 +4465,6 @@ packages:
   node-releases@2.0.18:
     resolution: {integrity: sha512-d9VeXT4SJ7ZeOqGX6R5EM022wpL+eWPooLI+5UpWn2jCT1aosUQEhQP214x33Wkwx3JQMvIm+tIoVOdodFS40g==}
 
-  nodemailer@6.9.16:
-    resolution: {integrity: sha512-psAuZdTIRN08HKVd/E8ObdV6NO7NTBY3KsC30F7M4H1OnmLCUNaS56FpYxyb26zWLSyYF9Ozch9KYHhHegsiOQ==}
-    engines: {node: '>=6.0.0'}
-
   nopt@5.0.0:
     resolution: {integrity: sha512-Tbj67rffqceeLpcRXrT7vKAN8CwfPeIBgM7E6iBkmKLV7bEMwpGgYLGv0jACUsECaa/vuxP0IjEont6umdMgtQ==}
     engines: {node: '>=6'}
@@ -4520,6 +4516,9 @@ packages:
         optional: true
       '@simplewebauthn/server':
         optional: true
+
+  nuxt-mailchannels@0.1.4:
+    resolution: {integrity: sha512-wdkO33/OVpbMnQ4Lv2uX5BEREawNeMS3JI4cYdEtD3JgUaCL202DqgA4DYQyxvWPvgFbOyJGCszEjXd28q+EsQ==}
 
   nuxt-site-config-kit@2.2.21:
     resolution: {integrity: sha512-xO41Zf6bXlA9Zvj+fX7ftD+ITee4LfrkzHj85Gt4FpgwonFxzGO5pMBtAqIxXKJwuyT1z2wVAixHI+ov66wV0w==}
@@ -10919,8 +10918,6 @@ snapshots:
 
   node-releases@2.0.18: {}
 
-  nodemailer@6.9.16: {}
-
   nopt@5.0.0:
     dependencies:
       abbrev: 1.1.1
@@ -10975,6 +10972,16 @@ snapshots:
     transitivePeerDependencies:
       - argon2
       - bcrypt
+      - magicast
+      - rollup
+      - supports-color
+      - webpack-sources
+
+  nuxt-mailchannels@0.1.4(magicast@0.3.5)(rollup@4.25.0)(webpack-sources@3.2.3):
+    dependencies:
+      '@nuxt/kit': 3.14.159(magicast@0.3.5)(rollup@4.25.0)(webpack-sources@3.2.3)
+      defu: 6.1.4
+    transitivePeerDependencies:
       - magicast
       - rollup
       - supports-color

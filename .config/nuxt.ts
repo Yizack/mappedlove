@@ -50,7 +50,8 @@ export default defineNuxtConfig({
     "@dargmuesli/nuxt-cookie-control",
     "nuxt-auth-utils",
     "nuxt-webhook-validators",
-    "@nuxthub/core"
+    "@nuxthub/core",
+    "nuxt-mailchannels"
   ],
   hub: { database: true, blob: true, cache: true },
   icon: {
@@ -84,6 +85,12 @@ export default defineNuxtConfig({
       optional: []
     }
   },
+  mailchannels: {
+    from: {
+      email: `support@${SITE.domain}`,
+      name: `${SITE.name} Support`
+    }
+  },
   runtimeConfig: {
     secure: {
       salt: ""
@@ -100,16 +107,13 @@ export default defineNuxtConfig({
         clientSecret: ""
       }
     },
-    mail: {
+    mailchannels: {
       apiKey: "",
-      from: "",
-      fromName: "",
-      host: "",
-      port: "",
-      login: "",
-      password: "",
-      dkimKey: "",
-      dkimSelector: ""
+      dkim: {
+        domain: SITE.domain,
+        privateKey: "",
+        selector: ""
+      }
     },
     cloudinary: {
       name: "",

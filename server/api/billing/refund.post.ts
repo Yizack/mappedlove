@@ -13,7 +13,8 @@ export default defineEventHandler(async (event) => {
 
   const config = useRuntimeConfig(event);
 
-  await sendMail(config, {
+  const mailchannels = useMailChannels(event);
+  await mailchannels.send({
     to: {
       email: config.mail.from,
       name: config.mail.fromName

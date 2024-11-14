@@ -31,7 +31,8 @@ export default defineEventHandler(async (event) => {
     recoveryLink: `${url}/recovery/${encodeURIComponent(btoa(user.email))}/${code}`
   });
 
-  await sendMail(config, {
+  const mailchannels = useMailChannels(event);
+  await mailchannels.send({
     to: { email, name: user.name },
     subject: "Account recovery",
     html

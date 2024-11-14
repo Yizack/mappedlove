@@ -35,7 +35,8 @@ export default defineOAuthGoogleEventHandler({
       verifyLink: `${url}/verify/${encodeURIComponent(btoa(email))}/${code}`
     });
 
-    await sendMail(config, {
+    const mailchannels = useMailChannels(event);
+    await mailchannels.send({
       to: { email, name: user.name },
       subject: "Verify your email address",
       html
