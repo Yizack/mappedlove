@@ -19,7 +19,7 @@ useSeo({
         <ul>
           <li>you have purchased the product or service within the last 14 days;</li>
           <li>you have not requested a refund before; and</li>
-          <li>you have not violated the <a href="/legal/terms">Terms of use</a>.</li>
+          <li>you have not violated the <NuxtLink to="/legal/terms">Terms of use</NuxtLink>.</li>
         </ul>
         <p>There is generally no obligation to provide a refund or credit in situations like the following:</p>
         <ul>

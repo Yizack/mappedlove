@@ -91,10 +91,10 @@ useSeo({
               <span v-else>{{ t("signin") }}</span>
             </Transition>
           </button>
-          <a href="/auth/google" class="btn btn-outline-dark btn-lg rounded-pill d-flex align-items-center justify-content-center gap-2">
+          <NuxtLink external to="/auth/google" class="btn btn-outline-dark btn-lg rounded-pill d-flex align-items-center justify-content-center gap-2">
             <Icon name="logos:google-icon" />
             <span>{{ t("signin_google") }}</span>
-          </a>
+          </NuxtLink>
         </div>
       </form>
       <div v-if="needsConfirm && !resent" class="alert alert-warning" role="alert">

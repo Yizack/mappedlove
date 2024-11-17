@@ -30,7 +30,7 @@ useSeo({
         <p><strong>In what situations and with which parties do we share personal information?</strong> We may share information in specific situations and with specific third parties. Learn more about <a href="#when-and-with-whom-do-we-share-your-personal-information">when and with whom we share your personal information</a>.</p>
         <p><strong>How do we keep your information safe?</strong> We have organizational and technical processes and procedures in place to protect your personal information. However, no electronic transmission over the internet or information storage technology can be guaranteed to be 100% secure, so we cannot promise or guarantee that hackers, cybercriminals, or other unauthorized third parties will not be able to defeat our security and improperly collect, access, steal, or modify your information. Learn more about how we keep your information safe.</p>
         <p><strong>What are your rights?</strong> Depending on where you are located geographically, the applicable privacy law may mean you have certain rights regarding your personal information. Learn more about <a href="#what-are-your-privacy-rights">your privacy rights</a>.</p>
-        <p><strong>How do you exercise your rights?</strong> The easiest way to exercise your rights is by accessing your account settings and review, update or delete your data or by visiting <a href="/account-data" target="_blank">{{ SITE.host }}/account-data</a>, or by contacting us. We will consider and act upon any request in accordance with applicable data protection laws. Learn more about <a href="#how-can-you-review-update-or-delete-the-data-we-collect-from-you">how can you review, update or delete the data we collect from you</a>.</p>
+        <p><strong>How do you exercise your rights?</strong> The easiest way to exercise your rights is by accessing your account settings and review, update or delete your data or by visiting <NuxtLink to="/account-data" target="_blank">{{ SITE.host }}/account-data</NuxtLink>, or by contacting us. We will consider and act upon any request in accordance with applicable data protection laws. Learn more about <a href="#how-can-you-review-update-or-delete-the-data-we-collect-from-you">how can you review, update or delete the data we collect from you</a>.</p>
         <p><strong>Want to learn more about what we do with any information we collect?</strong> Review the privacy notice in full.</p>
       </section>
       <section id="table-of-contents">
@@ -123,7 +123,7 @@ useSeo({
       <section id="do-we-use-cookies-and-other-tracking-technologies">
         <h4>5. DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?</h4>
         <p><strong>In Short:</strong> We may use cookies and other tracking technologies to collect and store your information.</p>
-        <p>We may use cookies and similar tracking technologies (like web beacons and pixels) to access or store information. Specific information about how we use such technologies and how you can refuse certain cookies is set out in our Cookie Notice: <a href="/legal/cookies" target="_blank">{{ SITE.host }}/legal/cookies</a>.</p>
+        <p>We may use cookies and similar tracking technologies (like web beacons and pixels) to access or store information. Specific information about how we use such technologies and how you can refuse certain cookies is set out in our Cookie Notice: <NuxtLink to="/legal/cookies" target="_blank">{{ SITE.host }}/legal/cookies</NuxtLink>.</p>
       </section>
       <section id="how-long-do-we-keep-your-information">
         <h4>6. HOW LONG DO WE KEEP YOUR INFORMATION?</h4>
@@ -156,7 +156,7 @@ useSeo({
           <li>Log in to your account settings and update your user account.</li>
           <li>Upon your request to terminate your account, we will deactivate or delete your account and information from our active databases. However, we may retain some information in our files to prevent fraud, troubleshoot problems, assist with any investigations, enforce our legal terms and/or comply with applicable legal requirements.</li>
         </ul>
-        <p><strong><u>Cookies and similar technologies:</u></strong> Most Web browsers are set to accept cookies by default. If you prefer, you can usually choose to set your browser to remove cookies and to reject cookies. If you choose to remove cookies or reject cookies, this could affect certain features or services of our Services. For further information, please see our Cookie Notice: <a href="/legal/cookies" target="_blank">{{ SITE.host }}/legal/cookies</a>.</p>
+        <p><strong><u>Cookies and similar technologies:</u></strong> Most Web browsers are set to accept cookies by default. If you prefer, you can usually choose to set your browser to remove cookies and to reject cookies. If you choose to remove cookies or reject cookies, this could affect certain features or services of our Services. For further information, please see our Cookie Notice: <NuxtLink to="/legal/cookies" target="_blank">{{ SITE.host }}/legal/cookies</NuxtLink>.</p>
         <p>If you have questions or comments about your privacy rights, you may email us at <a :href="`mailto:legal@${SITE.domain}`">legal@{{ SITE.domain }}</a>.</p>
       </section>
       <section id="controls-for-do-not-track-features">
@@ -348,7 +348,7 @@ useSeo({
         <p>We may request that you provide additional information reasonably necessary to verify you and your consumer's request. If you submit the request through an authorized agent, we may need to collect additional information to verify your identity before processing your request.</p>
         <p>Upon receiving your request, we will respond without undue delay, but in all cases, within forty-five (45) days of receipt. The response period may be extended once by forty-five (45) additional days when reasonably necessary. We will inform you of any such extension within the initial 45-day response period, together with the reason for the extension.</p>
         <p><u>Right to appeal</u></p>
-        <p>If we decline to take action regarding your request, we will inform you of our decision and reasoning behind it. If you wish to appeal our decision, please email us at <a :href="`mailto:legal@${SITE.domain}`">legal@{{ SITE.domain }}</a>. Within sixty (60) days of receipt of an appeal, we will inform you in writing of any action taken or not taken in response to the appeal, including a written explanation of the reasons for the decisions. If your appeal is denied, you may contact the <a href="https://www.oag.state.va.us/consumer-protection/index.php/file-a-complaint" target="_blank">Attorney General to submit a complaint</a>.</p>
+        <p>If we decline to take action regarding your request, we will inform you of our decision and reasoning behind it. If you wish to appeal our decision, please email us at <a :href="`mailto:legal@${SITE.domain}`">legal@{{ SITE.domain }}</a>. Within sixty (60) days of receipt of an appeal, we will inform you in writing of any action taken or not taken in response to the appeal, including a written explanation of the reasons for the decisions. If your appeal is denied, you may contact the <NuxtLink to="https://www.oag.state.va.us/consumer-protection/index.php/file-a-complaint" target="_blank">Attorney General to submit a complaint</NuxtLink>.</p>
       </section>
       <section id="do-we-make-updates-to-this-notice">
         <h4>12. DO WE MAKE UPDATES TO THIS NOTICE?</h4>
@@ -363,10 +363,10 @@ useSeo({
         <h4>14. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?</h4>
         <p>You have the right to request access to the personal information we collect from you, change that information, or delete it.</p>
         <h5>Data Deletion</h5>
-        <p>You can request to delete your account and associated data for this Service using the in-app account settings deletion option or by accessing the web-based deletion resource at <a href="/account-data?request=delete">{{ SITE.host }}/account-data?request=delete</a>.</p>
+        <p>You can request to delete your account and associated data for this Service using the in-app account settings deletion option or by accessing the web-based deletion resource at <NuxtLink to="/account-data?request=delete">{{ SITE.host }}/account-data?request=delete</NuxtLink>.</p>
         <p>When you delete your account, all your data is deleted from the server. This includes your name, email address, passwords, birth date, avatar, and any additional data related to your account. We do not keep any data from you.</p>
         <h5>Data Review</h5>
-        <p>You can request to review your account and associated data for this Service using the in-app account settings review option or by accessing the web-based review resource at <a href="/account-data?request=review">{{ SITE.host }}/account-data?request=review</a>.</p>
+        <p>You can request to review your account and associated data for this Service using the in-app account settings review option or by accessing the web-based review resource at <NuxtLink to="/account-data?request=review">{{ SITE.host }}/account-data?request=review</NuxtLink>.</p>
         <h5>Data Update</h5>
         <p>For updating your data, you should log in to your account and update your user account settings.</p>
       </section>

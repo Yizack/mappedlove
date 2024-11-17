@@ -71,7 +71,7 @@ useSeo({
       </section>
       <section id="purchases-and-payment">
         <h4>5. PURCHASES AND PAYMENT</h4>
-        <p>We accept the following forms of payment powered by <a href="https://www.paddle.com" target="_blank">Paddle.com</a>:</p>
+        <p>We accept the following forms of payment powered by <NuxtLink to="https://www.paddle.com" target="_blank">Paddle.com</NuxtLink>:</p>
         <ul>
           <li>Cards (including Mastercard, Visa, Maestro, American Express, Discover, Diners Club, JCB, UnionPay, and Mada)</li>
           <li>PayPal</li>
@@ -87,7 +87,7 @@ useSeo({
         <h5>Billing and Renewal</h5>
         <p>Your subscription will continue and automatically renew unless canceled. You consent to our charging your payment method on a recurring basis without requiring your prior approval for each recurring charge, until such time as you cancel the applicable order. The length of your billing cycle is monthly.</p>
         <h5>Cancellation</h5>
-        <p>To cancel your subscription, simply log in to your account, navigate to your <NuxtLink to="/app/premium/billing">account billing settings</NuxtLink>, and select the "Cancel subscription" option. New subscriptions are eligible for a refund within 14 days of the initial purchase date. After this period, refunds may not be possible. Your cancellation will take effect at the end of the current paid term. Please review our Refund Policy: <a href="/legal/refund" target="_blank">{{ SITE.host }}/legal/refund</a>. If you have any questions or are unsatisfied with our Services, please email us at <a :href="`mailto:legal@${SITE.domain}`">legal@{{ SITE.domain }}</a>.</p>
+        <p>To cancel your subscription, simply log in to your account, navigate to your <NuxtLink to="/app/premium/billing">account billing settings</NuxtLink>, and select the "Cancel subscription" option. New subscriptions are eligible for a refund within 14 days of the initial purchase date. After this period, refunds may not be possible. Your cancellation will take effect at the end of the current paid term. Please review our Refund Policy: <NuxtLink to="/legal/refund" target="_blank">{{ SITE.host }}/legal/refund</NuxtLink>. If you have any questions or are unsatisfied with our Services, please email us at <a :href="`mailto:legal@${SITE.domain}`">legal@{{ SITE.domain }}</a>.</p>
         <h5>Fee Changes</h5>
         <p>We may, from time to time, make changes to the subscription fee and will communicate any price changes to you in accordance with applicable law.</p>
       </section>
@@ -164,7 +164,7 @@ useSeo({
       </section>
       <section id="privacy-policy">
         <h4>13. PRIVACY POLICY</h4>
-        <p>We care about data privacy and security. Please review our Privacy Policy: <a href="/legal/privacy" target="_blank">{{ SITE.host }}/legal/privacy</a>. By using the Services, you agree to be bound by our Privacy Policy, which is incorporated into these Legal Terms. Please be advised the Services are hosted in Panama and United States. If you access the Services from any other region of the world with laws or other requirements governing personal data collection, use, or disclosure that differ from applicable laws in Panama and United States, then through your continued use of the Services, you are transferring your data to Panama and United States, and you expressly consent to have your data transferred to and processed in Panama and United States.</p>
+        <p>We care about data privacy and security. Please review our Privacy Policy: <NuxtLink to="/legal/privacy" target="_blank">{{ SITE.host }}/legal/privacy</NuxtLink>. By using the Services, you agree to be bound by our Privacy Policy, which is incorporated into these Legal Terms. Please be advised the Services are hosted in Panama and United States. If you access the Services from any other region of the world with laws or other requirements governing personal data collection, use, or disclosure that differ from applicable laws in Panama and United States, then through your continued use of the Services, you are transferring your data to Panama and United States, and you expressly consent to have your data transferred to and processed in Panama and United States.</p>
       </section>
       <section id="term-and-termination">
         <h4>14. TERM AND TERMINATION</h4>

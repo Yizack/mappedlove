@@ -101,12 +101,12 @@ useSeo({
           </div>
           <div v-else-if="billing.subscription?.scheduled_change?.action === 'cancel'" class="text-center">
             <button class="btn btn-lg btn-primary w-100 rounded-pill" @click="refundController.show();">{{ t("request_refund") }}</button>
-            <a href="/legal/refund" target="_blank" class="small">{{ t("refund_info") }}</a>
+            <NuxtLink to="/legal/refund" target="_blank" class="small">{{ t("refund_info") }}</NuxtLink>
           </div>
           <div v-else-if="billing.subscription?.management_urls" class="d-flex flex-column flex-lg-row gap-2">
             <template v-if="billing.subscription.status !== 'canceled'">
-              <a v-if="billing.subscription.management_urls.update_payment_method" class="btn btn-lg btn-secondary w-100 rounded-pill" :href="billing.subscription.management_urls.update_payment_method">{{ t("update_payment_method") }}</a>
-              <a v-if="billing.subscription.management_urls.cancel" class="btn btn-lg btn-danger w-100 rounded-pill" :href="billing.subscription.management_urls.cancel">{{ t("subscription_cancel") }}</a>
+              <NuxtLink v-if="billing.subscription.management_urls.update_payment_method" class="btn btn-lg btn-secondary w-100 rounded-pill" :to="billing.subscription.management_urls.update_payment_method">{{ t("update_payment_method") }}</NuxtLink>
+              <NuxtLink v-if="billing.subscription.management_urls.cancel" class="btn btn-lg btn-danger w-100 rounded-pill" :to="billing.subscription.management_urls.cancel">{{ t("subscription_cancel") }}</NuxtLink>
             </template>
           </div>
         </template>
@@ -141,13 +141,13 @@ useSeo({
                   <span v-if="transaction.details?.totals">{{ paddleToCurrency(Number(transaction.details.totals.total), transaction.details.totals.currency_code) }}</span>
                 </td>
                 <td v-if="billing.subscription?.is_manageable">
-                  <a v-if="transaction.invoice_number" class="btn btn-sm btn-outline-dark rounded-pill" :href="`/api/billing/invoice/${transaction.id}`">
+                  <NuxtLink v-if="transaction.invoice_number" class="btn btn-sm btn-outline-dark rounded-pill" external :to="`/api/billing/invoice/${transaction.id}`">
                     <div class="d-flex align-items-center gap-1">
                       <Icon name="solar:download-minimalistic-bold" />
                       <span>{{ t("download") }}</span>
                     </div>
-                  </a>
-                  <a v-if="transaction.origin === 'subscription_payment_method_change' && transaction.status !== 'completed' && transaction.checkout?.url" class="btn btn-sm btn-outline-dark rounded-pill" :href="transaction.checkout.url">{{ t("complete") }}</a>
+                  </NuxtLink>
+                  <NuxtLink v-if="transaction.origin === 'subscription_payment_method_change' && transaction.status !== 'completed' && transaction.checkout?.url" class="btn btn-sm btn-outline-dark rounded-pill" :to="transaction.checkout.url">{{ t("complete") }}</NuxtLink>
                 </td>
               </tr>
             </tbody>

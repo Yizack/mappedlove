@@ -115,19 +115,19 @@ useSeo({
         <h4>How can I control cookies on my browser?</h4>
         <p>As the means by which you can refuse cookies through your web browser controls vary from browser to browser, you should visit your browser's help menu for more information. The following is information about how to manage cookies on the most popular browsers:</p>
         <ul>
-          <li><a href="https://support.google.com/chrome/answer/95647#zippy=%2Callow-or-block-cookies" target="_blank">Chrome</a></li>
-          <li><a href="https://support.microsoft.com/en-us/windows/delete-and-manage-cookies-168dab11-0753-043d-7c16-ede5947fc64d" target="_blank">Internet Explorer</a></li>
-          <li><a href="https://support.mozilla.org/en-US/kb/enhanced-tracking-protection-firefox-desktop?redirectslug=enable-and-disable-cookies-website-preferences&redirectlocale=en-US" target="_blank">Firefox</a></li>
-          <li><a href="https://support.apple.com/en-ie/guide/safari/sfri11471/mac" target="_blank">Safari</a></li>
-          <li><a href="https://support.microsoft.com/en-us/windows/microsoft-edge-browsing-data-and-privacy-bb8174ba-9d73-dcf2-9b4a-c582b4e640dd" target="_blank">Edge</a></li>
-          <li><a href="https://help.opera.com/en/latest/web-preferences/" target="_blank">Opera</a></li>
-          <li><a href="https://support.brave.com/hc/en-us/articles/360050634931-How-Do-I-Manage-Cookies-In-Brave" target="_blank">Brave</a></li>
+          <li><NuxtLink to="https://support.google.com/chrome/answer/95647#zippy=%2Callow-or-block-cookies" target="_blank">Chrome</NuxtLink></li>
+          <li><NuxtLink to="https://support.microsoft.com/en-us/windows/delete-and-manage-cookies-168dab11-0753-043d-7c16-ede5947fc64d" target="_blank">Internet Explorer</NuxtLink></li>
+          <li><NuxtLink to="https://support.mozilla.org/en-US/kb/enhanced-tracking-protection-firefox-desktop?redirectslug=enable-and-disable-cookies-website-preferences&redirectlocale=en-US" target="_blank">Firefox</NuxtLink></li>
+          <li><NuxtLink to="https://support.apple.com/en-ie/guide/safari/sfri11471/mac" target="_blank">Safari</NuxtLink></li>
+          <li><NuxtLink to="https://support.microsoft.com/en-us/windows/microsoft-edge-browsing-data-and-privacy-bb8174ba-9d73-dcf2-9b4a-c582b4e640dd" target="_blank">Edge</NuxtLink></li>
+          <li><NuxtLink to="https://help.opera.com/en/latest/web-preferences/" target="_blank">Opera</NuxtLink></li>
+          <li><NuxtLink to="https://support.brave.com/hc/en-us/articles/360050634931-How-Do-I-Manage-Cookies-In-Brave" target="_blank">Brave</NuxtLink></li>
         </ul>
         <p>In addition, most advertising networks offer you a way to opt out of targeted advertising. If you would like to find out more information, please visit:</p>
         <ul>
-          <li><a href="https://optout.aboutads.info/?c=2&lang=ES" target="_blank">Digital Advertising Alliance</a></li>
-          <li><a href="https://youradchoices.ca/" target="_blank">Digital Advertising Alliance of Canada</a></li>
-          <li><a href="https://www.youronlinechoices.com/" target="_blank">European Interactive Digital Advertising Alliance</a></li>
+          <li><NuxtLink to="https://optout.aboutads.info/?c=2&lang=ES" target="_blank">Digital Advertising Alliance</NuxtLink></li>
+          <li><NuxtLink to="https://youradchoices.ca/" target="_blank">Digital Advertising Alliance of Canada</NuxtLink></li>
+          <li><NuxtLink to="https://www.youronlinechoices.com/" target="_blank">European Interactive Digital Advertising Alliance</NuxtLink></li>
         </ul>
       </section>
       <section id="what-about-other-tracking-technologies-like-web-beacons">

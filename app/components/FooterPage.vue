@@ -23,7 +23,7 @@
           <p class="h5">{{ t("help") }}</p>
           <ul class="nav flex-column">
             <li class="nav-item mb-2"><NuxtLink to="/contact" class="nav-link p-0 text-body-secondary">{{ t("contact") }}</NuxtLink></li>
-            <li class="nav-item mb-2"><a href="/docs" class="nav-link p-0 text-body-secondary">{{ t("support") }}</a></li>
+            <li class="nav-item mb-2"><NuxtLink to="/docs" external class="nav-link p-0 text-body-secondary">{{ t("support") }}</NuxtLink></li>
             <li class="nav-item mb-2"><NuxtLink to="/account-data" class="nav-link p-0 text-body-secondary">{{ t("account_data") }}</NuxtLink></li>
           </ul>
         </div>
@@ -42,9 +42,9 @@
           <p class="h5">{{ t("contribute") }}</p>
           <ul class="nav flex-column">
             <li class="nav-item mb-2"><NuxtLink :to="SITE.donate" class="nav-link p-0 text-body-secondary">{{ t("donate") }}</NuxtLink></li>
-            <li class="nav-item mb-2"><a :href="SITE.github.repo" class="nav-link p-0 text-body-secondary" target="_blank">{{ t("github_repository") }}</a></li>
-            <li class="nav-item mb-2"><a :href="`${SITE.github.repo}/issues/new?assignees=${SITE.github.author}&labels=bug&projects=&template=1-bug_report.yml`" class="nav-link p-0 text-body-secondary" target="_blank">{{ t("report_bug") }}</a></li>
-            <li class="nav-item mb-2"><a :href="`${SITE.github.repo}/issues/new?assignees=${SITE.github.author}&labels=enhancement&projects=&template=2-feature_request.yml`" class="nav-link p-0 text-body-secondary" target="_blank">{{ t("request_feature") }}</a></li>
+            <li class="nav-item mb-2"><NuxtLink :to="SITE.github.repo" class="nav-link p-0 text-body-secondary" target="_blank">{{ t("github_repository") }}</NuxtLink></li>
+            <li class="nav-item mb-2"><NuxtLink :to="`${SITE.github.repo}/issues/new?assignees=${SITE.github.author}&labels=bug&projects=&template=1-bug_report.yml`" class="nav-link p-0 text-body-secondary" target="_blank">{{ t("report_bug") }}</NuxtLink></li>
+            <li class="nav-item mb-2"><NuxtLink :to="`${SITE.github.repo}/issues/new?assignees=${SITE.github.author}&labels=enhancement&projects=&template=2-feature_request.yml`" class="nav-link p-0 text-body-secondary" target="_blank">{{ t("request_feature") }}</NuxtLink></li>
             <!-- <li class="nav-item mb-2"><NuxtLink to="#" class="nav-link p-0 text-body-secondary">{{ t("translate_help") }}</NuxtLink></li> -->
           </ul>
         </div>

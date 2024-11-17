@@ -86,7 +86,7 @@ useSeo({
             </div>
             <div class="form-check mb-2">
               <input id="legal" class="form-check-input" type="checkbox" required>
-              <label class="form-check-label" for="legal">{{ t("read_legal") }} {{ SITE.name }}'s <a href="/legal/terms" target="_blank">{{ t("terms_of_use") }}</a> & <a href="/legal/privacy" target="_blank">{{ t("privacy_policy") }}</a></label>
+              <label class="form-check-label" for="legal">{{ t("read_legal") }} {{ SITE.name }}'s <NuxtLink to="/legal/terms" target="_blank">{{ t("terms_of_use") }}</NuxtLink> & <NuxtLink to="/legal/privacy" target="_blank">{{ t("privacy_policy") }}</NuxtLink></label>
             </div>
             <div class="text-center my-3 my-md-0">
               <NuxtTurnstile ref="turnstile" v-model="form.turnstile" />
@@ -99,10 +99,10 @@ useSeo({
                 </Transition>
               </button>
               <span class="text-center fw-semibold">{{ t("or") }}</span>
-              <a href="/auth/google-signup" class="btn btn-outline-dark btn-lg rounded-pill d-flex align-items-center justify-content-center gap-2">
+              <NuxtLink external to="/auth/google-signup" class="btn btn-outline-dark btn-lg rounded-pill d-flex align-items-center justify-content-center gap-2">
                 <Icon name="logos:google-icon" />
                 <span>{{ t("signup_google") }}</span>
-              </a>
+              </NuxtLink>
             </div>
           </form>
           <p class="m-0">{{ t("has_account") }} <NuxtLink to="/login">{{ t("signin") }}</NuxtLink></p>
