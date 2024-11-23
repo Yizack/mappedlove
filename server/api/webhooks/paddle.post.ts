@@ -1,4 +1,4 @@
-import { type IEventsResponse, type ITransactionNotificationResponse, EventName } from "@paddle/paddle-node-sdk";
+import type { IEventsResponse, ITransactionNotificationResponse } from "@paddle/paddle-node-sdk";
 
 export default defineEventHandler(async (event) => {
   const webhook = await readBody<IEventsResponse<ITransactionNotificationResponse>>(event);
@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
 
   if (!isValidWebhook) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_webhook" });
 
-  if (webhook.event_type !== EventName.TransactionCompleted)
+  if (webhook.event_type !== "transaction.completed")
     throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_event_type" });
   if (webhook.data.status !== "completed" || !webhook.data.custom_data || !webhook.data.subscription_id)
     throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_webhook_data" });
