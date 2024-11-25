@@ -1,0 +1,19 @@
+@use "sass:string";
+
+@function encode-hash($color) {
+  $string-color: "#{$color}";
+  $length: string.length($string-color);
+  $result: "";
+
+  @for $i from 1 through $length {
+    $char: string.slice($string-color, $i, $i);
+
+    @if $char == "#" {
+      $result: $result + "%23";
+    } @else {
+      $result: $result + $char;
+    }
+  }
+
+  @return $result;
+}

@@ -1,5 +1,3 @@
-@use "sass:string";
-
 @font-face {
   font-family: Fredoka;
   src: url("/fonts/Fredoka-Regular.ttf") format("truetype");
@@ -162,22 +160,4 @@ td, th {
 
 .scale-hover:hover img {
   transform: scale(1.1);
-}
-
-@function encode-hash($color) {
-  $string-color: "#{$color}";
-  $length: string.length($string-color);
-  $result: "";
-
-  @for $i from 1 through $length {
-    $char: string.slice($string-color, $i, $i);
-
-    @if $char == "#" {
-      $result: $result + "%23";
-    } @else {
-      $result: $result + $char;
-    }
-  }
-
-  @return $result;
 }
