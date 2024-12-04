@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { NuxtTurnstile } from "#components";
+import type { NuxtTurnstile } from "#components";
 
 definePageMeta({ layout: "access", middleware: "authenticated" });
 
