@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { NuxtTurnstile } from "#components";
-
 definePageMeta({ layout: "access", middleware: "authenticated" });
 
 const { query } = useRoute("signup");
@@ -13,7 +11,7 @@ const form = useFormState({
   turnstile: ""
 });
 
-const turnstile = ref<InstanceType<typeof NuxtTurnstile>>();
+const turnstile = useTemplateRef("turnstile");
 const submit = ref({ loading: false, exists: false });
 const needsConfirm = ref(false);
 
