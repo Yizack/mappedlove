@@ -63,6 +63,7 @@ export default defineCachedEventHandler(async (event): Promise<MappedLovePublicM
     stories: storiesHashed
   };
 }, {
+  swr: false,
   group: "api",
   name: "public-map",
   getKey: event => event.path,
