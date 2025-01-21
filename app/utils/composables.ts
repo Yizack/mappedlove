@@ -23,7 +23,7 @@ export const useModalController = (id: string) => {
   const { $bootstrap } = useNuxtApp();
   return ref({
     isVisible: false,
-    show: async function (callback?: () => void) {
+    show: async function (callback?: VoidFunction) {
       if (!this.isVisible) this.isVisible = true;
       await sleep(100);
       const element = $bootstrap.showModal(id);

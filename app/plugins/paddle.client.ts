@@ -6,7 +6,7 @@ class Paddle {
     this.options = options;
   }
 
-  async initialize (options: { onCompleted: (data?: CheckoutEventsData) => Promise<void>, onError?: () => void }) {
+  async initialize (options: { onCompleted: (data?: CheckoutEventsData) => Promise<void>, onError?: VoidFunction }) {
     const { $colorMode } = useNuxtApp();
 
     this.paddle = await initializePaddle({
