@@ -6,8 +6,12 @@ const requested = ref(false);
 
 const form = useFormState({
   request: "download",
-  email: ""
+  email: "",
+  turnstile: ""
 });
+
+const turnstile = useTemplateRef("turnstile");
+const theme = useColorMode().preference as "light" | "dark";
 
 const sendRequest = async () => {
   submit.value.loading = true;
@@ -18,6 +22,7 @@ const sendRequest = async () => {
   submit.value.loading = false;
   if (!req) return;
   form.reset();
+  turnstile.value?.reset();
   requested.value = true;
 };
 
@@ -46,6 +51,9 @@ useSeo({
             <div class="form-floating mb-2">
               <input v-model="form.email" type="email" class="form-control" :placeholder="t('email')" autocomplete="email" required>
               <label>{{ t("email") }}</label>
+            </div>
+            <div class="text-center my-3 my-md-0">
+              <NuxtTurnstile ref="turnstile" v-model="form.turnstile" :options="{ theme, size: 'flexible' }" />
             </div>
             <div class="d-grid mb-2">
               <button class="btn btn-primary btn-lg rounded-pill" type="submit" :disabled="submit.loading">

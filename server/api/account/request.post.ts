@@ -4,8 +4,18 @@ import accountData from "~~/emails/accountData.vue";
 export default defineEventHandler(async (event) => {
   const body = await readValidatedBody(event, body => z.object({
     email: z.string(),
-    request: z.string()
+    request: z.string(),
+    turnstile: z.string()
   }).parse(body));
+
+  const verify = await verifyTurnstileToken(body.turnstile, event);
+
+  if (!verify.success) {
+    throw createError({
+      statusCode: ErrorCode.BAD_REQUEST,
+      message: "turnstile_failed"
+    });
+  }
 
   const email = body.email.toLowerCase();
 
