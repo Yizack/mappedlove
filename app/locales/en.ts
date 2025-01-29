@@ -237,11 +237,12 @@ export default {
   account_data_access: "Have access to your account? Easily manage your account data from the settings page.",
   account_data_request_download: "Download data",
   account_data_request_delete: "Delete account",
-  account_data_link_info: "This link is unique, can only be used once and expires after 7 days.",
+  account_data_link_info: "This link is unique, and expires after 7 days.",
   account_data_request_code: "Request code",
   account_data_request_download_success: "Your account data download will start shortly",
   account_data_request_delete_success: "Your account has been deleted",
   account_data_error: "Account request failed",
+  account_data_expired: "Account data request code has expired, please request a new one",
   // Recovery
   recovery_title: "Getting back into your account",
   recovery_description: "Tell us some information about your account.",

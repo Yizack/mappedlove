@@ -30,6 +30,8 @@ export default defineEventHandler(async (event) => {
 
     if (codeHash !== body.code) throw createError({ statusCode: ErrorCode.FORBIDDEN, message: "code_mismatch" });
 
+    if (isCodeDateExpired(foundUser.updatedAt)) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "account_data_expired" });
+
     user = {
       ...foundUser
     };

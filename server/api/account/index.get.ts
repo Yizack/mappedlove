@@ -27,6 +27,8 @@ export default defineEventHandler(async (event) => {
 
   if (codeHash !== code) throw createError({ statusCode: ErrorCode.FORBIDDEN, message: "code_mismatch" });
 
+  if (isCodeDateExpired(user.updatedAt)) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "account_data_expired" });
+
   const accountData: MappedLoveAccountData = {
     user: {
       ...user,
