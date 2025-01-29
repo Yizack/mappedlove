@@ -22,8 +22,8 @@ export default defineEventHandler(async (event) => {
 
   const { secure } = useRuntimeConfig(event);
 
-  const fields = [user.id, user.email, user.updatedAt];
-  const userHash = hash(fields.join(""), secure.salt);
+  const fields = [user.id, user.email, user.updatedAt, secure.salt];
+  const userHash = hash(fields.join());
 
   if (userHash !== form.code) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "invalid_recovery" });
 

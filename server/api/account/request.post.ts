@@ -27,8 +27,8 @@ export default defineEventHandler(async (event) => {
   if (!user) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "user_not_found" });
 
   const config = useRuntimeConfig(event);
-  const fields = [user.id, user.email, user.updatedAt];
-  const code = hash(fields.join(""), config.secure.salt);
+  const fields = [user.id, user.email, user.updatedAt, config.secure.salt];
+  const code = hash(fields.join());
 
   const html = await render(accountData, {
     lang: "en",

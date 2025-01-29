@@ -29,8 +29,8 @@ export default defineEventHandler(async (event) => {
 
   const config = useRuntimeConfig(event);
   if (!id) {
-    const fields = [user.id, user.email, user.updatedAt];
-    const codeHash = hash(fields.join(""), config.secure.salt);
+    const fields = [user.id, user.email, user.updatedAt, config.secure.salt];
+    const codeHash = hash(fields.join());
 
     if (codeHash !== code) throw createError({ statusCode: ErrorCode.FORBIDDEN, message: "code_mismatch" });
 
@@ -40,7 +40,7 @@ export default defineEventHandler(async (event) => {
   const accountData: MappedLoveAccountData = {
     user: {
       ...user,
-      hash: hash([user.id].join(), config.secure.salt)
+      hash: hash(user.id.toString(), config.secure.salt)
     }
   };
 

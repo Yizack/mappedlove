@@ -25,8 +25,8 @@ export default defineEventHandler(async (event) => {
     if (!foundUser) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "user_not_found" });
 
     const config = useRuntimeConfig(event);
-    const fields = [foundUser.id, foundUser.email, foundUser.updatedAt];
-    const codeHash = hash(fields.join(""), config.secure.salt);
+    const fields = [foundUser.id, foundUser.email, foundUser.updatedAt, config.secure.salt];
+    const codeHash = hash(fields.join());
 
     if (codeHash !== body.code) throw createError({ statusCode: ErrorCode.FORBIDDEN, message: "code_mismatch" });
 

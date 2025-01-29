@@ -21,8 +21,8 @@ export default defineEventHandler(async (event): Promise<{ email: string }> => {
 
   if (!user) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "user_not_found" });
 
-  const fields = [user.id, user.email, user.updatedAt];
-  const code = hash(fields.join(""), config.secure.salt);
+  const fields = [user.id, user.email, user.updatedAt, config.secure.salt];
+  const code = hash(fields.join());
 
   const { name } = user;
 
