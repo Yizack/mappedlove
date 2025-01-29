@@ -5,14 +5,14 @@ interface ControllerModalModel {
   hide: VoidFunction;
 }
 
-defineProps({
-  modelValue: { type: Object as () => ControllerModalModel, required: true },
-  id: { type: String, required: true },
-  title: { type: String, default: "" },
-  lg: { type: Boolean, default: false },
-  fullscreen: { type: Boolean, default: false },
-  map: { type: Boolean, default: false }
-});
+defineProps<{
+  modelValue: ControllerModalModel;
+  id: string;
+  title?: string;
+  lg?: boolean;
+  fullscreen?: boolean;
+  map?: boolean;
+}>();
 </script>
 
 <template>

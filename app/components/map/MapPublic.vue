@@ -1,14 +1,8 @@
 <script setup lang="ts">
-const props = defineProps({
-  bond: {
-    type: Object as () => MappedLovePublicMap,
-    required: true
-  },
-  select: {
-    type: Number,
-    default: 0
-  }
-});
+const props = defineProps<{
+  bond: MappedLovePublicMap;
+  select: number;
+}>();
 
 const emit = defineEmits(["moved", "select"]);
 

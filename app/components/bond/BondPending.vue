@@ -1,10 +1,7 @@
 <script setup lang="ts">
-defineProps({
-  bond: {
-    type: Object as () => MappedLoveBond,
-    required: true
-  }
-});
+defineProps<{
+  bond: MappedLoveBond;
+}>();
 
 const emit = defineEmits(["bond"]);
 

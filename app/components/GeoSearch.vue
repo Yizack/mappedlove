@@ -1,12 +1,9 @@
 <script setup lang="ts">
 import type { SearchResult } from "leaflet-geosearch/dist/providers/provider.js";
 
-const props = defineProps({
-  value: {
-    type: String,
-    default: ""
-  }
-});
+const props = defineProps<{
+  value: string;
+}>();
 
 const emit = defineEmits(["select"]);
 

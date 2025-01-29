@@ -1,10 +1,7 @@
 <script setup lang="ts">
-defineProps({
-  sticky: {
-    type: Boolean,
-    default: false
-  }
-});
+defineProps<{
+  sticky?: boolean;
+}>();
 
 const scrolled = ref(false);
 const maxScroll = 50;

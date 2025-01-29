@@ -1,10 +1,7 @@
 <script setup lang="ts">
-const props = defineProps({
-  marker: {
-    type: Object as () => MappedLoveSelectedMarker,
-    default: () => null
-  }
-});
+const props = defineProps<{
+  marker: MappedLoveSelectedMarker;
+}>();
 
 const emit = defineEmits(["new", "delete"]);
 const { $toasts } = useNuxtApp();

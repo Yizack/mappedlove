@@ -1,27 +1,14 @@
 <script setup lang="ts">
 import type { LeafletEvent } from "leaflet";
 
-const props = defineProps({
-  id: {
-    type: String,
-    required: true
-  },
-  markers: {
-    type: Array as () => MappedLoveMarker[],
-    required: true
-  },
-  stories: {
-    type: Array as () => MappedLoveStory[],
-    required: true
-  },
-  size: {
-    type: String,
-    default: "600px"
-  },
-  select: {
-    type: Number,
-    default: 0
-  }
+const props = withDefaults(defineProps<{
+  id: string;
+  markers: MappedLoveMarker[];
+  stories: MappedLoveStory[];
+  size: string;
+  select: number;
+}>(), {
+  size: "600px"
 });
 
 const emit = defineEmits(["moved", "select"]);

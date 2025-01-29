@@ -1,10 +1,7 @@
 <script setup lang="ts">
-const props = defineProps({
-  bond: {
-    type: Object as () => MappedLoveBond,
-    required: true
-  }
-});
+const props = defineProps<{
+  bond: MappedLoveBond;
+}>();
 
 const { $toasts, $bootstrap } = useNuxtApp();
 

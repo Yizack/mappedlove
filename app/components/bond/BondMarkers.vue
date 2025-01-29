@@ -1,16 +1,10 @@
 <script setup lang="ts">
 import { VueDraggableNext as Draggable } from "vue-draggable-next";
 
-const props = defineProps({
-  markers: {
-    type: Array as () => MappedLoveMarker[],
-    default: () => []
-  },
-  selected: {
-    type: Number,
-    default: 0
-  }
-});
+const props = defineProps<{
+  markers: MappedLoveMarker[];
+  selected: number;
+}>();
 
 const emit = defineEmits(["new", "delete", "select", "edit"]);
 const { $toasts } = useNuxtApp();

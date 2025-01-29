@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { Html, Head, Font, Body, Section, Row, Column, Img, Heading, Text, Button, Link } from "@vue-email/components";
 
-defineProps({
-  lang: { type: String, required: true },
-  recoveryLink: { type: String, required: true },
-  domain: { type: String, required: true }
-});
+defineProps<{
+  lang: string;
+  recoveryLink: string;
+  domain: string;
+}>();
 </script>
 
 <template>

@@ -1,30 +1,12 @@
 <script setup lang="ts">
-const props = defineProps({
-  text: {
-    type: String,
-    required: true
-  },
-  placeholder: {
-    type: String,
-    default: ""
-  },
-  lg: {
-    type: Boolean,
-    default: false
-  },
-  uppercase: {
-    type: Boolean,
-    default: false
-  },
-  floating: {
-    type: Boolean,
-    default: false
-  },
-  bold: {
-    type: Boolean,
-    default: false
-  }
-});
+const props = defineProps<{
+  text: string;
+  placeholder?: string;
+  lg?: boolean;
+  uppercase?: boolean;
+  floating?: boolean;
+  bold?: boolean;
+}>();
 
 const { $toasts } = useNuxtApp();
 const textToCopy = ref() as Ref<HTMLInputElement>;
