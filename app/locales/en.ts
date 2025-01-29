@@ -233,7 +233,7 @@ export default {
   account_data_description: "You can request your account data to see what information we have stored about you, or to delete your account instead.",
   account_data_info: "Click the button below to proceed with your request.",
   account_data_email: "Data request sent",
-  account_data_email_info: "An email has been sent to your inbox, follow the instructions to download your account data.",
+  account_data_email_info: "An email has been sent to your inbox, follow the instructions to download or delete your account data.",
   account_data_access: "Have access to your account? Easily manage your account data from the settings page.",
   account_data_request_download: "Download data",
   account_data_request_delete: "Delete account",
