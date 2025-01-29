@@ -12,7 +12,7 @@ defineProps<{
 <template>
   <Html :lang="lang">
     <Head>
-      <title>Account Data</title>
+      <title>Account data request</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="x-apple-disable-message-reformatting">
       <Font font-family="Arial" />
@@ -27,23 +27,25 @@ defineProps<{
           </Row>
           <Row style="padding: 1rem 0; background-color: #c25050;">
             <Column align="center">
-              <Heading as="h1" style="color: #fff; font-size: 2rem;">Account Data</Heading>
+              <Heading as="h1" style="color: #fff; font-size: 2rem;">Account data request</Heading>
             </Column>
           </Row>
           <Section style="padding: 36px 30px 36px 30px; background-color: #f8f9fa;">
             <Heading as="h1" style="font-size: 1.5rem; margin: 0 0 20px 0;">Hello,</Heading>
-            <Text style="margin: 0 0 12px 0; font-size: 1rem;">
-              <span v-if="request === 'download'">Here is your requested account data. Click the link below to download.</span>
-              <span v-else>Here is your requested account deletion including all data. Click the link below to delete your account.</span>
+            <Text style="margin: 0; font-size: 1rem;">
+              <span v-if="request === 'download'">You requested a copy of your account data. Click the button below to download your information.</span>
+              <span v-else>If you wish to proceed with account deletion, click the button below to confirm and remove your data.</span>
             </Text>
             <Row>
               <Column align="center">
-                <Button :href="requestLink" target="_blank" style="display: inline-block; background: #c25050; color: #fff; font-weight: 400; margin: 0; text-decoration: none; text-transform: none; padding: 1rem 1.5rem; border-radius: 50rem; margin-top: 1rem; font-size: 1rem;">
+                <Button :href="requestLink" target="_blank" style="display: inline-block; background: #c25050; color: #fff; font-weight: 400; text-decoration: none; text-transform: none; padding: 1rem 1.5rem; border-radius: 50rem; margin: 1rem 0 1rem 0; font-size: 1rem;">
                   <strong v-if="request === 'download'">Download my data</strong>
                   <strong v-else>Delete my account</strong>
                 </Button>
               </Column>
             </Row>
+            <Text style="margin: 0 0 12px 0; font-size: 1rem;">This link or account code is unique, and expires after 7 days.</Text>
+            <Text style="margin: 0; font-size: 1rem;">If you didn't request this, please ignore this email or contact support if you have any questions.</Text>
           </Section>
           <Row style="padding: 15px 30px 15px 30px; background: #e9ecef; color: #443c47; font-size: 14px;">
             <Column align="center">

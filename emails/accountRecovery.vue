@@ -31,15 +31,15 @@ defineProps<{
           </Row>
           <Section style="padding: 36px 30px 36px 30px; background-color: #f8f9fa;">
             <Heading as="h1" style="font-size: 1.5rem; margin: 0 0 20px 0;">Hello,</Heading>
-            <Text style="margin: 0 0 12px 0; font-size: 1rem;">We have received your recovery account request. To regain access to your account, please click on the link provided below.</Text>
+            <Text style="margin: 0; font-size: 1rem;">We have received your recovery account request. To regain access to your account, please click on the link provided below.</Text>
             <Row>
               <Column align="center">
-                <Button :href="recoveryLink" target="_blank" style="display: inline-block; background: #c25050; color: #fff; font-weight: 400; margin: 0; text-decoration: none;text-transform: none; padding: 1rem 1.5rem; border-radius: 50rem; margin: 1rem 0 1rem 0; font-size: 1rem;">
+                <Button :href="recoveryLink" target="_blank" style="display: inline-block; background: #c25050; color: #fff; font-weight: 400; text-decoration: none;text-transform: none; padding: 1rem 1.5rem; border-radius: 50rem; margin: 1rem 0 1rem 0; font-size: 1rem;">
                   <strong>Reset my password</strong>
                 </Button>
               </Column>
             </Row>
-            <Text style="margin: 12px 0 12px 0; font-size: 1rem;">This link or recovery code is unique, can only be used once and expires after 7 days.</Text>
+            <Text style="margin: 0 0 12px 0; font-size: 1rem;">This link or recovery code is unique, can only be used once and expires after 7 days.</Text>
             <Text style="margin: 0; font-size: 1rem;">If you did not request a password reset, please ignore this email or contact support if you have any questions.</Text>
           </Section>
           <Row style="padding: 15px 30px 15px 30px; background: #e9ecef; color: #443c47; font-size: 14px">

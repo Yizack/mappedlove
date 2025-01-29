@@ -31,7 +31,7 @@ defineProps<{
           </Row>
           <Section style="padding: 36px 30px 36px 30px; background-color: #f8f9fa;">
             <Heading as="h1" style="font-size: 1.5rem; margin: 0 0 20px 0;">Hello,</Heading>
-            <Text style="margin: 0 0 12px 0; font-size: 1rem;">You are almost ready to complete your registration! Simply click the link below to verify your email address and get started.</Text>
+            <Text style="margin: 0; font-size: 1rem;">You are almost ready to complete your registration! Simply click the button below to verify your email address and get started.</Text>
             <Row>
               <Column align="center">
                 <Button :href="verifyLink" target="_blank" style="display: inline-block; background: #c25050; color: #fff; font-weight: 400; margin: 0; text-decoration: none; text-transform: none; padding: 1rem 1.5rem; border-radius: 50rem; margin-top: 1rem; font-size: 1rem;">
