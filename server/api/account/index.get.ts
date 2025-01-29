@@ -1,10 +1,16 @@
 export default defineEventHandler(async (event) => {
-  const { code, email } = await getValidatedQuery(event, z.object({
-    code: z.string(),
-    email: z.string()
+  const { id, code, email } = await getValidatedQuery(event, z.object({
+    id: z.number({ coerce: true }).optional(),
+    code: z.string().optional(),
+    email: z.string().optional()
+  }).refine((data) => {
+    return (data.id && !data.code && !data.email) || (!data.id && data.code && data.email);
+  }, {
+    path: ["id", "code", "email"]
   }).parse);
 
-  const decodedEmail = atob(decodeURIComponent(email));
+  const userEq = id ? eq(tables.users.id, id) : eq(tables.users.email, atob(decodeURIComponent(email!)));
+
   const DB = useDB();
 
   const user = await DB.select({
@@ -17,22 +23,24 @@ export default defineEventHandler(async (event) => {
     confirmed: tables.users.confirmed,
     createdAt: tables.users.createdAt,
     updatedAt: tables.users.updatedAt
-  }).from(tables.users).where(eq(tables.users.email, decodedEmail)).get();
+  }).from(tables.users).where(userEq).get();
 
   if (!user) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "user_not_found" });
 
   const config = useRuntimeConfig(event);
-  const fields = [user.id, user.email, user.updatedAt];
-  const codeHash = hash(fields.join(""), config.secure.salt);
+  if (!id) {
+    const fields = [user.id, user.email, user.updatedAt];
+    const codeHash = hash(fields.join(""), config.secure.salt);
 
-  if (codeHash !== code) throw createError({ statusCode: ErrorCode.FORBIDDEN, message: "code_mismatch" });
+    if (codeHash !== code) throw createError({ statusCode: ErrorCode.FORBIDDEN, message: "code_mismatch" });
 
-  if (isCodeDateExpired(user.updatedAt)) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "account_data_expired" });
+    if (isCodeDateExpired(user.updatedAt)) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "account_data_expired" });
+  }
 
   const accountData: MappedLoveAccountData = {
     user: {
       ...user,
-      hash: codeHash
+      hash: hash([user.id].join(), config.secure.salt)
     }
   };
 
@@ -47,17 +55,13 @@ export default defineEventHandler(async (event) => {
     const partner1 = await DB.select({
       id: tables.users.id,
       name: tables.users.name,
-      showAvatar: tables.users.showAvatar,
-      country: tables.users.country,
-      updatedAt: tables.users.updatedAt
+      country: tables.users.country
     }).from(tables.users).where(eq(tables.users.id, Number(bond?.partner1))).get();
 
     const partner2 = await DB.select({
       id: tables.users.id,
       name: tables.users.name,
-      showAvatar: tables.users.showAvatar,
-      country: tables.users.country,
-      updatedAt: tables.users.updatedAt
+      country: tables.users.country
     }).from(tables.users).where(eq(tables.users.id, Number(bond?.partner2))).get();
 
     const bondData = {
@@ -65,12 +69,10 @@ export default defineEventHandler(async (event) => {
       nextPayment: bond?.nextPayment || null,
       subscriptionId: bond?.subscriptionId || undefined,
       partner1: partner1 ? {
-        ...partner1,
-        hash: hash([partner1?.id].join(), config.secure.salt)
+        ...partner1
       } : null,
       partner2: partner2 ? {
-        ...partner2,
-        hash: hash([partner2?.id].join(), config.secure.salt)
+        ...partner2
       } : null
     };
 

@@ -185,6 +185,13 @@ const deleteAccount = async () => {
   navigateTo("/");
 };
 
+const downloadData = async () => {
+  submit.value.loading = true;
+  navigateTo(`/api/account?id=${user.value.id}`, { external: true });
+  submit.value.loading = false;
+  $toasts.add({ message: t("account_data_request_download_success") });
+};
+
 useSeo({
   title: `${t("settings")} | ${SITE.name}`,
   robots: false
@@ -338,6 +345,13 @@ useSeo({
             </form>
           </div>
         </Transition>
+        <div class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
+          <h3 class="mb-4">{{ t("account_data") }}</h3>
+          <p>{{ t("account_data_download_info") }}</p>
+          <div class="d-grid">
+            <button class="btn btn-primary btn-lg rounded-pill" @click="downloadData">{{ t("account_data_request_download") }}</button>
+          </div>
+        </div>
         <Transition name="tab" mode="out-in">
           <div v-if="!dangerZone" class="bg-body rounded-3 px-3 py-4 p-lg-4 position-relative mb-2" role="button" @click="dangerZone = !dangerZone">
             <div class="position-relative">

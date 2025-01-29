@@ -62,8 +62,10 @@ declare global {
     stories: MappedLoveStory[];
   }
   interface MappedLoveAccountData {
-    user: MappedLoveUser & {
-      bond?: MappedLoveBond & {
+    user: Omit<MappedLoveUser, | "bond"> & {
+      bond?: Omit<MappedLoveBond, "partner1" | "partner2"> & {
+        partner1: Omit<MappedLovePartner, "updatedAt" | "showAvatar" | "hash"> | null;
+        partner2: Omit<MappedLovePartner, "updatedAt" | "showAvatar" | "hash"> | null;
         markers?: MappedLoveMarker[];
         stories?: MappedLoveStory[];
       };

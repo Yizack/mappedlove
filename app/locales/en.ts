@@ -238,6 +238,7 @@ export default {
   account_data_request_download: "Download data",
   account_data_request_delete: "Delete account",
   account_data_link_info: "This link is unique, and expires after 7 days.",
+  account_data_download_info: "Download a copy of all your account data, including your stories, markers, and account information.",
   account_data_request_code: "Request code",
   account_data_request_download_success: "Your account data download will start shortly",
   account_data_request_delete_success: "Your account has been deleted",
