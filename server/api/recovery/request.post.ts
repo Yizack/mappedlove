@@ -25,7 +25,6 @@ export default defineEventHandler(async (event) => {
 
   const html = await render(accountRecovery, {
     lang: "en",
-    domain: SITE.domain,
     recoveryLink: `${SITE.host}/recovery/${encodeURIComponent(btoa(user.email))}/${code}`
   });
 

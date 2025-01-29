@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { Html, Head, Font, Body, Section, Row, Column, Img, Heading, Text, Link } from "@vue-email/components";
+import { SITE } from "~~/shared/utils/site";
 
 defineProps<{
   lang: string;
   year: string;
   summaryLink: string;
-  domain: string;
 }>();
 </script>
 
@@ -22,7 +22,7 @@ defineProps<{
         <Section style="max-width: 602px; border-collapse: collapse; border: 0; border-spacing: 0; background-color: #f8f9fa;">
           <Row style="padding: 1.2rem 0;">
             <Column align="center">
-              <Img :src="`https://${domain}/images/text-logo.png`" alt="MappedLove Logo" style="width: 180px;" />
+              <Img :src="`https://${SITE.domain}/images/text-logo.png`" alt="MappedLove Logo" style="width: 180px;" />
             </Column>
           </Row>
           <Row style="padding: 1rem 0; background-color: #c25050;">
@@ -43,7 +43,7 @@ defineProps<{
           </Section>
           <Row style="padding: 15px 30px 15px 30px; background: #e9ecef; color: #443c47; font-size: 14px;">
             <Column align="center">
-              <Link style="color: #443c47; text-decoration: underline;" :href="`https://${domain}`">{{ domain }}</Link>
+              <Link style="color: #443c47; text-decoration: underline;" :href="`https://${SITE.domain}`">{{ SITE.domain }}</Link>
             </Column>
           </Row>
         </Section>

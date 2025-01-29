@@ -29,7 +29,6 @@ export default defineOAuthGoogleEventHandler({
 
     const html = await render(accountVerify, {
       lang: "en",
-      domain: SITE.domain,
       verifyLink: `${SITE.host}/verify/${encodeURIComponent(btoa(email))}/${code}`
     });
 

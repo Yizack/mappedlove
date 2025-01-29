@@ -32,7 +32,6 @@ export default defineEventHandler(async (event) => {
 
   const html = await render(accountData, {
     lang: "en",
-    domain: SITE.domain,
     requestLink: `${SITE.host}/account-data/${encodeURIComponent(btoa(email))}/${code}?request=${body.request}`,
     request: body.request
   });

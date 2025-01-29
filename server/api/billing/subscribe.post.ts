@@ -40,8 +40,7 @@ export default defineEventHandler(async (event) => {
 
   if (transaction.origin === "web" && user.bond?.premium === 0) {
     const html = await render(premiumWelcome, {
-      lang: "en",
-      domain: SITE.domain
+      lang: "en"
     });
 
     const mailchannels = useMailChannels(event);

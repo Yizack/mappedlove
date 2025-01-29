@@ -55,7 +55,6 @@ export default defineEventHandler(async (event) => {
 
   const html = await render(accountVerify, {
     lang: "en",
-    domain: SITE.domain,
     verifyLink: `${SITE.host}/verify/${encodeURIComponent(btoa(email))}/${code}`
   });
 
