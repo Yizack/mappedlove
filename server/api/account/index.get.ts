@@ -1,5 +1,5 @@
 export default defineEventHandler(async (event) => {
-  const { code, email } = await getValidatedRouterParams(event, z.object({
+  const { code, email } = await getValidatedQuery(event, z.object({
     code: z.string(),
     email: z.string()
   }).parse);
@@ -22,14 +22,15 @@ export default defineEventHandler(async (event) => {
   if (!user) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "user_not_found" });
 
   const config = useRuntimeConfig(event);
-  const userHash = hash([user.id].join(), config.secure.salt);
+  const fields = [user.id, user.email, user.updatedAt];
+  const codeHash = hash(fields.join(""), config.secure.salt);
 
-  if (userHash !== code) throw createError({ statusCode: ErrorCode.FORBIDDEN, message: "code_mismatch" });
+  if (codeHash !== code) throw createError({ statusCode: ErrorCode.FORBIDDEN, message: "code_mismatch" });
 
   const accountData: MappedLoveAccountData = {
     user: {
       ...user,
-      hash: userHash
+      hash: codeHash
     }
   };
 
@@ -81,10 +82,8 @@ export default defineEventHandler(async (event) => {
     };
   }
 
-  const today = Date.now();
-
   setResponseHeaders(event, {
-    "content-disposition": `attachment; filename="mappedlove-${email}-${today}-account-data.json"`,
+    "content-disposition": `attachment; filename="mappedlove-id${user.id}-account-data.json"`,
     "content-type": "application/json"
   });
 

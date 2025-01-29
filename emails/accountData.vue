@@ -3,8 +3,9 @@ import { Html, Head, Font, Body, Section, Row, Column, Img, Heading, Text, Butto
 
 defineProps({
   lang: { type: String, required: true },
-  downloadLink: { type: String, required: true },
-  domain: { type: String, required: true }
+  requestLink: { type: String, required: true },
+  domain: { type: String, required: true },
+  request: { type: String, required: true }
 });
 </script>
 
@@ -31,11 +32,15 @@ defineProps({
           </Row>
           <Section style="padding: 36px 30px 36px 30px; background-color: #f8f9fa;">
             <Heading as="h1" style="font-size: 1.5rem; margin: 0 0 20px 0;">Hello,</Heading>
-            <Text style="margin: 0 0 12px 0; font-size: 1rem;">Here is your requested account data. Click the link below to download.</Text>
+            <Text style="margin: 0 0 12px 0; font-size: 1rem;">
+              <span v-if="request === 'download'">Here is your requested account data. Click the link below to download.</span>
+              <span v-else>Here is your requested account deletion including all data. Click the link below to delete your account.</span>
+            </Text>
             <Row>
               <Column align="center">
-                <Button :href="downloadLink" target="_blank" style="display: inline-block; background: #c25050; color: #fff; font-weight: 400; margin: 0; text-decoration: none; text-transform: none; padding: 1rem 1.5rem; border-radius: 50rem; margin-top: 1rem; font-size: 1rem;">
-                  <strong>Download my data</strong>
+                <Button :href="requestLink" target="_blank" style="display: inline-block; background: #c25050; color: #fff; font-weight: 400; margin: 0; text-decoration: none; text-transform: none; padding: 1rem 1.5rem; border-radius: 50rem; margin-top: 1rem; font-size: 1rem;">
+                  <strong v-if="request === 'download'">Download my data</strong>
+                  <strong v-else>Delete my account</strong>
                 </Button>
               </Column>
             </Row>
