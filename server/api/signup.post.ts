@@ -53,12 +53,10 @@ export default defineEventHandler(async (event) => {
   const fields = [user.id, user.email, user.updatedAt];
   const code = hash(fields.join(""), config.secure.salt);
 
-  const url = import.meta.dev ? SITE.dev : SITE.host;
-
   const html = await render(accountVerify, {
     lang: "en",
     domain: SITE.domain,
-    verifyLink: `${url}/verify/${encodeURIComponent(btoa(email))}/${code}`
+    verifyLink: `${SITE.host}/verify/${encodeURIComponent(btoa(email))}/${code}`
   });
 
   const mailchannels = useMailChannels(event);

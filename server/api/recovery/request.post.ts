@@ -23,12 +23,10 @@ export default defineEventHandler(async (event) => {
   const fields = [user.id, user.email, user.updatedAt];
   const code = hash(fields.join(""), config.secure.salt);
 
-  const url = import.meta.dev ? SITE.dev : SITE.host;
-
   const html = await render(accountRecovery, {
     lang: "en",
     domain: SITE.domain,
-    recoveryLink: `${url}/recovery/${encodeURIComponent(btoa(user.email))}/${code}`
+    recoveryLink: `${SITE.host}/recovery/${encodeURIComponent(btoa(user.email))}/${code}`
   });
 
   const mailchannels = useMailChannels(event);

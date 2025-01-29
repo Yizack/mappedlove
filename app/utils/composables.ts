@@ -52,7 +52,7 @@ export const useSeo = (options: MappedLoveSeoOptions) => {
     ogTitle: options.title,
     ogSiteName: options.name,
     ogDescription: options.description,
-    ogImage: options.image || SITE.cover,
+    ogImage: options.image || `${SITE.host}/${SITE.cover}`,
     ogImageWidth: options.imageWidth || 750,
     ogImageHeight: options.imageHeight || 375,
     ogImageAlt: options.imageAlt || t("motto"),
@@ -61,7 +61,7 @@ export const useSeo = (options: MappedLoveSeoOptions) => {
     // twitterSite: `@${SITE.twitter}`,
     twitterTitle: options.title,
     twitterDescription: options.description,
-    twitterImage: options.image || SITE.cover
+    twitterImage: options.image || `${SITE.host}/${SITE.cover}`
   });
 
   options.robots = options.robots === undefined ? true : options.robots;

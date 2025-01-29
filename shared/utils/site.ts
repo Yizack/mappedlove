@@ -2,11 +2,10 @@ export const SITE = {
   name: "MappedLove",
   author: "Yizack Rangel",
   domain: "mappedlove.com",
-  host: "https://mappedlove.com",
-  cdn: "https://cdn.mappedlove.com",
-  dev: "http://localhost:5173",
   donate: "https://ko-fi.com/yizack",
-  cover: "https://mappedlove.com/images/promo-cover.jpg",
+  cover: "images/promo-cover.jpg",
+  host: import.meta.dev ? "http://localhost:5173" : "https://mappedlove.com",
+  cdn: import.meta.dev ? "http://localhost:5173" : "https://cdn.mappedlove.com",
   github: {
     author: "Yizack",
     repo: "https://github.com/Yizack/mappedlove"

@@ -14,7 +14,7 @@ const partner1 = computed(() => props.bond.partner1 as MappedLovePartner);
 const partner2 = computed(() => props.bond.partner2 as MappedLovePartner);
 
 const togetherFor = computed(() => getTogetherFor(coupleDate.value));
-const publicURL = computed(() => `${import.meta.dev ? SITE.dev : SITE.host}/map/${props.bond.code}`);
+const publicURL = computed(() => `${SITE.host}/map/${props.bond.code}`);
 
 const emit = defineEmits(["bond"]);
 

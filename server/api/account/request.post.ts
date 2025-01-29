@@ -29,12 +29,11 @@ export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig(event);
   const fields = [user.id, user.email, user.updatedAt];
   const code = hash(fields.join(""), config.secure.salt);
-  const url = import.meta.dev ? SITE.dev : SITE.host;
 
   const html = await render(accountData, {
     lang: "en",
     domain: SITE.domain,
-    requestLink: `${url}/account-data/${encodeURIComponent(btoa(email))}/${code}?request=${body.request}`,
+    requestLink: `${SITE.host}/account-data/${encodeURIComponent(btoa(email))}/${code}?request=${body.request}`,
     request: body.request
   });
 
