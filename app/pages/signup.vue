@@ -12,6 +12,7 @@ const form = useFormState({
 });
 
 const turnstile = useTemplateRef("turnstile");
+const theme = useColorMode().preference as "light" | "dark";
 const submit = ref({ loading: false, exists: false });
 const needsConfirm = ref(false);
 
@@ -87,7 +88,7 @@ useSeo({
               <label class="form-check-label" for="legal">{{ t("read_legal") }} {{ SITE.name }}'s <NuxtLink to="/legal/terms" target="_blank">{{ t("terms_of_use") }}</NuxtLink> & <NuxtLink to="/legal/privacy" target="_blank">{{ t("privacy_policy") }}</NuxtLink></label>
             </div>
             <div class="text-center my-3 my-md-0">
-              <NuxtTurnstile ref="turnstile" v-model="form.turnstile" />
+              <NuxtTurnstile ref="turnstile" v-model="form.turnstile" :options="{ theme, size: 'flexible' }" />
             </div>
             <div class="d-grid gap-2">
               <button class="btn btn-primary btn-lg rounded-pill" type="submit" :disabled="submit.loading">
