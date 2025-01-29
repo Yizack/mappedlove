@@ -1,5 +1,5 @@
 import { render } from "@vue-email/render";
-import premiumWelcome from "~~/emails/premiumWelcome.vue";
+import premiumWelcome from "~~/email/premiumWelcome.vue";
 
 export default defineEventHandler(async (event) => {
   const { user } = await requireUserSession(event);

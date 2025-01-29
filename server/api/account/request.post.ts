@@ -1,5 +1,5 @@
 import { render } from "@vue-email/render";
-import accountData from "~~/emails/accountData.vue";
+import accountData from "~~/email/accountData.vue";
 
 export default defineEventHandler(async (event) => {
   const body = await readValidatedBody(event, body => z.object({

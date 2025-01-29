@@ -1,5 +1,5 @@
 import { render } from "@vue-email/render";
-import accountVerify from "~~/emails/accountVerify.vue";
+import accountVerify from "~~/email/accountVerify.vue";
 
 export default defineEventHandler(async (event): Promise<{ email: string }> => {
   const body = await readValidatedBody(event, body => z.object({
