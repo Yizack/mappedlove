@@ -89,5 +89,5 @@ export default defineEventHandler(async (event) => {
     "content-type": "application/json"
   });
 
-  return accountData;
+  return JSON.stringify(accountData, null, 2);
 });
