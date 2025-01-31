@@ -107,3 +107,18 @@ export const passwordCheckClass = (isValid: boolean, password: string, passwordC
   if (!passwordCheck) return;
   return isValid && isValidPasswordCheck(password, passwordCheck) ? "is-valid" : "is-invalid";
 };
+
+export const updatePartner = (fields: Partial<MappedLovePartner>) => {
+  const { session } = useUserSession();
+  const { user } = session.value;
+  if (!user) return;
+  session.value.user = { ...user, ...fields };
+  if (user.bond && typeof user.bond.partner1 !== "number" && typeof user.bond.partner2 !== "number") {
+    if (user.bond.partner1?.id === user.id) {
+      user.bond.partner1 = { ...user.bond.partner1, ...fields };
+    }
+    else if (user.bond.partner2?.id === user.id) {
+      user.bond.partner2 = { ...user.bond.partner2, ...fields };
+    }
+  }
+};

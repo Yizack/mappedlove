@@ -6,11 +6,11 @@ const { $colorMode, $countries, $toasts } = useNuxtApp();
 
 const dark = ref($colorMode.preference === "dark");
 const form = useFormState({
-  name: "",
-  email: "",
-  country: null as string | null,
-  birthDate: null as number | null,
-  showAvatar: false,
+  name: user.value.name,
+  email: user.value.email,
+  country: user.value.country,
+  birthDate: user.value.birthDate,
+  showAvatar: Boolean(user.value.showAvatar),
   current_password: "",
   new_password: "",
   confirm_password: ""
@@ -21,9 +21,6 @@ const datePickerFocus = ref(false);
 const dangerZone = ref(false);
 const passwordFocus = ref(false);
 const isValidPass = ref(false);
-
-Object.assign(form.value, user.value);
-form.value.showAvatar = Boolean(user.value.showAvatar);
 
 const country = ref({
   code: form.value.country,
@@ -67,10 +64,12 @@ const saveAccount = async () => {
   }).catch(() => null);
   submit.value.loading = false;
   if (!account) return;
-  user.value.name = account.name;
-  user.value.country = account.country;
   user.value.birthDate = account.birthDate;
-  user.value.updatedAt = account.updatedAt;
+  updatePartner({
+    name: account.name,
+    country: account.country,
+    updatedAt: account.updatedAt
+  });
   $toasts.add({ message: t("account_saved") });
 };
 
@@ -82,7 +81,7 @@ const showAvatar = async () => {
     }
   }).catch(() => null);
   if (!account) return;
-  user.value.showAvatar = account.showAvatar;
+  updatePartner({ showAvatar: account.showAvatar });
   $toasts.add({ message: t("account_saved") });
 };
 
