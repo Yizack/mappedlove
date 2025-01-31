@@ -5,7 +5,7 @@ const { user, clear } = useUserSession() as MappedLoveSessionComposable;
 const { $colorMode, $countries, $toasts } = useNuxtApp();
 
 const dark = ref($colorMode.preference === "dark");
-const userForm = ref({
+const form = useFormState({
   name: "",
   email: "",
   country: null as string | null,
@@ -19,13 +19,15 @@ const userForm = ref({
 const submit = ref({ loading: false, pass_loading: false, error: false });
 const datePickerFocus = ref(false);
 const dangerZone = ref(false);
+const passwordFocus = ref(false);
+const isValidPass = ref(false);
 
-Object.assign(userForm.value, user.value);
-userForm.value.showAvatar = Boolean(user.value.showAvatar);
+Object.assign(form.value, user.value);
+form.value.showAvatar = Boolean(user.value.showAvatar);
 
 const country = ref({
-  code: userForm.value.country,
-  search: $countries.getName(userForm.value.country),
+  code: form.value.country,
+  search: $countries.getName(form.value.country),
   focus: false
 });
 
@@ -43,14 +45,14 @@ const removeCountry = () => {
   country.value.focus = false;
   country.value.search = "";
   country.value.code = null;
-  userForm.value.country = null;
+  form.value.country = null;
 };
 
 const selectCountry = (c: { name: string, code: string }) => {
   country.value.focus = false;
   country.value.search = c.name;
   country.value.code = c.code;
-  userForm.value.country = c.code;
+  form.value.country = c.code;
 };
 
 const saveAccount = async () => {
@@ -58,9 +60,9 @@ const saveAccount = async () => {
   const account = await $fetch("/api/account", {
     method: "PATCH",
     body: {
-      name: userForm.value.name,
-      country: userForm.value.country,
-      birthDate: userForm.value.birthDate
+      name: form.value.name,
+      country: form.value.country,
+      birthDate: form.value.birthDate
     }
   }).catch(() => null);
   submit.value.loading = false;
@@ -76,7 +78,7 @@ const showAvatar = async () => {
   const account = await $fetch("/api/account", {
     method: "PATCH",
     body: {
-      showAvatar: userForm.value.showAvatar
+      showAvatar: form.value.showAvatar
     }
   }).catch(() => null);
   if (!account) return;
@@ -89,35 +91,21 @@ const changeColorMode = () => {
 };
 
 const changePassword = async () => {
-  if (!(isValidPassword(userForm.value.current_password) && isValidPasswordCheck(userForm.value.new_password, userForm.value.confirm_password))) return;
+  if (!(isValidPass.value && isValidPasswordCheck(form.value.new_password, form.value.confirm_password))) return;
   submit.value.pass_loading = true;
   const account = await $fetch("/api/account/password", {
-    method: "PATCH",
+    method: user.value.auth ? "POST" : "PATCH",
     body: {
-      current_password: userForm.value.current_password,
-      new_password: userForm.value.new_password
+      current_password: user.value.auth ? undefined : form.value.current_password,
+      new_password: form.value.new_password
     }
   }).catch(() => null);
   submit.value.pass_loading = false;
   if (!account) return;
-  $toasts.add({ message: t("password_changed") });
-};
-
-const setupPassword = async () => {
-  if (!(isValidPassword(userForm.value.new_password) && isValidPasswordCheck(userForm.value.new_password, userForm.value.confirm_password))) return;
-  submit.value.pass_loading = true;
-  const account = await $fetch("/api/account/password", {
-    method: "POST",
-    body: {
-      new_password: userForm.value.new_password
-    }
-  }).catch(() => null);
-  submit.value.pass_loading = false;
-  if (!account) return;
-  user.value.auth = undefined;
-  userForm.value.new_password = "";
-  userForm.value.confirm_password = "";
-  $toasts.add({ message: t("password_setup") });
+  if (user.value.auth) user.value.auth = undefined;
+  form.value.new_password = "";
+  form.value.confirm_password = "";
+  $toasts.add({ message: user.value.auth ? t("password_setup") : t("password_changed") });
 };
 
 const imageRead = ref<string | ArrayBuffer>();
@@ -154,7 +142,7 @@ const uploadAvatar = async (event: Event) => {
     return;
   }
   user.value.showAvatar = 1;
-  userForm.value.showAvatar = true;
+  form.value.showAvatar = true;
   user.value.updatedAt = account.updatedAt;
   $toasts.add({ message: t("avatar_saved") });
 };
@@ -166,7 +154,7 @@ const deleteAvatar = async () => {
   }).catch(() => null);
   if (!account) return;
   user.value.showAvatar = 0;
-  userForm.value.showAvatar = false;
+  form.value.showAvatar = false;
   fileChosen.value = false;
   user.value.updatedAt = account.updatedAt;
   imageRead.value = "";
@@ -213,16 +201,16 @@ useSeo({
                     <Icon name="solar:gallery-add-outline" size="2.5rem" />
                   </div>
                 </div>
-                <img v-if="imageRead" :src="imageRead.toString()" width="175" height="175" class="img-fluid w-100" :alt="userForm.name">
+                <img v-if="imageRead" :src="imageRead.toString()" width="175" height="175" class="img-fluid w-100" :alt="form.name">
                 <img v-else-if="user.showAvatar && user.hash" :src="`${getAvatarImage(user.hash)}?updated=${user.updatedAt}`" width="175" height="175" class="img-fluid w-100" :alt="user.name">
-                <img v-else-if="!fileChosen" :src="getDefaultAvatar(user.id)" width="175" height="175" class="img-fluid w-100" :alt="userForm.name">
+                <img v-else-if="!fileChosen" :src="getDefaultAvatar(user.id)" width="175" height="175" class="img-fluid w-100" :alt="form.name">
               </label>
               <div v-if="user.showAvatar" class="text-center">
                 <a role="button" class="text-primary" @click="deleteAvatar">{{ t("delete_avatar") }}</a>
               </div>
             </div>
             <div class="form-floating mb-2">
-              <input v-model="userForm.name" type="text" class="form-control" :placeholder="t('name')" required>
+              <input v-model="form.name" type="text" class="form-control" :placeholder="t('name')" required>
               <label class="d-flex align-items-center gap-1">
                 <Icon name="solar:user-circle-linear" />
                 <span>{{ t("name") }}</span>
@@ -238,7 +226,7 @@ useSeo({
             <div class="position-relative mb-2">
               <div class="input-group">
                 <span class="input-group-text">
-                  <Twemoji v-if="country.code" :emoji="$countries.getEmoji(userForm.country)" size="2rem" />
+                  <Twemoji v-if="country.code" :emoji="$countries.getEmoji(form.country)" size="2rem" />
                   <Icon v-else name="solar:magnifer-linear" size="1.5em" />
                 </span>
                 <div class="form-floating position-relative">
@@ -261,10 +249,10 @@ useSeo({
               </div>
             </div>
             <ClientOnly>
-              <VueDatePicker v-model="userForm.birthDate" :format="'yyyy-MM-dd'" :enable-time-picker="false" :locale="t('lang_code')" model-type="timestamp" :dark="$colorMode.preference === 'dark'" @open="datePickerFocus = true" @blur="datePickerFocus = false">
+              <VueDatePicker v-model="form.birthDate" :format="'yyyy-MM-dd'" :enable-time-picker="false" :locale="t('lang_code')" model-type="timestamp" :dark="$colorMode.preference === 'dark'" @open="datePickerFocus = true" @blur="datePickerFocus = false">
                 <template #trigger>
                   <div class="form-floating mb-2">
-                    <input ref="datepicker" class="form-control bg-body" :class="{ focus: datePickerFocus }" :value="userForm.birthDate ? formatDate(userForm.birthDate) : ''" @keyup="$e => { userForm.birthDate = $e.code === 'Backspace' ? null : userForm.birthDate }">
+                    <input ref="datepicker" class="form-control bg-body" :class="{ focus: datePickerFocus }" :value="form.birthDate ? formatDate(form.birthDate) : ''" @keyup="$e => { form.birthDate = $e.code === 'Backspace' ? null : form.birthDate }">
                     <label class="d-flex align-items-center gap-1">
                       <Icon name="solar:confetti-minimalistic-line-duotone" />
                       <span>{{ t("birth_date") }}</span>
@@ -287,7 +275,7 @@ useSeo({
         <div class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
           <h3 class="mb-4">{{ t("preferences") }}</h3>
           <div class="form-check form-switch d-flex gap-2 align-items-center">
-            <input v-model="userForm.showAvatar" class="form-check-input" type="checkbox" role="switch" @change="showAvatar">
+            <input v-model="form.showAvatar" class="form-check-input" type="checkbox" role="switch" @change="showAvatar">
             <label class="form-check-label">{{ t("show_avatar") }}</label>
           </div>
           <div class="form-check form-switch d-flex gap-2 align-items-center">
@@ -295,56 +283,37 @@ useSeo({
             <label class="form-check-label">{{ t("dark_mode") }}</label>
           </div>
         </div>
-        <Transition name="tab" mode="out-in">
-          <div v-if="!user.auth" class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
-            <form @submit.prevent="changePassword">
-              <h3 class="mb-4">{{ t("change_password") }}</h3>
-              <input :value="userForm.email" type="text" autocomplete="email" hidden>
-              <div class="form-floating mb-2">
-                <input v-model="userForm.current_password" type="password" class="form-control" :placeholder="t('current_password')" autocomplete="current-password">
-                <label>{{ t("current_password") }}</label>
-              </div>
-              <div class="form-floating mb-2">
-                <input v-model="userForm.new_password" type="password" class="form-control" :class="isValidPassword(userForm.new_password) ? 'is-valid' : userForm.new_password ? 'is-invalid' : ''" :placeholder="t('new_password')" autocomplete="new-password">
-                <label>{{ t("new_password") }}</label>
-              </div>
-              <div class="form-floating mb-2">
-                <input v-model="userForm.confirm_password" type="password" class="form-control" :class="isValidPasswordCheck(userForm.new_password, userForm.confirm_password) ? 'is-valid' : userForm.confirm_password ? 'is-invalid' : ''" :placeholder="t('password_confirm')" autocomplete="new-password">
-                <label>{{ t("password_confirm") }}</label>
-              </div>
-              <div class="d-grid">
-                <button class="btn btn-primary btn-lg rounded-pill" type="submit">
-                  <Transition name="tab" mode="out-in">
-                    <SpinnerCircle v-if="submit.pass_loading" class="text-white" />
-                    <span v-else>{{ t("change_password") }}</span>
-                  </Transition>
-                </button>
-              </div>
-            </form>
-          </div>
-          <div v-else class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
-            <form @submit.prevent="setupPassword">
-              <h3 class="mb-4">{{ t("setup_password") }}</h3>
-              <input :value="userForm.email" type="text" autocomplete="email" hidden>
-              <div class="form-floating mb-2">
-                <input v-model="userForm.new_password" type="password" class="form-control" :class="isValidPassword(userForm.new_password) ? 'is-valid' : userForm.new_password ? 'is-invalid' : ''" :placeholder="t('new_password')" autocomplete="new-password">
-                <label>{{ t("new_password") }}</label>
-              </div>
-              <div class="form-floating mb-2">
-                <input v-model="userForm.confirm_password" type="password" class="form-control" :class="isValidPasswordCheck(userForm.new_password, userForm.confirm_password) ? 'is-valid' : userForm.confirm_password ? 'is-invalid' : ''" :placeholder="t('password_confirm')" autocomplete="new-password">
-                <label>{{ t("password_confirm") }}</label>
-              </div>
-              <div class="d-grid">
-                <button class="btn btn-primary btn-lg rounded-pill" type="submit">
-                  <Transition name="tab" mode="out-in">
-                    <SpinnerCircle v-if="submit.pass_loading" class="text-white" />
-                    <span v-else>{{ t("setup_password") }}</span>
-                  </Transition>
-                </button>
-              </div>
-            </form>
-          </div>
-        </Transition>
+        <div class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
+          <form @submit.prevent="changePassword">
+            <h3 class="mb-4">{{ user.auth ? t("setup_password") : t("change_password") }}</h3>
+            <input :value="form.email" type="text" autocomplete="email" hidden>
+            <div v-if="!user.auth" class="form-floating mb-2">
+              <input v-model="form.current_password" type="password" class="form-control" :placeholder="t('current_password')" autocomplete="current-password">
+              <label>{{ t("current_password") }}</label>
+            </div>
+            <div class="form-floating mb-2">
+              <input v-model="form.new_password" type="password" class="form-control" :class="passwordClass(isValidPass, form.new_password)" autocomplete="new-password" required @focus="passwordFocus = true" @blur="passwordFocus = false">
+              <label>{{ t("new_password") }}</label>
+              <Transition name="tab" mode="out-in">
+                <div v-if="passwordFocus" class="position-absolute z-3 shadow mt-2">
+                  <PasswordRequirements v-model="isValidPass" :password="form.new_password" />
+                </div>
+              </Transition>
+            </div>
+            <div class="form-floating mb-2">
+              <input v-model="form.confirm_password" type="password" class="form-control" :class="passwordCheckClass(isValidPass, form.new_password, form.confirm_password)" :placeholder="t('password_confirm')" autocomplete="new-password" required>
+              <label>{{ t("password_confirm") }}</label>
+            </div>
+            <div class="d-grid">
+              <button class="btn btn-primary btn-lg rounded-pill" type="submit">
+                <Transition name="tab" mode="out-in">
+                  <SpinnerCircle v-if="submit.pass_loading" class="text-white" />
+                  <span v-else>{{ user.auth ? t("setup_password") : t("change_password") }}</span>
+                </Transition>
+              </button>
+            </div>
+          </form>
+        </div>
         <div class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
           <h3 class="mb-4">{{ t("account_data") }}</h3>
           <p>{{ t("account_data_download_info") }}</p>

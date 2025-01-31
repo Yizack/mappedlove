@@ -97,3 +97,13 @@ export const paddleToCurrency = (value: number, currency?: string) => {
   if (!currency) return valueTransformed.toFixed(2);
   return valueTransformed.toLocaleString(t("lang_code"), { style: "currency", currency: currency });
 };
+
+export const passwordClass = (isValid: boolean, password: string) => {
+  if (!password) return;
+  return isValid && isValidPassword(password) ? "is-valid" : "is-invalid";
+};
+
+export const passwordCheckClass = (isValid: boolean, password: string, passwordCheck: string) => {
+  if (!passwordCheck) return;
+  return isValid && isValidPasswordCheck(password, passwordCheck) ? "is-valid" : "is-invalid";
+};

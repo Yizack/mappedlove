@@ -15,9 +15,11 @@ const turnstile = useTemplateRef("turnstile");
 const theme = useColorMode().preference as "light" | "dark";
 const submit = ref({ loading: false, exists: false });
 const needsConfirm = ref(false);
+const passwordFocus = ref(false);
+const isValidPass = ref(false);
 
 const signUp = async () => {
-  if (!(isValidName(form.value.name) && isValidEmail(form.value.email) && isValidPassword(form.value.password) && isValidPasswordCheck(form.value.password, form.value.password_check))) return;
+  if (!(isValidName(form.value.name) && isValidEmail(form.value.email) && isValidPass && isValidPasswordCheck(form.value.password, form.value.password_check))) return;
 
   submit.value.loading = true;
   const req = await $fetch("/api/signup", { method: "POST", body: form.value }).catch(() => null);
@@ -76,11 +78,16 @@ useSeo({
               </div>
             </div>
             <div class="form-floating mb-2">
-              <input v-model="form.password" type="password" class="form-control" :class="isValidPassword(form.password) ? 'is-valid' : form.password ? 'is-invalid' : ''" :placeholder="t('password')" autocomplete="new-password" required>
+              <input v-model="form.password" type="password" class="form-control" :class="passwordClass(isValidPass, form.password)" :placeholder="t('password')" autocomplete="new-password" required @focus="passwordFocus = true" @blur="passwordFocus = false">
               <label class="form-label">{{ t("password") }}</label>
+              <Transition name="tab" mode="out-in">
+                <div v-if="passwordFocus" class="position-absolute z-3 shadow mt-2">
+                  <PasswordRequirements v-model="isValidPass" :password="form.password" />
+                </div>
+              </Transition>
             </div>
             <div class="form-floating mb-2">
-              <input v-model="form.password_check" type="password" class="form-control" :class="isValidPasswordCheck(form.password, form.password_check) ? 'is-valid' : form.password_check ? 'is-invalid' : ''" :placeholder="t('password_confirm')" autocomplete="off" required>
+              <input v-model="form.password_check" type="password" class="form-control" :class="passwordCheckClass(isValidPass, form.password, form.password_check)" :placeholder="t('password_confirm')" autocomplete="new-password" required>
               <label class="form-label">{{ t("password_confirm") }}</label>
             </div>
             <div class="form-check mb-2">
