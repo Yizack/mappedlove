@@ -11,13 +11,14 @@ const { $toasts } = useNuxtApp();
 
 const form = useFormState({
   email: meta.email || "",
-  password: ""
+  password: "",
+  remember: false
 });
 
 const signIn = async () => {
   resent.value = false;
   submit.value.loading = true;
-  const login = await $fetch("/api/session", {
+  const login = await $fetch("/api/login", {
     method: "POST",
     body: form.value
   }).catch(() => null);
@@ -80,6 +81,10 @@ useSeo({
         <div class="form-floating mb-2">
           <input v-model="form.password" type="password" class="form-control" :placeholder="t('password')" autocomplete="current-password" :class="{ 'is-invalid': submit.error }" required>
           <label class="form-label">{{ t("password") }}</label>
+        </div>
+        <div class="form-check mb-2">
+          <input id="remember" v-model="form.remember" class="form-check-input" type="checkbox">
+          <label class="form-check-label" for="remember">{{ t("remember_me") }}</label>
         </div>
         <div class="mb-2">
           <NuxtLink to="/recovery">{{ t("forgot_password") }}</NuxtLink>

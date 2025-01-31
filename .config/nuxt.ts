@@ -99,7 +99,6 @@ export default defineNuxtConfig({
       secretKey: ""
     },
     session: {
-      maxAge: 60 * 60 * 24 * 7, // 1 week
       password: ""
     },
     oauth: {

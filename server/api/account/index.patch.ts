@@ -1,5 +1,5 @@
 export default defineEventHandler(async (event): Promise<MappedLoveUser> => {
-  const { user } = await requireUserSession(event);
+  const session = await requireUserSession(event);
 
   const body = await readValidatedBody(event, body => z.object({
     name: z.string().optional(),
@@ -21,7 +21,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveUser> => {
     birthDate: form.birthDate,
     showAvatar: form.showAvatar !== undefined ? Number(form.showAvatar) : undefined,
     updatedAt: Date.now()
-  }).where(eq(tables.users.id, Number(user.id))).returning({
+  }).where(eq(tables.users.id, session.user.id)).returning({
     id: tables.users.id,
     email: tables.users.email,
     name: tables.users.name,
@@ -35,7 +35,8 @@ export default defineEventHandler(async (event): Promise<MappedLoveUser> => {
 
   if (!update) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "user_not_found" });
 
-  await setUserSessionNullable(event, { user: { ...user, ...update } });
+  session.user = { ...session.user, ...update };
+  await setUserSession(event, session);
 
   return update;
 });

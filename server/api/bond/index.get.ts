@@ -58,7 +58,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveBond> => {
     } : null
   };
 
-  await setUserSessionNullable(event, { user: { ...user, bond: userBond } });
+  await setUserSession(event, { user: { ...user, bond: userBond } });
 
   return userBond;
 });

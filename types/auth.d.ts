@@ -15,6 +15,7 @@ declare module "#auth-utils" {
   }
   interface UserSession {
     user?: MappedLoveUser;
+    maxAge?: number;
   }
 }
 

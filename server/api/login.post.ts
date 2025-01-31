@@ -1,7 +1,8 @@
 export default defineEventHandler(async (event) => {
   const body = await readValidatedBody(event, body => z.object({
     email: z.string(),
-    password: z.string()
+    password: z.string(),
+    remember: z.boolean()
   }).safeParse(body));
 
   if (!body.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_signin_data" });
@@ -59,7 +60,10 @@ export default defineEventHandler(async (event) => {
   if (!user.confirmed) return session;
 
   const userHash = hash(user.id.toString(), secure.salt);
+  const maxAge = form.remember ? 7 * 24 * 60 * 60 : undefined; // if remember is true, maxAge is 7 days
 
-  await setUserSession(event, { user: { ...user, hash: userHash } });
+  await setUserSession(event, {
+    user: { ...user, hash: userHash }
+  }, { maxAge });
   return session;
 });

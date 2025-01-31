@@ -29,6 +29,7 @@ export default {
   logout: "Logout",
   many_logins_attempted: "Too many failed login attempts, please try again later",
   invalid_signin_data: "Sign in data is not valid",
+  remember_me: "Remember me",
   // Register
   password_confirm: "Confirm password",
   name: "Name",

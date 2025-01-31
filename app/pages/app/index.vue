@@ -1,6 +1,6 @@
 <script setup lang="ts">
 definePageMeta({ layout: "app", middleware: "session" });
-const { user, fetch: sessionFetch } = useUserSession() as MappedLoveSessionComposable;
+const { user } = useUserSession() as MappedLoveSessionComposable;
 
 const bond = computed(() => user.value.bond);
 
@@ -29,10 +29,6 @@ const setBond = async (event: { bond: MappedLoveBond, type: string }) => {
 
 const isBonded = computed((): boolean => {
   return Boolean(bond.value && bond.value.partner1 && bond.value.partner2);
-});
-
-onBeforeMount(async () => {
-  await sessionFetch();
 });
 
 useSeo({

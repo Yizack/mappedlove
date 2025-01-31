@@ -12,7 +12,7 @@ export default defineNitroPlugin(() => {
     ).get();
 
     if (!bond) {
-      await setUserSession(event, { user: { ...user, bond: undefined } });
+      session.user = { ...user, bond: undefined };
       return;
     }
 
@@ -61,6 +61,6 @@ export default defineNitroPlugin(() => {
       } : null
     };
 
-    await setUserSessionNullable(event, { user: { ...user, bond: userBond } });
+    session.user = { ...user, bond: userBond };
   });
 });
