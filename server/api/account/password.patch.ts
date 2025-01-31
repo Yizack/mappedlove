@@ -6,7 +6,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveUser> => {
     new_password: z.string()
   }).safeParse(body));
 
-  if (!body.success || !isPasswordValid(body.data.new_password)) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "password_invalid" });
+  if (!body.success || !isValidPassword(body.data.new_password)) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "password_invalid" });
 
   const form = body.data;
 

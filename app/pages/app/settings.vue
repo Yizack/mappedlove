@@ -89,7 +89,7 @@ const changeColorMode = () => {
 };
 
 const changePassword = async () => {
-  if (!(isPasswordValid(userForm.value.current_password) && isPasswordCheckValid(userForm.value.new_password, userForm.value.confirm_password))) return;
+  if (!(isValidPassword(userForm.value.current_password) && isValidPasswordCheck(userForm.value.new_password, userForm.value.confirm_password))) return;
   submit.value.pass_loading = true;
   const account = await $fetch("/api/account/password", {
     method: "PATCH",
@@ -104,7 +104,7 @@ const changePassword = async () => {
 };
 
 const setupPassword = async () => {
-  if (!(isPasswordValid(userForm.value.new_password) && isPasswordCheckValid(userForm.value.new_password, userForm.value.confirm_password))) return;
+  if (!(isValidPassword(userForm.value.new_password) && isValidPasswordCheck(userForm.value.new_password, userForm.value.confirm_password))) return;
   submit.value.pass_loading = true;
   const account = await $fetch("/api/account/password", {
     method: "POST",
@@ -305,11 +305,11 @@ useSeo({
                 <label>{{ t("current_password") }}</label>
               </div>
               <div class="form-floating mb-2">
-                <input v-model="userForm.new_password" type="password" class="form-control" :class="isPasswordValid(userForm.new_password) ? 'is-valid' : userForm.new_password ? 'is-invalid' : ''" :placeholder="t('new_password')" autocomplete="new-password">
+                <input v-model="userForm.new_password" type="password" class="form-control" :class="isValidPassword(userForm.new_password) ? 'is-valid' : userForm.new_password ? 'is-invalid' : ''" :placeholder="t('new_password')" autocomplete="new-password">
                 <label>{{ t("new_password") }}</label>
               </div>
               <div class="form-floating mb-2">
-                <input v-model="userForm.confirm_password" type="password" class="form-control" :class="isPasswordCheckValid(userForm.new_password, userForm.confirm_password) ? 'is-valid' : userForm.confirm_password ? 'is-invalid' : ''" :placeholder="t('password_confirm')" autocomplete="new-password">
+                <input v-model="userForm.confirm_password" type="password" class="form-control" :class="isValidPasswordCheck(userForm.new_password, userForm.confirm_password) ? 'is-valid' : userForm.confirm_password ? 'is-invalid' : ''" :placeholder="t('password_confirm')" autocomplete="new-password">
                 <label>{{ t("password_confirm") }}</label>
               </div>
               <div class="d-grid">
@@ -327,11 +327,11 @@ useSeo({
               <h3 class="mb-4">{{ t("setup_password") }}</h3>
               <input :value="userForm.email" type="text" autocomplete="email" hidden>
               <div class="form-floating mb-2">
-                <input v-model="userForm.new_password" type="password" class="form-control" :class="isPasswordValid(userForm.new_password) ? 'is-valid' : userForm.new_password ? 'is-invalid' : ''" :placeholder="t('new_password')" autocomplete="new-password">
+                <input v-model="userForm.new_password" type="password" class="form-control" :class="isValidPassword(userForm.new_password) ? 'is-valid' : userForm.new_password ? 'is-invalid' : ''" :placeholder="t('new_password')" autocomplete="new-password">
                 <label>{{ t("new_password") }}</label>
               </div>
               <div class="form-floating mb-2">
-                <input v-model="userForm.confirm_password" type="password" class="form-control" :class="isPasswordCheckValid(userForm.new_password, userForm.confirm_password) ? 'is-valid' : userForm.confirm_password ? 'is-invalid' : ''" :placeholder="t('password_confirm')" autocomplete="new-password">
+                <input v-model="userForm.confirm_password" type="password" class="form-control" :class="isValidPasswordCheck(userForm.new_password, userForm.confirm_password) ? 'is-valid' : userForm.confirm_password ? 'is-invalid' : ''" :placeholder="t('password_confirm')" autocomplete="new-password">
                 <label>{{ t("password_confirm") }}</label>
               </div>
               <div class="d-grid">

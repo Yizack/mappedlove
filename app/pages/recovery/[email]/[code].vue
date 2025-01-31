@@ -29,7 +29,7 @@ const form = useFormState({
 });
 
 const resetPassword = async () => {
-  if (!(isEmailValid(form.value.email) && isPasswordValid(form.value.password) && isPasswordCheckValid(form.value.password, form.value.password_check))) return;
+  if (!(isValidEmail(form.value.email) && isValidPassword(form.value.password) && isValidPasswordCheck(form.value.password, form.value.password_check))) return;
   submit.value.loading = true;
   const req = await $fetch("/api/recovery", {
     method: "POST",
@@ -62,11 +62,11 @@ useSeo({
           <label>{{ t("recovery_code") }}</label>
         </div>
         <div class="form-floating mb-2">
-          <input v-model="form.password" type="password" class="form-control" :class="isPasswordValid(form.password) ? 'is-valid' : form.password.length ? 'is-invalid' : ''" :placeholder="t('new_password')" autocomplete="new-password" required>
+          <input v-model="form.password" type="password" class="form-control" :class="isValidPassword(form.password) ? 'is-valid' : form.password.length ? 'is-invalid' : ''" :placeholder="t('new_password')" autocomplete="new-password" required>
           <label>{{ t("new_password") }}</label>
         </div>
         <div class="form-floating mb-2">
-          <input v-model="form.password_check" type="password" class="form-control" :class="isPasswordCheckValid(form.password, form.password_check) ? 'is-valid' : form.password_check ? 'is-invalid' : ''" :placeholder="t('password_confirm')" autocomplete="off" required>
+          <input v-model="form.password_check" type="password" class="form-control" :class="isValidPasswordCheck(form.password, form.password_check) ? 'is-valid' : form.password_check ? 'is-invalid' : ''" :placeholder="t('password_confirm')" autocomplete="off" required>
           <label>{{ t("password_confirm") }}</label>
         </div>
         <div class="d-grid mb-2">

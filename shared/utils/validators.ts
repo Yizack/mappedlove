@@ -1,15 +1,15 @@
-export const isNameValid = (name: string) => {
+export const isValidName = (name: string) => {
   return name.length > 0 && name.length <= 50;
 };
 
-export const isPasswordValid = (password: string) => {
+export const isValidPassword = (password: string) => {
   return password.length >= 8;
 };
 
-export const isPasswordCheckValid = (password: string, passwordCheck: string) => {
-  return isPasswordValid(password) && password === passwordCheck;
+export const isValidPasswordCheck = (password: string, passwordCheck: string) => {
+  return isValidPassword(password) && password === passwordCheck;
 };
 
-export const isEmailValid = (email: string) => {
+export const isValidEmail = (email: string) => {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 };

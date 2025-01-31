@@ -17,7 +17,7 @@ const submit = ref({ loading: false, exists: false });
 const needsConfirm = ref(false);
 
 const signUp = async () => {
-  if (!(isNameValid(form.value.name) && isEmailValid(form.value.email) && isPasswordValid(form.value.password) && isPasswordCheckValid(form.value.password, form.value.password_check))) return;
+  if (!(isValidName(form.value.name) && isValidEmail(form.value.email) && isValidPassword(form.value.password) && isValidPasswordCheck(form.value.password, form.value.password_check))) return;
 
   submit.value.loading = true;
   const req = await $fetch("/api/signup", { method: "POST", body: form.value }).catch(() => null);
@@ -65,22 +65,22 @@ useSeo({
               <p class="m-0">{{ t("create_account") }}</p>
             </div>
             <div class="form-floating mb-2">
-              <input v-model.trim="form.name" type="text" class="form-control" :class="{ 'is-valid': isNameValid(form.name) }" :placeholder="t('name')" autocomplete="given-name" required>
+              <input v-model.trim="form.name" type="text" class="form-control" :class="{ 'is-valid': isValidName(form.name) }" :placeholder="t('name')" autocomplete="given-name" required>
               <label class="form-label">{{ t("name") }}</label>
             </div>
             <div class="form-floating mb-2 position-relative">
-              <input v-model="form.email" type="email" class="form-control" :class="{ 'is-valid': isEmailValid(form.email), 'is-invalid': submit.exists }" :placeholder="t('email')" autocomplete="email" required @input="submit.exists = false">
+              <input v-model="form.email" type="email" class="form-control" :class="{ 'is-valid': isValidEmail(form.email), 'is-invalid': submit.exists }" :placeholder="t('email')" autocomplete="email" required @input="submit.exists = false">
               <label class="form-label">{{ t("email") }}</label>
               <div v-if="submit.exists" class="invalid-tooltip">
                 {{ t("email_conflict") }}
               </div>
             </div>
             <div class="form-floating mb-2">
-              <input v-model="form.password" type="password" class="form-control" :class="isPasswordValid(form.password) ? 'is-valid' : form.password ? 'is-invalid' : ''" :placeholder="t('password')" autocomplete="new-password" required>
+              <input v-model="form.password" type="password" class="form-control" :class="isValidPassword(form.password) ? 'is-valid' : form.password ? 'is-invalid' : ''" :placeholder="t('password')" autocomplete="new-password" required>
               <label class="form-label">{{ t("password") }}</label>
             </div>
             <div class="form-floating mb-2">
-              <input v-model="form.password_check" type="password" class="form-control" :class="isPasswordCheckValid(form.password, form.password_check) ? 'is-valid' : form.password_check ? 'is-invalid' : ''" :placeholder="t('password_confirm')" autocomplete="off" required>
+              <input v-model="form.password_check" type="password" class="form-control" :class="isValidPasswordCheck(form.password, form.password_check) ? 'is-valid' : form.password_check ? 'is-invalid' : ''" :placeholder="t('password_confirm')" autocomplete="off" required>
               <label class="form-label">{{ t("password_confirm") }}</label>
             </div>
             <div class="form-check mb-2">

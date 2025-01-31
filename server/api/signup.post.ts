@@ -29,7 +29,7 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  if (!isPasswordValid(form.password)) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "password_invalid" });
+  if (!isValidPassword(form.password)) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "password_invalid" });
 
   const config = useRuntimeConfig(event);
   const DB = useDB();

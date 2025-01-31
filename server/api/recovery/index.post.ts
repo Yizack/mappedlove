@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
 
   const form = body.data;
 
-  if (!isPasswordValid(form.password)) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "password_invalid" });
+  if (!isValidPassword(form.password)) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "password_invalid" });
 
   const DB = useDB();
   const user = await DB.select({
