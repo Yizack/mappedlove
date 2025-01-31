@@ -36,7 +36,7 @@ export default defineEventHandler(async (event) => {
   }
 
   const session = { user: { ...user, ...update } };
-  await setUserSession(event, session);
+  await setUserSessionNullish(event, session);
 
   return session.user;
 });

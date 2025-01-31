@@ -18,6 +18,6 @@ export default defineEventHandler(async (event): Promise<MappedLoveBond> => {
     updatedAt: today
   }).returning().get();
 
-  await setUserSession(event, { user: { ...user, bond } });
+  await setUserSessionNullish(event, { user: { ...user, bond } });
   return bond;
 });

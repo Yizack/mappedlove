@@ -54,7 +54,7 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  await setUserSession(event, { user: { ...user, bond: { ...user.bond, ...update } } });
+  await setUserSessionNullish(event, { user: { ...user, bond: { ...user.bond, ...update } } });
 
   return { success: true };
 });

@@ -22,7 +22,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveUser> => {
   if (!update) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "password_error" });
 
   const setUser = { ...user, ...update };
-  await setUserSession(event, { user: setUser });
+  await setUserSessionNullish(event, { user: setUser });
 
   return setUser;
 });

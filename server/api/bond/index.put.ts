@@ -26,6 +26,6 @@ export default defineEventHandler(async (event): Promise<MappedLoveBond> => {
 
   if (!bond) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "partner_code_not_found" });
 
-  await setUserSession(event, { user: { ...user, bond } });
+  await setUserSessionNullish(event, { user: { ...user, bond } });
   return bond;
 });

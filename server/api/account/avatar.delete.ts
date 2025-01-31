@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
     if (!update) throw createError({ statusCode: ErrorCode.INTERNAL_SERVER_ERROR, message: "error" });
 
     const session = { user: { ...user, ...update } };
-    await setUserSession(event, session);
+    await setUserSessionNullish(event, session);
     return session.user;
   }
   catch (e) {
