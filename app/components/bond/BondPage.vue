@@ -6,7 +6,8 @@ const props = defineProps<{
 const { $toasts, $bootstrap, payload } = useNuxtApp();
 
 const deleteButton = ref(false);
-const coupleDate = ref(props.bond.coupleDate ? new Date(props.bond.coupleDate) : undefined);
+const coupleTimestamp = ref(props.bond.coupleDate);
+const coupleDate = computed<Date | undefined>(() => coupleTimestamp.value ? new Date(coupleTimestamp.value) : undefined);
 const cacheDate = ref<Date>();
 const isPublic = ref(Boolean(props.bond.public));
 
@@ -17,7 +18,7 @@ const emit = defineEmits(["bond"]);
 
 const deleteDate = () => {
   if (!confirm(t("delete_anniversary"))) return;
-  coupleDate.value = undefined;
+  coupleTimestamp.value = null;
 };
 
 const changePrivacy = async () => {
@@ -55,7 +56,7 @@ watch(coupleDate, async (val: Date | undefined) => {
   const bond = await $fetch("/api/bond", {
     method: "PATCH",
     body: {
-      coupleDate: val ? val.getTime() : null
+      coupleDate: coupleTimestamp.value
     }
   }).catch(() => null);
   cacheDate.value = val;
@@ -87,7 +88,7 @@ watch(coupleDate, async (val: Date | undefined) => {
           <Transition name="tab" mode="out-in">
             <div v-if="!coupleDate">
               <ClientOnly>
-                <VueDatePicker v-model="coupleDate" :format="'yyyy-MM-dd'" :enable-time-picker="false" :locale="t('lang_code')" :max-date="new Date()" :dark="$colorMode.preference === 'dark'">
+                <VueDatePicker v-model="coupleTimestamp" :format="'yyyy-MM-dd'" :enable-time-picker="false" :locale="t('lang_code')" :max-date="new Date()" :dark="$colorMode.preference === 'dark'" model-type="timestamp">
                   <template #trigger>
                     <div class="p-2 border rounded-3 hover" role="button">
                       <div class="d-flex align-items-center justify-content-center gap-1">
@@ -103,7 +104,7 @@ watch(coupleDate, async (val: Date | undefined) => {
               <div class="p-2 d-flex gap-3 border rounded-3 mb-2 position-relative" @mouseenter="deleteButton = true" @mouseleave="deleteButton = false">
                 <div class="rounded-3 bg-secondary d-flex align-items-center justify-content-center" :style="{ width: '4.375rem', height: '4.375rem' }">
                   <div class="text-primary text-center">
-                    <h4 class="m-0 fw-bold">{{ coupleDate.getDate() }}</h4>
+                    <h4 class="m-0 fw-bold">{{ coupleDate.getUTCDate() }}</h4>
                     <span class="fw-bold">{{ getMonth(coupleDate, "short") }}</span>
                   </div>
                 </div>
@@ -120,7 +121,7 @@ watch(coupleDate, async (val: Date | undefined) => {
                       <Icon name="solar:trash-bin-trash-linear" size="1.5rem" class="text-danger" />
                     </button>
                     <ClientOnly>
-                      <VueDatePicker v-model="coupleDate" :format="'yyyy-MM-dd'" :enable-time-picker="false" :locale="t('lang_code')" :dark="$colorMode.preference === 'dark'">
+                      <VueDatePicker v-model="coupleTimestamp" :format="'yyyy-MM-dd'" :enable-time-picker="false" :locale="t('lang_code')" :max-date="new Date()" :dark="$colorMode.preference === 'dark'" model-type="timestamp">
                         <template #trigger>
                           <button class="btn btn-sm border-0" :title="t('delete')">
                             <Icon name="solar:pen-outline" size="1.5rem" />
