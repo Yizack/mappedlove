@@ -98,6 +98,14 @@ watch(coupleDate, async (val: Date | undefined) => {
                     </div>
                   </template>
                 </VueDatePicker>
+                <template #fallback>
+                  <div class="p-2 border rounded-3 hover dp__main dp__theme_light" role="button">
+                    <div class="d-flex align-items-center justify-content-center gap-1">
+                      <Icon name="solar:heart-lock-outline" size="1.4rem" class="text-primary" />
+                      <strong>{{ t("add_anniversary") }}</strong>
+                    </div>
+                  </div>
+                </template>
               </ClientOnly>
             </div>
             <div v-else>
