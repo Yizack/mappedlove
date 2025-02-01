@@ -27,31 +27,14 @@ export default defineEventHandler(async (event) => {
     )).where(eq(tables.users.email, body.email)).get();
 
     if (!foundUser) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "user_not_found" });
+    user = foundUser;
 
     const config = useRuntimeConfig(event);
-    const fields = [foundUser.id, foundUser.email, foundUser.updatedAt, config.secure.salt];
+    const fields = [user.id, user.email, user.updatedAt, config.secure.salt];
     const codeHash = hash(fields.join());
 
     if (codeHash !== body.code) throw createError({ statusCode: ErrorCode.FORBIDDEN, message: "code_mismatch" });
-
-    if (isCodeDateExpired(foundUser.updatedAt)) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "account_data_expired" });
-
-    user = {
-      ...foundUser
-    };
-
-    const bond = foundUser.bond;
-    if (bond) {
-      const bondData = {
-        ...bond,
-        nextPayment: bond?.nextPayment || null,
-        subscriptionId: bond?.subscriptionId || undefined
-      };
-
-      user.bond = {
-        ...bondData
-      };
-    }
+    if (isCodeDateExpired(user.updatedAt)) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "account_data_expired" });
   }
   else {
     if (!session.user) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "user_not_found" });
