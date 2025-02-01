@@ -291,7 +291,7 @@ useSeo({
               <label>{{ t("current_password") }}</label>
             </div>
             <div class="form-floating mb-2">
-              <input v-model="form.new_password" type="password" class="form-control" :class="passwordClass(isValidPass, form.new_password)" autocomplete="new-password" required @focus="passwordFocus = true" @blur="passwordFocus = false">
+              <input v-model="form.new_password" type="password" class="form-control" :class="passwordClass(isValidPass, form.new_password)" :placeholder="t('new_password')" autocomplete="new-password" required @focus="passwordFocus = true" @blur="passwordFocus = false">
               <label>{{ t("new_password") }}</label>
               <Transition name="tab" mode="out-in">
                 <div v-if="passwordFocus" class="position-absolute z-3 shadow mt-2">
