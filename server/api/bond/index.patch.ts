@@ -1,4 +1,4 @@
-export default defineEventHandler(async (event): Promise<MappedLoveBond> => {
+export default defineEventHandler(async (event) => {
   const { user } = await requireUserSession(event);
 
   if (!user.bond) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "bond_not_found" });
@@ -17,19 +17,13 @@ export default defineEventHandler(async (event): Promise<MappedLoveBond> => {
     coupleDate: form.coupleDate,
     public: form.public,
     updatedAt: Date.now()
-  }).where(and(eq(tables.bonds.code, user.bond.code), or(eq(tables.bonds.partner1, user.id), eq(tables.bonds.partner2, user.id)))).returning().get();
-
-  await setUserSessionNullish(event, {
-    user: {
-      ...user,
-      bond: {
-        ...user.bond,
-        coupleDate: bond.coupleDate,
-        public: bond.public,
-        updatedAt: bond.updatedAt
-      }
-    }
-  });
+  }).where(and(
+    eq(tables.bonds.code, user.bond.code),
+    or(
+      eq(tables.bonds.partner1, user.id),
+      eq(tables.bonds.partner2, user.id)
+    )
+  )).returning().get();
 
   return bond;
 });

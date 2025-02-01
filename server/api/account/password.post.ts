@@ -1,5 +1,5 @@
 export default defineEventHandler(async (event): Promise<MappedLoveUser> => {
-  const { user } = await requireUserSession(event);
+  const session = await requireUserSession(event);
   const { secure } = useRuntimeConfig(event);
   const body = await readValidatedBody(event, body => z.object({
     new_password: z.string()
@@ -14,15 +14,15 @@ export default defineEventHandler(async (event): Promise<MappedLoveUser> => {
     password: hash(form.new_password, secure.salt),
     auth: 0,
     updatedAt: Date.now()
-  }).where(and(eq(tables.users.id, Number(user.id)), eq(tables.users.auth, 1))).returning({
+  }).where(and(eq(tables.users.id, session.user.id), eq(tables.users.auth, 1))).returning({
     auth: tables.users.auth,
     updatedAt: tables.users.updatedAt
   }).get();
 
   if (!update) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "password_error" });
 
-  const setUser = { ...user, ...update };
-  await setUserSessionNullish(event, { user: setUser });
+  session.user = { ...session.user, ...update };
+  await setUserSessionNullish(event, session);
 
-  return setUser;
+  return session.user;
 });

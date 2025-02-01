@@ -1,3 +1,4 @@
+import type { H3Event } from "h3";
 import { sha256 } from "ohash";
 
 export { z } from "zod";
@@ -20,4 +21,21 @@ export const isCodeDateExpired = (timestamp: number) => {
 
 export const getGracePeriod = (timestamp: number, days: number) => {
   return timestamp + (days * 24 * 60 * 60 * 1000);
+};
+
+export const getPartners = async (event: H3Event, DB: ReturnType<typeof useDB>, bond: Partial<MappedLoveBond>) => {
+  const partners = await DB.select({
+    id: tables.users.id,
+    name: tables.users.name,
+    showAvatar: tables.users.showAvatar,
+    country: tables.users.country,
+    updatedAt: tables.users.updatedAt
+  }).from(tables.users).where(or(eq(tables.users.id, bond.partner1!), eq(tables.users.id, bond.partner2!))).limit(2).all();
+
+  const { secure } = useRuntimeConfig(event);
+
+  return partners.map(partner => ({
+    ...partner,
+    hash: hash([partner.id].join(), secure.salt)
+  }));
 };

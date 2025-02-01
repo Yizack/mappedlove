@@ -31,8 +31,12 @@ export default defineEventHandler(async (event) => {
     showAvatar: tables.users.showAvatar,
     confirmed: tables.users.confirmed,
     createdAt: tables.users.createdAt,
-    updatedAt: tables.users.updatedAt
-  }).from(tables.users).where(and(eq(tables.users.email, form.email), eq(tables.users.password, hash(form.password, secure.salt)))).get();
+    updatedAt: tables.users.updatedAt,
+    bond: tables.bonds
+  }).from(tables.users).leftJoin(tables.bonds, or(
+    eq(tables.bonds.partner1, tables.users.id),
+    eq(tables.bonds.partner2, tables.users.id)
+  )).where(and(eq(tables.users.email, form.email), eq(tables.users.password, hash(form.password, secure.salt)))).get();
 
   if (!user) {
     const userAttempted = await DB.select({ id: tables.users.id }).from(tables.users).where(eq(tables.users.email, form.email)).get();
@@ -63,7 +67,10 @@ export default defineEventHandler(async (event) => {
   const maxAge = form.remember ? 7 * 24 * 60 * 60 : 0; // if remember is true, maxAge is 7 days
 
   await setUserSessionNullish(event, {
-    user: { ...user, hash: userHash }
+    user: {
+      ...user,
+      hash: userHash
+    }
   }, { maxAge });
   return session;
 });

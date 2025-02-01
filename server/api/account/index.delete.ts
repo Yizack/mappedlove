@@ -19,8 +19,12 @@ export default defineEventHandler(async (event) => {
       showAvatar: tables.users.showAvatar,
       confirmed: tables.users.confirmed,
       createdAt: tables.users.createdAt,
-      updatedAt: tables.users.updatedAt
-    }).from(tables.users).where(eq(tables.users.email, body.email)).get();
+      updatedAt: tables.users.updatedAt,
+      bond: tables.bonds
+    }).from(tables.users).leftJoin(tables.bonds, or(
+      eq(tables.bonds.partner1, tables.users.id),
+      eq(tables.bonds.partner2, tables.users.id)
+    )).where(eq(tables.users.email, body.email)).get();
 
     if (!foundUser) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "user_not_found" });
 
@@ -36,42 +40,12 @@ export default defineEventHandler(async (event) => {
       ...foundUser
     };
 
-    const bond = await DB.select().from(tables.bonds).where(
-      or(
-        eq(tables.bonds.partner1, foundUser.id),
-        eq(tables.bonds.partner2, foundUser.id)
-      )
-    ).get();
-
+    const bond = foundUser.bond;
     if (bond) {
-      const partner1 = await DB.select({
-        id: tables.users.id,
-        name: tables.users.name,
-        showAvatar: tables.users.showAvatar,
-        country: tables.users.country,
-        updatedAt: tables.users.updatedAt
-      }).from(tables.users).where(eq(tables.users.id, Number(bond?.partner1))).get();
-
-      const partner2 = await DB.select({
-        id: tables.users.id,
-        name: tables.users.name,
-        showAvatar: tables.users.showAvatar,
-        country: tables.users.country,
-        updatedAt: tables.users.updatedAt
-      }).from(tables.users).where(eq(tables.users.id, Number(bond?.partner2))).get();
-
       const bondData = {
         ...bond,
         nextPayment: bond?.nextPayment || null,
-        subscriptionId: bond?.subscriptionId || undefined,
-        partner1: partner1 ? {
-          ...partner1,
-          hash: hash([partner1?.id].join(), config.secure.salt)
-        } : null,
-        partner2: partner2 ? {
-          ...partner2,
-          hash: hash([partner2?.id].join(), config.secure.salt)
-        } : null
+        subscriptionId: bond?.subscriptionId || undefined
       };
 
       user.bond = {

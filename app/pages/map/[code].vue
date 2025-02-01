@@ -18,8 +18,7 @@ const selected = ref(0);
 const mapInfo = ref() as Ref<HTMLElement>;
 const marker = ref<MappedLoveMarker>();
 const stories = ref<MappedLoveStory[]>();
-const partner1 = ref(bond.value.partner1);
-const partner2 = ref(bond.value.partner2);
+const partners = ref(bond.value.partners);
 
 const filter = ref({
   year: 0
@@ -49,7 +48,7 @@ const expandCanvas = ref(false);
 const canvasHeader = ref() as Ref<HTMLElement>;
 const canvasBody = ref() as Ref<HTMLElement>;
 const currentStory = ref<MappedLoveStory>();
-const currentStoryUser = computed(() => [partner1.value, partner2.value].find(user => user.id === currentStory.value?.user));
+const currentStoryUser = computed(() => partners.value.find(user => user.id === currentStory.value?.user));
 
 const storyController = useModalController("story");
 
@@ -112,9 +111,10 @@ onBeforeUnmount(() => {
   $bootstrap.hideOffcanvas(mapInfo.value);
 });
 
+const partnersTitle = partners.value.map(partner => partner.name).join(" & ");
 useSeo({
-  title: `${partner1.value.name} & ${partner2.value.name} | ${SITE.name}`,
-  name: `${partner1.value.name} & ${partner2.value.name}`,
+  title: `${partnersTitle} | ${SITE.name}`,
+  name: partnersTitle,
   description: t("seo_map_description"),
   robots: false
 });
@@ -122,8 +122,11 @@ useSeo({
 
 <template>
   <div v-if="bond">
-    <div class="btn btn-primary rounded-pill position-absolute bottom-0 start-50 translate-middle-x px-3 py-2 mb-4" :style="{ zIndex: 1000 }">
-      <strong>{{ bond.partner1.name }}</strong> <Icon name="solar:hearts-bold-duotone" class="img-fluid" /> <strong>{{ bond.partner2.name }}</strong>
+    <div class="btn btn-primary rounded-pill position-absolute bottom-0 start-50 translate-middle-x px-3 py-2 mb-4 d-flex align-items-center gap-1" :style="{ zIndex: 1000 }">
+      <template v-for="(partner, index) in partners" :key="index">
+        <strong>{{ partner.name }}</strong>
+        <Icon v-if="index === 0" name="solar:hearts-bold-duotone" class="img-fluid" />
+      </template>
     </div>
     <MapPublic ref="map" :bond="bond" :select="selected" @select="onSelect" />
     <div ref="mapInfo" class="offcanvas shadow" :class="isMobile ? 'offcanvas-bottom' : 'offcanvas-start'" data-bs-backdrop="false" tabindex="-1" aria-labelledby="mapLabel" :style="{ height: expandCanvas || !isMobile ? '100vh' : '30vh' }">

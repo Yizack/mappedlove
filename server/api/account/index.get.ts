@@ -22,8 +22,12 @@ export default defineEventHandler(async (event) => {
     showAvatar: tables.users.showAvatar,
     confirmed: tables.users.confirmed,
     createdAt: tables.users.createdAt,
-    updatedAt: tables.users.updatedAt
-  }).from(tables.users).where(userEq).get();
+    updatedAt: tables.users.updatedAt,
+    bond: tables.bonds
+  }).from(tables.users).leftJoin(tables.bonds, or(
+    eq(tables.bonds.partner1, tables.users.id),
+    eq(tables.bonds.partner2, tables.users.id)
+  )).where(userEq).get();
 
   if (!user) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "user_not_found" });
 
@@ -39,50 +43,32 @@ export default defineEventHandler(async (event) => {
 
   const accountData: MappedLoveAccountData = {
     user: {
-      ...user,
-      hash: hash(user.id.toString(), config.secure.salt)
+      hash: hash(user.id.toString(), config.secure.salt),
+      ...user
     }
   };
 
-  const bond = await DB.select().from(tables.bonds).where(
-    or(
-      eq(tables.bonds.partner1, user.id),
-      eq(tables.bonds.partner2, user.id)
-    )
-  ).get();
-
+  const bond = user.bond;
   if (bond) {
-    const partner1 = await DB.select({
-      id: tables.users.id,
-      name: tables.users.name,
-      country: tables.users.country
-    }).from(tables.users).where(eq(tables.users.id, Number(bond?.partner1))).get();
-
-    const partner2 = await DB.select({
-      id: tables.users.id,
-      name: tables.users.name,
-      country: tables.users.country
-    }).from(tables.users).where(eq(tables.users.id, Number(bond?.partner2))).get();
-
     const bondData = {
       ...bond,
       nextPayment: bond?.nextPayment || null,
       subscriptionId: bond?.subscriptionId || undefined,
-      partner1: partner1 ? {
-        ...partner1
-      } : null,
-      partner2: partner2 ? {
-        ...partner2
-      } : null
+      partners: await getPartners(event, DB, bond)
     };
 
-    const stories = await DB.select().from(tables.stories).where(eq(tables.stories.bond, bond.id)).all();
-    const markers = await DB.select().from(tables.markers).where(eq(tables.markers.bond, bond.id)).all();
+    const markers = await DB.select().from(tables.markers).where(
+      eq(tables.markers.bond, bond.id)
+    ).orderBy(tables.markers.order).all();
+
+    const stories = await DB.select().from(tables.stories).where(
+      eq(tables.stories.bond, bond.id)
+    ).orderBy(desc(tables.stories.year), desc(tables.stories.month)).all();
 
     accountData.user.bond = {
       ...bondData,
-      stories,
-      markers
+      markers,
+      stories
     };
   }
 

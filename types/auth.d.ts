@@ -11,7 +11,7 @@ declare module "#auth-utils" {
     createdAt: number;
     updatedAt: number;
     auth?: number;
-    bond?: MappedLoveBond;
+    bond?: Omit<MappedLoveBond, "partners"> | null;
   }
   interface UserSession {
     user?: MappedLoveUser;

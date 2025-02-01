@@ -1,12 +1,14 @@
 <script setup lang="ts">
 definePageMeta({ layout: "app", middleware: "session" });
-const { user } = useUserSession() as MappedLoveSessionComposable;
 
-const bond = computed(() => user.value.bond);
+const { data: bond } = await useFetch("/api/bond", {
+  key: "bond",
+  getCachedData: (key, nuxtApp) => nuxtApp.payload.data[key]
+});
 
 const bondEvent = ref("");
 const setBond = async (event: { bond: MappedLoveBond, type: string }) => {
-  user.value.bond = event.bond;
+  bond.value = event.bond;
   bondEvent.value = event.type;
   let message = "";
   switch (bondEvent.value) {

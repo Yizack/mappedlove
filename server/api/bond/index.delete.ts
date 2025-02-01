@@ -1,7 +1,7 @@
-export default defineEventHandler(async (event): Promise<MappedLoveBond | undefined> => {
-  const { user } = await requireUserSession(event);
+export default defineEventHandler(async (event) => {
+  const session = await requireUserSession(event);
 
-  if (user.bond && user.bond.bonded) {
+  if (session.user.bond && session.user.bond.bonded) {
     throw createError({
       statusCode: ErrorCode.FORBIDDEN,
       message: "cant_delete_bonded_bond"
@@ -9,6 +9,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveBond | undefi
   }
 
   const DB = useDB();
-  await setUserSessionNullish(event, { user: { ...user, bond: undefined } });
-  return DB.delete(tables.bonds).where(eq(tables.bonds.partner1, user.id)).returning().get();
+  session.user = { ...session.user, bond: null };
+  await setUserSessionNullish(event, session);
+  return DB.delete(tables.bonds).where(eq(tables.bonds.partner1, session.user.id)).returning().get();
 });

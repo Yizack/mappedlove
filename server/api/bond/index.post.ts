@@ -1,10 +1,10 @@
 export default defineEventHandler(async (event): Promise<MappedLoveBond> => {
-  const { user } = await requireUserSession(event);
+  const session = await requireUserSession(event);
   const DB = useDB();
   const bondExists = await DB.select().from(tables.bonds).where(
     or(
-      eq(tables.bonds.partner1, user.id),
-      eq(tables.bonds.partner2, user.id)
+      eq(tables.bonds.partner1, session.user.id),
+      eq(tables.bonds.partner2, session.user.id)
     )
   ).get();
 
@@ -12,12 +12,13 @@ export default defineEventHandler(async (event): Promise<MappedLoveBond> => {
 
   const today = Date.now();
   const bond = await DB.insert(tables.bonds).values({
-    partner1: user.id,
-    code: createBondCode(user.id),
+    partner1: session.user.id,
+    code: createBondCode(session.user.id),
     createdAt: today,
     updatedAt: today
   }).returning().get();
 
-  await setUserSessionNullish(event, { user: { ...user, bond } });
+  session.user = { ...session.user, bond };
+  await setUserSessionNullish(event, session);
   return bond;
 });

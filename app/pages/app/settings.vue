@@ -64,11 +64,11 @@ const saveAccount = async () => {
   }).catch(() => null);
   submit.value.loading = false;
   if (!account) return;
-  user.value.birthDate = account.birthDate;
-  updatePartner({
+  updateProfile({
     name: account.name,
     country: account.country,
-    updatedAt: account.updatedAt
+    updatedAt: account.updatedAt,
+    birthDate: account.birthDate
   });
   $toasts.add({ message: t("account_saved") });
 };
@@ -81,7 +81,7 @@ const showAvatar = async () => {
     }
   }).catch(() => null);
   if (!account) return;
-  updatePartner({ showAvatar: account.showAvatar });
+  updateProfile({ showAvatar: account.showAvatar });
   $toasts.add({ message: t("account_saved") });
 };
 

@@ -26,8 +26,9 @@ declare global {
   interface MappedLoveBond {
     id: number;
     code: string;
-    partner1: MappedLovePartner | number | null;
-    partner2: MappedLovePartner | number | null;
+    partner1: number | null;
+    partner2: number | null;
+    partners?: MappedLovePartner[];
     coupleDate: number | null;
     bonded: number;
     public: number;
@@ -53,8 +54,7 @@ declare global {
     stories: MappedLoveStory[];
   }
   interface MappedLovePublicMap extends MappedLoveBond {
-    partner1: MappedLovePartner;
-    partner2: MappedLovePartner;
+    partners: MappedLovePartner[];
     markers: MappedLoveMarker[];
     stories: MappedLoveStory[];
   }
@@ -63,9 +63,8 @@ declare global {
   }
   interface MappedLoveAccountData {
     user: Omit<MappedLoveUser, | "bond"> & {
-      bond?: Omit<MappedLoveBond, "partner1" | "partner2"> & {
-        partner1: Omit<MappedLovePartner, "updatedAt" | "showAvatar" | "hash"> | null;
-        partner2: Omit<MappedLovePartner, "updatedAt" | "showAvatar" | "hash"> | null;
+      bond?: Omit<MappedLoveBond, "partner1" | "partner2", "partners"> & {
+        partners?: Omit<MappedLovePartner, "updatedAt" | "showAvatar" | "hash">[];
         markers?: MappedLoveMarker[];
         stories?: MappedLoveStory[];
       };

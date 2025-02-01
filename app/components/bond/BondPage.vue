@@ -3,15 +3,12 @@ const props = defineProps<{
   bond: MappedLoveBond;
 }>();
 
-const { $toasts, $bootstrap } = useNuxtApp();
+const { $toasts, $bootstrap, payload } = useNuxtApp();
 
 const deleteButton = ref(false);
 const coupleDate = ref(props.bond.coupleDate ? new Date(props.bond.coupleDate) : undefined);
 const cacheDate = ref<Date>();
 const isPublic = ref(Boolean(props.bond.public));
-
-const partner1 = computed(() => props.bond.partner1 as MappedLovePartner);
-const partner2 = computed(() => props.bond.partner2 as MappedLovePartner);
 
 const togetherFor = computed(() => getTogetherFor(coupleDate.value));
 const publicURL = computed(() => `${SITE.host}/map/${props.bond.code}`);
@@ -64,6 +61,7 @@ watch(coupleDate, async (val: Date | undefined) => {
   cacheDate.value = val;
   if (!bond) return;
   $toasts.add({ message: t("anniversary_update") });
+  delete payload.data.bond;
 });
 </script>
 
@@ -72,26 +70,17 @@ watch(coupleDate, async (val: Date | undefined) => {
     <div class="col-lg-8 col-xl-6 mx-auto">
       <div class="bg-body rounded-3 px-3 py-4 p-lg-4">
         <div class="position-relative d-flex justify-content-center py-4">
-          <div class="text-center position-relative">
+          <div v-for="partner of bond.partners" :key="partner.id" class="text-center position-relative">
             <div class="image-upload text-center mb-2">
-              <label class="rounded-circle bg-body-tertiary position-relative overflow-hidden border border-5 m-0 mx-md-3 mx-lg-4" :class="{ 'scale-hover': partner1.showAvatar }" style="width: 175px; height: 175px;">
-                <img v-if="partner1.showAvatar" :src="`${getAvatarImage(partner1.hash)}?updated=${partner1.updatedAt}`" width="175" height="175" class="img-fluid" :alt="partner1.name">
-                <img v-else :src="getDefaultAvatar(partner1.id)" width="175" height="175" class="img-fluid" :alt="partner1.name">
+              <label class="rounded-circle bg-body-tertiary position-relative overflow-hidden border border-5 m-0 mx-md-3 mx-lg-4" :class="{ 'scale-hover': partner.showAvatar }" style="width: 175px; height: 175px;">
+                <img v-if="partner.showAvatar" :src="`${getAvatarImage(partner.hash)}?updated=${partner.updatedAt}`" width="175" height="175" class="img-fluid" :alt="partner.name">
+                <img v-else :src="getDefaultAvatar(partner.id)" width="175" height="175" class="img-fluid" :alt="partner.name">
               </label>
             </div>
-            <h4 class="text-center m-0 w-100 position-absolute top-100 px-0 px-lg-2 fst-italic fw-bold">{{ partner1.name }}</h4>
+            <h4 class="text-center m-0 w-100 position-absolute top-100 px-0 px-lg-2 fst-italic fw-bold">{{ partner.name }}</h4>
           </div>
           <div class="position-absolute top-50 start-50 translate-middle z-1 bond-heart d-flex shadow rounded-circle bg-body border border-5 border">
             <Icon name="solar:hearts-bold-duotone" class="img-fluid p-2 p-lg-3 text-primary" />
-          </div>
-          <div class="text-center position-relative">
-            <div class="image-upload text-center mb-2">
-              <label class="rounded-circle bg-body-tertiary position-relative overflow-hidden border border-5 m-0 mx-md-3 mx-lg-4" :class="{ 'scale-hover': partner2.showAvatar }" style="width: 175px; height: 175px;">
-                <img v-if="partner2.showAvatar" :src="`${getAvatarImage(partner2.hash)}?updated=${partner2.updatedAt}`" width="175" height="175" class="img-fluid" :alt="partner2.name">
-                <img v-else :src="getDefaultAvatar(partner2.id)" width="175" height="175" class="img-fluid" :alt="partner2.name">
-              </label>
-            </div>
-            <h4 class="text-center m-0 w-100 position-absolute top-100 px-0 px-lg-2 fst-italic fw-bold">{{ partner2.name }}</h4>
           </div>
         </div>
         <div class="mt-5">
