@@ -21,10 +21,11 @@
     "postinstall": "nuxt prepare",
     "typecheck": "nuxt typecheck",
     "db:migrate": "drizzle-kit generate --config=.config/drizzle.ts",
-    "lint": "pnpm lint:eslint --fix && pnpm lint:stylelint --fix",
+    "lint": "pnpm lint:eslint && pnpm lint:stylelint",
     "lint:eslint": "eslint --config .config/eslint.mjs",
     "lint:stylelint": "stylelint \"**/*.{css,scss,sass}\" --config .config/stylelint.json",
     "lint:eslint:inspect": "npx @eslint/config-inspector --config .config/eslint.mjs",
+    "lint:fix": "pnpm lint:eslint --fix && pnpm lint:stylelint --fix",
     "cf:toml": "npx wrangler pages download config mappedlove",
     "cf:dev": "npm run cf:toml && set NITRO_PRESET=cloudflare-pages&&npm run build && wrangler pages dev dist",
     "docs:dev": "vitepress dev docs",
@@ -73,5 +74,5 @@
     "wrangler": "^3.107.2",
     "zod": "^3.24.1"
   },
-  "packageManager": "pnpm@9.15.4"
+  "packageManager": "pnpm@9.15.5"
 }

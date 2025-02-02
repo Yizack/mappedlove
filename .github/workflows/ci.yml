@@ -33,7 +33,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - run: corepack enable
+      - run: |
+          corepack enable
+          packageManager=$(node -p "require('./package.json').packageManager")
+          SHA_SUM=$(npm view $packageManager dist.shasum)
+          corepack install -g $packageManager+sha1.$SHA_SUM
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -50,7 +54,11 @@ jobs:
   
       steps:
         - uses: actions/checkout@v4
-        - run: corepack enable
+        - run: |
+            corepack enable
+            packageManager=$(node -p "require('./package.json').packageManager")
+            SHA_SUM=$(npm view $packageManager dist.shasum)
+            corepack install -g $packageManager+sha1.$SHA_SUM
         - uses: actions/setup-node@v4
           with:
             node-version: 22
