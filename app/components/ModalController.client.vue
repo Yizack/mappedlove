@@ -1,12 +1,10 @@
 <script setup lang="ts">
-interface ControllerModalModel {
-  isVisible: boolean;
-  show: (callback?: VoidFunction) => Promise<void>;
-  hide: VoidFunction;
-}
-
 defineProps<{
-  modelValue: ControllerModalModel;
+  modelValue: {
+    isVisible: boolean;
+    show: (callback?: VoidFunction) => Promise<void>;
+    hide: VoidFunction;
+  };
   id: string;
   title?: string;
   lg?: boolean;
