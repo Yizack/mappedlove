@@ -18,14 +18,15 @@ jobs:
           node-version: 22
       - run: |
           corepack enable
-          SHA_SUM=$(npm view pnpm@10.1.0 dist.shasum)
-          corepack install -g pnpm@10.1.0+sha1.$SHA_SUM
+          packageManager=$(node -p "require('./package.json').packageManager")
+          SHA_SUM=$(npm view $packageManager dist.shasum)
+          corepack install -g $packageManager+sha1.$SHA_SUM
 
       - name: 📦 Install dependencies
         run: pnpm install
 
       - name: 🔎 Lint (code)
-        run: pnpm lint --fix
+        run: pnpm lint:fix
 
       - name: ⚙️ Auto-fix
         uses: autofix-ci/action@ea32e3a12414e6d3183163c3424a7d7a8631ad84
