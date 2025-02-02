@@ -18,7 +18,7 @@ jobs:
           node-version: 22
       - run: |
           corepack enable
-          $SHA_SUM = npm view pnpm@10.1.0 dist.shasum
+          SHA_SUM=$(npm view pnpm@10.1.0 dist.shasum)
           corepack install -g pnpm@10.1.0+sha1.$SHA_SUM
 
       - name: 📦 Install dependencies
