@@ -335,18 +335,8 @@ export default {
   invalid_payment_data: "Payment data is not valid",
   // Cookies
   cookies_banner_description: "We use our own cookies and third-party cookies so that we can display this website correctly and better understand how this website is used, with a view to improving the services we offer. A decision on cookie usage permissions can be changed anytime using the Cookie Consent Manager located in our Cookie policy page.",
-  cookies_necessary: "Necessary cookies",
   cookies_necessary_title: "Strictly necessary cookies",
   cookies_necessary_description: "These cookies are necessary for the website to function and cannot be disabled in our systems. They are typically only activated in response to actions taken by you that amount to a request for services, such as setting your privacy preferences, logging in, or filling out forms. You can set your browser to block these cookies or warn you about them, but some parts of the website will not work in this case. These cookies do not store any personally identifiable information.",
-  cookies_learn_more: "Learn more and customize",
-  cookies_optional: "Optional cookies",
-  accept: "Accept",
-  accept_all: "Accept all",
-  close: "Close",
-  decline: "Decline",
-  decline_all: "Decline all",
-  settings_unsaved: "You have unsaved settings",
-  here: "here",
   // Billing
   billing_settings: "Billing settings",
   billing: "Billing",

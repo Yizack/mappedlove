@@ -1,9 +1,26 @@
 <script setup lang="ts">
+import type { Locale } from "#cookie-control/types";
+
+const locale = t("lang_code") as Locale;
+const { moduleOptions } = useCookieControl();
+moduleOptions.localeTexts[locale]!.bannerDescription = t("cookies_banner_description");
+moduleOptions.cookies.necessary = [{
+  id: "n",
+  name: t("cookies_necessary_title"),
+  description: t("cookies_necessary_description"),
+  targetCookieIds: ["nuxt-session", "nuxt-color-mode"],
+  links: {
+    "/legal/cookies": t("cookie_policy"),
+    "/legal/privacy": t("privacy_policy"),
+    "/legal/terms": t("terms_of_use")
+  }
+}];
+
 setScrollBehavior();
 
 const { $bootstrap, $toasts } = useNuxtApp();
 
-onMounted(() => {
+onBeforeMount(() => {
   // eslint-disable-next-line no-global-assign
   $fetch = $fetch.create({
     onResponseError: ({ response }) => {
@@ -29,6 +46,8 @@ useSeo({
       <NuxtPage />
     </NuxtLayout>
     <ToastsController />
-    <CookiesController />
+    <ClientOnly>
+      <CookieControl :locale="locale" />
+    </ClientOnly>
   </div>
 </template>

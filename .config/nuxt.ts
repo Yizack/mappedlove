@@ -75,15 +75,7 @@ export default defineNuxtConfig({
     storageKey: "nuxt-color-mode"
   },
   cookieControl: {
-    isControlButtonEnabled: false,
-    cookies: {
-      necessary: [{
-        id: "n",
-        name: "cookies_necessary_title",
-        targetCookieIds: ["nuxt-session", "nuxt-color-mode", "iconify-count", "iconify-version"]
-      }],
-      optional: []
-    }
+    isControlButtonEnabled: false
   },
   mailchannels: {
     from: {

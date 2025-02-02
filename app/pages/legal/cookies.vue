@@ -18,7 +18,7 @@ useSeo({
   <main>
     <div class="col-lg-8 col-xl-9 mx-auto bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
       <h2>COOKIE POLICY</h2>
-      <p><small>Last updated March 09, 2024</small></p>
+      <p><small>Last updated February 02, 2025</small></p>
       <p>This Cookie Policy explains how {{ SITE.name }} ("<strong>we</strong>," "<strong>us</strong>," and "<strong>our</strong>") uses cookies and similar technologies to recognize you when you visit our website at  <NuxtLink to="/">{{ SITE.host }}</NuxtLink> ("<strong>Website</strong>"). It explains what these technologies are and why we use them, as well as your rights to control our use of them.</p>
       <p>In some cases we may use cookies to collect personal information, or that becomes personal information if we combine it with other information.</p>
       <section id="what-are-cookies">
@@ -51,41 +51,13 @@ useSeo({
                 <td>nuxt-session</td>
                 <td>Cookies store</td>
                 <td>Authentication, authorization and session management</td>
-                <td>Until user closes browser</td>
+                <td>Until user closes browser or after 7 days if user selects "Remember me"</td>
               </tr>
               <tr>
                 <td>{{ SITE.name }}</td>
                 <td>nuxt-color-mode</td>
                 <td>Local storage</td>
                 <td>Color mode preference</td>
-                <td>Persistent</td>
-              </tr>
-              <tr>
-                <td>{{ SITE.name }}</td>
-                <td>nuxt-loading-enable-animation</td>
-                <td>Local storage</td>
-                <td>Enable loading animation</td>
-                <td>Persistent</td>
-              </tr>
-              <tr>
-                <td>{{ SITE.name }}</td>
-                <td>iconify-count</td>
-                <td>Local storage</td>
-                <td>Iconify icons count</td>
-                <td>Persistent</td>
-              </tr>
-              <tr>
-                <td>{{ SITE.name }}</td>
-                <td>iconify-version</td>
-                <td>Local storage</td>
-                <td>Iconify icons version</td>
-                <td>Persistent</td>
-              </tr>
-              <tr>
-                <td>{{ SITE.name }}</td>
-                <td>iconify[n]</td>
-                <td>Local storage</td>
-                <td>Iconify icons</td>
                 <td>Persistent</td>
               </tr>
               <tr>
