@@ -18,7 +18,7 @@ moduleOptions.cookies.necessary = [{
 
 setScrollBehavior();
 
-const { $bootstrap, $toasts } = useNuxtApp();
+const { $toasts } = useNuxtApp();
 
 onBeforeMount(() => {
   // eslint-disable-next-line no-global-assign
@@ -28,8 +28,6 @@ onBeforeMount(() => {
       $toasts.add({ message, success: false });
     }
   });
-
-  $bootstrap.hideModalEscEvent();
 });
 
 useSeo({

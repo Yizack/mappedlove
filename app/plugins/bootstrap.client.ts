@@ -99,6 +99,7 @@ declare module "#app" {
 
 export default defineNuxtPlugin(() => {
   const bootstrap = new Bootstrap();
+  bootstrap.hideModalEscEvent();
   return {
     provide: { bootstrap }
   };
