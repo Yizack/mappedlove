@@ -19,7 +19,7 @@ const dragOptions = {
 };
 
 const submitted = ref(false);
-const markerController = useModalController("marker");
+const markerModal = useModal("marker");
 
 const form = useFormState({
   id: 0 as number,
@@ -48,7 +48,7 @@ const selectMarker = (id: number) => {
   emit("select", id);
 };
 
-const markerModal = (marker?: MappedLoveMarker) => {
+const openMarker = (marker?: MappedLoveMarker) => {
   if (!marker) form.reset();
   else {
     form.value = {
@@ -56,7 +56,7 @@ const markerModal = (marker?: MappedLoveMarker) => {
       location: `${marker.lat}, ${marker.lng}`
     };
   }
-  markerController.value.show();
+  markerModal.value.show();
 };
 
 const deleteMarker = async (id: number) => {
@@ -103,7 +103,7 @@ const submitMarker = async () => {
     emit("new", { marker });
   }
   $toasts.add({ message: form.value.id ? t("marker_updated") : t("marker_added") });
-  markerController.value.hide();
+  markerModal.value.hide();
 };
 
 watch(() => props.markers, (value) => {
@@ -115,7 +115,9 @@ watch(() => props.markers, (value) => {
   <div class="position-relative d-flex align-items-center gap-2 mb-2">
     <Icon class="text-primary" name="solar:map-point-favourite-bold" size="2rem" />
     <h2 class="m-0">{{ t("markers") }}</h2>
-    <ButtonAdd @click="markerModal()" />
+    <button class="btn btn-primary btn-sm rounded-circle p-1" role="button" @click="openMarker()">
+      <Icon name="tabler:plus" size="2em" />
+    </button>
     <button v-if="markers.length" type="button" class="btn btn-primary btn-lg ms-auto rounded-pill" @click="edit = !edit">{{ edit ? t("done") : t("edit") }}</button>
   </div>
   <Draggable v-if="markers.length" v-model="markers" class="row g-2" item-key="id" v-bind="dragOptions" :disabled="!edit" @change="move" @start="drag = true" @end="drag = false">
@@ -135,7 +137,7 @@ watch(() => props.markers, (value) => {
         </div>
         <Transition name="fade" mode="out-in">
           <div v-if="edit" class="d-grid gap-1">
-            <button class="btn btn-sm btn-primary" @click="markerModal(marker)">
+            <button class="btn btn-sm btn-primary" @click="openMarker(marker)">
               <Icon name="solar:pen-linear" size="1.5rem" />
             </button>
             <button class="btn btn-sm btn-danger" @click="deleteMarker(marker.id)">
@@ -147,13 +149,13 @@ watch(() => props.markers, (value) => {
     </TransitionGroup>
   </Draggable>
   <p v-else class="m-0">{{ t("no_markers") }}</p>
-  <ModalController id="marker" v-model="markerController" :title="t('marker')" lg>
+  <ControllerModals id="marker" v-model="markerModal" :title="t('marker')" lg>
     <form @submit.prevent="submitMarker">
       <div class="d-flex align-items-center gap-2 mb-2">
         <Icon name="solar:info-circle-linear" class="text-primary flex-shrink-0" />
         <p class="m-0">{{ t("location_info") }}</p>
       </div>
-      <GeoSearch class="mb-2" :value="form.location" @select="selectLocation" />
+      <MapGeoSearch class="mb-2" :value="form.location" @select="selectLocation" />
       <div class="form-floating mb-2">
         <input v-model.trim="form.title" type="text" class="form-control" :placeholder="t('title')" required>
         <label>{{ t("title") }}</label>
@@ -182,7 +184,7 @@ watch(() => props.markers, (value) => {
         </button>
       </div>
     </form>
-  </ModalController>
+  </ControllerModals>
 </template>
 
 <style>

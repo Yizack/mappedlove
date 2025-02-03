@@ -22,7 +22,7 @@ const deleteStory = async (id: number) => {
 const submitted = ref(false);
 const supported = "PNG, JPG, WEBP, GIF";
 const imageRead = ref<string | ArrayBuffer>("");
-const storyController = useModalController("story");
+const storyModal = useModal("story");
 const fileChosen = ref(false);
 const file = ref<File>();
 const maxFileSize = computed(() => {
@@ -40,13 +40,13 @@ const form = useFormState({
   updatedAt: 0 as number | undefined
 });
 
-const storyModal = (story?: MappedLoveStory) => {
+const openStory = (story?: MappedLoveStory) => {
   if (!story) {
     form.reset();
     form.value.marker = props.marker.id;
   }
   else form.value = { ...story, hash: story.hash };
-  storyController.value.show();
+  storyModal.value.show();
 };
 
 const addImage = (event: Event) => {
@@ -85,7 +85,7 @@ const submitStory = async () => {
   if (!story) return;
   emit("new", { story, edit: Boolean(form.value.id) });
   $toasts.add({ message: form.value.id ? t("story_updated") : t("story_added") });
-  storyController.value.hide();
+  storyModal.value.hide();
 };
 
 watch(() => props.marker, () => {
@@ -101,7 +101,9 @@ watch(() => props.marker, () => {
     <Icon class="text-primary" name="solar:chat-square-like-bold" size="2rem" />
     <h2 class="m-0">{{ t("stories") }}</h2>
     <Transition name="bounce">
-      <ButtonAdd v-if="marker.id" @click="storyModal()" />
+      <button v-if="marker.id" class="btn btn-primary btn-sm rounded-circle p-1" role="button" @click="openStory()">
+        <Icon name="tabler:plus" size="2em" />
+      </button>
     </Transition>
   </div>
   <Transition name="tab-left" mode="out-in">
@@ -121,7 +123,7 @@ watch(() => props.marker, () => {
               <template #default="{ item: story }">
                 <div class="card h-100" @mouseenter="deleteButton[story.id] = true" @mouseleave="deleteButton[story.id] = false">
                   <div role="button" class="overflow-hidden scale-hover">
-                    <img :src="`${getStoryImage(story.hash!)}?updated=${story.updatedAt}`" class="card-img-top" @click="storyModal(story)">
+                    <img :src="`${getStoryImage(story.hash!)}?updated=${story.updatedAt}`" class="card-img-top" @click="openStory(story)">
                   </div>
                   <div v-if="story.description" class="card-body border-top">
                     <p class="card-text">{{ story.description }}</p>
@@ -145,7 +147,7 @@ watch(() => props.marker, () => {
       </div>
     </div>
   </Transition>
-  <ModalController id="story" v-model="storyController" :title="t('story')">
+  <ControllerModals id="story" v-model="storyModal" :title="t('story')">
     <form @submit.prevent="submitStory">
       <div class="d-flex align-items-center gap-2 mb-2">
         <Icon name="solar:info-circle-linear" class="text-primary flex-shrink-0" />
@@ -199,5 +201,5 @@ watch(() => props.marker, () => {
         </button>
       </div>
     </form>
-  </ModalController>
+  </ControllerModals>
 </template>

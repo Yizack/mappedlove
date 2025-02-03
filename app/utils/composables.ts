@@ -19,7 +19,7 @@ export const useFormState = <T extends Record<string, unknown>>(initialState: T)
   return data as Ref<T> & typeof methods;
 };
 
-export const useModalController = (id: string) => {
+export const useModal = (id: string) => {
   const { $bootstrap } = useNuxtApp();
   return ref({
     isVisible: false,

@@ -46,7 +46,7 @@ useSeo({
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
-    <ToastsController />
+    <ControllerToasts />
     <ClientOnly>
       <CookieControl :locale="locale" />
     </ClientOnly>

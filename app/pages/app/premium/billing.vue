@@ -28,7 +28,7 @@ const refundForm = useFormState({
   reason: ""
 });
 
-const refundController = useModalController("refund");
+const refundModal = useModal("refund");
 
 const requestRefund = async () => {
   if (!confirm(t("refund_confirm"))) return;
@@ -41,7 +41,7 @@ const requestRefund = async () => {
   if (!res) return;
   const { $toasts } = useNuxtApp();
   $toasts.add({ message: t("refund_requested") });
-  refundController.value.hide();
+  refundModal.value.hide();
   refundForm.value.reason = "";
 };
 
@@ -100,7 +100,7 @@ useSeo({
             <p class="mb-0"><strong>{{ t("billing_manageable") }}</strong></p>
           </div>
           <div v-else-if="billing.subscription?.scheduled_change?.action === 'cancel'" class="text-center">
-            <button class="btn btn-lg btn-primary w-100 rounded-pill" @click="refundController.show();">{{ t("request_refund") }}</button>
+            <button class="btn btn-lg btn-primary w-100 rounded-pill" @click="refundModal.show();">{{ t("request_refund") }}</button>
             <NuxtLink to="/legal/refund" target="_blank" class="small">{{ t("refund_info") }}</NuxtLink>
           </div>
           <div v-else-if="billing.subscription?.management_urls" class="d-flex flex-column flex-lg-row gap-2">
@@ -191,7 +191,7 @@ useSeo({
         </div>
       </div>
     </div>
-    <ModalController v-if="billing.subscription?.scheduled_change?.action === 'cancel' || billing.subscription?.status === 'canceled'" id="refund" v-model="refundController" :title="t('request_refund')">
+    <ControllerModals v-if="billing.subscription?.scheduled_change?.action === 'cancel' || billing.subscription?.status === 'canceled'" id="refund" v-model="refundModal" :title="t('request_refund')">
       <form @submit.prevent="requestRefund">
         <div class="d-flex align-items-center gap-2 mb-2">
           <Icon name="solar:info-circle-linear" class="text-primary flex-shrink-0" />
@@ -208,6 +208,6 @@ useSeo({
           </Transition>
         </button>
       </form>
-    </ModalController>
+    </ControllerModals>
   </div>
 </template>
