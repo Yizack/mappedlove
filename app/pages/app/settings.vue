@@ -10,7 +10,7 @@ const form = useFormState({
   email: user.value.email,
   country: user.value.country,
   birthDate: user.value.birthDate,
-  showAvatar: Boolean(user.value.showAvatar),
+  showAvatar: user.value.showAvatar,
   current_password: "",
   new_password: "",
   confirm_password: ""
@@ -140,7 +140,7 @@ const uploadAvatar = async (event: Event) => {
     fileChosen.value = false;
     return;
   }
-  user.value.showAvatar = 1;
+  user.value.showAvatar = true;
   form.value.showAvatar = true;
   user.value.updatedAt = account.updatedAt;
   $toasts.add({ message: t("avatar_saved") });
@@ -152,7 +152,7 @@ const deleteAvatar = async () => {
     method: "DELETE"
   }).catch(() => null);
   if (!account) return;
-  user.value.showAvatar = 0;
+  user.value.showAvatar = false;
   form.value.showAvatar = false;
   fileChosen.value = false;
   user.value.updatedAt = account.updatedAt;

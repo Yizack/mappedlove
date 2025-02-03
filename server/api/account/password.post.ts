@@ -12,9 +12,9 @@ export default defineEventHandler(async (event): Promise<MappedLoveUser> => {
   const DB = useDB();
   const update = await DB.update(tables.users).set({
     password: hash(form.new_password, secure.salt),
-    auth: 0,
+    auth: false,
     updatedAt: Date.now()
-  }).where(and(eq(tables.users.id, session.user.id), eq(tables.users.auth, 1))).returning({
+  }).where(and(eq(tables.users.id, session.user.id), eq(tables.users.auth, true))).returning({
     auth: tables.users.auth,
     updatedAt: tables.users.updatedAt
   }).get();

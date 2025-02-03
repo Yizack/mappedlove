@@ -6,11 +6,11 @@ declare module "#auth-utils" {
     email: string;
     country: string | null;
     birthDate: number | null;
-    showAvatar: number;
-    confirmed: number;
+    showAvatar: boolean;
+    confirmed: boolean;
     createdAt: number;
     updatedAt: number;
-    auth?: number;
+    auth?: boolean;
     bond?: Omit<MappedLoveBond, "partners"> | null;
   }
   interface UserSession {

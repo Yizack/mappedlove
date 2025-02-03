@@ -5,7 +5,7 @@ export default defineEventHandler(async (event) => {
 
   const body = await readValidatedBody(event, body => z.object({
     coupleDate: z.number().optional().nullable(),
-    public: z.number().optional()
+    public: z.boolean().optional()
   }).safeParse(body));
 
   if (!body.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_bond_data" });

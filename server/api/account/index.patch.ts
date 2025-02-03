@@ -19,7 +19,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveUser> => {
     name: form.name,
     country: form.country,
     birthDate: form.birthDate,
-    showAvatar: form.showAvatar !== undefined ? Number(form.showAvatar) : undefined,
+    showAvatar: form.showAvatar,
     updatedAt: Date.now()
   }).where(eq(tables.users.id, session.user.id)).returning({
     id: tables.users.id,

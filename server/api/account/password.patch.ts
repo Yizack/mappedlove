@@ -14,7 +14,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveUser> => {
   const update = await DB.update(tables.users).set({
     password: hash(form.new_password, secure.salt),
     updatedAt: Date.now()
-  }).where(and(eq(tables.users.id, Number(user.id)), eq(tables.users.password, hash(form.current_password, secure.salt)))).returning().get();
+  }).where(and(eq(tables.users.id, user.id), eq(tables.users.password, hash(form.current_password, secure.salt)))).returning().get();
 
   if (!update) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "password_error" });
   return update;

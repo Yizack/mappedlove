@@ -9,7 +9,7 @@ declare global {
     id: number;
     hash: string;
     name: string;
-    showAvatar: number;
+    showAvatar: boolean;
     country: string | null;
     updatedAt: number;
   }
@@ -30,9 +30,9 @@ declare global {
     partner2: number | null;
     partners?: MappedLovePartner[];
     coupleDate: number | null;
-    bonded: number;
-    public: number;
-    premium: number;
+    bonded: boolean;
+    public: boolean;
+    premium: boolean;
     subscriptionId?: string | null;
     nextPayment: number | null;
     createdAt: number;

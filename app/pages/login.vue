@@ -29,8 +29,7 @@ const signIn = async () => {
     return;
   }
 
-  const { confirmed } = login;
-  needsConfirm.value = Boolean(!confirmed);
+  needsConfirm.value = !login.confirmed;
 
   if (needsConfirm.value) {
     submit.value.loading = false;

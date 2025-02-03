@@ -28,7 +28,7 @@ export default defineEventHandler(async (event) => {
   if (userHash !== code) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "invalid_code" });
 
   const update = await DB.update(tables.users).set({
-    confirmed: 1,
+    confirmed: true,
     updatedAt: Date.now()
   }).where(and(eq(tables.users.id, user.id))).returning({
     email: tables.users.email,

@@ -20,7 +20,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveBond> => {
   const bond = await DB.update(tables.bonds).set({
     partner1: sql`COALESCE(${tables.bonds.partner1}, ${session.user.id})`,
     partner2: sql`COALESCE(${tables.bonds.partner2}, ${session.user.id})`,
-    bonded: 1, // true
+    bonded: true,
     updatedAt: Date.now()
   }).where(and(eq(tables.bonds.code, body.data.code))).returning().get();
 

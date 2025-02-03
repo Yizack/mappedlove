@@ -11,8 +11,8 @@ const insertTestUsers = async (c: number) => {
       name: `Name${i + 1}`,
       country: null,
       birthDate: null,
-      showAvatar: 0,
-      confirmed: 1,
+      showAvatar: false,
+      confirmed: true,
       createdAt: date,
       updatedAt: date
     }).run();
@@ -25,8 +25,8 @@ const createTestBond = async (partner1: number, partner2: number) => {
     partner1,
     partner2,
     code: "QDZV1",
-    bonded: 1,
-    premium: 0,
+    bonded: true,
+    premium: false,
     createdAt: date,
     updatedAt: date
   }).onConflictDoUpdate({

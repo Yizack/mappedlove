@@ -3,7 +3,7 @@ definePageMeta({ layout: "app", middleware: "session" });
 
 const { user } = useUserSession() as MappedLoveSessionComposable;
 const isValidSubscription = computed(() => Boolean(user.value.bond?.subscriptionId));
-const isPremium = computed(() => Boolean(user.value.bond?.premium));
+const isPremium = computed(() => user.value.bond?.premium);
 
 const { data: billing } = await useFetch(`/api/billing/subscription/${user.value.bond?.subscriptionId}`, {
   immediate: isValidSubscription.value,

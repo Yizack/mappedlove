@@ -27,7 +27,7 @@ export default defineEventHandler(async (event) => {
   const today = Date.now();
 
   const update = await DB.update(tables.bonds).set({
-    premium: 1,
+    premium: true,
     nextPayment: today + 1 * 24 * 60 * 60 * 1000, // 1 day grace period
     updatedAt: today
   }).where(and(eq(tables.bonds.id, payment.bondId))).returning({
@@ -38,7 +38,7 @@ export default defineEventHandler(async (event) => {
 
   if (!update) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "bond_not_found" });
 
-  if (transaction.origin === "web" && session.user.bond?.premium === 0) {
+  if (transaction.origin === "web" && !session.user.bond.premium) {
     const html = await render(premiumWelcome, {
       lang: "en"
     });

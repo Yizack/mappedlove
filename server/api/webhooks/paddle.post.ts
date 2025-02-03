@@ -28,7 +28,7 @@ export default defineEventHandler(async (event) => {
   const today = Date.now();
 
   await DB.update(tables.bonds).set({
-    premium: 1,
+    premium: true,
     subscriptionId: subscription.id,
     nextPayment: new Date(subscription.current_billing_period.ends_at).getTime(),
     updatedAt: today

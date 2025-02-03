@@ -20,7 +20,7 @@ export default defineEventHandler(async (event) => {
   const today = Date.now();
 
   const update = await DB.update(tables.users).set({
-    showAvatar: 1,
+    showAvatar: true,
     updatedAt: today
   }).where(eq(tables.users.id, user.id)).returning({
     showAvatar: tables.users.showAvatar,

@@ -9,7 +9,7 @@ const deleteButton = ref(false);
 const coupleTimestamp = ref(props.bond.coupleDate);
 const coupleDate = computed<Date | undefined>(() => coupleTimestamp.value ? new Date(coupleTimestamp.value) : undefined);
 const cacheDate = ref<Date>();
-const isPublic = ref(Boolean(props.bond.public));
+const isPublic = ref(props.bond.public);
 
 const togetherFor = computed(() => getTogetherFor(coupleDate.value));
 const publicURL = computed(() => `${SITE.host}/map/${props.bond.code}`);
@@ -30,7 +30,7 @@ const changePrivacy = async () => {
   const bond = await $fetch("/api/bond", {
     method: "PATCH",
     body: {
-      public: Number(isPublic.value)
+      public: isPublic.value
     }
   }).catch(() => null);
   if (!bond) return;

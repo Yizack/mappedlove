@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
   const DB = useDB();
   const update = await DB.update(tables.bonds).set({
     [`partner${partnerNumber}`]: null,
-    public: 0,
+    public: false,
     updatedAt: Date.now()
   }).where(eq(tables.bonds.id, session.user.bond.id)).returning().get();
 
