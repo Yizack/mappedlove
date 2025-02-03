@@ -13,9 +13,6 @@ env:
   # 7 GiB by default on GitHub, setting to 6 GiB
   # https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources
   NODE_OPTIONS: --max-old-space-size=6144
-  # install playwright binary manually (because pnpm only runs install script once)
-  PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
-
 
 # Remove default permissions of GITHUB_TOKEN for security
 # https://docs.github.com/en/actions/using-jobs/assigning-permissions-to-jobs
@@ -33,14 +30,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - run: |
-          corepack enable
-          packageManager=$(node -p "require('./package.json').packageManager")
-          SHA_SUM=$(npm view $packageManager dist.shasum)
-          corepack install -g $packageManager+sha1.$SHA_SUM
+      - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: lts/*
           cache: "pnpm"
 
       - name: 📦 Install dependencies
@@ -54,14 +47,10 @@ jobs:
   
       steps:
         - uses: actions/checkout@v4
-        - run: |
-            corepack enable
-            packageManager=$(node -p "require('./package.json').packageManager")
-            SHA_SUM=$(npm view $packageManager dist.shasum)
-            corepack install -g $packageManager+sha1.$SHA_SUM
+        - uses: pnpm/action-setup@v4
         - uses: actions/setup-node@v4
           with:
-            node-version: 22
+            node-version: lts/*
             cache: "pnpm"
   
         - name: 📦 Install dependencies
