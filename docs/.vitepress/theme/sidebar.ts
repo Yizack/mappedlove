@@ -31,7 +31,8 @@ export const sidebar: DefaultTheme.Sidebar = [
           { text: "🗝️ Change password", link: "/account/change-password" },
           { text: "💟 Link our accounts", link: "/account/link-accounts" },
           { text: "🛑 Delete my account", link: "/account/delete-account" },
-          { text: "🔓 Account recovery", link: "/account/account-recovery" }
+          { text: "🔓 Account recovery", link: "/account/account-recovery" },
+          { text: "📥 Download data", link: "/account/download-data" }
         ]
       },
       {
