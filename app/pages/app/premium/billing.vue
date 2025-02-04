@@ -105,8 +105,8 @@ useSeo({
           </div>
           <div v-else-if="billing.subscription?.management_urls" class="d-flex flex-column flex-lg-row gap-2">
             <template v-if="billing.subscription.status !== 'canceled'">
-              <NuxtLink v-if="billing.subscription.management_urls.update_payment_method" class="btn btn-lg btn-secondary w-100 rounded-pill" :to="billing.subscription.management_urls.update_payment_method">{{ t("update_payment_method") }}</NuxtLink>
-              <NuxtLink v-if="billing.subscription.management_urls.cancel" class="btn btn-lg btn-danger w-100 rounded-pill" :to="billing.subscription.management_urls.cancel">{{ t("subscription_cancel") }}</NuxtLink>
+              <NuxtLink v-if="billing.subscription.management_urls.update_payment_method" class="btn btn-lg btn-secondary w-100 rounded-pill" :to="billing.subscription.management_urls.update_payment_method" target="_blank">{{ t("update_payment_method") }}</NuxtLink>
+              <NuxtLink v-if="billing.subscription.management_urls.cancel" class="btn btn-lg btn-danger w-100 rounded-pill" :to="billing.subscription.management_urls.cancel" target="_blank">{{ t("subscription_cancel") }}</NuxtLink>
             </template>
           </div>
         </template>
