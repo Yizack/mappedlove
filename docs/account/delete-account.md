@@ -6,7 +6,7 @@
 > [!CAUTION]
 > Please be aware that account deletion is a permanent action. Upon deletion, all your data will be irretrievably erased and cannot be restored. While any files you have uploaded will persist on the server if you have not deleted them, you will lose access to them.
 
-## Still have access to your account?
+## Still have access?
 
 If you still have access to your account, follow these steps to delete your account:
 
@@ -16,16 +16,14 @@ If you still have access to your account, follow these steps to delete your acco
 4. Confirm that you want to delete your account by clicking the **Delete account** button.
 
 
-## Don't have access to your account?
+## Don't have access?
 
 If you no longer have access to your account, follow these steps to delete your account:
 
 ### Option 1: Recover your account
 
-1. Go to the <a href="/recovery" target="_blank">Account Recovery</a> page.
-2. Enter the email address associated with your account.
-3. Follow the instructions to recover your account.
-4. Once you regain access to your account, follow the steps from the previous section to delete your account.
+1. Follow the <a href="/docs/account/account-recovery" target="_blank">Account Recovery</a> guide.
+2. Once you regain access to your account, follow the steps from the previous section to delete your account.
 
 ### Option 2: Submit a request
 
