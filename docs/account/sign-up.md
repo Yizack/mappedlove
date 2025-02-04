@@ -4,16 +4,16 @@ To use MappedLove, you need to create an account. This page explains how to sign
 
 ## Signing up
 
-To create an account go to the <a href="/signup" target="_blank">Sign Up</a> page and fill in the form with the required information.
+To create an account go to the <a href="/signup" target="_blank">Sign up</a> page and fill in the form with the required information.
 
 The sign-up form requires the following information:
 1. **Name**: Any name you want to use.
 2. **Email**: Your email address that you want to use to log in.
 3. **Password**: A password that you want to use to log in.
-4. **Confirm Password**: The same password you entered in the previous field.
-5. **Check Terms of Use and Privacy Policy**: You need to check this box to agree to the terms of use and privacy policy.
+4. **Confirm password**: The same password you entered in the previous field.
+5. **Check Terms of use and Privacy policy**: You need to check this box to agree to the terms of use and privacy policy.
 
-After you have filled in the form, click the **Sign Up** button to create your account.
+After you have filled in the form, click the **Sign up** button to create your account.
 
 ## Confirming your email
 
