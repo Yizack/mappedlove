@@ -5,7 +5,7 @@ export default defineEventHandler(async (event) => {
   }).optional().parse);
 
   const session = await getUserSession(event);
-  let user: MappedLoveUser;
+  let user: User;
 
   if (body && body.code && body.email) {
     const DB = useDB();

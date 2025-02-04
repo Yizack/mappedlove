@@ -14,7 +14,7 @@ declare module "#auth-utils" {
     bond?: Omit<MappedLoveBond, "partners"> | null;
   }
   interface UserSession {
-    user?: MappedLoveUser;
+    user?: User;
     maxAge?: number;
   }
 }

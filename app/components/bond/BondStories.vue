@@ -5,7 +5,7 @@ const props = defineProps<{
 
 const emit = defineEmits(["new", "delete"]);
 const { $toasts } = useNuxtApp();
-const { user } = useUserSession() as MappedLoveSessionComposable;
+const { user } = useUserSession();
 
 const deleteButton = ref<Record<number, boolean>>({});
 
@@ -26,7 +26,7 @@ const storyModal = useModal("story");
 const fileChosen = ref(false);
 const file = ref<File>();
 const maxFileSize = computed(() => {
-  const size = user.value.bond?.premium ? Quota.PREMIUM_IMAGE_FILESIZE : Quota.FREE_IMAGE_FILESIZE;
+  const size = user.value?.bond?.premium ? Quota.PREMIUM_IMAGE_FILESIZE : Quota.FREE_IMAGE_FILESIZE;
   return size.replace("MB", t("mb"));
 });
 

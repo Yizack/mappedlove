@@ -1,11 +1,11 @@
 <script setup lang="ts">
 definePageMeta({ layout: "app", middleware: "session" });
 
-const { user } = useUserSession() as MappedLoveSessionComposable;
-const isValidSubscription = computed(() => Boolean(user.value.bond?.subscriptionId));
-const isPremium = computed(() => user.value.bond?.premium);
+const { user } = useUserSession();
+const isValidSubscription = computed(() => Boolean(user.value?.bond?.subscriptionId));
+const isPremium = computed(() => user.value?.bond?.premium);
 
-const { data: billing } = await useFetch(`/api/billing/subscription/${user.value.bond?.subscriptionId}`, {
+const { data: billing } = await useFetch(`/api/billing/subscription/${user.value?.bond?.subscriptionId}`, {
   immediate: isValidSubscription.value,
   default: () => ({
     subscription: null,
@@ -85,7 +85,7 @@ useSeo({
             </div>
             <div class="col-lg-6">
               <h5>{{ t("bond") }}</h5>
-              <p class="mb-0">{{ user.bond?.code }}</p>
+              <p class="mb-0">{{ user?.bond?.code }}</p>
             </div>
             <div v-if="isPremium && billing.subscription?.current_billing_period" class="col-lg-6">
               <h5 v-if="billing.subscription.scheduled_change?.action === 'cancel'">{{ t("until") }}</h5>

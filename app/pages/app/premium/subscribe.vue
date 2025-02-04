@@ -1,8 +1,8 @@
 <script setup lang="ts">
 definePageMeta({ layout: "app", middleware: "session" });
-const { user, fetch: sessionFetch } = useUserSession() as MappedLoveSessionComposable;
+const { user, fetch: sessionFetch } = useUserSession();
 
-if (!user.value.bond?.id) {
+if (!user.value?.bond?.id) {
   throw createError({
     statusCode: ErrorCode.NOT_FOUND,
     message: t("bond_not_found"),
@@ -21,15 +21,15 @@ const { $paddle, $toasts } = useNuxtApp();
 const initialized = ref(false);
 
 const checkout = async () => {
-  if (user.value.bond?.premium) return;
+  if (user.value!.bond?.premium) return;
   $paddle.Checkout({
     customer: {
-      email: user.value.email
+      email: user.value!.email
     },
     customData: {
-      userId: user.value.id,
-      bondId: user.value.bond?.id ?? "",
-      bondCode: user.value.bond?.code ?? ""
+      userId: user.value!.id,
+      bondId: user.value!.bond?.id ?? "",
+      bondCode: user.value!.bond?.code ?? ""
     }
   });
 };
@@ -43,7 +43,7 @@ onMounted(async () => {
       const subscribe = await $fetch("/api/billing/subscribe", {
         method: "POST",
         body: {
-          bondId: user.value.bond?.id,
+          bondId: user.value!.bond?.id,
           transactionId: data.transaction_id
         }
       }).catch(() => null);
@@ -89,7 +89,7 @@ useSeo({
               <NuxtLink to="/app/premium/billing">{{ t("billing_information") }}</NuxtLink>
             </div>
           </template>
-          <template v-else-if="user.bond?.premium">
+          <template v-else-if="user?.bond?.premium">
             <div class="text-center">
               <Icon name="solar:check-circle-bold" class="text-success" size="5rem" />
               <h1>{{ t("subscribed") }}!</h1>
@@ -123,13 +123,13 @@ useSeo({
                   <div class="col">
                     <div class="mb-3">
                       <label class="form-label">{{ t("bond_id") }}</label>
-                      <input type="text" class="form-control" :value="user.bond?.id" readonly>
+                      <input type="text" class="form-control" :value="user?.bond?.id" readonly>
                     </div>
                   </div>
                   <div class="col">
                     <div class="mb-3">
                       <label class="form-label">{{ t("bond_code") }}</label>
-                      <input type="text" class="form-control" :value="user.bond?.code" readonly>
+                      <input type="text" class="form-control" :value="user?.bond?.code" readonly>
                     </div>
                   </div>
                 </div>

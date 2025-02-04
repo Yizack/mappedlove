@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({ layout: "utils" });
 
-const { user, loggedIn } = useUserSession() as MappedLoveSessionComposable;
+const { user, loggedIn } = useUserSession();
 
 useSeo({
   title: `${t("pricing")} | ${SITE.name}`,

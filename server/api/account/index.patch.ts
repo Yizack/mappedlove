@@ -1,4 +1,4 @@
-export default defineEventHandler(async (event): Promise<MappedLoveUser> => {
+export default defineEventHandler(async (event): Promise<User> => {
   const session = await requireUserSession(event);
 
   const body = await readValidatedBody(event, body => z.object({

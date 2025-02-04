@@ -1,16 +1,16 @@
 <script setup lang="ts">
 definePageMeta({ layout: "app", middleware: "session" });
 
-const { user, clear } = useUserSession() as MappedLoveSessionComposable;
+const { user, clear } = useUserSession();
 const { $colorMode, $countries, $toasts } = useNuxtApp();
 
 const dark = ref($colorMode.preference === "dark");
 const form = useFormState({
-  name: user.value.name,
-  email: user.value.email,
-  country: user.value.country,
-  birthDate: user.value.birthDate,
-  showAvatar: user.value.showAvatar,
+  name: user.value!.name,
+  email: user.value!.email,
+  country: user.value!.country,
+  birthDate: user.value!.birthDate,
+  showAvatar: user.value!.showAvatar,
   current_password: "",
   new_password: "",
   confirm_password: ""
@@ -93,18 +93,18 @@ const changePassword = async () => {
   if (!(isValidPass.value && isValidPasswordCheck(form.value.new_password, form.value.confirm_password))) return;
   submit.value.pass_loading = true;
   const account = await $fetch("/api/account/password", {
-    method: user.value.auth ? "POST" : "PATCH",
+    method: user.value?.auth ? "POST" : "PATCH",
     body: {
-      current_password: user.value.auth ? undefined : form.value.current_password,
+      current_password: user.value?.auth ? undefined : form.value.current_password,
       new_password: form.value.new_password
     }
   }).catch(() => null);
   submit.value.pass_loading = false;
   if (!account) return;
-  if (user.value.auth) user.value.auth = undefined;
+  if (user.value?.auth) user.value.auth = undefined;
   form.value.new_password = "";
   form.value.confirm_password = "";
-  $toasts.add({ message: user.value.auth ? t("password_setup") : t("password_changed") });
+  $toasts.add({ message: user.value?.auth ? t("password_setup") : t("password_changed") });
 };
 
 const imageRead = ref<string | ArrayBuffer>();
@@ -140,9 +140,9 @@ const uploadAvatar = async (event: Event) => {
     fileChosen.value = false;
     return;
   }
-  user.value.showAvatar = true;
+  user.value!.showAvatar = true;
   form.value.showAvatar = true;
-  user.value.updatedAt = account.updatedAt;
+  user.value!.updatedAt = account.updatedAt;
   $toasts.add({ message: t("avatar_saved") });
 };
 
@@ -152,10 +152,10 @@ const deleteAvatar = async () => {
     method: "DELETE"
   }).catch(() => null);
   if (!account) return;
-  user.value.showAvatar = false;
+  user.value!.showAvatar = false;
   form.value.showAvatar = false;
   fileChosen.value = false;
-  user.value.updatedAt = account.updatedAt;
+  user.value!.updatedAt = account.updatedAt;
   imageRead.value = "";
   $toasts.add({ message: t("avatar_deleted") });
 };
@@ -174,7 +174,7 @@ const deleteAccount = async () => {
 
 const downloadData = async () => {
   submit.value.loading = true;
-  navigateTo(`/api/account?id=${user.value.id}`, { external: true });
+  navigateTo(`/api/account?id=${user.value!.id}`, { external: true });
   submit.value.loading = false;
   $toasts.add({ message: t("account_data_request_download_success") });
 };
@@ -188,7 +188,7 @@ useSeo({
 <template>
   <main>
     <div class="row">
-      <div class="col-lg-8 col-xl-6 mx-auto">
+      <div v-if="user" class="col-lg-8 col-xl-6 mx-auto">
         <div class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
           <form @submit.prevent="saveAccount">
             <h3 class="mb-4">{{ t("account") }}</h3>

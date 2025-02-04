@@ -108,7 +108,7 @@ export const passwordCheckClass = (isValid: boolean, password: string, passwordC
   return isValid && isValidPasswordCheck(password, passwordCheck) ? "is-valid" : "is-invalid";
 };
 
-export const updateProfile = (fields: Partial<MappedLoveUser>) => {
+export const updateProfile = (fields: Partial<User>) => {
   const { session } = useUserSession();
   const { user } = session.value;
   if (!user) return;

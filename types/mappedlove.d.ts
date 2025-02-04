@@ -1,10 +1,6 @@
-import type { UserSessionComposable, User, UserSession } from "#auth-utils";
-
 export {};
 
 declare global {
-  type MappedLoveSession = UserSession;
-  type MappedLoveUser = User;
   interface MappedLovePartner {
     id: number;
     hash: string;
@@ -62,7 +58,7 @@ declare global {
     stories: MappedLoveStory[];
   }
   interface MappedLoveAccountData {
-    user: Omit<MappedLoveUser, | "bond"> & {
+    user: Omit<User, | "bond"> & {
       bond?: Omit<MappedLoveBond, "partner1" | "partner2", "partners"> & {
         partners?: Omit<MappedLovePartner, "updatedAt" | "showAvatar" | "hash">[];
         markers?: MappedLoveMarker[];
@@ -80,8 +76,5 @@ declare global {
     imageHeight?: number;
     imageAlt?: string;
     robots?: boolean;
-  }
-  interface MappedLoveSessionComposable extends UserSessionComposable {
-    user: ComputedRef<MappedLoveUser>;
   }
 }

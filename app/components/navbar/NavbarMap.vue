@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { loggedIn, user, clear } = useUserSession() as MappedLoveSessionComposable;
+const { loggedIn, user, clear } = useUserSession();
 const logOut = () => {
   clear();
   navigateTo("/", { replace: true });
@@ -27,7 +27,7 @@ const logOut = () => {
         <div class="offcanvas-body">
           <ul class="navbar-nav ms-auto mb-lg-0 gap-md-3">
             <li class="nav-item" data-bs-dismiss="offcanvas">
-              <div v-if="loggedIn" class="nav-item dropdown">
+              <div v-if="user && loggedIn" class="nav-item dropdown">
                 <button class="button btn btn-primary rounded-pill dropdown-toggle d-flex align-items-center justify-content-center" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <div v-if="user.showAvatar && user.hash" class="image-upload text-center">
                     <label class="rounded-circle bg-body-tertiary position-relative overflow-hidden d-flex" style="width: 24px; height: 24px;">

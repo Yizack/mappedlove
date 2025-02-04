@@ -1,5 +1,5 @@
 export default defineNuxtRouteMiddleware((to) => {
-  const { loggedIn, user } = useUserSession() as MappedLoveSessionComposable;
+  const { loggedIn, user } = useUserSession();
 
   if (!loggedIn.value) return navigateTo("/login", { replace: true });
 

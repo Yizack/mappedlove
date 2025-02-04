@@ -1,6 +1,6 @@
 <script setup lang="ts">
 definePageMeta({ layout: "app", middleware: "session" });
-const { user } = useUserSession() as MappedLoveSessionComposable;
+const { user } = useUserSession();
 
 useSeo({
   title: `${t("premium")} | ${SITE.name}`,
@@ -30,9 +30,9 @@ useSeo({
                       <template v-else>{{ t(feature.name) }}</template>
                     </li>
                   </ul>
-                  <NuxtLink v-if="!user.bond?.premium && plan.name === 'premium'" to="/app/premium/subscribe" class="w-100 btn btn-lg btn-primary rounded-pill">{{ t("subscribe") }}</NuxtLink>
+                  <NuxtLink v-if="!user?.bond?.premium && plan.name === 'premium'" to="/app/premium/subscribe" class="w-100 btn btn-lg btn-primary rounded-pill">{{ t("subscribe") }}</NuxtLink>
                   <button v-else type="button" class="w-100 btn btn-lg btn-primary rounded-pill" disabled>
-                    <span v-if="user.bond?.premium && plan.name === 'free'">{{ t("cancel_to_downgrade") }}</span>
+                    <span v-if="user?.bond?.premium && plan.name === 'free'">{{ t("cancel_to_downgrade") }}</span>
                     <span v-else>{{ t("current_plan") }}</span>
                   </button>
                   <div class="mt-2 text-body-secondary">
