@@ -36,7 +36,9 @@ const signIn = async () => {
     return;
   }
 
-  navigateTo("/app", { external: true, replace: true });
+  const redirect = query.redirect?.toString();
+  const isInternalPath = redirect && redirect.startsWith("/"); // Make sure redirect is an internal path
+  navigateTo(isInternalPath ? redirect : "/app", { external: true, replace: true });
 };
 
 const resendVerification = async () => {
