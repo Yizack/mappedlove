@@ -2,7 +2,8 @@ export default defineNuxtRouteMiddleware((to) => {
   const { loggedIn, user } = useUserSession();
 
   if (!loggedIn.value) {
-    return navigateTo({ name: "login", query: { redirect: to.fullPath } }, { replace: true });
+    const redirect = to.fullPath === "/app" ? undefined : to.fullPath;
+    return navigateTo({ name: "login", query: { redirect } }, { replace: true });
   }
 
   const userBonded = user.value?.bond?.bonded;
