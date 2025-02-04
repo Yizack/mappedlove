@@ -3,7 +3,7 @@ import type { DefaultTheme } from "vitepress/theme";
 export const sidebar: DefaultTheme.Sidebar = [
   {
     text: "Looking for help",
-    collapsed: false,
+    collapsed: true,
     items: [
       {
         text: "Technical Support",
