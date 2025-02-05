@@ -13,10 +13,6 @@ export const months = [
   "december"
 ];
 
-export const getMonth = (date: Date, format: "numeric" | "2-digit" | "long" | "short" | "narrow" = "long") => {
-  return date.toLocaleString(t("lang_code"), { month: format });
-};
-
 export const years = computed(() => {
   const currentYear = new Date().getFullYear();
   const years = [];
@@ -26,11 +22,12 @@ export const years = computed(() => {
   return years;
 });
 
-export const untilNextAnniversary = (date: Date): string => {
+export const untilNextAnniversary = (timestamp: number): string => {
   const today = new Date();
   const startMonth = today.getMonth();
   const startDay = today.getDate();
 
+  const date = new Date(timestamp);
   const endYear = date.getFullYear();
   const endMonth = date.getMonth();
   const endDay = date.getDate();
@@ -68,11 +65,10 @@ export const untilNextAnniversary = (date: Date): string => {
   return result;
 };
 
-export const getTogetherFor = (date?: Date | null) => {
-  if (!date) return {};
-
+export const getTogetherFor = (timestamp: number | null) => {
+  if (!timestamp) return null;
   const today = new Date();
-
+  const date = new Date(timestamp);
   let years = today.getFullYear() - date.getFullYear();
   let months = today.getMonth() - date.getMonth();
   let days = today.getDate() - date.getDate();

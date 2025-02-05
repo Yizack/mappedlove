@@ -51,7 +51,8 @@ export default defineNuxtConfig({
     "nuxt-auth-utils",
     "nuxt-webhook-validators",
     "@nuxthub/core",
-    "nuxt-mailchannels"
+    "nuxt-mailchannels",
+    "nuxt-time"
   ],
   hub: { database: true, blob: true, cache: true },
   icon: {
