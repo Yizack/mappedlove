@@ -248,7 +248,7 @@ useSeo({
               </div>
             </div>
             <ClientOnly>
-              <VueDatePicker v-model="form.birthDate" :format="'yyyy-MM-dd'" :enable-time-picker="false" :locale="t('lang_code')" model-type="timestamp" :dark="$colorMode.preference === 'dark'" @open="datePickerFocus = true" @blur="datePickerFocus = false">
+              <VueDatePicker v-model="form.birthDate" :format="'yyyy-MM-dd'" :enable-time-picker="false" :locale="t('lang_code')" :max-date="new Date()" model-type="timestamp" :dark="$colorMode.preference === 'dark'" @open="datePickerFocus = true" @blur="datePickerFocus = false">
                 <template #trigger>
                   <div class="form-floating mb-2">
                     <input ref="datepicker" class="form-control bg-body" :class="{ focus: datePickerFocus }" :value="form.birthDate ? formatDate(form.birthDate) : ''" @keyup="$e => { form.birthDate = $e.code === 'Backspace' ? null : form.birthDate }">
@@ -259,6 +259,15 @@ useSeo({
                   </div>
                 </template>
               </VueDatePicker>
+              <template #fallback>
+                <div class="form-floating mb-2">
+                  <input ref="datepicker" class="form-control bg-body" :class="{ focus: datePickerFocus }" :value="form.birthDate ? formatDate(form.birthDate) : ''" @keyup="$e => { form.birthDate = $e.code === 'Backspace' ? null : form.birthDate }">
+                  <label class="d-flex align-items-center gap-1">
+                    <Icon name="solar:confetti-minimalistic-line-duotone" />
+                    <span>{{ t("birth_date") }}</span>
+                  </label>
+                </div>
+              </template>
             </ClientOnly>
             <CopyText class="mb-2" :text="user.id.toString()" :placeholder="t('mappedlove_id')" floating />
             <div class="d-grid">
