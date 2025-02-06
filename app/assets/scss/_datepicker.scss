@@ -1,6 +1,10 @@
 /* stylelint-disable selector-class-pattern */
 @use "@vuepic/vue-datepicker/dist/main.css";
 
+:root {
+  --dp-font-family: fredoka;
+}
+
 .dp__theme_dark {
   --dp-primary-color: var(--bs-primary);
   --dp-primary-text-color: var(--bs-body-bg);
