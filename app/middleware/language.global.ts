@@ -1,4 +1,8 @@
-export default defineNuxtRouteMiddleware(async (to) => {
+export default defineNuxtRouteMiddleware(async (to, from) => {
   const language = to.query.lang as typeof localization["code"];
-  if (language) localization.setLanguage(language);
+  localization.setLanguage(language);
+
+  if (from.query.lang && !language) {
+    return navigateTo({ path: to.path, query: { lang: from.query.lang } });
+  }
 });

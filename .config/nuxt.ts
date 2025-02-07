@@ -76,7 +76,8 @@ export default defineNuxtConfig({
     storageKey: "nuxt-color-mode"
   },
   cookieControl: {
-    isControlButtonEnabled: false
+    isControlButtonEnabled: false,
+    locales: ["en", "es"]
   },
   mailchannels: {
     from: {

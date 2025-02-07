@@ -1,10 +1,10 @@
 import en from "~/locales/en";
-// import es from "~/locales/es";
+import es from "~/locales/es";
 
-const strings = { en /* es */ };
+const strings = { en, es };
 
 type Locale = keyof typeof strings;
-export type LocaleKeys = keyof typeof strings.en;
+type LocaleKeys = keyof typeof strings.en;
 
 class Localization {
   constructor (private code: Locale = "en") {}
@@ -17,6 +17,10 @@ class Localization {
 
   setLanguage (code: Locale = "en") {
     this.code = code;
+  }
+
+  getLocales () {
+    return Object.keys(strings) as Locale[];
   }
 }
 
