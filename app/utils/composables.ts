@@ -68,7 +68,13 @@ export const useSeo = (options: MappedLoveSeoOptions) => {
   useHead({
     meta: options.robots ? [] : [{ name: "robots", content: "noindex, nofollow" }],
     link: [
-      { rel: "canonical", href: SITE.host + path }
+      { rel: "canonical", href: SITE.host + path },
+      { rel: "alternate", hreflang: "x-default", href: SITE.host + path },
+      ...localization.getLocales().map(locale => ({
+        rel: "alternate",
+        hreflang: locale,
+        href: SITE.host + (path || "/") + `?lang=${locale}`
+      }))
     ]
   });
 };
