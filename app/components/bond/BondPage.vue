@@ -143,7 +143,7 @@ watch(coupleDate, async (val: number | null) => {
                   </div>
                 </Transition>
               </div>
-              <div class="p-2 bg-secondary rounded-3 shadow-sm">
+              <div class="p-3 bg-secondary rounded-3 shadow-sm">
                 <h4 class="text-center">{{ t("together_for") }}</h4>
                 <div class="text-center d-flex gap-2 gap-lg-5 p-0 px-lg-5">
                   <div v-for="(field, key) in togetherFor" :key="key" class="bg-body py-3 rounded-3 flex-fill">

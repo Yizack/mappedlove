@@ -53,7 +53,7 @@ useSeo({
             <NuxtLink to="/login">{{ t("signin") }}</NuxtLink>
           </p>
         </div>
-        <div v-else class="text-center">
+        <div v-else class="text-center" :style="{ textWrap: 'balance' }">
           <Icon name="solar:mailbox-bold" class="text-primary" size="5rem" />
           <h1>{{ t("recovery_email") }}!</h1>
           <p class="m-0">{{ t("recovery_email_info") }}</p>

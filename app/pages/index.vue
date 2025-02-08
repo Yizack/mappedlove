@@ -11,7 +11,7 @@ useSeo({
 <template>
   <main>
     <section class="banner banner-home bg-secondary text-dark py-5">
-      <div class="container text-center py-5">
+      <div class="container text-center py-5" :style="{ textWrap: 'balance' }">
         <h1 class="display-3"><strong>{{ t("motto") }}</strong></h1>
         <p class="display-6 m-0">{{ t("home_description") }}</p>
       </div>
