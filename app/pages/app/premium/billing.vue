@@ -157,10 +157,10 @@ useSeo({
           <p class="m-0 text-primary"><i>{{ t("transactions_not_found") }}</i></p>
         </div>
       </div>
-      <div v-if="billing.subscription?.scheduled_change?.action === 'cancel' || billing.subscription?.status === 'canceled'" class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
+      <div v-if="billing.adjustments.length" class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
         <h3>{{ t("adjustments") }}</h3>
         <p>{{ t("adjustments_info") }}</p>
-        <div v-if="billing.adjustments.length" class="table-responsive border rounded">
+        <div class="table-responsive border rounded">
           <table class="table table-hover m-0">
             <thead>
               <tr>
@@ -185,9 +185,6 @@ useSeo({
               </tr>
             </tbody>
           </table>
-        </div>
-        <div v-else class="text-center">
-          <p class="m-0 text-primary"><i>{{ t("adjustments_not_found") }}</i></p>
         </div>
       </div>
     </div>
