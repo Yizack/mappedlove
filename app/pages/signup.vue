@@ -81,9 +81,7 @@ useSeo({
               <input v-model="form.password" type="password" class="form-control" :class="passwordClass(isValidPass, form.password)" :placeholder="t('password')" autocomplete="new-password" required @focus="passwordFocus = true" @blur="passwordFocus = false">
               <label class="form-label">{{ t("password") }}</label>
               <Transition name="tab" mode="out-in">
-                <div v-if="passwordFocus" class="position-absolute z-3 shadow mt-2">
-                  <PasswordRequirements v-model="isValidPass" :password="form.password" />
-                </div>
+                <PasswordRequirements v-if="passwordFocus" v-model="isValidPass" :password="form.password" />
               </Transition>
             </div>
             <div class="form-floating mb-2">

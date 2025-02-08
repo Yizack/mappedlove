@@ -17,7 +17,7 @@ watch(() => props.password, () => {
 </script>
 
 <template>
-  <div class="p-4 bg-body-tertiary rounded small">
+  <div class="position-absolute z-3 shadow mt-2 bg-body-tertiary rounded border p-4 small">
     <h4 class="fs-6 fw-medium mb-2">Password requirements:</h4>
     <div class="d-flex align-items-center gap-2" :class="requirements.hasLength ? 'text-success' : 'text-muted'">
       <Icon :name="requirements.hasLength ? 'tabler:check' : 'tabler:x'" />
