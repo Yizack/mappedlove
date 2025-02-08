@@ -24,7 +24,7 @@ useSeo({
                   <h3 class="my-0">{{ t(plan.name) }}</h3>
                 </div>
                 <div class="card-body">
-                  <h1 class="card-title pricing-card-title mb-0">${{ plan.price }}<small class="text-body-secondary fw-light">/{{ t("month").slice(0, 2).toLowerCase() }}</small></h1>
+                  <h1 class="card-title pricing-card-title mb-0">${{ plan.price }}<small class="text-body-secondary fw-light">/{{ t("month").toLowerCase() }}</small></h1>
                   <small class="text-body-secondary">{{ t("price_in_usd") }}</small>
                   <ul class="list-unstyled mt-2 mb-4">
                     <li v-for="(feature, i) of plan.features" :key="i">
