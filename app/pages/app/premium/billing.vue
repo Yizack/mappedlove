@@ -90,7 +90,9 @@ useSeo({
             <div v-if="isPremium && billing.subscription?.current_billing_period" class="col-lg-6">
               <h5 v-if="billing.subscription.scheduled_change?.action === 'cancel'">{{ t("until") }}</h5>
               <h5 v-else>{{ t("next_payment") }}</h5>
-              <p class="mb-0">{{ billing.subscription.current_billing_period.ends_at ? formatDate(new Date(billing.subscription.current_billing_period.ends_at).getTime(), true) : null }}</p>
+              <p class="mb-0">
+                <NuxtTime :datetime="billing.subscription.current_billing_period.ends_at" :locale="t('lang_code')" month="long" day="numeric" year="numeric" hour="numeric" minute="numeric" />
+              </p>
             </div>
           </div>
         </div>
@@ -133,7 +135,9 @@ useSeo({
               <tr v-for="(transaction, i) in billing.transactions" :key="i">
                 <td>{{ t(transaction.origin === "web" ? "payment" : transaction.origin) }}</td>
                 <td>{{ transaction.invoice_number }}</td>
-                <td>{{ formatDate(new Date(transaction.billed_at ? transaction.billed_at : transaction.created_at).getTime(), true) }}</td>
+                <td>
+                  <NuxtTime :datetime="transaction.billed_at ? transaction.billed_at : transaction.created_at" :locale="t('lang_code')" month="long" day="numeric" year="numeric" hour="numeric" minute="numeric" />
+                </td>
                 <td>
                   <span class="badge border rounded-pill" :class="transaction.status === 'completed' ? 'bg-success-subtle text-success border-success' : 'bg-secondary text-primary border-primary'">{{ t(transaction.status) }}</span>
                 </td>
@@ -175,7 +179,9 @@ useSeo({
               <tr v-for="(adjustment, i) in billing.adjustments" :key="i">
                 <td>{{ adjustment.reason }}</td>
                 <td>{{ adjustment.invoice_number }}</td>
-                <td>{{ formatDate(new Date(adjustment.created_at).getTime(), true) }}</td>
+                <td>
+                  <NuxtTime :datetime="adjustment.created_at" :locale="t('lang_code')" month="long" day="numeric" year="numeric" hour="numeric" minute="numeric" />
+                </td>
                 <td>
                   <span class="badge border rounded-pill" :class="adjustment.status === 'approved' ? 'bg-success-subtle text-success border-success' : 'bg-secondary text-primary border-primary'">{{ t(adjustment.status) }}</span>
                 </td>
