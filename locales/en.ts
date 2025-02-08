@@ -1,6 +1,5 @@
 export default {
   lang_code: "en",
-  lang_locale: "en_US",
   // Home
   home_description: "Mark the places you have visited together and preserve your special moments forever",
   strip1_title: "Map Your Journey",

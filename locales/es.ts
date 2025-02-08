@@ -1,6 +1,5 @@
 export default {
   lang_code: "es",
-  lang_locale: "es_ES",
   // Home
   home_description: "Marca los lugares que has visitado junto a tu pareja y conserva tus momentos especiales para siempre",
   strip1_title: "Traza tu camino",
