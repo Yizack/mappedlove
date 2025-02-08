@@ -8,12 +8,6 @@ export const getGroup = (i: number) => {
   return t(groups[i]!.key);
 };
 
-export const formatDate = (time: number, showTime?: boolean) => {
-  const date = new Date(time);
-  if (showTime) return date.toLocaleString(t("lang_code"), { month: "long", day: "numeric", year: "numeric", hour: "numeric", minute: "numeric", hour12: false });
-  return date.toLocaleString(t("lang_code"), { month: "long", day: "numeric", year: "numeric" });
-};
-
 export const animate = ref(true);
 
 export const animateElements = () => {

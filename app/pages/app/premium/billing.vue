@@ -91,7 +91,7 @@ useSeo({
               <h5 v-if="billing.subscription.scheduled_change?.action === 'cancel'">{{ t("until") }}</h5>
               <h5 v-else>{{ t("next_payment") }}</h5>
               <p class="mb-0">
-                <NuxtTime :datetime="billing.subscription.current_billing_period.ends_at" :locale="t('lang_code')" month="long" day="numeric" year="numeric" hour="numeric" minute="numeric" />
+                <NuxtTime :datetime="billing.subscription.current_billing_period.ends_at" v-bind="timeOptions.full" />
               </p>
             </div>
           </div>
@@ -136,7 +136,7 @@ useSeo({
                 <td>{{ t(transaction.origin === "web" ? "payment" : transaction.origin) }}</td>
                 <td>{{ transaction.invoice_number }}</td>
                 <td>
-                  <NuxtTime :datetime="transaction.billed_at ? transaction.billed_at : transaction.created_at" :locale="t('lang_code')" month="long" day="numeric" year="numeric" hour="numeric" minute="numeric" />
+                  <NuxtTime :datetime="transaction.billed_at ? transaction.billed_at : transaction.created_at" v-bind="timeOptions.full" />
                 </td>
                 <td>
                   <span class="badge border rounded-pill" :class="transaction.status === 'completed' ? 'bg-success-subtle text-success border-success' : 'bg-secondary text-primary border-primary'">{{ t(transaction.status) }}</span>
@@ -180,7 +180,7 @@ useSeo({
                 <td>{{ adjustment.reason }}</td>
                 <td>{{ adjustment.invoice_number }}</td>
                 <td>
-                  <NuxtTime :datetime="adjustment.created_at" :locale="t('lang_code')" month="long" day="numeric" year="numeric" hour="numeric" minute="numeric" />
+                  <NuxtTime :datetime="adjustment.created_at" v-bind="timeOptions.full" />
                 </td>
                 <td>
                   <span class="badge border rounded-pill" :class="adjustment.status === 'approved' ? 'bg-success-subtle text-success border-success' : 'bg-secondary text-primary border-primary'">{{ t(adjustment.status) }}</span>

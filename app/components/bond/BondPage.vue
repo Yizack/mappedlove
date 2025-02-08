@@ -87,7 +87,7 @@ watch(coupleDate, async (val: number | null) => {
           <Transition name="tab" mode="out-in">
             <div v-if="!coupleDate">
               <ClientOnly>
-                <VueDatePicker v-model="coupleDate" :format="'yyyy-MM-dd'" :enable-time-picker="false" :locale="t('lang_code')" :max-date="new Date()" :dark="$colorMode.preference === 'dark'" model-type="timestamp">
+                <VueDatePicker v-model="coupleDate" v-bind="datePickerOptions.timestamp">
                   <template #trigger>
                     <div class="p-2 border rounded-3 hover" role="button">
                       <div class="d-flex align-items-center justify-content-center gap-1">
@@ -112,10 +112,10 @@ watch(coupleDate, async (val: number | null) => {
                 <div class="rounded-3 bg-secondary d-flex align-items-center justify-content-center" :style="{ width: '4.375rem', height: '4.375rem' }">
                   <div class="text-primary text-center">
                     <h4 class="m-0 fw-bold">
-                      <NuxtTime :datetime="coupleDate" day="numeric" />
+                      <NuxtTime :datetime="coupleDate" v-bind="timeOptions.day" />
                     </h4>
                     <span class="fw-bold">
-                      <NuxtTime :datetime="coupleDate" month="short" :locale="t('lang_code')" />
+                      <NuxtTime :datetime="coupleDate" v-bind="timeOptions.monthName" />
                     </span>
                   </div>
                 </div>
@@ -132,7 +132,7 @@ watch(coupleDate, async (val: number | null) => {
                       <Icon name="solar:trash-bin-trash-linear" size="1.5rem" class="text-danger" />
                     </button>
                     <ClientOnly>
-                      <VueDatePicker v-model="coupleDate" :format="'yyyy-MM-dd'" :enable-time-picker="false" :locale="t('lang_code')" :max-date="new Date()" :dark="$colorMode.preference === 'dark'" model-type="timestamp">
+                      <VueDatePicker v-model="coupleDate" v-bind="datePickerOptions.timestamp">
                         <template #trigger>
                           <button class="btn btn-sm border-0" :title="t('delete')">
                             <Icon name="solar:pen-outline" size="1.5rem" />

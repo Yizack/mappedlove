@@ -86,3 +86,38 @@ export const getTogetherFor = (timestamp: number | null) => {
 
   return { years, months, days };
 };
+
+export const formatDate = (time: number | null) => {
+  if (!time) return "";
+  const date = new Date(time);
+  return date.toLocaleString(t("lang_code"), { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" });
+};
+
+export const timeOptions: Record<string, Intl.DateTimeFormatOptions & { locale?: string }> = {
+  day: {
+    day: "numeric"
+  },
+  monthName: {
+    locale: t("lang_code"),
+    month: "short"
+  },
+  full: {
+    locale: t("lang_code"),
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+    hour: "numeric",
+    minute: "numeric"
+  }
+};
+
+export const datePickerOptions = {
+  timestamp: {
+    locale: t("lang_code"),
+    modelType: "timestamp",
+    format: "yyyy-MM-dd",
+    enableTimePicker: false,
+    maxDate: new Date(),
+    dark: import.meta.client && useColorMode().preference === "dark"
+  }
+} as const;
