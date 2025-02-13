@@ -1,8 +1,6 @@
 export default defineOAuthGoogleEventHandler({
   config: {
-    scope: [
-      "https://www.googleapis.com/auth/userinfo.email"
-    ]
+    scope: ["email"]
   },
   async onSuccess (event, { user: _user }) {
     const DB = useDB();

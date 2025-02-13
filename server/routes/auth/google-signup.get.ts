@@ -3,10 +3,7 @@ import accountVerify from "~~/email/accountVerify.vue";
 
 export default defineOAuthGoogleEventHandler({
   config: {
-    scope: [
-      "https://www.googleapis.com/auth/userinfo.email",
-      "https://www.googleapis.com/auth/userinfo.profile"
-    ]
+    scope: ["email", "profile"]
   },
   async onSuccess (event, { user: google }) {
     const config = useRuntimeConfig(event);
