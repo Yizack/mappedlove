@@ -103,7 +103,7 @@ useSeo({
                 </Transition>
               </button>
               <span class="text-center fw-semibold">{{ t("or") }}</span>
-              <NuxtLink external to="/auth/google-signup" class="btn btn-outline-dark btn-lg rounded-pill d-flex align-items-center justify-content-center gap-2">
+              <NuxtLink external to="/auth/google/signup" class="btn btn-outline-dark btn-lg rounded-pill d-flex align-items-center justify-content-center gap-2">
                 <Icon name="logos:google-icon" />
                 <span>{{ t("signup_google") }}</span>
               </NuxtLink>
