@@ -143,7 +143,7 @@ useSeo({
       <div ref="canvasBody" class="offcanvas-body p-0">
         <div v-if="marker">
           <div class="p-3 border-bottom">
-            <p>{{ marker.description }}</p>
+            <p v-if="marker.description">{{ marker.description }}</p>
             <div class="d-flex gap-1 mb-2" :title="t(groups[marker.group]!.key)">
               <strong>{{ t("group") }}:</strong>
               <Icon :name="groups[marker.group]!.icon" class="text-primary" size="1.5rem" />
