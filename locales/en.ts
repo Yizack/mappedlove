@@ -98,6 +98,7 @@ export default {
   delete_bond: "Delete bond",
   premium_owner_leaving: "Please cancel your premium subscription before leaving the bond",
   need_bond: "You need a bond to access this page",
+  upcoming_dates: "Upcoming dates",
   // Markers
   marker: "Marker",
   markers: "Markers",

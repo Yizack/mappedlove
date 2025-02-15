@@ -171,7 +171,7 @@ watch(coupleDate, async (val: number | null) => {
         </div>
       </div>
       <div v-if="upcomingDates.length > 0" class="my-2 bg-body rounded-3 px-3 py-4 p-lg-4">
-        <h3>Upcoming dates</h3>
+        <h3>{{ t("upcoming_dates") }}</h3>
         <div class="d-flex flex-column gap-2">
           <template v-for="(upcoming, i) of upcomingDates" :key="i">
             <div class="p-2 d-flex gap-3 border rounded-3 position-relative">
