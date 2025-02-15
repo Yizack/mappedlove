@@ -196,22 +196,22 @@ watch(coupleDate, async (val: number | null) => {
           </template>
         </div>
       </div>
-      <div class="my-2 bg-body rounded-3 px-3 py-4 p-lg-4">
+      <div class="mt-2 bg-body rounded-3 px-3 py-4 p-lg-4">
         <h3>{{ t("bond_preferences") }}</h3>
-        <div class="form-check form-switch d-flex gap-2 align-items-center">
+        <div class="mb-2 form-check form-switch d-flex gap-2 align-items-center">
           <input v-model="isPublic" class="form-check-input" type="checkbox" role="switch" @change="changePrivacy">
           <label class="form-check-label">{{ t("public_bond") }}</label>
           <Icon name="solar:question-circle-linear" class="text-primary outline-none" role="button" size="1.3rem" data-bs-toggle="popover" :data-bs-content="t('public_bond_info')" />
         </div>
-        <div v-if="isPublic" class="mt-2">
+        <div v-if="isPublic" class="mb-2">
           <p class="m-0">{{ t("share_bond_info") }}</p>
           <CopyText :text="publicURL" />
         </div>
+        <a href="#" class="d-flex align-items-center gap-2" @click="leaveBond">
+          <Icon name="solar:exit-bold" />
+          {{ t("leave_bond") }}
+        </a>
       </div>
-      <a href="#" class="d-flex align-items-center justify-content-end gap-2" @click="leaveBond">
-        <Icon name="solar:exit-bold" />
-        {{ t("leave_bond") }}
-      </a>
     </div>
   </div>
 </template>
