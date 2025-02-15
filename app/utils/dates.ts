@@ -22,7 +22,7 @@ export const years = computed(() => {
   return years;
 });
 
-export const untilNextAnniversary = (timestamp: number): string => {
+export const getUntilDate = (timestamp: number): string => {
   const today = new Date();
   const startMonth = today.getMonth();
   const startDay = today.getDate();
@@ -90,7 +90,7 @@ export const getTogetherFor = (timestamp: number | null) => {
 export const formatDate = (time: number | null) => {
   if (!time) return "";
   const date = new Date(time);
-  return date.toLocaleString(t("lang_code"), { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" });
+  return date.toLocaleString(t("lang_code"), { month: "long", day: "numeric", year: "numeric" });
 };
 
 export const timeOptions: Record<string, Intl.DateTimeFormatOptions & { locale?: string }> = {

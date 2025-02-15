@@ -45,6 +45,20 @@ const leaveBond = async () => {
   emit("bond", { bond: null, type: "leave" });
 };
 
+const upcomingDates = computed(() => {
+  const dates: { title: string, date: number }[] = [];
+  if (!props.bond.partners?.some(partner => partner.birthDate)) return dates;
+  dates.push(
+    ...props.bond.partners
+      .filter(partner => partner.birthDate)
+      .map(partner => ({
+        title: `${t("birthday")}: ${partner.name}`,
+        date: partner.birthDate!
+      }))
+  );
+  return dates.sort((a, b) => a.date - b.date);
+});
+
 onMounted(() => {
   cacheDate.value = coupleDate.value;
   $bootstrap.initializePopover();
@@ -124,7 +138,7 @@ watch(coupleDate, async (val: number | null) => {
                     <Icon name="solar:heart-lock-outline" size="1.4rem" class="text-primary" />
                     <h5 class="m-0">{{ t("anniversary") }}</h5>
                   </div>
-                  <p class="m-0">{{ untilNextAnniversary(coupleDate) }}</p>
+                  <p class="m-0">{{ getUntilDate(coupleDate) }}</p>
                 </div>
                 <Transition name="fade">
                   <div v-if="deleteButton" class="position-absolute top-0 end-0 m-2 d-flex flex-column">
@@ -154,6 +168,32 @@ watch(coupleDate, async (val: number | null) => {
               </div>
             </div>
           </Transition>
+        </div>
+      </div>
+      <div v-if="upcomingDates.length > 0" class="my-2 bg-body rounded-3 px-3 py-4 p-lg-4">
+        <h3>Upcoming dates</h3>
+        <div class="d-flex flex-column gap-2">
+          <template v-for="(upcoming, i) of upcomingDates" :key="i">
+            <div class="p-2 d-flex gap-3 border rounded-3 position-relative">
+              <div class="rounded-3 bg-secondary d-flex align-items-center justify-content-center" :style="{ width: '4.375rem', height: '4.375rem' }">
+                <div class="text-primary text-center">
+                  <h4 class="m-0 fw-bold">
+                    <NuxtTime :datetime="upcoming.date" v-bind="timeOptions.day" time-zone="UTC" />
+                  </h4>
+                  <span class="fw-bold">
+                    <NuxtTime :datetime="upcoming.date" v-bind="timeOptions.monthName" time-zone="UTC" />
+                  </span>
+                </div>
+              </div>
+              <div>
+                <div class="d-flex align-items-center gap-1">
+                  <Icon name="tabler:cake" size="1.4rem" class="text-primary" />
+                  <h5 class="m-0">{{ upcoming.title }}</h5>
+                </div>
+                <p class="m-0">{{ getUntilDate(upcoming.date) }}</p>
+              </div>
+            </div>
+          </template>
         </div>
       </div>
       <div class="my-2 bg-body rounded-3 px-3 py-4 p-lg-4">

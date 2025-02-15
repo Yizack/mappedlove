@@ -6,6 +6,7 @@ declare global {
     hash: string;
     name: string;
     showAvatar: boolean;
+    birthDate: number | null;
     country: string | null;
     updatedAt: number;
   }

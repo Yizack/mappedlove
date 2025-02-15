@@ -28,6 +28,7 @@ export const getPartners = async (event: H3Event, DB: ReturnType<typeof useDB>, 
     id: tables.users.id,
     name: tables.users.name,
     showAvatar: tables.users.showAvatar,
+    birthDate: tables.users.birthDate,
     country: tables.users.country,
     updatedAt: tables.users.updatedAt
   }).from(tables.users).where(or(eq(tables.users.id, bond.partner1!), eq(tables.users.id, bond.partner2!))).limit(2).all();

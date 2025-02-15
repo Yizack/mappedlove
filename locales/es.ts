@@ -194,6 +194,8 @@ export default {
   october: "Octubre",
   november: "Noviembre",
   december: "Diciembre",
+  birthday: "Cumpleaños",
+  valentines_day: "Día de San Valentín",
   // Not related errors
   error_any: "Algo salió mal.",
   error_occurred: "Lo sentimos, ha ocurrido un error",
