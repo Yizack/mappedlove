@@ -1,6 +1,6 @@
 export default defineNuxtRouteMiddleware(async (to, from) => {
   const { user } = useUserSession();
-  const languageFromQuery = to.query.lang as MappedLoveLocales;
+  const languageFromQuery = to.query.lang?.toString().toLowerCase() as MappedLoveLocales;
   const languageFromUser = user.value?.language;
 
   if (languageFromQuery) {
