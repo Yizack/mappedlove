@@ -20,7 +20,10 @@ class Localization {
   }
 
   getLocales () {
-    return Object.keys(strings) as Locale[];
+    return [
+      { code: "en", name: "English" },
+      { code: "es", name: "Español" }
+    ] as const;
   }
 }
 

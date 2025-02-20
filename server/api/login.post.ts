@@ -30,6 +30,7 @@ export default defineEventHandler(async (event) => {
     birthDate: tables.users.birthDate,
     showAvatar: tables.users.showAvatar,
     confirmed: tables.users.confirmed,
+    language: tables.users.language,
     createdAt: tables.users.createdAt,
     updatedAt: tables.users.updatedAt,
     bond: tables.bonds

@@ -178,10 +178,10 @@ watch(coupleDate, async (val: number | null) => {
               <div class="rounded-3 bg-secondary d-flex align-items-center justify-content-center" :style="{ width: '4.375rem', height: '4.375rem' }">
                 <div class="text-primary text-center">
                   <h4 class="m-0 fw-bold">
-                    <NuxtTime :datetime="upcoming.date" v-bind="timeOptions.day" time-zone="UTC" />
+                    <NuxtTime :datetime="upcoming.date" v-bind="timeOptions.day" />
                   </h4>
                   <span class="fw-bold">
-                    <NuxtTime :datetime="upcoming.date" v-bind="timeOptions.monthName" time-zone="UTC" />
+                    <NuxtTime :datetime="upcoming.date" v-bind="timeOptions.monthName" />
                   </span>
                 </div>
               </div>

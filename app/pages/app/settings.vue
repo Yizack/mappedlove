@@ -11,6 +11,7 @@ const form = useFormState({
   country: user.value!.country,
   birthDate: user.value!.birthDate,
   showAvatar: user.value!.showAvatar,
+  language: user.value!.language,
   current_password: "",
   new_password: "",
   confirm_password: ""
@@ -105,6 +106,20 @@ const changePassword = async () => {
   form.value.new_password = "";
   form.value.confirm_password = "";
   $toasts.add({ message: user.value?.auth ? t("password_setup") : t("password_changed") });
+};
+
+const changeLanguage = async () => {
+  if (form.value.language === user.value?.language) return;
+  const account = await $fetch("/api/account", {
+    method: "PATCH",
+    body: {
+      language: form.value.language
+    }
+  }).catch(() => null);
+  if (!account) return;
+  updateProfile({ language: form.value.language });
+  localization.setLanguage(form.value.language);
+  $toasts.add({ message: t("account_saved") });
 };
 
 const imageRead = ref<string | ArrayBuffer>();
@@ -252,7 +267,7 @@ useSeo({
               </div>
             </div>
             <ClientOnly>
-              <VueDatePicker v-model="form.birthDate" v-bind="datePickerOptions.timestamp" timezone="UTC" @open="datePickerFocus = true" @blur="datePickerFocus = false">
+              <VueDatePicker v-model="form.birthDate" v-bind="datePickerOptions.timestamp" @open="datePickerFocus = true" @blur="datePickerFocus = false">
                 <template #trigger>
                   <div class="form-floating mb-2">
                     <input ref="datepicker" class="form-control bg-body" :class="{ focus: datePickerFocus }" :value="formatDate(form.birthDate)" @keyup="backSpaceToNull">
@@ -286,13 +301,24 @@ useSeo({
         </div>
         <div class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
           <h3 class="mb-4">{{ t("preferences") }}</h3>
-          <div class="form-check form-switch d-flex gap-2 align-items-center">
-            <input v-model="form.showAvatar" class="form-check-input" type="checkbox" role="switch" @change="showAvatar">
-            <label class="form-check-label">{{ t("show_avatar") }}</label>
+          <div class="mb-2">
+            <div class="form-check form-switch d-flex gap-2 align-items-center">
+              <input v-model="form.showAvatar" class="form-check-input" type="checkbox" role="switch" @change="showAvatar">
+              <label class="form-check-label">{{ t("show_avatar") }}</label>
+            </div>
+            <div class="form-check form-switch d-flex gap-2 align-items-center">
+              <input v-model="dark" class="form-check-input" type="checkbox" role="switch" @change="changeColorMode">
+              <label class="form-check-label">{{ t("dark_mode") }}</label>
+            </div>
           </div>
-          <div class="form-check form-switch d-flex gap-2 align-items-center">
-            <input v-model="dark" class="form-check-input" type="checkbox" role="switch" @change="changeColorMode">
-            <label class="form-check-label">{{ t("dark_mode") }}</label>
+          <div class="form-floating mb-2">
+            <select v-model="form.language" class="form-select" @change="changeLanguage">
+              <option v-for="locale of localization.getLocales()" :key="locale.code" :value="locale.code">{{ locale.name }}</option>
+            </select>
+            <label class="d-flex align-items-center gap-1">
+              <Icon name="tabler:language" />
+              <span>{{ t("language") }}</span>
+            </label>
           </div>
         </div>
         <div class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">

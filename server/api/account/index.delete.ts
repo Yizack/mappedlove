@@ -5,7 +5,7 @@ export default defineEventHandler(async (event) => {
   }).optional().parse);
 
   const session = await getUserSession(event);
-  let user: User;
+  let user: Pick<User, "id" | "email" | "updatedAt" | "bond">;
 
   if (body && body.code && body.email) {
     const DB = useDB();
@@ -14,11 +14,6 @@ export default defineEventHandler(async (event) => {
       id: tables.users.id,
       name: tables.users.name,
       email: tables.users.email,
-      country: tables.users.country,
-      birthDate: tables.users.birthDate,
-      showAvatar: tables.users.showAvatar,
-      confirmed: tables.users.confirmed,
-      createdAt: tables.users.createdAt,
       updatedAt: tables.users.updatedAt,
       bond: tables.bonds
     }).from(tables.users).leftJoin(tables.bonds, or(

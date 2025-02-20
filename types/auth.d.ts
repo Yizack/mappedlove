@@ -8,6 +8,7 @@ declare module "#auth-utils" {
     birthDate: number | null;
     showAvatar: boolean;
     confirmed: boolean;
+    language: MappedLoveLocales;
     createdAt: number;
     updatedAt: number;
     auth?: boolean;

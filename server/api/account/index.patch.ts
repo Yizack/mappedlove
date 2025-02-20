@@ -1,3 +1,5 @@
+import { localization } from "~~/shared/utils/localization";
+
 export default defineEventHandler(async (event): Promise<User> => {
   const session = await requireUserSession(event);
 
@@ -5,7 +7,8 @@ export default defineEventHandler(async (event): Promise<User> => {
     name: z.string().optional(),
     country: z.string().nullable().optional(),
     birthDate: z.number().nullable().optional(),
-    showAvatar: z.boolean().optional()
+    showAvatar: z.boolean().optional(),
+    language: z.enum(localization.getLocales().map(l => l.code) as [MappedLoveLocales]).optional()
   }).safeParse(body));
 
   if (!body.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_user_data" });
@@ -20,6 +23,7 @@ export default defineEventHandler(async (event): Promise<User> => {
     country: form.country,
     birthDate: form.birthDate,
     showAvatar: form.showAvatar,
+    language: form.language,
     updatedAt: Date.now()
   }).where(eq(tables.users.id, session.user.id)).returning({
     id: tables.users.id,
@@ -28,6 +32,7 @@ export default defineEventHandler(async (event): Promise<User> => {
     country: tables.users.country,
     birthDate: tables.users.birthDate,
     showAvatar: tables.users.showAvatar,
+    language: tables.users.language,
     confirmed: tables.users.confirmed,
     createdAt: tables.users.createdAt,
     updatedAt: tables.users.updatedAt

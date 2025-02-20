@@ -11,6 +11,7 @@ export default defineOAuthGoogleEventHandler({
       country: tables.users.country,
       birthDate: tables.users.birthDate,
       showAvatar: tables.users.showAvatar,
+      language: tables.users.language,
       auth: tables.users.auth,
       confirmed: tables.users.confirmed,
       createdAt: tables.users.createdAt,

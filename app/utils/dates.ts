@@ -111,13 +111,13 @@ export const timeOptions: Record<string, Intl.DateTimeFormatOptions & { locale?:
   }
 };
 
-export const datePickerOptions = {
+export const datePickerOptions = computed(() => ({
   timestamp: {
-    locale: t("lang_code"),
+    locale: useUserSession().user.value?.language,
     modelType: "timestamp",
     format: "yyyy-MM-dd",
     enableTimePicker: false,
     maxDate: new Date(),
     dark: import.meta.client && useColorMode().preference === "dark"
   }
-} as const;
+} as const));

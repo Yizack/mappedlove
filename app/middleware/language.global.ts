@@ -1,8 +1,16 @@
 export default defineNuxtRouteMiddleware(async (to, from) => {
-  const language = to.query.lang as typeof localization["code"];
-  localization.setLanguage(language);
+  const { user } = useUserSession();
+  const languageFromQuery = to.query.lang as MappedLoveLocales;
+  const languageFromUser = user.value?.language;
 
-  if (from.query.lang && !language) {
+  if (languageFromQuery) {
+    localization.setLanguage(languageFromQuery);
+  }
+  else {
+    localization.setLanguage(languageFromUser);
+  }
+
+  if (from.query.lang && !languageFromQuery) {
     return navigateTo({ path: to.path, query: { lang: from.query.lang } });
   }
 });

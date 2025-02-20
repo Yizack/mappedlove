@@ -13,31 +13,22 @@ export default defineEventHandler(async (event) => {
 
   const DB = useDB();
 
-  const user = await DB.select({
-    id: tables.users.id,
-    name: tables.users.name,
-    email: tables.users.email,
-    country: tables.users.country,
-    birthDate: tables.users.birthDate,
-    showAvatar: tables.users.showAvatar,
-    confirmed: tables.users.confirmed,
-    createdAt: tables.users.createdAt,
-    updatedAt: tables.users.updatedAt,
+  const data = await DB.select({
+    user: tables.users,
     bond: tables.bonds
   }).from(tables.users).leftJoin(tables.bonds, or(
     eq(tables.bonds.partner1, tables.users.id),
     eq(tables.bonds.partner2, tables.users.id)
   )).where(userEq).get();
 
-  if (!user) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "user_not_found" });
+  if (!data) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "user_not_found" });
+  const { password, ...user } = data.user; // Removes the password field from the user object
+  const config = useRuntimeConfig (event);
 
-  const config = useRuntimeConfig(event);
   if (!id) {
     const fields = [user.id, user.email, user.updatedAt, config.secure.salt];
     const codeHash = hash(fields.join());
-
     if (codeHash !== code) throw createError({ statusCode: ErrorCode.FORBIDDEN, message: "code_mismatch" });
-
     if (isCodeDateExpired(user.updatedAt)) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "account_data_expired" });
   }
 
@@ -48,7 +39,7 @@ export default defineEventHandler(async (event) => {
     }
   };
 
-  const bond = user.bond;
+  const bond = data.bond;
   if (bond) {
     const bondData = {
       ...bond,

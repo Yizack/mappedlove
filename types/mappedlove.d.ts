@@ -1,4 +1,4 @@
-export {};
+import type { localization } from "#shared/utils/localization";
 
 declare global {
   interface MappedLovePartner {
@@ -78,4 +78,8 @@ declare global {
     imageAlt?: string;
     robots?: boolean;
   }
+
+  type MappedLoveLocales = typeof localization["code"];
 }
+
+export {};

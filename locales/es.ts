@@ -209,6 +209,7 @@ export default {
   new_password: "Nueva contraseña",
   show_avatar: "Mostrar avatar",
   dark_mode: "Modo oscuro",
+  language: "Idioma",
   change_password: "Cambiar contraseña",
   setup_password: "Configurar contraseña",
   country: "País",
