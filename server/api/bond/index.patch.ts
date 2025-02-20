@@ -3,10 +3,10 @@ export default defineEventHandler(async (event) => {
 
   if (!user.bond) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "bond_not_found" });
 
-  const body = await readValidatedBody(event, body => z.object({
+  const body = await readValidatedBody(event, z.object({
     coupleDate: z.number().optional().nullable(),
     public: z.boolean().optional()
-  }).safeParse(body));
+  }).safeParse);
 
   if (!body.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_bond_data" });
 

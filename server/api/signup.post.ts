@@ -2,12 +2,12 @@ import { render } from "@vue-email/render";
 import accountVerify from "~~/email/accountVerify.vue";
 
 export default defineEventHandler(async (event) => {
-  const body = await readValidatedBody(event, body => z.object({
+  const body = await readValidatedBody(event, z.object({
     email: z.string(),
     password: z.string(),
     name: z.string(),
     turnstile: z.string()
-  }).safeParse(body));
+  }).safeParse);
 
   if (!body.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_signup_data" });
 

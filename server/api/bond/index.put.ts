@@ -11,9 +11,9 @@ export default defineEventHandler(async (event): Promise<MappedLoveBond> => {
 
   if (bondExists) throw createError({ statusCode: ErrorCode.CONFLICT, message: "bond_exists" });
 
-  const body = await readValidatedBody(event, body => z.object({
+  const body = await readValidatedBody(event, z.object({
     code: z.string()
-  }).safeParse(body));
+  }).safeParse);
 
   if (!body.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "bond_code_required" });
 

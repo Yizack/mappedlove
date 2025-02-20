@@ -4,10 +4,10 @@ import premiumWelcome from "~~/email/premiumWelcome.vue";
 export default defineEventHandler(async (event) => {
   const session = await requireUserSession(event);
 
-  const body = await readValidatedBody(event, body => z.object({
+  const body = await readValidatedBody(event, z.object({
     bondId: z.number(),
     transactionId: z.string()
-  }).safeParse(body));
+  }).safeParse);
 
   if (!body.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_payment_data" });
 

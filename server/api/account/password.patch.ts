@@ -1,10 +1,10 @@
 export default defineEventHandler(async (event): Promise<User> => {
   const { user } = await requireUserSession(event);
   const { secure } = useRuntimeConfig(event);
-  const body = await readValidatedBody(event, body => z.object({
+  const body = await readValidatedBody(event, z.object({
     current_password: z.string(),
     new_password: z.string()
-  }).safeParse(body));
+  }).safeParse);
 
   if (!body.success || !isValidPassword(body.data.new_password)) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "password_invalid" });
 

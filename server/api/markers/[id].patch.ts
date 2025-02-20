@@ -5,10 +5,10 @@ export default defineEventHandler(async (event): Promise<MappedLoveMarker> => {
     id: z.number({ coerce: true })
   }).parse);
 
-  const body = await readValidatedBody(event, body => z.object({
+  const body = await readValidatedBody(event, z.object({
     lat: z.number(),
     lng: z.number()
-  }).safeParse(body));
+  }).safeParse);
 
   if (!body.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_marker_data" });
 

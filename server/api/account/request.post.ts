@@ -2,11 +2,11 @@ import { render } from "@vue-email/render";
 import accountData from "~~/email/accountData.vue";
 
 export default defineEventHandler(async (event) => {
-  const body = await readValidatedBody(event, body => z.object({
+  const body = await readValidatedBody(event, z.object({
     email: z.string(),
     request: z.string(),
     turnstile: z.string()
-  }).parse(body));
+  }).parse);
 
   const verify = await verifyTurnstileToken(body.turnstile, event);
 

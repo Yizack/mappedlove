@@ -3,13 +3,13 @@ import { localization } from "~~/shared/utils/localization";
 export default defineEventHandler(async (event): Promise<User> => {
   const session = await requireUserSession(event);
 
-  const body = await readValidatedBody(event, body => z.object({
+  const body = await readValidatedBody(event, z.object({
     name: z.string().optional(),
     country: z.string().nullable().optional(),
     birthDate: z.number().nullable().optional(),
     showAvatar: z.boolean().optional(),
     language: z.enum(localization.getLocales().map(l => l.code) as [MappedLoveLocales]).optional()
-  }).safeParse(body));
+  }).safeParse);
 
   if (!body.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_user_data" });
 
