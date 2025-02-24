@@ -205,7 +205,7 @@ useSeo({
 </script>
 
 <template>
-  <main>
+  <main :key="form.language + useId()">
     <div class="row">
       <div v-if="user" class="col-lg-8 col-xl-6 mx-auto">
         <div class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
