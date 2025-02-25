@@ -205,9 +205,9 @@ useSeo({
 </script>
 
 <template>
-  <main :key="form.language + useId()">
+  <main>
     <div class="row">
-      <div v-if="user" class="col-lg-8 col-xl-6 mx-auto">
+      <div v-if="user" :key="user.language" class="col-lg-8 col-xl-6 mx-auto">
         <div class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
           <form @submit.prevent="saveAccount">
             <h3 class="mb-4">{{ t("account") }}</h3>
