@@ -5,6 +5,10 @@
   background-position-x: center;
   background-position-y: top;
   background-repeat: no-repeat;
+
+  & > div {
+    height: 100dvh;
+  }
 }
 
 @include bs.color-mode(light) {

@@ -14,14 +14,14 @@ useSeo({
       <h2>Our emails</h2>
       <p class="mb-4">Please use the appropriate email for your inquiry.</p>
       <div class="row g-3">
-        <div class="col-lg-3 text-center">
+        <div class="col-md-6 col-lg-3 text-center">
           <div class="bg-primary rounded-circle mx-auto d-flex align-items-center justify-content-center mb-2" :style="{ height: '6rem', width: '6rem' }">
             <Icon name="solar:lightbulb-minimalistic-bold-duotone" class="text-secondary" size="4rem" />
           </div>
           <h4 class="m-0">Support</h4>
           <a :href="`mailto:support@${SITE.domain}`">support@{{ SITE.domain }}</a>
         </div>
-        <div class="col-lg-3 text-center">
+        <div class="col-md-6 col-lg-3 text-center">
           <div class="bg-primary rounded-circle mx-auto d-flex align-items-center justify-content-center mb-2" :style="{ height: '6rem', width: '6rem' }">
             <Icon name="solar:suitcase-bold-duotone" class="text-secondary" size="4rem" />
           </div>

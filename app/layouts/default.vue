@@ -1,5 +1,5 @@
 <template>
-  <div id="layout">
+  <div id="layout" class="layout-grid">
     <NavbarMain />
     <slot />
     <FooterPage />
