@@ -4,9 +4,11 @@ export default defineEventHandler(async (event) => {
     subscription_id: z.string()
   }).parse);
 
-  const subscription = await getPaddleSubscription(event, subscription_id);
-  const transactions = await getPaddleTransactions(event, subscription_id);
-  const adjustments = await getPaddleAdjustments(event, subscription_id);
+  const config = useRuntimeConfig(event);
+  const paddle = new Paddle(config.paddle.secret);
+  const subscription = await paddle.getPaddleSubscription(subscription_id);
+  const transactions = await paddle.getPaddleTransactions(subscription_id);
+  const adjustments = await paddle.getPaddleAdjustments(subscription_id);
   const isManageable = (subscription?.custom_data as Record<string, unknown>)?.userId === user.id;
 
   return {

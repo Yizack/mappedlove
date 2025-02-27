@@ -1,79 +1,53 @@
-import type { H3Event } from "h3";
-import type { ITransactionResponse, ISubscriptionResponse, TransactionOrigin, TransactionInvoicePDF, IAdjustmentResponse } from "@paddle/paddle-node-sdk";
+import type { IAdjustmentResponse, ISubscriptionResponse, ITransactionResponse, TransactionInvoicePDF } from "@paddle/paddle-node-sdk";
 
-const baseAPI = import.meta.dev ? "https://sandbox-api.paddle.com" : "https://api.paddle.com";
+const baseURL = import.meta.dev ? "https://sandbox-api.paddle.com" : "https://api.paddle.com";
 
-export const getPaddleTransaction = async (event: H3Event, transactionId: string) => {
-  const { secret } = useRuntimeConfig(event).paddle;
+export class Paddle {
+  private paddleFetch: typeof $fetch;
 
-  const transaction = await $fetch<{ data: ITransactionResponse }>(`${baseAPI}/transactions/${transactionId}`, {
-    headers: {
-      Authorization: `Bearer ${secret}`
-    }
-  }).catch(() => null);
+  constructor (secret: string) {
+    this.paddleFetch = $fetch.create({
+      baseURL,
+      headers: {
+        Authorization: `Bearer ${secret}`
+      }
+    });
+  }
 
-  if (!transaction) return null;
+  async getPaddleTransaction (transactionId: string) {
+    const transaction = await this.paddleFetch<PaddleResponse<ITransactionResponse>>(`/transactions/${transactionId}`).catch(() => null);
+    return transaction && transaction.data;
+  }
 
-  return transaction.data;
-};
+  async getPaddleSubscription (subscriptionId: string) {
+    const subscription = await this.paddleFetch<PaddleResponse<ISubscriptionResponse>>(`/subscriptions/${subscriptionId}`).catch(() => null);
+    return subscription && subscription.data;
+  }
 
-export const getPaddleSubscription = async (event: H3Event, subscriptionId: string) => {
-  const { secret } = useRuntimeConfig(event).paddle;
+  async getPaddleTransactions (subscriptionId: string) {
+    const transactions = await this.paddleFetch<PaddleResponsePaginated<ITransactionResponse>>("/transactions", {
+      query: {
+        // perPage: 30, // Transactions: Default: 30; Maximum: 30.
+        subscription_id: [subscriptionId],
+        origin: ["web", "subscription_recurring", "subscription_payment_method_change", "subscription_update"]
+      }
+    }).catch(() => null);
+    // TODO: Implement pagination
+    return transactions && transactions.data;
+  }
 
-  const subscription = await $fetch<{ data: ISubscriptionResponse }>(`${baseAPI}/subscriptions/${subscriptionId}`, {
-    headers: {
-      Authorization: `Bearer ${secret}`
-    }
-  }).catch(() => null);
+  async getPaddleTransactionInvoice (transactionId: string) {
+    const invoice = await this.paddleFetch<PaddleResponse<TransactionInvoicePDF>>(`/transactions/${transactionId}/invoice`).catch(() => null);
+    return invoice && invoice.data;
+  }
 
-  if (!subscription) return null;
-
-  return subscription.data;
-};
-
-export const getPaddleTransactions = async (event: H3Event, subscriptionId: string) => {
-  const { secret } = useRuntimeConfig(event).paddle;
-  const origins: TransactionOrigin[] = ["web", "subscription_recurring", "subscription_payment_method_change", "subscription_update"];
-  const query = new URLSearchParams({
-    subscription_id: subscriptionId,
-    origin: origins.join(",")
-  });
-
-  const transaction = await $fetch<{ data: ITransactionResponse[] }>(`${baseAPI}/transactions?${query.toString()}`, {
-    headers: {
-      Authorization: `Bearer ${secret}`
-    }
-  }).catch(() => null);
-
-  if (!transaction) return null;
-
-  return transaction.data;
-};
-
-export const getPaddleTransactionInvoice = async (event: H3Event, transactionId: string) => {
-  const { secret } = useRuntimeConfig(event).paddle;
-
-  const invoice = await $fetch<{ data: TransactionInvoicePDF }>(`${baseAPI}/transactions/${transactionId}/invoice`, {
-    headers: {
-      Authorization: `Bearer ${secret}`
-    }
-  }).catch(() => null);
-
-  if (!invoice) return null;
-
-  return invoice.data;
-};
-
-export const getPaddleAdjustments = async (event: H3Event, subscriptionId: string) => {
-  const { secret } = useRuntimeConfig(event).paddle;
-
-  const adjustments = await $fetch<{ data: IAdjustmentResponse[] }>(`${baseAPI}/adjustments?subscription_id=${subscriptionId}`, {
-    headers: {
-      Authorization: `Bearer ${secret}`
-    }
-  }).catch(() => null);
-
-  if (!adjustments) return null;
-
-  return adjustments.data;
-};
+  async getPaddleAdjustments (subscriptionId: string) {
+    const adjustments = await this.paddleFetch<PaddleResponsePaginated<IAdjustmentResponse>>("/adjustments", {
+      query: {
+        subscription_id: [subscriptionId]
+      }
+    }).catch(() => null);
+    // TODO: Implement pagination
+    return adjustments && adjustments.data;
+  }
+}

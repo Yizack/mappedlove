@@ -14,7 +14,9 @@ export default defineEventHandler(async (event) => {
   if (webhook.data.status !== "completed" || !webhook.data.custom_data || !webhook.data.subscription_id)
     throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_webhook_data" });
 
-  const subscription = await getPaddleSubscription(event, webhook.data.subscription_id);
+  const config = useRuntimeConfig(event);
+  const paddle = new Paddle(config.paddle.secret);
+  const subscription = await paddle.getPaddleSubscription(webhook.data.subscription_id);
   if (!subscription)
     throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "subscription_not_found" });
   if (subscription.status !== "active" && subscription.status !== "trialing")

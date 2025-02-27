@@ -15,11 +15,14 @@ export default defineEventHandler(async (event) => {
 
   if (payment.bondId !== session.user.bond?.id) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "bond_not_found" });
 
-  const transaction = await getPaddleTransaction(event, payment.transactionId);
+  const config = useRuntimeConfig(event);
+  const paddle = new Paddle(config.paddle.secret);
+
+  const transaction = await paddle.getPaddleTransaction(payment.transactionId);
   if (!transaction) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "transaction_not_found" });
   if (transaction.status !== "paid" && transaction.status !== "ready") {
     if (!transaction.subscription_id) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "subscription_not_found" });
-    const subscription = await getPaddleSubscription(event, transaction.subscription_id);
+    const subscription = await paddle.getPaddleSubscription(transaction.subscription_id);
     if (subscription && subscription.status !== "active") throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "subscription_not_active" });
   }
 

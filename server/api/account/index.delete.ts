@@ -7,6 +7,8 @@ export default defineEventHandler(async (event) => {
   const session = await getUserSession(event);
   let user: Pick<User, "id" | "email" | "updatedAt" | "bond">;
 
+  const config = useRuntimeConfig(event);
+
   if (body && body.code && body.email) {
     const DB = useDB();
 
@@ -24,7 +26,6 @@ export default defineEventHandler(async (event) => {
     if (!foundUser) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "user_not_found" });
     user = foundUser;
 
-    const config = useRuntimeConfig(event);
     const fields = [user.id, user.email, user.updatedAt, config.secure.salt];
     const codeHash = hash(fields.join());
 
@@ -37,7 +38,8 @@ export default defineEventHandler(async (event) => {
   }
 
   if (user.bond && user.bond.subscriptionId) {
-    const subscription = await getPaddleSubscription(event, user.bond.subscriptionId);
+    const paddle = new Paddle(config.paddle.secret);
+    const subscription = await paddle.getPaddleSubscription(user.bond.subscriptionId);
     if (subscription && subscription.status === "active" && subscription.scheduled_change?.action !== "cancel") throw createError({ statusCode: ErrorCode.FORBIDDEN, message: "premium_deleting" });
   }
 
