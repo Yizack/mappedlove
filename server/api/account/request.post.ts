@@ -1,5 +1,5 @@
 import { render } from "@vue-email/render";
-import accountData from "~~/email/accountData.vue";
+import accountData from "~~/emails/accountData.vue";
 
 export default defineEventHandler(async (event) => {
   const body = await readValidatedBody(event, z.object({
@@ -40,7 +40,8 @@ export default defineEventHandler(async (event) => {
   await mailchannels.send({
     to: { email, name: user.name },
     subject: "Account data request",
-    html
+    html,
+    text: htmlToText(html)
   });
 
   return { success: true };

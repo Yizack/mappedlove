@@ -1,5 +1,5 @@
 import { render } from "@vue-email/render";
-import accountRecovery from "~~/email/accountRecovery.vue";
+import accountRecovery from "~~/emails/accountRecovery.vue";
 
 export default defineEventHandler(async (event) => {
   const body = await readValidatedBody(event, z.object({
@@ -32,7 +32,8 @@ export default defineEventHandler(async (event) => {
   await mailchannels.send({
     to: { email, name: user.name },
     subject: "Account recovery",
-    html
+    html,
+    text: htmlToText(html)
   });
 
   return { code };

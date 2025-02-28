@@ -1,5 +1,5 @@
 import { render } from "@vue-email/render";
-import premiumWelcome from "~~/email/premiumWelcome.vue";
+import premiumWelcome from "~~/emails/premiumWelcome.vue";
 
 export default defineEventHandler(async (event) => {
   const session = await requireUserSession(event);
@@ -56,7 +56,8 @@ export default defineEventHandler(async (event) => {
         name: session.user.name
       },
       subject: "Premium subscription activated!",
-      html
+      html,
+      text: htmlToText(html)
     });
   }
 

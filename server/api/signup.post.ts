@@ -1,5 +1,5 @@
 import { render } from "@vue-email/render";
-import accountVerify from "~~/email/accountVerify.vue";
+import accountVerify from "~~/emails/accountVerify.vue";
 
 export default defineEventHandler(async (event) => {
   const body = await readValidatedBody(event, z.object({
@@ -62,7 +62,8 @@ export default defineEventHandler(async (event) => {
   await mailchannels.send({
     to: { email, name: user.name },
     subject: "Verify your email address",
-    html
+    html,
+    text: htmlToText(html)
   });
 
   return { user: { email: user.email } };

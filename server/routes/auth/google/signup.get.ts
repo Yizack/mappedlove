@@ -1,5 +1,5 @@
 import { render } from "@vue-email/render";
-import accountVerify from "~~/email/accountVerify.vue";
+import accountVerify from "~~/emails/accountVerify.vue";
 
 export default defineOAuthGoogleEventHandler({
   config: {
@@ -33,7 +33,8 @@ export default defineOAuthGoogleEventHandler({
     await mailchannels.send({
       to: { email, name: user.name },
       subject: "Verify your email address",
-      html
+      html,
+      text: htmlToText(html)
     });
 
     return sendRedirect(event, "/login");

@@ -19,7 +19,8 @@ export default defineEventHandler(async (event) => {
       name: appConfig.mailchannels.from.name
     },
     subject: `Refund Request: ${user.email}`,
-    html
+    html,
+    text: htmlToText(html)
   });
 
   return { success: true };
