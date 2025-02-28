@@ -1,10 +1,11 @@
 import type { H3Event } from "h3";
-import { sha256 } from "ohash";
+import { digest } from "ohash";
 
 export { z } from "zod";
 
 export const hash = (string: string, salt?: string) => {
-  return sha256(salt ? string + salt : string);
+  const base64URL = digest(salt ? string + salt : string);
+  return Buffer.from(base64URL, "base64url").toString("hex");
 };
 
 export const createBondCode = (id: number) => {
