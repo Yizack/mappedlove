@@ -1,18 +1,15 @@
 <script setup lang="ts">
 const props = defineProps<{
-  modelValue: boolean;
   password: string;
 }>();
+
+const model = defineModel<boolean>({ required: true });
 
 const requirements = computed(() => getPasswordRequirements(props.password));
 const isValid = computed(() => isValidPassword(props.password, requirements.value));
 
-const emit = defineEmits<{
-  "update:modelValue": [boolean];
-}>();
-
 watch(() => props.password, () => {
-  emit("update:modelValue", isValid.value);
+  model.value = isValid.value;
 });
 </script>
 
