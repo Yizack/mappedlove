@@ -3,9 +3,17 @@ import { digest } from "ohash";
 
 export { z } from "zod";
 
+const base64UrlToHex = (input: string) => {
+  input = input.replace(/-/g, "+").replace(/_/g, "/");
+  while (input.length % 4 !== 0) {
+    input += "=";
+  }
+  return Buffer.from(input, "base64").toString("hex");
+};
+
 export const hash = (string: string, salt?: string) => {
   const base64URL = digest(salt ? string + salt : string);
-  return Buffer.from(base64URL, "base64url").toString("hex");
+  return base64UrlToHex(base64URL);
 };
 
 export const createBondCode = (id: number) => {
