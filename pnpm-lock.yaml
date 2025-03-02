@@ -101,9 +101,6 @@ importers:
       nuxt-webhook-validators:
         specifier: ^0.1.9
         version: 0.1.9(magicast@0.3.5)
-      ohash:
-        specifier: ^2.0.8
-        version: 2.0.8
       sass:
         specifier: ^1.85.1
         version: 1.85.1
@@ -2711,8 +2708,8 @@ packages:
     resolution: {integrity: sha512-bN798gFfQX+viw3R7yrGWRqnrN2oRkEkUjjl4JNn4E8GxxbjtG3FbrEIIY3l8/hrwUwIeCZvi4QuOTP4MErVug==}
     engines: {node: '>=12'}
 
-  ansis@3.16.0:
-    resolution: {integrity: sha512-sU7d/tfZiYrsIAXbdL/CNZld5bCkruzwT5KmqmadCJYxuLxHAOBjidxD5+iLmN/6xEfjcQq1l7OpsiCBlc4LzA==}
+  ansis@3.17.0:
+    resolution: {integrity: sha512-0qWUglt9JEqLFr3w1I1pbrChn1grhaiAR2ocX1PP/flRmxgtwTzPFFFnfIlD6aMOLQZgSuCRlidD70lvx8yhzg==}
     engines: {node: '>=14'}
 
   anymatch@3.1.3:
@@ -4226,8 +4223,8 @@ packages:
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
 
-  keyv@5.2.3:
-    resolution: {integrity: sha512-AGKecUfzrowabUv0bH1RIR5Vf7w+l4S3xtQAypKaUpTdIR1EbrAcTxHCrpo9Q+IWeUlFE2palRtgIQcgm+PQJw==}
+  keyv@5.3.0:
+    resolution: {integrity: sha512-XMBcWGBqH1j04AzjzdIulcsAKr5MaGlYC/N2PLyxdwTrEqVhQnuEIP5h1TPpa5UUcPOH1yVJ+xvhYJ2QAEv94w==}
 
   kind-of@6.0.3:
     resolution: {integrity: sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==}
@@ -5884,8 +5881,8 @@ packages:
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
 
-  valibot@1.0.0-rc.2:
-    resolution: {integrity: sha512-Tnnp7dydpihvoUbJiaxuYfsCAgAFKuFMex7PTaI25XSjRWkU70DmJPlAO1W6sF1/WUx4RNWyM2hdmBSMIUSZFA==}
+  valibot@1.0.0-rc.3:
+    resolution: {integrity: sha512-LT0REa7Iqx4QGcaHLiTiTkcmJqJ9QdpOy89HALFFBJgejTS64GQFRIbDF7e4f6pauQbo/myfKGmWXCLhMeM6+g==}
     peerDependencies:
       typescript: '>=5'
     peerDependenciesMeta:
@@ -7159,7 +7156,7 @@ snapshots:
   '@eslint/config-inspector@1.0.1(eslint@9.21.0(jiti@2.4.2))':
     dependencies:
       '@nodelib/fs.walk': 3.0.1
-      ansis: 3.16.0
+      ansis: 3.17.0
       bundle-require: 5.1.0(esbuild@0.25.0)
       cac: 6.7.14
       chokidar: 4.0.3
@@ -7692,7 +7689,7 @@ snapshots:
       ufo: 1.5.4
       unplugin: 2.2.0
       unstorage: 1.15.0(db0@0.2.4(drizzle-orm@0.40.0(@cloudflare/workers-types@4.20250224.0)(gel@2.0.0)))(ioredis@5.5.0)
-      valibot: 1.0.0-rc.2(typescript@5.8.2)
+      valibot: 1.0.0-rc.3(typescript@5.8.2)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -8950,7 +8947,7 @@ snapshots:
 
   ansi-styles@6.2.1: {}
 
-  ansis@3.16.0: {}
+  ansis@3.17.0: {}
 
   anymatch@3.1.3:
     dependencies:
@@ -9123,7 +9120,7 @@ snapshots:
   cacheable@1.8.8:
     dependencies:
       hookified: 1.7.1
-      keyv: 5.2.3
+      keyv: 5.3.0
 
   callsites@3.1.0: {}
 
@@ -10554,7 +10551,7 @@ snapshots:
     dependencies:
       json-buffer: 3.0.1
 
-  keyv@5.2.3:
+  keyv@5.3.0:
     dependencies:
       '@keyv/serialize': 1.0.3
 
@@ -12543,7 +12540,7 @@ snapshots:
 
   util-deprecate@1.0.2: {}
 
-  valibot@1.0.0-rc.2(typescript@5.8.2):
+  valibot@1.0.0-rc.3(typescript@5.8.2):
     optionalDependencies:
       typescript: 5.8.2
 
