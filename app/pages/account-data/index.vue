@@ -56,7 +56,7 @@ useSeo({
               <NuxtTurnstile ref="turnstile" v-model="form.turnstile" :options="{ theme, size: 'flexible' }" />
             </div>
             <div class="d-grid mb-2">
-              <button class="btn btn-primary btn-lg rounded-pill" type="submit" :disabled="submit.loading">
+              <button class="btn btn-primary btn-lg rounded-pill" type="submit" :disabled="submit.loading || !form.turnstile">
                 <Transition name="tab" mode="out-in">
                   <SpinnerCircle v-if="submit.loading" class="text-white" />
                   <span v-else>{{ t("continue") }}</span>
