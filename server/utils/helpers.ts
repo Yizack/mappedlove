@@ -3,8 +3,9 @@ import type { H3Event } from "h3";
 
 export { z } from "zod";
 
+const encoder = new TextEncoder();
+
 export const hash = async (string: string, salt?: string) => {
-  const encoder = new TextEncoder();
   const data = encoder.encode(salt ? string + salt : string);
   return subtle.digest("SHA-256", data).then(hash => Buffer.from(hash).toString("hex"));
 };
