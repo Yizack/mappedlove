@@ -6,12 +6,10 @@ export default defineEventHandler(async (event): Promise<MappedLoveMap> => {
   const stories = await DB.select().from(tables.stories).where(eq(tables.stories.bond, user.bond.id)).orderBy(desc(tables.stories.year), desc(tables.stories.month)).all();
 
   const { secure } = useRuntimeConfig(event);
-  const storiesHashed = stories.map((story) => {
-    return {
-      ...story,
-      hash: hash([story.id, user.bond?.code].join(), secure.salt)
-    };
-  });
+  const storiesHashed = await Promise.all(stories.map(async story => ({
+    ...story,
+    hash: await hash([story.id, user.bond?.code].join(), secure.salt)
+  })));
 
   return { markers, stories: storiesHashed };
 });

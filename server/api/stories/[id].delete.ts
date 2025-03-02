@@ -7,7 +7,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveStory | undef
 
   try {
     const { secure } = useRuntimeConfig(event);
-    const storyHash = hash([id, user.bond.code].join(), secure.salt);
+    const storyHash = await hash([id, user.bond.code].join(), secure.salt);
     await deleteImage(`stories/${storyHash}`);
     await deleteCloudinary(event, `stories/${storyHash}`);
   }

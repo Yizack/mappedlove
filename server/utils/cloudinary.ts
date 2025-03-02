@@ -25,7 +25,7 @@ export const uploadToCloudinary = async (event: H3Event, file: File, options: { 
   };
 
   const toSign = jsonToQueryString(data);
-  const signature = hash(toSign + cloudinary.secret);
+  const signature = await hash(toSign + cloudinary.secret);
 
   await $fetch(`https://api.cloudinary.com/v1_1/${cloudinary.name}/image/upload`, {
     method: "POST",
@@ -49,7 +49,7 @@ export const deleteCloudinary = async (event: H3Event, filepath: string) => {
   };
 
   const toSign = jsonToQueryString(data).toString();
-  const signature = hash(toSign + cloudinary.secret);
+  const signature = await hash(toSign + cloudinary.secret);
 
   await $fetch(`https://api.cloudinary.com/v1_1/${cloudinary.name}/image/destroy`, {
     method: "POST",

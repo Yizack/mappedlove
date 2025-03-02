@@ -23,14 +23,14 @@ export default defineEventHandler(async (event) => {
   const { secure } = useRuntimeConfig(event);
 
   const fields = [user.id, user.email, user.updatedAt, secure.salt];
-  const userHash = hash(fields.join());
+  const userHash = await hash(fields.join());
 
   if (userHash !== form.code) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "invalid_recovery" });
 
   if (isCodeDateExpired(user.updatedAt)) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "recovery_expired" });
 
   const update = await DB.update(tables.users).set({
-    password: hash(form.password, secure.salt),
+    password: await hash(form.password, secure.salt),
     auth: false,
     updatedAt: Date.now()
   }).where(eq(tables.users.id, user.id)).returning().get();

@@ -27,14 +27,14 @@ export default defineEventHandler(async (event) => {
 
   if (!id) {
     const fields = [user.id, user.email, user.updatedAt, config.secure.salt];
-    const codeHash = hash(fields.join());
+    const codeHash = await hash(fields.join());
     if (codeHash !== code) throw createError({ statusCode: ErrorCode.FORBIDDEN, message: "code_mismatch" });
     if (isCodeDateExpired(user.updatedAt)) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "account_data_expired" });
   }
 
   const accountData: MappedLoveAccountData = {
     user: {
-      hash: hash(user.id.toString(), config.secure.salt),
+      hash: await hash(user.id.toString(), config.secure.salt),
       ...user
     }
   };

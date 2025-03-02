@@ -37,7 +37,7 @@ export default defineEventHandler(async (event) => {
   }).from(tables.users).leftJoin(tables.bonds, or(
     eq(tables.bonds.partner1, tables.users.id),
     eq(tables.bonds.partner2, tables.users.id)
-  )).where(and(eq(tables.users.email, form.email), eq(tables.users.password, hash(form.password, secure.salt)))).get();
+  )).where(and(eq(tables.users.email, form.email), eq(tables.users.password, await hash(form.password, secure.salt)))).get();
 
   if (!user) {
     const userAttempted = await DB.select({ id: tables.users.id }).from(tables.users).where(eq(tables.users.email, form.email)).get();
@@ -64,7 +64,7 @@ export default defineEventHandler(async (event) => {
 
   if (!user.confirmed) return session;
 
-  const userHash = hash(user.id.toString(), secure.salt);
+  const userHash = await hash(user.id.toString(), secure.salt);
   const maxAge = form.remember ? 7 * 24 * 60 * 60 : 0; // if remember is true, maxAge is 7 days
 
   await setUserSessionNullish(event, {

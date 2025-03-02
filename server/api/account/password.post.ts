@@ -11,7 +11,7 @@ export default defineEventHandler(async (event): Promise<User> => {
 
   const DB = useDB();
   const update = await DB.update(tables.users).set({
-    password: hash(form.new_password, secure.salt),
+    password: await hash(form.new_password, secure.salt),
     auth: false,
     updatedAt: Date.now()
   }).where(and(eq(tables.users.id, session.user.id), eq(tables.users.auth, true))).returning({

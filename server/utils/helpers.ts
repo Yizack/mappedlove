@@ -1,19 +1,12 @@
+import { subtle } from "node:crypto";
 import type { H3Event } from "h3";
-import { digest } from "ohash";
 
 export { z } from "zod";
 
-const base64UrlToHex = (input: string) => {
-  input = input.replace(/-/g, "+").replace(/_/g, "/");
-  while (input.length % 4 !== 0) {
-    input += "=";
-  }
-  return Buffer.from(input, "base64").toString("hex");
-};
-
-export const hash = (string: string, salt?: string) => {
-  const base64URL = digest(salt ? string + salt : string);
-  return base64UrlToHex(base64URL);
+export const hash = async (string: string, salt?: string) => {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(salt ? string + salt : string);
+  return subtle.digest("SHA-256", data).then(hash => Buffer.from(hash).toString("hex"));
 };
 
 export const createBondCode = (id: number) => {
@@ -44,8 +37,8 @@ export const getPartners = async (event: H3Event, DB: ReturnType<typeof useDB>, 
 
   const { secure } = useRuntimeConfig(event);
 
-  return partners.map(partner => ({
+  return Promise.all(partners.map(async partner => ({
     ...partner,
-    hash: hash([partner.id].join(), secure.salt)
-  }));
+    hash: await hash([partner.id].join(), secure.salt)
+  })));
 };
