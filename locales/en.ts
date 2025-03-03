@@ -197,6 +197,7 @@ export default {
   december: "December",
   birthday: "Birthday",
   valentines_day: "Valentine's Day",
+  last_updated: "Last updated",
   // Not related errors
   error_any: "Something went wrong.",
   error_occurred: "Sorry, an error has occurred",

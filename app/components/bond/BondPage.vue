@@ -207,10 +207,16 @@ watch(coupleDate, async (val: number | null) => {
           <p class="m-0">{{ t("share_bond_info") }}</p>
           <CopyText :text="publicURL" />
         </div>
-        <a href="#" class="d-flex align-items-center gap-2" @click="leaveBond">
-          <Icon name="solar:exit-bold" />
-          {{ t("leave_bond") }}
-        </a>
+        <div class="d-flex flex-wrap-reverse justify-content-between align-items-center mt-3">
+          <div class="d-flex gap-1 text-body-tertiary small">
+            <p class="m-0">{{ t("last_updated") }}:</p>
+            <NuxtTime :datetime="bond.updatedAt" v-bind="timeOptions.full" />
+          </div>
+          <a href="#" class="d-flex align-items-center gap-2" @click="leaveBond">
+            <Icon name="solar:exit-bold" />
+            {{ t("leave_bond") }}
+          </a>
+        </div>
       </div>
     </div>
   </div>
