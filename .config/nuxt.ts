@@ -149,7 +149,8 @@ export default defineNuxtConfig({
       plugins: [vue()]
     },
     experimental: {
-      tasks: true
+      tasks: true,
+      wasm: true
     }
   },
   sitemap: {
