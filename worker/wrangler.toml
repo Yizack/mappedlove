@@ -7,5 +7,5 @@ compatibility_flags = ["nodejs_compat"]
 binding = "IMAGES"
 
 routes = [
-  { pattern = "mappedlove.com/api/stories/thumbnails", zone_name = "mappedlove.com" }
+  { pattern = "images.mappedlove.com/thumbnails", zone_name = "mappedlove.com" }
 ]
