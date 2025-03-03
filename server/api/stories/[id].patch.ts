@@ -59,7 +59,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveStory> => {
     throw createError({ statusCode: ErrorCode.INTERNAL_SERVER_ERROR, message: "error_any" });
   }
 
-  createThumbnail(file, {
+  event.waitUntil(createThumbnail(file, {
     name: storyHash,
     secret: secure.secret,
     metadata: {
@@ -67,7 +67,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveStory> => {
       userId: user.id,
       bondId: user.bond.id
     }
-  });
+  }));
 
   return storyPatch;
 });
