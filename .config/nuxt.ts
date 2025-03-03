@@ -24,8 +24,7 @@ export default defineNuxtConfig({
         { rel: "icon", type: "image/png", sizes: "16x16", href: "/favicon-16x16.png" },
         { rel: "manifest", href: "/site.webmanifest" },
         { rel: "mask-icon", href: "/safari-pinned-tab.svg", color: "#c25050" },
-        { rel: "preconnect", href: SITE.cdn },
-        { rel: "preconnect", href: "https://res.cloudinary.com" }
+        { rel: "preconnect", href: SITE.cdn }
       ],
       meta: [
         { name: "robots", content: "index, follow" },
@@ -87,7 +86,8 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     secure: {
-      salt: ""
+      salt: "",
+      secret: ""
     },
     turnstile: {
       secretKey: ""
@@ -109,11 +109,6 @@ export default defineNuxtConfig({
         selector: ""
       }
     },
-    cloudinary: {
-      name: "",
-      key: "",
-      secret: ""
-    },
     paddle: {
       secret: "",
       webhookId: ""
@@ -132,6 +127,9 @@ export default defineNuxtConfig({
   },
   site: {
     url: SITE.host
+  },
+  build: {
+    transpile: ["@cf-wasm/photon"]
   },
   nitro: {
     prerender: {

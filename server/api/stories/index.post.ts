@@ -40,7 +40,10 @@ export default defineEventHandler(async (event): Promise<MappedLoveStory> => {
 
   const { secure } = useRuntimeConfig(event);
   const storyHash = await hash([story.id, user.bond.code].join(), secure.salt);
-  const uploaded = await uploadImage(file, { name: storyHash, folder: "stories",
+  const storyUpdate = { ...story, hash: storyHash };
+  const uploaded = await uploadImage(file, {
+    name: storyHash,
+    folder: "stories",
     customMetadata: {
       bondId: user.bond.id.toString(),
       userId: user.id.toString(),
@@ -53,10 +56,15 @@ export default defineEventHandler(async (event): Promise<MappedLoveStory> => {
     throw createError({ statusCode: ErrorCode.INTERNAL_SERVER_ERROR, message: "error_any" });
   }
 
-  await uploadToCloudinary(event, file, { filename: storyHash, folder: "stories" });
+  createThumbnail(file, {
+    name: storyHash,
+    secret: secure.secret,
+    metadata: {
+      storyId: story.id,
+      userId: user.id,
+      bondId: user.bond.id
+    }
+  });
 
-  return {
-    ...story,
-    hash: storyHash
-  };
+  return storyUpdate;
 });
