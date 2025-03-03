@@ -328,7 +328,6 @@ export default {
   paddle_sdk_not_loaded: "Paddle SDK could not be loaded",
   payment_error: "Payment error occurred",
   transaction_not_found: "Transaction not found",
-  invalid_headers: "headers are not valid",
   invalid_webhook: "Webhook is not valid",
   invalid_event_type: "Webhook event type is not valid",
   invalid_webhook_data: "Webhook data is not valid",
