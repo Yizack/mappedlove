@@ -1,7 +1,7 @@
 import type { BlobSize } from "@nuxthub/core";
 
 export const uploadImage = async (
-  body: File | string | ArrayBuffer | ArrayBufferView | Blob,
+  body: File | Blob,
   options: { name?: string, folder: string, type?: string, customMetadata?: Record<string, string> }
 ) => {
   const { name, folder, customMetadata, type } = options;

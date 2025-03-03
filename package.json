@@ -32,7 +32,6 @@
     "test:types": "vue-tsc --noEmit"
   },
   "devDependencies": {
-    "@cf-wasm/photon": "^0.1.29",
     "@cloudflare/workers-types": "^4.20250224.0",
     "@dargmuesli/nuxt-cookie-control": "^8.5.3",
     "@iconify-json/logos": "^1.2.4",
@@ -56,7 +55,6 @@
     "drizzle-kit": "^0.30.5",
     "drizzle-orm": "^0.40.0",
     "eslint": "^9.21.0",
-    "exifreader": "^4.26.1",
     "leaflet": "^1.9.4",
     "leaflet-geosearch": "^4.2.0",
     "nuxt": "^3.15.4",
@@ -72,7 +70,7 @@
     "typescript": "^5.8.2",
     "vitepress": "^1.6.3",
     "vue-draggable-next": "^2.2.1",
-    "vue-tsc": "^2.2.6",
+    "vue-tsc": "^2.2.8",
     "wrangler": "^3.111.0",
     "zod": "^3.24.2"
   },

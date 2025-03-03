@@ -26,8 +26,9 @@ export const storiesByYear = (stories: MappedLoveStory[], year: number) => {
   return stories.filter(story => story.year === year);
 };
 
-export const getStoryImageTransform = (hash: string) => {
-  return `${SITE.cdn}/uploads/thumbnails/${hash}`;
+export const getStoryThumbnail = (hash: string) => {
+  const folder = import.meta.dev ? "stories" : "thumbnails";
+  return `${SITE.cdn}/uploads/${folder}/${hash}`;
 };
 
 export const getStoryImage = (hash: string) => {
@@ -58,7 +59,7 @@ export const storiesCarousel = (marker: MappedLoveMarker, stories: MappedLoveSto
       return `
           <div class="carousel-item ${!index ? "active" : "inactive"} d-flex justify-content-center">
             <div class="border border-primary border-2 rounded-circle">
-              <div class="map-story" style="background-image: url('${getStoryImageTransform(hash!)}?updated=${updatedAt}')"></div>
+              <div class="map-story" style="background-image: url('${getStoryThumbnail(hash!)}?updated=${updatedAt}')"></div>
             </div>
           </div>`;
     }).join("")
