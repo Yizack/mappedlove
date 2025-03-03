@@ -32,20 +32,3 @@ export const isValidFileSize = (file: File, size: BlobSize) => {
   const bytes = parseInt(value) * (2 ** (["B", "KB", "MB", "GB"].indexOf(unit || "") * 10));
   return file.size <= bytes;
 };
-
-export const createThumbnail = async (file: File, options: { name: string, secret: string, metadata?: Record<string, string | number> }) => {
-  return $fetch("/api/stories/thumbnails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${options.secret}`
-    },
-    body: {
-      data: await file.arrayBuffer().then(buffer => new Uint8Array(buffer)).then(bytes => Buffer.from(bytes).toString("base64")),
-      name: options.name,
-      folder: "thumbnails",
-      metadata: options.metadata
-    }
-  }).catch((error) => {
-    console.warn("Failed to create thumbnail:", error);
-  });
-};

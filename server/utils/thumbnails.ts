@@ -2,21 +2,10 @@ import photonWasmModule from "@cf-wasm/photon/photon.wasm?module";
 import ExifReader from "exifreader";
 import { PhotonImage, initSync, resize, crop, SamplingFilter, rotate } from "~~/node_modules/@cf-wasm/photon/dist/esm/lib/photon_rs";
 
-export default defineEventHandler(async (event) => {
-  const { secure } = useRuntimeConfig(event);
-  const secret = event.headers.get("Authorization")?.replace("Bearer ", "");
-  if (secure.secret !== secret) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "unauthorized" });
-
-  const body = await readValidatedBody(event, z.object({
-    data: z.string(), // base64
-    name: z.string(),
-    folder: z.string(),
-    metadata: z.any().optional()
-  }).parse);
-
+export const createThumbnail = async (file: File, options: { name: string, metadata?: Record<string, string> }) => {
   initSync({ module: photonWasmModule });
 
-  const buffer = Buffer.from(body.data, "base64");
+  const buffer = await file.arrayBuffer();
   const inputBytes = new Uint8Array(buffer);
 
   const inputImage = PhotonImage.new_from_byteslice(inputBytes);
@@ -63,12 +52,9 @@ export default defineEventHandler(async (event) => {
   outputImage.free();
 
   await uploadImage(outputBytes, {
-    name: body.name,
-    folder: body.folder,
+    name: options.name,
+    folder: "thumbnails",
     type: "image/webp",
-    customMetadata: body.metadata
+    customMetadata: options.metadata
   });
-
-  setResponseStatus(event, 201);
-  return;
-});
+};
