@@ -1,0 +1,11 @@
+name = "thumbnails"
+main = "index.ts"
+compatibility_date = "2025-03-03"
+compatibility_flags = ["nodejs_compat"]
+
+[images]
+binding = "IMAGES"
+
+routes = [
+  { pattern = "mappedlove.com/api/stories/thumbnails", zone_name = "mappedlove.com" }
+]
