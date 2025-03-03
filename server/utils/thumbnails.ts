@@ -3,7 +3,7 @@ export const createThumbnail = async (file: File, options: { secret: string, nam
   const formData = new FormData();
   formData.append("file", file);
 
-  const image = await $fetch<Blob>("/api/stories/thumbnails", {
+  const image = await $fetch<Blob>(`${SITE.host}/api/stories/thumbnails`, {
     method: "POST",
     headers: {
       "X-MappedLove-Secret": options.secret
