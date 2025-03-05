@@ -7,7 +7,11 @@ export default defineEventHandler(async (event): Promise<MappedLoveStory | undef
 
   const { secure } = useRuntimeConfig(event);
   const storyHash = await hash([id, user.bond.code].join(), secure.salt);
-  await deleteImage([`stories/${storyHash}`, `thumbnails/${storyHash}`]);
+
+  event.waitUntil(
+    deleteImage([`stories/${storyHash}`, `thumbnails/${storyHash}`])
+  );
+
   const DB = useDB();
   return DB.delete(tables.stories).where(and(eq(tables.stories.id, id), eq(tables.stories.bond, user.bond.id))).returning().get();
 });
