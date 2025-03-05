@@ -11,12 +11,12 @@ export default defineEventHandler(async (event) => {
 
   const html = `The user ${user.email} - ${user.id} has requested a refund for the following reason: ${refund.reason}`;
 
-  const appConfig = useAppConfig();
+  const config = useRuntimeConfig(event);
   const mailchannels = useMailChannels(event);
   await mailchannels.send({
     to: {
-      email: appConfig.mailchannels.from.email,
-      name: appConfig.mailchannels.from.name
+      email: config.mailchannels.from.email,
+      name: config.mailchannels.from.name
     },
     subject: `Refund Request: ${user.email}`,
     html,
