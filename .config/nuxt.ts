@@ -128,9 +128,6 @@ export default defineNuxtConfig({
   site: {
     url: SITE.host
   },
-  build: {
-    transpile: ["@cf-wasm/photon"]
-  },
   nitro: {
     prerender: {
       routes: ["/sitemap.xml"]
