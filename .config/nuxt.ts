@@ -167,9 +167,6 @@ export default defineNuxtConfig({
   experimental: {
     typedPages: true
   },
-  alias: {
-    "unenv/runtime/mock/noop": "unenv/mock/noop"
-  },
   vite: {
     css: {
       preprocessorOptions: {
