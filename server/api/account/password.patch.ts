@@ -12,9 +12,9 @@ export default defineEventHandler(async (event): Promise<User> => {
 
   const DB = useDB();
   const update = await DB.update(tables.users).set({
-    password: await hash(form.new_password, secure.salt),
+    password: hash(form.new_password, secure.salt),
     updatedAt: Date.now()
-  }).where(and(eq(tables.users.id, user.id), eq(tables.users.password, await hash(form.current_password, secure.salt)))).returning().get();
+  }).where(and(eq(tables.users.id, user.id), eq(tables.users.password, hash(form.current_password, secure.salt)))).returning().get();
 
   if (!update) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "password_error" });
   return update;

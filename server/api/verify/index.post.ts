@@ -23,7 +23,7 @@ export default defineEventHandler(async (event) => {
   const { secure } = useRuntimeConfig(event);
   const fields = [user.id, user.email, user.updatedAt, secure.salt];
 
-  const userHash = await hash(fields.join());
+  const userHash = hash(fields.join());
 
   if (userHash !== code) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "invalid_code" });
 

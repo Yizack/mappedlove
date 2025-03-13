@@ -35,7 +35,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveStory> => {
   if (!story) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "story_not_found" });
 
   const { secure } = useRuntimeConfig(event);
-  const storyHash = await hash([story.id, user.bond.code].join(), secure.salt);
+  const storyHash = hash([story.id, user.bond.code].join(), secure.salt);
   const storyPatch = { ...story, hash: storyHash };
 
   if (!file) return storyPatch;

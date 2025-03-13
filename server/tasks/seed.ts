@@ -7,7 +7,7 @@ const insertTestUsers = async (c: number) => {
     await useDB().insert(tables.users).values({
       id: i + 1,
       email: i === 0 && testEmail ? testEmail : `test${i + 1}@test.test`,
-      password: testPassword ? await hash(testPassword, useRuntimeConfig().secure.salt) : null,
+      password: testPassword ? hash(testPassword, useRuntimeConfig().secure.salt) : null,
       name: `Name${i + 1}`,
       country: null,
       birthDate: null,

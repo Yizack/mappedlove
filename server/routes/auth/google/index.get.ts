@@ -23,7 +23,7 @@ export default defineOAuthGoogleEventHandler({
     if (!user.confirmed) return sendRedirect(event, "/login?error=verify_needed");
 
     const { secure } = useRuntimeConfig(event);
-    const userHash = await hash(user.id.toString(), secure.salt);
+    const userHash = hash(user.id.toString(), secure.salt);
     await setUserSessionNullish(event, { user: { ...user, hash: userHash } });
 
     return sendRedirect(event, "/app");

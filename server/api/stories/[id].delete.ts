@@ -6,7 +6,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveStory | undef
   }).parse);
 
   const { secure } = useRuntimeConfig(event);
-  const storyHash = await hash([id, user.bond.code].join(), secure.salt);
+  const storyHash = hash([id, user.bond.code].join(), secure.salt);
 
   event.waitUntil(
     deleteImage([`stories/${storyHash}`, `thumbnails/${storyHash}`])

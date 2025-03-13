@@ -32,10 +32,10 @@ export default defineCachedEventHandler(async (event): Promise<MappedLovePublicM
 
   const { secure } = useRuntimeConfig(event);
 
-  const storiesHashed = await Promise.all(stories.map(async (story) => ({
+  const storiesHashed = stories.map((story) => ({
     ...story,
-    hash: await hash([story.id, bond.code].join(), secure.salt)
-  })));
+    hash: hash([story.id, bond.code].join(), secure.salt)
+  }));
 
   return {
     ...bond,

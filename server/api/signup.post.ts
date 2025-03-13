@@ -37,7 +37,7 @@ export default defineEventHandler(async (event) => {
   const email = form.email.toLowerCase();
   const user = await DB.insert(tables.users).values({
     email,
-    password: await hash(form.password, config.secure.salt),
+    password: hash(form.password, config.secure.salt),
     name: form.name,
     createdAt: today,
     updatedAt: today
@@ -51,7 +51,7 @@ export default defineEventHandler(async (event) => {
   }
 
   const fields = [user.id, user.email, user.updatedAt, config.secure.salt];
-  const code = await hash(fields.join());
+  const code = hash(fields.join());
 
   const html = await render(accountVerify, {
     lang: "en",

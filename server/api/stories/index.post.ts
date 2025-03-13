@@ -39,7 +39,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveStory> => {
   }).returning().get();
 
   const { secure } = useRuntimeConfig(event);
-  const storyHash = await hash([story.id, user.bond.code].join(), secure.salt);
+  const storyHash = hash([story.id, user.bond.code].join(), secure.salt);
   const storyUpdate = { ...story, hash: storyHash };
   const uploaded = await uploadImage(file, {
     name: storyHash,

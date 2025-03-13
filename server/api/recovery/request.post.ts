@@ -21,7 +21,7 @@ export default defineEventHandler(async (event) => {
 
   const config = useRuntimeConfig(event);
   const fields = [user.id, user.email, user.updatedAt, config.secure.salt];
-  const code = await hash(fields.join());
+  const code = hash(fields.join());
 
   const html = await render(accountRecovery, {
     lang: "en",

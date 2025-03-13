@@ -22,7 +22,7 @@ export default defineOAuthGoogleEventHandler({
     if (!user) return sendRedirect(event, "/signup?error=user_exists");
 
     const fields = [user.id, user.email, user.updatedAt, config.secure.salt];
-    const code = await hash(fields.join());
+    const code = hash(fields.join());
 
     const html = await render(accountVerify, {
       lang: "en",
