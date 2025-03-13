@@ -282,7 +282,7 @@ export default {
   donate: "Donate",
   github_repository: "GitHub repository",
   report_bug: "Report a bug",
-  request_feature: "Request feature",
+  request_feature: "Request a feature",
   pull_requests: "Pull requests",
   translate_help: "Help us translate",
   account_data: "Account data",
