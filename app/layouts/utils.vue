@@ -4,6 +4,6 @@
     <div class="container-fluid py-3 d-flex align-items-center">
       <slot />
     </div>
-    <FooterPage />
+    <LazyFooterPage hydrate-on-visible />
   </div>
 </template>

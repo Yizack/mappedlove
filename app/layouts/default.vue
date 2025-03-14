@@ -2,6 +2,6 @@
   <div id="layout" class="layout-grid">
     <NavbarMain />
     <slot />
-    <FooterPage />
+    <LazyFooterPage hydrate-on-visible />
   </div>
 </template>
