@@ -40,7 +40,7 @@ const joinBond = async () => {
         </button>
       </div>
     </div>
-    <div class="mt-2 mb-3 display-6">
+    <div class="mt-2 mb-3 display-6 fw-normal">
       <span>{{ t("or") }}</span>
     </div>
     <div class="col-lg-6 mx-auto">

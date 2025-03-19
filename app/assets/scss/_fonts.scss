@@ -1,16 +1,9 @@
 @font-face {
   font-family: fredoka;
-  src: url("/fonts/Fredoka-Regular.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: fredoka;
-  font-weight: bold;
-  src: url("/fonts/Fredoka-SemiBold.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: fredoka;
-  font-weight: 500;
-  src: url("/fonts/Fredoka-Medium.ttf") format("truetype");
+  font-display: swap;
+  src:
+    url('/fonts/Fredoka.ttf') format('truetype supports variations'),
+    url('/fonts/Fredoka.ttf') format('truetype-variations');
+  font-weight: 300 500;
+  font-stretch: 75% 125%;
 }

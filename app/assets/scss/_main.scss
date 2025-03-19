@@ -1,16 +1,15 @@
 @use "fonts";
 
+:root {
+  scrollbar-width: auto;
+  scroll-behavior: unset;
+}
+
 body {
+  font-family: fredoka, var(--bs-body-font-family);
   height: 100%;
   width: 100%;
   background: var(--bs-secondary);
-}
-
-:root {
-  --bs-body-font-family: fredoka;
-
-  scrollbar-width: auto;
-  scroll-behavior: unset;
 }
 
 *::-webkit-scrollbar {

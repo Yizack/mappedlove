@@ -46,6 +46,13 @@ export default defineConfig({
       alias: {
         "~": "./app"
       }
+    },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: "modern-compiler"
+        }
+      }
     }
   },
   themeConfig: {
