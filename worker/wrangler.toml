@@ -1,9 +1,0 @@
-name = "mappedlove-images"
-main = "index.ts"
-compatibility_date = "2025-03-03"
-compatibility_flags = ["nodejs_compat"]
-workers_dev = false
-route = "images.mappedlove.com/thumbnails"
-
-[images]
-binding = "IMAGES"
