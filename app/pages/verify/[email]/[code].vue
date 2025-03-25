@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import type { RouteLocationNormalized, RouteLocationNormalizedLoaded, NavigationGuardNext } from "vue-router";
-
 definePageMeta({ layout: "access" });
 
-onBeforeRouteLeave((to: RouteLocationNormalized, from: RouteLocationNormalizedLoaded, next: NavigationGuardNext) => {
+onBeforeRouteLeave((to, from, next) => {
   if (to.name === "login") to.meta.email = from.meta.email;
   next();
 });
