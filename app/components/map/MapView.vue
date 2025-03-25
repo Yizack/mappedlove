@@ -5,7 +5,7 @@ const props = withDefaults(defineProps<{
   id: string;
   markers: MappedLoveMarker[];
   stories: MappedLoveStory[];
-  size: string;
+  size?: string;
   select: number;
 }>(), {
   size: "600px"
