@@ -1,4 +1,4 @@
-import { useSession, type H3Event, type SessionConfig } from "h3";
+import { type H3Event, type SessionConfig, useSession } from "h3";
 import type { UserSession } from "#auth-utils";
 
 export const setUserSessionNullish = async (event: H3Event, data: UserSession, config?: Partial<SessionConfig>) => {

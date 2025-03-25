@@ -5,6 +5,7 @@ export default withNuxt([{
   rules: {
     "camelcase": ["error", { properties: "never", ignoreDestructuring: true }],
     "no-console": ["error", { allow: ["info", "warn"] }],
+    "sort-imports": ["error", { ignoreDeclarationSort: true }],
     "@stylistic/indent": ["error", 2, { SwitchCase: 1 }],
     "@stylistic/linebreak-style": ["error", process.platform === "win32" ? "windows" : "unix"],
     "@stylistic/quotes": ["error", "double"],

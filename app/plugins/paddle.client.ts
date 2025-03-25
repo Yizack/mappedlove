@@ -1,4 +1,4 @@
-import { initializePaddle, type Paddle as P, type CheckoutEventsData, type CheckoutCustomer } from "@paddle/paddle-js";
+import { type CheckoutCustomer, type CheckoutEventsData, type Paddle as P, initializePaddle } from "@paddle/paddle-js";
 
 class Paddle {
   private paddle?: P;
