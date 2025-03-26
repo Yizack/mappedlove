@@ -3,7 +3,8 @@
   "extends": [
     "config:recommended",
     "group:allNonMajor",
-    ":semanticCommitTypeAll(chore)"
+    ":semanticCommitTypeAll(chore)",
+    ":disableDependencyDashboard"
   ],
   "rangeStrategy": "bump",
   "npm": {
