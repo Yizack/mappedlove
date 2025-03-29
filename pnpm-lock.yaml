@@ -12,8 +12,8 @@ importers:
         specifier: ^4.20250327.0
         version: 4.20250327.0
       '@dargmuesli/nuxt-cookie-control':
-        specifier: ^8.5.5
-        version: 8.5.5(magicast@0.3.5)(webpack@5.98.0(esbuild@0.19.12))
+        specifier: ^8.6.0
+        version: 8.6.0(magicast@0.3.5)(webpack@5.98.0(esbuild@0.19.12))
       '@iconify-json/logos':
         specifier: ^1.2.4
         version: 1.2.4
@@ -30,8 +30,8 @@ importers:
         specifier: ^1.11.0
         version: 1.11.0(magicast@0.3.5)(vite@5.4.15(@types/node@22.13.13)(sass@1.86.0)(terser@5.39.0))(vue@3.5.13(typescript@5.8.2))
       '@nuxthub/core':
-        specifier: ^0.8.21
-        version: 0.8.21(db0@0.3.1(drizzle-orm@0.41.0(@cloudflare/workers-types@4.20250327.0)(gel@2.0.1)))(ioredis@5.6.0)(magicast@0.3.5)(vite@5.4.15(@types/node@22.13.13)(sass@1.86.0)(terser@5.39.0))
+        specifier: ^0.8.22
+        version: 0.8.22(db0@0.3.1(drizzle-orm@0.41.0(@cloudflare/workers-types@4.20250327.0)(gel@2.0.1)))(ioredis@5.6.0)(magicast@0.3.5)(vite@5.4.15(@types/node@22.13.13)(sass@1.86.0)(terser@5.39.0))
       '@nuxtjs/color-mode':
         specifier: ^3.5.2
         version: 3.5.2(magicast@0.3.5)
@@ -126,8 +126,8 @@ importers:
         specifier: ^2.2.8
         version: 2.2.8(typescript@5.8.2)
       wrangler:
-        specifier: ^4.5.1
-        version: 4.5.1(@cloudflare/workers-types@4.20250327.0)
+        specifier: ^4.6.0
+        version: 4.6.0(@cloudflare/workers-types@4.20250327.0)
       zod:
         specifier: ^3.24.2
         version: 3.24.2
@@ -424,8 +424,8 @@ packages:
     peerDependencies:
       postcss-selector-parser: ^7.0.0
 
-  '@dargmuesli/nuxt-cookie-control@8.5.5':
-    resolution: {integrity: sha512-Im31iLTbHPv2ZTYtWhI4y7qaz1lByBowT0jQG8svpmB8p2vrvkVqAMxMyz1rri10wR/mXDEkAwfChhWWzdlWvA==}
+  '@dargmuesli/nuxt-cookie-control@8.6.0':
+    resolution: {integrity: sha512-YVhwfW5uaIiqWVZn37UyUjmK2drc43nnQ1WuxVpTBVp9FDiDnBYap0b47gA4bcYyitOklAsA4CxneBnWgyKNJg==}
     engines: {node: '>=16'}
 
   '@docsearch/css@3.8.2':
@@ -1501,6 +1501,11 @@ packages:
     peerDependencies:
       vite: '>=6.0'
 
+  '@nuxt/devtools-kit@2.3.2':
+    resolution: {integrity: sha512-K0citnz9bSecPCLl4jGfE5I5St+E9XtDmOvYqq3ranGZGZ2Mvs5RwgUkaOrn4rulvUmBGBl7Exwh5YX9PONrEQ==}
+    peerDependencies:
+      vite: '>=6.0'
+
   '@nuxt/devtools-wizard@2.3.1':
     resolution: {integrity: sha512-FqJVncQ9XiVR3uVwnqxHysCShfwrsK8JL4Q8rNrQoY9ly0Q7h6vimX44asFZSSCQ25WYo74PikdvVKV/bZW+qg==}
     hasBin: true
@@ -1578,8 +1583,8 @@ packages:
     peerDependencies:
       vue: ^3.3.4
 
-  '@nuxthub/core@0.8.21':
-    resolution: {integrity: sha512-DU0Aqxl35X2K5ZA2wwGpx9Q9amqAbTwnLN5rRL4G2jyB/ifLwfnObQUCyTvB+5ED9n7ZDpdW8e5gpUuS/3jGQw==}
+  '@nuxthub/core@0.8.22':
+    resolution: {integrity: sha512-VSiHRKk4djskFTFXYYSJM0in3GSNQI7pgIxO6vUEa5kA7qPa4G+QTAkIjSksZmst1Pk0rnQe7+BFIU6QXlYLiQ==}
 
   '@nuxtjs/color-mode@3.5.2':
     resolution: {integrity: sha512-cC6RfgZh3guHBMLLjrBB2Uti5eUoGM9KyauOaYS9ETmxNWBMTvpgjvSiSJp1OFljIXPIqVTJ3xtJpSNZiO3ZaA==}
@@ -5942,8 +5947,8 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
-  wrangler@4.5.1:
-    resolution: {integrity: sha512-7ct52LPiKnjqtC6SteKr0aherOS6CmvEurGXxGoDjgIOuoAPjN7jjYAw3eEIReGPlcQXmhpPLuunVFkWNhCoZA==}
+  wrangler@4.6.0:
+    resolution: {integrity: sha512-2a2ZD0adlvxQ1H+nRKkuuD0dkgaYTOPlC7gBolItk5TfqOSliEV4m6DtZtKtJp33ioM+Uy6TlEWPpA2TrDveEQ==}
     engines: {node: '>=18.0.0'}
     hasBin: true
     peerDependencies:
@@ -6403,7 +6408,7 @@ snapshots:
     dependencies:
       postcss-selector-parser: 7.1.0
 
-  '@dargmuesli/nuxt-cookie-control@8.5.5(magicast@0.3.5)(webpack@5.98.0(esbuild@0.19.12))':
+  '@dargmuesli/nuxt-cookie-control@8.6.0(magicast@0.3.5)(webpack@5.98.0(esbuild@0.19.12))':
     dependencies:
       '@nuxt/kit': 3.16.1(magicast@0.3.5)
       css-vars-ponyfill: 2.4.9
@@ -7178,6 +7183,15 @@ snapshots:
     transitivePeerDependencies:
       - magicast
 
+  '@nuxt/devtools-kit@2.3.2(magicast@0.3.5)(vite@5.4.15(@types/node@22.13.13)(sass@1.86.0)(terser@5.39.0))':
+    dependencies:
+      '@nuxt/kit': 3.16.1(magicast@0.3.5)
+      '@nuxt/schema': 3.16.1
+      execa: 8.0.1
+      vite: 5.4.15(@types/node@22.13.13)(sass@1.86.0)(terser@5.39.0)
+    transitivePeerDependencies:
+      - magicast
+
   '@nuxt/devtools-wizard@2.3.1':
     dependencies:
       consola: 3.4.2
@@ -7470,10 +7484,10 @@ snapshots:
       - vue-tsc
       - yaml
 
-  '@nuxthub/core@0.8.21(db0@0.3.1(drizzle-orm@0.41.0(@cloudflare/workers-types@4.20250327.0)(gel@2.0.1)))(ioredis@5.6.0)(magicast@0.3.5)(vite@5.4.15(@types/node@22.13.13)(sass@1.86.0)(terser@5.39.0))':
+  '@nuxthub/core@0.8.22(db0@0.3.1(drizzle-orm@0.41.0(@cloudflare/workers-types@4.20250327.0)(gel@2.0.1)))(ioredis@5.6.0)(magicast@0.3.5)(vite@5.4.15(@types/node@22.13.13)(sass@1.86.0)(terser@5.39.0))':
     dependencies:
       '@cloudflare/workers-types': 4.20250327.0
-      '@nuxt/devtools-kit': 2.3.1(magicast@0.3.5)(vite@5.4.15(@types/node@22.13.13)(sass@1.86.0)(terser@5.39.0))
+      '@nuxt/devtools-kit': 2.3.2(magicast@0.3.5)(vite@5.4.15(@types/node@22.13.13)(sass@1.86.0)(terser@5.39.0))
       '@nuxt/kit': 3.16.1(magicast@0.3.5)
       '@uploadthing/mime-types': 0.3.4
       citty: 0.1.6
@@ -12318,7 +12332,7 @@ snapshots:
       '@cloudflare/workerd-linux-arm64': 1.20250321.0
       '@cloudflare/workerd-windows-64': 1.20250321.0
 
-  wrangler@4.5.1(@cloudflare/workers-types@4.20250327.0):
+  wrangler@4.6.0(@cloudflare/workers-types@4.20250327.0):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.4.0
       '@cloudflare/unenv-preset': 2.3.1(unenv@2.0.0-rc.15)(workerd@1.20250321.0)
