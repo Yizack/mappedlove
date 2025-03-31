@@ -1,4 +1,7 @@
-import type { BlobSize } from "@nuxthub/core";
+// import type { BlobSize } from "@nuxthub/core"; // wait for types fix
+type PowOf2 = 1 | 2 | 4 | 8 | 16 | 32 | 64 | 128 | 256 | 512 | 1024;
+type SizeUnit = "B" | "KB" | "MB" | "GB";
+type BlobSize = `${PowOf2}${SizeUnit}`;
 
 export const uploadImage = async (
   body: File | Blob,
