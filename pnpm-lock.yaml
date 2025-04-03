@@ -66,8 +66,8 @@ importers:
         specifier: ^5.0.18
         version: 5.0.18(vue@3.5.13(typescript@5.8.2))
       bootstrap:
-        specifier: ^5.3.3
-        version: 5.3.3(@popperjs/core@2.11.8)
+        specifier: ^5.3.4
+        version: 5.3.4(@popperjs/core@2.11.8)
       drizzle-kit:
         specifier: ^0.30.6
         version: 0.30.6
@@ -2789,8 +2789,8 @@ packages:
   boolbase@1.0.0:
     resolution: {integrity: sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==}
 
-  bootstrap@5.3.3:
-    resolution: {integrity: sha512-8HLCdWgyoMguSO9o+aH+iuZ+aht+mzW0u3HIMzVu7Srrpv7EBBxTnrFlSCskwdY1+EOFQSm7uMJhNQHkdPcmjg==}
+  bootstrap@5.3.4:
+    resolution: {integrity: sha512-q2oK3ZPDTa5I44FTyY3H76+SDTJREvOBxtX1HNLHcxMni50jMvUtOh+dgFdgpsAHtJ9bfNAWr6d6VezJHJ/7tg==}
     peerDependencies:
       '@popperjs/core': ^2.11.8
 
@@ -8758,7 +8758,7 @@ snapshots:
 
   boolbase@1.0.0: {}
 
-  bootstrap@5.3.3(@popperjs/core@2.11.8):
+  bootstrap@5.3.4(@popperjs/core@2.11.8):
     dependencies:
       '@popperjs/core': 2.11.8
 
