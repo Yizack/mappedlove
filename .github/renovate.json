@@ -9,5 +9,8 @@
   "rangeStrategy": "bump",
   "npm": {
     "commitMessageTopic": "{{prettyDepType}} {{depName}}"
+  },
+  "lockFileMaintenance": {
+    "enabled": true
   }
 }
