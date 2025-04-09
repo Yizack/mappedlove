@@ -30,8 +30,8 @@ importers:
         specifier: ^1.11.0
         version: 1.11.0(magicast@0.3.5)(vite@5.4.17(@types/node@22.14.0)(sass@1.86.3)(terser@5.39.0))(vue@3.5.13(typescript@5.8.3))
       '@nuxthub/core':
-        specifier: ^0.8.23
-        version: 0.8.23(db0@0.3.1(drizzle-orm@0.41.0(@cloudflare/workers-types@4.20250409.0)(gel@2.0.2)))(ioredis@5.6.0)(magicast@0.3.5)(vite@5.4.17(@types/node@22.14.0)(sass@1.86.3)(terser@5.39.0))
+        specifier: ^0.8.24
+        version: 0.8.24(db0@0.3.1(drizzle-orm@0.41.0(@cloudflare/workers-types@4.20250409.0)(gel@2.0.2)))(ioredis@5.6.0)(magicast@0.3.5)(vite@5.4.17(@types/node@22.14.0)(sass@1.86.3)(terser@5.39.0))
       '@nuxtjs/color-mode':
         specifier: ^3.5.2
         version: 3.5.2(magicast@0.3.5)
@@ -1582,8 +1582,8 @@ packages:
     peerDependencies:
       vue: ^3.3.4
 
-  '@nuxthub/core@0.8.23':
-    resolution: {integrity: sha512-iVgydstTjtn7hk5MGb48+zAQmlEIBe4kP8P/gaVMWMPuhjmtbc+Dj01GOHAJCj7EdBBMXYAumdb2IxXxxFtUwQ==}
+  '@nuxthub/core@0.8.24':
+    resolution: {integrity: sha512-UkpLNLhsUIGOAt7MH7QR7WIrJS7wa/VHV/VVftd3pUPFN24+ZpKV0fm5KYLfqiDVauECRNr9Kh/MY+bC26rtZw==}
 
   '@nuxtjs/color-mode@3.5.2':
     resolution: {integrity: sha512-cC6RfgZh3guHBMLLjrBB2Uti5eUoGM9KyauOaYS9ETmxNWBMTvpgjvSiSJp1OFljIXPIqVTJ3xtJpSNZiO3ZaA==}
@@ -5503,6 +5503,9 @@ packages:
   ufo@1.5.4:
     resolution: {integrity: sha512-UsUk3byDzKd04EyoZ7U4DOlxQaD14JUKQl6/P7wiX4FNvUfm3XL246n9W5AmqwW5RSFJ27NAuM0iLscAOYUiGQ==}
 
+  ufo@1.6.1:
+    resolution: {integrity: sha512-9a4/uxlTWJ4+a5i0ooc1rU7C7YOw3wT+UGqdeNNHWnOF9qcMBgLRS+4IYUqbczewFx4mLEig6gawh7X6mFlEkA==}
+
   ultrahtml@1.6.0:
     resolution: {integrity: sha512-R9fBn90VTJrqqLDwyMph+HGne8eqY1iPfYhPzZrvKpIfwkWZbcYlfpsb8B9dTvBfpy1/hqAD7Wi8EKfP9e8zdw==}
 
@@ -7459,7 +7462,7 @@ snapshots:
       - vue-tsc
       - yaml
 
-  '@nuxthub/core@0.8.23(db0@0.3.1(drizzle-orm@0.41.0(@cloudflare/workers-types@4.20250409.0)(gel@2.0.2)))(ioredis@5.6.0)(magicast@0.3.5)(vite@5.4.17(@types/node@22.14.0)(sass@1.86.3)(terser@5.39.0))':
+  '@nuxthub/core@0.8.24(db0@0.3.1(drizzle-orm@0.41.0(@cloudflare/workers-types@4.20250409.0)(gel@2.0.2)))(ioredis@5.6.0)(magicast@0.3.5)(vite@5.4.17(@types/node@22.14.0)(sass@1.86.3)(terser@5.39.0))':
     dependencies:
       '@cloudflare/workers-types': 4.20250409.0
       '@nuxt/devtools-kit': 2.3.2(magicast@0.3.5)(vite@5.4.17(@types/node@22.14.0)(sass@1.86.3)(terser@5.39.0))
@@ -7476,7 +7479,7 @@ snapshots:
       pathe: 2.0.3
       pkg-types: 2.1.0
       std-env: 3.9.0
-      ufo: 1.5.4
+      ufo: 1.6.1
       uncrypto: 0.1.3
       unstorage: 1.15.0(db0@0.3.1(drizzle-orm@0.41.0(@cloudflare/workers-types@4.20250409.0)(gel@2.0.2)))(ioredis@5.6.0)
       zod: 3.24.2
@@ -11797,6 +11800,8 @@ snapshots:
   typescript@5.8.3: {}
 
   ufo@1.5.4: {}
+
+  ufo@1.6.1: {}
 
   ultrahtml@1.6.0: {}
 
