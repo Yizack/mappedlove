@@ -99,8 +99,8 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(magicast@0.3.5)(nuxt@3.16.2(@parcel/watcher@2.5.1)(@types/node@22.14.1)(db0@0.3.1(drizzle-orm@0.41.0(@cloudflare/workers-types@4.20250414.0)(gel@2.0.2)))(drizzle-orm@0.41.0(@cloudflare/workers-types@4.20250414.0)(gel@2.0.2))(eslint@9.24.0(jiti@2.4.2))(ioredis@5.6.1)(magicast@0.3.5)(meow@13.2.0)(optionator@0.9.4)(rollup@4.40.0)(sass@1.86.3)(stylelint@16.18.0(typescript@5.8.3))(terser@5.39.0)(typescript@5.8.3)(vite@5.4.18(@types/node@22.14.1)(sass@1.86.3)(terser@5.39.0))(vue-tsc@2.2.8(typescript@5.8.3))(yaml@2.7.1))
       nuxt-twemoji:
-        specifier: 3.6.3
-        version: 3.6.3(magicast@0.3.5)
+        specifier: 3.7.0
+        version: 3.7.0(magicast@0.3.5)
       nuxt-webhook-validators:
         specifier: ^0.2.0
         version: 0.2.0(magicast@0.3.5)
@@ -2049,11 +2049,11 @@ packages:
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
     engines: {node: '>=10.13.0'}
 
-  '@twemoji/api@15.1.0':
-    resolution: {integrity: sha512-CySXR4/e6vY0z9lC2tW9EVjsH6zzz2/LQvLRMwwpHsDI4xcaweSIP+LcESf1Mq7w2/zcrrhG4ozniMvpSsEXag==}
+  '@twemoji/api@16.0.1':
+    resolution: {integrity: sha512-qe7QHeJKVLGNciwAMbu1S872PX5bt1RY0+0xqvN7gNQ+zd3MyRJ5n7dZowEJWYRAgTN5bAUGshD1YAmkFkyAkA==}
 
-  '@twemoji/parser@15.1.0':
-    resolution: {integrity: sha512-3HTiSxPvkWUJ4kZeCvwyKlIwkpTUfBOk6igpBBRQni58ceQMv5YK4smkc8vX/eqOlMMNER/9qobv+Q6Q8LVrqA==}
+  '@twemoji/parser@16.0.0':
+    resolution: {integrity: sha512-jmuIjkp3OIaEemwMy3sArBwZSuZkRqmueGwRe2Zk4cFzbUJISFBJSZLDUUBNIgq3c+nY49ideYN2OiII6JUqwA==}
 
   '@tybys/wasm-util@0.9.0':
     resolution: {integrity: sha512-6+7nlbMVX/PVDCwaIQ8nTOPveOcFLSt8GcXdx8hD0bt39uWxYT88uXzqTd4fTvqta7oeUJqudepapKNt2DYJFw==}
@@ -4499,8 +4499,8 @@ packages:
     peerDependencies:
       nuxt: '>=3.12.0'
 
-  nuxt-twemoji@3.6.3:
-    resolution: {integrity: sha512-ehItvh33nsQLcl3MAkiBUbidWZGmedGRynldUuGbhu6y9FEnTziiBi11I0xr+AHtbTID/tN3wQLIn2YF640jbw==}
+  nuxt-twemoji@3.7.0:
+    resolution: {integrity: sha512-iqigF249GWstkwgcnOkXrbmDqPAwvG/68HE71hOtkgwNEJ0I9/DBNcLG3AT4lchK7SwFtT7qm8jCx7eldlswVw==}
 
   nuxt-webhook-validators@0.2.0:
     resolution: {integrity: sha512-boy4mblKpt8NrpZiK+Uzmb4wX9c9UO2eUeUdQ5CuCVTQzhTBgWifOJC8UUjR4eH6T7UwopWFCSIOF+iQ1LN6BQ==}
@@ -7919,14 +7919,14 @@ snapshots:
 
   '@trysound/sax@0.2.0': {}
 
-  '@twemoji/api@15.1.0':
+  '@twemoji/api@16.0.1':
     dependencies:
-      '@twemoji/parser': 15.1.0
+      '@twemoji/parser': 16.0.0
       fs-extra: 8.1.0
       jsonfile: 5.0.0
       universalify: 0.1.2
 
-  '@twemoji/parser@15.1.0': {}
+  '@twemoji/parser@16.0.0': {}
 
   '@tybys/wasm-util@0.9.0':
     dependencies:
@@ -10588,10 +10588,11 @@ snapshots:
     transitivePeerDependencies:
       - magicast
 
-  nuxt-twemoji@3.6.3(magicast@0.3.5):
+  nuxt-twemoji@3.7.0(magicast@0.3.5):
     dependencies:
       '@nuxt/kit': 3.16.2(magicast@0.3.5)
-      '@twemoji/api': 15.1.0
+      '@twemoji/api': 16.0.1
+      '@twemoji/parser': 16.0.0
     transitivePeerDependencies:
       - magicast
 
