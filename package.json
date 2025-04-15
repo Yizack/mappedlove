@@ -2,17 +2,19 @@
   "name": "mappedlove",
   "version": "1.0.0",
   "description": "Web app made for couples. Mark the places you have visited together upload images and preserve your special moments forever.",
-  "author": "Yizack Rangel",
   "type": "module",
   "license": "MIT",
+  "author": {
+    "name": "Yizack Rangel",
+    "email": "yizackr@gmail.com",
+    "url": "https://yizack.com"
+  },
   "homepage": "https://mappedlove.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Yizack/mappedlove"
+    "url": "git+https://github.com/Yizack/mappedlove.git"
   },
-  "bugs": {
-    "url": "https://github.com/Yizack/mappedlove/issues"
-  },
+  "bugs": "https://github.com/Yizack/mappedlove/issues",
   "scripts": {
     "build": "npm run docs:build && nuxt build",
     "dev": "nuxt dev --port=5173 --host",
