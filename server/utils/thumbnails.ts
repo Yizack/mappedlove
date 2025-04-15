@@ -1,7 +1,7 @@
 import type { H3Event } from "h3";
 import type { ReadableStream } from "@cloudflare/workers-types";
 
-export const createThumbnail = async (event: H3Event, file: File, options: { secret: string, name: string, metadata?: Record<string, string> }) => {
+export const createThumbnail = async (event: H3Event, file: File, options: { name: string, metadata?: Record<string, string> }) => {
   if (import.meta.dev) return;
   const formData = new FormData();
   formData.append("file", file);
