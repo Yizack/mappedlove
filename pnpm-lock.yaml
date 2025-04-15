@@ -93,8 +93,8 @@ importers:
         specifier: ^0.5.19
         version: 0.5.19(magicast@0.3.5)
       nuxt-mailchannels:
-        specifier: ^0.2.1
-        version: 0.2.1(magicast@0.3.5)
+        specifier: ^0.3.0
+        version: 0.3.0(magicast@0.3.5)
       nuxt-time:
         specifier: ^1.0.3
         version: 1.0.3(magicast@0.3.5)(nuxt@3.16.2(@parcel/watcher@2.5.1)(@types/node@22.14.1)(db0@0.3.1(drizzle-orm@0.41.0(@cloudflare/workers-types@4.20250415.0)(gel@2.0.2)))(drizzle-orm@0.41.0(@cloudflare/workers-types@4.20250415.0)(gel@2.0.2))(eslint@9.24.0(jiti@2.4.2))(ioredis@5.6.1)(magicast@0.3.5)(meow@13.2.0)(optionator@0.9.4)(rollup@4.40.0)(sass@1.86.3)(stylelint@16.18.0(typescript@5.8.3))(terser@5.39.0)(typescript@5.8.3)(vite@5.4.18(@types/node@22.14.1)(sass@1.86.3)(terser@5.39.0))(vue-tsc@2.2.8(typescript@5.8.3))(yaml@2.7.1))
@@ -2466,8 +2466,8 @@ packages:
     peerDependencies:
       vue: ^3.0.0
 
-  '@yizack/mailchannels@0.3.4':
-    resolution: {integrity: sha512-aa/WrkL0hlkiDiquN6UiMRpfupaOiRrzusXhWR5jg2bVGjbeeDfeR1kayzIS6xzWRQ0sER0Xfp50v1P9zq/WJg==}
+  '@yizack/mailchannels@0.3.5':
+    resolution: {integrity: sha512-AAOeBNFhIW2pX5XWHVH9PxWVNSIOucut1x0Fo/wjJBo3oGdAfFot6WQuMUIfzEJ1xEoM7kHnksTwuS7VhUNcgA==}
 
   abbrev@2.0.0:
     resolution: {integrity: sha512-6/mh1E2u2YgEsCHdY0Yx5oW+61gZU+1vXaoiHHrpKeuRNNgFvS+/jrwHiQhB5apAf5oB7UB7E19ol2R2LKH8hQ==}
@@ -4330,8 +4330,8 @@ packages:
       '@simplewebauthn/server':
         optional: true
 
-  nuxt-mailchannels@0.2.1:
-    resolution: {integrity: sha512-vpF4VVBp45s9VgXjwpxs4vWvOyQqgqjZR7hvstKWir3uXqlWWWYzuHAp7w2Ftxv95zE3zQIi30eZX4vsatcLYQ==}
+  nuxt-mailchannels@0.3.0:
+    resolution: {integrity: sha512-jlQbGIpJXAsGf3/F17x6pZuP8wBG7PoBsm6y7HB2seBvH8Ssl90oaax+PKJda7tEsbTbvl7kcHb9DgISdPHLkQ==}
 
   nuxt-site-config-kit@3.1.9:
     resolution: {integrity: sha512-bcmpajYJgkNzA0jTq6CmmhKF2wHZUUKeVx/CIGI8lwWuAD81EBUZN0T4iKvVDo54g9UBrUUl8/5GhD65YBBG0A==}
@@ -8356,7 +8356,7 @@ snapshots:
       '@yeger/vue-masonry-wall-core': 5.0.15
       vue: 3.5.13(typescript@5.8.3)
 
-  '@yizack/mailchannels@0.3.4':
+  '@yizack/mailchannels@0.3.5':
     dependencies:
       ofetch: 1.4.1
 
@@ -10291,10 +10291,10 @@ snapshots:
       - bcrypt
       - magicast
 
-  nuxt-mailchannels@0.2.1(magicast@0.3.5):
+  nuxt-mailchannels@0.3.0(magicast@0.3.5):
     dependencies:
       '@nuxt/kit': 3.16.2(magicast@0.3.5)
-      '@yizack/mailchannels': 0.3.4
+      '@yizack/mailchannels': 0.3.5
       defu: 6.1.4
     transitivePeerDependencies:
       - magicast
