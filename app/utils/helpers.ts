@@ -104,6 +104,7 @@ export const passwordCheckClass = (isValid: boolean, password: string, passwordC
 
 export const updateProfile = (fields: Partial<User>) => {
   const { session } = useUserSession();
+  if (!session.value) return;
   const { user } = session.value;
   if (!user) return;
   session.value.user = { ...user, ...fields };

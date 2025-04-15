@@ -1,7 +1,7 @@
 import { type H3Event, type SessionConfig, useSession } from "h3";
 import type { UserSession } from "#auth-utils";
 
-export const setUserSessionNullish = async (event: H3Event, data: UserSession, config?: Partial<SessionConfig>) => {
+export const setUserSessionNullish = async (event: H3Event, data: Omit<UserSession, "id">, config?: Partial<SessionConfig>) => {
   const finalConfig = {
     ...useRuntimeConfig(event).session,
     ...config
