@@ -34,7 +34,7 @@
     "test:types": "vue-tsc --noEmit"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20250414.0",
+    "@cloudflare/workers-types": "^4.20250415.0",
     "@dargmuesli/nuxt-cookie-control": "^9.0.1",
     "@iconify-json/logos": "^1.2.4",
     "@iconify-json/solar": "^1.2.2",
@@ -76,5 +76,5 @@
     "wrangler": "^4.10.0",
     "zod": "^3.24.2"
   },
-  "packageManager": "pnpm@10.8.0"
+  "packageManager": "pnpm@10.8.1"
 }
