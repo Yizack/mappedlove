@@ -50,7 +50,7 @@ export default defineNuxtConfig({
     "nuxt-mailchannels",
     "nuxt-time"
   ],
-  hub: { database: true, blob: true, cache: true },
+  hub: { database: true, blob: true, cache: true, workers: true },
   icon: {
     mode: "svg",
     clientBundle: { scan: true, sizeLimitKb: 2048 }
