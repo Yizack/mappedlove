@@ -1,7 +1,7 @@
 import { localization } from "~~/shared/utils/localization";
 
 export default defineEventHandler(async (event): Promise<User> => {
-  const session = await requireUserSession(event);
+  const { user } = await requireUserSession(event);
 
   const body = await readValidatedBody(event, z.object({
     name: z.string().optional(),
@@ -25,7 +25,7 @@ export default defineEventHandler(async (event): Promise<User> => {
     showAvatar: form.showAvatar,
     language: form.language,
     updatedAt: Date.now()
-  }).where(eq(tables.users.id, session.user.id)).returning({
+  }).where(eq(tables.users.id, user.id)).returning({
     id: tables.users.id,
     email: tables.users.email,
     name: tables.users.name,
@@ -40,7 +40,7 @@ export default defineEventHandler(async (event): Promise<User> => {
 
   if (!update) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "user_not_found" });
 
-  session.user = { ...session.user, ...update };
+  const session = { user: { ...user, ...update } };
   await setUserSessionNullish(event, session);
 
   return update;

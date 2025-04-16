@@ -58,20 +58,13 @@ export default defineEventHandler(async (event) => {
 
   if (logins) await DB.delete(tables.logins).where(eq(tables.logins.user, logins.user)).run();
 
-  const session = {
-    confirmed: user.confirmed
-  };
-
-  if (!user.confirmed) return session;
+  if (!user.confirmed) return { confirmed: user.confirmed };
 
   const userHash = hash(user.id.toString(), secure.salt);
   const maxAge = form.remember ? 7 * 24 * 60 * 60 : 0; // if remember is true, maxAge is 7 days
 
-  await setUserSessionNullish(event, {
-    user: {
-      ...user,
-      hash: userHash
-    }
-  }, { maxAge });
-  return session;
+  const session = { user: { ...user, hash: userHash } };
+  await setUserSessionNullish(event, session, { maxAge });
+
+  return { confirmed: user.confirmed };
 });

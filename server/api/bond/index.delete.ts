@@ -1,15 +1,16 @@
 export default defineEventHandler(async (event) => {
-  const session = await requireUserSession(event);
+  const { user } = await requireUserSession(event);
 
-  if (session.user.bond && session.user.bond.bonded) {
+  if (user.bond && user.bond.bonded) {
     throw createError({
       statusCode: ErrorCode.FORBIDDEN,
       message: "cant_delete_bonded_bond"
     });
   }
 
-  const DB = useDB();
-  session.user = { ...session.user, bond: null };
+  const session = { user: { ...user, bond: null } };
   await setUserSessionNullish(event, session);
-  return DB.delete(tables.bonds).where(eq(tables.bonds.partner1, session.user.id)).returning().get();
+
+  const DB = useDB();
+  return DB.delete(tables.bonds).where(eq(tables.bonds.partner1, user.id)).returning().get();
 });

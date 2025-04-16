@@ -1,11 +1,11 @@
 export default defineEventHandler(async (event): Promise<MappedLoveBond> => {
-  const session = await requireUserSession(event);
+  const { user } = await requireUserSession(event);
 
   const DB = useDB();
   const bondExists = await DB.select().from(tables.bonds).where(
     or(
-      eq(tables.bonds.partner1, session.user.id),
-      eq(tables.bonds.partner2, session.user.id)
+      eq(tables.bonds.partner1, user.id),
+      eq(tables.bonds.partner2, user.id)
     )
   ).get();
 
@@ -18,16 +18,17 @@ export default defineEventHandler(async (event): Promise<MappedLoveBond> => {
   if (!body.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "bond_code_required" });
 
   const bond = await DB.update(tables.bonds).set({
-    partner1: sql`COALESCE(${tables.bonds.partner1}, ${session.user.id})`,
-    partner2: sql`COALESCE(${tables.bonds.partner2}, ${session.user.id})`,
+    partner1: sql`COALESCE(${tables.bonds.partner1}, ${user.id})`,
+    partner2: sql`COALESCE(${tables.bonds.partner2}, ${user.id})`,
     bonded: true,
     updatedAt: Date.now()
   }).where(and(eq(tables.bonds.code, body.data.code))).returning().get();
 
   if (!bond) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "partner_code_not_found" });
 
-  session.user = { ...session.user, bond };
+  const session = { user: { ...user, bond } };
   await setUserSessionNullish(event, session);
+
   return {
     ...bond,
     partners: await getPartners(event, DB, bond)

@@ -24,7 +24,8 @@ export default defineOAuthGoogleEventHandler({
 
     const { secure } = useRuntimeConfig(event);
     const userHash = hash(user.id.toString(), secure.salt);
-    await setUserSessionNullish(event, { user: { ...user, hash: userHash } });
+    const session = { user: { ...user, hash: userHash } };
+    await setUserSessionNullish(event, session);
 
     return sendRedirect(event, "/app");
   },

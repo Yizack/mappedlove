@@ -2,7 +2,7 @@ import { render } from "@vue-email/render";
 import premiumWelcome from "~~/emails/premiumWelcome.vue";
 
 export default defineEventHandler(async (event) => {
-  const session = await requireUserSession(event);
+  const { user } = await requireUserSession(event);
 
   const body = await readValidatedBody(event, z.object({
     bondId: z.number(),
@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
 
   const payment = body.data;
 
-  if (payment.bondId !== session.user.bond?.id) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "bond_not_found" });
+  if (payment.bondId !== user.bond?.id) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "bond_not_found" });
 
   const config = useRuntimeConfig(event);
   const paddle = new Paddle(config.paddle.secret);
@@ -41,19 +41,19 @@ export default defineEventHandler(async (event) => {
 
   if (!update) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "bond_not_found" });
 
-  if (transaction.origin === "web" && !session.user.bond.premium) {
+  if (transaction.origin === "web" && !user.bond.premium) {
     const html = await render(premiumWelcome, {
       lang: "en"
     });
 
-    session.user = { ...session.user, bond: { ...session.user.bond, ...update } };
+    const session = { user: { ...user, bond: { ...user.bond, ...update } } };
     await setUserSessionNullish(event, session);
 
     const mailchannels = useMailChannels(event);
     await mailchannels.send({
       to: {
-        email: session.user.email,
-        name: session.user.name
+        email: user.email,
+        name: user.name
       },
       subject: "Premium subscription activated!",
       html,
