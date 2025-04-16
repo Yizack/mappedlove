@@ -2,19 +2,14 @@ import { type H3Event, type SessionConfig, useSession } from "h3";
 import type { UserSession } from "#auth-utils";
 
 export const setUserSessionNullish = async (event: H3Event, data: Omit<UserSession, "id">, config?: Partial<SessionConfig>) => {
-  const finalConfig = {
-    ...useRuntimeConfig(event).session,
-    ...config
-  };
+  const currentData = await getUserSession(event);
+  const runtimeConfig = useRuntimeConfig(event);
 
-  let session = await useSession<UserSession>(event, finalConfig);
-
-  if (session.data.maxAge && config?.maxAge === undefined) {
-    session = await useSession<UserSession>(event, {
-      ...finalConfig,
-      maxAge: session.data.maxAge as number
-    });
-  }
+  const session = await useSession<UserSession>(event, {
+    ...runtimeConfig.session,
+    ...config,
+    maxAge: config?.maxAge ?? currentData.maxAge ?? runtimeConfig.session.maxAge
+  });
 
   if (config?.maxAge) data.maxAge = config?.maxAge;
   await session.update(data);
