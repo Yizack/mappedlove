@@ -46,12 +46,13 @@ const leaveBond = async () => {
 };
 
 const upcomingDates = computed(() => {
-  const dates: { title: string, date: number }[] = [];
+  const dates: { icon: string, title: string, date: number }[] = [];
   if (!props.bond.partners?.some(partner => partner.birthDate)) return dates;
   dates.push(
     ...props.bond.partners
       .filter(partner => partner.birthDate)
       .map(partner => ({
+        icon: "tabler:cake",
         title: `${t("birthday")}: ${partner.name}`,
         date: partner.birthDate!
       }))
@@ -187,7 +188,7 @@ watch(coupleDate, async (val: number | null) => {
               </div>
               <div>
                 <div class="d-flex align-items-center gap-1">
-                  <Icon name="tabler:cake" size="1.4rem" class="text-primary" />
+                  <Icon :name="upcoming.icon" size="1.4rem" class="text-primary" />
                   <h5 class="m-0">{{ upcoming.title }}</h5>
                 </div>
                 <p class="m-0">{{ getUntilDate(upcoming.date) }}</p>

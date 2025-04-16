@@ -99,6 +99,7 @@ export default {
   premium_owner_leaving: "Por favor, cancela tu suscripción premium antes de abandonar el vínculo",
   need_bond: "Necesitas un vínculo para acceder a esta página",
   upcoming_dates: "Fechas próximas",
+  birthdays: "Cumpleaños",
   // Markers
   marker: "Marcador",
   markers: "Marcadores",

@@ -14,7 +14,7 @@ Place markers on the map and add stories to preserve your memories.
 
 ## Share Your Memories
 
-Upload images to your stories and share them with your friends and family by turning your map public.
+Upload images to your stories and share them with your friends and family by enabling the public map setting.
 
 Whether it's a memorable vacation, a lovely dinner, a special event, or simply everyday adventures, our app helps you turn these moments into unforgettable experiences.
 
