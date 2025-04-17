@@ -42,8 +42,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0(@nuxt/scripts@0.11.5(@unhead/vue@2.0.5(vue@3.5.13(typescript@5.8.3)))(db0@0.3.1(drizzle-orm@0.42.0(@cloudflare/workers-types@4.20250417.0)(gel@2.0.2)))(ioredis@5.6.1)(magicast@0.3.5)(nuxt@3.16.2(@parcel/watcher@2.5.1)(@types/node@22.14.1)(db0@0.3.1(drizzle-orm@0.42.0(@cloudflare/workers-types@4.20250417.0)(gel@2.0.2)))(drizzle-orm@0.42.0(@cloudflare/workers-types@4.20250417.0)(gel@2.0.2))(eslint@9.24.0(jiti@2.4.2))(ioredis@5.6.1)(magicast@0.3.5)(meow@13.2.0)(optionator@0.9.4)(rollup@4.40.0)(sass@1.86.3)(stylelint@16.18.0(typescript@5.8.3))(terser@5.39.0)(typescript@5.8.3)(vite@5.4.18(@types/node@22.14.1)(sass@1.86.3)(terser@5.39.0))(vue-tsc@2.2.8(typescript@5.8.3))(yaml@2.7.1))(typescript@5.8.3)(vue@3.5.13(typescript@5.8.3)))(magicast@0.3.5)
       '@paddle/paddle-js':
-        specifier: ^1.4.0
-        version: 1.4.0
+        specifier: ^1.4.1
+        version: 1.4.1
       '@paddle/paddle-node-sdk':
         specifier: ^2.7.0
         version: 2.7.0
@@ -1380,8 +1380,8 @@ packages:
   '@oxc-project/types@0.60.0':
     resolution: {integrity: sha512-prhfNnb3ATFHOCv7mzKFfwLij5RzoUz6Y1n525ZhCEqfq5wreCXL+DyVoq3ShukPo7q45ZjYIdjFUgjj+WKzng==}
 
-  '@paddle/paddle-js@1.4.0':
-    resolution: {integrity: sha512-pX6Yx+RswB1rHMuYl8RKcAAVZhVJ6nd5f8w8l4kVM63pM3HNeQ5/Xuk4sK/X9P5fUE2dmN0mTti7+gZ8cZtqvg==}
+  '@paddle/paddle-js@1.4.1':
+    resolution: {integrity: sha512-GKuXVnUAIGq4H1AxrPRRMZXl+pTSGiKMStpRlvF6+dv03BwhkqbyHJJZ39e6bMquVbYSa33/9cu6fuW8pie8aQ==}
 
   '@paddle/paddle-node-sdk@2.7.0':
     resolution: {integrity: sha512-gYndP1ev+iZRgY6bA+tZOaKbH1vcyjAmgZphFzE5p/lLTqutrEahHyJmeqC+4Ti2cNFoB0wJXLVSndet5dnbuw==}
@@ -7138,7 +7138,7 @@ snapshots:
 
   '@oxc-project/types@0.60.0': {}
 
-  '@paddle/paddle-js@1.4.0': {}
+  '@paddle/paddle-js@1.4.1': {}
 
   '@paddle/paddle-node-sdk@2.7.0': {}
 
