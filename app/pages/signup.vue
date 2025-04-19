@@ -7,7 +7,7 @@ const form = useFormState({
   name: "",
   email: "",
   password: "",
-  password_check: "",
+  passwordCheck: "",
   turnstile: ""
 });
 
@@ -19,7 +19,7 @@ const passwordFocus = ref(false);
 const isValidPass = ref(false);
 
 const signUp = async () => {
-  if (!(isValidName(form.value.name) && isValidEmail(form.value.email) && isValidPass && isValidPasswordCheck(form.value.password, form.value.password_check))) return;
+  if (!(isValidName(form.value.name) && isValidEmail(form.value.email) && isValidPass.value && isValidPasswordCheck(form.value.password, form.value.passwordCheck))) return;
 
   submit.value.loading = true;
   const req = await $fetch("/api/signup", { method: "POST", body: form.value }).catch(() => null);
@@ -85,7 +85,7 @@ useSeo({
               </Transition>
             </div>
             <div class="form-floating mb-2">
-              <input v-model="form.password_check" type="password" class="form-control" :class="passwordCheckClass(isValidPass, form.password, form.password_check)" :placeholder="t('password_confirm')" autocomplete="new-password" required>
+              <input v-model="form.passwordCheck" type="password" class="form-control" :class="passwordCheckClass(isValidPass, form.password, form.passwordCheck)" :placeholder="t('password_confirm')" autocomplete="new-password" required>
               <label class="form-label">{{ t("password_confirm") }}</label>
             </div>
             <div class="form-check mb-2">
