@@ -29,7 +29,7 @@ export default {
   many_logins_attempted: "Too many failed login attempts, please try again later",
   invalid_signin_data: "Sign in data is not valid",
   remember_me: "Remember me",
-  // Register
+  // Signup
   password_confirm: "Confirm password",
   name: "Name",
   signup: "Sign up",
@@ -47,6 +47,12 @@ export default {
   invalid_signup_data: "Signup data is not valid",
   invalid_verification_data: "Verification data is not valid",
   read_legal: "I have read and understood",
+  pass_req: "Password requirements",
+  pass_req_characters: "At least 8 characters long",
+  pass_req_uppercase: "One uppercase letter",
+  pass_req_lowercase: "One lowercase letter",
+  pass_req_number: "One number",
+  pass_req_special: "One special character",
   // Bond
   not_bonded: "You are currently not bonded",
   bond_start: "To start mapping your love stories, you need to bond with your partner!",
