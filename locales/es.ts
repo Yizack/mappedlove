@@ -20,7 +20,7 @@ export default {
   email: "Correo electrónico",
   password: "Contraseña",
   signin: "Iniciar sesión",
-  signin_google: "Inicia sesión con Google",
+  signin_google: "Iniciar con Google",
   forgot_password: "¿Olvidaste tu contraseña?",
   no_account: "¿No tienes cuenta?",
   signin_error: "Correo electrónico o contraseña incorrectos",
