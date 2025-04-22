@@ -28,8 +28,11 @@ export default defineOAuthGoogleEventHandler({
 
     const { secure } = useRuntimeConfig(event);
     const userHash = hash(user.id.toString(), secure.salt);
+    const remember = getQuery(event).state === "remember";
+    const maxAge = remember ? 7 * 24 * 60 * 60 : 0; // if remember is true, maxAge is 7 days
+
     const session = { user: { ...user, hash: userHash } };
-    await setUserSessionNullish(event, session);
+    await setUserSessionNullish(event, session, { maxAge });
 
     return sendRedirect(event, "/app");
   },
