@@ -15,8 +15,12 @@ export default defineOAuthGoogleEventHandler({
       auth: tables.users.auth,
       confirmed: tables.users.confirmed,
       createdAt: tables.users.createdAt,
-      updatedAt: tables.users.updatedAt
-    }).from(tables.users).where(and(eq(tables.users.email, _user.email))).get();
+      updatedAt: tables.users.updatedAt,
+      bond: tables.bonds
+    }).from(tables.users).leftJoin(tables.bonds, or(
+      eq(tables.bonds.partner1, tables.users.id),
+      eq(tables.bonds.partner2, tables.users.id)
+    )).where(and(eq(tables.users.email, _user.email))).get();
 
     if (!user) return sendRedirect(event, "/login?error=signin_auth_error");
 
