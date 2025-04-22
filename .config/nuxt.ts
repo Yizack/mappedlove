@@ -146,6 +146,7 @@ export default defineNuxtConfig({
     }
   },
   sitemap: {
+    exclude: ["/app/**"],
     xslColumns: [
       { label: "URL", width: "65%" },
       { label: "Priority", select: "sitemap:priority", width: "12.5%" },
@@ -155,7 +156,6 @@ export default defineNuxtConfig({
   routeRules: {
     "/": { sitemap: { priority: 1 } },
     "/*/**": { sitemap: { priority: 0.8, lastmod: new Date().toISOString() } },
-    "/app/**": { index: false },
     "/api/_nuxt_icon/**": { cache: { maxAge: 1.577e+7 } }
   },
   features: {
