@@ -52,7 +52,9 @@ export default defineEventHandler(async (event): Promise<MappedLoveStory> => {
   });
 
   if (!uploaded) {
-    await DB.delete(tables.stories).where(eq(tables.stories.id, story.id)).run();
+    event.waitUntil(
+      DB.delete(tables.stories).where(eq(tables.stories.id, story.id)).run()
+    );
     throw createError({ statusCode: ErrorCode.INTERNAL_SERVER_ERROR, message: "error_any" });
   }
 

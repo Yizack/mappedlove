@@ -56,7 +56,11 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "signin_error" });
   }
 
-  if (logins) await DB.delete(tables.logins).where(eq(tables.logins.user, logins.user)).run();
+  if (logins) {
+    event.waitUntil(
+      DB.delete(tables.logins).where(eq(tables.logins.user, logins.user)).run()
+    );
+  }
 
   if (!user.confirmed) return { confirmed: user.confirmed };
 

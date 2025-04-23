@@ -11,12 +11,12 @@ const deleteButton = ref<Record<number, boolean>>({});
 
 const deleteStory = async (id: number) => {
   if (!confirm(t("delete_story"))) return;
-  const res = await $fetch(`/api/stories/${id}`, {
+  $fetch(`/api/stories/${id}`, {
     method: "DELETE"
-  }).catch(() => null);
-  if (!res) return;
-  emit("delete", id);
-  $toasts.add({ message: t("story_deleted") });
+  }).then(() => {
+    emit("delete", id);
+    $toasts.add({ message: t("story_deleted") });
+  }).catch(() => {});
 };
 
 const submitted = ref(false);

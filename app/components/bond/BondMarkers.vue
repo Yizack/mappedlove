@@ -59,14 +59,13 @@ const openMarker = (marker?: MappedLoveMarker) => {
 
 const deleteMarker = async (id: number) => {
   if (!confirm(t("delete_marker"))) return;
-  const res = await $fetch(`/api/markers/${id}`, {
+  $fetch(`/api/markers/${id}`, {
     method: "DELETE"
-  }).catch(() => null);
-
-  if (!res || !res.id) return;
-  if (props.selected === id) emit("select", 0);
-  markers.value = markers.value.filter(marker => marker.id !== id);
-  emit("delete", id);
+  }).then(() => {
+    if (props.selected === id) emit("select", 0);
+    markers.value = markers.value.filter(marker => marker.id !== id);
+    emit("delete", id);
+  }).catch(() => {});
 };
 
 const groupIcon = computed(() => {

@@ -178,13 +178,14 @@ const deleteAvatar = async () => {
 const deleteAccount = async () => {
   if (!confirm(t("delete_account_confirm"))) return;
   submit.value.loading = true;
-  const account = await $fetch("/api/account", {
+  $fetch("/api/account", {
     method: "DELETE"
-  }).catch(() => null);
-  submit.value.loading = false;
-  if (!account) return;
-  await clear();
-  navigateTo("/");
+  }).then(async () => {
+    await clear();
+    navigateTo("/");
+  }).catch(() => {}).finally(() => {
+    submit.value.loading = false;
+  });
 };
 
 const downloadData = async () => {

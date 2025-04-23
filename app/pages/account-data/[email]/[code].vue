@@ -28,22 +28,21 @@ const form = useFormState({
 
 const submitRequest = async () => {
   submit.value.loading = true;
-  let message = "";
+  let message: string | null = null;
   if (query.request === "download") {
     message = t("account_data_request_download_success");
     navigateTo(`/api/account?code=${params.code}&email=${params.email}`, { external: true });
   }
   else if (query.request === "delete" && confirm(t("delete_account_confirm"))) {
-    const req = await $fetch("/api/account", {
+    await $fetch("/api/account", {
       method: "DELETE",
       body: form.value
-    }).catch(() => null);
-    if (!req) return;
-    message = t("account_data_request_delete_success");
+    }).then(() => {
+      message = t("account_data_request_delete_success");
+    }).catch(() => {});
   }
   submit.value.loading = false;
   $toasts.add({ message: message || t("account_data_error"), success: Boolean(message) });
-  form.reset();
 };
 
 useSeo({
