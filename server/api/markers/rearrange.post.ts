@@ -14,8 +14,9 @@ export default defineEventHandler(async (event) => {
 
   const changes: { id: number, order: number }[] = [];
   for (const [index, marker] of body.old.entries()) {
-    if (marker.order === body.new[index].order) continue;
-    changes.push({ id: marker.id, order: body.new[index].order });
+    const newOrder = body.new[index]!.order;
+    if (marker.order === newOrder) continue;
+    changes.push({ id: marker.id, order: newOrder });
   }
 
   if (changes.length === 0) return;
