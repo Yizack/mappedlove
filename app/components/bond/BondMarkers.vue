@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { VueDraggableNext as VueDraggable } from "vue-draggable-next";
+import { VueDraggable } from "vue-draggable-plus";
 
 const props = defineProps<{
   markers: MappedLoveMarker[];
