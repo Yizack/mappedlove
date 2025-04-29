@@ -82,8 +82,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     secure: {
-      salt: "",
-      secret: ""
+      salt: ""
     },
     turnstile: {
       secretKey: ""
