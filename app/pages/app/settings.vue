@@ -163,21 +163,21 @@ const uploadAvatar = async (event: Event) => {
   $toasts.add({ message: t("avatar_saved") });
 };
 
-const deleteAvatar = async () => {
+const deleteAvatar = () => {
   if (!confirm(t("delete_avatar_confirm"))) return;
-  const account = await $fetch("/api/account/avatar", {
+  $fetch("/api/account/avatar", {
     method: "DELETE"
+  }).then(() => {
+    if (!user.value) return;
+    user.value.showAvatar = false;
+    form.value.showAvatar = false;
+    fileChosen.value = false;
+    imageRead.value = "";
+    $toasts.add({ message: t("avatar_deleted") });
   }).catch(() => null);
-  if (!account) return;
-  user.value!.showAvatar = false;
-  form.value.showAvatar = false;
-  fileChosen.value = false;
-  user.value!.updatedAt = account.updatedAt;
-  imageRead.value = "";
-  $toasts.add({ message: t("avatar_deleted") });
 };
 
-const deleteAccount = async () => {
+const deleteAccount = () => {
   if (!confirm(t("delete_account_confirm"))) return;
   submit.value.loading = true;
   $fetch("/api/account", {
@@ -190,7 +190,7 @@ const deleteAccount = async () => {
   });
 };
 
-const downloadData = async () => {
+const downloadData = () => {
   submit.value.loading = true;
   navigateTo(`/api/account?id=${user.value!.id}`, { external: true });
   submit.value.loading = false;

@@ -11,7 +11,7 @@ const { user } = useUserSession();
 
 const deleteButton = ref<Record<number, boolean>>({});
 
-const deleteStory = async (id: number) => {
+const deleteStory = (id: number) => {
   if (!confirm(t("delete_story"))) return;
   $fetch(`/api/stories/${id}`, {
     method: "DELETE"

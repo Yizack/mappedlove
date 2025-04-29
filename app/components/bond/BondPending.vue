@@ -5,7 +5,7 @@ defineProps<{
 
 const emit = defineEmits(["bond"]);
 
-const cancelBond = async () => {
+const cancelBond = () => {
   $fetch("/api/bond", {
     method: "DELETE"
   }).then(() => {

@@ -64,7 +64,7 @@ const openMarker = (marker?: MappedLoveMarker) => {
   markerModal.value.show();
 };
 
-const deleteMarker = async (id: number) => {
+const deleteMarker = (id: number) => {
   if (!confirm(t("delete_marker"))) return;
   $fetch(`/api/markers/${id}`, {
     method: "DELETE"
