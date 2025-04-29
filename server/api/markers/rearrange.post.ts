@@ -22,7 +22,7 @@ export default defineEventHandler(async (event) => {
 
   // Calculate batch size: each marker uses 3 params (2 in CASE + 1 in inArray)
   // Plus 2 fixed parameters (bond.id and updatedAt)
-  const MAX_PARAMS = 100;
+  const MAX_PARAMS = 100; // Maximum bound parameters per query (https://developers.cloudflare.com/d1/platform/limits/)
   const FIXED_PARAMS = 2;
   const PARAMS_PER_MARKER = 3;
   const BATCH_SIZE = Math.floor((MAX_PARAMS - FIXED_PARAMS) / PARAMS_PER_MARKER);
