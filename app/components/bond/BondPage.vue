@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import VueDatePicker from "@vuepic/vue-datepicker";
+
 const props = defineProps<{
   bond: MappedLoveBond;
 }>();

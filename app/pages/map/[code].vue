@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import MasonryWall from "@yeger/vue-masonry-wall";
+import VueDatePicker from "@vuepic/vue-datepicker";
+
 definePageMeta({ layout: "map" });
 
 const { params } = useRoute("map-code");
@@ -153,17 +156,15 @@ useSeo({
               <button v-if="filter.year" class="btn btn-sm btn-danger rounded-3">
                 <Icon name="tabler:x" size="1.3rem" @click="clearFilter" />
               </button>
-              <ClientOnly v-if="!isMobile || expandCanvas">
-                <VueDatePicker v-model.number="filter.year" year-picker reverse-years :year-range="[currentYear - 100, currentYear]" :dark="$colorMode.preference === 'dark'">
-                  <template #trigger>
-                    <div class="px-2 py-1 border rounded-3 hover position-relative" role="button">
-                      <div class="d-flex align-items-center justify-content-center gap-1">
-                        <strong>{{ filter.year ? filter.year : t("filter_by_year") }}</strong>
-                      </div>
+              <VueDatePicker v-if="!isMobile || expandCanvas" v-model.number="filter.year" year-picker reverse-years :year-range="[currentYear - 100, currentYear]" :dark="$colorMode.preference === 'dark'">
+                <template #trigger>
+                  <div class="px-2 py-1 border rounded-3 hover position-relative" role="button">
+                    <div class="d-flex align-items-center justify-content-center gap-1">
+                      <strong>{{ filter.year ? filter.year : t("filter_by_year") }}</strong>
                     </div>
-                  </template>
-                </VueDatePicker>
-              </ClientOnly>
+                  </div>
+                </template>
+              </VueDatePicker>
             </div>
           </div>
           <div v-if="storiesFiltered" class="p-3">

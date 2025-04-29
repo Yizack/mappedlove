@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import VueDatePicker from "@vuepic/vue-datepicker";
+
 definePageMeta({ layout: "app", middleware: "session" });
 
 const { user, clear } = useUserSession();
@@ -281,7 +283,7 @@ useSeo({
               </VueDatePicker>
               <template #fallback>
                 <div class="form-floating mb-2">
-                  <input ref="datepicker" class="form-control bg-body" :class="{ focus: datePickerFocus }" :value="formatDate(form.birthDate)" @keyup="backSpaceToNull">
+                  <input ref="datepicker" class="form-control bg-body" :value="formatDate(form.birthDate)">
                   <label class="d-flex align-items-center gap-1">
                     <Icon name="solar:confetti-minimalistic-line-duotone" />
                     <span>{{ t("birth_date") }}</span>
