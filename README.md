@@ -1,4 +1,4 @@
-![mappedlove](https://raw.githubusercontent.com/Yizack/mappedlove/main/public/images/presentation.png)
+![mappedlove](/public/images/presentation.png)
 
 # MappedLove
 
@@ -10,7 +10,7 @@ Easily mark the locations you have visited on an interactive map and create a vi
 
 Place markers on the map and add stories to preserve your memories.
 
-![Map Your Journey](https://raw.githubusercontent.com/Yizack/mappedlove/main/public/images/demos/map-dashboard.jpg)
+![Map Your Journey](/public/images/demos/map-dashboard.jpg)
 
 ## Share Your Memories
 
@@ -18,13 +18,13 @@ Upload images to your stories and share them with your friends and family by ena
 
 Whether it's a memorable vacation, a lovely dinner, a special event, or simply everyday adventures, our app helps you turn these moments into unforgettable experiences.
 
-![Share Your Memories](https://raw.githubusercontent.com/Yizack/mappedlove/main/public/images/demos/public-map.jpg)
+![Share Your Memories](/public/images/demos/public-map.jpg)
 
 ## Create your Bond
 
 Connect your accounts by inviting your partner to join your bond, and start mapping your life moments together.
 
-![Create your Bond](https://raw.githubusercontent.com/Yizack/mappedlove/main/public/images/demos/bond.jpg)
+![Create your Bond](/public/images/demos/bond.jpg)
 
 <!-- #region credits-license -->
 ## Credits
