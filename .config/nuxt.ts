@@ -161,7 +161,10 @@ export default defineNuxtConfig({
     inlineStyles: false
   },
   experimental: {
-    typedPages: true
+    typedPages: true,
+    // TODO: remove this when `getCachedData` issue is fixed in nuxt
+    granularCachedData: false,
+    purgeCachedData: false
   },
   vite: {
     css: {
