@@ -34,13 +34,18 @@ const form = useFormState({
 
 const markers = ref(props.markers);
 
-const move = async () => {
-  const oldArrange = markers.value.map(marker => ({ id: marker.id, order: marker.order }));
-  const newArrange = markers.value.map((marker, index) => ({ id: marker.id, order: index }));
-  await $fetch("/api/markers/rearrange", {
+const move = () => {
+  $fetch("/api/markers/rearrange", {
     method: "POST",
-    body: { oldArrange, newArrange }
-  }).catch(() => undefined);
+    body: {
+      old: markers.value.map(marker => ({ id: marker.id, order: marker.order })),
+      new: markers.value.map((marker, index) => ({ id: marker.id, order: index }))
+    }
+  }).then(() => {
+    for (const [index, marker] of markers.value.entries()) {
+      marker.order = index;
+    }
+  }).catch(() => {});
 };
 
 const selectMarker = (id: number) => {
@@ -128,7 +133,7 @@ watch(() => props.markers, (value) => {
             <span class="d-flex" :title="t(groups[marker.group]!.key)">
               <Icon :name="groups[marker.group]!.icon" class="text-primary" size="1.5rem" />
             </span>
-            {{ marker.title }}
+            <span>{{ marker.title }}</span>
           </h5>
           <p class="m-0">{{ marker.description }}</p>
         </div>
