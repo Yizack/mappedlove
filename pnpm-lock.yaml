@@ -95,9 +95,6 @@ importers:
       nuxt-mailchannels:
         specifier: ^0.3.0
         version: 0.3.0(magicast@0.3.5)
-      nuxt-time:
-        specifier: ^1.0.3
-        version: 1.0.3(magicast@0.3.5)(nuxt@3.17.1(@netlify/blobs@8.2.0)(@parcel/watcher@2.5.1)(@types/node@22.15.3)(db0@0.3.2(drizzle-orm@0.43.1(@cloudflare/workers-types@4.20250429.0)))(drizzle-orm@0.43.1(@cloudflare/workers-types@4.20250429.0))(eslint@9.25.1(jiti@2.4.2))(ioredis@5.6.1)(magicast@0.3.5)(meow@13.2.0)(optionator@0.9.4)(rollup@4.40.1)(sass@1.87.0)(stylelint@16.19.1(typescript@5.8.3))(terser@5.39.0)(typescript@5.8.3)(vite@5.4.18(@types/node@22.15.3)(sass@1.87.0)(terser@5.39.0))(vue-tsc@2.2.10(typescript@5.8.3))(yaml@2.7.1))
       nuxt-twemoji:
         specifier: 3.7.1
         version: 3.7.1(magicast@0.3.5)
@@ -4936,11 +4933,6 @@ packages:
 
   nuxt-site-config@3.1.9:
     resolution: {integrity: sha512-YB69GX0st8drv1d5xypweseiEWeR22tfGdyVH3U4R+mpUSz8paBx48ArKC6MgV22DKItoQm51LVoapF5pl5bEQ==}
-
-  nuxt-time@1.0.3:
-    resolution: {integrity: sha512-aD5Yv18IIKX08ED9B+Hd2rSDewcV40qNxUursdtJFaKFhLLZWPQF8TR2d/P523erPlqht2OvxSN3iyGhUJJy/g==}
-    peerDependencies:
-      nuxt: '>=3.12.0'
 
   nuxt-twemoji@3.7.1:
     resolution: {integrity: sha512-IbuA8+N56pkMXY887SjOcCPgM2b/CFF+PuroBJ0Q5Y+iNDT2lh003dKXL29L2H6OZLmAwOL2BPLh1BmPQF73hw==}
@@ -11732,13 +11724,6 @@ snapshots:
     transitivePeerDependencies:
       - magicast
       - vue
-
-  nuxt-time@1.0.3(magicast@0.3.5)(nuxt@3.17.1(@netlify/blobs@8.2.0)(@parcel/watcher@2.5.1)(@types/node@22.15.3)(db0@0.3.2(drizzle-orm@0.43.1(@cloudflare/workers-types@4.20250429.0)))(drizzle-orm@0.43.1(@cloudflare/workers-types@4.20250429.0))(eslint@9.25.1(jiti@2.4.2))(ioredis@5.6.1)(magicast@0.3.5)(meow@13.2.0)(optionator@0.9.4)(rollup@4.40.1)(sass@1.87.0)(stylelint@16.19.1(typescript@5.8.3))(terser@5.39.0)(typescript@5.8.3)(vite@5.4.18(@types/node@22.15.3)(sass@1.87.0)(terser@5.39.0))(vue-tsc@2.2.10(typescript@5.8.3))(yaml@2.7.1)):
-    dependencies:
-      '@nuxt/kit': 3.17.1(magicast@0.3.5)
-      nuxt: 3.17.1(@netlify/blobs@8.2.0)(@parcel/watcher@2.5.1)(@types/node@22.15.3)(db0@0.3.2(drizzle-orm@0.43.1(@cloudflare/workers-types@4.20250429.0)))(drizzle-orm@0.43.1(@cloudflare/workers-types@4.20250429.0))(eslint@9.25.1(jiti@2.4.2))(ioredis@5.6.1)(magicast@0.3.5)(meow@13.2.0)(optionator@0.9.4)(rollup@4.40.1)(sass@1.87.0)(stylelint@16.19.1(typescript@5.8.3))(terser@5.39.0)(typescript@5.8.3)(vite@5.4.18(@types/node@22.15.3)(sass@1.87.0)(terser@5.39.0))(vue-tsc@2.2.10(typescript@5.8.3))(yaml@2.7.1)
-    transitivePeerDependencies:
-      - magicast
 
   nuxt-twemoji@3.7.1(magicast@0.3.5):
     dependencies:
