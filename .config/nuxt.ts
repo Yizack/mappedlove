@@ -162,9 +162,7 @@ export default defineNuxtConfig({
   },
   experimental: {
     typedPages: true,
-    // TODO: remove this when `getCachedData` issue is fixed in nuxt
-    granularCachedData: false,
-    purgeCachedData: false
+    purgeCachedData: false // keep payload cache on navigation
   },
   vite: {
     css: {
