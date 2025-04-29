@@ -194,7 +194,7 @@ useSeo({
         </div>
       </div>
     </div>
-    <ControllerModals v-if="billing.subscription?.scheduled_change?.action === 'cancel' || billing.subscription?.status === 'canceled'" id="refund" v-model="refundModal" :title="t('request_refund')">
+    <BsModal v-if="billing.subscription?.scheduled_change?.action === 'cancel' || billing.subscription?.status === 'canceled'" id="refund" v-model="refundModal" :title="t('request_refund')">
       <form @submit.prevent="requestRefund">
         <div class="d-flex align-items-center gap-2 mb-2">
           <Icon name="solar:info-circle-linear" class="text-primary flex-shrink-0" />
@@ -211,6 +211,6 @@ useSeo({
           </Transition>
         </button>
       </form>
-    </ControllerModals>
+    </BsModal>
   </div>
 </template>

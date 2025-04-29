@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { $toasts, $bootstrap } = useNuxtApp();
-const toasts = $toasts?.getAll();
+const toasts = $toasts.getAll();
 const refToasts = ref<HTMLElement[]>();
 
 watch(toasts, () => {

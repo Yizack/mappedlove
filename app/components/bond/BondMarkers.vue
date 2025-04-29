@@ -151,7 +151,7 @@ watch(() => props.markers, (value) => {
     </div>
   </VueDraggable>
   <p v-else class="m-0">{{ t("no_markers") }}</p>
-  <ControllerModals id="marker" v-model="markerModal" :title="t('marker')" lg>
+  <BsModal id="marker" v-model="markerModal" :title="t('marker')" lg>
     <form @submit.prevent="submitMarker">
       <div class="d-flex align-items-center gap-2 mb-2">
         <Icon name="solar:info-circle-linear" class="text-primary flex-shrink-0" />
@@ -186,5 +186,5 @@ watch(() => props.markers, (value) => {
         </button>
       </div>
     </form>
-  </ControllerModals>
+  </BsModal>
 </template>

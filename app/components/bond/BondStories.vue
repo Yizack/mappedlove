@@ -149,7 +149,7 @@ watch(() => props.marker, () => {
       </div>
     </div>
   </Transition>
-  <ControllerModals id="story" v-model="storyModal" :title="t('story')">
+  <BsModal id="story" v-model="storyModal" :title="t('story')">
     <form @submit.prevent="submitStory">
       <div class="d-flex align-items-center gap-2 mb-2">
         <Icon name="solar:info-circle-linear" class="text-primary flex-shrink-0" />
@@ -203,5 +203,5 @@ watch(() => props.marker, () => {
         </button>
       </div>
     </form>
-  </ControllerModals>
+  </BsModal>
 </template>

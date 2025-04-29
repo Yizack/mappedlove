@@ -201,16 +201,16 @@ useSeo({
         </div>
       </div>
     </div>
-    <ControllerModals v-if="currentStory" id="story" v-model="storyModal" fullscreen map>
+    <BsModal v-if="currentStory" id="story" v-model="storyModal" fullscreen map>
       <div class="position-absolute start-0 top-0 py-2 px-3 bg-body bg-opacity-75 rounded shadow m-2 small">
-        <div class="d-flex gap-1">
+        <div v-if="currentStoryUser" class="d-flex gap-1">
           <span>{{ t("uploaded_by") }}:</span>
-          <div v-if="currentStoryUser?.showAvatar" class="image-upload text-center">
+          <div v-if="currentStoryUser.showAvatar" class="image-upload text-center">
             <label class="rounded-circle bg-body-tertiary position-relative overflow-hidden d-flex" style="width: 24px; height: 24px;">
               <img :src="`${getAvatarImage(currentStoryUser.hash)}?updated=${currentStoryUser.updatedAt}`" alt="avatar" width="24" height="24" class="img-fluid">
             </label>
           </div>
-          <strong>{{ currentStoryUser?.name }}</strong>
+          <strong>{{ currentStoryUser.name }}</strong>
         </div>
         <div>
           <span>{{ t("story_date") }}: </span>
@@ -225,6 +225,6 @@ useSeo({
         </template>
       </div>
       <img :src="`${getStoryImage(currentStory.hash!)}?updated=${currentStory.updatedAt}`" class="map-img shadow-lg">
-    </ControllerModals>
+    </BsModal>
   </div>
 </template>
