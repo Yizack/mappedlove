@@ -1,0 +1,19 @@
+.party-hat-right,
+.party-hat-left {
+  pointer-events: none;
+  user-select: none;
+  position: absolute;
+  top: -4rem;
+  width: 100px;
+  z-index: 1;
+}
+
+.party-hat-left {
+  right: 50%;
+  transform: rotate(-25deg);
+}
+
+.party-hat-right {
+  left: 50%;
+  transform: rotate(25deg);
+}

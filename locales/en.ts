@@ -6,7 +6,7 @@ export default {
   strip1_p1: "Web app made for couples. Easily mark the locations you have visited on an interactive map and create a visual representation of your journey together.",
   strip1_p2: "Place markers on the map and add stories to preserve your memories.",
   strip2_title: "Share Your Memories",
-  strip2_p1: "Upload images to your stories and share them with your friends and family by turning your map public.",
+  strip2_p1: "Upload images to your stories and share them with your friends and family by enabling the public map setting.",
   strip2_p2: "Whether it's a memorable vacation, a lovely dinner, a special event, or simply everyday adventures, our app helps you turn these moments into unforgettable experiences.",
   strip3_title: "Create your Bond",
   strip3_p1: "Connect your accounts by inviting your partner to join your bond, and start mapping your life moments together.",
@@ -29,7 +29,7 @@ export default {
   many_logins_attempted: "Too many failed login attempts, please try again later",
   invalid_signin_data: "Sign in data is not valid",
   remember_me: "Remember me",
-  // Register
+  // Signup
   password_confirm: "Confirm password",
   name: "Name",
   signup: "Sign up",
@@ -47,6 +47,12 @@ export default {
   invalid_signup_data: "Signup data is not valid",
   invalid_verification_data: "Verification data is not valid",
   read_legal: "I have read and understood",
+  pass_req: "Password requirements",
+  pass_req_characters: "At least 8 characters long",
+  pass_req_uppercase: "One uppercase letter",
+  pass_req_lowercase: "One lowercase letter",
+  pass_req_number: "One number",
+  pass_req_special: "One special character",
   // Bond
   not_bonded: "You are currently not bonded",
   bond_start: "To start mapping your love stories, you need to bond with your partner!",
@@ -99,6 +105,7 @@ export default {
   premium_owner_leaving: "Please cancel your premium subscription before leaving the bond",
   need_bond: "You need a bond to access this page",
   upcoming_dates: "Upcoming dates",
+  birthdays: "Birthdays",
   // Markers
   marker: "Marker",
   markers: "Markers",

@@ -19,6 +19,4 @@ export default defineEventHandler(async (event) => {
   event.waitUntil(
     deleteImage(`avatars/${user.hash}`)
   );
-
-  return session.user;
 });

@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import MasonryWall from "@yeger/vue-masonry-wall";
+import VueDatePicker from "@vuepic/vue-datepicker";
+
 definePageMeta({ layout: "map" });
 
 const { params } = useRoute("map-code");
@@ -153,17 +156,15 @@ useSeo({
               <button v-if="filter.year" class="btn btn-sm btn-danger rounded-3">
                 <Icon name="tabler:x" size="1.3rem" @click="clearFilter" />
               </button>
-              <ClientOnly v-if="!isMobile || expandCanvas">
-                <VueDatePicker v-model.number="filter.year" year-picker reverse-years :year-range="[currentYear - 100, currentYear]" :dark="$colorMode.preference === 'dark'">
-                  <template #trigger>
-                    <div class="px-2 py-1 border rounded-3 hover position-relative" role="button">
-                      <div class="d-flex align-items-center justify-content-center gap-1">
-                        <strong>{{ filter.year ? filter.year : t("filter_by_year") }}</strong>
-                      </div>
+              <VueDatePicker v-if="!isMobile || expandCanvas" v-model.number="filter.year" year-picker reverse-years :year-range="[currentYear - 100, currentYear]" :dark="$colorMode.preference === 'dark'">
+                <template #trigger>
+                  <div class="px-2 py-1 border rounded-3 hover position-relative" role="button">
+                    <div class="d-flex align-items-center justify-content-center gap-1">
+                      <strong>{{ filter.year ? filter.year : t("filter_by_year") }}</strong>
                     </div>
-                  </template>
-                </VueDatePicker>
-              </ClientOnly>
+                  </div>
+                </template>
+              </VueDatePicker>
             </div>
           </div>
           <div v-if="storiesFiltered" class="p-3">
@@ -200,16 +201,16 @@ useSeo({
         </div>
       </div>
     </div>
-    <ControllerModals v-if="currentStory" id="story" v-model="storyModal" fullscreen map>
+    <BsModal v-if="currentStory" id="story" v-model="storyModal" fullscreen map>
       <div class="position-absolute start-0 top-0 py-2 px-3 bg-body bg-opacity-75 rounded shadow m-2 small">
-        <div class="d-flex gap-1">
+        <div v-if="currentStoryUser" class="d-flex gap-1">
           <span>{{ t("uploaded_by") }}:</span>
-          <div v-if="currentStoryUser?.showAvatar" class="image-upload text-center">
+          <div v-if="currentStoryUser.showAvatar" class="image-upload text-center">
             <label class="rounded-circle bg-body-tertiary position-relative overflow-hidden d-flex" style="width: 24px; height: 24px;">
               <img :src="`${getAvatarImage(currentStoryUser.hash)}?updated=${currentStoryUser.updatedAt}`" alt="avatar" width="24" height="24" class="img-fluid">
             </label>
           </div>
-          <strong>{{ currentStoryUser?.name }}</strong>
+          <strong>{{ currentStoryUser.name }}</strong>
         </div>
         <div>
           <span>{{ t("story_date") }}: </span>
@@ -224,6 +225,6 @@ useSeo({
         </template>
       </div>
       <img :src="`${getStoryImage(currentStory.hash!)}?updated=${currentStory.updatedAt}`" class="map-img shadow-lg">
-    </ControllerModals>
+    </BsModal>
   </div>
 </template>

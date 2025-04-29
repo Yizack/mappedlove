@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import VueDatePicker from "@vuepic/vue-datepicker";
+
 const props = defineProps<{
   bond: MappedLoveBond;
 }>();
@@ -46,12 +48,13 @@ const leaveBond = async () => {
 };
 
 const upcomingDates = computed(() => {
-  const dates: { title: string, date: number }[] = [];
+  const dates: { icon: string, title: string, date: number }[] = [];
   if (!props.bond.partners?.some(partner => partner.birthDate)) return dates;
   dates.push(
     ...props.bond.partners
       .filter(partner => partner.birthDate)
       .map(partner => ({
+        icon: "tabler:cake",
         title: `${t("birthday")}: ${partner.name}`,
         date: partner.birthDate!
       }))
@@ -84,8 +87,9 @@ watch(coupleDate, async (val: number | null) => {
     <div class="col-lg-8 col-xl-6 mx-auto">
       <div class="bg-body rounded-3 px-3 py-4 p-lg-4">
         <div class="position-relative d-flex justify-content-center py-4">
-          <div v-for="partner of bond.partners" :key="partner.id" class="text-center position-relative">
+          <div v-for="(partner, i) of bond.partners" :key="partner.id" class="text-center position-relative">
             <div class="image-upload text-center mb-2">
+              <img v-if="isToday(partner.birthDate)" src="/images/miscellaneous/party-hat.png" :class="`party-hat-${i ? 'right' : 'left'}`">
               <label class="rounded-circle bg-body-tertiary position-relative overflow-hidden border border-5 m-0 mx-md-3 mx-lg-4" :class="{ 'scale-hover': partner.showAvatar }" style="width: 175px; height: 175px;">
                 <img v-if="partner.showAvatar" :src="`${getAvatarImage(partner.hash)}?updated=${partner.updatedAt}`" width="175" height="175" class="img-fluid" :alt="partner.name">
                 <img v-else :src="getDefaultAvatar(partner.id)" width="175" height="175" class="img-fluid" :alt="partner.name">
@@ -187,7 +191,7 @@ watch(coupleDate, async (val: number | null) => {
               </div>
               <div>
                 <div class="d-flex align-items-center gap-1">
-                  <Icon name="tabler:cake" size="1.4rem" class="text-primary" />
+                  <Icon :name="upcoming.icon" size="1.4rem" class="text-primary" />
                   <h5 class="m-0">{{ upcoming.title }}</h5>
                 </div>
                 <p class="m-0">{{ getUntilDate(upcoming.date) }}</p>

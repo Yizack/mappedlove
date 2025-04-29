@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import VueDatePicker from "@vuepic/vue-datepicker";
+
 definePageMeta({ layout: "app", middleware: "session" });
 
 const { user, clear } = useUserSession();
@@ -155,39 +157,41 @@ const uploadAvatar = async (event: Event) => {
     fileChosen.value = false;
     return;
   }
-  user.value!.showAvatar = true;
+  updateProfile({
+    updatedAt: account.updatedAt,
+    showAvatar: true
+  });
   form.value.showAvatar = true;
-  user.value!.updatedAt = account.updatedAt;
   $toasts.add({ message: t("avatar_saved") });
 };
 
-const deleteAvatar = async () => {
+const deleteAvatar = () => {
   if (!confirm(t("delete_avatar_confirm"))) return;
-  const account = await $fetch("/api/account/avatar", {
+  $fetch("/api/account/avatar", {
     method: "DELETE"
+  }).then(() => {
+    updateProfile({ showAvatar: false });
+    form.value.showAvatar = false;
+    fileChosen.value = false;
+    imageRead.value = "";
+    $toasts.add({ message: t("avatar_deleted") });
   }).catch(() => null);
-  if (!account) return;
-  user.value!.showAvatar = false;
-  form.value.showAvatar = false;
-  fileChosen.value = false;
-  user.value!.updatedAt = account.updatedAt;
-  imageRead.value = "";
-  $toasts.add({ message: t("avatar_deleted") });
 };
 
-const deleteAccount = async () => {
+const deleteAccount = () => {
   if (!confirm(t("delete_account_confirm"))) return;
   submit.value.loading = true;
-  const account = await $fetch("/api/account", {
+  $fetch("/api/account", {
     method: "DELETE"
-  }).catch(() => null);
-  submit.value.loading = false;
-  if (!account) return;
-  await clear();
-  navigateTo("/");
+  }).then(async () => {
+    await clear();
+    navigateTo("/");
+  }).catch(() => {}).finally(() => {
+    submit.value.loading = false;
+  });
 };
 
-const downloadData = async () => {
+const downloadData = () => {
   submit.value.loading = true;
   navigateTo(`/api/account?id=${user.value!.id}`, { external: true });
   submit.value.loading = false;
@@ -280,7 +284,7 @@ useSeo({
               </VueDatePicker>
               <template #fallback>
                 <div class="form-floating mb-2">
-                  <input ref="datepicker" class="form-control bg-body" :class="{ focus: datePickerFocus }" :value="formatDate(form.birthDate)" @keyup="backSpaceToNull">
+                  <input ref="datepicker" class="form-control bg-body" :value="formatDate(form.birthDate)">
                   <label class="d-flex align-items-center gap-1">
                     <Icon name="solar:confetti-minimalistic-line-duotone" />
                     <span>{{ t("birth_date") }}</span>

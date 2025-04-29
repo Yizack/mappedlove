@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { VueDraggable } from "vue-draggable-plus";
+
 const props = defineProps<{
   markers: MappedLoveMarker[];
   selected: number;
@@ -32,13 +34,18 @@ const form = useFormState({
 
 const markers = ref(props.markers);
 
-const move = async () => {
-  const oldArrange = markers.value.map(marker => ({ id: marker.id, order: marker.order }));
-  const newArrange = markers.value.map((marker, index) => ({ id: marker.id, order: index }));
-  await $fetch("/api/markers/rearrange", {
+const rearrange = () => {
+  $fetch("/api/markers/rearrange", {
     method: "POST",
-    body: { oldArrange, newArrange }
-  }).catch(() => undefined);
+    body: {
+      old: markers.value.map(marker => ({ id: marker.id, order: marker.order })),
+      new: markers.value.map((marker, index) => ({ id: marker.id, order: index }))
+    }
+  }).then(() => {
+    for (const [index, marker] of markers.value.entries()) {
+      marker.order = index;
+    }
+  }).catch(() => {});
 };
 
 const selectMarker = (id: number) => {
@@ -57,16 +64,15 @@ const openMarker = (marker?: MappedLoveMarker) => {
   markerModal.value.show();
 };
 
-const deleteMarker = async (id: number) => {
+const deleteMarker = (id: number) => {
   if (!confirm(t("delete_marker"))) return;
-  const res = await $fetch(`/api/markers/${id}`, {
+  $fetch(`/api/markers/${id}`, {
     method: "DELETE"
-  }).catch(() => null);
-
-  if (!res || !res.id) return;
-  if (props.selected === id) emit("select", 0);
-  markers.value = markers.value.filter(marker => marker.id !== id);
-  emit("delete", id);
+  }).then(() => {
+    if (props.selected === id) emit("select", 0);
+    markers.value = markers.value.filter(marker => marker.id !== id);
+    emit("delete", id);
+  }).catch(() => {});
 };
 
 const groupIcon = computed(() => {
@@ -118,7 +124,7 @@ watch(() => props.markers, (value) => {
     </button>
     <button v-if="markers.length" type="button" class="btn btn-primary btn-lg ms-auto rounded-pill" @click="edit = !edit">{{ edit ? t("done") : t("edit") }}</button>
   </div>
-  <Draggable v-if="markers.length" v-model="markers" class="row g-2" v-bind="dragOptions" :disabled="!edit" @change="move">
+  <VueDraggable v-if="markers.length" v-model="markers" class="row g-2" v-bind="dragOptions" :disabled="!edit" @update="rearrange">
     <div v-for="marker of markers" :key="marker.id" class="col-12 col-md-4 col-xl-6 d-flex gap-2">
       <div class="marker border rounded-3 py-2 px-3 w-100 position-relative" :class="{ active: selected === marker.id }" :style="{ cursor: edit ? 'grab' : 'pointer' }" @click="selectMarker(marker.id)">
         <Icon v-if="edit" name="tabler:grip-horizontal" size="1rem" class="position-absolute start-50 bottom-0 translate-middle-x text-primary" />
@@ -127,7 +133,7 @@ watch(() => props.markers, (value) => {
             <span class="d-flex" :title="t(groups[marker.group]!.key)">
               <Icon :name="groups[marker.group]!.icon" class="text-primary" size="1.5rem" />
             </span>
-            {{ marker.title }}
+            <span>{{ marker.title }}</span>
           </h5>
           <p class="m-0">{{ marker.description }}</p>
         </div>
@@ -143,9 +149,9 @@ watch(() => props.markers, (value) => {
         </div>
       </Transition>
     </div>
-  </Draggable>
+  </VueDraggable>
   <p v-else class="m-0">{{ t("no_markers") }}</p>
-  <ControllerModals id="marker" v-model="markerModal" :title="t('marker')" lg>
+  <BsModal id="marker" v-model="markerModal" :title="t('marker')" lg>
     <form @submit.prevent="submitMarker">
       <div class="d-flex align-items-center gap-2 mb-2">
         <Icon name="solar:info-circle-linear" class="text-primary flex-shrink-0" />
@@ -180,5 +186,5 @@ watch(() => props.markers, (value) => {
         </button>
       </div>
     </form>
-  </ControllerModals>
+  </BsModal>
 </template>

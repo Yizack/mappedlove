@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import MasonryWall from "@yeger/vue-masonry-wall";
+
 const props = defineProps<{
   marker: MappedLoveSelectedMarker;
 }>();
@@ -9,14 +11,14 @@ const { user } = useUserSession();
 
 const deleteButton = ref<Record<number, boolean>>({});
 
-const deleteStory = async (id: number) => {
+const deleteStory = (id: number) => {
   if (!confirm(t("delete_story"))) return;
-  const res = await $fetch(`/api/stories/${id}`, {
+  $fetch(`/api/stories/${id}`, {
     method: "DELETE"
-  }).catch(() => null);
-  if (!res) return;
-  emit("delete", id);
-  $toasts.add({ message: t("story_deleted") });
+  }).then(() => {
+    emit("delete", id);
+    $toasts.add({ message: t("story_deleted") });
+  }).catch(() => {});
 };
 
 const submitted = ref(false);
@@ -147,7 +149,7 @@ watch(() => props.marker, () => {
       </div>
     </div>
   </Transition>
-  <ControllerModals id="story" v-model="storyModal" :title="t('story')">
+  <BsModal id="story" v-model="storyModal" :title="t('story')">
     <form @submit.prevent="submitStory">
       <div class="d-flex align-items-center gap-2 mb-2">
         <Icon name="solar:info-circle-linear" class="text-primary flex-shrink-0" />
@@ -201,5 +203,5 @@ watch(() => props.marker, () => {
         </button>
       </div>
     </form>
-  </ControllerModals>
+  </BsModal>
 </template>

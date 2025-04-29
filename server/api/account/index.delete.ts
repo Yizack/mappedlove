@@ -40,15 +40,15 @@ export default defineEventHandler(async (event) => {
   if (user.bond && user.bond.subscriptionId) {
     const paddle = new Paddle(config.paddle.secret);
     const subscription = await paddle.getPaddleSubscription(user.bond.subscriptionId);
-    if (subscription && subscription.status === "active" && subscription.scheduled_change?.action !== "cancel") throw createError({ statusCode: ErrorCode.FORBIDDEN, message: "premium_deleting" });
+    if (subscription && subscription.status === "active" && subscription.scheduled_change?.action !== "cancel") {
+      throw createError({ statusCode: ErrorCode.FORBIDDEN, message: "premium_deleting" });
+    }
   }
 
   const DB = useDB();
-  const deleted = await DB.delete(tables.users).where(eq(tables.users.id, user.id)).run();
-
-  if (!deleted.success) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "user_not_found" });
+  event.waitUntil(
+    DB.delete(tables.users).where(eq(tables.users.id, user.id)).run()
+  );
 
   await clearUserSession(event);
-
-  return { success: true };
 });

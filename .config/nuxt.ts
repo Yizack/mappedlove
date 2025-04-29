@@ -47,8 +47,7 @@ export default defineNuxtConfig({
     "nuxt-auth-utils",
     "nuxt-webhook-validators",
     "@nuxthub/core",
-    "nuxt-mailchannels",
-    "nuxt-time"
+    "nuxt-mailchannels"
   ],
   hub: { database: true, blob: true, cache: true, workers: true },
   icon: {
@@ -146,6 +145,7 @@ export default defineNuxtConfig({
     }
   },
   sitemap: {
+    exclude: ["/app/**"],
     xslColumns: [
       { label: "URL", width: "65%" },
       { label: "Priority", select: "sitemap:priority", width: "12.5%" },
@@ -155,14 +155,14 @@ export default defineNuxtConfig({
   routeRules: {
     "/": { sitemap: { priority: 1 } },
     "/*/**": { sitemap: { priority: 0.8, lastmod: new Date().toISOString() } },
-    "/app/**": { index: false },
     "/api/_nuxt_icon/**": { cache: { maxAge: 1.577e+7 } }
   },
   features: {
     inlineStyles: false
   },
   experimental: {
-    typedPages: true
+    typedPages: true,
+    purgeCachedData: false // keep payload cache on navigation
   },
   vite: {
     css: {

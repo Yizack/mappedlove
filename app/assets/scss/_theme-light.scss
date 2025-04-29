@@ -1,39 +1,26 @@
 @use "bootstrap" as bs;
 @use "helpers" as h;
-
-$body-color: #443c47;
-$primary: #c25050;
-$primary-hover: #a54444;
-$link-color: #c25050;
-$link-hover-color: #a54444;
-$accent: #f3dcdc;
-$danger: #da3030;
-$danger-hover: #ca2c2c;
-$placeholder-color: #a8a8a8;
-$btn-color: #fff;
-$success: #409b6e;
+@use "colors" as colors;
 
 @include bs.color-mode(light) {
-  --bs-body-color: #{$body-color};
-  --bs-body-color-rgb: #{bs.to-rgb($body-color)};
-  --bs-primary: #{$primary};
-  --bs-primary-rgb: #{bs.to-rgb($primary)};
-  --bs-primary-hover: #{$primary-hover};
-  --bs-link-color: #{$link-color};
-  --bs-link-color-rgb: #{bs.to-rgb($link-color)};
-  --bs-link-hover-color: #{$link-hover-color};
-  --bs-link-hover-color-rgb: #{bs.to-rgb($link-hover-color)};
-  --bs-secondary: #{$accent};
-  --bs-secondary-rgb: #{bs.to-rgb($accent)};
-  --bs-danger: #{$danger};
-  --bs-danger-rgb: #{bs.to-rgb($danger)};
-  --bs-danger-hover : #{$danger-hover};
-  --bs-danger-hover-rgb: #{bs.to-rgb($danger-hover)};
-  --placeholder-color: #{$placeholder-color};
-  --btn-color: #{$btn-color};
+  --bs-body-color: #{colors.$gravel-700};
+  --bs-body-color-rgb: #{bs.to-rgb(colors.$gravel-700)};
+  --bs-primary: #{colors.$primary-600};
+  --bs-primary-rgb: #{bs.to-rgb(colors.$primary-600)};
+  --bs-primary-hover: #{colors.$primary-700};
+  --bs-link-color: #{colors.$primary-600};
+  --bs-link-color-rgb: #{bs.to-rgb(colors.$primary-600)};
+  --bs-link-hover-color: #{colors.$primary-700};
+  --bs-link-hover-color-rgb: #{bs.to-rgb(colors.$primary-700)};
+  --bs-secondary: #{colors.$primary-100};
+  --bs-secondary-rgb: #{bs.to-rgb(colors.$primary-100)};
+  --bs-danger: #{colors.$red-600};
+  --bs-danger-rgb: #{bs.to-rgb(colors.$red-600)};
+  --bs-danger-hover : #{colors.$red-700};
+  --bs-danger-hover-rgb: #{bs.to-rgb(colors.$red-700)};
   --bs-dark: var(--bs-body-color);
   --bs-dark-rgb: var(--bs-body-color-rgb);
-  --bs-success: #{$success};
-  --bs-success-rgb: #{bs.to-rgb($success)};
-  --switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='#{h.encode-hash($primary)}'/%3e%3c/svg%3e");
+  --bs-success: #{colors.$green-600};
+  --bs-success-rgb: #{bs.to-rgb(colors.$green-600)};
+  --switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3E%3Ccircle r='3' fill='#{h.encode-hash(colors.$primary-600)}'/%3e%3c/svg%3e");
 }

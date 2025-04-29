@@ -118,6 +118,16 @@ export const datePickerOptions = computed(() => ({
     format: "yyyy-MM-dd",
     enableTimePicker: false,
     maxDate: new Date(),
-    dark: import.meta.client && useColorMode().preference === "dark"
+    dark: import.meta.client && useColorMode().preference === "dark",
+    timezone: {
+      exactMatch: true
+    }
   }
 } as const));
+
+export const isToday = (timestamp: number | null) => {
+  if (!timestamp) return false;
+  const date = new Date(timestamp);
+  const today = new Date();
+  return date.getDate() === today.getDate() && date.getMonth() === today.getMonth();
+};

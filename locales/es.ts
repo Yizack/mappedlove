@@ -20,7 +20,7 @@ export default {
   email: "Correo electrónico",
   password: "Contraseña",
   signin: "Iniciar sesión",
-  signin_google: "Inicia sesión con Google",
+  signin_google: "Iniciar con Google",
   forgot_password: "¿Olvidaste tu contraseña?",
   no_account: "¿No tienes cuenta?",
   signin_error: "Correo electrónico o contraseña incorrectos",
@@ -29,7 +29,7 @@ export default {
   many_logins_attempted: "Demasiados intentos fallidos de inicio de sesión, por favor inténtalo de nuevo más tarde",
   invalid_signin_data: "Los datos de inicio de sesión no son válidos",
   remember_me: "Recuérdame",
-  // Register
+  // Signup
   password_confirm: "Confirmar contraseña",
   name: "Nombre",
   signup: "Regístrate",
@@ -47,6 +47,12 @@ export default {
   invalid_signup_data: "Los datos de registro no son válidos",
   invalid_verification_data: "Los datos de verificación no son válidos",
   read_legal: "He leído y comprendido",
+  pass_req: "Requisitos de contraseña",
+  pass_req_characters: "Al menos 8 caracteres",
+  pass_req_uppercase: "Una letra mayúscula",
+  pass_req_lowercase: "Una letra minúscula",
+  pass_req_number: "Un número",
+  pass_req_special: "Un carácter especial",
   // Bond
   not_bonded: "Actualmente no estás vinculado",
   bond_start: "Para comenzar a mapear vuestra historia de amor, ¡necesitas vincularte con tu pareja!",
@@ -99,6 +105,7 @@ export default {
   premium_owner_leaving: "Por favor, cancela tu suscripción premium antes de abandonar el vínculo",
   need_bond: "Necesitas un vínculo para acceder a esta página",
   upcoming_dates: "Fechas próximas",
+  birthdays: "Cumpleaños",
   // Markers
   marker: "Marcador",
   markers: "Marcadores",

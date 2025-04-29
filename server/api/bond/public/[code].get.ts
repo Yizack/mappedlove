@@ -48,5 +48,6 @@ export default defineCachedEventHandler(async (event): Promise<MappedLovePublicM
   group: "api",
   name: "public-map",
   getKey: event => event.path,
-  maxAge: 60 * 5
+  maxAge: 60 * 5,
+  shouldBypassCache: () => !!import.meta.dev
 }); // Cache public map for 5 minutes
