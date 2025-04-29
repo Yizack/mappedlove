@@ -32,8 +32,6 @@
     "docs:dev": "vitepress dev docs",
     "docs:build": "(git fetch --unshallow || git fetch --all) && vitepress build docs",
     "docs:serve": "vitepress serve docs",
-    "worker:dev": "wrangler dev --config worker/wrangler.json",
-    "worker:deploy": "wrangler deploy --config worker/wrangler.json",
     "test:types": "vue-tsc --noEmit"
   },
   "devDependencies": {
