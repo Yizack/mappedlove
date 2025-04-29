@@ -22,7 +22,7 @@ export const createThumbnail = async (event: H3Event, file: File, options: { nam
 
   const blob = await imageBinding.response().blob() as Blob;
 
-  await uploadImage(blob, {
+  return uploadImage(blob, {
     name: options.name,
     folder: "thumbnails",
     type: "image/webp",
