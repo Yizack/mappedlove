@@ -157,9 +157,11 @@ const uploadAvatar = async (event: Event) => {
     fileChosen.value = false;
     return;
   }
-  user.value!.showAvatar = true;
+  updateProfile({
+    updatedAt: account.updatedAt,
+    showAvatar: true
+  });
   form.value.showAvatar = true;
-  user.value!.updatedAt = account.updatedAt;
   $toasts.add({ message: t("avatar_saved") });
 };
 
@@ -168,8 +170,7 @@ const deleteAvatar = () => {
   $fetch("/api/account/avatar", {
     method: "DELETE"
   }).then(() => {
-    if (!user.value) return;
-    user.value.showAvatar = false;
+    updateProfile({ showAvatar: false });
     form.value.showAvatar = false;
     fileChosen.value = false;
     imageRead.value = "";
