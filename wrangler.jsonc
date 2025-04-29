@@ -1,0 +1,33 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "mappedlove",
+  "compatibility_date": "2025-04-29",
+  "main": "dist/server/index.mjs",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "binding": "ASSETS",
+    "directory": "dist/public"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "mappedlove",
+      "database_id": "fb8a48dd-d86d-473f-a82f-3bcf39a5f0df"
+    }
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "CACHE",
+      "id": "3eb1b8b1991247eaa04d46792bb59631",
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "BLOB",
+      "bucket_name": "mappedlove"
+    }
+  ],
+  "images": {
+    "binding": "IMAGES"
+  }
+}

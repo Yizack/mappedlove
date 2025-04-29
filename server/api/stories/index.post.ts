@@ -59,8 +59,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveStory> => {
   }
 
   event.waitUntil(
-    createThumbnail(file, {
-      secret: secure.secret,
+    createThumbnail(event, file, {
       name: storyHash,
       metadata: {
         storyId: story.id.toString(),
