@@ -99,8 +99,8 @@ importers:
         specifier: 3.7.1
         version: 3.7.1(magicast@0.3.5)
       nuxt-webhook-validators:
-        specifier: ^0.2.0
-        version: 0.2.0(magicast@0.3.5)
+        specifier: ^0.2.1
+        version: 0.2.1(magicast@0.3.5)
       sass:
         specifier: ^1.87.0
         version: 1.87.0
@@ -4940,8 +4940,8 @@ packages:
   nuxt-twemoji@3.7.1:
     resolution: {integrity: sha512-IbuA8+N56pkMXY887SjOcCPgM2b/CFF+PuroBJ0Q5Y+iNDT2lh003dKXL29L2H6OZLmAwOL2BPLh1BmPQF73hw==}
 
-  nuxt-webhook-validators@0.2.0:
-    resolution: {integrity: sha512-boy4mblKpt8NrpZiK+Uzmb4wX9c9UO2eUeUdQ5CuCVTQzhTBgWifOJC8UUjR4eH6T7UwopWFCSIOF+iQ1LN6BQ==}
+  nuxt-webhook-validators@0.2.1:
+    resolution: {integrity: sha512-uqgSr/09sEqS+NFYzWmjOXUbd0jzAE0yqofkNLb5DPqlwAT6y1zYU5asgrHdZaYhYmDEC9/Wh1NlJuaENenH7g==}
 
   nuxt@3.17.1:
     resolution: {integrity: sha512-RFUamVkXw86Kn9l3jeHLNnctsNf5Dp5pQY2bal9uZFiq1Wc9VyMdzou70DbMUjDe1yAoUbD6qz65FOEq+abesQ==}
@@ -6519,6 +6519,7 @@ packages:
   wrangler@4.14.0:
     resolution: {integrity: sha512-WhypgOBEYuUMo/ZFw8MgZ0wtyE7EmDanytjD8Me+OMm62raKU9V9DZTlF1UVLkNfilfQNlRbMnFRdzSBji/MEA==}
     engines: {node: '>=18.0.0'}
+    deprecated: Workers with configured tail consumers would sometimes prevent wrangler dev from running. Downgrade to 4.13.2 to workaround this issue
     hasBin: true
     peerDependencies:
       '@cloudflare/workers-types': ^4.20250428.0
@@ -11741,7 +11742,7 @@ snapshots:
     transitivePeerDependencies:
       - magicast
 
-  nuxt-webhook-validators@0.2.0(magicast@0.3.5):
+  nuxt-webhook-validators@0.2.1(magicast@0.3.5):
     dependencies:
       '@nuxt/kit': 3.17.1(magicast@0.3.5)
       defu: 6.1.4
