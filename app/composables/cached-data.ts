@@ -16,7 +16,9 @@ export const useCachedData = <T = any>(key: string, getValue?: () => T): Ref<T> 
   return cachedData[key];
 };
 
-export const setupCachedData = <T>(key: string, nuxtApp: NuxtApp): T => {
+export const setupCachedData = <T>(key: string, nuxtApp: NuxtApp): T | undefined => {
+  if (import.meta.server) return;
+
   const cachedData = useCachedData(key);
 
   if (cachedData.value) {
