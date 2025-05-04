@@ -5,7 +5,7 @@ const props = defineProps<{
   bond: MappedLoveBond;
 }>();
 
-const { $toasts, $bootstrap, payload } = useNuxtApp();
+const { $toasts, $bootstrap } = useNuxtApp();
 
 const deleteButton = ref(false);
 const coupleDate = ref(props.bond.coupleDate);
@@ -78,7 +78,7 @@ watch(coupleDate, async (val: number | null) => {
   cacheDate.value = val;
   if (!bond) return;
   $toasts.add({ message: t("anniversary_update") });
-  delete payload.data.bond;
+  useCachedData("bond", () => undefined);
 });
 </script>
 

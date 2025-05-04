@@ -160,8 +160,7 @@ export default defineNuxtConfig({
     inlineStyles: false
   },
   experimental: {
-    typedPages: true,
-    purgeCachedData: false // keep payload cache on navigation
+    typedPages: true
   },
   vite: {
     css: {

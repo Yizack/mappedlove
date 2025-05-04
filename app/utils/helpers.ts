@@ -108,5 +108,5 @@ export const updateProfile = (fields: Partial<User>) => {
   const { user } = session.value;
   if (!user) return;
   session.value.user = { ...user, ...fields };
-  delete useNuxtApp().payload.data.bond;
+  useCachedData("bond", () => undefined);
 };
