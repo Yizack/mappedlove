@@ -27,8 +27,8 @@ importers:
         specifier: ^1.12.0
         version: 1.12.0(magicast@0.3.5)(vite@5.4.19(@types/node@22.15.3)(sass@1.87.0)(terser@5.39.0))(vue@3.5.13(typescript@5.8.3))
       '@nuxthub/core':
-        specifier: ^0.8.25
-        version: 0.8.25(db0@0.3.2(drizzle-orm@0.43.1(@cloudflare/workers-types@4.20250505.0)))(ioredis@5.6.1)(magicast@0.3.5)(vite@5.4.19(@types/node@22.15.3)(sass@1.87.0)(terser@5.39.0))
+        specifier: ^0.8.26
+        version: 0.8.26(db0@0.3.2(drizzle-orm@0.43.1(@cloudflare/workers-types@4.20250505.0)))(ioredis@5.6.1)(magicast@0.3.5)(vite@5.4.19(@types/node@22.15.3)(sass@1.87.0)(terser@5.39.0))
       '@nuxtjs/color-mode':
         specifier: ^3.5.2
         version: 3.5.2(magicast@0.3.5)
@@ -1622,8 +1622,8 @@ packages:
     peerDependencies:
       vue: ^3.3.4
 
-  '@nuxthub/core@0.8.25':
-    resolution: {integrity: sha512-cR46Y9/sevODxZhtDrfBqJ+Uyti0owDUDZWwFxqSExyLcjdQKyOXXc0+B3Y5kfi6VUrt5xVeJnHdBlMBZO1RIg==}
+  '@nuxthub/core@0.8.26':
+    resolution: {integrity: sha512-RVyizT0y1ek8rnrkyhxke7elmqtTDJ3sWSuJniis6hEaQiFYtVWYC/naVP0DBOvMs9bKgSLhtRQ76GMzh8Cp2A==}
 
   '@nuxtjs/color-mode@3.5.2':
     resolution: {integrity: sha512-cC6RfgZh3guHBMLLjrBB2Uti5eUoGM9KyauOaYS9ETmxNWBMTvpgjvSiSJp1OFljIXPIqVTJ3xtJpSNZiO3ZaA==}
@@ -8342,7 +8342,7 @@ snapshots:
       - vue-tsc
       - yaml
 
-  '@nuxthub/core@0.8.25(db0@0.3.2(drizzle-orm@0.43.1(@cloudflare/workers-types@4.20250505.0)))(ioredis@5.6.1)(magicast@0.3.5)(vite@5.4.19(@types/node@22.15.3)(sass@1.87.0)(terser@5.39.0))':
+  '@nuxthub/core@0.8.26(db0@0.3.2(drizzle-orm@0.43.1(@cloudflare/workers-types@4.20250505.0)))(ioredis@5.6.1)(magicast@0.3.5)(vite@5.4.19(@types/node@22.15.3)(sass@1.87.0)(terser@5.39.0))':
     dependencies:
       '@cloudflare/workers-types': 4.20250505.0
       '@nuxt/devtools-kit': 2.4.0(magicast@0.3.5)(vite@5.4.19(@types/node@22.15.3)(sass@1.87.0)(terser@5.39.0))
