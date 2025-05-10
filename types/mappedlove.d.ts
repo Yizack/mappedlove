@@ -1,6 +1,18 @@
 import type { localization } from "#shared/utils/localization";
 
 declare global {
+  interface MappedLoveUser {
+    id: number;
+    name: string;
+    email: string;
+    country: string | null;
+    birthDate: number | null;
+    showAvatar: boolean;
+    confirmed: boolean;
+    language: MappedLoveLocales;
+    createdAt: number;
+    updatedAt: number;
+  }
   interface MappedLovePartner {
     id: number;
     hash: string;

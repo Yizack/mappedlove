@@ -9,7 +9,6 @@ export const users = sqliteTable("users", {
   birthDate: integer(),
   showAvatar: integer({ mode: "boolean" }).notNull().default(false),
   language: text().notNull().$type<MappedLoveLocales>().default("en"),
-  auth: integer({ mode: "boolean" }).notNull().default(false),
   confirmed: integer({ mode: "boolean" }).notNull().default(false),
   createdAt: integer().notNull(),
   updatedAt: integer().notNull()

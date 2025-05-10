@@ -60,7 +60,6 @@ CREATE TABLE `users` (
 	`birth_date` integer,
 	`show_avatar` integer DEFAULT false NOT NULL,
 	`language` text DEFAULT 'en' NOT NULL,
-	`auth` integer DEFAULT false NOT NULL,
 	`confirmed` integer DEFAULT false NOT NULL,
 	`created_at` integer NOT NULL,
 	`updated_at` integer NOT NULL

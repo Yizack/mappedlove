@@ -1,17 +1,7 @@
 declare module "#auth-utils" {
-  interface User {
-    id: number;
+  interface User extends MappedLoveUser {
     hash?: string;
-    name: string;
-    email: string;
-    country: string | null;
-    birthDate: number | null;
-    showAvatar: boolean;
-    confirmed: boolean;
-    language: MappedLoveLocales;
-    createdAt: number;
-    updatedAt: number;
-    auth?: boolean;
+    passwordless?: boolean;
     bond?: Omit<MappedLoveBond, "partners"> | null;
   }
   interface UserSession {

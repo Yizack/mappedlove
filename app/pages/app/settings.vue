@@ -95,19 +95,22 @@ const changeColorMode = () => {
 const changePassword = async () => {
   if (!(isValidPass.value && isValidPasswordCheck(form.value.new_password, form.value.confirm_password))) return;
   submit.value.pass_loading = true;
-  const account = await $fetch("/api/account/password", {
-    method: user.value?.auth ? "POST" : "PATCH",
+  $fetch("/api/account/password", {
+    method: user.value?.passwordless ? "POST" : "PATCH",
     body: {
-      current_password: user.value?.auth ? undefined : form.value.current_password,
+      current_password: user.value?.passwordless ? undefined : form.value.current_password,
       new_password: form.value.new_password
     }
-  }).catch(() => null);
-  submit.value.pass_loading = false;
-  if (!account) return;
-  if (user.value?.auth) user.value.auth = undefined;
-  form.value.new_password = "";
-  form.value.confirm_password = "";
-  $toasts.add({ message: user.value?.auth ? t("password_setup") : t("password_changed") });
+  }).then(() => {
+    if (!user.value) return;
+    if (user.value.passwordless) user.value.passwordless = undefined;
+    form.value.current_password = "";
+    form.value.new_password = "";
+    form.value.confirm_password = "";
+    $toasts.add({ message: user.value.passwordless ? t("password_setup") : t("password_changed") });
+  }).catch(() => {}).finally(() => {
+    submit.value.pass_loading = false;
+  });
 };
 
 const changeLanguage = async () => {
@@ -118,8 +121,8 @@ const changeLanguage = async () => {
       language: form.value.language
     }
   }).catch(() => null);
-  if (!account) return;
-  updateProfile({ language: form.value.language });
+  if (!account || !user.value) return;
+  user.value.language = form.value.language;
   localization.setLanguage(form.value.language);
   $toasts.add({ message: t("account_saved") });
 };
@@ -327,9 +330,9 @@ useSeo({
         </div>
         <div class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
           <form @submit.prevent="changePassword">
-            <h3 class="mb-4">{{ user.auth ? t("setup_password") : t("change_password") }}</h3>
+            <h3 class="mb-4">{{ user.passwordless ? t("setup_password") : t("change_password") }}</h3>
             <input :value="form.email" type="text" autocomplete="email" hidden>
-            <div v-if="!user.auth" class="form-floating mb-2">
+            <div v-if="!user.passwordless" class="form-floating mb-2">
               <input v-model="form.current_password" type="password" class="form-control" :placeholder="t('current_password')" autocomplete="current-password">
               <label>{{ t("current_password") }}</label>
             </div>
@@ -348,7 +351,7 @@ useSeo({
               <button class="btn btn-primary btn-lg rounded-pill" type="submit">
                 <Transition name="tab" mode="out-in">
                   <SpinnerCircle v-if="submit.pass_loading" class="text-white" />
-                  <span v-else>{{ user.auth ? t("setup_password") : t("change_password") }}</span>
+                  <span v-else>{{ user.passwordless ? t("setup_password") : t("change_password") }}</span>
                 </Transition>
               </button>
             </div>

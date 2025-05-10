@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "9256f0b9-6470-4449-b451-45a0f999f3f0",
+  "id": "8de7b0d3-2c79-47e9-b153-4b6d2920e022",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "bonds": {
@@ -438,14 +438,6 @@
           "notNull": true,
           "autoincrement": false,
           "default": "'en'"
-        },
-        "auth": {
-          "name": "auth",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false,
-          "default": false
         },
         "confirmed": {
           "name": "confirmed",

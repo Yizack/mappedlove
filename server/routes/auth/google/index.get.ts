@@ -8,11 +8,11 @@ export default defineOAuthGoogleEventHandler({
       id: tables.users.id,
       name: tables.users.name,
       email: tables.users.email,
+      password: tables.users.password,
       country: tables.users.country,
       birthDate: tables.users.birthDate,
       showAvatar: tables.users.showAvatar,
       language: tables.users.language,
-      auth: tables.users.auth,
       confirmed: tables.users.confirmed,
       createdAt: tables.users.createdAt,
       updatedAt: tables.users.updatedAt,
@@ -31,7 +31,8 @@ export default defineOAuthGoogleEventHandler({
     const remember = getQuery(event).state === "remember";
     const maxAge = remember ? 7 * 24 * 60 * 60 : 0; // if remember is true, maxAge is 7 days
 
-    const session = { user: { ...user, hash: userHash } };
+    const { password, ...userData } = user;
+    const session = { user: { ...userData, passwordless: !password, hash: userHash } };
     await setUserSessionNullish(event, session, { maxAge });
 
     return sendRedirect(event, "/app");
