@@ -163,5 +163,5 @@ td, th {
 .pagination {
  --bs-pagination-active-bg: var(--bs-primary);
  --bs-pagination-active-border-color: var(--bs-primary);
- --bs-pagination-focus-box-shadow: 0 0 0 0.2rem rgba(var(--bs-primary-rgb), .25);
+ --bs-pagination-focus-box-shadow: 0 0 0 0.2rem rgb(var(--bs-primary-rgb), .25);
 }
