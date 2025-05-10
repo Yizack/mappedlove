@@ -31,7 +31,6 @@ export default defineEventHandler(async (event) => {
 
   const update = await DB.update(tables.users).set({
     password: hash(form.password, secure.salt),
-    auth: false,
     updatedAt: Date.now()
   }).where(eq(tables.users.id, user.id)).returning().get();
 

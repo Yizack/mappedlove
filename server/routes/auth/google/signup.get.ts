@@ -14,7 +14,6 @@ export default defineOAuthGoogleEventHandler({
       email,
       password: null,
       name: google.given_name,
-      auth: true,
       createdAt: today,
       updatedAt: today
     }).onConflictDoNothing().returning().get();
