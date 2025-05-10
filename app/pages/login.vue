@@ -22,27 +22,20 @@ const googleState = computed(() => {
 const signIn = async () => {
   resent.value = false;
   submit.value.loading = true;
-  const login = await $fetch("/api/login", {
+  $fetch("/api/login", {
     method: "POST",
     body: form.value
-  }).catch(() => null);
-
-  if (!login) {
+  }).then(() => {
+    const redirect = query.redirect?.toString();
+    const isInternalPath = redirect && redirect.startsWith("/"); // Make sure redirect is an internal path
+    navigateTo(isInternalPath ? redirect : "/app", { external: true, replace: true });
+  }).catch((response) => {
     submit.value.error = true;
     submit.value.loading = false;
-    return;
-  }
-
-  needsConfirm.value = !login.confirmed;
-
-  if (needsConfirm.value) {
-    submit.value.loading = false;
-    return;
-  }
-
-  const redirect = query.redirect?.toString();
-  const isInternalPath = redirect && redirect.startsWith("/"); // Make sure redirect is an internal path
-  navigateTo(isInternalPath ? redirect : "/app", { external: true, replace: true });
+    if (response.data.message === "verify_error") {
+      needsConfirm.value = true;
+    }
+  });
 };
 
 const resendVerification = async () => {

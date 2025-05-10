@@ -164,6 +164,7 @@ export default {
   delete: "Delete",
   saved_changes: "Your changes have been saved",
   welcome: "Welcome",
+  verify_error: "Account is not verified",
   verify_needed: "Your email needs to be verified to continue, check your inbox for a verification email.",
   email_verified: "Your email has been verified.",
   verifying_email: "Verifying your email...",

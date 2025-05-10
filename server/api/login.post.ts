@@ -62,13 +62,13 @@ export default defineEventHandler(async (event) => {
     );
   }
 
-  if (!user.confirmed) return { confirmed: user.confirmed };
+  if (!user.confirmed) {
+    throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "verify_error" });
+  }
 
   const userHash = hash(user.id.toString(), secure.salt);
   const maxAge = form.remember ? 7 * 24 * 60 * 60 : 0; // if remember is true, maxAge is 7 days
 
   const session = { user: { ...user, hash: userHash } };
   await setUserSessionNullish(event, session, { maxAge });
-
-  return { confirmed: user.confirmed };
 });

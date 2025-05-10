@@ -164,6 +164,7 @@ export default {
   delete: "Eliminar",
   saved_changes: "Tus cambios han sido guardados",
   welcome: "Bienvenido",
+  verify_error: "Cuenta no verificada",
   verify_needed: "Tu correo electrónico necesita ser verificado para continuar, revisa tu bandeja de entrada para un email de verificación.",
   email_verified: "Tu correo electrónico ha sido verificado.",
   verifying_email: "Verificando tu correo electrónico...",
