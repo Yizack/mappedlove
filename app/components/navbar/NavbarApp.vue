@@ -1,9 +1,16 @@
 <script setup lang="ts">
 const { loggedIn, user, clear } = useUserSession();
+
+let isLoggingOut = false;
+
 const logOut = () => {
-  clear();
+  isLoggingOut = true;
   navigateTo("/", { replace: true });
 };
+
+onUnmounted(() => {
+  if (isLoggingOut) clear();
+});
 </script>
 
 <template>
@@ -57,7 +64,10 @@ const logOut = () => {
               </li>
               <template v-else>
                 <li><hr class="dropdown-divider"></li>
-                <li><button class="dropdown-item" @click="logOut()"><Icon name="solar:exit-linear" /> {{ t(page.name) }}</button></li>
+                <li class="dropdown-item d-flex gap-1 align-items-center" role="button" @click="logOut">
+                  <Icon name="solar:exit-linear" />
+                  <span>{{ t(page.name) }}</span>
+                </li>
               </template>
             </template>
           </ul>
