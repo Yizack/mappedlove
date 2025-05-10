@@ -63,7 +63,7 @@
 .leaflet-popup-content-wrapper, .leaflet-popup-tip {
   background: var(--bs-body-bg);
   color: var(--bs-body-color);
-  box-shadow: 0 3px 14px rgba(var(--bs-body-color-rgb), 0.2);
+  box-shadow: 0 3px 14px rgb(var(--bs-body-color-rgb), 0.2);
 }
 
 .leaflet-container a.leaflet-popup-close-button {
