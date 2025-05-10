@@ -1,4 +1,4 @@
-export default defineEventHandler(async (event): Promise<User> => {
+export default defineEventHandler(async (event) => {
   const { user } = await requireUserSession(event);
   const { secure } = useRuntimeConfig(event);
   const body = await readValidatedBody(event, z.object({
@@ -11,11 +11,8 @@ export default defineEventHandler(async (event): Promise<User> => {
   const form = body.data;
 
   const DB = useDB();
-  const update = await DB.update(tables.users).set({
+  await DB.update(tables.users).set({
     password: hash(form.new_password, secure.salt),
     updatedAt: Date.now()
-  }).where(and(eq(tables.users.id, user.id), eq(tables.users.password, hash(form.current_password, secure.salt)))).returning().get();
-
-  if (!update) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "password_error" });
-  return update;
+  }).where(and(eq(tables.users.id, user.id), eq(tables.users.password, hash(form.current_password, secure.salt)))).run();
 });
