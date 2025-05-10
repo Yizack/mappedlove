@@ -137,14 +137,14 @@ watch(() => props.markers, (value) => {
           <p class="m-0">{{ marker.description }}</p>
         </div>
         <Icon class="position-absolute end-0 top-0 text-primary mt-2" name="tabler:dots-vertical" size="1.3rem" role="button" data-bs-toggle="dropdown" aria-expanded="false" @click.stop />
-        <div class="dropdown" role="button">
+        <div class="dropdown">
           <ul class="dropdown-menu dropdown-menu-end">
-            <li class="dropdown-item d-flex gap-1" @click="openMarker(marker)">
-              <Icon name="solar:pen-linear" size="1.5rem" />
+            <li class="dropdown-item d-flex gap-1 align-items-center" role="button" @click="openMarker(marker)">
+              <Icon name="solar:pen-linear" />
               <span>{{ t("edit") }}</span>
             </li>
-            <li class="dropdown-item d-flex gap-1" @click="deleteMarker(marker.id)">
-              <Icon name="solar:trash-bin-trash-linear" size="1.5rem" />
+            <li class="dropdown-item d-flex gap-1 align-items-center" role="button" @click="deleteMarker(marker.id)">
+              <Icon name="solar:trash-bin-trash-linear" />
               <span>{{ t("delete") }}</span>
             </li>
           </ul>
