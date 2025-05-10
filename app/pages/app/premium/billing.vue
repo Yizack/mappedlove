@@ -6,12 +6,7 @@ const isValidSubscription = computed(() => Boolean(user.value?.bond?.subscriptio
 const isPremium = computed(() => user.value?.bond?.premium);
 
 const { data: billing } = await useFetch(`/api/billing/subscription/${user.value?.bond?.subscriptionId}`, {
-  immediate: isValidSubscription.value,
-  default: () => ({
-    subscription: null,
-    transactions: [],
-    adjustments: []
-  })
+  immediate: isValidSubscription.value
 });
 
 if (!billing.value) {
@@ -45,6 +40,34 @@ const requestRefund = async () => {
   refundForm.value.reason = "";
 };
 
+// Transactions pagination
+const tPagination = usePagination(billing.value.transactions.data, {
+  pageSize: billing.value.transactions.meta?.pagination.per_page || 30,
+  total: billing.value.transactions.meta?.pagination.estimated_total
+});
+
+const isFetchingTransactions = ref(false);
+
+const transactionsPagesMap = ref<{ page: number, id?: string | null }[]>([]);
+const lastTransaction = computed(() => billing.value?.transactions.data[billing.value?.transactions.data.length - 1]?.id);
+if (lastTransaction.value) {
+  transactionsPagesMap.value.push({ page: 1, id: lastTransaction.value });
+}
+
+const fetchTransactions = async (data: { currentPage: number }) => {
+  isFetchingTransactions.value = true;
+  const transactions = await $fetch(`/api/billing/subscription/${user.value?.bond?.subscriptionId}/transactions`, {
+    query: {
+      after: data.currentPage > 1 ? transactionsPagesMap.value.find(page => page.page === data.currentPage - 1)?.id : undefined
+    }
+  }).catch(() => {});
+  isFetchingTransactions.value = false;
+  if (!transactions || !billing.value) return;
+  billing.value = { ...billing.value, transactions };
+  if (transactionsPagesMap.value.find(page => page.page === data.currentPage)) return;
+  transactionsPagesMap.value.push({ page: data.currentPage, id: lastTransaction.value });
+};
+
 useSeo({
   title: `${t("billing")} | ${SITE.name}`,
   robots: false
@@ -52,7 +75,7 @@ useSeo({
 </script>
 
 <template>
-  <div class="row">
+  <div v-if="billing" class="row">
     <div class="col-lg-8 col-xl-6 mx-auto">
       <div class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
         <h3>{{ t("billing_information") }}</h3>
@@ -102,7 +125,7 @@ useSeo({
             <p class="mb-0"><strong>{{ t("billing_manageable") }}</strong></p>
           </div>
           <div v-else-if="billing.subscription?.scheduled_change?.action === 'cancel'" class="text-center">
-            <button class="btn btn-lg btn-primary w-100 rounded-pill" @click="refundModal.show();">{{ t("request_refund") }}</button>
+            <button class="btn btn-lg btn-primary w-100 rounded-pill" @click="refundModal.show()">{{ t("request_refund") }}</button>
             <NuxtLink to="/legal/refund" target="_blank" class="small">{{ t("refund_info") }}</NuxtLink>
           </div>
           <div v-else-if="billing.subscription?.management_urls" class="d-flex flex-column flex-lg-row gap-2">
@@ -119,49 +142,64 @@ useSeo({
       <div class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
         <h3>{{ t("transactions") }}</h3>
         <p>{{ t("transactions_info") }}</p>
-        <div v-if="billing.transactions.length" class="table-responsive border rounded">
-          <table class="table table-hover m-0">
-            <thead>
-              <tr>
-                <th>{{ t("origin") }}</th>
-                <th>{{ t("reference") }}</th>
-                <th>{{ t("date") }}</th>
-                <th>{{ t("status") }}</th>
-                <th>{{ t("amount") }}</th>
-                <th v-if="billing.subscription?.is_manageable">{{ t("action") }}</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="(transaction, i) in billing.transactions" :key="i">
-                <td>{{ t(transaction.origin === "web" ? "payment" : transaction.origin) }}</td>
-                <td>{{ transaction.invoice_number }}</td>
-                <td>
-                  <NuxtTime :datetime="transaction.billed_at ? transaction.billed_at : transaction.created_at" v-bind="timeOptions.full" />
-                </td>
-                <td>
-                  <span class="badge border rounded-pill" :class="transaction.status === 'completed' ? 'bg-success-subtle text-success border-success' : 'bg-secondary text-primary border-primary'">{{ t(transaction.status) }}</span>
-                </td>
-                <td>
-                  <span v-if="transaction.details?.totals">{{ paddleToCurrency(Number(transaction.details.totals.total), transaction.details.totals.currency_code) }}</span>
-                </td>
-                <td v-if="billing.subscription?.is_manageable">
-                  <NuxtLink v-if="transaction.invoice_number" class="btn btn-sm btn-outline-dark rounded-pill" external :to="`/api/billing/invoice/${transaction.id}`">
-                    <div class="d-flex align-items-center gap-1">
-                      <Icon name="solar:download-minimalistic-bold" />
-                      <span>{{ t("download") }}</span>
-                    </div>
-                  </NuxtLink>
-                  <NuxtLink v-if="transaction.origin === 'subscription_payment_method_change' && transaction.status !== 'completed' && transaction.checkout?.url" class="btn btn-sm btn-outline-dark rounded-pill" :to="transaction.checkout.url">{{ t("complete") }}</NuxtLink>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <div v-if="billing.transactions.data.length">
+          <div class="table-responsive border rounded">
+            <table class="table table-hover m-0">
+              <thead>
+                <tr>
+                  <th>{{ t("origin") }}</th>
+                  <th>{{ t("reference") }}</th>
+                  <th>{{ t("date") }}</th>
+                  <th>{{ t("status") }}</th>
+                  <th>{{ t("amount") }}</th>
+                  <th v-if="billing.subscription?.is_manageable">{{ t("action") }}</th>
+                </tr>
+              </thead>
+              <tbody v-if="isFetchingTransactions">
+                <tr v-for="n of tPagination.config.pageSize" :key="n" class="placeholder-glow">
+                  <td><span class="placeholder col-12" /></td>
+                  <td><span class="placeholder col-12" /></td>
+                  <td><span class="placeholder col-12" /></td>
+                  <td><span class="placeholder col-12" /></td>
+                  <td><span class="placeholder col-12" /></td>
+                  <td><span class="placeholder col-12" /></td>
+                </tr>
+              </tbody>
+              <tbody v-else>
+                <tr v-for="(transaction, i) in billing.transactions.data" :key="i">
+                  <td>{{ t(transaction.origin === "web" ? "payment" : transaction.origin) }}</td>
+                  <td>{{ transaction.invoice_number }}</td>
+                  <td>
+                    <NuxtTime :datetime="transaction.billed_at ? transaction.billed_at : transaction.created_at" v-bind="timeOptions.full" />
+                  </td>
+                  <td>
+                    <span class="badge border rounded-pill" :class="transaction.status === 'completed' ? 'bg-success-subtle text-success border-success' : 'bg-secondary text-primary border-primary'">{{ t(transaction.status) }}</span>
+                  </td>
+                  <td>
+                    <span v-if="transaction.details?.totals">{{ paddleToCurrency(Number(transaction.details.totals.total), transaction.details.totals.currency_code) }}</span>
+                  </td>
+                  <td v-if="billing.subscription?.is_manageable">
+                    <NuxtLink v-if="transaction.invoice_number" class="btn btn-sm btn-outline-dark rounded-pill" external :to="`/api/billing/invoice/${transaction.id}`">
+                      <div class="d-flex align-items-center gap-1">
+                        <Icon name="solar:download-minimalistic-bold" />
+                        <span>{{ t("download") }}</span>
+                      </div>
+                    </NuxtLink>
+                    <NuxtLink v-if="transaction.origin === 'subscription_payment_method_change' && transaction.status !== 'completed' && transaction.checkout?.url" class="btn btn-sm btn-outline-dark rounded-pill" :to="transaction.checkout.url">{{ t("complete") }}</NuxtLink>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div v-if="tPagination.config.total > tPagination.config.pageSize" class="d-flex justify-content-center mt-2">
+            <BsPagination v-model="tPagination.config.currentPage" v-bind="tPagination.config" @page-change="fetchTransactions" />
+          </div>
         </div>
         <div v-else class="text-center">
           <p class="m-0 text-primary"><i>{{ t("transactions_not_found") }}</i></p>
         </div>
       </div>
-      <div v-if="billing.adjustments.length" class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
+      <div v-if="billing.adjustments.data.length" class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
         <h3>{{ t("adjustments") }}</h3>
         <p>{{ t("adjustments_info") }}</p>
         <div class="table-responsive border rounded">
@@ -176,7 +214,7 @@ useSeo({
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(adjustment, i) in billing.adjustments" :key="i">
+              <tr v-for="(adjustment, i) in billing.adjustments.data" :key="i">
                 <td>{{ adjustment.reason }}</td>
                 <td>{{ adjustment.invoice_number }}</td>
                 <td>

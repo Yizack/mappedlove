@@ -20,10 +20,10 @@ export default defineEventHandler(async (event) => {
 
   const transaction = await paddle.getPaddleTransaction(payment.transactionId);
   if (!transaction) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "transaction_not_found" });
-  if (transaction.status !== "paid" && transaction.status !== "ready") {
-    if (!transaction.subscription_id) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "subscription_not_found" });
-    const subscription = await paddle.getPaddleSubscription(transaction.subscription_id);
-    if (subscription && subscription.status !== "active") throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "subscription_not_active" });
+  if (transaction.data.status !== "paid" && transaction.data.status !== "ready") {
+    if (!transaction.data.subscription_id) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "subscription_not_found" });
+    const subscription = await paddle.getPaddleSubscription(transaction.data.subscription_id);
+    if (subscription && subscription.data.status !== "active") throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "subscription_not_active" });
   }
 
   const DB = useDB();
@@ -41,7 +41,7 @@ export default defineEventHandler(async (event) => {
 
   if (!update) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "bond_not_found" });
 
-  if (transaction.origin === "web" && !user.bond.premium) {
+  if (transaction.data.origin === "web" && !user.bond.premium) {
     const html = await render(premiumWelcome, {
       lang: "en"
     });

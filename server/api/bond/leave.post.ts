@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
     const config = useRuntimeConfig(event);
     const paddle = new Paddle(config.paddle.secret);
     const subscription = await paddle.getPaddleSubscription(user.bond.subscriptionId);
-    if (subscription && subscription.status === "active" && subscription.scheduled_change?.action !== "cancel") throw createError({ statusCode: ErrorCode.FORBIDDEN, message: "premium_owner_leaving" });
+    if (subscription && subscription.data.status === "active" && subscription.data.scheduled_change?.action !== "cancel") throw createError({ statusCode: ErrorCode.FORBIDDEN, message: "premium_owner_leaving" });
   }
 
   const DB = useDB();

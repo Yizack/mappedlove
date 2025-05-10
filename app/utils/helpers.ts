@@ -1,4 +1,5 @@
 export { watchDebounced, useMagicKeys } from "@vueuse/core";
+export { withQuery } from "ufo";
 
 export const getGroups = () => {
   return groups.map((group: typeof groups[number]) => t(group.key));

@@ -16,9 +16,9 @@ export default defineEventHandler(async (event) => {
   const subscription = await paddle.getPaddleSubscription(webhook.data.subscription_id);
   if (!subscription)
     throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "subscription_not_found" });
-  if (subscription.status !== "active" && subscription.status !== "trialing")
+  if (subscription.data.status !== "active" && subscription.data.status !== "trialing")
     throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_subscription_status" });
-  if (!subscription.current_billing_period)
+  if (!subscription.data.current_billing_period)
     throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_subscription_period" });
 
   const customData = webhook.data.custom_data as { bondId: number, bondCode: string };
@@ -28,8 +28,8 @@ export default defineEventHandler(async (event) => {
 
   await DB.update(tables.bonds).set({
     premium: true,
-    subscriptionId: subscription.id,
-    nextPayment: new Date(subscription.current_billing_period.ends_at).getTime(),
+    subscriptionId: subscription.data.id,
+    nextPayment: new Date(subscription.data.current_billing_period.ends_at).getTime(),
     updatedAt: today
   }).where(and(eq(tables.bonds.code, customData.bondCode), eq(tables.bonds.id, customData.bondId))).run();
 

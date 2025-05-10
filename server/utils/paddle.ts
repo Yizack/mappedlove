@@ -15,39 +15,33 @@ export class Paddle {
   }
 
   async getPaddleTransaction (transactionId: string) {
-    const transaction = await this.paddleFetch<PaddleResponse<ITransactionResponse>>(`/transactions/${transactionId}`).catch(() => null);
-    return transaction && transaction.data;
+    return this.paddleFetch<PaddleResponse<ITransactionResponse>>(`/transactions/${transactionId}`).catch(() => null);
   }
 
   async getPaddleSubscription (subscriptionId: string) {
-    const subscription = await this.paddleFetch<PaddleResponse<ISubscriptionResponse>>(`/subscriptions/${subscriptionId}`).catch(() => null);
-    return subscription && subscription.data;
+    return this.paddleFetch<PaddleResponse<ISubscriptionResponse>>(`/subscriptions/${subscriptionId}`).catch(() => null);
   }
 
-  async getPaddleTransactions (subscriptionId: string) {
-    const transactions = await this.paddleFetch<PaddleResponsePaginated<ITransactionResponse>>("/transactions", {
+  async getPaddleTransactions (subscriptionId: string, after?: string) {
+    return this.paddleFetch<PaddleResponsePaginated<ITransactionResponse>>("/transactions", {
       query: {
-        // perPage: 30, // Transactions: Default: 30; Maximum: 30.
+        per_page: 30, // default: 30; maximum: 30
         subscription_id: [subscriptionId],
-        origin: ["web", "subscription_recurring", "subscription_payment_method_change", "subscription_update"]
+        origin: ["web", "subscription_recurring", "subscription_payment_method_change", "subscription_update"],
+        after
       }
     }).catch(() => null);
-    // TODO: Implement pagination
-    return transactions && transactions.data;
   }
 
   async getPaddleTransactionInvoice (transactionId: string) {
-    const invoice = await this.paddleFetch<PaddleResponse<TransactionInvoicePDF>>(`/transactions/${transactionId}/invoice`).catch(() => null);
-    return invoice && invoice.data;
+    return this.paddleFetch<PaddleResponse<TransactionInvoicePDF>>(`/transactions/${transactionId}/invoice`).catch(() => null);
   }
 
   async getPaddleAdjustments (subscriptionId: string) {
-    const adjustments = await this.paddleFetch<PaddleResponsePaginated<IAdjustmentResponse>>("/adjustments", {
+    return this.paddleFetch<PaddleResponsePaginated<IAdjustmentResponse>>("/adjustments", {
       query: {
         subscription_id: [subscriptionId]
       }
     }).catch(() => null);
-    // TODO: Implement pagination
-    return adjustments && adjustments.data;
   }
 }
