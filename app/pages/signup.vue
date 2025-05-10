@@ -19,25 +19,24 @@ const passwordFocus = ref(false);
 const isValidPass = ref(false);
 
 const signUp = async () => {
-  if (!(isValidName(form.value.name) && isValidEmail(form.value.email) && isValidPass.value && isValidPasswordCheck(form.value.password, form.value.passwordCheck))) return;
+  if (!(isValidName(form.value.name)
+    && isValidEmail(form.value.email)
+    && isValidPass.value
+    && isValidPasswordCheck(form.value.password, form.value.passwordCheck)
+  )) return;
 
   submit.value.loading = true;
-  const req = await $fetch("/api/signup", { method: "POST", body: form.value }).catch(() => null);
-  submit.value.loading = false;
-
-  if (!req) {
+  $fetch("/api/signup", { method: "POST", body: form.value }).then(() => {
+    needsConfirm.value = true;
+  }).catch((response) => {
+    if (response.data.message === "user_exists") {
+      submit.value.exists = true;
+    }
+  }).finally(() => {
+    submit.value.loading = false;
     form.reset();
     turnstile.value?.reset();
-    return;
-  }
-
-  if (!("user" in req)) {
-    submit.value.exists = true;
-    form.reset();
-    turnstile.value?.reset();
-    return;
-  }
-  needsConfirm.value = true;
+  });
 };
 
 onMounted(() => {

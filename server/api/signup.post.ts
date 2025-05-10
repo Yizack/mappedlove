@@ -45,7 +45,7 @@ export default defineEventHandler(async (event) => {
 
   if (!user) {
     throw createError({
-      statusCode: ErrorCode.BAD_REQUEST,
+      statusCode: ErrorCode.CONFLICT,
       message: "user_exists"
     });
   }
@@ -65,6 +65,4 @@ export default defineEventHandler(async (event) => {
     html,
     text: htmlToText(html)
   });
-
-  return { user: { email: user.email } };
 });
