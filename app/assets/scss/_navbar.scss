@@ -25,16 +25,16 @@ nav.navbar * {
   text-decoration: none;
 }
 
+.dropdown-item.active, .dropdown-item:active {
+  color: var(--bs-body-bg);
+  background-color: var(--bs-primary);
+}
+
 .navbar .dropdown-item:hover, .navbar .nav-link:hover {
   text-decoration: underline;
 }
 
 .navbar .dropdown-item.router-link-active.router-link-exact-active {
-  color: var(--bs-body-bg);
-  background-color: var(--bs-primary);
-}
-
-.navbar .dropdown-item.active, .navbar .dropdown-item:active {
   color: var(--bs-body-bg);
   background-color: var(--bs-primary);
 }

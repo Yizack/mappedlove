@@ -126,8 +126,7 @@ watch(() => props.markers, (value) => {
   </div>
   <VueDraggable v-if="markers.length" v-model="markers" class="row g-2" v-bind="dragOptions" :disabled="!edit" @update="rearrange">
     <div v-for="marker of markers" :key="marker.id" class="col-12 col-md-4 col-xl-6 d-flex gap-2">
-      <div class="marker border rounded-3 py-2 px-3 w-100 position-relative" :class="{ active: selected === marker.id }" :style="{ cursor: edit ? 'grab' : 'pointer' }" @click="selectMarker(marker.id)">
-        <Icon v-if="edit" name="tabler:grip-horizontal" size="1rem" class="position-absolute start-50 bottom-0 translate-middle-x text-primary" />
+      <div class="marker border rounded-3 py-2 px-3 w-100 position-relative" :class="{ active: selected === marker.id }" :style="{ cursor: edit ? 'grab' : 'default' }" @click="selectMarker(marker.id)">
         <div class="w-100 h-100 text-break">
           <h5 class="d-flex align-items-center gap-1">
             <span class="d-flex" :title="t(groups[marker.group]!.key)">
@@ -137,17 +136,21 @@ watch(() => props.markers, (value) => {
           </h5>
           <p class="m-0">{{ marker.description }}</p>
         </div>
-      </div>
-      <Transition name="fade" mode="out-in">
-        <div v-if="edit" class="d-grid gap-1">
-          <button class="btn btn-sm btn-primary" @click="openMarker(marker)">
-            <Icon name="solar:pen-linear" size="1.5rem" />
-          </button>
-          <button class="btn btn-sm btn-danger" @click="deleteMarker(marker.id)">
-            <Icon name="solar:trash-bin-trash-linear" size="1.5rem" />
-          </button>
+        <Icon class="position-absolute end-0 top-0 text-primary mt-2" name="tabler:dots-vertical" size="1.3rem" role="button" data-bs-toggle="dropdown" aria-expanded="false" @click.stop />
+        <div class="dropdown" role="button">
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li class="dropdown-item d-flex gap-1" @click="openMarker(marker)">
+              <Icon name="solar:pen-linear" size="1.5rem" />
+              <span>{{ t("edit") }}</span>
+            </li>
+            <li class="dropdown-item d-flex gap-1" @click="deleteMarker(marker.id)">
+              <Icon name="solar:trash-bin-trash-linear" size="1.5rem" />
+              <span>{{ t("delete") }}</span>
+            </li>
+          </ul>
         </div>
-      </Transition>
+        <Icon v-if="edit" name="tabler:grip-horizontal" size="1rem" class="position-absolute start-50 bottom-0 translate-middle-x text-primary" />
+      </div>
     </div>
   </VueDraggable>
   <p v-else class="m-0">{{ t("no_markers") }}</p>
