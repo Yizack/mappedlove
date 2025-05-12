@@ -1,6 +1,8 @@
 <script setup lang="ts">
 definePageMeta({ layout: "app", middleware: "session" });
 
+const { $toasts } = useNuxtApp();
+
 const { user } = useUserSession();
 const isValidSubscription = computed(() => Boolean(user.value?.bond?.subscriptionId));
 const isPremium = computed(() => user.value?.bond?.premium);
@@ -28,16 +30,16 @@ const refundModal = useModal("refund");
 const requestRefund = async () => {
   if (!confirm(t("refund_confirm"))) return;
   loading.value = true;
-  const res = await $fetch("/api/billing/refund", {
+  $fetch("/api/billing/refund", {
     method: "POST",
     body: refundForm.value
-  }).catch(() => null);
-  loading.value = false;
-  if (!res) return;
-  const { $toasts } = useNuxtApp();
-  $toasts.add({ message: t("refund_requested") });
-  refundModal.value.hide();
-  refundForm.value.reason = "";
+  }).then(() => {
+    $toasts.add({ message: t("refund_requested") });
+    refundModal.value.hide();
+    refundForm.value.reason = "";
+  }).catch(() => {}).finally(() => {
+    loading.value = false;
+  });
 };
 
 // Transactions pagination

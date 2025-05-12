@@ -22,6 +22,4 @@ export default defineEventHandler(async (event) => {
     html,
     text: htmlToText(html)
   });
-
-  return { success: true };
 });

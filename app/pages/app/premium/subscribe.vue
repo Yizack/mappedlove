@@ -40,20 +40,21 @@ onMounted(async () => {
       loading.value = true;
       if (!data) return;
       isPtxnValid.value = true;
-      const subscribe = await $fetch("/api/billing/subscribe", {
+      $fetch("/api/billing/subscribe", {
         method: "POST",
         body: {
           bondId: user.value!.bond?.id,
           transactionId: data.transaction_id
         }
-      }).catch(() => null);
-      loading.value = false;
-      if (!subscribe) return;
-      paid.value = true;
-      await sessionFetch();
-      if (query._ptxn) return;
-      $toasts.add({ message: t("subscribed") });
-      $paddle.close();
+      }).then(async () => {
+        paid.value = true;
+        await sessionFetch();
+        if (query._ptxn) return;
+        $toasts.add({ message: t("subscribed") });
+        $paddle.close();
+      }).catch(() => {}).finally(() => {
+        loading.value = false;
+      });
     },
     onError: () => {
       isPtxnValid.value = false;

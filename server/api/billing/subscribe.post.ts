@@ -60,6 +60,4 @@ export default defineEventHandler(async (event) => {
       text: htmlToText(html)
     });
   }
-
-  return { success: true };
 });
