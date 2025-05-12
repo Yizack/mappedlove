@@ -29,11 +29,8 @@ export default defineEventHandler(async (event) => {
 
   if (isCodeDateExpired(user.updatedAt)) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "recovery_expired" });
 
-  const update = await DB.update(tables.users).set({
+  await DB.update(tables.users).set({
     password: hash(form.password, secure.salt),
     updatedAt: Date.now()
-  }).where(eq(tables.users.id, user.id)).returning().get();
-
-  if (!update) throw createError({ statusCode: ErrorCode.INTERNAL_SERVER_ERROR, message: "recovery_failed" });
-  return { email: user.email };
+  }).where(eq(tables.users.id, user.id)).run();
 });

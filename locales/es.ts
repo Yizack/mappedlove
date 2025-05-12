@@ -266,7 +266,6 @@ export default {
   reset_password: "Restablecer contraseña",
   invalid_recovery: "El código de recuperación no es válido o ha expirado",
   recovery_expired: "El código de recuperación ha expirado, por favor solicita uno nuevo",
-  recovery_failed: "La recuperación falló",
   continue: "Continuar",
   account_recovery: "Recuperación de cuenta",
   account_recovery_info: "Introduce tu nueva contraseña y confírmala para recuperar el acceso a tu cuenta.",

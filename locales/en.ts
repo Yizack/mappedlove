@@ -266,7 +266,6 @@ export default {
   reset_password: "Reset password",
   invalid_recovery: "Invalid recovery code or code has expired",
   recovery_expired: "Recovery code has expired, please request a new one",
-  recovery_failed: "Recovery failed",
   continue: "Continue",
   account_recovery: "Account recovery",
   account_recovery_info: "Enter your new password and confirm it to recover access to your account.",

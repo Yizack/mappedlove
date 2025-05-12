@@ -31,14 +31,15 @@ const form = useFormState({
 const resetPassword = async () => {
   if (!(isValidEmail(form.value.email) && isValidPassword(form.value.password) && isValidPasswordCheck(form.value.password, form.value.passwordCheck))) return;
   submit.value.loading = true;
-  const req = await $fetch("/api/recovery", {
+  $fetch("/api/recovery", {
     method: "POST",
     body: form.value
-  }).catch(() => null);
-  submit.value.loading = false;
-  if (!req) return;
-  $toasts.add({ message: t("reset_success") });
-  form.reset();
+  }).then(() => {
+    form.reset();
+    $toasts.add({ message: t("reset_success") });
+  }).catch(() => {}).finally(() => {
+    submit.value.loading = false;
+  });
 };
 
 useSeo({

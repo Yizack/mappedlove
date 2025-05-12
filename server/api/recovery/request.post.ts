@@ -35,6 +35,4 @@ export default defineEventHandler(async (event) => {
     html,
     text: htmlToText(html)
   });
-
-  return { code };
 });

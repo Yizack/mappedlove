@@ -10,14 +10,15 @@ const form = useFormState({
 
 const sendRecovery = async () => {
   submit.value.loading = true;
-  const req = await $fetch("/api/recovery/request", {
+  $fetch("/api/recovery/request", {
     method: "POST",
     body: form.value
-  }).catch(() => null);
-  submit.value.loading = false;
-  if (!req) return;
-  form.reset();
-  needsRecovery.value = true;
+  }).then(() => {
+    form.reset();
+    needsRecovery.value = true;
+  }).catch(() => {}).finally(() => {
+    submit.value.loading = false;
+  });
 };
 
 useSeo({
