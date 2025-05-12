@@ -27,17 +27,13 @@ catch (e) {
 
 const verifyEmail = async () => {
   if (!email.value) return;
-  const user = await $fetch("/api/verify", {
+  $fetch("/api/verify", {
     method: "POST",
-    body: {
-      email: email.value,
-      code: code.value
-    }
-  }).catch(() => null);
-
-  if (!user) return;
-  verified.value = true;
-  meta.email = email;
+    body: { email: email.value, code: code.value }
+  }).then(() => {
+    verified.value = true;
+    meta.email = email;
+  }).catch(() => {});
 };
 
 onMounted(async () => {

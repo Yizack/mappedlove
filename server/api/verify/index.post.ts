@@ -27,15 +27,8 @@ export default defineEventHandler(async (event) => {
 
   if (userHash !== code) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "invalid_code" });
 
-  const update = await DB.update(tables.users).set({
+  await DB.update(tables.users).set({
     confirmed: true,
     updatedAt: Date.now()
-  }).where(and(eq(tables.users.id, user.id))).returning({
-    email: tables.users.email,
-    confirmed: tables.users.confirmed
-  }).get();
-
-  if (!update) throw createError({ statusCode: ErrorCode.INTERNAL_SERVER_ERROR, message: "verification_failed" });
-
-  return update;
+  }).where(eq(tables.users.id, user.id)).run();
 });

@@ -43,7 +43,6 @@ export default {
   turnstile_failed: "La verificación de Turnstile falló",
   user_exists: "El usuario ya existe",
   invalid_code: "El código de verificación no es válido",
-  verification_failed: "La verificación falló",
   invalid_signup_data: "Los datos de registro no son válidos",
   invalid_verification_data: "Los datos de verificación no son válidos",
   read_legal: "He leído y comprendido",

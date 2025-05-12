@@ -1,7 +1,7 @@
 import { render } from "@vue-email/render";
 import accountVerify from "~~/emails/accountVerify.vue";
 
-export default defineEventHandler(async (event): Promise<{ email: string }> => {
+export default defineEventHandler(async (event) => {
   const body = await readValidatedBody(event, z.object({
     email: z.string()
   }).safeParse);
@@ -38,6 +38,4 @@ export default defineEventHandler(async (event): Promise<{ email: string }> => {
     html,
     text: htmlToText(html)
   });
-
-  return { email };
 });

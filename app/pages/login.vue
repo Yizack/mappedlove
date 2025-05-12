@@ -40,12 +40,14 @@ const signIn = async () => {
 
 const resendVerification = async () => {
   resent.value = true;
-  const resend = await $fetch("/api/verify/resend", {
+  $fetch("/api/verify/resend", {
     method: "POST",
     body: { email: form.value.email }
-  }).catch(() => null);
-  if (!resend) return;
-  $toasts.add({ message: t("resent_verification") });
+  }).then(() => {
+    $toasts.add({ message: t("resent_verification") });
+  }).catch(() => {
+    resent.value = false;
+  });
 };
 
 onMounted(() => {
