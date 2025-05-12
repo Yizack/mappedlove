@@ -15,15 +15,16 @@ const theme = useColorMode().preference as "light" | "dark";
 
 const sendRequest = async () => {
   submit.value.loading = true;
-  const req = await $fetch("/api/account/request", {
+  $fetch("/api/account/request", {
     method: "POST",
     body: form.value
-  }).catch(() => null);
-  submit.value.loading = false;
-  if (!req) return;
-  form.reset();
-  turnstile.value?.reset();
-  requested.value = true;
+  }).then(() => {
+    form.reset();
+    turnstile.value?.reset();
+    requested.value = true;
+  }).catch(() => {}).finally(() => {
+    submit.value.loading = false;
+  });
 };
 
 useSeo({
