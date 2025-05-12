@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
   const form = body.data;
 
   const DB = useDB();
-  const bond = await DB.update(tables.bonds).set({
+  await DB.update(tables.bonds).set({
     coupleDate: form.coupleDate,
     public: form.public,
     updatedAt: Date.now()
@@ -23,7 +23,5 @@ export default defineEventHandler(async (event) => {
       eq(tables.bonds.partner1, user.id),
       eq(tables.bonds.partner2, user.id)
     )
-  )).returning().get();
-
-  return bond;
+  )).run();
 });

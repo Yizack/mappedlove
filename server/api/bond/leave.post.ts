@@ -23,6 +23,4 @@ export default defineEventHandler(async (event) => {
 
   const session = { user: { ...user, bond: null } };
   await setUserSessionNullish(event, session);
-
-  return { success: true };
 });

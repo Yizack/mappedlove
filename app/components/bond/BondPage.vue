@@ -9,7 +9,7 @@ const { $toasts, $bootstrap } = useNuxtApp();
 
 const deleteButton = ref(false);
 const coupleDate = ref(props.bond.coupleDate);
-const cacheDate = ref<number | null>();
+const cachedDate = ref<number | null>();
 const isPublic = ref(props.bond.public);
 
 const togetherFor = computed(() => getTogetherFor(coupleDate.value));
@@ -28,23 +28,23 @@ const changePrivacy = async () => {
     return;
   }
 
-  const bond = await $fetch("/api/bond", {
+  $fetch("/api/bond", {
     method: "PATCH",
     body: {
       public: isPublic.value
     }
-  }).catch(() => null);
-  if (!bond) return;
-  $toasts.add({ message: t("bond_preferences_update") });
+  }).then(() => {
+    $toasts.add({ message: t("bond_preferences_update") });
+  }).catch(() => {});
 };
 
 const leaveBond = async () => {
   if (!confirm(t("leave_bond_confirm"))) return;
-  const bond = await $fetch("/api/bond/leave", {
+  $fetch("/api/bond/leave", {
     method: "POST"
-  }).catch(() => null);
-  if (!bond) return;
-  emit("bond", { bond: null, type: "leave" });
+  }).then(() => {
+    emit("bond", { bond: null, type: "leave" });
+  }).catch(() => {});
 };
 
 const upcomingDates = computed(() => {
@@ -63,22 +63,23 @@ const upcomingDates = computed(() => {
 });
 
 onMounted(() => {
-  cacheDate.value = coupleDate.value;
+  cachedDate.value = coupleDate.value;
   $bootstrap.initializePopover();
 });
 
 watch(coupleDate, async (val: number | null) => {
-  if (cacheDate.value === val) return;
-  const bond = await $fetch("/api/bond", {
+  if (cachedDate.value === val) return;
+  $fetch("/api/bond", {
     method: "PATCH",
     body: {
       coupleDate: coupleDate.value
     }
-  }).catch(() => null);
-  cacheDate.value = val;
-  if (!bond) return;
-  $toasts.add({ message: t("anniversary_update") });
-  useCachedData("bond", () => undefined);
+  }).then(() => {
+    $toasts.add({ message: t("anniversary_update") });
+    useCachedData("bond", () => undefined);
+  }).catch(() => {}).finally(() => {
+    cachedDate.value = val;
+  });
 });
 </script>
 
