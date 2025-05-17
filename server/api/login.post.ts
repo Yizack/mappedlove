@@ -1,15 +1,15 @@
 export default defineEventHandler(async (event) => {
+  const { secure } = useRuntimeConfig(event);
+
   const body = await readValidatedBody(event, z.object({
-    email: z.string(),
-    password: z.string(),
+    email: z.string().transform(v => v.toLocaleLowerCase().trim()),
+    password: z.string().transform(v => hash(v, secure.salt)),
     remember: z.boolean()
   }).safeParse);
 
   if (!body.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_signin_data" });
 
   const form = body.data;
-
-  const { secure } = useRuntimeConfig(event);
   const DB = useDB();
 
   const logins = await DB.select({
@@ -37,7 +37,7 @@ export default defineEventHandler(async (event) => {
   }).from(tables.users).leftJoin(tables.bonds, or(
     eq(tables.bonds.partner1, tables.users.id),
     eq(tables.bonds.partner2, tables.users.id)
-  )).where(and(eq(tables.users.email, form.email), eq(tables.users.password, hash(form.password, secure.salt)))).get();
+  )).where(and(eq(tables.users.email, form.email), eq(tables.users.password, form.password))).get();
 
   if (!user) {
     const userAttempted = await DB.select({ id: tables.users.id }).from(tables.users).where(eq(tables.users.email, form.email)).get();

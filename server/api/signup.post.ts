@@ -3,7 +3,7 @@ import accountVerify from "~~/emails/accountVerify.vue";
 
 export default defineEventHandler(async (event) => {
   const body = await readValidatedBody(event, z.object({
-    email: z.string(),
+    email: z.string().transform(v => v.toLocaleLowerCase().trim()),
     password: z.string(),
     name: z.string(),
     turnstile: z.string()
@@ -31,13 +31,12 @@ export default defineEventHandler(async (event) => {
 
   if (!isValidPassword(form.password)) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "password_invalid" });
 
-  const config = useRuntimeConfig(event);
+  const { secure } = useRuntimeConfig(event);
   const DB = useDB();
   const today = Date.now();
-  const email = form.email.toLowerCase();
   const user = await DB.insert(tables.users).values({
-    email,
-    password: hash(form.password, config.secure.salt),
+    email: form.email,
+    password: hash(form.password, secure.salt),
     name: form.name,
     createdAt: today,
     updatedAt: today
@@ -50,17 +49,17 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const fields = [user.id, user.email, user.updatedAt, config.secure.salt];
+  const fields = [user.id, user.email, user.updatedAt, secure.salt];
   const code = hash(fields.join());
 
   const html = await render(accountVerify, {
     lang: "en",
-    verifyLink: `${SITE.host}/verify/${encodeURIComponent(btoa(email))}/${code}`
+    verifyLink: `${SITE.host}/verify/${encodeURIComponent(btoa(user.email))}/${code}`
   });
 
   const mailchannels = useMailChannels(event);
   await mailchannels.send({
-    to: { email, name: user.name },
+    to: { email: user.email, name: user.name },
     subject: "Verify your email address",
     html,
     text: htmlToText(html)
