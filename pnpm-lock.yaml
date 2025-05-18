@@ -105,8 +105,8 @@ importers:
         specifier: ^16.19.1
         version: 16.19.1(typescript@5.8.3)
       stylelint-config-standard-scss:
-        specifier: ^15.0.0
-        version: 15.0.0(postcss@8.5.3)(stylelint@16.19.1(typescript@5.8.3))
+        specifier: ^15.0.1
+        version: 15.0.1(postcss@8.5.3)(stylelint@16.19.1(typescript@5.8.3))
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -5617,9 +5617,9 @@ packages:
     peerDependencies:
       postcss: ^8.4.32
 
-  stylelint-config-recommended-scss@15.0.0:
-    resolution: {integrity: sha512-LCxdFHly0NCJbMsgPpaAPkTf1xclU+SMpTsShlsAv1SLs8KDnaO8OhJGp8XEC8JyOzFHfmVYTXU6V1y8IahfRg==}
-    engines: {node: '>=22'}
+  stylelint-config-recommended-scss@15.0.1:
+    resolution: {integrity: sha512-V24bxkNkFGggqPVJlP9iXaBabwSGEG7QTz+PyxrRtjPkcF+/NsWtB3tKYvFYEmczRkWiIEfuFMhGpJFj9Fxe6Q==}
+    engines: {node: '>=20'}
     peerDependencies:
       postcss: ^8.3.3
       stylelint: ^16.16.0
@@ -5633,9 +5633,9 @@ packages:
     peerDependencies:
       stylelint: ^16.16.0
 
-  stylelint-config-standard-scss@15.0.0:
-    resolution: {integrity: sha512-KPyz0DyncXW+1ppWYcols98sSP6Lnsu8wZRZ+Gr18KmWXD1tRykkQ1QYTpFmcA1RkqrIg/U8J0SInLb04U/57A==}
-    engines: {node: '>=22'}
+  stylelint-config-standard-scss@15.0.1:
+    resolution: {integrity: sha512-8pmmfutrMlPHukLp+Th9asmk21tBXMVGxskZCzkRVWt1d8Z0SrXjUUQ3vn9KcBj1bJRd5msk6yfEFM0UYHBRdg==}
+    engines: {node: '>=20'}
     peerDependencies:
       postcss: ^8.3.3
       stylelint: ^16.18.0
@@ -12504,7 +12504,7 @@ snapshots:
       postcss: 8.5.3
       postcss-selector-parser: 7.1.0
 
-  stylelint-config-recommended-scss@15.0.0(postcss@8.5.3)(stylelint@16.19.1(typescript@5.8.3)):
+  stylelint-config-recommended-scss@15.0.1(postcss@8.5.3)(stylelint@16.19.1(typescript@5.8.3)):
     dependencies:
       postcss-scss: 4.0.9(postcss@8.5.3)
       stylelint: 16.19.1(typescript@5.8.3)
@@ -12517,10 +12517,10 @@ snapshots:
     dependencies:
       stylelint: 16.19.1(typescript@5.8.3)
 
-  stylelint-config-standard-scss@15.0.0(postcss@8.5.3)(stylelint@16.19.1(typescript@5.8.3)):
+  stylelint-config-standard-scss@15.0.1(postcss@8.5.3)(stylelint@16.19.1(typescript@5.8.3)):
     dependencies:
       stylelint: 16.19.1(typescript@5.8.3)
-      stylelint-config-recommended-scss: 15.0.0(postcss@8.5.3)(stylelint@16.19.1(typescript@5.8.3))
+      stylelint-config-recommended-scss: 15.0.1(postcss@8.5.3)(stylelint@16.19.1(typescript@5.8.3))
       stylelint-config-standard: 38.0.0(stylelint@16.19.1(typescript@5.8.3))
     optionalDependencies:
       postcss: 8.5.3
