@@ -3,7 +3,7 @@ definePageMeta({ layout: "app", middleware: "session" });
 
 const { data: bond } = await useFetch("/api/bond", {
   key: "bond",
-  getCachedData: setupCachedData
+  getCachedData: (key, nuxtApp) => nuxtApp.payload.data[key]
 });
 
 const bondEvent = ref("");
