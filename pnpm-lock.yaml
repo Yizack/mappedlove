@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@dargmuesli/nuxt-cookie-control':
-        specifier: ^9.0.3
-        version: 9.0.3(magicast@0.3.5)(webpack@5.99.9(esbuild@0.25.4))
+        specifier: ^9.0.4
+        version: 9.0.4(magicast@0.3.5)(webpack@5.99.9(esbuild@0.25.4))
       '@iconify-json/logos':
         specifier: ^1.2.4
         version: 1.2.4
@@ -123,8 +123,8 @@ importers:
         specifier: ^4.16.0
         version: 4.16.0(@cloudflare/workers-types@4.20250520.0)
       zod:
-        specifier: ^3.25.7
-        version: 3.25.7
+        specifier: ^3.25.12
+        version: 3.25.12
 
 packages:
 
@@ -425,8 +425,8 @@ packages:
   '@dabh/diagnostics@2.0.3':
     resolution: {integrity: sha512-hrlQOIi7hAfzsMqlGSFyVucrx38O+j6wiGOf//H2ecvIEqYN4ADBSS2iLMh5UFyDunCNniUIPk/q3riFv45xRA==}
 
-  '@dargmuesli/nuxt-cookie-control@9.0.3':
-    resolution: {integrity: sha512-cypTjQiNDEZtKUvFAXy5iOxtX8C5G4dGIG6O0Ry5eM6MAoqqdKt87KpvGPn9sCkidqpzECe6vNbkmRfqc0ngOQ==}
+  '@dargmuesli/nuxt-cookie-control@9.0.4':
+    resolution: {integrity: sha512-IDY7ew94heBBaauxeARx5uNn7rdHbyE6RXCsJuFNhnaKfco8s67NV4AapCH7i2EqfBY8gipxOtva9fPNn/naAA==}
     engines: {node: '>=16'}
 
   '@dependents/detective-less@4.1.0':
@@ -6396,8 +6396,8 @@ packages:
   zod@3.22.3:
     resolution: {integrity: sha512-EjIevzuJRiRPbVH4mGc8nApb/lVLKVpmUhAaR5R5doKGfAnGJ6Gr3CViAVjP+4FWSxCsybeWQdcgCtbX+7oZug==}
 
-  zod@3.25.7:
-    resolution: {integrity: sha512-YGdT1cVRmKkOg6Sq7vY7IkxdphySKnXhaUmFI4r4FcuFVNgpCb9tZfNwXbT6BPjD5oz0nubFsoo9pIqKrDcCvg==}
+  zod@3.25.12:
+    resolution: {integrity: sha512-A8e9eiwm2L5YEupdjn1YcxL1ZDWuL3Bc4JKvLwUrpKZZtRUDOijR7XXsV5WMuUCZPc1tFYO5yfH14STI08MquA==}
 
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
@@ -6762,7 +6762,7 @@ snapshots:
       enabled: 2.0.0
       kuler: 2.0.0
 
-  '@dargmuesli/nuxt-cookie-control@9.0.3(magicast@0.3.5)(webpack@5.99.9(esbuild@0.25.4))':
+  '@dargmuesli/nuxt-cookie-control@9.0.4(magicast@0.3.5)(webpack@5.99.9(esbuild@0.25.4))':
     dependencies:
       '@nuxt/kit': 3.17.4(magicast@0.3.5)
       css-vars-ponyfill: 2.4.9
@@ -7438,7 +7438,7 @@ snapshots:
       unixify: 1.0.0
       urlpattern-polyfill: 8.0.2
       yargs: 17.7.2
-      zod: 3.25.7
+      zod: 3.25.12
     transitivePeerDependencies:
       - encoding
       - rollup
@@ -7821,7 +7821,7 @@ snapshots:
       ufo: 1.6.1
       uncrypto: 0.1.3
       unstorage: 1.16.0(db0@0.3.2(drizzle-orm@0.43.1(@cloudflare/workers-types@4.20250520.0)))(ioredis@5.6.1)
-      zod: 3.25.7
+      zod: 3.25.12
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -13361,6 +13361,6 @@ snapshots:
 
   zod@3.22.3: {}
 
-  zod@3.25.7: {}
+  zod@3.25.12: {}
 
   zwitch@2.0.4: {}
