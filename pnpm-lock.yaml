@@ -42,8 +42,8 @@ importers:
         specifier: ^1.4.1
         version: 1.4.1
       '@paddle/paddle-node-sdk':
-        specifier: ^2.7.1
-        version: 2.7.1
+        specifier: ^2.7.2
+        version: 2.7.2
       '@types/bootstrap':
         specifier: ^5.2.10
         version: 5.2.10
@@ -120,8 +120,8 @@ importers:
         specifier: ^2.2.10
         version: 2.2.10(typescript@5.8.3)
       wrangler:
-        specifier: ^4.16.0
-        version: 4.16.0(@cloudflare/workers-types@4.20250520.0)
+        specifier: ^4.16.1
+        version: 4.16.1(@cloudflare/workers-types@4.20250520.0)
       zod:
         specifier: ^3.25.20
         version: 3.25.20
@@ -1441,8 +1441,8 @@ packages:
   '@paddle/paddle-js@1.4.1':
     resolution: {integrity: sha512-GKuXVnUAIGq4H1AxrPRRMZXl+pTSGiKMStpRlvF6+dv03BwhkqbyHJJZ39e6bMquVbYSa33/9cu6fuW8pie8aQ==}
 
-  '@paddle/paddle-node-sdk@2.7.1':
-    resolution: {integrity: sha512-7XWmXzm7VeH/aU/uyPrHZCbWCt/AUvVsWVZsj1XCNjXhNXdzgoA6kbGe97KUJcoELftge+DAMGBNWxv0kT1opQ==}
+  '@paddle/paddle-node-sdk@2.7.2':
+    resolution: {integrity: sha512-CgwdeLvw10mH92A6UsUBiaEUFC+XHrxxb2Uo3tvCoA95mulU5r/A7rUAzZrNQdPyIZahN1IXneUbv0yN6yilWQ==}
     engines: {node: '>=18'}
 
   '@parcel/watcher-android-arm64@2.5.1':
@@ -6279,8 +6279,8 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
-  wrangler@4.16.0:
-    resolution: {integrity: sha512-zQojiBJKAWRVG4WdUgTP5/i9N5UcwOixhWljnBrcKxJd+kpqUXVV/L03ytO+0cnr5IhgYUs7qhjd8EWU6UwPfg==}
+  wrangler@4.16.1:
+    resolution: {integrity: sha512-YiLdWXcaQva2K/bqokpsZbySPmoT8TJFyJPsQPZumnkgimM9+/g/yoXArByA+pf+xU8jhw7ybQ8X1yBGXv731g==}
     engines: {node: '>=18.0.0'}
     hasBin: true
     peerDependencies:
@@ -7934,7 +7934,7 @@ snapshots:
 
   '@paddle/paddle-js@1.4.1': {}
 
-  '@paddle/paddle-node-sdk@2.7.1': {}
+  '@paddle/paddle-node-sdk@2.7.2': {}
 
   '@parcel/watcher-android-arm64@2.5.1':
     optional: true
@@ -13250,7 +13250,7 @@ snapshots:
       '@cloudflare/workerd-linux-arm64': 1.20250508.0
       '@cloudflare/workerd-windows-64': 1.20250508.0
 
-  wrangler@4.16.0(@cloudflare/workers-types@4.20250520.0):
+  wrangler@4.16.1(@cloudflare/workers-types@4.20250520.0):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.4.0
       '@cloudflare/unenv-preset': 2.3.2(unenv@2.0.0-rc.17)(workerd@1.20250508.0)
