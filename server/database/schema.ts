@@ -66,6 +66,4 @@ export const logins = sqliteTable("logins", {
   user: integer().notNull().primaryKey().references(() => users.id, { onDelete: "cascade" }),
   attempts: integer().notNull().default(1),
   updatedAt: integer().notNull()
-}, table => [
-  index("logins_user_idx").on(table.user)
-]);
+});

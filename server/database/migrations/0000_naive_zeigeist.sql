@@ -25,7 +25,6 @@ CREATE TABLE `logins` (
 	FOREIGN KEY (`user`) REFERENCES `users`(`id`) ON UPDATE no action ON DELETE cascade
 );
 --> statement-breakpoint
-CREATE INDEX `logins_user_idx` ON `logins` (`user`);--> statement-breakpoint
 CREATE TABLE `markers` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`lat` integer NOT NULL,

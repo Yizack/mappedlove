@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "67211528-b3f1-44d3-b386-a39a58263be8",
+  "id": "875eafbe-dcd9-4992-b557-9abf1e882180",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "bonds": {
@@ -176,15 +176,7 @@
           "autoincrement": false
         }
       },
-      "indexes": {
-        "logins_user_idx": {
-          "name": "logins_user_idx",
-          "columns": [
-            "user"
-          ],
-          "isUnique": false
-        }
-      },
+      "indexes": {},
       "foreignKeys": {
         "logins_user_users_id_fk": {
           "name": "logins_user_users_id_fk",
