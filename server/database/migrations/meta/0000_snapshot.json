@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "875eafbe-dcd9-4992-b557-9abf1e882180",
+  "id": "bafdb1c2-a6a5-4fdf-abd5-29d32b11e871",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "bonds": {
@@ -277,6 +277,14 @@
             "bond"
           ],
           "isUnique": false
+        },
+        "markers_bond_order_idx": {
+          "name": "markers_bond_order_idx",
+          "columns": [
+            "bond",
+            "order"
+          ],
+          "isUnique": false
         }
       },
       "foreignKeys": {
@@ -379,6 +387,15 @@
           "name": "stories_marker_idx",
           "columns": [
             "marker"
+          ],
+          "isUnique": false
+        },
+        "stories_bond_year_month_idx": {
+          "name": "stories_bond_year_month_idx",
+          "columns": [
+            "bond",
+            "\"year\" desc",
+            "\"month\" desc"
           ],
           "isUnique": false
         }
@@ -522,6 +539,17 @@
     "columns": {}
   },
   "internal": {
-    "indexes": {}
+    "indexes": {
+      "stories_bond_year_month_idx": {
+        "columns": {
+          "\"year\" desc": {
+            "isExpression": true
+          },
+          "\"month\" desc": {
+            "isExpression": true
+          }
+        }
+      }
+    }
   }
 }

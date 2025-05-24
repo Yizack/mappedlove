@@ -40,6 +40,7 @@ CREATE TABLE `markers` (
 );
 --> statement-breakpoint
 CREATE INDEX `markers_bond_idx` ON `markers` (`bond`);--> statement-breakpoint
+CREATE INDEX `markers_bond_order_idx` ON `markers` (`bond`,`order`);--> statement-breakpoint
 CREATE TABLE `stories` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`marker` integer NOT NULL,
@@ -56,6 +57,7 @@ CREATE TABLE `stories` (
 --> statement-breakpoint
 CREATE INDEX `stories_bond_idx` ON `stories` (`bond`);--> statement-breakpoint
 CREATE INDEX `stories_marker_idx` ON `stories` (`marker`);--> statement-breakpoint
+CREATE INDEX `stories_bond_year_month_idx` ON `stories` (`bond`,"year" desc,"month" desc);--> statement-breakpoint
 CREATE TABLE `users` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`email` text NOT NULL,

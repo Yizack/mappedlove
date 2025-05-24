@@ -1,4 +1,5 @@
 import { index, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { desc } from "drizzle-orm";
 
 export const users = sqliteTable("users", {
   id: integer().primaryKey({ autoIncrement: true }),
@@ -44,7 +45,8 @@ export const markers = sqliteTable("markers", {
   createdAt: integer().notNull(),
   updatedAt: integer().notNull()
 }, table => [
-  index("markers_bond_idx").on(table.bond)
+  index("markers_bond_idx").on(table.bond),
+  index("markers_bond_order_idx").on(table.bond, table.order)
 ]);
 
 export const stories = sqliteTable("stories", {
@@ -59,7 +61,8 @@ export const stories = sqliteTable("stories", {
   updatedAt: integer().notNull()
 }, table => [
   index("stories_bond_idx").on(table.bond),
-  index("stories_marker_idx").on(table.marker)
+  index("stories_marker_idx").on(table.marker),
+  index("stories_bond_year_month_idx").on(table.bond, desc(table.year), desc(table.month))
 ]);
 
 export const logins = sqliteTable("logins", {
