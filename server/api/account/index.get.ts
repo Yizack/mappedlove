@@ -48,13 +48,15 @@ export default defineEventHandler(async (event) => {
       partners: await getPartners(event, DB, bond)
     };
 
-    const markers = await DB.select().from(tables.markers).where(
-      eq(tables.markers.bond, bond.id)
-    ).orderBy(tables.markers.order).all();
+    const [markers, stories] = await Promise.all([
+      DB.select().from(tables.markers).where(
+        eq(tables.markers.bond, bond.id)
+      ).orderBy(tables.markers.order).all(),
 
-    const stories = await DB.select().from(tables.stories).where(
-      eq(tables.stories.bond, bond.id)
-    ).orderBy(desc(tables.stories.year), desc(tables.stories.month)).all();
+      DB.select().from(tables.stories).where(
+        eq(tables.stories.bond, bond.id)
+      ).orderBy(desc(tables.stories.year), desc(tables.stories.month)).all()
+    ]);
 
     accountData.user.bond = {
       ...bondData,
