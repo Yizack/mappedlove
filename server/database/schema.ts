@@ -1,4 +1,4 @@
-import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { index, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
 export const users = sqliteTable("users", {
   id: integer().primaryKey({ autoIncrement: true }),
@@ -27,7 +27,10 @@ export const bonds = sqliteTable("bonds", {
   nextPayment: integer(),
   createdAt: integer().notNull(),
   updatedAt: integer().notNull()
-});
+}, table => [
+  index("bonds_partner_1_idx").on(table.partner1),
+  index("bonds_partner_2_idx").on(table.partner2)
+]);
 
 export const markers = sqliteTable("markers", {
   id: integer().primaryKey({ autoIncrement: true }),
@@ -40,7 +43,9 @@ export const markers = sqliteTable("markers", {
   order: integer().notNull(),
   createdAt: integer().notNull(),
   updatedAt: integer().notNull()
-});
+}, table => [
+  index("markers_bond_idx").on(table.bond)
+]);
 
 export const stories = sqliteTable("stories", {
   id: integer().primaryKey({ autoIncrement: true }),
@@ -52,10 +57,15 @@ export const stories = sqliteTable("stories", {
   month: integer().notNull().default(0),
   createdAt: integer().notNull(),
   updatedAt: integer().notNull()
-});
+}, table => [
+  index("stories_bond_idx").on(table.bond),
+  index("stories_marker_idx").on(table.marker)
+]);
 
 export const logins = sqliteTable("logins", {
   user: integer().notNull().primaryKey().references(() => users.id, { onDelete: "cascade" }),
   attempts: integer().notNull().default(1),
   updatedAt: integer().notNull()
-});
+}, table => [
+  index("logins_user_idx").on(table.user)
+]);

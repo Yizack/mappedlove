@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "8de7b0d3-2c79-47e9-b153-4b6d2920e022",
+  "id": "67211528-b3f1-44d3-b386-a39a58263be8",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "bonds": {
@@ -102,6 +102,20 @@
             "code"
           ],
           "isUnique": true
+        },
+        "bonds_partner_1_idx": {
+          "name": "bonds_partner_1_idx",
+          "columns": [
+            "partner_1"
+          ],
+          "isUnique": false
+        },
+        "bonds_partner_2_idx": {
+          "name": "bonds_partner_2_idx",
+          "columns": [
+            "partner_2"
+          ],
+          "isUnique": false
         }
       },
       "foreignKeys": {
@@ -162,7 +176,15 @@
           "autoincrement": false
         }
       },
-      "indexes": {},
+      "indexes": {
+        "logins_user_idx": {
+          "name": "logins_user_idx",
+          "columns": [
+            "user"
+          ],
+          "isUnique": false
+        }
+      },
       "foreignKeys": {
         "logins_user_users_id_fk": {
           "name": "logins_user_users_id_fk",
@@ -256,7 +278,15 @@
           "autoincrement": false
         }
       },
-      "indexes": {},
+      "indexes": {
+        "markers_bond_idx": {
+          "name": "markers_bond_idx",
+          "columns": [
+            "bond"
+          ],
+          "isUnique": false
+        }
+      },
       "foreignKeys": {
         "markers_bond_bonds_id_fk": {
           "name": "markers_bond_bonds_id_fk",
@@ -345,7 +375,22 @@
           "autoincrement": false
         }
       },
-      "indexes": {},
+      "indexes": {
+        "stories_bond_idx": {
+          "name": "stories_bond_idx",
+          "columns": [
+            "bond"
+          ],
+          "isUnique": false
+        },
+        "stories_marker_idx": {
+          "name": "stories_marker_idx",
+          "columns": [
+            "marker"
+          ],
+          "isUnique": false
+        }
+      },
       "foreignKeys": {
         "stories_marker_markers_id_fk": {
           "name": "stories_marker_markers_id_fk",
