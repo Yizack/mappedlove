@@ -34,12 +34,8 @@ export default defineEventHandler(async (event) => {
     confirmed: tables.users.confirmed,
     language: tables.users.language,
     createdAt: tables.users.createdAt,
-    updatedAt: tables.users.updatedAt,
-    bond: tables.bonds
-  }).from(tables.users).leftJoin(tables.bonds, or(
-    eq(tables.bonds.partner1, tables.users.id),
-    eq(tables.bonds.partner2, tables.users.id)
-  )).where(and(eq(tables.users.email, form.email), eq(tables.users.password, form.password))).get();
+    updatedAt: tables.users.updatedAt
+  }).from(tables.users).where(and(eq(tables.users.email, form.email), eq(tables.users.password, form.password))).get();
 
   if (!user) {
     const userAttempted = await DB.select({ id: tables.users.id }).from(tables.users).where(eq(tables.users.email, form.email)).get();
@@ -58,6 +54,13 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "signin_error" });
   }
 
+  const bond = await DB.select().from(tables.bonds).where(
+    or(
+      eq(tables.bonds.partner1, user.id),
+      eq(tables.bonds.partner2, user.id)
+    )
+  ).get();
+
   if (logins) {
     event.waitUntil(
       DB.delete(tables.logins).where(eq(tables.logins.user, logins.user)).run()
@@ -71,6 +74,6 @@ export default defineEventHandler(async (event) => {
   const userHash = hash(user.id.toString(), secure.salt);
   const maxAge = form.remember ? 7 * 24 * 60 * 60 : 0; // if remember is true, maxAge is 7 days
 
-  const session = { user: { ...user, hash: userHash } };
+  const session = { user: { ...user, bond, hash: userHash } };
   await setUserSessionNullish(event, session, { maxAge });
 });

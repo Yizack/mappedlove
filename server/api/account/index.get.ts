@@ -13,16 +13,10 @@ export default defineEventHandler(async (event) => {
 
   const DB = useDB();
 
-  const data = await DB.select({
-    user: tables.users,
-    bond: tables.bonds
-  }).from(tables.users).leftJoin(tables.bonds, or(
-    eq(tables.bonds.partner1, tables.users.id),
-    eq(tables.bonds.partner2, tables.users.id)
-  )).where(userEq).get();
+  const userData = await DB.select().from(tables.users).where(userEq).get();
 
-  if (!data) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "user_not_found" });
-  const { password, ...user } = data.user; // Removes the password field from the user object
+  if (!userData) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "user_not_found" });
+  const { password, ...user } = userData; // Removes the password field from the user object
   const config = useRuntimeConfig (event);
 
   if (!id) {
@@ -39,7 +33,13 @@ export default defineEventHandler(async (event) => {
     }
   };
 
-  const bond = data.bond;
+  const bond = await DB.select().from(tables.bonds).where(
+    or(
+      eq(tables.bonds.partner1, user.id),
+      eq(tables.bonds.partner2, user.id)
+    )
+  ).get();
+
   if (bond) {
     const bondData = {
       ...bond,
