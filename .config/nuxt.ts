@@ -105,18 +105,17 @@ export default defineNuxtConfig({
       }
     },
     paddle: {
-      secret: "",
-      webhookId: ""
+      secret: ""
     },
     webhook: {
       paddle: {
-        webhookId: process.env.NUXT_PADDLE_WEBHOOK_ID || ""
+        webhookId: ""
       }
     },
     public: {
       paddle: {
-        clientId: process.env.NUXT_PADDLE_CLIENT_ID || "",
-        planId: process.env.NUXT_PADDLE_PLAN_ID || ""
+        clientId: "",
+        planId: ""
       }
     }
   },
