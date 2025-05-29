@@ -33,13 +33,14 @@ const verifyEmail = async () => {
   }).then(() => {
     verified.value = true;
     meta.email = email;
-  }).catch(() => {});
+  }).catch(() => {}).finally(() => {
+    loaded.value = true;
+  });
 };
 
 onMounted(async () => {
   if (!(emailCode.value && code.value)) return;
   await verifyEmail();
-  loaded.value = true;
 });
 
 useSeo({
