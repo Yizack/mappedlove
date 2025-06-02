@@ -6,6 +6,18 @@ useSeo({
   name: `${SITE.name} | ${t("motto")}`,
   description: t("seo_home_description")
 });
+
+useHead({
+  script: [{
+    type: "application/ld+json",
+    innerHTML: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": SITE.name,
+      "url": SITE.host
+    })
+  }]
+});
 </script>
 
 <template>
