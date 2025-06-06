@@ -48,14 +48,14 @@ useSeo({
             <tbody>
               <tr>
                 <td>{{ SITE.name }}</td>
-                <td>nuxt-session</td>
+                <td class="text-nowrap">nuxt-session</td>
                 <td>Cookies store</td>
                 <td>Authentication, authorization and session management</td>
                 <td>Until user closes browser or after 7 days if user selects "Remember me"</td>
               </tr>
               <tr>
                 <td>{{ SITE.name }}</td>
-                <td>nuxt-color-mode</td>
+                <td class="text-nowrap">nuxt-color-mode</td>
                 <td>Local storage</td>
                 <td>Color mode preference</td>
                 <td>Persistent</td>
