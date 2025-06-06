@@ -1,5 +1,5 @@
 <template>
-  <div id="layout" class="layout-grid">
+  <div id="layout">
     <NavbarMain />
     <slot />
     <LazyFooterPage hydrate-on-visible />
