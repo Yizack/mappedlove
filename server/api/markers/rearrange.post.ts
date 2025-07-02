@@ -1,4 +1,5 @@
-import { type SQL, inArray } from "drizzle-orm";
+import { inArray } from "drizzle-orm";
+import type { SQL } from "drizzle-orm";
 
 export default defineEventHandler(async (event) => {
   const { user } = await requireUserSession(event);

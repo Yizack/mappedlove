@@ -1,4 +1,5 @@
-import { type HeadConfig, defineConfig } from "vitepress";
+import { defineConfig } from "vitepress";
+import type { HeadConfig } from "vitepress";
 import { SITE } from "./../../shared/utils/site";
 import { sidebar } from "./theme/sidebar";
 
