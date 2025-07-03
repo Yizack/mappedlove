@@ -42,8 +42,8 @@ importers:
         specifier: ^1.4.2
         version: 1.4.2
       '@paddle/paddle-node-sdk':
-        specifier: ^2.8.0
-        version: 2.8.0
+        specifier: ^3.0.0
+        version: 3.0.0
       '@types/bootstrap':
         specifier: ^5.2.10
         version: 5.2.10
@@ -1612,9 +1612,9 @@ packages:
   '@paddle/paddle-js@1.4.2':
     resolution: {integrity: sha512-pY9jYS+g3vk6ecc7GbCsVSuBEo1Yh+hxYE4i2XoY5/ZBAZLuCkQi/80hOmSBkFoaETohOpDmurILlQdgUHUcvw==}
 
-  '@paddle/paddle-node-sdk@2.8.0':
-    resolution: {integrity: sha512-7SeFdE1k8j4Lme0A4SvPh3ak2e4HLtmTwsxEcQeWWSwy3vcwMSoE8hpHKGkqgHWdLV71FKFCMn9RYJFtbUb4Zg==}
-    engines: {node: '>=18'}
+  '@paddle/paddle-node-sdk@3.0.0':
+    resolution: {integrity: sha512-7wD4qmZxPSG4YZUXppX+qWJjoes6a6Mk6VbhJ9L1Mm+fik/sUj81YrN49kGzmQ1bG/0Mg3pGC3n07CtB+uDuKA==}
+    engines: {node: '>=20'}
 
   '@parcel/watcher-android-arm64@2.5.1':
     resolution: {integrity: sha512-KF8+j9nNbUN8vzOFDpRMsaKBHZ/mcjEjMToVMJOhTozkDonQFFrRcfdLWn6yWKCmJKmdVxSgHiYvTCef4/qcBA==}
@@ -7894,7 +7894,7 @@ snapshots:
 
   '@paddle/paddle-js@1.4.2': {}
 
-  '@paddle/paddle-node-sdk@2.8.0': {}
+  '@paddle/paddle-node-sdk@3.0.0': {}
 
   '@parcel/watcher-android-arm64@2.5.1':
     optional: true
