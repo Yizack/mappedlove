@@ -1,0 +1,11 @@
+shamefullyHoist: true
+strictPeerDependencies: false
+
+packages:
+  - .
+
+ignoredBuiltDependencies:
+  - '@parcel/watcher'
+  - esbuild
+  - workerd
+  - sharp
