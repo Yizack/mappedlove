@@ -3,7 +3,7 @@ export default defineEventHandler(async (event) => {
   if (!user.bond) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "bond_not_found" });
 
   const { id } = await getValidatedRouterParams(event, z.object({
-    id: z.number({ coerce: true })
+    id: z.coerce.number()
   }).parse);
 
   const DB = useDB();

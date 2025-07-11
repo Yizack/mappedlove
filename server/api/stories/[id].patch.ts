@@ -15,7 +15,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveStory> => {
   const today = Date.now();
 
   const { id } = await getValidatedRouterParams(event, z.object({
-    id: z.number({ coerce: true })
+    id: z.coerce.number()
   }).parse);
 
   const form: { [key: string]: string } = {};
