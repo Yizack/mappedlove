@@ -2,7 +2,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveMarker> => {
   const { user } = await requireUserSession(event);
   if (!user.bond) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "bond_not_found" });
   const { id } = await getValidatedRouterParams(event, z.object({
-    id: z.number({ coerce: true })
+    id: z.coerce.number()
   }).parse);
 
   const body = await readValidatedBody(event, z.object({

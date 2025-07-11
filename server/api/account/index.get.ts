@@ -1,6 +1,6 @@
 export default defineEventHandler(async (event) => {
   const { id, code, email } = await getValidatedQuery(event, z.object({
-    id: z.number({ coerce: true }).optional(),
+    id: z.coerce.number().optional(),
     code: z.string().optional(),
     email: z.string().optional()
   }).refine((data) => {
