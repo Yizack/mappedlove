@@ -33,8 +33,8 @@ const country = ref({
 
 const countriesFilter = computed(() => {
   return $countries.getAll().filter((c) => {
-    const normalizedInput = normalize(country.value.search.toLocaleLowerCase());
-    const normalizedName = normalize(c.name.toLocaleLowerCase());
+    const normalizedInput = normalize(country.value.search.toLowerCase());
+    const normalizedName = normalize(c.name.toLowerCase());
     const wordsMatch = normalizedInput.split(" ").map(char => normalizedName.includes(char)).every(Boolean);
     if (wordsMatch) return c;
     return false;

@@ -3,7 +3,7 @@ import accountVerify from "~~/emails/accountVerify.vue";
 
 export default defineEventHandler(async (event) => {
   const body = await readValidatedBody(event, z.object({
-    email: z.string().transform(v => v.toLocaleLowerCase().trim()),
+    email: z.string().transform(v => v.toLowerCase().trim()),
     password: z.string(),
     name: z.string(),
     turnstile: z.string()

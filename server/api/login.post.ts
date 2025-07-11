@@ -2,7 +2,7 @@ export default defineEventHandler(async (event) => {
   const { secure } = useRuntimeConfig(event);
 
   const body = await readValidatedBody(event, z.object({
-    email: z.string().transform(v => v.toLocaleLowerCase().trim()),
+    email: z.string().transform(v => v.toLowerCase().trim()),
     password: z.string().transform(v => hash(v, secure.salt)),
     remember: z.boolean()
   }).safeParse);

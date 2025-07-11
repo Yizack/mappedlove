@@ -3,7 +3,7 @@ import accountVerify from "~~/emails/accountVerify.vue";
 
 export default defineEventHandler(async (event) => {
   const body = await readValidatedBody(event, z.object({
-    email: z.string().transform(v => v.toLocaleLowerCase().trim())
+    email: z.string().transform(v => v.toLowerCase().trim())
   }).safeParse);
 
   if (!body.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "email_required" });
