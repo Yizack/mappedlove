@@ -33,7 +33,7 @@
     "docs:dev": "vitepress dev docs",
     "docs:build": "(git fetch --unshallow || git fetch --all) && vitepress build docs",
     "docs:serve": "vitepress serve docs",
-    "test:types": "vue-tsc --noEmit"
+    "test:types": "vue-tsc -b --noEmit"
   },
   "devDependencies": {
     "@dargmuesli/nuxt-cookie-control": "^9.0.7",
