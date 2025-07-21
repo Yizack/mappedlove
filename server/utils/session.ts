@@ -5,11 +5,12 @@ import type { UserSession } from "#auth-utils";
 export const setUserSessionNullish = async (event: H3Event, data: Omit<UserSession, "id">, config?: Partial<SessionConfig>) => {
   const currentData = await getUserSession(event);
   const runtimeConfig = useRuntimeConfig(event);
+  const sessionConfig = runtimeConfig.session as SessionConfig;
 
   const session = await useSession<UserSession>(event, {
-    ...runtimeConfig.session,
+    ...sessionConfig,
     ...config,
-    maxAge: config?.maxAge ?? currentData.maxAge ?? runtimeConfig.session.maxAge
+    maxAge: config?.maxAge ?? currentData.maxAge ?? sessionConfig.maxAge
   });
 
   if (config?.maxAge) data.maxAge = config?.maxAge;
