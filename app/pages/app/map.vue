@@ -31,12 +31,10 @@ const removeMarker = (id: number) => {
   $toasts.add({ success: true, message: t("marker_deleted") });
 };
 
-const selectedMarker = computed(() => {
-  return {
-    ...markers.value.find(marker => marker.id === selected.value) as MappedLoveMarker,
-    stories: stories.value.filter(s => s.marker === selected.value) as MappedLoveStory[]
-  };
-});
+const selectedMarker = computed(() => ({
+  ...markers.value.find(marker => marker.id === selected.value) as MappedLoveMarker,
+  stories: stories.value.filter(s => s.marker === selected.value) as MappedLoveStory[]
+}));
 
 const newStory = ({ story, edit }: { story: MappedLoveStory, edit: boolean }) => {
   if (!edit) stories.value.push(story);
