@@ -117,8 +117,9 @@ watch(() => props.markers, (value) => {
 
 <template>
   <div class="position-relative d-flex align-items-center gap-2 mb-2">
-    <Icon class="text-primary" name="solar:map-point-favourite-bold" size="2rem" />
+    <Icon class="text-primary flex-shrink-0" name="solar:map-point-favourite-bold" size="2rem" />
     <h2 class="m-0">{{ t("markers") }}</h2>
+    <span v-if="markers.length >= 0">(<span class="text-primary">{{ markers.length }}</span>)</span>
     <button class="btn btn-primary btn-sm rounded-circle p-1" role="button" @click="openMarker()">
       <Icon name="tabler:plus" size="2em" />
     </button>

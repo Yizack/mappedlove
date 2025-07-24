@@ -100,8 +100,11 @@ watch(() => props.marker, () => {
 
 <template>
   <div class="position-relative d-flex align-items-center gap-2 mb-2">
-    <Icon class="text-primary" name="solar:chat-square-like-bold" size="2rem" />
+    <Icon class="text-primary flex-shrink-0" name="solar:chat-square-like-bold" size="2rem" />
     <h2 class="m-0">{{ t("stories") }}</h2>
+    <Transition name="fade" mode="out-in">
+      <span v-if="marker.id">(<span class="text-primary">{{ marker.stories.length }}</span>)</span>
+    </Transition>
     <Transition name="bounce">
       <button v-if="marker.id" class="btn btn-primary btn-sm rounded-circle p-1" role="button" @click="openStory()">
         <Icon name="tabler:plus" size="2em" />
