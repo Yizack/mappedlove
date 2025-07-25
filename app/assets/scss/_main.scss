@@ -122,6 +122,10 @@ main {
   background-color: var(--bs-tertiary-bg);
 }
 
+#story-carousel {
+  max-width: 80px;
+}
+
 #story-carousel .close {
   color: var(--bs-body-bg);
 }
