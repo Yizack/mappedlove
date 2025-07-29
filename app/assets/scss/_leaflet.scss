@@ -49,7 +49,9 @@
 
 .leaflet-popup-content {
   margin: 13px 20px;
-  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .leaflet-control-attribution {
