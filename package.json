@@ -20,7 +20,7 @@
     "build": "npm run docs:build && nuxt build",
     "dev": "nuxt dev --port=5173 --host",
     "generate": "nuxt generate",
-    "preview": "pnpm dlx nuxthub preview",
+    "preview": "pnpm dlx wrangler dev dist/server/index.mjs --assets dist/public",
     "postinstall": "nuxt prepare",
     "typecheck": "nuxt typecheck",
     "analyze": "nuxt analyze",
