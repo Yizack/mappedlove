@@ -125,7 +125,7 @@ watch(() => props.markers, (value) => {
     </button>
     <button v-if="markers.length" type="button" class="btn btn-primary btn-lg ms-auto rounded-pill" @click="edit = !edit">{{ edit ? t("done") : t("edit") }}</button>
   </div>
-  <VueDraggable v-if="markers.length" v-model="markers" class="row g-2" v-bind="dragOptions" :disabled="!edit" @update="rearrange">
+  <VueDraggable v-if="markers.length" v-model="markers" class="markers row g-2" v-bind="dragOptions" :disabled="!edit" @update="rearrange">
     <div v-for="marker of markers" :key="marker.id" class="col-12 col-md-4 col-xl-6 d-flex gap-2">
       <div class="marker border rounded-3 py-2 px-3 w-100 position-relative" :class="{ active: selected === marker.id }" :style="{ cursor: edit ? 'grab' : 'default' }" @click="selectMarker(marker.id)">
         <div class="w-100 h-100 text-break">
