@@ -170,5 +170,13 @@ export default defineNuxtConfig({
         }
       }
     }
+  },
+  typescript: {
+    nodeTsConfig: {
+      include: [
+        "../test/**/*",
+        "../shared/**/*.d.ts"
+      ]
+    }
   }
 });
