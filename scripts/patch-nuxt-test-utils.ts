@@ -1,3 +1,4 @@
+// TODO: remove patch script + package.json postinstall command once supports nuxt config in .config folder.
 import { readFileSync, writeFileSync } from "fs";
 import { glob } from "glob";
 
