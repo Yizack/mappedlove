@@ -24,7 +24,7 @@ export default defineEventHandler(async (event) => {
 
   if (!userData) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "user_not_found" });
   const { password, ...user } = userData; // Removes the password field from the user object
-  const config = useRuntimeConfig (event);
+  const config = useRuntimeConfig(event);
 
   if (!id) {
     const fields = [user.id, user.email, user.updatedAt, config.secure.salt];
