@@ -1,5 +1,5 @@
 const date = Date.now();
-const testPassword = process.env.TEST_PASSWORD;
+const testPassword = process.env.TEST_PASSWORD || "test";
 const testEmail = process.env.TEST_EMAIL;
 
 const insertTestUsers = async (c: number) => {
@@ -7,7 +7,7 @@ const insertTestUsers = async (c: number) => {
     await useDB().insert(tables.users).values({
       id: i + 1,
       email: i === 0 && testEmail ? testEmail : `test${i + 1}@test.test`,
-      password: testPassword ? hash(testPassword, useRuntimeConfig().secure.salt) : null,
+      password: hash(testPassword, useRuntimeConfig().secure.salt),
       name: `Name${i + 1}`,
       country: null,
       birthDate: null,
@@ -38,20 +38,16 @@ const createTestBond = async (partner1: number, partner2: number) => {
   }).run();
 };
 
-const seedDev = async () => {
-  useDB().delete(tables.users).run();
-  await insertTestUsers(2);
-  await createTestBond(1, 2);
-  console.info("Database seeded");
-};
-
 export default defineTask({
   meta: {
     name: "db:seed",
     description: "Run database seed task"
   },
   async run () {
-    await seedDev();
+    await useDB().delete(tables.users).run();
+    await insertTestUsers(2);
+    await createTestBond(1, 2);
+    console.info("Database seeded");
     return { result: "success" };
   }
 });
