@@ -2,11 +2,11 @@ import { $fetch } from "@nuxt/test-utils/e2e";
 import { describe, expect, test } from "vitest";
 
 describe("session", async () => {
-  test("successful login", async () => {
+  test("should be successful login", async () => {
     expect(global.cookie).toBeDefined();
   });
 
-  test("fetch user session", async () => {
+  test("should fetch user session", async () => {
     const session = await $fetch<{ user: MappedLoveUser }>("/api/_auth/session", {
       headers: { cookie: global.cookie }
     });
