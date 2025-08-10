@@ -9,7 +9,7 @@ export default defineConfig({
           name: "unit",
           include: ["test/{e2e,unit}/*.{test,spec}.ts"],
           environment: "node",
-          setupFiles: ["test/e2e/setup.ts"]
+          setupFiles: ["test/e2e/__setup__.ts"]
         }
       },
       await defineVitestProject({
