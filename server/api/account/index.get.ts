@@ -9,6 +9,13 @@ export default defineEventHandler(async (event) => {
     path: ["id", "code", "email"]
   }).parse);
 
+  if (id) {
+    const session = await requireUserSession(event);
+    if (session.user.id !== id) {
+      throw createError({ statusCode: ErrorCode.FORBIDDEN, message: "forbidden" });
+    }
+  }
+
   const userEq = id ? eq(tables.users.id, id) : eq(tables.users.email, atob(decodeURIComponent(email!)));
 
   const DB = useDB();
