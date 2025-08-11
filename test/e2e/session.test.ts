@@ -1,4 +1,4 @@
-import { $fetch } from "@nuxt/test-utils/e2e";
+import { $fetch } from "@nuxt/test-utils-nightly/e2e";
 import { describe, expect, test } from "vitest";
 
 describe("session", async () => {

@@ -56,11 +56,8 @@ jobs:
         - name: 📦 Install dependencies
           run: pnpm install
 
-        # TODO: remove patch command once supports nuxt config in .config folder
         - name: 🧪 Run test suite
-          run: |
-            pnpx jiti scripts/patch-nuxt-test-utils.ts
-            pnpm test
-  
+          run: pnpm test
+
         - name: 🧪 Test types
           run: pnpm test:types

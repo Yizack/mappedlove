@@ -1,4 +1,4 @@
-import { $fetch, fetch, setup } from "@nuxt/test-utils/e2e";
+import { $fetch, fetch, setup } from "@nuxt/test-utils-nightly/e2e";
 import { beforeAll } from "vitest";
 
 await setup({ host: "http://localhost:3000" });

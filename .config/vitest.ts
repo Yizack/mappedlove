@@ -1,5 +1,5 @@
 import { defineConfig } from "vitest/config";
-import { defineVitestProject } from "@nuxt/test-utils/config";
+import { defineVitestProject } from "@nuxt/test-utils-nightly/config";
 
 export default defineConfig({
   test: {
