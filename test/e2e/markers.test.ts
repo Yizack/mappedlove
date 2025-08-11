@@ -11,14 +11,14 @@ describe("markers", async () => {
         lng: 1,
         group: 1,
         title: "New Marker",
-        description: "Marker description"
+        description: "Test marker description"
       }
     });
 
     expect(marker).toBeDefined();
     expect(marker.id).toBeDefined();
     expect(marker.title).toBe("New Marker");
-    expect(marker.description).toBe("Test Marker Description");
+    expect(marker.description).toBe("Test marker description");
     expect(marker.lat).toBe(1);
     expect(marker.lng).toBe(1);
     expect(marker.group).toBe(1);
