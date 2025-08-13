@@ -20,7 +20,7 @@ export default defineEventHandler(async (event) => {
     DB.select({ id: tables.users.id }).from(tables.users).where(eq(tables.users.email, form.email)).limit(1)
   )).get();
 
-  if (logins && logins.attempts % 3 === 0 && Date.now() - logins.updatedAt < 60000 * 5) {
+  if (!import.meta.dev && logins && logins.attempts % 3 === 0 && Date.now() - logins.updatedAt < 60000 * 5) {
     throw createError({ statusCode: ErrorCode.TOO_MANY_REQUESTS, message: "many_logins_attempted" });
   }
 
