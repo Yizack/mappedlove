@@ -16,8 +16,9 @@ describe("account", async () => {
       body: formData
     });
 
-    expect(account).toBeDefined();
-    expect(account.showAvatar).toBe(true);
+    expect(account).toMatchObject<Partial<MappedLoveUser>>({
+      showAvatar: true
+    });
   });
 
   test.sequential("should delete user avatar image", async () => {
@@ -32,8 +33,9 @@ describe("account", async () => {
     });
 
     expect(accountData).toBeDefined();
-    expect(accountData.user).toBeDefined();
-    expect(accountData.user.showAvatar).toBe(false);
+    expect(accountData.user).toMatchObject<Partial<MappedLoveAccountData["user"]>>({
+      showAvatar: false
+    });
   });
 
   test("should download user account data", async () => {
@@ -45,8 +47,9 @@ describe("account", async () => {
     });
 
     expect(accountData).toBeDefined();
-    expect(accountData.user).toBeDefined();
-    expect(accountData.user.email).toBe("test2@test.test");
+    expect(accountData.user).toMatchObject<Partial<MappedLoveAccountData["user"]>>({
+      email: "test2@test.test"
+    });
   });
 
   test("should patch account data", async () => {
@@ -62,10 +65,11 @@ describe("account", async () => {
       }
     });
 
-    expect(account).toBeDefined();
-    expect(account.name).toBe("Test User");
-    expect(account.country).toBe("PA");
-    expect(account.birthDate).toBe(date);
-    expect(account.language).toBe("en");
+    expect(account).toMatchObject<Partial<MappedLoveUser>>({
+      name: "Test User",
+      country: "PA",
+      birthDate: date,
+      language: "en"
+    });
   });
 });

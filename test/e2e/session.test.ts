@@ -10,8 +10,14 @@ describe("session", async () => {
     const session = await $fetch<{ user: MappedLoveUser }>("/api/_auth/session", {
       headers: { cookie: global.cookie }
     });
+
     expect(session).toBeDefined();
-    expect(session.user).toBeDefined();
-    expect(session.user.email).toBe("test2@test.test");
+    expect(session.user).toMatchObject<Partial<MappedLoveUser>>({
+      id: expect.any(Number),
+      email: "test2@test.test",
+      name: expect.any(String),
+      createdAt: expect.any(Number),
+      updatedAt: expect.any(Number)
+    });
   });
 });

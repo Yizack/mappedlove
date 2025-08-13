@@ -7,16 +7,20 @@ describe("bond", async () => {
       headers: { cookie: global.cookie }
     });
 
-    expect(bond).toBeDefined();
-    expect(bond.id).toBe(1);
-    expect(bond.code).toBe("QDZV1");
-    expect(bond.partner1).toBe(1);
-    expect(bond.partner2).toBe(2);
-    expect(bond.bonded).toBe(true);
-    expect(bond.premium).toBe(false);
+    expect(bond).toMatchObject<Partial<MappedLoveBond>>({
+      id: 1,
+      code: "QDZV1",
+      partner1: 1,
+      partner2: 2,
+      bonded: true,
+      premium: false,
+      public: expect.any(Boolean),
+      createdAt: expect.any(Number),
+      updatedAt: expect.any(Number)
+    });
   });
 
-  test("should patch bond data", async () => {
+  test.sequential("should patch bond data", async () => {
     const coupleDate = Date.now();
     await $fetch<MappedLoveBond>("/api/bond", {
       method: "PATCH",
@@ -31,9 +35,30 @@ describe("bond", async () => {
       headers: { cookie: global.cookie }
     });
 
-    expect(bond).toBeDefined();
-    expect(bond.coupleDate).toBe(coupleDate);
-    expect(bond.public).toBe(true);
+    expect(bond).toMatchObject<Partial<MappedLoveBond>>({
+      coupleDate,
+      public: true
+    });
+  });
+
+  test.sequential("should fetch bond public map", async () => {
+    const map = await $fetch<MappedLovePublicMap>("/api/bond/public/QDZV1", {
+      headers: { cookie: global.cookie }
+    });
+
+    expect(map).toMatchObject<MappedLovePublicMap>({
+      id: 1,
+      code: "QDZV1",
+      public: true,
+      bonded: true,
+      premium: expect.any(Boolean),
+      coupleDate: expect.any(Number),
+      partners: expect.any(Array),
+      markers: expect.any(Array),
+      stories: expect.any(Array),
+      createdAt: expect.any(Number),
+      updatedAt: expect.any(Number)
+    });
   });
 
   test("should fetch bond dashboard map markers and stories", async () => {
@@ -41,22 +66,9 @@ describe("bond", async () => {
       headers: { cookie: global.cookie }
     });
 
-    expect(map).toBeDefined();
-    expect(map.markers).toBeDefined();
-    expect(map.stories).toBeDefined();
-  });
-
-  test("should fetch bond public map", async () => {
-    const map = await $fetch<MappedLovePublicMap>("/api/bond/public/QDZV1", {
-      headers: { cookie: global.cookie }
+    expect(map).toMatchObject<MappedLoveMap>({
+      markers: expect.any(Array),
+      stories: expect.any(Array)
     });
-
-    expect(map).toBeDefined();
-    expect(map.id).toBe(1);
-    expect(map.code).toBe("QDZV1");
-    expect(map.public).toBe(true);
-    expect(map.partners).toBeDefined();
-    expect(map.markers).toBeDefined();
-    expect(map.stories).toBeDefined();
   });
 });

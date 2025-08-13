@@ -19,14 +19,41 @@ describe("markers", async () => {
 
     markerId = marker.id;
 
-    expect(marker).toBeDefined();
-    expect(marker.id).toBeDefined();
-    expect(marker.title).toBe("New Marker");
-    expect(marker.description).toBe("Test marker description");
-    expect(marker.lat).toBe(1);
-    expect(marker.lng).toBe(1);
-    expect(marker.group).toBe(1);
-    expect(marker.bond).toBe(1);
+    expect(marker).toMatchObject<MappedLoveMarker>({
+      id: expect.any(Number),
+      title: "New Marker",
+      description: "Test marker description",
+      lat: 1,
+      lng: 1,
+      group: 1,
+      bond: 1,
+      order: 0
+    });
+  });
+
+  test.sequential("should update a marker", async () => {
+    const marker = await $fetch<MappedLoveMarker>(`/api/markers/${markerId}`, {
+      method: "PUT",
+      headers: { cookie: global.cookie },
+      body: {
+        lat: 1,
+        lng: 1,
+        group: 1,
+        title: "New Marker",
+        description: "Test marker description",
+        order: 0
+      }
+    });
+
+    expect(marker).toMatchObject<MappedLoveMarker>({
+      id: markerId,
+      lat: 1,
+      lng: 1,
+      group: 1,
+      title: "New Marker",
+      description: "Test marker description",
+      order: 0
+    });
   });
 
   test.sequential("should delete a marker", async () => {
@@ -42,6 +69,8 @@ describe("markers", async () => {
       headers: { cookie: global.cookie }
     });
 
-    expect(map.markers.length).toBe(0);
+    expect(map).toMatchObject({
+      markers: []
+    });
   });
 });
