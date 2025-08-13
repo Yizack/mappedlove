@@ -38,8 +38,10 @@ export default defineEventHandler(async (event): Promise<MappedLovePublicMap> =>
     hash: hash([story.id, bond.code].join(), secure.salt)
   }));
 
+  const { subscriptionId, nextPayment, partner1, partner2, ...bondData } = bond;
+
   return {
-    ...bond,
+    ...bondData,
     partners: partners,
     markers,
     stories: storiesHashed
