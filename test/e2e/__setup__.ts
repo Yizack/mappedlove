@@ -1,8 +1,6 @@
 import { $fetch, fetch, setup } from "@nuxt/test-utils-nightly/e2e";
 import { beforeAll } from "vitest";
 
-await setup({ host: "http://localhost:3000" });
-
 const getSessionCookie = async () => {
   const loginResponse = await fetch("/api/login", {
     method: "POST",
@@ -27,6 +25,7 @@ declare global {
 }
 
 beforeAll(async () => {
+  await setup({ host: "http://localhost:3000" });
   await $fetch("/_nitro/tasks/seed");
   global.cookie = await getSessionCookie();
 });

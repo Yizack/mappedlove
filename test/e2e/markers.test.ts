@@ -2,7 +2,9 @@ import { $fetch } from "@nuxt/test-utils-nightly/e2e";
 import { describe, expect, test } from "vitest";
 
 describe("markers", async () => {
-  test("should create a marker", async () => {
+  let markerId = 1;
+
+  test.sequential("should create a marker", async () => {
     const marker = await $fetch<MappedLoveMarker>("/api/markers", {
       method: "POST",
       headers: { cookie: global.cookie },
@@ -15,6 +17,8 @@ describe("markers", async () => {
       }
     });
 
+    markerId = marker.id;
+
     expect(marker).toBeDefined();
     expect(marker.id).toBeDefined();
     expect(marker.title).toBe("New Marker");
@@ -23,5 +27,21 @@ describe("markers", async () => {
     expect(marker.lng).toBe(1);
     expect(marker.group).toBe(1);
     expect(marker.bond).toBe(1);
+  });
+
+  test.sequential("should delete a marker", async () => {
+    await $fetch<MappedLoveMarker>(`/api/markers/${markerId}`, {
+      method: "DELETE",
+      headers: { cookie: global.cookie },
+      onResponse: ({ response }) => {
+        expect(response.status).toBe(204);
+      }
+    });
+
+    const map = await $fetch<MappedLoveMap>("/api/bond/map", {
+      headers: { cookie: global.cookie }
+    });
+
+    expect(map.markers.length).toBe(0);
   });
 });
