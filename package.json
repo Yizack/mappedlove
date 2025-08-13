@@ -19,7 +19,7 @@
   "scripts": {
     "build": "npm run docs:build && nuxt build",
     "dev": "nuxt dev --port=5173 --host",
-    "dev:test": "nuxt dev --port=3000 --dotenv=.env.test",
+    "dev:test": "nuxt dev --port=3000 --dotenv=.env.test --envName=test",
     "generate": "nuxt generate",
     "preview": "wrangler dev dist/server/index.mjs --assets dist/public",
     "postinstall": "nuxt prepare",

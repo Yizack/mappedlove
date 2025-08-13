@@ -178,5 +178,10 @@ export default defineNuxtConfig({
         "../shared/**/*.d.ts"
       ]
     }
+  },
+  $env: {
+    test: {
+      hub: { dir: ".data/test" }
+    }
   }
 });
