@@ -1,5 +1,8 @@
 import { $fetch } from "@nuxt/test-utils-nightly/e2e";
 import { describe, expect, test } from "vitest";
+import { setupTestServer } from "./__setup__";
+
+setupTestServer();
 
 describe("bond", async () => {
   test("should fetch bond data", async () => {

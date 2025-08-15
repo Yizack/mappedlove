@@ -24,8 +24,10 @@ declare global {
   var cookie: string;
 }
 
-beforeAll(async () => {
-  await setup({ host: "http://localhost:3000" });
-  await $fetch("/_nitro/tasks/seed");
-  global.cookie = await getSessionCookie();
-});
+export const setupTestServer = () => {
+  beforeAll(async () => {
+    await setup({ host: "http://localhost:3000" });
+    await $fetch("/_nitro/tasks/seed");
+    global.cookie = await getSessionCookie();
+  });
+};

@@ -1,5 +1,8 @@
 import { $fetch } from "@nuxt/test-utils-nightly/e2e";
 import { describe, expect, test } from "vitest";
+import { setupTestServer } from "./__setup__";
+
+setupTestServer();
 
 describe("markers", async () => {
   let markerId = 1;
