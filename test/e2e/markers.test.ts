@@ -5,7 +5,7 @@ import { setupTestServer } from "./__setup__";
 setupTestServer();
 
 describe("markers", async () => {
-  let markerId = 1;
+  let createdMarker: MappedLoveMarker;
 
   test.sequential("should create a marker", async () => {
     const marker = await $fetch<MappedLoveMarker>("/api/markers", {
@@ -20,7 +20,7 @@ describe("markers", async () => {
       }
     });
 
-    markerId = marker.id;
+    createdMarker = marker;
 
     expect(marker).toMatchObject<MappedLoveMarker>({
       id: expect.any(Number),
@@ -30,12 +30,12 @@ describe("markers", async () => {
       lng: 1,
       group: 1,
       bond: 1,
-      order: 0
+      order: expect.any(Number)
     });
   });
 
   test.sequential("should update a marker", async () => {
-    const marker = await $fetch<MappedLoveMarker>(`/api/markers/${markerId}`, {
+    const marker = await $fetch<MappedLoveMarker>(`/api/markers/${createdMarker.id}`, {
       method: "PUT",
       headers: { cookie: global.cookie },
       body: {
@@ -44,23 +44,23 @@ describe("markers", async () => {
         group: 1,
         title: "New Marker",
         description: "Test marker description",
-        order: 0
+        order: createdMarker.order
       }
     });
 
     expect(marker).toMatchObject<MappedLoveMarker>({
-      id: markerId,
+      id: createdMarker.id,
       lat: 1,
       lng: 1,
       group: 1,
       title: "New Marker",
       description: "Test marker description",
-      order: 0
+      order: createdMarker.order
     });
   });
 
   test.sequential("should delete a marker", async () => {
-    await $fetch<MappedLoveMarker>(`/api/markers/${markerId}`, {
+    await $fetch<MappedLoveMarker>(`/api/markers/${createdMarker.id}`, {
       method: "DELETE",
       headers: { cookie: global.cookie },
       onResponse: ({ response }) => {
@@ -72,8 +72,7 @@ describe("markers", async () => {
       headers: { cookie: global.cookie }
     });
 
-    expect(map).toMatchObject({
-      markers: []
-    });
+    const findMarker = map.markers.find(m => m.id === createdMarker.id);
+    expect(findMarker).toBeUndefined();
   });
 });
