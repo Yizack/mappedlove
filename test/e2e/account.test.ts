@@ -2,9 +2,6 @@ import { $fetch } from "@nuxt/test-utils-nightly/e2e";
 import { describe, expect, test } from "vitest";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
-import { setupTestServer } from "./__setup__";
-
-setupTestServer();
 
 describe("account", async () => {
   test.sequential("should upload user avatar image", async () => {
