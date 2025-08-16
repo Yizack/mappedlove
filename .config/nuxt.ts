@@ -15,6 +15,7 @@ export default defineNuxtConfig({
       },
       link: [
         { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+        { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
         { rel: "shortcut icon", href: "/favicon.ico" },
         { rel: "icon", type: "image/png", sizes: "512x512", href: "/android-chrome-512x512.png" },
         { rel: "icon", type: "image/png", sizes: "192x192", href: "/android-chrome-192x192.png" },
