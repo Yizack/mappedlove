@@ -47,6 +47,7 @@ export default defineTask({
     await useDB().delete(tables.users).run();
     await insertTestUsers(2);
     await createTestBond(1, 2);
+    console.info("Database seeded");
     return { result: "success" };
   }
 });
