@@ -35,7 +35,7 @@
     "docs:build": "(git fetch --unshallow || git fetch --all) && vitepress build docs",
     "docs:serve": "vitepress serve docs",
     "test": "pnpx concurrently --raw --kill-others --success first \"pnpm dev:test\" \"pnpm test:wait && pnpm test:vitest\"",
-    "test:wait": "pnpx wait-on http://localhost:3000",
+    "test:wait": "pnpx wait-on http://localhost:3000 && pnpx wait-on http-get://localhost:3000/_nitro/tasks/seed",
     "test:vitest": "vitest run --reporter=verbose --config=.config/vitest.ts",
     "test:types": "vue-tsc -b --noEmit"
   },
