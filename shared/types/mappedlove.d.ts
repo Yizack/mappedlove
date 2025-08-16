@@ -51,6 +51,7 @@ declare global {
     id: number;
     hash?: string;
     marker: number;
+    bond: number;
     user: number;
     description: string | null;
     year: number;
