@@ -13,7 +13,6 @@ export default {
   // Pages
   home: "Inicio",
   about_us: "Sobre nosotros",
-  try: "Pruébalo",
   motto: "Mapeando tu historia de amor",
   go_home: "Volver al inicio",
   // Login

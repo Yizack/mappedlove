@@ -13,7 +13,6 @@ export default {
   // Pages
   home: "Home",
   about_us: "About us",
-  try: "Try it",
   motto: "Mapping your love story",
   go_home: "Go back home",
   // Login

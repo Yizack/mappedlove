@@ -14,7 +14,7 @@ export const SITE = {
     main: [
       { name: "home", path: "/" },
       { name: "about_us", path: "/about" },
-      { name: "try", path: "/login", button: true }
+      { name: "signin", path: "/login", button: true }
     ],
     app: [
       { name: "map", path: "/app/map", icon: "solar:streets-map-point-bold-duotone", button: false },
