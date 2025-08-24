@@ -21,7 +21,7 @@
     "dev": "nuxt dev --port=5173 --host",
     "dev:test": "nuxt dev --port=3000 --dotenv=.env.test --envName=test",
     "generate": "nuxt generate",
-    "preview": "wrangler dev dist/server/index.mjs --assets dist/public",
+    "preview": "wrangler d1 migrations apply DB --local && wrangler dev",
     "postinstall": "nuxt prepare",
     "typecheck": "nuxt typecheck",
     "analyze": "nuxt analyze",
