@@ -4,6 +4,12 @@
   "compatibility_date": "2025-06-30",
   "main": "dist/server/index.mjs",
   "compatibility_flags": ["nodejs_compat"],
+  "routes": [
+    {
+      "pattern": "mappedlove.com",
+      "custom_domain": true
+    }
+  ],
   "assets": {
     "binding": "ASSETS",
     "directory": "dist/public"
