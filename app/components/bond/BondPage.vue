@@ -208,8 +208,9 @@ watch(coupleDate, async (val: number | null) => {
           <label class="form-check-label">{{ t("public_bond") }}</label>
           <Icon name="solar:question-circle-linear" class="text-primary outline-none" role="button" size="1.3rem" data-bs-toggle="popover" :data-bs-content="t('public_bond_info')" />
         </div>
-        <div v-if="isPublic" class="mb-2">
-          <p class="m-0">{{ t("share_bond_info") }}</p>
+        <div class="mb-2">
+          <p v-if="isPublic" class="m-0">{{ t("share_bond_info") }}</p>
+          <p v-else class="m-0">{{ t("share_bond_info_preview") }}</p>
           <CopyText :text="publicURL" />
         </div>
         <div class="d-flex flex-wrap-reverse justify-content-between align-items-center mt-3">

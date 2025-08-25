@@ -86,6 +86,7 @@ export default {
   bond_preferences_update: "Your bond preferences have been updated",
   public_bond_confirm: "Are you sure you want to make your bond public?",
   share_bond_info: "Your bond is set to public. Share the link below with your friends or family!",
+  share_bond_info_preview: "Your bond is set to private. Preview your map while signed in with the link below.",
   bond_not_found: "Bond not found",
   bond_exists: "A bond already exists",
   cant_delete_bonded_bond: "Can not delete a bonded bond",
