@@ -396,6 +396,7 @@ export default {
   invalid_data: "Datos no válidos",
   refund_confirm: "¿Estás seguro de que deseas solicitar un reembolso?",
   refund_requested: "Tu solicitud de reembolso ha sido enviada",
+  no_subscription_billing: "No se encontró información de facturación de suscripción. Al actualizar a premium, podrás ver y gestionar tu información de facturación en esta página.",
   // SEO
   seo_home_description: "Aplicación web hecha para parejas. Marca los lugares que han visitado juntos, sube imágenes y preserva tus momentos especiales para siempre.",
   seo_login_description: "Inicia sesión en tu cuenta y da el siguiente paso con tu pareja.",

@@ -396,6 +396,7 @@ export default {
   invalid_data: "Invalid data",
   refund_confirm: "Are you sure you want to request a refund?",
   refund_requested: "Your refund request has been sent",
+  no_subscription_billing: "No subscription billing information was found. By upgrading to the premium, you'll be able to view and manage your billing information on this page.",
   // SEO
   seo_home_description: "Web app made for couples. Mark the places you have visited together upload images and preserve your special moments forever.",
   seo_login_description: "Sign in to your account and take the next step with your partner.",

@@ -11,13 +11,6 @@ const { data: billing } = await useFetch(`/api/billing/subscription/${user.value
   immediate: isValidSubscription.value
 });
 
-if (!billing.value) {
-  throw createError({
-    statusCode: ErrorCode.INTERNAL_SERVER_ERROR,
-    message: t("error_any")
-  });
-}
-
 const loading = ref(false);
 
 const refundForm = useFormState({
@@ -42,9 +35,9 @@ const requestRefund = async () => {
 };
 
 // Transactions pagination
-const tPagination = usePagination(billing.value.transactions.data, {
-  pageSize: billing.value.transactions.meta?.pagination.per_page || 30,
-  total: billing.value.transactions.meta?.pagination.estimated_total
+const tPagination = usePagination(billing.value ? billing.value.transactions.data : [], {
+  pageSize: billing.value?.transactions.meta?.pagination.per_page || 30,
+  total: billing.value?.transactions.meta?.pagination.estimated_total
 });
 
 const isFetchingTransactions = ref(false);
@@ -76,13 +69,13 @@ useSeo({
 </script>
 
 <template>
-  <div v-if="billing" class="row">
+  <div class="row">
     <div class="col-lg-8 col-xl-6 mx-auto">
       <div class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
         <h3>{{ t("billing_information") }}</h3>
         <p>{{ t("billing_info") }}</p>
         <div class="border rounded p-4 mb-2">
-          <div class="row row-gap-3">
+          <div v-if="billing" class="row row-gap-3">
             <div class="col-lg-6">
               <h5>{{ t("plan") }}</h5>
               <p v-if="isPremium" class="mb-0">{{ SITE.name }} {{ t(SUBSCRIPTION.pricing.plans.premium.name) }}</p>
@@ -119,8 +112,11 @@ useSeo({
               </p>
             </div>
           </div>
+          <div v-else>
+            <p class="m-0 text-muted">{{ t("no_subscription_billing") }}</p>
+          </div>
         </div>
-        <template v-if="isPremium">
+        <template v-if="billing && isPremium">
           <div v-if="isValidSubscription && !billing.subscription?.is_manageable" class="d-flex gap-2 align-items-center">
             <Icon name="solar:info-circle-bold" />
             <p class="mb-0"><strong>{{ t("billing_manageable") }}</strong></p>
@@ -140,7 +136,7 @@ useSeo({
           <NuxtLink class="btn btn-lg btn-primary rounded-pill" to="/app/premium">{{ t("upgrade") }}</NuxtLink>
         </div>
       </div>
-      <div class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
+      <div v-if="billing" class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
         <h3>{{ t("transactions") }}</h3>
         <p>{{ t("transactions_info") }}</p>
         <div v-if="billing.transactions.data.length">
@@ -200,7 +196,7 @@ useSeo({
           <p class="m-0 text-primary"><i>{{ t("transactions_not_found") }}</i></p>
         </div>
       </div>
-      <div v-if="billing.adjustments.data.length" class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
+      <div v-if="billing && billing.adjustments.data.length" class="bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
         <h3>{{ t("adjustments") }}</h3>
         <p>{{ t("adjustments_info") }}</p>
         <div class="table-responsive border rounded">
@@ -233,7 +229,7 @@ useSeo({
         </div>
       </div>
     </div>
-    <BsModal v-if="billing.subscription?.scheduled_change?.action === 'cancel' || billing.subscription?.status === 'canceled'" id="refund" v-model="refundModal" :title="t('request_refund')">
+    <BsModal v-if="billing && (billing.subscription?.scheduled_change?.action === 'cancel' || billing.subscription?.status === 'canceled')" id="refund" v-model="refundModal" :title="t('request_refund')">
       <form @submit.prevent="requestRefund">
         <div class="d-flex align-items-center gap-2 mb-2">
           <Icon name="solar:info-circle-linear" class="text-primary flex-shrink-0" />
