@@ -14,8 +14,7 @@ const { data: billing } = await useFetch(`/api/billing/subscription/${user.value
 if (!billing.value) {
   throw createError({
     statusCode: ErrorCode.INTERNAL_SERVER_ERROR,
-    message: t("error_any"),
-    fatal: true
+    message: t("error_any")
   });
 }
 

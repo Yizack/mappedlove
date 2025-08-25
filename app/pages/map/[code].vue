@@ -12,8 +12,7 @@ const { $bootstrap } = useNuxtApp();
 if (!bond.value) {
   throw createError({
     statusCode: ErrorCode.NOT_FOUND,
-    message: t("map_not_found"),
-    fatal: true
+    message: t("map_not_found")
   });
 }
 

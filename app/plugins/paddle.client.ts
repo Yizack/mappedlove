@@ -46,8 +46,7 @@ class Paddle {
     if (!this.paddle) {
       throw createError({
         statusCode: ErrorCode.INTERNAL_SERVER_ERROR,
-        message: t("paddle_sdk_not_loaded"),
-        fatal: true
+        message: t("paddle_sdk_not_loaded")
       });
     }
   }

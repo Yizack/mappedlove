@@ -16,8 +16,7 @@ catch (e) {
   console.warn(e);
   throw createError({
     statusCode: ErrorCode.BAD_REQUEST,
-    message: t("invalid_email_code"),
-    fatal: true
+    message: t("invalid_email_code")
   });
 }
 
