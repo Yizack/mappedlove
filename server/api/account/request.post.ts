@@ -3,7 +3,7 @@ import accountData from "~~/emails/accountData.vue";
 
 export default defineEventHandler(async (event) => {
   const body = await readValidatedBody(event, z.object({
-    email: z.string(),
+    email: z.email().transform(v => v.toLowerCase().trim()),
     request: z.string(),
     turnstile: z.string()
   }).parse);
@@ -17,28 +17,24 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const email = body.email.toLowerCase();
-
   const DB = useDB();
   const user = await DB.update(tables.users).set({
     updatedAt: Date.now()
-  }).where(eq(tables.users.email, email)).returning().get();
+  }).where(eq(tables.users.email, body.email)).returning().get();
 
   if (!user) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "user_not_found" });
 
-  const config = useRuntimeConfig(event);
-  const fields = [user.id, user.email, user.updatedAt, config.secure.salt];
-  const code = hash(fields.join());
+  const token = await generateToken(event, [user.id, user.updatedAt]);
 
   const html = await render(accountData, {
     lang: "en",
-    requestLink: `${SITE.host}/account-data/${encodeURIComponent(btoa(email))}/${code}?request=${body.request}`,
+    requestLink: `${SITE.host}/account-data/${toBase64URL(body.email)}/${token}?request=${body.request}`,
     request: body.request
   });
 
   const mailchannels = useMailChannels(event);
   await mailchannels.send({
-    to: { email, name: user.name },
+    to: { email: body.email, name: user.name },
     subject: "Account data request",
     html,
     text: htmlToText(html)

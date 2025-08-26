@@ -9,12 +9,12 @@ onBeforeRouteLeave((to, from, next) => {
 const loaded = ref(false);
 const verified = ref(false);
 
-const { params, meta } = useRoute("verify-email-code");
-const emailCode = ref(params.email);
-const code = ref(params.code);
+const { params, meta } = useRoute("verify-emailCode-token");
+const emailCode = ref(params.emailCode);
+const token = ref(params.token);
 const email = ref("");
 try {
-  email.value = atob(emailCode.value);
+  email.value = fromBase64URL(emailCode.value);
 }
 catch (e) {
   console.warn(e);
@@ -28,7 +28,7 @@ const verifyEmail = async () => {
   if (!email.value) return;
   $fetch("/api/verify", {
     method: "POST",
-    body: { email: email.value, code: code.value }
+    body: { email: email.value, token: token.value }
   }).then(() => {
     verified.value = true;
     meta.email = email;
@@ -38,7 +38,7 @@ const verifyEmail = async () => {
 };
 
 onMounted(async () => {
-  if (!(emailCode.value && code.value)) return;
+  if (!(emailCode.value && token.value)) return;
   await verifyEmail();
 });
 

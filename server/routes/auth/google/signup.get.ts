@@ -6,7 +6,6 @@ export default defineOAuthGoogleEventHandler({
     scope: ["email", "profile"]
   },
   async onSuccess (event, { user: google }) {
-    const config = useRuntimeConfig(event);
     const DB = useDB();
     const today = Date.now();
     const email = google.email.toLowerCase();
@@ -20,12 +19,11 @@ export default defineOAuthGoogleEventHandler({
 
     if (!user) return sendRedirect(event, "/signup?error=user_exists");
 
-    const fields = [user.id, user.email, user.updatedAt, config.secure.salt];
-    const code = hash(fields.join());
+    const token = await generateToken(event, [user.id, user.updatedAt]);
 
     const html = await render(accountVerify, {
       lang: "en",
-      verifyLink: `${SITE.host}/verify/${encodeURIComponent(btoa(email))}/${code}`
+      verifyLink: `${SITE.host}/verify/${toBase64URL(email)}/${token}`
     });
 
     const mailchannels = useMailChannels(event);

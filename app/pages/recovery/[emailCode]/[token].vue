@@ -1,16 +1,16 @@
 <script setup lang="ts">
 definePageMeta({ layout: "utils" });
 
-const { params } = useRoute("recovery-email-code");
+const { params } = useRoute("recovery-emailCode-token");
 const { $toasts } = useNuxtApp();
 
-const emailCode = ref(params.email);
-const code = ref(params.code);
+const emailCode = ref(params.emailCode);
+const token = ref(params.token);
 const submit = ref({ loading: false, error: false });
 
 const email = ref("");
 try {
-  email.value = atob(emailCode.value);
+  email.value = fromBase64URL(emailCode.value);
 }
 catch (e) {
   console.warn(e);
@@ -22,7 +22,7 @@ catch (e) {
 
 const form = useFormState({
   email: email.value,
-  code: code.value,
+  token: token.value,
   password: "",
   passwordCheck: ""
 });
@@ -58,8 +58,8 @@ useSeo({
           <label>{{ t("email") }}</label>
         </div>
         <div class="form-floating mb-2">
-          <input type="text" class="form-control" :placeholder="t('recovery_code')" :value="code" readonly>
-          <label>{{ t("recovery_code") }}</label>
+          <input type="text" class="form-control" :placeholder="t('recovery_token')" :value="token" readonly>
+          <label>{{ t("recovery_token") }}</label>
         </div>
         <div class="form-floating mb-2">
           <input v-model="form.password" type="password" class="form-control" :class="isValidPassword(form.password) ? 'is-valid' : form.password.length ? 'is-invalid' : ''" :placeholder="t('new_password')" autocomplete="new-password" required>

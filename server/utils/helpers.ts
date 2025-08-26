@@ -1,3 +1,5 @@
+import { subtle } from "node:crypto";
+import { Buffer } from "node:buffer";
 import { digest } from "ohash";
 import type { H3Event } from "h3";
 
@@ -15,7 +17,7 @@ export const partnerIdFromCode = (code: string) => {
   return Number(code.substring(4));
 };
 
-export const isCodeDateExpired = (timestamp: number) => {
+export const isTokenDateExpired = (timestamp: number) => {
   return Date.now() - timestamp > 7 * 24 * 60 * 60 * 1000;
 };
 
@@ -39,4 +41,25 @@ export const getPartners = async (event: H3Event, DB: ReturnType<typeof useDB>, 
     ...partner,
     hash: hash([partner.id].join(), secure.salt)
   }));
+};
+
+export const toBase64URL = (data: ArrayBuffer | string) => {
+  if (typeof data === "string") {
+    return Buffer.from(data).toString("base64url");
+  }
+  return Buffer.from(data).toString("base64url");
+};
+
+export const fromBase64URL = (data: string) => {
+  return Buffer.from(data, "base64url").toString("utf-8");
+};
+
+const HMAC_SHA256 = { name: "HMAC", hash: "SHA-256" };
+const encoder = new TextEncoder();
+
+export const generateToken = async (event: H3Event, fields: (unknown)[]) => {
+  const config = useRuntimeConfig(event);
+  const signature = await subtle.importKey("raw", encoder.encode(config.secure.secret), HMAC_SHA256, false, ["sign"]);
+  const hmac = await subtle.sign(HMAC_SHA256.name, signature, encoder.encode(fields.join()));
+  return toBase64URL(hmac);
 };

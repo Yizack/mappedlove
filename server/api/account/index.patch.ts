@@ -3,7 +3,7 @@ import { localization } from "~~/shared/utils/localization";
 export default defineEventHandler(async (event): Promise<User> => {
   const { user } = await requireUserSession(event);
 
-  const body = await readValidatedBody(event, z.object({
+  const validation = await readValidatedBody(event, z.object({
     name: z.string().optional(),
     country: z.string().nullable().optional(),
     birthDate: z.number().nullable().optional(),
@@ -11,19 +11,19 @@ export default defineEventHandler(async (event): Promise<User> => {
     language: z.enum(localization.getLocales().map(l => l.code) as [MappedLoveLocales]).optional()
   }).safeParse);
 
-  if (!body.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_user_data" });
+  if (!validation.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_user_data" });
 
-  const form = body.data;
+  const body = validation.data;
 
-  if (form.name !== undefined && !form.name) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "name_required" });
+  if (body.name !== undefined && !body.name) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "name_required" });
 
   const DB = useDB();
   const update = await DB.update(tables.users).set({
-    name: form.name,
-    country: form.country,
-    birthDate: form.birthDate,
-    showAvatar: form.showAvatar,
-    language: form.language,
+    name: body.name,
+    country: body.country,
+    birthDate: body.birthDate,
+    showAvatar: body.showAvatar,
+    language: body.language,
     updatedAt: Date.now()
   }).where(eq(tables.users.id, user.id)).returning({
     id: tables.users.id,

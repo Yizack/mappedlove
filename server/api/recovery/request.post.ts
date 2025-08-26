@@ -2,28 +2,26 @@ import { render } from "@vue-email/render";
 import accountRecovery from "~~/emails/accountRecovery.vue";
 
 export default defineEventHandler(async (event) => {
-  const body = await readValidatedBody(event, z.object({
-    email: z.string().transform(v => v.toLowerCase().trim())
+  const validation = await readValidatedBody(event, z.object({
+    email: z.email().transform(v => v.toLowerCase().trim())
   }).safeParse);
 
-  if (!body.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "email_required" });
+  if (!validation.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "email_required" });
 
-  const form = body.data;
+  const body = validation.data;
 
   const DB = useDB();
   const user = await DB.update(tables.users).set({
     updatedAt: Date.now()
-  }).where(eq(tables.users.email, form.email)).returning().get();
+  }).where(eq(tables.users.email, body.email)).returning().get();
 
   if (!user) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "user_not_found" });
 
-  const config = useRuntimeConfig(event);
-  const fields = [user.id, user.email, user.updatedAt, config.secure.salt];
-  const code = hash(fields.join());
+  const token = await generateToken(event, [user.id, user.updatedAt]);
 
   const html = await render(accountRecovery, {
     lang: "en",
-    recoveryLink: `${SITE.host}/recovery/${encodeURIComponent(btoa(user.email))}/${code}`
+    recoveryLink: `${SITE.host}/recovery/${toBase64URL(user.email)}/${token}`
   });
 
   const mailchannels = useMailChannels(event);

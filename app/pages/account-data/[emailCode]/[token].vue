@@ -1,28 +1,28 @@
 <script setup lang="ts">
 definePageMeta({ layout: "utils" });
 
-const { params, query } = useRoute("account-data-email-code");
+const { params, query } = useRoute("account-data-emailCode-token");
 const { $toasts } = useNuxtApp();
 
-const emailCode = ref(params.email);
-const code = ref(params.code);
+const emailCode = ref(params.emailCode);
+const token = ref(params.token);
 const submit = ref({ loading: false, error: false });
 
 const email = ref("");
 try {
-  email.value = atob(emailCode.value);
+  email.value = fromBase64URL(emailCode.value);
 }
 catch (e) {
   console.warn(e);
   throw createError({
     statusCode: ErrorCode.BAD_REQUEST,
-    message: t("invalid_email_code")
+    message: t("invalid_email_token")
   });
 }
 
 const form = useFormState({
   email: email.value,
-  code: code.value
+  token: token.value
 });
 
 const submitRequest = async () => {
@@ -30,7 +30,7 @@ const submitRequest = async () => {
   let message: string | null = null;
   if (query.request === "download") {
     message = t("account_data_request_download_success");
-    navigateTo(`/api/account?code=${params.code}&email=${params.email}`, { external: true });
+    navigateTo(`/api/account?token=${params.token}&emailCode=${params.emailCode}`, { external: true });
   }
   else if (query.request === "delete" && confirm(t("delete_account_confirm"))) {
     await $fetch("/api/account", {
@@ -62,8 +62,8 @@ useSeo({
           <label>{{ t("email") }}</label>
         </div>
         <div class="form-floating mb-2">
-          <input type="text" class="form-control" :placeholder="t('account_data_request_code')" :value="code" readonly>
-          <label>{{ t("account_data_request_code") }}</label>
+          <input type="text" class="form-control" :placeholder="t('account_data_request_token')" :value="token" readonly>
+          <label>{{ t("account_data_request_token") }}</label>
         </div>
         <div class="d-grid mb-2">
           <button class="btn btn-primary btn-lg rounded-pill" type="submit" :disabled="submit.loading">

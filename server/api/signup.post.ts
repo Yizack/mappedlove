@@ -2,25 +2,25 @@ import { render } from "@vue-email/render";
 import accountVerify from "~~/emails/accountVerify.vue";
 
 export default defineEventHandler(async (event) => {
-  const body = await readValidatedBody(event, z.object({
-    email: z.string().transform(v => v.toLowerCase().trim()),
+  const validation = await readValidatedBody(event, z.object({
+    email: z.email().transform(v => v.toLowerCase().trim()),
     password: z.string(),
     name: z.string(),
     turnstile: z.string()
   }).safeParse);
 
-  if (!body.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_signup_data" });
+  if (!validation.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_signup_data" });
 
-  const form = body.data;
+  const body = validation.data;
 
-  if (!form.turnstile) {
+  if (!body.turnstile) {
     throw createError({
       statusCode: ErrorCode.UNPROCESSABLE_ENTITY,
       message: "token_missing"
     });
   }
 
-  const verify = await verifyTurnstileToken(form.turnstile, event);
+  const verify = await verifyTurnstileToken(body.turnstile, event);
 
   if (!verify.success) {
     throw createError({
@@ -29,15 +29,15 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  if (!isValidPassword(form.password)) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "password_invalid" });
+  if (!isValidPassword(body.password)) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "password_invalid" });
 
   const { secure } = useRuntimeConfig(event);
   const DB = useDB();
   const today = Date.now();
   const user = await DB.insert(tables.users).values({
-    email: form.email,
-    password: hash(form.password, secure.salt),
-    name: form.name,
+    email: body.email,
+    password: hash(body.password, secure.salt),
+    name: body.name,
     createdAt: today,
     updatedAt: today
   }).onConflictDoNothing().returning().get();
@@ -49,12 +49,11 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const fields = [user.id, user.email, user.updatedAt, secure.salt];
-  const code = hash(fields.join());
+  const token = await generateToken(event, [user.id, user.updatedAt]);
 
   const html = await render(accountVerify, {
     lang: "en",
-    verifyLink: `${SITE.host}/verify/${encodeURIComponent(btoa(user.email))}/${code}`
+    verifyLink: `${SITE.host}/verify/${toBase64URL(user.email)}/${token}`
   });
 
   const mailchannels = useMailChannels(event);

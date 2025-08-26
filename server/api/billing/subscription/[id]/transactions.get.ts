@@ -1,16 +1,16 @@
 export default defineEventHandler(async (event) => {
   const { user } = await requireUserSession(event);
-  const { id } = await getValidatedRouterParams(event, z.object({
+  const params = await getValidatedRouterParams(event, z.object({
     id: z.string()
   }).parse);
 
-  const { after } = await getValidatedQuery(event, z.object({
+  const query = await getValidatedQuery(event, z.object({
     after: z.string().optional()
   }).parse);
 
   const config = useRuntimeConfig(event);
   const paddle = new Paddle(config.paddle.secret);
-  const transactions = await paddle.getPaddleTransactions(id, after);
+  const transactions = await paddle.getPaddleTransactions(params.id, query.after);
 
   return {
     ...transactions,

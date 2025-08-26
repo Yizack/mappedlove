@@ -1,5 +1,5 @@
 export default defineEventHandler(async (event): Promise<MappedLovePublicMap> => {
-  const { code } = await getValidatedRouterParams(event, z.object({
+  const params = await getValidatedRouterParams(event, z.object({
     code: z.string().min(5).toUpperCase()
   }).parse);
 
@@ -7,8 +7,8 @@ export default defineEventHandler(async (event): Promise<MappedLovePublicMap> =>
 
   const DB = useDB();
   const bond = await DB.select().from(tables.bonds).where(and(
-    eq(tables.bonds.code, code),
-    user?.bond?.code === code ? undefined : eq(tables.bonds.public, true)
+    eq(tables.bonds.code, params.code),
+    user?.bond?.code === params.code ? undefined : eq(tables.bonds.public, true)
   )).get();
 
   if (!bond || (!bond.partner1 || !bond.partner2)) {

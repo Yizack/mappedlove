@@ -1,15 +1,15 @@
 export default defineEventHandler(async (event) => {
   const { user } = await requireUserSession(event);
 
-  const body = await readValidatedBody(event, z.object({
+  const validation = await readValidatedBody(event, z.object({
     reason: z.string()
   }).safeParse);
 
-  if (!body.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_data" });
+  if (!validation.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_data" });
 
-  const refund = body.data;
+  const body = validation.data;
 
-  const html = `The user ${user.email} - ${user.id} has requested a refund for the following reason: ${refund.reason}`;
+  const html = `The user ${user.email} - ${user.id} has requested a refund for the following reason: ${body.reason}`;
 
   const config = useRuntimeConfig(event);
   const mailchannels = useMailChannels(event);

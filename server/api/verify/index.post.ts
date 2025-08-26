@@ -1,12 +1,12 @@
 export default defineEventHandler(async (event) => {
-  const body = await readValidatedBody(event, z.object({
-    email: z.string(),
-    code: z.string()
+  const validation = await readValidatedBody(event, z.object({
+    email: z.email().transform(v => v.toLowerCase().trim()),
+    token: z.base64url()
   }).safeParse);
 
-  if (!body.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_verification_data" });
+  if (!validation.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_verification_data" });
 
-  const { email, code } = body.data;
+  const body = validation.data;
 
   const DB = useDB();
   const user = await DB.select({
@@ -14,18 +14,15 @@ export default defineEventHandler(async (event) => {
     email: tables.users.email,
     confirmed: tables.users.confirmed,
     updatedAt: tables.users.updatedAt
-  }).from(tables.users).where(eq(tables.users.email, email)).get();
+  }).from(tables.users).where(eq(tables.users.email, body.email)).get();
 
   if (!user) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "user_not_found" });
 
   if (user.confirmed) return user;
 
-  const { secure } = useRuntimeConfig(event);
-  const fields = [user.id, user.email, user.updatedAt, secure.salt];
+  const token = await generateToken(event, [user.id, user.updatedAt]);
 
-  const userHash = hash(fields.join());
-
-  if (userHash !== code) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "invalid_code" });
+  if (token !== body.token) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "invalid_token" });
 
   await DB.update(tables.users).set({
     confirmed: true,

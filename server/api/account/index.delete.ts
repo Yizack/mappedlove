@@ -1,7 +1,7 @@
 export default defineEventHandler(async (event) => {
   const body = await readValidatedBody(event, z.object({
-    code: z.string(),
-    email: z.string()
+    token: z.base64url(),
+    email: z.email().transform(v => v.toLowerCase().trim())
   }).optional().parse);
 
   const session = await getUserSession(event);
@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
 
   const config = useRuntimeConfig(event);
 
-  if (body && body.code && body.email) {
+  if (body && body.token && body.email) {
     const DB = useDB();
 
     const foundUser = await DB.select({
@@ -26,11 +26,10 @@ export default defineEventHandler(async (event) => {
     if (!foundUser) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "user_not_found" });
     user = foundUser;
 
-    const fields = [user.id, user.email, user.updatedAt, config.secure.salt];
-    const codeHash = hash(fields.join());
+    const token = await generateToken(event, [user.id, user.updatedAt]);
 
-    if (codeHash !== body.code) throw createError({ statusCode: ErrorCode.FORBIDDEN, message: "code_mismatch" });
-    if (isCodeDateExpired(user.updatedAt)) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "account_data_expired" });
+    if (token !== body.token) throw createError({ statusCode: ErrorCode.FORBIDDEN, message: "code_mismatch" });
+    if (isTokenDateExpired(user.updatedAt)) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "account_data_expired" });
   }
   else {
     if (!session.user) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "user_not_found" });

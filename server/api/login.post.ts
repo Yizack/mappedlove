@@ -1,15 +1,15 @@
 export default defineEventHandler(async (event) => {
   const { secure } = useRuntimeConfig(event);
 
-  const body = await readValidatedBody(event, z.object({
-    email: z.string().transform(v => v.toLowerCase().trim()),
+  const validation = await readValidatedBody(event, z.object({
+    email: z.email().transform(v => v.toLowerCase().trim()),
     password: z.string().transform(v => hash(v, secure.salt)),
     remember: z.boolean()
   }).safeParse);
 
-  if (!body.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_signin_data" });
+  if (!validation.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_signin_data" });
 
-  const form = body.data;
+  const body = validation.data;
   const DB = useDB();
 
   const logins = await DB.select({
@@ -17,7 +17,7 @@ export default defineEventHandler(async (event) => {
     attempts: tables.logins.attempts,
     updatedAt: tables.logins.updatedAt
   }).from(tables.logins).where(eq(tables.logins.user,
-    DB.select({ id: tables.users.id }).from(tables.users).where(eq(tables.users.email, form.email)).limit(1)
+    DB.select({ id: tables.users.id }).from(tables.users).where(eq(tables.users.email, body.email)).limit(1)
   )).get();
 
   if (!import.meta.dev && logins && logins.attempts % 3 === 0 && Date.now() - logins.updatedAt < 60000 * 5) {
@@ -35,10 +35,10 @@ export default defineEventHandler(async (event) => {
     language: tables.users.language,
     createdAt: tables.users.createdAt,
     updatedAt: tables.users.updatedAt
-  }).from(tables.users).where(and(eq(tables.users.email, form.email), eq(tables.users.password, form.password))).get();
+  }).from(tables.users).where(and(eq(tables.users.email, body.email), eq(tables.users.password, body.password))).get();
 
   if (!user) {
-    const userAttempted = await DB.select({ id: tables.users.id }).from(tables.users).where(eq(tables.users.email, form.email)).get();
+    const userAttempted = await DB.select({ id: tables.users.id }).from(tables.users).where(eq(tables.users.email, body.email)).get();
     if (userAttempted) {
       await DB.insert(tables.logins).values({
         user: userAttempted.id,
@@ -72,7 +72,7 @@ export default defineEventHandler(async (event) => {
   }
 
   const userHash = hash(user.id.toString(), secure.salt);
-  const maxAge = form.remember ? 7 * 24 * 60 * 60 : 0; // if remember is true, maxAge is 7 days
+  const maxAge = body.remember ? 7 * 24 * 60 * 60 : 0; // if remember is true, maxAge is 7 days
 
   const session = { user: { ...user, bond, hash: userHash } };
   await setUserSessionNullish(event, session, { maxAge });

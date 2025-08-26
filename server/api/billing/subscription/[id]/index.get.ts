@@ -1,14 +1,14 @@
 export default defineEventHandler(async (event) => {
   const { user } = await requireUserSession(event);
-  const { id } = await getValidatedRouterParams(event, z.object({
+  const params = await getValidatedRouterParams(event, z.object({
     id: z.string()
   }).parse);
 
   const config = useRuntimeConfig(event);
   const paddle = new Paddle(config.paddle.secret);
-  const subscription = await paddle.getPaddleSubscription(id);
-  const transactions = await paddle.getPaddleTransactions(id);
-  const adjustments = await paddle.getPaddleAdjustments(id);
+  const subscription = await paddle.getPaddleSubscription(params.id);
+  const transactions = await paddle.getPaddleTransactions(params.id);
+  const adjustments = await paddle.getPaddleAdjustments(params.id);
   const isManageable = (subscription?.data.custom_data as { userId: number })?.userId === user.id;
 
   return {

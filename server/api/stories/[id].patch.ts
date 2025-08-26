@@ -14,7 +14,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveStory> => {
   const DB = useDB();
   const today = Date.now();
 
-  const { id } = await getValidatedRouterParams(event, z.object({
+  const params = await getValidatedRouterParams(event, z.object({
     id: z.coerce.number()
   }).parse);
 
@@ -30,7 +30,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveStory> => {
     year: Number(form.year),
     month: Number(form.month),
     updatedAt: today
-  }).where(and(eq(tables.stories.id, id), eq(tables.stories.bond, user.bond.id))).returning().get();
+  }).where(and(eq(tables.stories.id, params.id), eq(tables.stories.bond, user.bond.id))).returning().get();
 
   if (!story) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "story_not_found" });
 

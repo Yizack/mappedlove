@@ -3,19 +3,19 @@ export default defineEventHandler(async (event) => {
 
   if (!user.bond) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "bond_not_found" });
 
-  const body = await readValidatedBody(event, z.object({
+  const validation = await readValidatedBody(event, z.object({
     coupleDate: z.number().optional().nullable(),
     public: z.boolean().optional()
   }).safeParse);
 
-  if (!body.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_bond_data" });
+  if (!validation.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_bond_data" });
 
-  const form = body.data;
+  const body = validation.data;
 
   const DB = useDB();
   await DB.update(tables.bonds).set({
-    coupleDate: form.coupleDate,
-    public: form.public,
+    coupleDate: body.coupleDate,
+    public: body.public,
     updatedAt: Date.now()
   }).where(and(
     eq(tables.bonds.code, user.bond.code),
