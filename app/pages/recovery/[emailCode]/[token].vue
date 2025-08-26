@@ -7,6 +7,8 @@ const { $toasts } = useNuxtApp();
 const emailCode = ref(params.emailCode);
 const token = ref(params.token);
 const submit = ref({ loading: false, error: false });
+const passwordFocus = ref(false);
+const isValidPass = ref(false);
 
 const email = ref("");
 try {
@@ -28,7 +30,7 @@ const form = useFormState({
 });
 
 const resetPassword = async () => {
-  if (!(isValidEmail(form.value.email) && isValidPassword(form.value.password) && isValidPasswordCheck(form.value.password, form.value.passwordCheck))) return;
+  if (!(isValidEmail(form.value.email) && isValidPass.value && isValidPasswordCheck(form.value.password, form.value.passwordCheck))) return;
   submit.value.loading = true;
   $fetch("/api/recovery", {
     method: "POST",
@@ -62,11 +64,14 @@ useSeo({
           <label>{{ t("recovery_token") }}</label>
         </div>
         <div class="form-floating mb-2">
-          <input v-model="form.password" type="password" class="form-control" :class="isValidPassword(form.password) ? 'is-valid' : form.password.length ? 'is-invalid' : ''" :placeholder="t('new_password')" autocomplete="new-password" required>
+          <input v-model="form.password" type="password" class="form-control" :class="passwordClass(isValidPass, form.password)" :placeholder="t('new_password')" autocomplete="new-password" required @focus="passwordFocus = true" @blur="passwordFocus = false">
           <label>{{ t("new_password") }}</label>
+          <Transition name="tab" mode="out-in">
+            <PasswordRequirements v-if="passwordFocus" v-model="isValidPass" :password="form.password" />
+          </Transition>
         </div>
         <div class="form-floating mb-2">
-          <input v-model="form.passwordCheck" type="password" class="form-control" :class="isValidPasswordCheck(form.password, form.passwordCheck) ? 'is-valid' : form.passwordCheck ? 'is-invalid' : ''" :placeholder="t('password_confirm')" autocomplete="off" required>
+          <input v-model="form.passwordCheck" type="password" class="form-control" :class="passwordCheckClass(isValidPass, form.password, form.passwordCheck)" :placeholder="t('password_confirm')" autocomplete="new-password" required>
           <label>{{ t("password_confirm") }}</label>
         </div>
         <div class="d-grid mb-2">
