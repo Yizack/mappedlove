@@ -24,7 +24,7 @@ useHead({
   <main>
     <section class="banner banner-home bg-secondary text-dark py-5">
       <div class="container text-center py-5" :style="{ textWrap: 'balance' }">
-        <h1 class="display-3"><strong>{{ t("motto") }}</strong></h1>
+        <h1 class="display-3"><strong style="font-weight: 500;">{{ t("motto") }}</strong></h1>
         <p class="display-6 fw-normal m-0">{{ t("home_description") }}</p>
       </div>
     </section>
@@ -35,9 +35,9 @@ useHead({
             <img src="/images/demos/map-dashboard.jpg" class="img-fluid rounded shadow" width="720" height="405" :alt="t('strip1_title')">
           </div>
           <div class="col-lg-6 m-auto mt-4 mt-lg-auto">
-            <h2>{{ t("strip1_title") }}</h2>
-            <p>{{ t("strip1_p1") }}</p>
-            <p>{{ t("strip1_p2") }}</p>
+            <h2 class="display-5 fw-bold lh-1">{{ t("strip1_title") }}</h2>
+            <p class="fs-5">{{ t("strip1_p1") }}</p>
+            <p class="fs-5">{{ t("strip1_p2") }}</p>
             <div class="d-flex gap-2 gap-lg-3 flex-wrap mb-3 mb-lg-0">
               <div class="text-center">
                 <div class="d-flex gap-2 align-items-center border px-3 py-2 shadow-sm rounded-pill bg-body">
@@ -60,9 +60,9 @@ useHead({
       <div class="container">
         <div class="row">
           <div class="col-lg-6 m-auto">
-            <h2>{{ t("strip2_title") }}</h2>
-            <p>{{ t("strip2_p1") }}</p>
-            <p>{{ t("strip2_p2") }}</p>
+            <h2 class="display-5 fw-bold lh-1">{{ t("strip2_title") }}</h2>
+            <p class="fs-5">{{ t("strip2_p1") }}</p>
+            <p class="fs-5">{{ t("strip2_p2") }}</p>
             <div class="d-flex gap-2 gap-lg-3 flex-wrap mb-4 mb-lg-0">
               <div v-for="group in groups" :key="group.key" class="text-center">
                 <div class="d-flex gap-2 align-items-center border px-3 py-2 shadow-sm rounded-pill bg-body">
@@ -85,8 +85,8 @@ useHead({
             <img src="/images/demos/bond.jpg" class="img-fluid rounded shadow" width="720" height="405" :alt="t('strip3_title')">
           </div>
           <div class="col-lg-6 m-auto mt-4 mt-lg-auto">
-            <h2>{{ t("strip3_title") }}</h2>
-            <p>{{ t("strip3_p1") }}</p>
+            <h2 class="display-5 fw-bold lh-1">{{ t("strip3_title") }}</h2>
+            <p class="fs-5">{{ t("strip3_p1") }}</p>
             <div class="d-flex gap-2 gap-lg-3 flex-wrap mb-3 mb-lg-0">
               <div class="text-center">
                 <div class="d-flex gap-2 align-items-center border px-3 py-2 shadow-sm rounded-pill bg-body">
