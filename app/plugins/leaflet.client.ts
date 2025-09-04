@@ -1,39 +1,39 @@
 import { OpenStreetMapProvider } from "leaflet-geosearch";
-import * as L from "leaflet";
+import { Browser, Control, DomUtil, Icon, LayerGroup, Map, Marker, type MarkerOptions, Popup, TileLayer } from "leaflet";
 
 // @ts-expect-error - no types
-L.Popup.prototype._animateZoom = function (e) {
-  if (!this.isPopupOpen()) return; // @ts-expect-error - no types
+Popup.prototype._animateZoom = function (e) {
+  if (!this.isOpen()) return; // @ts-expect-error - no types
   const pos = this._map._latLngToNewLayerPoint(this._latlng, e.zoom, e.center), anchor = this._getAnchor(); // @ts-expect-error - no types
-  L.DomUtil.setPosition(this._container, pos.add(anchor));
+  DomUtil.setPosition(this._container, pos.add(anchor));
 };
 
-interface MarkerOptions extends L.MarkerOptions {
+interface PluginMarkerOptions extends MarkerOptions {
   id: number;
 }
 
 interface AddMarkerOptions {
   position: [number, number];
   popup: string;
-  options: MarkerOptions;
+  options: PluginMarkerOptions;
   group: string;
 }
 
 class Leaflet {
-  map: L.Map | null;
-  markers: Record<string, L.Marker[]>;
-  tile: L.TileLayer;
-  icon: L.Icon;
-  groups: Record<string, L.LayerGroup>;
+  map: Map | null;
+  markers: Record<string, Marker[]>;
+  tile: TileLayer;
+  icon: Icon;
+  groups: Record<string, LayerGroup>;
 
   constructor () {
     this.map = null;
     this.markers = {};
-    this.tile = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    this.tile = new TileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution: "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors"
     });
 
-    this.icon = L.icon({
+    this.icon = new Icon({
       iconUrl: isDarkMode() ? "/images/map/marker-icon-heart-dark.png" : "/images/map/marker-icon-heart.png",
       shadowUrl: "/images/map/marker-shadow.png",
       iconSize: [25, 32],
@@ -46,23 +46,26 @@ class Leaflet {
   }
 
   createMap (element: string | HTMLElement) {
-    this.map = L.map(element, {
+    this.map = new Map(element, {
       center: [0, 0],
       zoom: 3,
-      minZoom: L.Browser.mobile ? 2 : 3,
+      minZoom: Browser.mobile ? 2 : 3,
       zoomControl: false,
       maxBounds: [[-90, -Infinity], [90, Infinity]],
       maxBoundsViscosity: 1,
       layers: [this.tile, ...Object.values(this.groups)]
     });
-    L.control.zoom({ position: "bottomright" }).addTo(this.map);
-    L.control.layers(undefined, this.groups, { position: "bottomleft" }).addTo(this.map);
+
+    new Control.Zoom({ position: "bottomright" }).addTo(this.map);
+    new Control.Layers(undefined, this.groups, { position: "bottomleft" }).addTo(this.map);
+
+    this.map.attributionControl.setPrefix("<a target=\"_blank\" href=\"https://leafletjs.com\" title=\"A JavaScript library for interactive maps\">Leaflet</a>");
     return this.map;
   }
 
   createGroups (group: string[]) {
     for (const key of group) {
-      this.groups[key] = L.layerGroup();
+      this.groups[key] = new LayerGroup();
     }
   }
 
@@ -74,7 +77,7 @@ class Leaflet {
 
   addMarker ({ position, popup, options, group }: AddMarkerOptions) {
     options.icon = this.icon;
-    const marker = L.marker([...position], options).bindPopup(popup);
+    const marker = new Marker([...position], options).bindPopup(popup);
     if (!this.markers[group]) {
       this.markers[group] = [];
     }
@@ -93,7 +96,7 @@ class Leaflet {
   }
 
   getMarker (id: number) {
-    return Object.values(this.markers).flat().find(marker => (marker.options as MarkerOptions).id === id);
+    return Object.values(this.markers).flat().find(marker => (marker.options as PluginMarkerOptions).id === id);
   }
 
   closeAllPopups () {

@@ -10,7 +10,7 @@ importers:
     devDependencies:
       '@dargmuesli/nuxt-cookie-control':
         specifier: ^9.1.2
-        version: 9.1.2(magicast@0.3.5)(webpack@5.101.3(esbuild@0.25.9))
+        version: 9.1.3(magicast@0.3.5)(webpack@5.101.3(esbuild@0.25.9))
       '@iconify-json/ion':
         specifier: ^1.2.6
         version: 1.2.6
@@ -87,8 +87,8 @@ importers:
         specifier: ^18.0.1
         version: 18.0.1
       leaflet:
-        specifier: ^1.9.4
-        version: 1.9.4
+        specifier: ^2.0.0-alpha.1
+        version: 2.0.0-alpha.1
       leaflet-geosearch:
         specifier: ^4.2.0
         version: 4.2.0
@@ -364,8 +364,8 @@ packages:
     peerDependencies:
       postcss-selector-parser: ^7.0.0
 
-  '@dargmuesli/nuxt-cookie-control@9.1.2':
-    resolution: {integrity: sha512-h3JP4nca75JRq58l6d0Ertxvx+6gTRuxM+8GwqXmRa+dICEK929r1ezKE0XL8WRfhEb2jUUv3IOY4w+WNtmhQg==}
+  '@dargmuesli/nuxt-cookie-control@9.1.3':
+    resolution: {integrity: sha512-Xul1nEQwFNXUZcHQ2eAwiWx7aQM7AQYIsy2ZNpvNCXBi63hBSHh5wcpkeFOgRRlhv5QmsXQ8SPbp33oMcUUMxw==}
     engines: {node: '>=16'}
 
   '@docsearch/css@4.0.0-beta.8':
@@ -4109,6 +4109,9 @@ packages:
   leaflet@1.9.4:
     resolution: {integrity: sha512-nxS1ynzJOmOlHp+iL3FyWqK89GtNL8U8rvlMOsQdTTssxZwCXh8N2NB3GDQOL+YR3XnWyZAxwQixURb+FA74PA==}
 
+  leaflet@2.0.0-alpha.1:
+    resolution: {integrity: sha512-2EJU27z/wljOgQCyybRkfrm5Xc3uy6huKehh0UAPsrAdwnSMxaplsqCl9cXPAuDm6D7uL6PCznYMDVIsaAdSdA==}
+
   levn@0.4.1:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
     engines: {node: '>= 0.8.0'}
@@ -6268,7 +6271,7 @@ snapshots:
     dependencies:
       postcss-selector-parser: 7.1.0
 
-  '@dargmuesli/nuxt-cookie-control@9.1.2(magicast@0.3.5)(webpack@5.101.3(esbuild@0.25.9))':
+  '@dargmuesli/nuxt-cookie-control@9.1.3(magicast@0.3.5)(webpack@5.101.3(esbuild@0.25.9))':
     dependencies:
       '@nuxt/kit': 4.1.0(magicast@0.3.5)
       css-vars-ponyfill: 2.4.9
@@ -10040,7 +10043,10 @@ snapshots:
       '@googlemaps/js-api-loader': 1.16.10
       leaflet: 1.9.4
 
-  leaflet@1.9.4: {}
+  leaflet@1.9.4:
+    optional: true
+
+  leaflet@2.0.0-alpha.1: {}
 
   levn@0.4.1:
     dependencies:
