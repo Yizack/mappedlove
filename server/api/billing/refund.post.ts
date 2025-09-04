@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
 
   const body = validation.data;
 
-  const html = `The user ${user.email} - ${user.id} has requested a refund for the following reason: ${body.reason}`;
+  const text = `The user ${user.email} - ${user.id} has requested a refund for the following reason: ${body.reason}`;
 
   const config = useRuntimeConfig(event);
   const mailchannels = useMailChannels(event);
@@ -19,7 +19,7 @@ export default defineEventHandler(async (event) => {
       name: config.mailchannels.from.name
     },
     subject: `Refund Request: ${user.email}`,
-    html,
-    text: htmlToText(html)
+    html: text,
+    text
   });
 });

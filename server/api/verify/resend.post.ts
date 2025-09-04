@@ -1,4 +1,3 @@
-import { render } from "@vue-email/render";
 import accountVerify from "~~/emails/accountVerify.vue";
 
 export default defineEventHandler(async (event) => {
@@ -22,7 +21,7 @@ export default defineEventHandler(async (event) => {
 
   const token = await generateToken(event, [user.id, user.updatedAt]);
 
-  const html = await render(accountVerify, {
+  const { html, text } = await renderEmail(accountVerify, {
     lang: "en",
     verifyLink: `${SITE.host}/verify/${toBase64URL(user.email)}/${token}`
   });
@@ -32,6 +31,6 @@ export default defineEventHandler(async (event) => {
     to: { email: body.email, name: user.name },
     subject: "Verify your email address",
     html,
-    text: htmlToText(html)
+    text
   });
 });

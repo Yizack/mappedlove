@@ -1,4 +1,3 @@
-import { render } from "@vue-email/render";
 import accountVerify from "~~/emails/accountVerify.vue";
 
 export default defineOAuthGoogleEventHandler({
@@ -21,7 +20,7 @@ export default defineOAuthGoogleEventHandler({
 
     const token = await generateToken(event, [user.id, user.updatedAt]);
 
-    const html = await render(accountVerify, {
+    const { html, text } = await renderEmail(accountVerify, {
       lang: "en",
       verifyLink: `${SITE.host}/verify/${toBase64URL(email)}/${token}`
     });
@@ -31,7 +30,7 @@ export default defineOAuthGoogleEventHandler({
       to: { email, name: user.name },
       subject: "Verify your email address",
       html,
-      text: htmlToText(html)
+      text
     });
 
     return sendRedirect(event, "/login");

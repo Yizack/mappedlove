@@ -1,4 +1,3 @@
-import { render } from "@vue-email/render";
 import premiumWelcome from "~~/emails/premiumWelcome.vue";
 
 export default defineEventHandler(async (event) => {
@@ -42,7 +41,7 @@ export default defineEventHandler(async (event) => {
   if (!update) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "bond_not_found" });
 
   if (transaction.data.origin === "web" && !user.bond.premium) {
-    const html = await render(premiumWelcome, {
+    const { html, text } = await renderEmail(premiumWelcome, {
       lang: "en"
     });
 
@@ -57,7 +56,7 @@ export default defineEventHandler(async (event) => {
       },
       subject: "Premium subscription activated!",
       html,
-      text: htmlToText(html)
+      text
     });
   }
 });

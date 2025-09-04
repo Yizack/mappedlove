@@ -1,4 +1,3 @@
-import { render } from "@vue-email/render";
 import accountRecovery from "~~/emails/accountRecovery.vue";
 
 export default defineEventHandler(async (event) => {
@@ -19,7 +18,7 @@ export default defineEventHandler(async (event) => {
 
   const token = await generateToken(event, [user.id, user.updatedAt]);
 
-  const html = await render(accountRecovery, {
+  const { html, text } = await renderEmail(accountRecovery, {
     lang: "en",
     recoveryLink: `${SITE.host}/recovery/${toBase64URL(user.email)}/${token}`
   });
@@ -29,6 +28,6 @@ export default defineEventHandler(async (event) => {
     to: { email: user.email, name: user.name },
     subject: "Account recovery",
     html,
-    text: htmlToText(html)
+    text
   });
 });
