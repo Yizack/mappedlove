@@ -1,4 +1,4 @@
-import { fetch, setup } from "@nuxt/test-utils-nightly/e2e";
+import { fetch, setup } from "@nuxt/test-utils/e2e";
 import { beforeAll } from "vitest";
 
 const getSessionCookie = async () => {
