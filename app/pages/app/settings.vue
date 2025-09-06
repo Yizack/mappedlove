@@ -235,7 +235,7 @@ useSeo({
               </div>
             </div>
             <div class="form-floating mb-2">
-              <input v-model="form.name" type="text" class="form-control" :placeholder="t('name')" required>
+              <input v-model.trim="form.name" type="text" class="form-control" :placeholder="t('name')" required>
               <label class="d-flex align-items-center gap-1">
                 <Icon name="solar:user-circle-linear" />
                 <span>{{ t("name") }}</span>
