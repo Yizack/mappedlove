@@ -220,15 +220,15 @@ useSeo({
             <h3 class="mb-4">{{ t("account") }}</h3>
             <div class="image-upload text-center mb-2">
               <input id="avatar" type="file" accept=".png,.jpg,.jpeg,.jfif,.webp,.gif" @change="uploadAvatar">
-              <label for="avatar" class="rounded-circle bg-body-tertiary position-relative overflow-hidden border border-5" :class="{ 'scale-hover': user.showAvatar }" style="width: 175px; height: 175px;">
+              <label for="avatar" class="avatar border border-5" :class="{ 'scale-hover': user.showAvatar }" style="width: 175px; height: 175px;">
                 <div class="overlay position-absolute bg-dark w-100 h-100">
                   <div class="d-flex justify-content-center align-items-center h-100 text-light">
                     <Icon name="solar:gallery-add-outline" size="2.5rem" />
                   </div>
                 </div>
-                <img v-if="imageRead" :src="imageRead.toString()" width="175" height="175" class="img-fluid w-100" :alt="form.name">
-                <img v-else-if="user.showAvatar && user.hash" :src="`${getAvatarImage(user.hash)}?updated=${user.updatedAt}`" width="175" height="175" class="img-fluid w-100" :alt="user.name">
-                <img v-else-if="!fileChosen" :src="getDefaultAvatar(user.id)" width="175" height="175" class="img-fluid w-100" :alt="form.name">
+                <img v-if="imageRead" :src="imageRead.toString()" width="175" height="175" :alt="form.name">
+                <img v-else-if="user.showAvatar && user.hash" :src="`${getAvatarImage(user.hash)}?updated=${user.updatedAt}`" width="175" height="175" :alt="user.name">
+                <img v-else-if="!fileChosen" :src="getDefaultAvatar(user.id)" width="175" height="175" :alt="form.name">
               </label>
               <div v-if="user.showAvatar" class="text-center">
                 <a role="button" class="text-primary" @click="deleteAvatar">{{ t("delete_avatar") }}</a>

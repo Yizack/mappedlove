@@ -142,6 +142,20 @@ td, th {
   color: var(--bs-body-bg)
 }
 
+.avatar {
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  background-color: rgb(var(--bs-tertiary-bg-rgb));
+}
+
+.avatar img {
+  width: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  height: stretch;
+}
+
 .scale-hover img {
   transition: transform .4s ease-in-out;
 }

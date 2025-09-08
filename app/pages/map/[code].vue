@@ -205,14 +205,14 @@ useSeo({
       <div class="position-relative d-flex justify-content-center py-4 mb-3">
         <div v-for="partner in bond.partners" :key="partner.id" class="text-center position-relative">
           <div class="text-center mb-2">
-            <label class="rounded-circle bg-body-tertiary position-relative overflow-hidden border border-5 m-0 mx-md-3 mx-lg-4" style="width: 110px; height: 110px;" :class="{ 'scale-hover': partner.showAvatar }">
-              <img v-if="partner.showAvatar" :src="`${getAvatarImage(partner.hash)}?updated=${partner.updatedAt}`" width="110" height="110" class="img-fluid" :alt="partner.name">
-              <img v-else :src="getDefaultAvatar(partner.id)" width="110" height="110" class="img-fluid" :alt="partner.name">
+            <label class="avatar border border-5 m-0 mx-md-2 mx-lg-3" style="width: 110px; height: 110px;" :class="{ 'scale-hover': partner.showAvatar }">
+              <img v-if="partner.showAvatar" :src="`${getAvatarImage(partner.hash)}?updated=${partner.updatedAt}`" width="110" height="110" :alt="partner.name">
+              <img v-else :src="getDefaultAvatar(partner.id)" width="110" height="110" :alt="partner.name">
             </label>
           </div>
           <h5 class="text-center m-0 w-100 position-absolute top-100 px-0 px-lg-2 fst-italic fw-bold">{{ partner.name }}</h5>
         </div>
-        <div class="position-absolute top-50 start-50 translate-middle z-1 bond-heart d-flex shadow rounded-circle bg-body border border-5 border" style="width: 60px; height: 60px;">
+        <div class="position-absolute top-50 start-50 translate-middle z-1 bond-heart d-flex shadow rounded-circle bg-body border border-5" style="width: 60px; height: 60px;">
           <Icon name="solar:hearts-bold-duotone" class="img-fluid p-2 text-primary" />
         </div>
       </div>
