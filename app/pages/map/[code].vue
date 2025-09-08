@@ -53,6 +53,7 @@ const currentStory = ref<MappedLoveStory>();
 const currentStoryUser = computed(() => partners.value.find(user => user.id === currentStory.value?.user));
 
 const storyModal = useModal("story");
+const bondModal = useModal("bond-info");
 
 const openStory = (story: MappedLoveStory) => {
   currentStory.value = story;
@@ -124,12 +125,12 @@ useSeo({
 
 <template>
   <div v-if="bond">
-    <div class="btn btn-primary rounded-pill position-absolute bottom-0 start-50 translate-middle-x px-3 py-2 mb-4 d-flex align-items-center gap-1" :style="{ zIndex: 1000 }">
+    <button class="btn btn-primary rounded-pill position-absolute bottom-0 start-50 translate-middle-x px-3 py-2 mb-4 d-flex align-items-center gap-1" :style="{ zIndex: 1000 }" @click="bondModal.show()">
       <template v-for="(partner, index) in partners" :key="index">
         <strong>{{ partner.name }}</strong>
         <Icon v-if="index === 0" name="solar:hearts-bold-duotone" class="img-fluid" />
       </template>
-    </div>
+    </button>
     <MapPublic ref="map" :bond="bond" :select="selected" @select="onSelect" />
     <div ref="mapInfo" class="offcanvas shadow" :class="isMobile ? 'offcanvas-bottom' : 'offcanvas-start'" data-bs-backdrop="false" tabindex="-1" aria-labelledby="mapLabel" :style="{ height: expandCanvas || !isMobile ? '100vh' : '30vh' }">
       <div ref="canvasHeader" class="offcanvas-header">
@@ -200,6 +201,60 @@ useSeo({
         </div>
       </div>
     </div>
+    <BsModal id="bond-info" v-model="bondModal">
+      <div class="position-relative d-flex justify-content-center py-4 mb-3">
+        <div v-for="partner in bond.partners" :key="partner.id" class="text-center position-relative">
+          <div class="text-center mb-2">
+            <label class="rounded-circle bg-body-tertiary position-relative overflow-hidden border border-5 m-0 mx-md-3 mx-lg-4" style="width: 110px; height: 110px;" :class="{ 'scale-hover': partner.showAvatar }">
+              <img v-if="partner.showAvatar" :src="`${getAvatarImage(partner.hash)}?updated=${partner.updatedAt}`" width="110" height="110" class="img-fluid" :alt="partner.name">
+              <img v-else :src="getDefaultAvatar(partner.id)" width="110" height="110" class="img-fluid" :alt="partner.name">
+            </label>
+          </div>
+          <h5 class="text-center m-0 w-100 position-absolute top-100 px-0 px-lg-2 fst-italic fw-bold">{{ partner.name }}</h5>
+        </div>
+        <div class="position-absolute top-50 start-50 translate-middle z-1 bond-heart d-flex shadow rounded-circle bg-body border border-5 border" style="width: 60px; height: 60px;">
+          <Icon name="solar:hearts-bold-duotone" class="img-fluid p-2 text-primary" />
+        </div>
+      </div>
+      <div class="d-flex flex-column gap-2">
+        <div v-if="bond.coupleDate" class="p-2 d-flex gap-3 border rounded-3 position-relative">
+          <div class="rounded-3 bg-secondary d-flex align-items-center justify-content-center" :style="{ width: '4.375rem', height: '4.375rem' }">
+            <div class="text-primary text-center">
+              <h5 class="m-0 fw-bold">
+                <NuxtTime :datetime="bond.coupleDate" v-bind="timeOptions.day" />
+              </h5>
+              <span class="fw-bold">
+                <NuxtTime :datetime="bond.coupleDate" v-bind="timeOptions.monthName" />
+              </span>
+            </div>
+          </div>
+          <div>
+            <div class="d-flex align-items-center gap-1">
+              <Icon name="solar:heart-lock-outline" size="1.4rem" class="text-primary" />
+              <h5 class="m-0">{{ t("anniversary") }}</h5>
+            </div>
+            <p class="m-0">{{ getUntilDate(bond.coupleDate) }}</p>
+          </div>
+        </div>
+        <div v-if="bond.coupleDate" class="text-center p-3 bg-secondary rounded-3">
+          <h5 class="mb-2">{{ t('together_for') }}</h5>
+          <div class="d-flex justify-content-center gap-3">
+            <div v-for="(field, key) in getTogetherFor(bond.coupleDate)" :key="key" class="bg-body py-3 rounded-3 flex-fill">
+              <span class="fw-bold">{{ field }}</span>
+              <span class="d-block text-body-secondary">{{ t(key) }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="text-center py-2 border rounded-3">
+          <h6 class="mb-1">{{ t('content_count') }}</h6>
+          <span class="fw-bold">{{ bond.markers.length }}</span>
+          <span class="text-body-secondary ms-1">{{ t('markers') }}</span>
+          <span class="mx-2">·</span>
+          <span class="fw-bold">{{ bond.stories.length }}</span>
+          <span class="text-body-secondary ms-1">{{ t('stories') }}</span>
+        </div>
+      </div>
+    </BsModal>
     <BsModal v-if="currentStory" id="story" v-model="storyModal" fullscreen map>
       <div class="position-absolute start-0 top-0 py-2 px-3 bg-body bg-opacity-75 rounded shadow m-2 small">
         <div v-if="currentStoryUser" class="d-flex gap-1">

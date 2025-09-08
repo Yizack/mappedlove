@@ -89,7 +89,7 @@ watch(coupleDate, async (val: number | null) => {
       <div class="bg-body rounded-3 px-3 py-4 p-lg-4">
         <div class="position-relative d-flex justify-content-center py-4">
           <div v-for="(partner, i) of bond.partners" :key="partner.id" class="text-center position-relative">
-            <div class="image-upload text-center mb-2">
+            <div class="text-center mb-2">
               <img v-if="isToday(partner.birthDate)" src="/images/miscellaneous/party-hat.png" :class="`party-hat-${i ? 'right' : 'left'}`">
               <label class="rounded-circle bg-body-tertiary position-relative overflow-hidden border border-5 m-0 mx-md-3 mx-lg-4" :class="{ 'scale-hover': partner.showAvatar }" style="width: 175px; height: 175px;">
                 <img v-if="partner.showAvatar" :src="`${getAvatarImage(partner.hash)}?updated=${partner.updatedAt}`" width="175" height="175" class="img-fluid" :alt="partner.name">

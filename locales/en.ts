@@ -183,6 +183,7 @@ export default {
   map_not_found: "Map not found",
   password_invalid: "Password is not valid",
   mappedlove_id: "MappedLove ID",
+  content_count: "Content count",
   // Dates
   day: "Day",
   days: "Days",
