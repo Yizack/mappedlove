@@ -184,6 +184,8 @@ export default {
   password_invalid: "La contraseña no es válida",
   mappedlove_id: "ID de MappedLove",
   content_count: "Cantidad de contenido",
+  open_map: "Abrir mapa",
+  copy_link: "Copiar enlace",
   // Dates
   day: "Día",
   days: "Días",
