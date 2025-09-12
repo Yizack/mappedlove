@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Body, Column, Font, Head, Heading, Html, Img, Link, Row, Section, Text } from "@vue-email/components";
-import { SITE } from "~~/shared/utils/site";
+import { SITE } from "../shared/utils/site";
 
 defineProps<{
   lang: string;
