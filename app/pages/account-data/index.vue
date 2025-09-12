@@ -20,10 +20,10 @@ const sendRequest = async () => {
     body: form.value
   }).then(() => {
     form.reset();
-    turnstile.value?.reset();
     requested.value = true;
   }).catch(() => {}).finally(() => {
     submit.value.loading = false;
+    turnstile.value?.reset();
   });
 };
 
