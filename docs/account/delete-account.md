@@ -15,7 +15,6 @@ If you still have access to your account, follow these steps to delete your acco
 3. Click the **Delete account** button.
 4. Confirm that you want to delete your account by clicking the **Delete account** button.
 
-
 ## Don't have access?
 
 If you no longer have access to your account, follow these steps to delete your account:

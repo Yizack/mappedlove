@@ -12,7 +12,6 @@ If you still have access to your account, follow these steps to download your da
 3. Click the **Download data** button.
 4. The file download will start automatically.
 
-
 ## Don't have access?
 
 If you no longer have access to your account, follow these steps to delete your account:
