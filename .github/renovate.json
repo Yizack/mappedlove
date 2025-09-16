@@ -3,14 +3,12 @@
   "extends": [
     "config:recommended",
     "group:allNonMajor",
+    ":maintainLockFilesWeekly",
     ":semanticCommitTypeAll(chore)",
     ":disableDependencyDashboard"
   ],
   "rangeStrategy": "bump",
   "npm": {
     "commitMessageTopic": "{{prettyDepType}} {{depName}}"
-  },
-  "lockFileMaintenance": {
-    "enabled": true
   }
 }
