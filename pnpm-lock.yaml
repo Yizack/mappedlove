@@ -102,8 +102,8 @@ importers:
         specifier: ^3.7.3
         version: 3.7.3(magicast@0.3.5)
       nuxt-webhook-validators:
-        specifier: ^0.2.3
-        version: 0.2.3(magicast@0.3.5)
+        specifier: ^0.2.4
+        version: 0.2.4(magicast@0.3.5)
       sass:
         specifier: ^1.93.0
         version: 1.93.0
@@ -4484,8 +4484,8 @@ packages:
   nuxt-twemoji@3.7.3:
     resolution: {integrity: sha512-kN5q2DK1zdWU2ntYFbWUSXtwYoel/K81Qbnlri5nl2bQzi6Zau+O1hxeTmYy0FXd64yOH2XLtV11GncMe0S8OQ==}
 
-  nuxt-webhook-validators@0.2.3:
-    resolution: {integrity: sha512-ERBfEXW8qzc5RM0Pn+CWd3ueZzBxY/7TAYwSuJAknJtGfxb6myLdTWCl0fiT8+k/Xmgv0jVkVpOW8BS3wHcAgQ==}
+  nuxt-webhook-validators@0.2.4:
+    resolution: {integrity: sha512-9sTe6ueU06E4NXRuMsctMzWNOrISQF5+0JUjC5s5cXhs2q6dMEMI8Rmbxm9oYpZnOAfHGgwXcjpWEqnU8X2aPQ==}
 
   nuxt@4.1.2:
     resolution: {integrity: sha512-g5mwszCZT4ZeGJm83nxoZvtvZoAEaY65VDdn7p7UgznePbRaEJJ1KS1OIld4FPVkoDZ8TEVuDNqI9gUn12Exvg==}
@@ -10538,7 +10538,7 @@ snapshots:
     transitivePeerDependencies:
       - magicast
 
-  nuxt-webhook-validators@0.2.3(magicast@0.3.5):
+  nuxt-webhook-validators@0.2.4(magicast@0.3.5):
     dependencies:
       '@nuxt/kit': 4.1.2(magicast@0.3.5)
       defu: 6.1.4
