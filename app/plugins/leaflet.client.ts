@@ -118,8 +118,11 @@ declare module "#app" {
   }
 }
 
-export default defineNuxtPlugin(() => {
-  return {
-    provide: { Leaflet }
-  };
+export default defineNuxtPlugin({
+  parallel: true,
+  async setup () {
+    return {
+      provide: { Leaflet }
+    };
+  }
 });

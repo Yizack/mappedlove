@@ -71,15 +71,18 @@ declare module "#app" {
   }
 }
 
-export default defineNuxtPlugin(async () => {
-  const { clientId, planId } = useRuntimeConfig().public.paddle;
+export default defineNuxtPlugin({
+  parallel: true,
+  async setup () {
+    const { clientId, planId } = useRuntimeConfig().public.paddle;
 
-  const paddle = new Paddle({
-    token: clientId,
-    plan: planId
-  });
+    const paddle = new Paddle({
+      token: clientId,
+      plan: planId
+    });
 
-  return {
-    provide: { paddle }
-  };
+    return {
+      provide: { paddle }
+    };
+  }
 });
