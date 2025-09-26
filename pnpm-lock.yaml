@@ -66,14 +66,14 @@ importers:
         specifier: ^11.0.2
         version: 11.0.2(vue@3.5.22(typescript@5.9.2))
       '@yeger/vue-masonry-wall':
-        specifier: ^5.1.0
-        version: 5.1.0(vue@3.5.22(typescript@5.9.2))
+        specifier: ^5.1.1
+        version: 5.1.1(vue@3.5.22(typescript@5.9.2))
       bootstrap:
         specifier: ^5.3.8
         version: 5.3.8(@popperjs/core@2.11.8)
       drizzle-kit:
-        specifier: ^0.31.4
-        version: 0.31.4
+        specifier: ^0.31.5
+        version: 0.31.5
       drizzle-orm:
         specifier: ^0.44.5
         version: 0.44.5(@cloudflare/workers-types@4.20250924.0)
@@ -129,8 +129,8 @@ importers:
         specifier: ^3.0.8
         version: 3.0.8(typescript@5.9.2)
       wrangler:
-        specifier: ^4.40.0
-        version: 4.40.0(@cloudflare/workers-types@4.20250924.0)
+        specifier: ^4.40.2
+        version: 4.40.2(@cloudflare/workers-types@4.20250924.0)
       zod:
         specifier: ^4.1.11
         version: 4.1.11
@@ -2599,11 +2599,11 @@ packages:
   '@yeger/vue-lib-adapter@2.0.13':
     resolution: {integrity: sha512-2tWMPB1oRBoytcqtwFSz0sXLXKBfiW+qBUpesvxLLOz+G2NuppLTH1HTtbkRY4Wy+655JNMErM3627HPoEHtvg==}
 
-  '@yeger/vue-masonry-wall-core@5.0.17':
-    resolution: {integrity: sha512-ksfUpD1NYPgSBrIfekQYOUbesLywStcVZvy3eNTssH+owwD+2w/+rf9c1v8DmtPNQMdpwq19lWCo1qqewuT46g==}
+  '@yeger/vue-masonry-wall-core@5.0.18':
+    resolution: {integrity: sha512-Lhl0nYocx0OHUJnJK8l8Hn989Pp5myWHKq6tcjN6CsQj+LrjI594qmDBjO6432O2UHgLYleQvRuV/jxDahGQbA==}
 
-  '@yeger/vue-masonry-wall@5.1.0':
-    resolution: {integrity: sha512-oJR9BFet7Cln/XBAVcAbYWsKYRWKqtp+PiJVarZh3YYfTVGICiHMh9SDNBtPIgtMwyuuQi/w+v03O5PN/yfufw==}
+  '@yeger/vue-masonry-wall@5.1.1':
+    resolution: {integrity: sha512-IeI/rD3lrDi3/RRB9FjyWzEkVdExoxs7NTc8WemtK+DDE37h77L0bHD0VspEn8EE/WomZWrWiLxXYXWdg9dVdA==}
     peerDependencies:
       vue: ^3.0.0
 
@@ -3225,8 +3225,8 @@ packages:
     resolution: {integrity: sha512-Sf2LSQP+bOlhKWWyhFsn0UsfdK/kCWRv1iuA2gXAwt3dyNabr6QSj00I2V10pidqz69soatm9ZwZvpQMTIOd5Q==}
     engines: {node: '>=12'}
 
-  drizzle-kit@0.31.4:
-    resolution: {integrity: sha512-tCPWVZWZqWVx2XUsVpJRnH9Mx0ClVOf5YUHerZ5so1OKSlqww4zy1R5ksEdGRcO3tM3zj0PYN6V48TbQCL1RfA==}
+  drizzle-kit@0.31.5:
+    resolution: {integrity: sha512-+CHgPFzuoTQTt7cOYCV6MOw2w8vqEn/ap1yv4bpZOWL03u7rlVRQhUY0WYT3rHsgVTXwYQDZaSUJSQrMBUKuWg==}
     hasBin: true
 
   drizzle-orm@0.44.5:
@@ -5932,8 +5932,8 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
-  wrangler@4.40.0:
-    resolution: {integrity: sha512-HCPNUz599h9emi6qjppn92kxS6E12QvD0A3K087CZFEysw6lO1saZUdJ8azk0LsYGYDnrkBs5TzUOEfpuccwWA==}
+  wrangler@4.40.2:
+    resolution: {integrity: sha512-wcev8GF6GU4ME5AsYY/gUehHrGdRiUCkifuyCeuVvpOtha3TMK4/s39x+jLuJBRtibpgejDekO68rqxfamf16A==}
     engines: {node: '>=18.0.0'}
     hasBin: true
     peerDependencies:
@@ -8626,14 +8626,14 @@ snapshots:
 
   '@yeger/vue-lib-adapter@2.0.13': {}
 
-  '@yeger/vue-masonry-wall-core@5.0.17':
+  '@yeger/vue-masonry-wall-core@5.0.18':
     dependencies:
       '@yeger/debounce': 2.0.14
       '@yeger/vue-lib-adapter': 2.0.13
 
-  '@yeger/vue-masonry-wall@5.1.0(vue@3.5.22(typescript@5.9.2))':
+  '@yeger/vue-masonry-wall@5.1.1(vue@3.5.22(typescript@5.9.2))':
     dependencies:
-      '@yeger/vue-masonry-wall-core': 5.0.17
+      '@yeger/vue-masonry-wall-core': 5.0.18
       vue: 3.5.22(typescript@5.9.2)
 
   abbrev@2.0.0: {}
@@ -9191,7 +9191,7 @@ snapshots:
 
   dotenv@17.2.2: {}
 
-  drizzle-kit@0.31.4:
+  drizzle-kit@0.31.5:
     dependencies:
       '@drizzle-team/brocli': 0.10.2
       '@esbuild-kit/esm-loader': 2.6.5
@@ -12297,7 +12297,7 @@ snapshots:
       '@cloudflare/workerd-linux-arm64': 1.20250924.0
       '@cloudflare/workerd-windows-64': 1.20250924.0
 
-  wrangler@4.40.0(@cloudflare/workers-types@4.20250924.0):
+  wrangler@4.40.2(@cloudflare/workers-types@4.20250924.0):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.4.0
       '@cloudflare/unenv-preset': 2.7.4(unenv@2.0.0-rc.21)(workerd@1.20250924.0)
