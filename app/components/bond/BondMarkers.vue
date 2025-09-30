@@ -7,7 +7,7 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits(["new", "delete", "select", "edit"]);
-const { $toasts } = useNuxtApp();
+const { $toasts, $bootstrap } = useNuxtApp();
 
 const edit = ref(false);
 const dragOptions = {
@@ -118,6 +118,10 @@ const toggleEdit = () => {
   edit.value = !edit.value;
   emit("edit", edit.value);
 };
+
+onMounted(() => {
+  $bootstrap.initializePopover();
+});
 </script>
 
 <template>
@@ -128,7 +132,10 @@ const toggleEdit = () => {
     <button class="btn btn-primary btn-sm rounded-circle p-1" role="button" @click="openMarker()">
       <Icon name="tabler:plus" size="2em" />
     </button>
-    <button v-if="markers.length" type="button" class="btn btn-primary btn-lg ms-auto rounded-pill" @click="toggleEdit">{{ edit ? t("done") : t("edit") }}</button>
+    <button v-if="markers.length" type="button" class="btn btn-primary btn-lg ms-auto rounded-pill" @click="toggleEdit">
+      {{ edit ? t("done") : t("edit") }}
+    </button>
+    <Icon name="solar:question-circle-linear" class="text-primary outline-none flex-shrink-0" size="1.3rem" data-bs-toggle="popover" :data-bs-content="t('markers_map_edit_info')" :style="{ cursor: 'help' }" />
   </div>
   <VueDraggable v-if="markers.length" v-model="markers" class="markers row g-2" v-bind="dragOptions" :disabled="!edit" @update="rearrange">
     <div v-for="marker of markers" :key="marker.id" class="col-12 col-md-4 col-xl-6 d-flex gap-2">

@@ -119,6 +119,7 @@ export default {
   marker_deleted: "El marcador ha sido eliminado",
   max_markers: "Tu vínculo ha alcanzado el número máximo de marcadores. Mejora a premium para añadir marcadores ilimitados.",
   invalid_marker_data: "Los datos del marcador no son válidos",
+  markers_map_edit_info: "Activa el modo de edición para arrastrar y reubicar los marcadores en tu lista. También puedes ajustar la posición de cada marcador arrastrándolo hasta la ubicación exacta en el mapa. Los cambios se guardan automáticamente. Cuando termines, haz clic en 'Listo' para desactivar el modo de edición.",
   // Stories
   story: "Historia",
   stories: "Historias",
@@ -159,7 +160,7 @@ export default {
   title: "Título",
   description: "Descripción",
   edit: "Editar",
-  done: "Hecho",
+  done: "Listo",
   delete: "Eliminar",
   saved_changes: "Tus cambios han sido guardados",
   welcome: "Bienvenido",

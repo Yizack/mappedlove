@@ -69,7 +69,7 @@ class Bootstrap {
 
   initializePopover () {
     const popoverList = document.querySelectorAll("[data-bs-toggle=\"popover\"]");
-    [...popoverList].map(e => new Popover(e, { trigger: "focus" }));
+    [...popoverList].map(e => new Popover(e, { trigger: "hover focus" }));
   }
 
   showOffcanvas (id: HTMLElement) {

@@ -119,6 +119,7 @@ export default {
   marker_deleted: "The marker has been deleted",
   max_markers: "Your bond have reached the maximum number of markers. Upgrade to premium to add unlimited markers.",
   invalid_marker_data: "Marker data is not valid",
+  markers_map_edit_info: "Enable editing mode to drag and reposition markers in your list. You can also fine-tune each marker's placement by dragging it to the exact location on the map. Changes are saved automatically. When you're finished, click 'Done' to disable editing mode.",
   // Stories
   story: "Story",
   stories: "Stories",

@@ -11,7 +11,7 @@ Markers are used to indicate a specific location on the map.
 5. A title and description will be generated automatically based on the location search. You can edit these fields to personalize the marker.
 6. Choose from a list of predefined groups or categories that best describe the activity experienced at that location.
 7. Confirm the addition of your marker to the map by clicking the **Add marker** button.
-8. After adding your marker fine-tune the marker's placement by dragging it to its precise desired location on the map.
+8. After adding your marker click on the **Edit** button to fine-tune the marker's placement by dragging it to its precise desired location on the map.
 
 ## Editing markers
 

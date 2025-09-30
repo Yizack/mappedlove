@@ -206,7 +206,7 @@ watch(coupleDate, async (val: number | null) => {
         <div class="mb-2 form-check form-switch d-flex gap-2 align-items-center">
           <input v-model="isPublic" class="form-check-input" type="checkbox" role="switch" @change="changePrivacy">
           <label class="form-check-label">{{ t("public_bond") }}</label>
-          <Icon name="solar:question-circle-linear" class="text-primary outline-none" role="button" size="1.3rem" data-bs-toggle="popover" :data-bs-content="t('public_bond_info')" />
+          <Icon name="solar:question-circle-linear" class="text-primary outline-none" size="1.3rem" data-bs-toggle="popover" :data-bs-content="t('public_bond_info')" :style="{ cursor: 'help' }" />
         </div>
         <div class="mb-2">
           <p v-if="isPublic" class="m-0">{{ t("share_bond_info") }}</p>
