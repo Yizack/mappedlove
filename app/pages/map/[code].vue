@@ -131,7 +131,7 @@ useSeo({
       </template>
     </button>
     <MapPublic ref="map" v-bind="{ bond, selected }" @select="onSelect" />
-    <div ref="mapInfo" class="offcanvas shadow" :class="isMobile ? 'offcanvas-bottom' : 'offcanvas-start'" data-bs-backdrop="false" tabindex="-1" aria-labelledby="mapLabel" :style="{ height: expandCanvas || !isMobile ? '100vh' : '30vh' }">
+    <div ref="mapInfo" class="offcanvas shadow" :class="isMobile ? 'offcanvas-bottom' : 'offcanvas-start'" data-bs-backdrop="false" data-bs-scroll="true" tabindex="-1" aria-labelledby="mapLabel" :style="{ height: expandCanvas || !isMobile ? '100vh' : '30vh' }">
       <div ref="canvasHeader" class="offcanvas-header">
         <h5 id="mapLabel" class="offcanvas-title d-flex align-items-center">
           <Icon name="solar:map-point-favourite-bold" class="text-primary flex-shrink-0" size="2rem" />
