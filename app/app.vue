@@ -23,14 +23,11 @@ $router.options.scrollBehavior = to => new Promise((resolve) => {
   setTimeout(() => resolve({ el: to.hash, top: 55, left: 0, behavior: "smooth" }), 500);
 });
 
-onBeforeMount(() => {
-  // eslint-disable-next-line no-global-assign
-  $fetch = $fetch.create({
-    onResponseError: ({ response }) => {
-      const message = response.status === 500 ? t("error_any") : t(response._data.message);
-      $toasts.add({ message, success: false });
-    }
-  });
+globalThis.$fetch = $fetch.create({
+  onResponseError: ({ response }) => {
+    const message = response.status === 500 ? t("error_any") : t(response._data.message);
+    $toasts.add({ message, success: false });
+  }
 });
 
 useSeo({
