@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type MapView from "~/components/map/MapView.vue";
+
 definePageMeta({ layout: "app-map", middleware: "session" });
 
 const { data: bondMap } = await useFetch("/api/bond/map");
@@ -9,10 +11,12 @@ const markers = ref(bondMap.value?.markers || []);
 const stories = ref(bondMap.value?.stories || []);
 
 const selected = ref(0);
+const draggable = ref(false);
 
-const map = ref();
+const map = useTemplateRef<InstanceType<typeof MapView>>("map");
 
 const newMarker = ({ marker }: { marker: MappedLoveMarker }) => {
+  if (!map.value) return;
   map.value.addMarker(marker);
   map.value.setView([marker.lat, marker.lng], 10);
   selected.value = marker.id;
@@ -27,6 +31,7 @@ const movedPosition = (marker: MappedLoveMarker) => {
 };
 
 const removeMarker = (id: number) => {
+  if (!map.value) return;
   map.value.removeMarker(id);
   $toasts.add({ success: true, message: t("marker_deleted") });
 };
@@ -58,6 +63,10 @@ const selectMarker = (id: number) => {
   selected.value = selected.value === id ? 0 : id;
 };
 
+const toggleEdit = (edit: boolean) => {
+  draggable.value = edit;
+};
+
 useSeo({
   title: `${t("map")} | ${SITE.name}`,
   robots: false
@@ -66,11 +75,11 @@ useSeo({
 
 <template>
   <main>
-    <MapView id="map" ref="map" v-bind="{ markers, stories, selected }" size="60vh" @moved="movedPosition" @select="selectMarker" />
+    <MapView id="map" ref="map" v-bind="{ markers, stories, selected, draggable }" size="60vh" @moved="movedPosition" @select="selectMarker" />
     <div class="row g-2 m-0 p-2 pt-0">
       <div class="col-12 col-xl-5">
         <div class="bg-body rounded-3 px-3 py-4 p-lg-4">
-          <BondMarkers v-bind="{ markers, selected }" @delete="removeMarker" @new="newMarker" @select="selectMarker" />
+          <BondMarkers v-bind="{ markers, selected }" @delete="removeMarker" @new="newMarker" @select="selectMarker" @edit="toggleEdit" />
         </div>
       </div>
       <div class="col-12 col-xl-7">

@@ -103,6 +103,13 @@ class Leaflet {
     Object.values(this.markers).flat().forEach(marker => marker.closePopup());
   }
 
+  setMarkersDragging (draggable: boolean) {
+    for (const marker of Object.values(this.markers).flat()) {
+      if (draggable) marker.dragging?.enable();
+      else marker.dragging?.disable();
+    }
+  }
+
   static async geoSearch (query: string, options?: { email: string, lang: string }) {
     const params = options ? {
       "email": options.email,

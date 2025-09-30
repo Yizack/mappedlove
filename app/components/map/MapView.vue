@@ -7,6 +7,7 @@ const props = withDefaults(defineProps<{
   stories: MappedLoveStory[];
   size?: string;
   selected: number;
+  draggable?: boolean;
 }>(), {
   size: "600px"
 });
@@ -29,8 +30,7 @@ const addMarker = (marker: MappedLoveMarker) => {
     popup: storiesCarousel(marker, stories),
     group: getGroup(marker.group),
     options: {
-      id: marker.id,
-      draggable: true
+      id: marker.id
     }
   }).on("move", (e) => {
     movedMarker.value = e;
@@ -81,6 +81,10 @@ watch(() => props.selected, (id) => {
     marker.openPopup();
     setView([lat, lng]);
   }
+});
+
+watch(() => props.draggable, (draggable) => {
+  leaflet.value?.setMarkersDragging(draggable);
 });
 
 defineExpose({ removeMarker, addMarker, setView });

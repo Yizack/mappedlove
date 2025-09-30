@@ -113,6 +113,11 @@ const submitMarker = async () => {
 watch(() => props.markers, (value) => {
   markers.value = value;
 });
+
+const toggleEdit = () => {
+  edit.value = !edit.value;
+  emit("edit", edit.value);
+};
 </script>
 
 <template>
@@ -123,7 +128,7 @@ watch(() => props.markers, (value) => {
     <button class="btn btn-primary btn-sm rounded-circle p-1" role="button" @click="openMarker()">
       <Icon name="tabler:plus" size="2em" />
     </button>
-    <button v-if="markers.length" type="button" class="btn btn-primary btn-lg ms-auto rounded-pill" @click="edit = !edit">{{ edit ? t("done") : t("edit") }}</button>
+    <button v-if="markers.length" type="button" class="btn btn-primary btn-lg ms-auto rounded-pill" @click="toggleEdit">{{ edit ? t("done") : t("edit") }}</button>
   </div>
   <VueDraggable v-if="markers.length" v-model="markers" class="markers row g-2" v-bind="dragOptions" :disabled="!edit" @update="rearrange">
     <div v-for="marker of markers" :key="marker.id" class="col-12 col-md-4 col-xl-6 d-flex gap-2">
