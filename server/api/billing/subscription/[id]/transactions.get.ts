@@ -1,7 +1,7 @@
 export default defineEventHandler(async (event) => {
   const { user } = await requireUserSession(event);
   const params = await getValidatedRouterParams(event, z.object({
-    id: z.string()
+    id: z.string().startsWith("sub_")
   }).parse);
 
   const query = await getValidatedQuery(event, z.object({
