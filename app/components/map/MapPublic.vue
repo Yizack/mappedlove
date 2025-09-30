@@ -4,7 +4,7 @@ const props = defineProps<{
   selected: number;
 }>();
 
-const emit = defineEmits(["moved", "select"]);
+const emit = defineEmits(["select"]);
 
 const { $Leaflet, $bootstrap } = useNuxtApp();
 const leaflet = ref<InstanceType<typeof $Leaflet>>();
