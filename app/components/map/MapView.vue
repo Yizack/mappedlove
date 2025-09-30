@@ -6,7 +6,7 @@ const props = withDefaults(defineProps<{
   markers: MappedLoveMarker[];
   stories: MappedLoveStory[];
   size?: string;
-  select: number;
+  selected: number;
 }>(), {
   size: "600px"
 });
@@ -36,7 +36,7 @@ const addMarker = (marker: MappedLoveMarker) => {
     movedMarker.value = e;
   }).on("popupopen", (e) => {
     setTimeout(() => $bootstrap.startAllCarousel());
-    if (props.select === e.target.options.id) return;
+    if (props.selected === e.target.options.id) return;
     emit("select", e.target.options.id);
   });
 };
@@ -73,9 +73,9 @@ onMounted(() => {
   }
 });
 
-watch(() => props.select, (id) => {
+watch(() => props.selected, (id) => {
   const marker = leaflet.value?.getMarker(id);
-  if (!props.select) leaflet.value?.closeAllPopups();
+  if (!props.selected) leaflet.value?.closeAllPopups();
   if (marker) {
     const { lat, lng } = marker.getLatLng();
     marker.openPopup();

@@ -66,11 +66,11 @@ useSeo({
 
 <template>
   <main>
-    <MapView id="map" ref="map" :markers="markers" :stories="stories" size="60vh" :select="selected" @moved="movedPosition" @select="selectMarker" />
+    <MapView id="map" ref="map" v-bind="{ markers, stories, selected }" size="60vh" @moved="movedPosition" @select="selectMarker" />
     <div class="row g-2 m-0 p-2 pt-0">
       <div class="col-12 col-xl-5">
         <div class="bg-body rounded-3 px-3 py-4 p-lg-4">
-          <BondMarkers :markers="markers" :selected="selected" @delete="removeMarker" @new="newMarker" @select="selectMarker" />
+          <BondMarkers v-bind="{ markers, selected }" @delete="removeMarker" @new="newMarker" @select="selectMarker" />
         </div>
       </div>
       <div class="col-12 col-xl-7">
