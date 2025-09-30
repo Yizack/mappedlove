@@ -72,7 +72,8 @@ class Bootstrap {
     [...popoverList].map(e => new Popover(e, { trigger: "hover focus" }));
   }
 
-  showOffcanvas (id: HTMLElement) {
+  showOffcanvas (id: HTMLElement | null) {
+    if (!id) return;
     const instance = Offcanvas.getInstance(id);
     if (instance) {
       instance.show();
@@ -83,7 +84,8 @@ class Bootstrap {
     return id;
   }
 
-  hideOffcanvas (id: HTMLElement) {
+  hideOffcanvas (id: HTMLElement | null) {
+    if (!id) return;
     const instance = Offcanvas.getInstance(id);
     if (instance) {
       instance.hide();

@@ -17,7 +17,7 @@ if (!bond.value) {
 }
 
 const selected = ref(0);
-const mapInfo = ref() as Ref<HTMLElement>;
+const mapInfo = useTemplateRef("mapInfo");
 const marker = ref<MappedLoveMarker>();
 const stories = ref<MappedLoveStory[]>();
 const partners = ref(bond.value.partners);
@@ -47,8 +47,7 @@ const clearFilter = () => {
 const isMobile = ref(false);
 
 const expandCanvas = ref(false);
-const canvasHeader = ref() as Ref<HTMLElement>;
-const canvasBody = ref() as Ref<HTMLElement>;
+const canvasHeader = useTemplateRef("canvasHeader");
 const currentStory = ref<MappedLoveStory>();
 const currentStoryUser = computed(() => partners.value.find(user => user.id === currentStory.value?.user));
 
@@ -101,16 +100,16 @@ const resizeHandler = () => {
 onMounted(() => {
   isMobile.value = isMobileScreen();
   addEventListener("resize", resizeHandler);
-  mapInfo.value.addEventListener("hide.bs.offcanvas", mapInfoHandler);
-  canvasHeader.value.addEventListener("touchstart", touchStartHandler, { passive: true });
-  canvasHeader.value.addEventListener("touchend", touchEndHandler, { passive: true });
+  mapInfo.value?.addEventListener("hide.bs.offcanvas", mapInfoHandler);
+  canvasHeader.value?.addEventListener("touchstart", touchStartHandler, { passive: true });
+  canvasHeader.value?.addEventListener("touchend", touchEndHandler, { passive: true });
 });
 
 onBeforeUnmount(() => {
   removeEventListener("resize", resizeHandler);
-  canvasHeader.value.removeEventListener("touchstart", touchStartHandler);
-  canvasHeader.value.removeEventListener("touchend", touchEndHandler);
-  mapInfo.value.removeEventListener("hide.bs.offcanvas", mapInfoHandler);
+  canvasHeader.value?.removeEventListener("touchstart", touchStartHandler);
+  canvasHeader.value?.removeEventListener("touchend", touchEndHandler);
+  mapInfo.value?.removeEventListener("hide.bs.offcanvas", mapInfoHandler);
   $bootstrap.hideOffcanvas(mapInfo.value);
 });
 
@@ -143,7 +142,7 @@ useSeo({
           <div v-if="isMobile" class="bg-primary h-100 rounded-pill mx-auto" :style="{ width: '2rem' }" />
         </div>
       </div>
-      <div ref="canvasBody" class="offcanvas-body p-0">
+      <div class="offcanvas-body p-0">
         <div v-if="marker">
           <div class="p-3 border-bottom">
             <p v-if="marker.description">{{ marker.description }}</p>

@@ -9,11 +9,11 @@ const props = defineProps<{
 }>();
 
 const { $toasts } = useNuxtApp();
-const textToCopy = ref() as Ref<HTMLInputElement>;
+const textToCopy = useTemplateRef("textToCopy");
 
 const copyText = async () => {
   const copy = await copyToClipboard(props.text);
-  if (copy.success) textToCopy.value.select();
+  if (copy.success) textToCopy.value?.select();
   $toasts.add(copy);
 };
 </script>

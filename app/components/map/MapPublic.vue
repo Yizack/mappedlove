@@ -10,7 +10,7 @@ const { $Leaflet, $bootstrap } = useNuxtApp();
 const leaflet = ref<InstanceType<typeof $Leaflet>>();
 const markers = ref(props.bond.markers);
 const stories = ref(props.bond.stories);
-const map = ref() as Ref<HTMLElement>;
+const map = useTemplateRef("map");
 
 const addMarker = (marker: MappedLoveMarker) => {
   const markerStories = stories.value.filter(s => s.marker === marker.id) || [];
@@ -34,6 +34,7 @@ const setView = (latlng: [number, number], zoom?: number) => {
 };
 
 onMounted(() => {
+  if (!map.value) return;
   if (!leaflet.value) {
     leaflet.value = new $Leaflet();
     leaflet.value.createGroups(getGroups());
