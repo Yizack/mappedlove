@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const props = defineProps<{
   bond: MappedLovePublicMap;
-  select: number;
+  selected: number;
 }>();
 
 const emit = defineEmits(["moved", "select"]);
@@ -24,7 +24,7 @@ const addMarker = (marker: MappedLoveMarker) => {
     }
   }).on("popupopen", (e) => {
     setTimeout(() => $bootstrap.startAllCarousel());
-    if (props.select === e.target.options.id) return;
+    if (props.selected === e.target.options.id) return;
     emit("select", e.target.options.id);
   });
 };
@@ -49,9 +49,9 @@ onMounted(() => {
   }
 });
 
-watch(() => props.select, (id) => {
+watch(() => props.selected, (id) => {
   const marker = leaflet.value?.getMarker(id);
-  if (!props.select) leaflet.value?.closeAllPopups();
+  if (!props.selected) leaflet.value?.closeAllPopups();
   if (marker) {
     const { lat, lng } = marker.getLatLng();
     marker.openPopup();

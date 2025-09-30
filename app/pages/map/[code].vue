@@ -130,7 +130,7 @@ useSeo({
         <Icon v-if="index === 0" name="solar:hearts-bold-duotone" class="img-fluid" />
       </template>
     </button>
-    <MapPublic ref="map" :bond="bond" :select="selected" @select="onSelect" />
+    <MapPublic ref="map" v-bind="{ bond, selected }" @select="onSelect" />
     <div ref="mapInfo" class="offcanvas shadow" :class="isMobile ? 'offcanvas-bottom' : 'offcanvas-start'" data-bs-backdrop="false" tabindex="-1" aria-labelledby="mapLabel" :style="{ height: expandCanvas || !isMobile ? '100vh' : '30vh' }">
       <div ref="canvasHeader" class="offcanvas-header">
         <h5 id="mapLabel" class="offcanvas-title d-flex align-items-center">
