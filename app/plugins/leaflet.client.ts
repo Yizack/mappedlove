@@ -77,7 +77,7 @@ class Leaflet {
 
   addMarker ({ position, popup, options, group }: AddMarkerOptions) {
     options.icon = this.icon;
-    const marker = new Marker([...position], options).bindPopup(popup);
+    const marker = new Marker([...position], options).bindPopup(popup, { autoPan: false });
     if (!this.markers[group]) {
       this.markers[group] = [];
     }
