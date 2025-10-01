@@ -13,7 +13,8 @@ describe("markers", async () => {
         lng: 1,
         group: 1,
         title: "New Marker",
-        description: "Test marker description"
+        description: "Test marker description",
+        country: "pa"
       }
     });
 
@@ -27,6 +28,7 @@ describe("markers", async () => {
       lng: 1,
       group: 1,
       bond: 1,
+      country: "PA",
       order: expect.any(Number)
     });
   });
@@ -41,6 +43,7 @@ describe("markers", async () => {
         group: 1,
         title: "New Marker",
         description: "Test marker description",
+        country: "fr",
         order: createdMarker.order
       }
     });
@@ -52,6 +55,7 @@ describe("markers", async () => {
       group: 1,
       title: "New Marker",
       description: "Test marker description",
+      country: "FR",
       order: createdMarker.order
     });
   });
