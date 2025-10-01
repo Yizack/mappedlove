@@ -182,8 +182,8 @@ onMounted(() => {
     <Icon v-if="markers.length" name="solar:question-circle-linear" class="text-primary outline-none flex-shrink-0" size="1.3rem" data-bs-toggle="popover" :data-bs-content="t('markers_map_edit_info')" :style="{ cursor: 'help' }" />
   </div>
   <div v-if="markers.length" class="mb-3">
-    <div class="dropdown">
-      <div class="d-flex align-items-center gap-2 px-3 py-2 border rounded-3" data-bs-toggle="dropdown" aria-expanded="false" :style="{ width: 'fit-content', cursor: 'default' }">
+    <div class="dropdown" :style="{ cursor: 'default' }">
+      <div class="d-flex align-items-center gap-2 px-3 py-2 border rounded-3" data-bs-toggle="dropdown" aria-expanded="false" :style="{ width: 'fit-content' }">
         <Icon name="solar:hamburger-menu-bold" size="1.3rem" class="text-primary" />
         <div class="d-flex gap-2">
           <span>{{ t("group_by") }}</span>
