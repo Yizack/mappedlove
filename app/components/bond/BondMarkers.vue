@@ -49,7 +49,6 @@ const rearrange = () => {
 };
 
 const selectMarker = (id: number) => {
-  animateElements();
   emit("select", id);
 };
 

@@ -112,12 +112,12 @@ watch(() => props.marker, () => {
     </Transition>
   </div>
   <Transition name="tab-left" mode="out-in">
-    <h4 v-if="marker.id && animate">{{ marker.title }}</h4>
+    <h4 :key="marker.id">{{ marker.title }}</h4>
   </Transition>
   <Transition name="fade" mode="out-in">
     <p v-if="!marker.id" class="m-0">{{ t("select_marker_story") }}</p>
     <p v-else-if="!marker.stories.length" class="m-0">{{ t("no_stories") }}</p>
-    <div v-else-if="animate">
+    <div v-else :key="marker.id">
       <div id="accordionStories" class="accordion accordion-flush">
         <div v-for="(year, i) of yearsFromStories(marker.stories)" :key="i" class="accordion-item">
           <h2 class="accordion-header">

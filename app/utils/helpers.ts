@@ -9,15 +9,6 @@ export const getGroup = (i: number) => {
   return t(groups[i]!.key);
 };
 
-export const animate = ref(true);
-
-export const animateElements = () => {
-  animate.value = false;
-  setTimeout(() => {
-    animate.value = true;
-  });
-};
-
 export const yearsFromStories = (stories: MappedLoveStory[]) => {
   const years = stories.map(story => story.year);
   return [...new Set(years)];
