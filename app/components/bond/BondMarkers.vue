@@ -160,10 +160,9 @@ onMounted(() => {
     <div v-for="marker of markers" :key="marker.id" class="col-12 col-md-4 col-xl-6 d-flex gap-2">
       <div class="marker border rounded-3 py-2 px-3 w-100 position-relative" :class="{ active: selected === marker.id }" :style="{ cursor: edit ? 'grab' : 'default' }" @click="selectMarker(marker.id)">
         <div class="w-100 h-100 text-break">
-          <h5 class="d-flex align-items-center gap-1">
-            <span class="d-flex" :title="t(groups[marker.group]!.key)">
-              <Icon :name="groups[marker.group]!.icon" class="text-primary" size="1.5rem" />
-            </span>
+          <h5 class="mb-1">
+            <Icon :name="groups[marker.group]!.icon" class="text-primary me-1" size="1.5rem" :title="t(groups[marker.group]!.key)" :style="{ verticalAlign: 'middle' }" mode="css" />
+            <Twemoji v-if="marker.country" :emoji="$countries.getEmoji(marker.country)" class="me-1" size="1.1em" :title="$countries.getName(marker.country)" png />
             <span>{{ marker.title }}</span>
           </h5>
           <p class="m-0">{{ marker.description }}</p>
