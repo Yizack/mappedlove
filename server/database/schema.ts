@@ -41,6 +41,7 @@ export const markers = sqliteTable("markers", {
   bond: integer().notNull().references(() => bonds.id, { onDelete: "cascade" }),
   title: text().notNull(),
   description: text().notNull(),
+  country: text(),
   order: integer().notNull(),
   createdAt: integer().notNull(),
   updatedAt: integer().notNull()

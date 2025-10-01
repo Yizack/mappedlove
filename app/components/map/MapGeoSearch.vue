@@ -19,13 +19,13 @@ const select = (result: SearchResult) => {
   search.value = false;
   text.value = `${result.y}, ${result.x}`;
   selected.value = true;
-  emit("select", { lat: result.y, lng: result.x, label: result.label });
+  emit("select", { lat: result.y, lng: result.x, label: result.label, country: result.raw.address?.country_code });
 };
 
 const changeLocation = () => {
   text.value = "";
   selected.value = false;
-  emit("select", { lat: null, lng: null, label: "" });
+  emit("select", { lat: null, lng: null, label: "", country: null });
 };
 
 watchDebounced(text, async (value) => {

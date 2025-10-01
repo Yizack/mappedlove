@@ -11,6 +11,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveMarker> => {
     group: z.number(),
     title: z.string(),
     description: z.string(),
+    country: z.string().optional().transform(c => c?.toUpperCase()),
     order: z.number()
   }).safeParse);
 
@@ -27,6 +28,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveMarker> => {
     title: body.title,
     description: body.description,
     order: body.order,
+    country: body.country,
     updatedAt: Date.now()
   }).where(and(eq(tables.markers.id, params.id), eq(tables.markers.bond, user.bond.id))).returning().get();
 });

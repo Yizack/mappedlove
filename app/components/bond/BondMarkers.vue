@@ -7,7 +7,7 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits(["new", "delete", "select", "edit"]);
-const { $toasts, $bootstrap } = useNuxtApp();
+const { $toasts, $bootstrap, $countries, $Leaflet } = useNuxtApp();
 
 const edit = ref(false);
 const dragOptions = {
@@ -29,7 +29,8 @@ const form = useFormState({
   title: "",
   description: "",
   order: 0,
-  location: ""
+  location: "",
+  country: null as string | null
 });
 
 const markers = ref(props.markers);
@@ -79,12 +80,13 @@ const groupIcon = computed(() => {
   return groupFound ? groupFound.icon : "solar:question-square-outline";
 });
 
-const selectLocation = ({ lat, lng, label }: { lat: number, lng: number, label: string }) => {
-  form.value.lat = lat;
-  form.value.lng = lng;
-  const address = label.split(", ");
+const selectLocation = (location: { lat: number, lng: number, label: string, country: string | null }) => {
+  form.value.lat = location.lat;
+  form.value.lng = location.lng;
+  const address = location.label.split(", ");
   form.value.title = address.shift() || "";
   form.value.description = address.join(", ");
+  form.value.country = location.country;
 };
 
 const submitMarker = async () => {
@@ -116,6 +118,24 @@ watch(() => props.markers, (value) => {
 const toggleEdit = () => {
   edit.value = !edit.value;
   emit("edit", edit.value);
+};
+
+const loading = ref(false);
+const refreshCountry = async () => {
+  loading.value = true;
+  const { user } = useUserSession();
+  const results = await $Leaflet.geoSearch([form.value.lat, form.value.lng].join(" "), {
+    email: user.value!.email,
+    lang: "en"
+  });
+  loading.value = false;
+
+  if (!results.length) {
+    $toasts.add({ message: t("could_not_find_country"), success: false });
+    return;
+  }
+
+  form.value.country = results[0]?.raw.address?.country_code || null;
 };
 
 onMounted(() => {
@@ -180,6 +200,19 @@ onMounted(() => {
       <div class="form-floating mb-2">
         <textarea v-model.trim="form.description" type="text" class="form-control" :placeholder="t('description')" :style="{ height: '100px' }" />
         <label>{{ t("description") }}</label>
+      </div>
+      <div class="input-group mb-2">
+        <span class="input-group-text bg-body">
+          <Twemoji :emoji="$countries.getEmoji(form.country) || '1f3f3'" size="2rem" png />
+        </span>
+        <div class="form-floating">
+          <input :value="$countries.getName(form.country)" type="text" class="form-control" :placeholder="t('country')" disabled>
+          <label>{{ t("country") }}</label>
+        </div>
+        <button v-if="form.id && form.lat && form.lng && !form.country" type="button" class="btn btn-primary" :disabled="loading" @click="refreshCountry">
+          <SpinnerCircle v-if="loading" class="text-light" small />
+          <Icon v-else name="solar:refresh-bold-duotone" size="1.5rem" />
+        </button>
       </div>
       <div class="input-group mb-2">
         <span class="input-group-text bg-body">

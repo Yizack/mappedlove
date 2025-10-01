@@ -15,10 +15,8 @@
 }
 
 .markers {
-  max-height: 400px;
-  overflow-y: auto;
-
-  @media (width >= 1200px) {
-    max-height: none;
+  @media (width < 1200px) {
+    max-height: 400px;
+    overflow-y: auto;
   }
 }

@@ -31,6 +31,7 @@ declare global {
     title: string;
     description: string;
     order: number;
+    country: string | null;
   }
   interface MappedLoveBond {
     id: number;

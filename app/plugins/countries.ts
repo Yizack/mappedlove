@@ -6,11 +6,11 @@ class Countries {
   }
 
   getEmoji (code: string | null) {
-    return countriesData.find(country => country.code === code)?.emoji || "";
+    return countriesData.find(country => country.code === code?.toUpperCase())?.emoji || "";
   }
 
   getName (code: string | null) {
-    return countriesData.find(country => country.code === code)?.name || "";
+    return countriesData.find(country => country.code === code?.toUpperCase())?.name || "";
   }
 }
 

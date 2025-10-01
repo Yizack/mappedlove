@@ -33,6 +33,7 @@ CREATE TABLE `markers` (
 	`bond` integer NOT NULL,
 	`title` text NOT NULL,
 	`description` text NOT NULL,
+	`country` text,
 	`order` integer NOT NULL,
 	`created_at` integer NOT NULL,
 	`updated_at` integer NOT NULL,

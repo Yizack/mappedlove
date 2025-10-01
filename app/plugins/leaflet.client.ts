@@ -1,5 +1,7 @@
-import { OpenStreetMapProvider } from "leaflet-geosearch";
 import { Browser, Control, DomUtil, Icon, LayerGroup, Map, Marker, type MarkerOptions, Popup, TileLayer } from "leaflet";
+import { OpenStreetMapProvider } from "leaflet-geosearch";
+import type { SearchResult } from "leaflet-geosearch/dist/providers/provider.js";
+import type { RawResult } from "leaflet-geosearch/dist/providers/openStreetMapProvider.js";
 
 // @ts-expect-error - no types
 Popup.prototype._animateZoom = function (e) {
@@ -17,6 +19,17 @@ interface AddMarkerOptions {
   popup: string;
   options: PluginMarkerOptions;
   group: string;
+}
+
+interface NominatimAddress {
+  city?: string;
+  town?: string;
+  village?: string;
+  county?: string;
+  state?: string;
+  postcode?: string;
+  country?: string;
+  country_code?: string;
 }
 
 class Leaflet {
@@ -110,12 +123,15 @@ class Leaflet {
     }
   }
 
-  static async geoSearch (query: string, options?: { email: string, lang: string }) {
-    const params = options ? {
-      "email": options.email,
-      "accept-language": options.lang
-    } : undefined;
-    return await new OpenStreetMapProvider({ params }).search({ query }).catch(() => []);
+  static async geoSearch (query: string, options: { email: string, lang: string }) {
+    const results = await new OpenStreetMapProvider({
+      params: {
+        "email": options.email,
+        "accept-language": options.lang,
+        "addressdetails": 1
+      }
+    }).search({ query }).catch(() => []) as SearchResult<RawResult & { address?: NominatimAddress }>[];
+    return results;
   }
 }
 
