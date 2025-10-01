@@ -49,7 +49,8 @@ export default defineNuxtConfig({
     "nuxt-auth-utils",
     "nuxt-webhook-validators",
     "@nuxthub/core",
-    "nuxt-mailchannels"
+    "nuxt-mailchannels",
+    "@nuxtjs/mdc"
   ],
   hub: { database: true, blob: true, cache: true, workers: true },
   icon: {
@@ -80,6 +81,11 @@ export default defineNuxtConfig({
     from: {
       email: `support@${SITE.domain}`,
       name: `${SITE.name} Support`
+    }
+  },
+  mdc: {
+    components: {
+      prose: true
     }
   },
   runtimeConfig: {

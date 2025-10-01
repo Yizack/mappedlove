@@ -4,7 +4,7 @@ import es from "~~/locales/es";
 const strings = { en, es };
 
 type Locale = keyof typeof strings;
-type LocaleKeys = keyof typeof strings.en;
+export type LocaleKeys = keyof typeof strings.en;
 
 class Localization {
   constructor (private code: Locale = "en") {}
