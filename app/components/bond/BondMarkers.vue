@@ -34,6 +34,31 @@ const form = useFormState({
 });
 
 const markers = ref(props.markers);
+const groupBy = ref<"none" | "country" | "group">("none");
+
+const groupedMarkers = computed(() => {
+  if (groupBy.value === "none") return null;
+
+  const grouped = new Map<string, { key: string, markers: MappedLoveMarker[] }>();
+
+  markers.value.forEach((marker) => {
+    const key = groupBy.value === "country" ? (marker.country || "unknown") : String(marker.group);
+
+    if (!grouped.has(key)) {
+      grouped.set(key, { key, markers: [] });
+    }
+    grouped.get(key)!.markers.push(marker);
+  });
+
+  return Array.from(grouped.values()).sort((a, b) => {
+    if (groupBy.value === "country") {
+      if (a.key === "unknown") return 1;
+      if (b.key === "unknown") return -1;
+      return $countries.getName(a.key).localeCompare($countries.getName(b.key));
+    }
+    return Number.parseInt(a.key, 10) - Number.parseInt(b.key, 10);
+  });
+});
 
 const rearrange = () => {
   $fetch("/api/markers/rearrange", {
@@ -156,7 +181,80 @@ onMounted(() => {
     </button>
     <Icon v-if="markers.length" name="solar:question-circle-linear" class="text-primary outline-none flex-shrink-0" size="1.3rem" data-bs-toggle="popover" :data-bs-content="t('markers_map_edit_info')" :style="{ cursor: 'help' }" />
   </div>
-  <VueDraggable v-if="markers.length" v-model="markers" class="markers row g-2" v-bind="dragOptions" :disabled="!edit" @update="rearrange">
+  <div v-if="markers.length" class="mb-3">
+    <div class="dropdown">
+      <div class="d-flex align-items-center gap-2 px-3 py-2 border rounded-3" data-bs-toggle="dropdown" aria-expanded="false" :style="{ width: 'fit-content', cursor: 'default' }">
+        <Icon name="solar:hamburger-menu-bold" size="1.3rem" class="text-primary" />
+        <div class="d-flex gap-2">
+          <span>{{ t("group_by") }}</span>
+          <Transition name="tab" mode="out-in">
+            <div v-if="groupBy !== 'none'" :key="groupBy" class="small px-2 rounded-pill border border-primary text-primary">
+              {{ t(groupBy) }}
+            </div>
+          </Transition>
+        </div>
+        <Icon name="tabler:chevron-down" size="1.2rem" class="text-primary" />
+      </div>
+      <ul class="dropdown-menu">
+        <li class="dropdown-item" :class="{ active: groupBy === 'none' }" @click="groupBy = 'none'">
+          {{ t("none") }}
+        </li>
+        <li class="dropdown-item" :class="{ active: groupBy === 'group' }" @click="groupBy = 'group'">
+          {{ t("group") }}
+        </li>
+        <li class="dropdown-item" :class="{ active: groupBy === 'country' }" @click="groupBy = 'country'">
+          {{ t("country") }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div v-if="groupedMarkers" class="accordion accordion-flush">
+    <div v-for="group in groupedMarkers" :key="group.key" class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button rounded-3 d-flex align-items-center gap-2 collapsed" type="button" data-bs-toggle="collapse" :data-bs-target="`#accordion-${group.key}`" aria-expanded="false" :aria-controls="`accordion-${group.key}`">
+          <template v-if="groupBy === 'country'">
+            <Twemoji :emoji="group.key === 'unknown' ? '🏴' : $countries.getEmoji(group.key)" size="1.5rem" png />
+            <span class="fw-bold">{{ group.key === 'unknown' ? t('unknown') : $countries.getName(group.key) }}</span>
+          </template>
+          <template v-else>
+            <Icon :name="groups[Number(group.key)]!.icon" class="text-primary" size="1.5rem" mode="css" />
+            <span class="fw-bold">{{ t(groups[Number(group.key)]!.key) }}</span>
+          </template>
+          <span class="badge bg-primary rounded-pill">{{ group.markers.length }}</span>
+        </button>
+      </h2>
+      <div :id="`accordion-${group.key}`" class="accordion-collapse collapse">
+        <div class="markers row g-2 py-2">
+          <div v-for="marker of group.markers" :key="marker.id" class="col-12 col-md-4 col-xl-6 d-flex gap-2">
+            <div class="marker border rounded-3 py-2 px-3 w-100 position-relative" :class="{ active: selected === marker.id }" :style="{ cursor: 'pointer' }" @click="selectMarker(marker.id)">
+              <div class="w-100 h-100 text-break">
+                <h5 class="mb-1">
+                  <Icon v-if="groupBy !== 'group'" :name="groups[marker.group]!.icon" class="text-primary me-1" size="1.5rem" :title="t(groups[marker.group]!.key)" :style="{ verticalAlign: 'middle' }" mode="css" />
+                  <Twemoji v-if="groupBy !== 'country' && marker.country" :emoji="$countries.getEmoji(marker.country)" class="me-1" size="1.1em" :title="$countries.getName(marker.country)" png />
+                  <span>{{ marker.title }}</span>
+                </h5>
+                <p class="m-0">{{ marker.description }}</p>
+              </div>
+              <Icon class="position-absolute end-0 top-0 text-primary mt-2" name="tabler:dots-vertical" size="1.3rem" role="button" data-bs-toggle="dropdown" aria-expanded="false" @click.stop />
+              <div class="dropdown">
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li class="dropdown-item d-flex gap-1 align-items-center" @click.stop="openMarker(marker)">
+                    <Icon name="solar:pen-linear" />
+                    <span>{{ t("edit") }}</span>
+                  </li>
+                  <li class="dropdown-item d-flex gap-1 align-items-center" @click.stop="deleteMarker(marker.id)">
+                    <Icon name="solar:trash-bin-trash-linear" />
+                    <span>{{ t("delete") }}</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <VueDraggable v-else-if="markers.length" v-model="markers" class="markers row g-2" v-bind="dragOptions" :disabled="!edit" @update="rearrange">
     <div v-for="marker of markers" :key="marker.id" class="col-12 col-md-4 col-xl-6 d-flex gap-2">
       <div class="marker border rounded-3 py-2 px-3 w-100 position-relative" :class="{ active: selected === marker.id }" :style="{ cursor: edit ? 'grab' : 'default' }" @click="selectMarker(marker.id)">
         <div class="w-100 h-100 text-break">
@@ -170,11 +268,11 @@ onMounted(() => {
         <Icon class="position-absolute end-0 top-0 text-primary mt-2" name="tabler:dots-vertical" size="1.3rem" role="button" data-bs-toggle="dropdown" aria-expanded="false" @click.stop />
         <div class="dropdown">
           <ul class="dropdown-menu dropdown-menu-end">
-            <li class="dropdown-item d-flex gap-1 align-items-center" role="button" @click.stop="openMarker(marker)">
+            <li class="dropdown-item d-flex gap-1 align-items-center" @click.stop="openMarker(marker)">
               <Icon name="solar:pen-linear" />
               <span>{{ t("edit") }}</span>
             </li>
-            <li class="dropdown-item d-flex gap-1 align-items-center" role="button" @click.stop="deleteMarker(marker.id)">
+            <li class="dropdown-item d-flex gap-1 align-items-center" @click.stop="deleteMarker(marker.id)">
               <Icon name="solar:trash-bin-trash-linear" />
               <span>{{ t("delete") }}</span>
             </li>
@@ -202,7 +300,7 @@ onMounted(() => {
       </div>
       <div class="input-group mb-2">
         <span class="input-group-text bg-body">
-          <Twemoji :emoji="$countries.getEmoji(form.country) || '1f3f3'" size="2rem" png />
+          <Twemoji :emoji="$countries.getEmoji(form.country) || '🏴'" size="2rem" png />
         </span>
         <div class="form-floating">
           <input :value="$countries.getName(form.country)" type="text" class="form-control" :placeholder="t('country')" disabled>

@@ -187,6 +187,9 @@ export default {
   content_count: "Cantidad de contenido",
   open_map: "Abrir mapa",
   copy_link: "Copiar enlace",
+  group_by: "Agrupar por",
+  none: "Ninguno",
+  unknown: "Desconocido",
   // Dates
   day: "Día",
   days: "Días",
