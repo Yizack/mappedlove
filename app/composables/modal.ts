@@ -2,10 +2,10 @@ export const useModal = (id: string) => {
   const { $bootstrap } = useNuxtApp();
   return ref({
     isVisible: false,
-    show: async function (callback?: VoidFunction) {
+    show: async function (options?: { focus: boolean }, callback?: VoidFunction) {
       if (!this.isVisible) this.isVisible = true;
       nextTick(() => {
-        const element = $bootstrap.showModal(id);
+        const element = $bootstrap.showModal(id, options);
         if (!element) return;
         if (this.isVisible) {
           if (typeof callback === "function") callback();

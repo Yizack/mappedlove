@@ -57,7 +57,7 @@ const bondModal = useModal("bond-info");
 const openStory = (story: MappedLoveStory) => {
   currentStory.value = story;
   if (isMobile.value) expandCanvas.value = false;
-  storyModal.value.show(() => {
+  storyModal.value.show({ focus: false }, () => {
     document.querySelector(".modal-backdrop")?.classList.add("modal-map-backdrop");
   });
 };

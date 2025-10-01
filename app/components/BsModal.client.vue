@@ -2,8 +2,6 @@
 defineProps<{
   modelValue: {
     isVisible: boolean;
-    show: (callback?: VoidFunction) => Promise<void>;
-    hide: VoidFunction;
   };
   id: string;
   title?: string;
