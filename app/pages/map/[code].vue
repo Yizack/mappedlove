@@ -151,6 +151,11 @@ useSeo({
               <Icon :name="groups[marker.group]!.icon" class="text-primary" size="1.5rem" />
               <span>{{ t(groups[marker.group]!.key) }}</span>
             </div>
+            <div v-if="marker.country" class="d-flex gap-1 mb-2">
+              <strong>{{ t("country") }}:</strong>
+              <Twemoji :emoji="$countries.getEmoji(marker.country)" size="1.5rem" png />
+              <span>{{ $countries.getName(marker.country) }}</span>
+            </div>
             <div class="d-flex gap-1">
               <button v-if="filter.year" class="btn btn-sm btn-danger rounded-3">
                 <Icon name="tabler:x" size="1.3rem" @click="clearFilter" />
