@@ -11,7 +11,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveMarker> => {
     group: z.number(),
     title: z.string(),
     description: z.string(),
-    country: z.string().optional().transform(c => c?.toUpperCase()),
+    country: z.string().nullable().optional().transform(c => c?.toUpperCase()),
     order: z.number()
   }).safeParse);
 

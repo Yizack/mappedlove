@@ -8,7 +8,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveMarker> => {
     group: z.number(),
     title: z.string(),
     description: z.string(),
-    country: z.string().optional().transform(c => c?.toUpperCase())
+    country: z.string().nullable().optional().transform(c => c?.toUpperCase())
   }).safeParse);
 
   if (!validation.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_marker_data" });
