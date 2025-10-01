@@ -37,11 +37,12 @@ watchDebounced(text, async (value) => {
       email: user.value!.email,
       lang: "en"
     });
-    loading.value = false;
   }
   catch {
     emit("select", { lat: null, lng: null, label: "" });
     array.value = [];
+  }
+  finally {
     loading.value = false;
   }
 }, { debounce: 2000 });
