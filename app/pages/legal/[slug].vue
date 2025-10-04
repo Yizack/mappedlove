@@ -47,7 +47,7 @@ if (slug === "cookies") {
 
 <template>
   <main>
-    <div v-if="ast" class="col-lg-8 col-xl-9 mx-auto bg-body rounded-3 px-3 py-4 p-lg-4 mb-2">
+    <div v-if="ast" class="col-lg-8 col-xl-9 mx-auto bg-body rounded-3 p-4 p-lg-5 mb-2">
       <MDCRenderer :body="ast.body" :data="ast.data" />
     </div>
   </main>
