@@ -1,5 +1,3 @@
-import accountVerify from "~~/emails/accountVerify.vue";
-
 export default defineOAuthGoogleEventHandler({
   config: {
     scope: ["email", "profile"]
@@ -20,7 +18,7 @@ export default defineOAuthGoogleEventHandler({
 
     const token = await generateToken(event, [user.id, user.updatedAt]);
 
-    const { html, text } = await renderEmail(accountVerify, {
+    const { html, text } = await renderEmail("AccountVerify", {
       lang: "en",
       verifyLink: `${SITE.host}/verify/${toBase64URL(email)}/${token}`
     });

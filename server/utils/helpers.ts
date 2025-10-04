@@ -1,11 +1,7 @@
 import { subtle } from "node:crypto";
 import { Buffer } from "node:buffer";
 import { digest } from "ohash";
-import { type ExtractComponentProps, render } from "@vue-email/render";
-// @ts-expect-error no types from html-to-text
-import { convert } from "html-to-text";
 import type { H3Event } from "h3";
-import type { Component } from "vue";
 
 export { z } from "zod";
 
@@ -66,14 +62,4 @@ export const generateToken = async (event: H3Event, fields: (unknown)[]) => {
   const signature = await subtle.importKey("raw", encoder.encode(config.secure.secret), HMAC_SHA256, false, ["sign"]);
   const hmac = await subtle.sign(HMAC_SHA256.name, signature, encoder.encode(fields.join()));
   return toBase64URL(hmac);
-};
-
-export const renderEmail = async <T extends Component>(component: T, props?: ExtractComponentProps<T>) => {
-  const html = await render(component, props);
-  const text = convert(html, {
-    selectors: [
-      { selector: "img", format: "skip" }
-    ]
-  });
-  return { html, text };
 };

@@ -1,5 +1,3 @@
-import accountVerify from "~~/emails/accountVerify.vue";
-
 export default defineEventHandler(async (event) => {
   const validation = await readValidatedBody(event, z.object({
     email: z.email().transform(v => v.toLowerCase().trim())
@@ -21,7 +19,7 @@ export default defineEventHandler(async (event) => {
 
   const token = await generateToken(event, [user.id, user.updatedAt]);
 
-  const { html, text } = await renderEmail(accountVerify, {
+  const { html, text } = await renderEmail("AccountVerify", {
     lang: "en",
     verifyLink: `${SITE.host}/verify/${toBase64URL(user.email)}/${token}`
   });

@@ -1,4 +1,3 @@
-import vue from "@vitejs/plugin-vue";
 import { SITE } from "../shared/utils/site";
 
 export default defineNuxtConfig({
@@ -50,7 +49,8 @@ export default defineNuxtConfig({
     "nuxt-webhook-validators",
     "@nuxthub/core",
     "nuxt-mailchannels",
-    "@nuxtjs/mdc"
+    "@nuxtjs/mdc",
+    "nuxt-email-renderer"
   ],
   hub: { database: true, blob: true, cache: true, workers: true },
   icon: {
@@ -141,9 +141,6 @@ export default defineNuxtConfig({
           exclude: ["/docs/*", "/images/*", "/fonts/*"]
         }
       }
-    },
-    rollupConfig: {
-      plugins: [vue()]
     },
     experimental: {
       tasks: true,

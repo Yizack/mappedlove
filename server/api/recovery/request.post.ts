@@ -1,5 +1,3 @@
-import accountRecovery from "~~/emails/accountRecovery.vue";
-
 export default defineEventHandler(async (event) => {
   const validation = await readValidatedBody(event, z.object({
     email: z.email().transform(v => v.toLowerCase().trim())
@@ -18,7 +16,7 @@ export default defineEventHandler(async (event) => {
 
   const token = await generateToken(event, [user.id, user.updatedAt]);
 
-  const { html, text } = await renderEmail(accountRecovery, {
+  const { html, text } = await renderEmail("AccountRecovery", {
     lang: "en",
     recoveryLink: `${SITE.host}/recovery/${toBase64URL(user.email)}/${token}`
   });

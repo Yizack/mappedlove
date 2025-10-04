@@ -1,5 +1,3 @@
-import accountData from "~~/emails/accountData.vue";
-
 export default defineEventHandler(async (event) => {
   const body = await readValidatedBody(event, z.object({
     email: z.email().transform(v => v.toLowerCase().trim()),
@@ -25,7 +23,7 @@ export default defineEventHandler(async (event) => {
 
   const token = await generateToken(event, [user.id, user.updatedAt]);
 
-  const { html, text } = await renderEmail(accountData, {
+  const { html, text } = await renderEmail("AccountData", {
     lang: "en",
     requestLink: `${SITE.host}/account-data/${toBase64URL(body.email)}/${token}?request=${body.request}`,
     request: body.request

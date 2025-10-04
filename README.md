@@ -35,7 +35,7 @@ Connect your accounts by inviting your partner to join your bond, and start mapp
 - Location searching from [leaflet-geosearch](https://github.com/smeijer/leaflet-geosearch).
 - [Paddle](https://www.paddle.com/), our payment processor, allows us to offer our premium plan seamlessly.
 - Mailing handled by [MailChannels](https://www.mailchannels.com/).
-- Rendering email templates with [vue-email](https://vuemail.net/).
+- Rendering email templates with [nuxt-email-renderer](https://nuxtemail.com/).
 - Image cropping and resizing by [Cloudflare Images](https://developers.cloudflare.com/images/) for story map thumbnails.
 - Styling with [Bootstrap](https://getbootstrap.com/).
 - Support page generated with [VitePress](https://vitepress.dev/).
