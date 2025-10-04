@@ -212,8 +212,8 @@ watch(coupleDate, async (val: number | null) => {
           <p v-if="isPublic" class="m-0">{{ t("share_bond_info") }}</p>
           <p v-else class="m-0">{{ t("share_bond_info_preview") }}</p>
           <CopyText :text="publicURL">
-            <NuxtLink :to="publicURL" external target="_blank" class="btn btn-secondary px-4" :title="t('open_map')">
-              <Icon name="solar:square-top-down-linear" size="1.5rem" />
+            <NuxtLink :to="publicURL" external target="_blank" class="btn btn-secondary px-3 px-lg-4" :title="t('open_map')">
+              <Icon name="solar:square-top-down-linear" size="1.3rem" />
             </NuxtLink>
           </CopyText>
         </div>
