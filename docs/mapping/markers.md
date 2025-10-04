@@ -15,8 +15,8 @@ Markers are used to indicate a specific location on the map.
 
 ## Editing markers
 
-1. Press the `Edit` button located in the upper right corner of the **Markers** section.
-2. Each marker will display options to edit or delete. To modify a marker, click on the pencil icon associated with it.
+1. Press the vertical elipsis (`⋮`) located in the upper right corner of each marker card.
+2. A dropdown will display options to edit or delete. To modify a marker, click on the `Edit` option.
 3. A dialog box will appear, showcasing the details of the marker.
 4. The location field displays the current latitude and longitude. Press the `X` button to clear the existing coordinates, then search for and select a new location.
 5. To apply your changes, click the **Edit marker** button.
@@ -29,9 +29,10 @@ Markers are used to indicate a specific location on the map.
 
 ## Deleting markers
 
-1. Reorganize the markers by clicking the `Edit` button located in the top right corner of the **Markers** section.
-2. Adjust the sequence by dragging and dropping each marker to your preferred location.
-3. Your rearrangements will be saved automatically.
+1. Press the vertical elipsis (`⋮`) located in the upper right corner of each marker card.
+2. A dropdown will display options to edit or delete. To modify a marker, click on the `Delete` option.
+3. An alert dialog will appear asking if you are sure you want to delete the marker.
+4. Click on `OK` to confirm the deletion of the marker.
 
 ---
 
