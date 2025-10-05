@@ -26,13 +26,7 @@ export const renderEmail = async <T extends keyof EmailTemplates>(
   templateName: T,
   props?: ExtractComponentProps<EmailTemplates[T]>
 ) => {
-  const html = await $fetch("/api/emails/render", {
-    method: "POST",
-    body: {
-      name: templateName,
-      props
-    }
-  });
+  const html = await renderEmailComponent(templateName, props);
 
   const text = convert(html, {
     selectors: [
