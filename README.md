@@ -18,7 +18,7 @@ Upload images to your stories and share them with your friends and family by ena
 
 Whether it's a memorable vacation, a lovely dinner, a special event, or simply everyday adventures, our app helps you turn these moments into unforgettable experiences.
 
-![Share Your Memories](/public/images/demos/public-map.jpg)
+![Share Your Memories](/public/images/demos/public-map-marker.jpg)
 
 ## Create your Bond
 
