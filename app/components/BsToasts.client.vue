@@ -18,7 +18,7 @@ watch(toasts, () => {
 </script>
 
 <template>
-  <div class="toast-container position-fixed bottom-0 start-0 p-3">
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
     <div v-for="toast of toasts" :key="toast.id" ref="refToasts" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
       <div class="toast-header">
         <strong class="me-auto d-flex gap-1 align-items-center">
