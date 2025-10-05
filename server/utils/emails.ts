@@ -26,9 +26,9 @@ export const renderEmail = async <T extends keyof EmailTemplates>(
   templateName: T,
   props?: ExtractComponentProps<EmailTemplates[T]>
 ) => {
-  const html = await renderEmailComponent(templateName, props);
+  const html: string = await renderEmailComponent(templateName, props);
 
-  const text = convert(html, {
+  const text: string = convert(html, {
     selectors: [
       { selector: "img", format: "skip" }
     ]
