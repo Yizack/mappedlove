@@ -73,7 +73,19 @@ useHead({
             </div>
           </div>
           <div class="col-lg-6 text-center">
-            <img src="/images/demos/public-map.jpg" class="img-fluid rounded shadow" width="720" height="405" :alt="t('strip2_title')">
+            <ImagesCarousel
+              id="map-carousel"
+              :items="[
+                '/images/demos/public-map-marker.jpg',
+                '/images/demos/public-map-view.jpg',
+                '/images/demos/public-map-info.jpg',
+                '/images/demos/public-map-story.jpg',
+              ]"
+              width="720"
+              height="405"
+              :alt="t('strip2_title')"
+              lazy
+            />
           </div>
         </div>
       </div>
