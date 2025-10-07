@@ -6,22 +6,17 @@ defineProps<{
 const scrolled = ref(false);
 const maxScroll = 50;
 
-declare global {
-  interface Window {
-    __navbarScrollListener?: boolean;
-  }
-}
-
 const handleScroll = () => {
   scrolled.value = (document.body.scrollTop > maxScroll || document.documentElement.scrollTop > maxScroll);
 };
 
 onMounted(() => {
-  if (!window.__navbarScrollListener) {
-    window.addEventListener("scroll", handleScroll);
-    window.__navbarScrollListener = true;
-    handleScroll();
-  }
+  addEventListener("scroll", handleScroll);
+  handleScroll();
+
+  onUnmounted(() => {
+    removeEventListener("scroll", handleScroll);
+  });
 });
 </script>
 
