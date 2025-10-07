@@ -3,9 +3,10 @@ definePageMeta({ layout: "utils" });
 
 const submit = ref({ loading: false, error: false });
 const requested = ref(false);
+const { query } = useRoute("account-data");
 
 const form = useFormState({
-  request: "download",
+  request: query.request || "download",
   email: "",
   turnstile: ""
 });
