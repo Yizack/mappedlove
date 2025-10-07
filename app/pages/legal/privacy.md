@@ -40,8 +40,9 @@ This summary provides key points from our privacy notice, but you can find out m
 9. [What Are Your Privacy Rights?](#what-are-your-privacy-rights)
 10. [Controls For Do-Not-Track Features](#controls-for-do-not-track-features)
 11. [Do United States Residents Have Specific Privacy Rights?](#do-united-states-residents-have-specific-privacy-rights)
-12. [Do We Make Updates To This Notice?](#do-we-make-updates-to-this-notice)
-
+12. [Do We Make Updates To This Notice?](#do-we-make-updates-to-this-notice).
+13. [How Can You Contact Us About This Notice?](#how-can-you-contact-us-about-this-notice)
+14. [How Can You Review, Update, or Delete the Data We Collect From You?](#how-can-you-review-update-or-delete-the-data-we-collect-from-you)
 
 ## 1. WHAT INFORMATION DO WE COLLECT?
 
@@ -379,7 +380,7 @@ You can request to delete your account and associated data for this Service usin
 When you delete your account, all your data is deleted from the server. This includes your name, email address, passwords, birth date, avatar, and any additional data related to your account. We do not keep any data from you.
 
 ##### Data Review
-You can request to review your account and associated data for this Service using the in-app account settings review option or by accessing the web-based review resource at https://mappedlove.com/account-data?request=review.
+You can request to review your account and associated data for this Service using the in-app account settings review option or by accessing the web-based review resource at https://mappedlove.com/account-data?request=download.
 
 ##### Data Update
 For updating your data, you should log in to your account and update your user account settings.
