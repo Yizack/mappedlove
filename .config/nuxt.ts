@@ -90,6 +90,9 @@ export default defineNuxtConfig({
         h2: "ProseH2",
         table: "ProseTable"
       }
+    },
+    remarkPlugins: {
+      "remark-emoji": false
     }
   },
   runtimeConfig: {
