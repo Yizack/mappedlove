@@ -85,7 +85,11 @@ export default defineNuxtConfig({
   },
   mdc: {
     components: {
-      prose: true
+      prose: false,
+      map: {
+        h2: "ProseH2",
+        table: "ProseTable"
+      }
     }
   },
   runtimeConfig: {
