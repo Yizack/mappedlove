@@ -350,7 +350,7 @@ If this definition of "consumer" applies to you, we must adhere to certain right
 - Right to obtain a copy of the personal data you previously shared with us
 - Right to opt out of the processing of your personal data if it is used for targeted advertising, the sale of personal data, or profiling in furtherance of decisions that produce legal or similarly significant effects ("profiling")
 
-<u>Verification process</u> 
+<u>Verification process</u>
 
 We may request that you provide additional information reasonably necessary to verify you and your consumer's request. If you submit the request through an authorized agent, we may need to collect additional information to verify your identity before processing your request.
 
