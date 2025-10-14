@@ -30,8 +30,8 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0(magicast@0.3.5)(vite@7.1.9(@types/node@24.7.2)(jiti@2.6.1)(sass@1.93.2)(terser@5.44.0)(yaml@2.8.1))(vue@3.5.22(typescript@5.9.3))
       '@nuxt/test-utils':
-        specifier: npm:@nuxt/test-utils-nightly@3.19.3-20250916-214026-1028863
-        version: '@nuxt/test-utils-nightly@3.19.3-20250916-214026-1028863(happy-dom@20.0.0)(magicast@0.3.5)(typescript@5.9.3)(vitest@3.2.4(@types/debug@4.1.12)(@types/node@24.7.2)(happy-dom@20.0.0)(jiti@2.6.1)(sass@1.93.2)(terser@5.44.0)(yaml@2.8.1))'
+        specifier: npm:@nuxt/test-utils-nightly@3.19.3-20251013-171356-d45f556
+        version: '@nuxt/test-utils-nightly@3.19.3-20251013-171356-d45f556(happy-dom@20.0.0)(magicast@0.3.5)(typescript@5.9.3)(vitest@3.2.4(@types/debug@4.1.12)(@types/node@24.7.2)(happy-dom@20.0.0)(jiti@2.6.1)(sass@1.93.2)(terser@5.44.0)(yaml@2.8.1))'
       '@nuxthub/core':
         specifier: ^0.9.0
         version: 0.9.0(db0@0.3.4(drizzle-orm@0.44.6(@cloudflare/workers-types@4.20251011.0)))(ioredis@5.8.1)(magicast@0.3.5)(vite@7.1.9(@types/node@24.7.2)(jiti@2.6.1)(sass@1.93.2)(terser@5.44.0)(yaml@2.8.1))
@@ -45,8 +45,8 @@ importers:
         specifier: ^7.4.7
         version: 7.4.7(h3@1.15.4)(magicast@0.3.5)(vite@7.1.9(@types/node@24.7.2)(jiti@2.6.1)(sass@1.93.2)(terser@5.44.0)(yaml@2.8.1))(vue@3.5.22(typescript@5.9.3))
       '@nuxtjs/turnstile':
-        specifier: ^1.1.0
-        version: 1.1.0(@nuxt/scripts@0.11.13(@unhead/vue@2.0.19(vue@3.5.22(typescript@5.9.3)))(db0@0.3.4(drizzle-orm@0.44.6(@cloudflare/workers-types@4.20251011.0)))(ioredis@5.8.1)(magicast@0.3.5)(typescript@5.9.3)(vue@3.5.22(typescript@5.9.3)))(magicast@0.3.5)
+        specifier: ^1.1.1
+        version: 1.1.1(@nuxt/scripts@0.11.13(@unhead/vue@2.0.19(vue@3.5.22(typescript@5.9.3)))(db0@0.3.4(drizzle-orm@0.44.6(@cloudflare/workers-types@4.20251011.0)))(ioredis@5.8.1)(magicast@0.3.5)(typescript@5.9.3)(vue@3.5.22(typescript@5.9.3)))(magicast@0.3.5)
       '@paddle/paddle-js':
         specifier: ^1.4.2
         version: 1.4.2
@@ -93,8 +93,8 @@ importers:
         specifier: ^0.5.25
         version: 0.5.25(magicast@0.3.5)
       nuxt-email-renderer:
-        specifier: ^2.0.1
-        version: 2.0.1(magicast@0.3.5)(vite@7.1.9(@types/node@24.7.2)(jiti@2.6.1)(sass@1.93.2)(terser@5.44.0)(yaml@2.8.1))(vue@3.5.22(typescript@5.9.3))
+        specifier: ^2.0.3
+        version: 2.0.3(magicast@0.3.5)(vite@7.1.9(@types/node@24.7.2)(jiti@2.6.1)(sass@1.93.2)(terser@5.44.0)(yaml@2.8.1))(vue@3.5.22(typescript@5.9.3))
       nuxt-mailchannels:
         specifier: ^0.3.6
         version: 0.3.6(magicast@0.3.5)
@@ -1235,8 +1235,8 @@ packages:
     engines: {node: '>=18.12.0'}
     hasBin: true
 
-  '@nuxt/test-utils-nightly@3.19.3-20250916-214026-1028863':
-    resolution: {integrity: sha512-IcDGqy9du3OAmWMfhcumFFn0Y8od5WxhSCR9eTHZZQpIBYwHCXizWWOGZ8ou4ZpjVypNLVnQyC3/r7sc/NHReA==}
+  '@nuxt/test-utils-nightly@3.19.3-20251013-171356-d45f556':
+    resolution: {integrity: sha512-g5k1WJBlYyR59H8QT2OUd5jeTx1jsAdQib/SJ8uMGCn7fG0kH6RR1IHZhIeriD3q5FHqK+h/nARDxtUCHxfGxA==}
     engines: {node: ^20.0.0 || ^22.0.0 || >=24.0.0}
     peerDependencies:
       '@cucumber/cucumber': ^10.3.1 || ^11.0.0 || ^12.0.0
@@ -1245,8 +1245,8 @@ packages:
       '@testing-library/vue': ^7.0.0 || ^8.0.1
       '@vitest/ui': '*'
       '@vue/test-utils': ^2.4.2
-      happy-dom: ^9.10.9 || ^10.0.0 || ^11.0.0 || ^12.0.0 || ^13.0.0 || ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
-      jsdom: ^22.0.0 || ^23.0.0 || ^24.0.0 || ^25.0.0 || ^26.0.0
+      happy-dom: ^9.10.9 || ^10.0.0 || ^11.0.0 || ^12.0.0 || ^13.0.0 || ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      jsdom: ^22.0.0 || ^23.0.0 || ^24.0.0 || ^25.0.0 || ^26.0.0 || ^27.0.0
       playwright-core: ^1.43.1
       vitest: ^3.2.0
     peerDependenciesMeta:
@@ -1330,10 +1330,10 @@ packages:
     resolution: {integrity: sha512-DUhX92lnCJD6tpghUmfmRIsSIoiXMS2SQ2Yd9Tg1+SnZskiKX+DGwLeAeHX8r0/9Pl/bTDpmYhs1snWcCoIkXA==}
     engines: {node: '>=18.0.0'}
 
-  '@nuxtjs/turnstile@1.1.0':
-    resolution: {integrity: sha512-7GAFpeibd3ma7BpZ9BsTvB0mR1qaC+5RBhLI+EyTex1j3eeZoGEB37JFMpFwS1hCdXTrvAFJqjqs+e3SSPJvxQ==}
+  '@nuxtjs/turnstile@1.1.1':
+    resolution: {integrity: sha512-EiS0JgzzSRhTYXhZSmqT7643f6eKOHeB7jouejepsPkcomSdQ/sf7Fkh9AEU8fhDYAfYc+spuK524LQ4u2CLng==}
     peerDependencies:
-      '@nuxt/scripts': ^0.11.0
+      '@nuxt/scripts': ^0.11.0 || ^0.12.0
 
   '@one-ini/wasm@0.1.1':
     resolution: {integrity: sha512-XuySG1E38YScSJoMlqovLru4KTUNSjgVTIjyh7qMX6aNN5HY5Ct5LhRJdxO79JtTzKfzV/bnWpz+zquYrISsvw==}
@@ -4622,8 +4622,8 @@ packages:
       '@simplewebauthn/server':
         optional: true
 
-  nuxt-email-renderer@2.0.1:
-    resolution: {integrity: sha512-AnFtrXaA84Fw6PKzRwr5c/A6SjdpB/mE+FpwWcBOA3x1H/iJ6mr9rMOwLHk3dhsI2eFDMczBv/25A7INfCOUjA==}
+  nuxt-email-renderer@2.0.3:
+    resolution: {integrity: sha512-ILKpmIvQYl5GNGY3NMlK60sm83NWG/0oCr3KpNpNtfdkN+zwLdh3g96z/1o6Bvfn40TJJ56JnTjUIM7qGGjNtQ==}
 
   nuxt-mailchannels@0.3.6:
     resolution: {integrity: sha512-x0pPNWTrjCcKraIzmqBtnRdFCbHGdub383zBHdnsb3oT33DZmvliUaskCDo0evISEysbVQ1qgkkoPH3FhBi0/g==}
@@ -7470,7 +7470,7 @@ snapshots:
     transitivePeerDependencies:
       - magicast
 
-  '@nuxt/test-utils-nightly@3.19.3-20250916-214026-1028863(happy-dom@20.0.0)(magicast@0.3.5)(typescript@5.9.3)(vitest@3.2.4(@types/debug@4.1.12)(@types/node@24.7.2)(happy-dom@20.0.0)(jiti@2.6.1)(sass@1.93.2)(terser@5.44.0)(yaml@2.8.1))':
+  '@nuxt/test-utils-nightly@3.19.3-20251013-171356-d45f556(happy-dom@20.0.0)(magicast@0.3.5)(typescript@5.9.3)(vitest@3.2.4(@types/debug@4.1.12)(@types/node@24.7.2)(happy-dom@20.0.0)(jiti@2.6.1)(sass@1.93.2)(terser@5.44.0)(yaml@2.8.1))':
     dependencies:
       '@nuxt/kit': 4.1.3(magicast@0.3.5)
       c12: 3.3.0(magicast@0.3.5)
@@ -7719,7 +7719,7 @@ snapshots:
       - vite
       - vue
 
-  '@nuxtjs/turnstile@1.1.0(@nuxt/scripts@0.11.13(@unhead/vue@2.0.19(vue@3.5.22(typescript@5.9.3)))(db0@0.3.4(drizzle-orm@0.44.6(@cloudflare/workers-types@4.20251011.0)))(ioredis@5.8.1)(magicast@0.3.5)(typescript@5.9.3)(vue@3.5.22(typescript@5.9.3)))(magicast@0.3.5)':
+  '@nuxtjs/turnstile@1.1.1(@nuxt/scripts@0.11.13(@unhead/vue@2.0.19(vue@3.5.22(typescript@5.9.3)))(db0@0.3.4(drizzle-orm@0.44.6(@cloudflare/workers-types@4.20251011.0)))(ioredis@5.8.1)(magicast@0.3.5)(typescript@5.9.3)(vue@3.5.22(typescript@5.9.3)))(magicast@0.3.5)':
     dependencies:
       '@nuxt/kit': 3.19.3(magicast@0.3.5)
       '@nuxt/scripts': 0.11.13(@unhead/vue@2.0.19(vue@3.5.22(typescript@5.9.3)))(db0@0.3.4(drizzle-orm@0.44.6(@cloudflare/workers-types@4.20251011.0)))(ioredis@5.8.1)(magicast@0.3.5)(typescript@5.9.3)(vue@3.5.22(typescript@5.9.3))
@@ -11175,7 +11175,7 @@ snapshots:
       - bcrypt
       - magicast
 
-  nuxt-email-renderer@2.0.1(magicast@0.3.5)(vite@7.1.9(@types/node@24.7.2)(jiti@2.6.1)(sass@1.93.2)(terser@5.44.0)(yaml@2.8.1))(vue@3.5.22(typescript@5.9.3)):
+  nuxt-email-renderer@2.0.3(magicast@0.3.5)(vite@7.1.9(@types/node@24.7.2)(jiti@2.6.1)(sass@1.93.2)(terser@5.44.0)(yaml@2.8.1))(vue@3.5.22(typescript@5.9.3)):
     dependencies:
       '@nuxt/devtools-kit': 2.6.5(magicast@0.3.5)(vite@7.1.9(@types/node@24.7.2)(jiti@2.6.1)(sass@1.93.2)(terser@5.44.0)(yaml@2.8.1))
       '@nuxt/kit': 4.1.3(magicast@0.3.5)
