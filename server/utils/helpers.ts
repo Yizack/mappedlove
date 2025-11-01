@@ -43,15 +43,8 @@ export const getPartners = async (event: H3Event, DB: ReturnType<typeof useDB>, 
   }));
 };
 
-export const toBase64URL = (data: ArrayBuffer | string) => {
-  if (typeof data === "string") {
-    return Buffer.from(data).toString("base64url");
-  }
-  return Buffer.from(data).toString("base64url");
-};
-
-export const fromBase64URL = (data: string) => {
-  return Buffer.from(data, "base64url").toString("utf-8");
+export const toBase64URL = (data: string | ArrayBuffer) => {
+  return Buffer.from(data as string | Uint8Array).toString("base64url");
 };
 
 const HMAC_SHA256 = { name: "HMAC", hash: "SHA-256" };

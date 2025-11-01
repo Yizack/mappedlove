@@ -103,8 +103,3 @@ export const updateProfile = (fields: Partial<User>) => {
   const nuxtApp = useNuxtApp();
   delete nuxtApp.payload.data.bond;
 };
-
-export const fromBase64URL = (base64url: string) => {
-  const base64 = base64url.replace(/-/g, "+").replace(/_/g, "/");
-  return atob(base64);
-};
