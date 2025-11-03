@@ -18,7 +18,7 @@
   "bugs": "https://github.com/Yizack/mappedlove/issues",
   "scripts": {
     "build": "npm run docs:build && nuxt build",
-    "dev": "nuxt dev --port=5173 --host",
+    "dev": "nuxt dev --port=5173 --public",
     "dev:test": "nuxt dev --port=3000 --dotenv=.env.test --envName=test",
     "generate": "nuxt generate",
     "preview": "wrangler d1 migrations apply DB --local && wrangler dev",
