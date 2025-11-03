@@ -1,3 +1,5 @@
+import { enUS, es } from "date-fns/locale";
+
 export const months = [
   "january",
   "february",
@@ -111,17 +113,21 @@ export const timeOptions: Record<string, Intl.DateTimeFormatOptions & { locale?:
   }
 };
 
+const datePickerLocaleMap = {
+  en: enUS,
+  es
+};
+
 export const datePickerOptions = computed(() => ({
   timestamp: {
-    locale: useUserSession().user.value?.language,
+    locale: datePickerLocaleMap[useUserSession().user.value?.language || "en"],
     modelType: "timestamp",
     format: "yyyy-MM-dd",
-    enableTimePicker: false,
+    timeConfig: {
+      enableTimePicker: false
+    },
     maxDate: new Date(),
-    dark: import.meta.client && useColorMode().preference === "dark",
-    timezone: {
-      exactMatch: true
-    }
+    dark: import.meta.client && useColorMode().preference === "dark"
   }
 } as const));
 
