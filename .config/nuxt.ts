@@ -185,6 +185,11 @@ export default defineNuxtConfig({
     }
   },
   typescript: {
+    tsConfig: {
+      include: [
+        "../emails/**/*"
+      ]
+    },
     nodeTsConfig: {
       include: [
         "../test/**/*",
