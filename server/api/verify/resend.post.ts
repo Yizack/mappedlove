@@ -12,10 +12,13 @@ export default defineEventHandler(async (event) => {
     id: tables.users.id,
     name: tables.users.name,
     email: tables.users.email,
+    confirmed: tables.users.confirmed,
     updatedAt: tables.users.updatedAt
   }).from(tables.users).where(eq(tables.users.email, body.email)).get();
 
   if (!user) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "user_not_found" });
+
+  if (user.confirmed) throw createError({ statusCode: ErrorCode.CONFLICT, message: "email_verified" });
 
   const token = await generateToken(event, [user.id, user.updatedAt]);
 
