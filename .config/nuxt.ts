@@ -3,6 +3,9 @@ import { SITE } from "../shared/utils/site";
 export default defineNuxtConfig({
   // future: { compatibilityVersion: 4 },
   devtools: { enabled: true },
+  sourcemap: {
+    client: "hidden"
+  },
   compatibilityDate: "2025-07-16",
   app: {
     head: {
