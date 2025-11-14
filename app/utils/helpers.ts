@@ -70,8 +70,8 @@ export const normalize = (text: string): string => {
   return text.normalize("NFD").replace(/[\u0300-\u036F]/g, "");
 };
 export const isDarkMode = () => {
-  const { $colorMode } = useNuxtApp();
-  return $colorMode.preference === "dark";
+  const colorMode = useColorMode();
+  return colorMode.preference === "dark";
 };
 
 export const getRandomNumber = ({ min, max }: { min: number, max: number }) => {

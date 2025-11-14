@@ -8,6 +8,7 @@ const { params } = useRoute("map-code");
 
 const { data: bond } = await useFetch(`/api/bond/public/${params.code}`);
 const { $bootstrap } = useNuxtApp();
+const colorMode = useColorMode();
 
 if (!bond.value) {
   throw createError({
@@ -160,7 +161,7 @@ useSeo({
               <button v-if="filter.year" class="btn btn-sm btn-danger rounded-3">
                 <Icon name="tabler:x" size="1.3rem" @click="clearFilter" />
               </button>
-              <VueDatePicker v-if="!isMobile || expandCanvas" v-model.number="filter.year" year-picker reverse-years :year-range="[currentYear - 100, currentYear]" :dark="$colorMode.preference === 'dark'">
+              <VueDatePicker v-if="!isMobile || expandCanvas" v-model.number="filter.year" year-picker reverse-years :year-range="[currentYear - 100, currentYear]" :dark="colorMode.preference === 'dark'">
                 <template #trigger>
                   <div class="px-2 py-1 border rounded-3 hover position-relative" role="button">
                     <div class="d-flex align-items-center justify-content-center gap-1">

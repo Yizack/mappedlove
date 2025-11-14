@@ -8,7 +8,7 @@ class Paddle {
   }
 
   async initialize (options: { onCompleted: (data?: CheckoutEventsData) => Promise<void>, onError?: VoidFunction }) {
-    const { $colorMode } = useNuxtApp();
+    const colorMode = useColorMode();
 
     this.paddle = await initializePaddle({
       environment: import.meta.dev ? "sandbox" : "production",
@@ -17,7 +17,7 @@ class Paddle {
         settings: {
           allowLogout: true,
           displayMode: "overlay",
-          theme: $colorMode.value as "light" | "dark",
+          theme: colorMode.preference as "light" | "dark",
           locale: "en",
           frameTarget: "checkout-container",
           frameInitialHeight: 450,

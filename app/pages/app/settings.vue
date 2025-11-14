@@ -4,9 +4,10 @@ import { VueDatePicker } from "@vuepic/vue-datepicker";
 definePageMeta({ layout: "app", middleware: "session" });
 
 const { user, clear } = useUserSession();
-const { $colorMode, $countries, $toasts } = useNuxtApp();
+const { $countries, $toasts } = useNuxtApp();
+const colorMode = useColorMode();
 
-const dark = ref($colorMode.preference === "dark");
+const dark = ref(colorMode.preference === "dark");
 const form = useFormState({
   name: user.value!.name,
   email: user.value!.email,
@@ -89,7 +90,7 @@ const showAvatar = async () => {
 };
 
 const changeColorMode = () => {
-  $colorMode.preference = dark.value ? "dark" : "light";
+  colorMode.preference = dark.value ? "dark" : "light";
 };
 
 const changePassword = async () => {
