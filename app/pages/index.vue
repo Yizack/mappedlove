@@ -114,7 +114,7 @@ useHead({
               </div>
               <div class="text-center">
                 <div class="d-flex gap-2 align-items-center border px-3 py-2 shadow-sm rounded-pill bg-body">
-                  <Icon name="solar:heart-lock-outline" size="30px" class="text-primary" />
+                  <Icon name="solar:heart-lock-linear" size="30px" class="text-primary" />
                   <strong class="small">{{ t("anniversary") }}</strong>
                 </div>
               </div>

@@ -235,7 +235,7 @@ useSeo({
           </div>
           <div>
             <div class="d-flex align-items-center gap-1">
-              <Icon name="solar:heart-lock-outline" size="1.4rem" class="text-primary" />
+              <Icon name="solar:heart-lock-linear" size="1.4rem" class="text-primary" />
               <h5 class="m-0">{{ t("anniversary") }}</h5>
             </div>
             <p class="m-0">{{ getUntilDate(bond.coupleDate) }}</p>

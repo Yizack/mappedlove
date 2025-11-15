@@ -184,13 +184,13 @@ watch(() => props.marker, () => {
         <label for="image" class="rounded bg-body-tertiary position-relative overflow-hidden w-100 border text-center">
           <div class="overlay position-absolute bg-body-secondary w-100 h-100">
             <div class="d-flex flex-column justify-content-center align-items-center h-100">
-              <Icon class="text-primary" name="solar:gallery-add-outline" size="2.5rem" />
+              <Icon class="text-primary" name="solar:gallery-add-linear" size="2.5rem" />
               <span>({{ t("max") }} {{ maxFileSize }})</span>
               <small>{{ supported }}</small>
             </div>
           </div>
           <div v-if="!fileChosen && !form.id" class="d-flex flex-column justify-content-center align-items-center py-3">
-            <Icon name="solar:gallery-add-outline" size="2.5rem" />
+            <Icon name="solar:gallery-add-linear" size="2.5rem" />
             <span>({{ t("max") }} {{ maxFileSize }})</span>
             <small>{{ supported }}</small>
           </div>

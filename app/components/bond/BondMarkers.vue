@@ -102,7 +102,7 @@ const deleteMarker = (id: number) => {
 
 const groupIcon = computed(() => {
   const groupFound = groups.find((group, i) => i === form.value.group);
-  return groupFound ? groupFound.icon : "solar:question-square-outline";
+  return groupFound ? groupFound.icon : "solar:question-square-linear";
 });
 
 const selectLocation = (location: { lat: number, lng: number, label: string, country: string | null }) => {

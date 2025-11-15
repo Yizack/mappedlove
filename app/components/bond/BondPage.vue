@@ -110,7 +110,7 @@ watch(coupleDate, async (val: number | null) => {
                   <template #trigger>
                     <div class="p-2 border rounded-3 hover" role="button">
                       <div class="d-flex align-items-center justify-content-center gap-1">
-                        <Icon name="solar:heart-lock-outline" size="1.4rem" class="text-primary" />
+                        <Icon name="solar:heart-lock-linear" size="1.4rem" class="text-primary" />
                         <strong>{{ t("add_anniversary") }}</strong>
                       </div>
                     </div>
@@ -119,7 +119,7 @@ watch(coupleDate, async (val: number | null) => {
                 <template #fallback>
                   <div class="p-2 border rounded-3 hover dp__main dp__theme_light" role="button">
                     <div class="d-flex align-items-center justify-content-center gap-1">
-                      <Icon name="solar:heart-lock-outline" size="1.4rem" class="text-primary" />
+                      <Icon name="solar:heart-lock-linear" size="1.4rem" class="text-primary" />
                       <strong>{{ t("add_anniversary") }}</strong>
                     </div>
                   </div>
@@ -140,7 +140,7 @@ watch(coupleDate, async (val: number | null) => {
                 </div>
                 <div>
                   <div class="d-flex align-items-center gap-1">
-                    <Icon name="solar:heart-lock-outline" size="1.4rem" class="text-primary" />
+                    <Icon name="solar:heart-lock-linear" size="1.4rem" class="text-primary" />
                     <h5 class="m-0">{{ t("anniversary") }}</h5>
                   </div>
                   <p class="m-0">{{ getUntilDate(coupleDate) }}</p>
@@ -154,7 +154,7 @@ watch(coupleDate, async (val: number | null) => {
                       <VueDatePicker v-model="coupleDate" v-bind="datePickerOptions.timestamp">
                         <template #trigger>
                           <button class="btn btn-sm border-0" :title="t('delete')">
-                            <Icon name="solar:pen-outline" size="1.5rem" />
+                            <Icon name="solar:pen-linear" size="1.5rem" />
                           </button>
                         </template>
                       </VueDatePicker>

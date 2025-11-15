@@ -224,7 +224,7 @@ useSeo({
               <label for="avatar" class="avatar border border-5" :class="{ 'scale-hover': user.showAvatar }" style="width: 175px; height: 175px;">
                 <div class="overlay position-absolute bg-dark w-100 h-100">
                   <div class="d-flex justify-content-center align-items-center h-100 text-light">
-                    <Icon name="solar:gallery-add-outline" size="2.5rem" />
+                    <Icon name="solar:gallery-add-linear" size="2.5rem" />
                   </div>
                 </div>
                 <img v-if="imageRead" :src="imageRead.toString()" width="175" height="175" :alt="form.name">
@@ -245,7 +245,7 @@ useSeo({
             <div class="form-floating mb-2">
               <input type="text" class="form-control" :value="user.email" :placeholder="t('email')" readonly>
               <label class="d-flex align-items-center gap-1">
-                <Icon name="solar:mailbox-outline" />
+                <Icon name="solar:mailbox-linear" />
                 <span>{{ t("email") }}</span>
               </label>
             </div>
@@ -369,7 +369,7 @@ useSeo({
           <div v-if="!dangerZone" class="bg-body rounded-3 px-3 py-4 p-lg-4 position-relative mb-2" role="button" @click="dangerZone = !dangerZone">
             <div class="position-relative">
               <h5 class="mb-0 text-center">{{ t("danger_zone") }}</h5>
-              <Icon name="solar:alt-arrow-right-outline" size="2rem" class="position-absolute end-0 translate-middle-y top-50" />
+              <Icon name="tabler:chevron-right" size="2rem" class="position-absolute end-0 translate-middle-y top-50" />
             </div>
           </div>
           <div v-else class="bg-body rounded-3 px-3 py-4 p-lg-4">
