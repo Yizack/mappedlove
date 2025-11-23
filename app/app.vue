@@ -16,17 +16,6 @@ moduleOptions.cookies.necessary = [{
   }
 }];
 
-const { $toasts } = useNuxtApp();
-
-onMounted(() => {
-  globalThis.$fetch = $fetch.create({
-    onResponseError: ({ response }) => {
-      const message = response.status === 500 ? t("error_any") : t(response._data.message);
-      $toasts.add({ message, success: false });
-    }
-  });
-});
-
 useSeo({
   title: SITE.name,
   name: SITE.name,

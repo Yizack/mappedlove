@@ -32,8 +32,8 @@ declare module "#app" {
 }
 
 export default defineNuxtPlugin({
+  name: "toasts",
   parallel: true,
-  dependsOn: ["bootstrap"],
   async setup () {
     const toasts = new Toasts();
     return {
