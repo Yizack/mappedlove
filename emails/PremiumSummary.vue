@@ -16,7 +16,7 @@ defineProps<{
       <meta name="x-apple-disable-message-reformatting">
       <EFont font-family="Arial" />
     </EHead>
-    <EBody style="margin:0;">
+    <EBody :style="{ margin: 0 }">
       <ESection style="width: 100%; border-collapse: collapse; border: 0; border-spacing: 0; background: #ffe1e1; color: #443c47; line-height: 24px; letter-spacing: 0.5px;">
         <ESection style="max-width: 602px; border-collapse: collapse; border: 0; border-spacing: 0; background-color: #f8f9fa;">
           <ERow style="padding: 1.2rem 0;">
