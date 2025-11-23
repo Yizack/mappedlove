@@ -2,7 +2,11 @@
 
 :root {
   scrollbar-width: auto;
-  scroll-behavior: unset;
+  scroll-behavior: smooth;
+}
+
+*[id] {
+  scroll-margin-top: 55px;
 }
 
 body {
