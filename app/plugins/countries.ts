@@ -21,6 +21,7 @@ declare module "#app" {
 }
 
 export default defineNuxtPlugin({
+  name: "countries",
   parallel: true,
   async setup () {
     const countries = new Countries();

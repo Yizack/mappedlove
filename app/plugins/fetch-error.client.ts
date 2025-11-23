@@ -1,4 +1,5 @@
 export default defineNuxtPlugin({
+  name: "fetch-error",
   parallel: true,
   dependsOn: ["toasts"],
   async setup () {

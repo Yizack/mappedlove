@@ -142,6 +142,7 @@ declare module "#app" {
 }
 
 export default defineNuxtPlugin({
+  name: "leaflet",
   parallel: true,
   async setup () {
     return {
