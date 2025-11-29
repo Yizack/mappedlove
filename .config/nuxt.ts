@@ -3,8 +3,27 @@ import { SITE } from "../shared/utils/site";
 
 export default defineNuxtConfig({
   // future: { compatibilityVersion: 4 },
+  modules: [
+    "@nuxt/eslint",
+    "@nuxt/icon",
+    "@nuxtjs/turnstile",
+    "nuxt-twemoji",
+    "@nuxtjs/color-mode",
+    "@nuxtjs/sitemap",
+    "@dargmuesli/nuxt-cookie-control",
+    "nuxt-auth-utils",
+    "nuxt-webhook-validators",
+    "@nuxthub/core",
+    "nuxt-mailchannels",
+    "@nuxtjs/mdc",
+    "nuxt-email-renderer"
+  ],
+  $env: {
+    test: {
+      hub: { dir: ".data/test" }
+    }
+  },
   devtools: { enabled: true },
-  compatibilityDate: "2025-07-16",
   app: {
     head: {
       charset: "utf-8",
@@ -38,52 +57,14 @@ export default defineNuxtConfig({
   css: [
     "~/assets/scss/app.scss"
   ],
-  modules: [
-    "@nuxt/eslint",
-    "@nuxt/icon",
-    "@nuxtjs/turnstile",
-    "nuxt-twemoji",
-    "@nuxtjs/color-mode",
-    "@nuxtjs/sitemap",
-    "@dargmuesli/nuxt-cookie-control",
-    "nuxt-auth-utils",
-    "nuxt-webhook-validators",
-    "@nuxthub/core",
-    "nuxt-mailchannels",
-    "@nuxtjs/mdc",
-    "nuxt-email-renderer"
-  ],
-  hub: { database: true, blob: true, cache: true, workers: true },
-  icon: {
-    mode: "svg",
-    provider: "none",
-    clientBundle: { icons }
-  },
-  eslint: {
-    config: {
-      autoInit: false,
-      stylistic: true
-    }
-  },
-  turnstile: {
-    siteKey: "0x4AAAAAAAGmhM7sxmb8brsQ",
-    addValidateEndpoint: false
+  site: {
+    url: SITE.host
   },
   colorMode: {
     preference: "light",
     fallback: "light",
     dataValue: "bs-theme",
     storageKey: "nuxt-color-mode"
-  },
-  cookieControl: {
-    isControlButtonEnabled: false,
-    locales: ["en", "es"]
-  },
-  mailchannels: {
-    from: {
-      email: `support@${SITE.domain}`,
-      name: `${SITE.name} Support`
-    }
   },
   mdc: {
     components: {
@@ -137,9 +118,16 @@ export default defineNuxtConfig({
       }
     }
   },
-  site: {
-    url: SITE.host
+  routeRules: {
+    "/api/_nuxt_icon/**": { cache: { maxAge: 1.577e+7 } }
   },
+  features: {
+    inlineStyles: false
+  },
+  experimental: {
+    typedPages: true
+  },
+  compatibilityDate: "2025-07-16",
   nitro: {
     prerender: {
       routes: ["/sitemap.xml"]
@@ -156,27 +144,7 @@ export default defineNuxtConfig({
       wasm: true
     }
   },
-  sitemap: {
-    exclude: ["/app/**"],
-    defaults: { priority: 0.8, lastmod: new Date().toISOString() },
-    urls: [
-      { loc: "/", priority: 1.0 }
-    ],
-    xslColumns: [
-      { label: "URL", width: "65%" },
-      { label: "Priority", select: "sitemap:priority", width: "12.5%" },
-      { label: "Last Modified", select: "sitemap:lastmod", width: "35%" }
-    ]
-  },
-  routeRules: {
-    "/api/_nuxt_icon/**": { cache: { maxAge: 1.577e+7 } }
-  },
-  features: {
-    inlineStyles: false
-  },
-  experimental: {
-    typedPages: true
-  },
+  hub: { database: true, blob: true, cache: true, workers: true },
   vite: {
     css: {
       preprocessorOptions: {
@@ -199,9 +167,41 @@ export default defineNuxtConfig({
       ]
     }
   },
-  $env: {
-    test: {
-      hub: { dir: ".data/test" }
+  cookieControl: {
+    isControlButtonEnabled: false,
+    locales: ["en", "es"]
+  },
+  eslint: {
+    config: {
+      autoInit: false,
+      stylistic: true
     }
+  },
+  icon: {
+    mode: "svg",
+    provider: "none",
+    clientBundle: { icons }
+  },
+  mailchannels: {
+    from: {
+      email: `support@${SITE.domain}`,
+      name: `${SITE.name} Support`
+    }
+  },
+  sitemap: {
+    exclude: ["/app/**"],
+    defaults: { priority: 0.8, lastmod: new Date().toISOString() },
+    urls: [
+      { loc: "/", priority: 1.0 }
+    ],
+    xslColumns: [
+      { label: "URL", width: "65%" },
+      { label: "Priority", select: "sitemap:priority", width: "12.5%" },
+      { label: "Last Modified", select: "sitemap:lastmod", width: "35%" }
+    ]
+  },
+  turnstile: {
+    siteKey: "0x4AAAAAAAGmhM7sxmb8brsQ",
+    addValidateEndpoint: false
   }
 });
