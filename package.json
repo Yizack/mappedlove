@@ -32,7 +32,7 @@
     "lint:eslint:inspect": "pnpx @eslint/config-inspector --config .config/eslint.mjs",
     "lint:stylelint": "stylelint \"**/*.{css,scss,sass}\" --config .config/stylelint.json",
     "docs:dev": "vitepress dev docs",
-    "docs:build": "(git fetch --unshallow || git fetch --all) && vitepress build docs",
+    "docs:build": "(git fetch --unshallow -q || git fetch --all -q) && vitepress build docs",
     "docs:serve": "vitepress serve docs",
     "test": "pnpx concurrently --raw --kill-others --success first \"pnpm dev:test\" \"pnpm test:wait && pnpm test:vitest\"",
     "test:wait": "pnpx wait-on http://localhost:3000 && pnpx wait-on http-get://localhost:3000/_nitro/tasks/seed",
