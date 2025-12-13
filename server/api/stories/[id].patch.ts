@@ -11,7 +11,6 @@ export default defineEventHandler(async (event): Promise<MappedLoveStory> => {
       types: ["image/jpeg", "image/png", "image/gif", "image/webp"]
     });
   }
-  const DB = useDB();
   const today = Date.now();
 
   const params = await getValidatedRouterParams(event, z.object({
@@ -25,7 +24,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveStory> => {
     form[name] = data.toString();
   }
 
-  const story = await DB.update(tables.stories).set({
+  const story = await db.update(tables.stories).set({
     description: form.description || null,
     year: Number(form.year),
     month: Number(form.month),

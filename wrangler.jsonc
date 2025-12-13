@@ -2,7 +2,7 @@
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "mappedlove",
   "compatibility_date": "2025-11-03",
-  "main": "dist/server/index.mjs",
+  "main": ".output/server/index.mjs",
   "compatibility_flags": ["nodejs_compat"],
   "routes": [
     {
@@ -12,14 +12,14 @@
   ],
   "assets": {
     "binding": "ASSETS",
-    "directory": "dist/public"
+    "directory": ".output/public"
   },
   "d1_databases": [
     {
       "binding": "DB",
       "database_name": "mappedlove",
       "database_id": "fb8a48dd-d86d-473f-a82f-3bcf39a5f0df",
-      "migrations_dir": "dist/database/migrations"
+      "migrations_dir": ".output/server/db/migrations"
     }
   ],
   "kv_namespaces": [

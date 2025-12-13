@@ -19,8 +19,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveMarker> => {
 
   const body = validation.data;
 
-  const DB = useDB();
-  return DB.update(tables.markers).set({
+  return db.update(tables.markers).set({
     lat: body.lat,
     lng: body.lng,
     group: body.group,

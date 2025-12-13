@@ -17,8 +17,7 @@ export default defineEventHandler(async (event): Promise<User> => {
 
   if (body.name !== undefined && !body.name) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "name_required" });
 
-  const DB = useDB();
-  const update = await DB.update(tables.users).set({
+  const update = await db.update(tables.users).set({
     name: body.name,
     country: body.country,
     birthDate: body.birthDate,

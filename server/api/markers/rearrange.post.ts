@@ -10,7 +10,6 @@ export default defineEventHandler(async (event) => {
     new: z.array(z.object({ id: z.number(), order: z.number() }))
   }).parse);
 
-  const DB = useDB();
   const today = Date.now();
 
   const changes: { id: number, order: number }[] = [];
@@ -43,7 +42,7 @@ export default defineEventHandler(async (event) => {
     const finalSql: SQL = sql.join(sqlChunks, sql.raw(" "));
 
     event.waitUntil(
-      DB.update(tables.markers).set({
+      db.update(tables.markers).set({
         order: finalSql,
         updatedAt: today
       }).where(and(

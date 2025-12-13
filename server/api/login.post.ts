@@ -10,21 +10,20 @@ export default defineEventHandler(async (event) => {
   if (!validation.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_signin_data" });
 
   const body = validation.data;
-  const DB = useDB();
 
-  const logins = await DB.select({
+  const logins = await db.select({
     user: tables.logins.user,
     attempts: tables.logins.attempts,
     updatedAt: tables.logins.updatedAt
   }).from(tables.logins).where(eq(tables.logins.user,
-    DB.select({ id: tables.users.id }).from(tables.users).where(eq(tables.users.email, body.email)).limit(1)
+    db.select({ id: tables.users.id }).from(tables.users).where(eq(tables.users.email, body.email)).limit(1)
   )).get();
 
   if (!import.meta.dev && logins && logins.attempts % 3 === 0 && Date.now() - logins.updatedAt < 60000 * 5) {
     throw createError({ statusCode: ErrorCode.TOO_MANY_REQUESTS, message: "many_logins_attempted" });
   }
 
-  const user = await DB.select({
+  const user = await db.select({
     id: tables.users.id,
     name: tables.users.name,
     email: tables.users.email,
@@ -38,9 +37,9 @@ export default defineEventHandler(async (event) => {
   }).from(tables.users).where(and(eq(tables.users.email, body.email), eq(tables.users.password, body.password))).get();
 
   if (!user) {
-    const userAttempted = await DB.select({ id: tables.users.id }).from(tables.users).where(eq(tables.users.email, body.email)).get();
+    const userAttempted = await db.select({ id: tables.users.id }).from(tables.users).where(eq(tables.users.email, body.email)).get();
     if (userAttempted) {
-      await DB.insert(tables.logins).values({
+      await db.insert(tables.logins).values({
         user: userAttempted.id,
         updatedAt: Date.now()
       }).onConflictDoUpdate({
@@ -54,7 +53,7 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "signin_error" });
   }
 
-  const bond = await DB.select().from(tables.bonds).where(
+  const bond = await db.select().from(tables.bonds).where(
     or(
       eq(tables.bonds.partner1, user.id),
       eq(tables.bonds.partner2, user.id)
@@ -63,7 +62,7 @@ export default defineEventHandler(async (event) => {
 
   if (logins) {
     event.waitUntil(
-      DB.delete(tables.logins).where(eq(tables.logins.user, logins.user)).run()
+      db.delete(tables.logins).where(eq(tables.logins.user, logins.user)).run()
     );
   }
 

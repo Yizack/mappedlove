@@ -7,8 +7,7 @@ export default defineEventHandler(async (event) => {
 
   const body = validation.data;
 
-  const DB = useDB();
-  const user = await DB.select({
+  const user = await db.select({
     id: tables.users.id,
     name: tables.users.name,
     email: tables.users.email,

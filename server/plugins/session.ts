@@ -2,8 +2,7 @@ export default defineNitroPlugin(() => {
   sessionHooks.hook("fetch", async (session) => {
     if (!session.user) return;
 
-    const DB = useDB();
-    const bond = await DB.select().from(tables.bonds).where(
+    const bond = await db.select().from(tables.bonds).where(
       or(
         eq(tables.bonds.partner1, session.user.id),
         eq(tables.bonds.partner2, session.user.id)
@@ -13,7 +12,7 @@ export default defineNitroPlugin(() => {
     if (bond?.premium) {
       const today = Date.now();
       if (!bond.nextPayment || getGracePeriod(bond.nextPayment, 1) < today) {
-        await DB.update(tables.bonds).set({
+        await db.update(tables.bonds).set({
           premium: false,
           subscriptionId: null,
           updatedAt: today

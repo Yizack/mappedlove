@@ -23,6 +23,11 @@ export default defineNuxtConfig({
       hub: { dir: ".data/test" }
     }
   },
+  $production: {
+    nitro: {
+      preset: "cloudflare-module"
+    }
+  },
   devtools: { enabled: true },
   app: {
     head: {
@@ -144,12 +149,18 @@ export default defineNuxtConfig({
       wasm: true
     }
   },
-  hub: { database: true, blob: true, cache: true, workers: true },
+  hub: {
+    db: {
+      dialect: "sqlite"
+    },
+    blob: true,
+    cache: true
+  },
   vite: {
     css: {
       preprocessorOptions: {
         scss: {
-          silenceDeprecations: ["color-functions", "import", "global-builtin"]
+          silenceDeprecations: ["color-functions", "import", "global-builtin", "if-function"]
         }
       }
     }

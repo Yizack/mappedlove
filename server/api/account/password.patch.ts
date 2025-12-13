@@ -12,8 +12,7 @@ export default defineEventHandler(async (event) => {
 
   const { secure } = useRuntimeConfig(event);
 
-  const DB = useDB();
-  await DB.update(tables.users).set({
+  await db.update(tables.users).set({
     password: hash(body.new_password, secure.salt),
     updatedAt: Date.now()
   }).where(and(eq(tables.users.id, user.id), eq(tables.users.password, hash(body.current_password, secure.salt)))).run();

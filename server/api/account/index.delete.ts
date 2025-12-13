@@ -10,9 +10,7 @@ export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig(event);
 
   if (body && body.token && body.email) {
-    const DB = useDB();
-
-    const foundUser = await DB.select({
+    const foundUser = await db.select({
       id: tables.users.id,
       name: tables.users.name,
       email: tables.users.email,
@@ -44,9 +42,8 @@ export default defineEventHandler(async (event) => {
     }
   }
 
-  const DB = useDB();
   event.waitUntil(
-    DB.delete(tables.users).where(eq(tables.users.id, user.id)).run()
+    db.delete(tables.users).where(eq(tables.users.id, user.id)).run()
   );
 
   await clearUserSession(event);

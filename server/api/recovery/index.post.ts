@@ -11,8 +11,7 @@ export default defineEventHandler(async (event) => {
 
   if (!isValidPassword(body.password)) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "password_invalid" });
 
-  const DB = useDB();
-  const user = await DB.select({
+  const user = await db.select({
     id: tables.users.id,
     email: tables.users.email,
     updatedAt: tables.users.updatedAt
@@ -27,7 +26,7 @@ export default defineEventHandler(async (event) => {
   if (isTokenDateExpired(user.updatedAt)) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "recovery_expired" });
 
   const { secure } = useRuntimeConfig(event);
-  await DB.update(tables.users).set({
+  await db.update(tables.users).set({
     password: hash(body.password, secure.salt),
     updatedAt: Date.now()
   }).where(eq(tables.users.id, user.id)).run();

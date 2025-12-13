@@ -1,4 +1,4 @@
-import type { BlobSize } from "@nuxthub/core";
+import type { BlobSize } from "@nuxthub/core/blob";
 
 export const uploadImage = async (
   body: File | Blob,
@@ -11,7 +11,7 @@ export const uploadImage = async (
   if (!finalName) return;
   const contentType = type || (body instanceof File ? body.type : undefined);
 
-  await hubBlob().put(`/${folder}/${finalName}`, body, {
+  await blob.put(`/${folder}/${finalName}`, body, {
     addRandomSuffix: false,
     contentType: contentType,
     prefix: "uploads",
@@ -23,7 +23,7 @@ export const uploadImage = async (
 
 export const deleteImage = async (filepath: string | string[]) => {
   const uploadsPath = Array.isArray(filepath) ? filepath.map(path => `uploads/${path}`) : `uploads/${filepath}`;
-  return hubBlob().delete(uploadsPath).catch(() => null);
+  return blob.delete(uploadsPath).catch(() => null);
 };
 
 export const isValidFileSize = (file: File, size: BlobSize) => {

@@ -1,7 +1,7 @@
 export default defineEventHandler(async (event): Promise<MappedLoveBond> => {
   const { user } = await requireUserSession(event);
-  const DB = useDB();
-  const bond = await DB.select().from(tables.bonds).where(
+
+  const bond = await db.select().from(tables.bonds).where(
     or(
       eq(tables.bonds.partner1, user.id),
       eq(tables.bonds.partner2, user.id)
@@ -13,7 +13,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveBond> => {
   if (bond.premium) {
     const today = Date.now();
     if (!bond.nextPayment || getGracePeriod(bond.nextPayment, 1) < today) {
-      await DB.update(tables.bonds).set({
+      await db.update(tables.bonds).set({
         premium: false,
         nextPayment: null,
         subscriptionId: null,
@@ -30,6 +30,6 @@ export default defineEventHandler(async (event): Promise<MappedLoveBond> => {
     ...bond,
     nextPayment: bond?.nextPayment || null,
     subscriptionId: bond?.subscriptionId || undefined,
-    partners: await getPartners(event, DB, bond)
+    partners: await getPartners(event, bond)
   };
 });

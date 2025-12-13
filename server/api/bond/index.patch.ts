@@ -12,8 +12,7 @@ export default defineEventHandler(async (event) => {
 
   const body = validation.data;
 
-  const DB = useDB();
-  await DB.update(tables.bonds).set({
+  await db.update(tables.bonds).set({
     coupleDate: body.coupleDate,
     public: body.public,
     updatedAt: Date.now()

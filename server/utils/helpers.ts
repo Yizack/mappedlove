@@ -25,8 +25,8 @@ export const getGracePeriod = (timestamp: number, days: number) => {
   return timestamp + (days * 24 * 60 * 60 * 1000);
 };
 
-export const getPartners = async (event: H3Event, DB: ReturnType<typeof useDB>, bond: Partial<MappedLoveBond>) => {
-  const partners = await DB.select({
+export const getPartners = async (event: H3Event, bond: Partial<MappedLoveBond>) => {
+  const partners = await db.select({
     id: tables.users.id,
     name: tables.users.name,
     showAvatar: tables.users.showAvatar,

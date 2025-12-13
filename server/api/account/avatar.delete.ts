@@ -2,8 +2,7 @@ export default defineEventHandler(async (event) => {
   const { user } = await requireUserSession(event);
   if (!user) throw createError({ statusCode: ErrorCode.FORBIDDEN, message: "forbidden" });
 
-  const DB = useDB();
-  const update = await DB.update(tables.users).set({
+  const update = await db.update(tables.users).set({
     showAvatar: false,
     updatedAt: Date.now()
   }).where(eq(tables.users.id, user.id)).returning({

@@ -7,8 +7,7 @@ export default defineEventHandler(async (event) => {
 
   const body = validation.data;
 
-  const DB = useDB();
-  const user = await DB.update(tables.users).set({
+  const user = await db.update(tables.users).set({
     updatedAt: Date.now()
   }).where(eq(tables.users.email, body.email)).returning().get();
 
