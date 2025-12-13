@@ -29,9 +29,9 @@ export default defineEventHandler(async (event) => {
   if (!isValidPassword(body.password)) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "password_invalid" });
 
   const { secure } = useRuntimeConfig(event);
-  const DB = useDB();
+
   const today = Date.now();
-  const user = await DB.insert(tables.users).values({
+  const user = await db.insert(tables.users).values({
     email: body.email,
     password: hash(body.password, secure.salt),
     name: body.name,

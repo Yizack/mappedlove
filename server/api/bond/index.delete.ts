@@ -11,8 +11,7 @@ export default defineEventHandler(async (event) => {
   const session = { user: { ...user, bond: null } };
   await setUserSessionNullish(event, session);
 
-  const DB = useDB();
   event.waitUntil(
-    DB.delete(tables.bonds).where(eq(tables.bonds.partner1, user.id)).run()
+    db.delete(tables.bonds).where(eq(tables.bonds.partner1, user.id)).run()
   );
 });

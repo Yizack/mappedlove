@@ -16,10 +16,9 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: ErrorCode.PAYMENT_REQUIRED, message: "check_file_size" });
   }
 
-  const DB = useDB();
   const today = Date.now();
 
-  const update = await DB.update(tables.users).set({
+  const update = await db.update(tables.users).set({
     showAvatar: true,
     updatedAt: today
   }).where(eq(tables.users.id, user.id)).returning({

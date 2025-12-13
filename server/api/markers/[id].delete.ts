@@ -6,8 +6,7 @@ export default defineEventHandler(async (event) => {
     id: z.coerce.number()
   }).parse);
 
-  const DB = useDB();
   event.waitUntil(
-    DB.delete(tables.markers).where(and(eq(tables.markers.id, params.id), eq(tables.markers.bond, user.bond.id))).run()
+    db.delete(tables.markers).where(and(eq(tables.markers.id, params.id), eq(tables.markers.bond, user.bond.id))).run()
   );
 });

@@ -14,19 +14,18 @@ export default defineEventHandler(async (event): Promise<MappedLoveMarker> => {
   if (!validation.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_marker_data" });
 
   const body = validation.data;
-  const DB = useDB();
 
   const today = Date.now();
 
-  const markers = await DB.select({
+  const markers = await db.select({
     count: count(tables.markers.id)
   }).from(tables.markers).where(eq(tables.markers.bond, user.bond.id)).get();
 
   if (!user.bond.premium && markers && markers.count >= Quota.FREE_MARKERS) throw createError({ statusCode: ErrorCode.PAYMENT_REQUIRED, message: "max_markers" });
 
-  const last = DB.select({ order: tables.markers.order }).from(tables.markers).where(eq(tables.markers.bond, user.bond.id)).orderBy(desc(tables.markers.order)).limit(1);
+  const last = db.select({ order: tables.markers.order }).from(tables.markers).where(eq(tables.markers.bond, user.bond.id)).orderBy(desc(tables.markers.order)).limit(1);
 
-  return DB.insert(tables.markers).values({
+  return db.insert(tables.markers).values({
     lat: body.lat,
     lng: body.lng,
     group: body.group,

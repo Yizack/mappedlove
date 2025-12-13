@@ -3,10 +3,9 @@ export default defineOAuthGoogleEventHandler({
     scope: ["email", "profile"]
   },
   async onSuccess (event, { user: google }) {
-    const DB = useDB();
     const today = Date.now();
     const email = google.email.toLowerCase();
-    const user = await DB.insert(tables.users).values({
+    const user = await db.insert(tables.users).values({
       email,
       password: null,
       name: google.given_name,

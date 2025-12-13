@@ -1,8 +1,7 @@
 export default defineEventHandler(async (event): Promise<MappedLoveBond> => {
   const { user } = await requireUserSession(event);
 
-  const DB = useDB();
-  const bondExists = await DB.select().from(tables.bonds).where(
+  const bondExists = await db.select().from(tables.bonds).where(
     or(
       eq(tables.bonds.partner1, user.id),
       eq(tables.bonds.partner2, user.id)
@@ -19,7 +18,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveBond> => {
 
   const body = validation.data;
 
-  const bond = await DB.update(tables.bonds).set({
+  const bond = await db.update(tables.bonds).set({
     partner1: sql`COALESCE(${tables.bonds.partner1}, ${user.id})`,
     partner2: sql`COALESCE(${tables.bonds.partner2}, ${user.id})`,
     bonded: true,
@@ -33,6 +32,6 @@ export default defineEventHandler(async (event): Promise<MappedLoveBond> => {
 
   return {
     ...bond,
-    partners: await getPartners(event, DB, bond)
+    partners: await getPartners(event, bond)
   };
 });

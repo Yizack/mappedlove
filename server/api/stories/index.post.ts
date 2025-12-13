@@ -17,7 +17,6 @@ export default defineEventHandler(async (event): Promise<MappedLoveStory> => {
     throw createError({ statusCode: ErrorCode.PAYMENT_REQUIRED, message: "check_file_size" });
   }
 
-  const DB = useDB();
   const today = Date.now();
 
   const form: { [key: string]: string } = {};
@@ -27,7 +26,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveStory> => {
     form[name] = data.toString();
   }
 
-  const story = await DB.insert(tables.stories).values({
+  const story = await db.insert(tables.stories).values({
     marker: Number(form.marker),
     bond: user.bond.id,
     user: user.id,
@@ -53,7 +52,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveStory> => {
 
   if (!uploaded) {
     event.waitUntil(
-      DB.delete(tables.stories).where(eq(tables.stories.id, story.id)).run()
+      db.delete(tables.stories).where(eq(tables.stories.id, story.id)).run()
     );
     throw createError({ statusCode: ErrorCode.INTERNAL_SERVER_ERROR, message: "error_any" });
   }

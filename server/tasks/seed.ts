@@ -4,7 +4,7 @@ const testEmail = process.env.TEST_EMAIL;
 
 const insertTestUsers = async (c: number) => {
   for (let i = 0; i < c; i++) {
-    await useDB().insert(tables.users).values({
+    await db.insert(tables.users).values({
       id: i + 1,
       email: i === 0 && testEmail ? testEmail : `test${i + 1}@test.test`,
       password: hash(testPassword, useRuntimeConfig().secure.salt),
@@ -20,7 +20,7 @@ const insertTestUsers = async (c: number) => {
 };
 
 const createTestBond = async (partner1: number, partner2: number) => {
-  await useDB().insert(tables.bonds).values({
+  await db.insert(tables.bonds).values({
     id: 1,
     partner1,
     partner2,
@@ -44,7 +44,7 @@ export default defineTask({
     description: "Run database seed task"
   },
   async run () {
-    await useDB().delete(tables.users).run();
+    await db.delete(tables.users).run();
     await insertTestUsers(2);
     await createTestBond(1, 2);
     console.info("Database seeded");

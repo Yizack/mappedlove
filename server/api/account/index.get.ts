@@ -18,9 +18,7 @@ export default defineEventHandler(async (event) => {
 
   const userEq = query.id ? eq(tables.users.id, query.id) : eq(tables.users.email, fromBase64URL(query.emailCode!));
 
-  const DB = useDB();
-
-  const userData = await DB.select().from(tables.users).where(userEq).get();
+  const userData = await db.select().from(tables.users).where(userEq).get();
 
   if (!userData) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "user_not_found" });
   const { password, ...user } = userData; // Removes the password field from the user object
@@ -39,7 +37,7 @@ export default defineEventHandler(async (event) => {
     }
   };
 
-  const bond = await DB.select().from(tables.bonds).where(
+  const bond = await db.select().from(tables.bonds).where(
     or(
       eq(tables.bonds.partner1, user.id),
       eq(tables.bonds.partner2, user.id)
@@ -51,15 +49,15 @@ export default defineEventHandler(async (event) => {
       ...bond,
       nextPayment: bond?.nextPayment || null,
       subscriptionId: bond?.subscriptionId || undefined,
-      partners: await getPartners(event, DB, bond)
+      partners: await getPartners(event, bond)
     };
 
     const [markers, stories] = await Promise.all([
-      DB.select().from(tables.markers).where(
+      db.select().from(tables.markers).where(
         eq(tables.markers.bond, bond.id)
       ).orderBy(tables.markers.order).all(),
 
-      DB.select().from(tables.stories).where(
+      db.select().from(tables.stories).where(
         eq(tables.stories.bond, bond.id)
       ).orderBy(desc(tables.stories.year), desc(tables.stories.month)).all()
     ]);

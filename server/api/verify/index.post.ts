@@ -8,8 +8,7 @@ export default defineEventHandler(async (event) => {
 
   const body = validation.data;
 
-  const DB = useDB();
-  const user = await DB.select({
+  const user = await db.select({
     id: tables.users.id,
     email: tables.users.email,
     confirmed: tables.users.confirmed,
@@ -24,7 +23,7 @@ export default defineEventHandler(async (event) => {
 
   if (token !== body.token) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "invalid_token" });
 
-  await DB.update(tables.users).set({
+  await db.update(tables.users).set({
     confirmed: true,
     updatedAt: Date.now()
   }).where(eq(tables.users.id, user.id)).run();

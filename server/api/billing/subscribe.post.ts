@@ -23,10 +23,9 @@ export default defineEventHandler(async (event) => {
     if (subscription && subscription.data.status !== "active") throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "subscription_not_active" });
   }
 
-  const DB = useDB();
   const today = Date.now();
 
-  const update = await DB.update(tables.bonds).set({
+  const update = await db.update(tables.bonds).set({
     premium: true,
     nextPayment: today + 1 * 24 * 60 * 60 * 1000, // 1 day grace period
     updatedAt: today

@@ -12,8 +12,7 @@ export default defineEventHandler(async (event) => {
     if (subscription && subscription.data.status === "active" && subscription.data.scheduled_change?.action !== "cancel") throw createError({ statusCode: ErrorCode.FORBIDDEN, message: "premium_owner_leaving" });
   }
 
-  const DB = useDB();
-  const update = await DB.update(tables.bonds).set({
+  const update = await db.update(tables.bonds).set({
     [`partner${partnerNumber}`]: null,
     public: false,
     updatedAt: Date.now()
