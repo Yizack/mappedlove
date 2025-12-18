@@ -99,8 +99,8 @@ importers:
         specifier: ^2.1.2
         version: 2.1.2(magicast@0.5.1)(vite@7.3.0(@types/node@25.0.3)(jiti@2.6.1)(sass@1.97.0)(terser@5.44.1)(yaml@2.8.2))(vue@3.5.25(typescript@5.9.3))
       nuxt-mailchannels:
-        specifier: ^0.3.9
-        version: 0.3.9(magicast@0.5.1)
+        specifier: ^0.3.10
+        version: 0.3.10(magicast@0.5.1)
       nuxt-twemoji:
         specifier: ^3.8.1
         version: 3.8.1(magicast@0.5.1)
@@ -5021,8 +5021,8 @@ packages:
       vue-i18n:
         optional: true
 
-  nuxt-mailchannels@0.3.9:
-    resolution: {integrity: sha512-69Y5WDN1IzDi3Ade23V5iPHhseDZws6Jo10VWTFQB9srnHv1Inq4VvuVbUEzO9qumHhlHjQVGcvvN0zEBe2aqA==}
+  nuxt-mailchannels@0.3.10:
+    resolution: {integrity: sha512-mkxbah9WYnrpLge5tC7iIHOPvVG1tEwiLH4ra4Gd1kaQ1NHTd+CT8lC47cfs/m7Yyujqj1VyAEFvdpZTTu1RfQ==}
 
   nuxt-site-config-kit@3.2.14:
     resolution: {integrity: sha512-HOdYOLWL8f25aNEPdf72OuvL4Z7bMCNDm+XXDQ9bykNA1X3wJ8/vcMfU3tS4nPccoyaW100RTgTFSitAWp+iuA==}
@@ -12008,7 +12008,7 @@ snapshots:
       - vite
       - vue
 
-  nuxt-mailchannels@0.3.9(magicast@0.5.1):
+  nuxt-mailchannels@0.3.10(magicast@0.5.1):
     dependencies:
       '@nuxt/kit': 4.2.2(magicast@0.5.1)
       defu: 6.1.4

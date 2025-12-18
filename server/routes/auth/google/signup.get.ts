@@ -23,12 +23,19 @@ export default defineOAuthGoogleEventHandler({
     });
 
     const mailchannels = useMailChannels(event);
-    await mailchannels.send({
+    const { error } = await mailchannels.send({
       to: { email, name: user.name },
       subject: "Verify your email address",
       html,
       text
     });
+
+    if (error) {
+      throw createError({
+        statusCode: error.statusCode || 500,
+        message: error.message
+      });
+    }
 
     return sendRedirect(event, "/login");
   },

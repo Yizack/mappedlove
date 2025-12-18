@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
 
   const config = useRuntimeConfig(event);
   const mailchannels = useMailChannels(event);
-  await mailchannels.send({
+  const { error } = await mailchannels.send({
     to: {
       email: config.mailchannels.from.email,
       name: config.mailchannels.from.name
@@ -22,4 +22,11 @@ export default defineEventHandler(async (event) => {
     html: text,
     text
   });
+
+  if (error) {
+    throw createError({
+      statusCode: error.statusCode || 500,
+      message: error.message
+    });
+  }
 });

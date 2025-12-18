@@ -21,10 +21,17 @@ export default defineEventHandler(async (event) => {
   });
 
   const mailchannels = useMailChannels(event);
-  await mailchannels.send({
+  const { error } = await mailchannels.send({
     to: { email: user.email, name: user.name },
     subject: "Account recovery",
     html,
     text
   });
+
+  if (error) {
+    throw createError({
+      statusCode: error.statusCode || 500,
+      message: error.message
+    });
+  }
 });

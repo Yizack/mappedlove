@@ -46,7 +46,7 @@ export default defineEventHandler(async (event) => {
     await setUserSessionNullish(event, session);
 
     const mailchannels = useMailChannels(event);
-    await mailchannels.send({
+    const { error } = await mailchannels.send({
       to: {
         email: user.email,
         name: user.name
@@ -55,5 +55,12 @@ export default defineEventHandler(async (event) => {
       html,
       text
     });
+
+    if (error) {
+      throw createError({
+        statusCode: error.statusCode || 500,
+        message: error.message
+      });
+    }
   }
 });
