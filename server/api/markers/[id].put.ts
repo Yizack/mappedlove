@@ -1,6 +1,6 @@
 export default defineEventHandler(async (event): Promise<MappedLoveMarker> => {
   const { user } = await requireUserSession(event);
-  if (!user.bond) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "bond_not_found" });
+  if (!user.bond) throw createError({ status: ErrorCode.NOT_FOUND, message: "bond_not_found" });
   const params = await getValidatedRouterParams(event, z.object({
     id: z.coerce.number()
   }).parse);
@@ -15,7 +15,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveMarker> => {
     order: z.number()
   }).safeParse);
 
-  if (!validation.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_marker_data" });
+  if (!validation.success) throw createError({ status: ErrorCode.BAD_REQUEST, message: "invalid_marker_data" });
 
   const body = validation.data;
 

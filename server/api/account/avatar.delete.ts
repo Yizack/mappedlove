@@ -1,6 +1,6 @@
 export default defineEventHandler(async (event) => {
   const { user } = await requireUserSession(event);
-  if (!user) throw createError({ statusCode: ErrorCode.FORBIDDEN, message: "forbidden" });
+  if (!user) throw createError({ status: ErrorCode.FORBIDDEN, message: "forbidden" });
 
   const update = await db.update(tables.users).set({
     showAvatar: false,
@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
     updatedAt: tables.users.updatedAt
   }).get();
 
-  if (!update) throw createError({ statusCode: ErrorCode.INTERNAL_SERVER_ERROR, message: "error" });
+  if (!update) throw createError({ status: ErrorCode.INTERNAL_SERVER_ERROR, message: "error" });
 
   const session = { user: { ...user, ...update } };
   await setUserSessionNullish(event, session);

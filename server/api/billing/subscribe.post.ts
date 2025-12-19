@@ -6,21 +6,21 @@ export default defineEventHandler(async (event) => {
     transactionId: z.string()
   }).safeParse);
 
-  if (!validation.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_payment_data" });
+  if (!validation.success) throw createError({ status: ErrorCode.BAD_REQUEST, message: "invalid_payment_data" });
 
   const body = validation.data;
 
-  if (body.bondId !== user.bond?.id) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "bond_not_found" });
+  if (body.bondId !== user.bond?.id) throw createError({ status: ErrorCode.BAD_REQUEST, message: "bond_not_found" });
 
   const config = useRuntimeConfig(event);
   const paddle = new Paddle(config.paddle.secret);
 
   const transaction = await paddle.getPaddleTransaction(body.transactionId);
-  if (!transaction) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "transaction_not_found" });
+  if (!transaction) throw createError({ status: ErrorCode.BAD_REQUEST, message: "transaction_not_found" });
   if (transaction.data.status !== "paid" && transaction.data.status !== "ready") {
-    if (!transaction.data.subscription_id) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "subscription_not_found" });
+    if (!transaction.data.subscription_id) throw createError({ status: ErrorCode.BAD_REQUEST, message: "subscription_not_found" });
     const subscription = await paddle.getPaddleSubscription(transaction.data.subscription_id);
-    if (subscription && subscription.data.status !== "active") throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "subscription_not_active" });
+    if (subscription && subscription.data.status !== "active") throw createError({ status: ErrorCode.BAD_REQUEST, message: "subscription_not_active" });
   }
 
   const today = Date.now();
@@ -35,7 +35,7 @@ export default defineEventHandler(async (event) => {
     updatedAt: tables.bonds.updatedAt
   }).get();
 
-  if (!update) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "bond_not_found" });
+  if (!update) throw createError({ status: ErrorCode.BAD_REQUEST, message: "bond_not_found" });
 
   if (transaction.data.origin === "web" && !user.bond.premium) {
     const { html, text } = await renderEmail("PremiumWelcome", {
@@ -58,7 +58,7 @@ export default defineEventHandler(async (event) => {
 
     if (error) {
       throw createError({
-        statusCode: error.statusCode || 500,
+        status: error.statusCode || 500,
         message: error.message
       });
     }

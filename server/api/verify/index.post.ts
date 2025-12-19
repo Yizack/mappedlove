@@ -4,7 +4,7 @@ export default defineEventHandler(async (event) => {
     token: z.base64url()
   }).safeParse);
 
-  if (!validation.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_verification_data" });
+  if (!validation.success) throw createError({ status: ErrorCode.BAD_REQUEST, message: "invalid_verification_data" });
 
   const body = validation.data;
 
@@ -15,13 +15,13 @@ export default defineEventHandler(async (event) => {
     updatedAt: tables.users.updatedAt
   }).from(tables.users).where(eq(tables.users.email, body.email)).get();
 
-  if (!user) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "user_not_found" });
+  if (!user) throw createError({ status: ErrorCode.NOT_FOUND, message: "user_not_found" });
 
   if (user.confirmed) return user;
 
   const token = await generateToken(event, [user.id, user.updatedAt]);
 
-  if (token !== body.token) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "invalid_token" });
+  if (token !== body.token) throw createError({ status: ErrorCode.UNAUTHORIZED, message: "invalid_token" });
 
   await db.update(tables.users).set({
     confirmed: true,

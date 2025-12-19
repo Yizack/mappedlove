@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
 
   if (!verify.success) {
     throw createError({
-      statusCode: ErrorCode.BAD_REQUEST,
+      status: ErrorCode.BAD_REQUEST,
       message: "turnstile_failed"
     });
   }
@@ -18,7 +18,7 @@ export default defineEventHandler(async (event) => {
     updatedAt: Date.now()
   }).where(eq(tables.users.email, body.email)).returning().get();
 
-  if (!user) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "user_not_found" });
+  if (!user) throw createError({ status: ErrorCode.NOT_FOUND, message: "user_not_found" });
 
   const token = await generateToken(event, [user.id, user.updatedAt]);
 
@@ -38,7 +38,7 @@ export default defineEventHandler(async (event) => {
 
   if (error) {
     throw createError({
-      statusCode: error.statusCode || 500,
+      status: error.statusCode || 500,
       message: error.message
     });
   }

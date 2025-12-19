@@ -21,16 +21,16 @@ export default defineEventHandler(async (event) => {
       eq(tables.bonds.partner2, tables.users.id)
     )).where(eq(tables.users.email, body.email)).get();
 
-    if (!foundUser) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "user_not_found" });
+    if (!foundUser) throw createError({ status: ErrorCode.NOT_FOUND, message: "user_not_found" });
     user = foundUser;
 
     const token = await generateToken(event, [user.id, user.updatedAt]);
 
-    if (token !== body.token) throw createError({ statusCode: ErrorCode.FORBIDDEN, message: "code_mismatch" });
-    if (isTokenDateExpired(user.updatedAt)) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "account_data_expired" });
+    if (token !== body.token) throw createError({ status: ErrorCode.FORBIDDEN, message: "code_mismatch" });
+    if (isTokenDateExpired(user.updatedAt)) throw createError({ status: ErrorCode.UNAUTHORIZED, message: "account_data_expired" });
   }
   else {
-    if (!session.user) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "user_not_found" });
+    if (!session.user) throw createError({ status: ErrorCode.UNAUTHORIZED, message: "user_not_found" });
     user = session.user;
   }
 
@@ -38,7 +38,7 @@ export default defineEventHandler(async (event) => {
     const paddle = new Paddle(config.paddle.secret);
     const subscription = await paddle.getPaddleSubscription(user.bond.subscriptionId);
     if (subscription && subscription.data.status === "active" && subscription.data.scheduled_change?.action !== "cancel") {
-      throw createError({ statusCode: ErrorCode.FORBIDDEN, message: "premium_deleting" });
+      throw createError({ status: ErrorCode.FORBIDDEN, message: "premium_deleting" });
     }
   }
 

@@ -1,14 +1,14 @@
 export default defineEventHandler(async (event) => {
   const { user } = await requireUserSession(event);
 
-  if (!user.bond) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "bond_not_found" });
+  if (!user.bond) throw createError({ status: ErrorCode.NOT_FOUND, message: "bond_not_found" });
 
   const validation = await readValidatedBody(event, z.object({
     coupleDate: z.number().optional().nullable(),
     public: z.boolean().optional()
   }).safeParse);
 
-  if (!validation.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_bond_data" });
+  if (!validation.success) throw createError({ status: ErrorCode.BAD_REQUEST, message: "invalid_bond_data" });
 
   const body = validation.data;
 

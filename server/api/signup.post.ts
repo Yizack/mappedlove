@@ -6,13 +6,13 @@ export default defineEventHandler(async (event) => {
     turnstile: z.string()
   }).safeParse);
 
-  if (!validation.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_signup_data" });
+  if (!validation.success) throw createError({ status: ErrorCode.BAD_REQUEST, message: "invalid_signup_data" });
 
   const body = validation.data;
 
   if (!body.turnstile) {
     throw createError({
-      statusCode: ErrorCode.UNPROCESSABLE_ENTITY,
+      status: ErrorCode.UNPROCESSABLE_ENTITY,
       message: "token_missing"
     });
   }
@@ -21,12 +21,12 @@ export default defineEventHandler(async (event) => {
 
   if (!verify.success) {
     throw createError({
-      statusCode: ErrorCode.BAD_REQUEST,
+      status: ErrorCode.BAD_REQUEST,
       message: "turnstile_failed"
     });
   }
 
-  if (!isValidPassword(body.password)) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "password_invalid" });
+  if (!isValidPassword(body.password)) throw createError({ status: ErrorCode.BAD_REQUEST, message: "password_invalid" });
 
   const { secure } = useRuntimeConfig(event);
 
@@ -41,7 +41,7 @@ export default defineEventHandler(async (event) => {
 
   if (!user) {
     throw createError({
-      statusCode: ErrorCode.CONFLICT,
+      status: ErrorCode.CONFLICT,
       message: "user_exists"
     });
   }
@@ -63,7 +63,7 @@ export default defineEventHandler(async (event) => {
 
   if (error) {
     throw createError({
-      statusCode: error.statusCode || 500,
+      status: error.statusCode || 500,
       message: error.message
     });
   }

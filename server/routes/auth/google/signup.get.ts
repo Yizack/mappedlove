@@ -32,7 +32,7 @@ export default defineOAuthGoogleEventHandler({
 
     if (error) {
       throw createError({
-        statusCode: error.statusCode || 500,
+        status: error.statusCode || 500,
         message: error.message
       });
     }

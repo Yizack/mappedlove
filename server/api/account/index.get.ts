@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
   if (query.id) {
     const session = await requireUserSession(event);
     if (session.user.id !== query.id) {
-      throw createError({ statusCode: ErrorCode.FORBIDDEN, message: "forbidden" });
+      throw createError({ status: ErrorCode.FORBIDDEN, message: "forbidden" });
     }
   }
 
@@ -20,14 +20,14 @@ export default defineEventHandler(async (event) => {
 
   const userData = await db.select().from(tables.users).where(userEq).get();
 
-  if (!userData) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "user_not_found" });
+  if (!userData) throw createError({ status: ErrorCode.NOT_FOUND, message: "user_not_found" });
   const { password, ...user } = userData; // Removes the password field from the user object
   const config = useRuntimeConfig(event);
 
   if (!query.id) {
     const token = await generateToken(event, [user.id, user.updatedAt]);
-    if (token !== query.token) throw createError({ statusCode: ErrorCode.FORBIDDEN, message: "token_mismatch" });
-    if (isTokenDateExpired(user.updatedAt)) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "account_data_expired" });
+    if (token !== query.token) throw createError({ status: ErrorCode.FORBIDDEN, message: "token_mismatch" });
+    if (isTokenDateExpired(user.updatedAt)) throw createError({ status: ErrorCode.UNAUTHORIZED, message: "account_data_expired" });
   }
 
   const accountData: MappedLoveAccountData = {

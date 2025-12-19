@@ -5,7 +5,7 @@ export default defineEventHandler(async (event) => {
     reason: z.string()
   }).safeParse);
 
-  if (!validation.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_data" });
+  if (!validation.success) throw createError({ status: ErrorCode.BAD_REQUEST, message: "invalid_data" });
 
   const body = validation.data;
 
@@ -25,7 +25,7 @@ export default defineEventHandler(async (event) => {
 
   if (error) {
     throw createError({
-      statusCode: error.statusCode || 500,
+      status: error.statusCode || 500,
       message: error.message
     });
   }

@@ -5,7 +5,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveStory> => {
   const formData = await readFormData(event);
   const file = formData.get("file") as File;
 
-  if (!body || !file || !user.bond) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "bad_request" });
+  if (!body || !file || !user.bond) throw createError({ status: ErrorCode.BAD_REQUEST, message: "bad_request" });
 
   ensureBlob(file, {
     types: ["image/jpeg", "image/png", "image/gif", "image/webp"]
@@ -13,8 +13,8 @@ export default defineEventHandler(async (event): Promise<MappedLoveStory> => {
 
   const fileSizeMaxMB = user.bond?.premium ? Quota.PREMIUM_IMAGE_FILESIZE : Quota.FREE_IMAGE_FILESIZE;
   if (!isValidFileSize(file, fileSizeMaxMB)) {
-    if (!user.bond?.premium) throw createError({ statusCode: ErrorCode.PAYMENT_REQUIRED, message: "check_file_size_free" });
-    throw createError({ statusCode: ErrorCode.PAYMENT_REQUIRED, message: "check_file_size" });
+    if (!user.bond?.premium) throw createError({ status: ErrorCode.PAYMENT_REQUIRED, message: "check_file_size_free" });
+    throw createError({ status: ErrorCode.PAYMENT_REQUIRED, message: "check_file_size" });
   }
 
   const today = Date.now();
@@ -54,7 +54,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveStory> => {
     event.waitUntil(
       db.delete(tables.stories).where(eq(tables.stories.id, story.id)).run()
     );
-    throw createError({ statusCode: ErrorCode.INTERNAL_SERVER_ERROR, message: "error_any" });
+    throw createError({ status: ErrorCode.INTERNAL_SERVER_ERROR, message: "error_any" });
   }
 
   event.waitUntil(

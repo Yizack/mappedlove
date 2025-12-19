@@ -8,7 +8,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveBond> => {
     )
   ).get();
 
-  if (bondExists) throw createError({ statusCode: ErrorCode.CONFLICT, message: "bond_exists" });
+  if (bondExists) throw createError({ status: ErrorCode.CONFLICT, message: "bond_exists" });
 
   const today = Date.now();
   const bond = await db.insert(tables.bonds).values({

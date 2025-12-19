@@ -5,11 +5,11 @@ export default defineEventHandler(async (event) => {
     password: z.string()
   }).safeParse);
 
-  if (!validation.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_recovery_data" });
+  if (!validation.success) throw createError({ status: ErrorCode.BAD_REQUEST, message: "invalid_recovery_data" });
 
   const body = validation.data;
 
-  if (!isValidPassword(body.password)) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "password_invalid" });
+  if (!isValidPassword(body.password)) throw createError({ status: ErrorCode.BAD_REQUEST, message: "password_invalid" });
 
   const user = await db.select({
     id: tables.users.id,
@@ -17,13 +17,13 @@ export default defineEventHandler(async (event) => {
     updatedAt: tables.users.updatedAt
   }).from(tables.users).where(eq(tables.users.email, body.email)).get();
 
-  if (!user) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "user_not_found" });
+  if (!user) throw createError({ status: ErrorCode.NOT_FOUND, message: "user_not_found" });
 
   const token = await generateToken(event, [user.id, user.updatedAt]);
 
-  if (token !== body.token) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "invalid_recovery" });
+  if (token !== body.token) throw createError({ status: ErrorCode.UNAUTHORIZED, message: "invalid_recovery" });
 
-  if (isTokenDateExpired(user.updatedAt)) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "recovery_expired" });
+  if (isTokenDateExpired(user.updatedAt)) throw createError({ status: ErrorCode.UNAUTHORIZED, message: "recovery_expired" });
 
   const { secure } = useRuntimeConfig(event);
   await db.update(tables.users).set({

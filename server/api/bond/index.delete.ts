@@ -3,7 +3,7 @@ export default defineEventHandler(async (event) => {
 
   if (user.bond && user.bond.bonded && (user.bond.partner1 && user.bond.partner2)) {
     throw createError({
-      statusCode: ErrorCode.FORBIDDEN,
+      status: ErrorCode.FORBIDDEN,
       message: "cant_delete_bonded_bond"
     });
   }

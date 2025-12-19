@@ -7,6 +7,6 @@ export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig(event);
   const paddle = new Paddle(config.paddle.secret);
   const invoice = await paddle.getPaddleTransactionInvoice(params.transaction_id);
-  if (!invoice) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "invoice_not_found" });
+  if (!invoice) throw createError({ status: ErrorCode.NOT_FOUND, message: "invoice_not_found" });
   return sendRedirect(event, invoice.data.url);
 });

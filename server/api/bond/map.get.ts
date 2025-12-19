@@ -1,6 +1,6 @@
 export default defineEventHandler(async (event): Promise<MappedLoveMap> => {
   const { user } = await requireUserSession(event);
-  if (!user.bond) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "bond_not_found" });
+  if (!user.bond) throw createError({ status: ErrorCode.NOT_FOUND, message: "bond_not_found" });
 
   const [markers, stories] = await Promise.all([
     db.select().from(tables.markers).where(eq(tables.markers.bond, user.bond.id)).orderBy(tables.markers.order).all(),

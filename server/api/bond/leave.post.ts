@@ -1,7 +1,7 @@
 export default defineEventHandler(async (event) => {
   const { user } = await requireUserSession(event);
 
-  if (!user.bond) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "bond_not_found" });
+  if (!user.bond) throw createError({ status: ErrorCode.NOT_FOUND, message: "bond_not_found" });
 
   const partnerNumber = user.bond.partner1 === user.id ? 1 : 2;
 
@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
     const config = useRuntimeConfig(event);
     const paddle = new Paddle(config.paddle.secret);
     const subscription = await paddle.getPaddleSubscription(user.bond.subscriptionId);
-    if (subscription && subscription.data.status === "active" && subscription.data.scheduled_change?.action !== "cancel") throw createError({ statusCode: ErrorCode.FORBIDDEN, message: "premium_owner_leaving" });
+    if (subscription && subscription.data.status === "active" && subscription.data.scheduled_change?.action !== "cancel") throw createError({ status: ErrorCode.FORBIDDEN, message: "premium_owner_leaving" });
   }
 
   const update = await db.update(tables.bonds).set({
@@ -18,7 +18,7 @@ export default defineEventHandler(async (event) => {
     updatedAt: Date.now()
   }).where(eq(tables.bonds.id, user.bond.id)).returning().get();
 
-  if (!update) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "bond_not_found" });
+  if (!update) throw createError({ status: ErrorCode.NOT_FOUND, message: "bond_not_found" });
 
   const session = { user: { ...user, bond: null } };
   await setUserSessionNullish(event, session);

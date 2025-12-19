@@ -3,7 +3,7 @@ import type { SQL } from "drizzle-orm";
 
 export default defineEventHandler(async (event) => {
   const { user } = await requireUserSession(event);
-  if (!user.bond) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "bond_not_found" });
+  if (!user.bond) throw createError({ status: ErrorCode.NOT_FOUND, message: "bond_not_found" });
 
   const body = await readValidatedBody(event, z.object({
     old: z.array(z.object({ id: z.number(), order: z.number() })),

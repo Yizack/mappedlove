@@ -12,7 +12,7 @@ const colorMode = useColorMode();
 
 if (!bond.value) {
   throw createError({
-    statusCode: ErrorCode.NOT_FOUND,
+    status: ErrorCode.NOT_FOUND,
     message: t("map_not_found")
   });
 }

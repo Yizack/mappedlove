@@ -21,7 +21,7 @@ try {
 }
 catch {
   throw createError({
-    statusCode: ErrorCode.NOT_FOUND,
+    status: ErrorCode.NOT_FOUND,
     message: `Page not found: ${route.path}`
   });
 }

@@ -31,7 +31,7 @@ const changeLocation = () => {
 watchDebounced(text, async (value) => {
   try {
     if (!search.value) return;
-    if (!value) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "No text provided" });
+    if (!value) throw createError({ status: ErrorCode.BAD_REQUEST, message: "No text provided" });
     const { user } = useUserSession();
     array.value = await $Leaflet.geoSearch(value, {
       email: user.value!.email,

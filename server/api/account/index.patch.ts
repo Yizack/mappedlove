@@ -11,11 +11,11 @@ export default defineEventHandler(async (event): Promise<User> => {
     language: z.enum(localization.getLocales().map(l => l.code) as [MappedLoveLocales]).optional()
   }).safeParse);
 
-  if (!validation.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_user_data" });
+  if (!validation.success) throw createError({ status: ErrorCode.BAD_REQUEST, message: "invalid_user_data" });
 
   const body = validation.data;
 
-  if (body.name !== undefined && !body.name) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "name_required" });
+  if (body.name !== undefined && !body.name) throw createError({ status: ErrorCode.BAD_REQUEST, message: "name_required" });
 
   const update = await db.update(tables.users).set({
     name: body.name,
@@ -37,7 +37,7 @@ export default defineEventHandler(async (event): Promise<User> => {
     updatedAt: tables.users.updatedAt
   }).get();
 
-  if (!update) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "user_not_found" });
+  if (!update) throw createError({ status: ErrorCode.NOT_FOUND, message: "user_not_found" });
 
   const session = { user: { ...user, ...update } };
   await setUserSessionNullish(event, session);

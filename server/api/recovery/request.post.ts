@@ -3,7 +3,7 @@ export default defineEventHandler(async (event) => {
     email: z.email().transform(v => v.toLowerCase().trim())
   }).safeParse);
 
-  if (!validation.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "email_required" });
+  if (!validation.success) throw createError({ status: ErrorCode.BAD_REQUEST, message: "email_required" });
 
   const body = validation.data;
 
@@ -11,7 +11,7 @@ export default defineEventHandler(async (event) => {
     updatedAt: Date.now()
   }).where(eq(tables.users.email, body.email)).returning().get();
 
-  if (!user) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "user_not_found" });
+  if (!user) throw createError({ status: ErrorCode.NOT_FOUND, message: "user_not_found" });
 
   const token = await generateToken(event, [user.id, user.updatedAt]);
 
@@ -30,7 +30,7 @@ export default defineEventHandler(async (event) => {
 
   if (error) {
     throw createError({
-      statusCode: error.statusCode || 500,
+      status: error.statusCode || 500,
       message: error.message
     });
   }

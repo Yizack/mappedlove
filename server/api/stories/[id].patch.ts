@@ -5,7 +5,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveStory> => {
   const formData = await readFormData(event);
   const file = formData.get("file") as File;
 
-  if (!body || !user.bond) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "bad_request" });
+  if (!body || !user.bond) throw createError({ status: ErrorCode.BAD_REQUEST, message: "bad_request" });
   if (file) {
     ensureBlob(file, {
       types: ["image/jpeg", "image/png", "image/gif", "image/webp"]
@@ -31,7 +31,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveStory> => {
     updatedAt: today
   }).where(and(eq(tables.stories.id, params.id), eq(tables.stories.bond, user.bond.id))).returning().get();
 
-  if (!story) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "story_not_found" });
+  if (!story) throw createError({ status: ErrorCode.NOT_FOUND, message: "story_not_found" });
 
   const { secure } = useRuntimeConfig(event);
   const storyHash = hash([story.id, user.bond.code].join(), secure.salt);
@@ -41,8 +41,8 @@ export default defineEventHandler(async (event): Promise<MappedLoveStory> => {
 
   const fileSizeMaxMB = user.bond?.premium ? Quota.PREMIUM_IMAGE_FILESIZE : Quota.FREE_IMAGE_FILESIZE;
   if (!isValidFileSize(file, fileSizeMaxMB)) {
-    if (!user.bond?.premium) throw createError({ statusCode: ErrorCode.PAYMENT_REQUIRED, message: "check_file_size_free" });
-    throw createError({ statusCode: ErrorCode.PAYMENT_REQUIRED, message: "check_file_size" });
+    if (!user.bond?.premium) throw createError({ status: ErrorCode.PAYMENT_REQUIRED, message: "check_file_size_free" });
+    throw createError({ status: ErrorCode.PAYMENT_REQUIRED, message: "check_file_size" });
   }
 
   const uploaded = await uploadImage(file, {
@@ -55,7 +55,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveStory> => {
   });
 
   if (!uploaded) {
-    throw createError({ statusCode: ErrorCode.INTERNAL_SERVER_ERROR, message: "error_any" });
+    throw createError({ status: ErrorCode.INTERNAL_SERVER_ERROR, message: "error_any" });
   }
 
   event.waitUntil(

@@ -8,7 +8,7 @@ export default defineEventHandler(async (event): Promise<MappedLoveBond> => {
     )
   ).get();
 
-  if (!bond) throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "bond_not_found" });
+  if (!bond) throw createError({ status: ErrorCode.NOT_FOUND, message: "bond_not_found" });
 
   if (bond.premium) {
     const today = Date.now();

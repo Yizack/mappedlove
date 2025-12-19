@@ -6,7 +6,7 @@ export default defineEventHandler(async (event) => {
     new_password: z.string()
   }).safeParse);
 
-  if (!validation.success || !isValidPassword(validation.data.new_password)) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "password_invalid" });
+  if (!validation.success || !isValidPassword(validation.data.new_password)) throw createError({ status: ErrorCode.BAD_REQUEST, message: "password_invalid" });
 
   const body = validation.data;
 

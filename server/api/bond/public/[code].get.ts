@@ -11,7 +11,7 @@ export default defineEventHandler(async (event): Promise<MappedLovePublicMap> =>
   )).get();
 
   if (!bond || (!bond.partner1 || !bond.partner2)) {
-    throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "bond_not_found" });
+    throw createError({ status: ErrorCode.NOT_FOUND, message: "bond_not_found" });
   }
 
   const [markers, stories] = await Promise.all([
@@ -27,7 +27,7 @@ export default defineEventHandler(async (event): Promise<MappedLovePublicMap> =>
   const partners = await getPartners(event, bond);
 
   if (!partners.length) {
-    throw createError({ statusCode: ErrorCode.NOT_FOUND, message: "bond_not_found" });
+    throw createError({ status: ErrorCode.NOT_FOUND, message: "bond_not_found" });
   }
 
   const { secure } = useRuntimeConfig(event);

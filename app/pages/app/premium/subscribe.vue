@@ -4,7 +4,7 @@ const { user, fetch: sessionFetch } = useUserSession();
 
 if (!user.value?.bond?.id) {
   throw createError({
-    statusCode: ErrorCode.NOT_FOUND,
+    status: ErrorCode.NOT_FOUND,
     message: t("bond_not_found")
   });
 }

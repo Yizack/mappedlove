@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
     remember: z.boolean()
   }).safeParse);
 
-  if (!validation.success) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "invalid_signin_data" });
+  if (!validation.success) throw createError({ status: ErrorCode.BAD_REQUEST, message: "invalid_signin_data" });
 
   const body = validation.data;
 
@@ -20,7 +20,7 @@ export default defineEventHandler(async (event) => {
   )).get();
 
   if (!import.meta.dev && logins && logins.attempts % 3 === 0 && Date.now() - logins.updatedAt < 60000 * 5) {
-    throw createError({ statusCode: ErrorCode.TOO_MANY_REQUESTS, message: "many_logins_attempted" });
+    throw createError({ status: ErrorCode.TOO_MANY_REQUESTS, message: "many_logins_attempted" });
   }
 
   const user = await db.select({
@@ -50,7 +50,7 @@ export default defineEventHandler(async (event) => {
         }
       }).run();
     }
-    throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "signin_error" });
+    throw createError({ status: ErrorCode.UNAUTHORIZED, message: "signin_error" });
   }
 
   const bond = await db.select().from(tables.bonds).where(
@@ -67,7 +67,7 @@ export default defineEventHandler(async (event) => {
   }
 
   if (!user.confirmed) {
-    throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "verify_error" });
+    throw createError({ status: ErrorCode.UNAUTHORIZED, message: "verify_error" });
   }
 
   const userHash = hash(user.id.toString(), secure.salt);

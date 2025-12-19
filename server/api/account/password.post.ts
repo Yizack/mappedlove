@@ -5,7 +5,7 @@ export default defineEventHandler(async (event) => {
     new_password: z.string()
   }).safeParse);
 
-  if (!validation.success || !isValidPassword(validation.data.new_password)) throw createError({ statusCode: ErrorCode.BAD_REQUEST, message: "password_invalid" });
+  if (!validation.success || !isValidPassword(validation.data.new_password)) throw createError({ status: ErrorCode.BAD_REQUEST, message: "password_invalid" });
 
   const body = validation.data;
 
@@ -18,7 +18,7 @@ export default defineEventHandler(async (event) => {
     updatedAt: tables.users.updatedAt
   }).get();
 
-  if (!update) throw createError({ statusCode: ErrorCode.UNAUTHORIZED, message: "password_error" });
+  if (!update) throw createError({ status: ErrorCode.UNAUTHORIZED, message: "password_error" });
 
   delete user.passwordless;
   const session = { user: { ...user, ...update } };
