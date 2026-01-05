@@ -33,8 +33,8 @@ importers:
         specifier: ^2.1.1
         version: 2.1.1(magicast@0.5.1)(vite@7.3.0(@types/node@25.0.3)(jiti@2.6.1)(sass@1.97.1)(terser@5.44.1)(yaml@2.8.2))(vue@3.5.26(typescript@5.9.3))
       '@nuxt/test-utils':
-        specifier: ^3.21.0
-        version: 3.21.0(happy-dom@20.0.11)(magicast@0.5.1)(typescript@5.9.3)(vitest@4.0.16(@opentelemetry/api@1.9.0)(@types/node@25.0.3)(happy-dom@20.0.11)(jiti@2.6.1)(sass@1.97.1)(terser@5.44.1)(yaml@2.8.2))
+        specifier: ^3.22.0
+        version: 3.22.0(happy-dom@20.0.11)(magicast@0.5.1)(typescript@5.9.3)(vitest@4.0.16(@opentelemetry/api@1.9.0)(@types/node@25.0.3)(happy-dom@20.0.11)(jiti@2.6.1)(sass@1.97.1)(terser@5.44.1)(yaml@2.8.2))
       '@nuxthub/core':
         specifier: ^0.10.4
         version: 0.10.4(db0@0.3.4(@libsql/client@0.15.15)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260101.0)(@libsql/client@0.15.15)(@opentelemetry/api@1.9.0)))(ioredis@5.8.2)(magicast@0.5.1)(typescript@5.9.3)(vue-tsc@3.2.1(typescript@5.9.3))
@@ -46,7 +46,7 @@ importers:
         version: 0.19.2(magicast@0.5.1)
       '@nuxtjs/sitemap':
         specifier: ^7.5.0
-        version: 7.5.0(h3@1.15.4)(magicast@0.5.1)(vite@7.3.0(@types/node@25.0.3)(jiti@2.6.1)(sass@1.97.1)(terser@5.44.1)(yaml@2.8.2))(vue@3.5.26(typescript@5.9.3))(zod@4.3.4)
+        version: 7.5.0(h3@1.15.4)(magicast@0.5.1)(vite@7.3.0(@types/node@25.0.3)(jiti@2.6.1)(sass@1.97.1)(terser@5.44.1)(yaml@2.8.2))(vue@3.5.26(typescript@5.9.3))(zod@4.3.5)
       '@nuxtjs/turnstile':
         specifier: ^1.1.1
         version: 1.1.1(@nuxt/scripts@0.12.2(@googlemaps/markerclusterer@2.6.2)(@unhead/vue@2.1.1(vue@3.5.26(typescript@5.9.3)))(db0@0.3.4(@libsql/client@0.15.15)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260101.0)(@libsql/client@0.15.15)(@opentelemetry/api@1.9.0)))(ioredis@5.8.2)(magicast@0.5.1)(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3)))(magicast@0.5.1)
@@ -135,8 +135,8 @@ importers:
         specifier: ^4.56.0
         version: 4.56.0(@cloudflare/workers-types@4.20260101.0)
       zod:
-        specifier: ^4.3.4
-        version: 4.3.4
+        specifier: ^4.3.5
+        version: 4.3.5
 
 packages:
 
@@ -1635,8 +1635,8 @@ packages:
     engines: {node: '>=18.12.0'}
     hasBin: true
 
-  '@nuxt/test-utils@3.21.0':
-    resolution: {integrity: sha512-A6XExfgHq88+XuXAU4MMr5QBHS2mWA5qRVSvsMPP2U+YSsnk+Vt7P7dxbvJPE4+n6LHbC1IM0QjTVteo+VCxOA==}
+  '@nuxt/test-utils@3.22.0':
+    resolution: {integrity: sha512-Qo2+FKrslfOp5S0z7hrajPATIVRLokMhlVTIuhOgnowE7WdgMdLGTkDQim+p8e6COw3loLabisLG85THdLp3vQ==}
     engines: {node: ^20.0.0 || ^22.0.0 || >=24.0.0}
     peerDependencies:
       '@cucumber/cucumber': ^10.3.1 || >=11.0.0
@@ -6949,8 +6949,8 @@ packages:
   zod@3.22.3:
     resolution: {integrity: sha512-EjIevzuJRiRPbVH4mGc8nApb/lVLKVpmUhAaR5R5doKGfAnGJ6Gr3CViAVjP+4FWSxCsybeWQdcgCtbX+7oZug==}
 
-  zod@4.3.4:
-    resolution: {integrity: sha512-Zw/uYiiyF6pUT1qmKbZziChgNPRu+ZRneAsMUDU6IwmXdWt5JwcUfy2bvLOCUtz5UniaN/Zx5aFttZYbYc7O/A==}
+  zod@4.3.5:
+    resolution: {integrity: sha512-k7Nwx6vuWx1IJ9Bjuf4Zt1PEllcwe7cls3VNzm4CQ1/hgtFUK2bRNG3rvnpPUhFjmqJKAKtjV576KnUkHocg/g==}
 
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
@@ -6962,33 +6962,33 @@ snapshots:
       '@phc/format': 1.0.0
       '@poppinss/utils': 6.10.1
 
-  '@ai-sdk/gateway@2.0.24(zod@4.3.4)':
+  '@ai-sdk/gateway@2.0.24(zod@4.3.5)':
     dependencies:
       '@ai-sdk/provider': 2.0.1
-      '@ai-sdk/provider-utils': 3.0.20(zod@4.3.4)
+      '@ai-sdk/provider-utils': 3.0.20(zod@4.3.5)
       '@vercel/oidc': 3.0.5
-      zod: 4.3.4
+      zod: 4.3.5
 
-  '@ai-sdk/provider-utils@3.0.20(zod@4.3.4)':
+  '@ai-sdk/provider-utils@3.0.20(zod@4.3.5)':
     dependencies:
       '@ai-sdk/provider': 2.0.1
       '@standard-schema/spec': 1.1.0
       eventsource-parser: 3.0.6
-      zod: 4.3.4
+      zod: 4.3.5
 
   '@ai-sdk/provider@2.0.1':
     dependencies:
       json-schema: 0.4.0
 
-  '@ai-sdk/react@2.0.119(react@19.2.3)(zod@4.3.4)':
+  '@ai-sdk/react@2.0.119(react@19.2.3)(zod@4.3.5)':
     dependencies:
-      '@ai-sdk/provider-utils': 3.0.20(zod@4.3.4)
-      ai: 5.0.117(zod@4.3.4)
+      '@ai-sdk/provider-utils': 3.0.20(zod@4.3.5)
+      ai: 5.0.117(zod@4.3.5)
       react: 19.2.3
       swr: 2.3.8(react@19.2.3)
       throttleit: 2.1.0
     optionalDependencies:
-      zod: 4.3.4
+      zod: 4.3.5
 
   '@algolia/abtesting@1.12.2':
     dependencies:
@@ -7391,14 +7391,14 @@ snapshots:
 
   '@docsearch/react@4.4.0(@algolia/client-search@5.46.2)(react@19.2.3)(search-insights@2.17.3)':
     dependencies:
-      '@ai-sdk/react': 2.0.119(react@19.2.3)(zod@4.3.4)
+      '@ai-sdk/react': 2.0.119(react@19.2.3)(zod@4.3.5)
       '@algolia/autocomplete-core': 1.19.2(@algolia/client-search@5.46.2)(algoliasearch@5.46.2)(search-insights@2.17.3)
       '@docsearch/core': 4.4.0(react@19.2.3)
       '@docsearch/css': 4.4.0
-      ai: 5.0.117(zod@4.3.4)
+      ai: 5.0.117(zod@4.3.5)
       algoliasearch: 5.46.2
       marked: 16.4.2
-      zod: 4.3.4
+      zod: 4.3.5
     optionalDependencies:
       react: 19.2.3
       search-insights: 2.17.3
@@ -8523,7 +8523,7 @@ snapshots:
     transitivePeerDependencies:
       - magicast
 
-  '@nuxt/test-utils@3.21.0(happy-dom@20.0.11)(magicast@0.5.1)(typescript@5.9.3)(vitest@4.0.16(@opentelemetry/api@1.9.0)(@types/node@25.0.3)(happy-dom@20.0.11)(jiti@2.6.1)(sass@1.97.1)(terser@5.44.1)(yaml@2.8.2))':
+  '@nuxt/test-utils@3.22.0(happy-dom@20.0.11)(magicast@0.5.1)(typescript@5.9.3)(vitest@4.0.16(@opentelemetry/api@1.9.0)(@types/node@25.0.3)(happy-dom@20.0.11)(jiti@2.6.1)(sass@1.97.1)(terser@5.44.1)(yaml@2.8.2))':
     dependencies:
       '@nuxt/kit': 3.20.2(magicast@0.5.1)
       c12: 3.3.3(magicast@0.5.1)
@@ -8644,7 +8644,7 @@ snapshots:
       ufo: 1.6.1
       uncrypto: 0.1.3
       unstorage: 1.17.3(db0@0.3.4(@libsql/client@0.15.15)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260101.0)(@libsql/client@0.15.15)(@opentelemetry/api@1.9.0)))(ioredis@5.8.2)
-      zod: 4.3.4
+      zod: 4.3.5
     transitivePeerDependencies:
       - '@arethetypeswrong/core'
       - '@azure/app-configuration'
@@ -8737,7 +8737,7 @@ snapshots:
       - magicast
       - supports-color
 
-  '@nuxtjs/sitemap@7.5.0(h3@1.15.4)(magicast@0.5.1)(vite@7.3.0(@types/node@25.0.3)(jiti@2.6.1)(sass@1.97.1)(terser@5.44.1)(yaml@2.8.2))(vue@3.5.26(typescript@5.9.3))(zod@4.3.4)':
+  '@nuxtjs/sitemap@7.5.0(h3@1.15.4)(magicast@0.5.1)(vite@7.3.0(@types/node@25.0.3)(jiti@2.6.1)(sass@1.97.1)(terser@5.44.1)(yaml@2.8.2))(vue@3.5.26(typescript@5.9.3))(zod@4.3.5)':
     dependencies:
       '@nuxt/devtools-kit': 3.1.1(magicast@0.5.1)(vite@7.3.0(@types/node@25.0.3)(jiti@2.6.1)(sass@1.97.1)(terser@5.44.1)(yaml@2.8.2))
       '@nuxt/kit': 4.2.2(magicast@0.5.1)
@@ -8756,7 +8756,7 @@ snapshots:
       ufo: 1.6.1
       ultrahtml: 1.6.0
     optionalDependencies:
-      zod: 4.3.4
+      zod: 4.3.5
     transitivePeerDependencies:
       - h3
       - magicast
@@ -9934,13 +9934,13 @@ snapshots:
 
   agent-base@7.1.4: {}
 
-  ai@5.0.117(zod@4.3.4):
+  ai@5.0.117(zod@4.3.5):
     dependencies:
-      '@ai-sdk/gateway': 2.0.24(zod@4.3.4)
+      '@ai-sdk/gateway': 2.0.24(zod@4.3.5)
       '@ai-sdk/provider': 2.0.1
-      '@ai-sdk/provider-utils': 3.0.20(zod@4.3.4)
+      '@ai-sdk/provider-utils': 3.0.20(zod@4.3.5)
       '@opentelemetry/api': 1.9.0
-      zod: 4.3.4
+      zod: 4.3.5
 
   ajv-formats@2.1.1(ajv@8.17.1):
     optionalDependencies:
@@ -12382,7 +12382,7 @@ snapshots:
       js-beautify: 1.15.4
       marked: 7.0.4
       shiki: 3.20.0
-      zod: 4.3.4
+      zod: 4.3.5
     transitivePeerDependencies:
       - magicast
       - vite
@@ -14254,7 +14254,7 @@ snapshots:
 
   vitest-environment-nuxt@1.0.1(happy-dom@20.0.11)(magicast@0.5.1)(typescript@5.9.3)(vitest@4.0.16(@opentelemetry/api@1.9.0)(@types/node@25.0.3)(happy-dom@20.0.11)(jiti@2.6.1)(sass@1.97.1)(terser@5.44.1)(yaml@2.8.2)):
     dependencies:
-      '@nuxt/test-utils': 3.21.0(happy-dom@20.0.11)(magicast@0.5.1)(typescript@5.9.3)(vitest@4.0.16(@opentelemetry/api@1.9.0)(@types/node@25.0.3)(happy-dom@20.0.11)(jiti@2.6.1)(sass@1.97.1)(terser@5.44.1)(yaml@2.8.2))
+      '@nuxt/test-utils': 3.22.0(happy-dom@20.0.11)(magicast@0.5.1)(typescript@5.9.3)(vitest@4.0.16(@opentelemetry/api@1.9.0)(@types/node@25.0.3)(happy-dom@20.0.11)(jiti@2.6.1)(sass@1.97.1)(terser@5.44.1)(yaml@2.8.2))
     transitivePeerDependencies:
       - '@cucumber/cucumber'
       - '@jest/globals'
@@ -14537,6 +14537,6 @@ snapshots:
 
   zod@3.22.3: {}
 
-  zod@4.3.4: {}
+  zod@4.3.5: {}
 
   zwitch@2.0.4: {}
