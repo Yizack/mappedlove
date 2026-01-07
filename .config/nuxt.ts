@@ -16,10 +16,12 @@ export default defineNuxtConfig({
     "@nuxthub/core",
     "nuxt-mailchannels",
     "@nuxtjs/mdc",
-    "nuxt-email-renderer"
+    "nuxt-email-renderer",
+    "@nuxt/test-utils"
   ],
   $env: {
     test: {
+      test: true,
       hub: { dir: ".data/test" }
     }
   },
@@ -210,7 +212,8 @@ export default defineNuxtConfig({
       { label: "URL", width: "65%" },
       { label: "Priority", select: "sitemap:priority", width: "12.5%" },
       { label: "Last Modified", select: "sitemap:lastmod", width: "35%" }
-    ]
+    ],
+    zeroRuntime: true
   },
   turnstile: {
     siteKey: "0x4AAAAAAAGmhM7sxmb8brsQ",
