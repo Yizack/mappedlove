@@ -213,7 +213,7 @@ onMounted(() => {
       <h2 class="accordion-header">
         <button class="accordion-button rounded-3 d-flex align-items-center gap-2 collapsed" type="button" data-bs-toggle="collapse" :data-bs-target="`#accordion-${group.key}`" aria-expanded="false" :aria-controls="`accordion-${group.key}`">
           <template v-if="groupBy === 'country'">
-            <Twemoji :emoji="group.key === 'unknown' ? '🏴' : $countries.getEmoji(group.key)" size="1.5rem" png />
+            <Twemoji :emoji="group.key === 'unknown' ? '🏴' : $countries.getEmoji(group.key)" size="1.5rem" />
             <span class="fw-bold">{{ group.key === 'unknown' ? t('unknown') : $countries.getName(group.key) }}</span>
           </template>
           <template v-else>
@@ -230,7 +230,7 @@ onMounted(() => {
               <div class="w-100 h-100 text-break">
                 <h5 class="mb-1">
                   <Icon v-if="groupBy !== 'group'" :name="groups[marker.group]!.icon" class="text-primary me-1" size="1.5rem" :title="t(groups[marker.group]!.key)" :style="{ verticalAlign: 'middle' }" mode="css" />
-                  <Twemoji v-if="groupBy !== 'country' && marker.country" :emoji="$countries.getEmoji(marker.country)" class="me-1" size="1.1em" :title="$countries.getName(marker.country)" png />
+                  <Twemoji v-if="groupBy !== 'country' && marker.country" :emoji="$countries.getEmoji(marker.country)" class="me-1" size="1.1em" :title="$countries.getName(marker.country)" />
                   <span>{{ marker.title }}</span>
                 </h5>
                 <p class="m-0">{{ marker.description }}</p>
@@ -260,7 +260,7 @@ onMounted(() => {
         <div class="w-100 h-100 text-break">
           <h5 class="mb-1">
             <Icon :name="groups[marker.group]!.icon" class="text-primary me-1" size="1.5rem" :title="t(groups[marker.group]!.key)" :style="{ verticalAlign: 'middle' }" mode="css" />
-            <Twemoji v-if="marker.country" :emoji="$countries.getEmoji(marker.country)" class="me-1" size="1.1em" :title="$countries.getName(marker.country)" png />
+            <Twemoji v-if="marker.country" :emoji="$countries.getEmoji(marker.country)" class="me-1" size="1.1em" :title="$countries.getName(marker.country)" />
             <span>{{ marker.title }}</span>
           </h5>
           <p class="m-0">{{ marker.description }}</p>
@@ -300,7 +300,7 @@ onMounted(() => {
       </div>
       <div class="input-group mb-2">
         <span class="input-group-text bg-body">
-          <Twemoji :emoji="$countries.getEmoji(form.country) || '🏴'" size="2rem" png />
+          <Twemoji :emoji="$countries.getEmoji(form.country) || '🏴'" size="2rem" />
         </span>
         <div class="form-floating">
           <input :value="$countries.getName(form.country)" type="text" class="form-control" :placeholder="t('country')" disabled>

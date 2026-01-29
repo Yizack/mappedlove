@@ -218,5 +218,8 @@ export default defineNuxtConfig({
   turnstile: {
     siteKey: "0x4AAAAAAAGmhM7sxmb8brsQ",
     addValidateEndpoint: false
+  },
+  twemoji: {
+    mode: "png"
   }
 });

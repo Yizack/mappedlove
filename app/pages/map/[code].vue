@@ -154,7 +154,7 @@ useSeo({
             </div>
             <div v-if="marker.country" class="d-flex gap-1 mb-2">
               <strong>{{ t("country") }}:</strong>
-              <Twemoji :emoji="$countries.getEmoji(marker.country)" size="1.5rem" png />
+              <Twemoji :emoji="$countries.getEmoji(marker.country)" size="1.5rem" />
               <span>{{ $countries.getName(marker.country) }}</span>
             </div>
             <div class="d-flex gap-1">
