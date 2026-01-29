@@ -252,7 +252,7 @@ useSeo({
             <div class="position-relative mb-2">
               <div class="input-group">
                 <span class="input-group-text">
-                  <Twemoji v-if="country.code" :emoji="$countries.getEmoji(form.country)" size="2rem" />
+                  <Twemoji v-if="country.code" :emoji="$countries.getEmoji(form.country)" size="2rem" mode="svg" />
                   <Icon v-else name="solar:magnifer-linear" size="1.5em" />
                 </span>
                 <div class="form-floating position-relative">
@@ -267,7 +267,7 @@ useSeo({
               <div v-if="country.focus" class="position-relative z-3 mt-2">
                 <ul class="select-list position-absolute rounded border bg-body py-2 px-0 shadow w-100 m-0">
                   <li v-for="countryOption of countriesFilter" :key="countryOption.code" role="button" class="py-2 px-3" @click="selectCountry(countryOption)">
-                    <Twemoji :emoji="countryOption.emoji" class="me-2" size="2rem" png />
+                    <Twemoji :emoji="countryOption.emoji" class="me-2" size="2rem" />
                     {{ countryOption.name }}
                   </li>
                   <li v-if="!countriesFilter.length" class="py-2 px-3"><i>{{ t("no_results") }}</i></li>
