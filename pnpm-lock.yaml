@@ -84,8 +84,8 @@ importers:
         specifier: ^0.3.11
         version: 0.3.11(magicast@0.5.1)
       nuxt-twemoji:
-        specifier: ^3.8.1
-        version: 3.8.1(magicast@0.5.1)
+        specifier: ^4.0.0
+        version: 4.0.0(magicast@0.5.1)
       nuxt-webhook-validators:
         specifier: ^0.2.6
         version: 0.2.6(magicast@0.5.1)
@@ -1501,6 +1501,10 @@ packages:
 
   '@nuxt/kit@4.2.2':
     resolution: {integrity: sha512-ZAgYBrPz/yhVgDznBNdQj2vhmOp31haJbO0I0iah/P9atw+OHH7NJLUZ3PK+LOz/0fblKTN1XJVSi8YQ1TQ0KA==}
+    engines: {node: '>=18.12.0'}
+
+  '@nuxt/kit@4.3.0':
+    resolution: {integrity: sha512-cD/0UU9RQmlnTbmyJTDyzN8f6CzpziDLv3tFQCnwl0Aoxt3KmFu4k/XA4Sogxqj7jJ/3cdX1kL+Lnsh34sxcQQ==}
     engines: {node: '>=18.12.0'}
 
   '@nuxt/nitro-server@4.2.2':
@@ -5150,8 +5154,8 @@ packages:
   nuxt-site-config@3.2.18:
     resolution: {integrity: sha512-pvFM9wNjmb/CTiea36lqVT7WO0zGDHq4MNoFaO4cdOYrym9JeMg5VJIOYnAcAsa6VK1FlH+Cw7Af9UjcqwRg/w==}
 
-  nuxt-twemoji@3.8.1:
-    resolution: {integrity: sha512-U3MLCbxO4Oym+sPvOBcn0j1cp3HYAcxjCNFcKoBr1pML1QJium2OF9+miVZnQSBC86NrtLomdf6pv1pVy7EeUg==}
+  nuxt-twemoji@4.0.0:
+    resolution: {integrity: sha512-arOyaCjWITFFOJDrCtC2egjvifOqJ/uJ/IM9ethG8pOpieuNJrZqCZC/24xUdU1nqPV+WHO03I5Q5u81rjjCaA==}
 
   nuxt-webhook-validators@0.2.6:
     resolution: {integrity: sha512-hmEAF15XvovM/sEAVmt6MDBGP9rFCzuf1wBbgdY88j35i0xPOcedKuiaE3uuDfF+KB2jpNgeB/sV9heqzPvG3A==}
@@ -6160,6 +6164,7 @@ packages:
   tar@7.5.4:
     resolution: {integrity: sha512-AN04xbWGrSTDmVwlI4/GTlIIwMFk/XEv7uL8aa57zuvRy6s4hdBed+lVq2fAZ89XDa7Us3ANXcE3Tvqvja1kTA==}
     engines: {node: '>=18'}
+    deprecated: Old versions of tar are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exhorbitant rates) by contacting i@izs.me
 
   terser-webpack-plugin@5.3.16:
     resolution: {integrity: sha512-h9oBFCWrq78NyWWVcSwZarJkZ01c2AyGrzs1crmHZO3QUg9D61Wu4NPjBy69n7JqylFF5y+CsUZYmYEIZ3mR+Q==}
@@ -8157,6 +8162,31 @@ snapshots:
       - magicast
 
   '@nuxt/kit@4.2.2(magicast@0.5.1)':
+    dependencies:
+      c12: 3.3.3(magicast@0.5.1)
+      consola: 3.4.2
+      defu: 6.1.4
+      destr: 2.0.5
+      errx: 0.1.0
+      exsolve: 1.0.8
+      ignore: 7.0.5
+      jiti: 2.6.1
+      klona: 2.0.6
+      mlly: 1.8.0
+      ohash: 2.0.11
+      pathe: 2.0.3
+      pkg-types: 2.3.0
+      rc9: 2.1.2
+      scule: 1.3.0
+      semver: 7.7.3
+      tinyglobby: 0.2.15
+      ufo: 1.6.3
+      unctx: 2.5.0
+      untyped: 2.0.0
+    transitivePeerDependencies:
+      - magicast
+
+  '@nuxt/kit@4.3.0(magicast@0.5.1)':
     dependencies:
       c12: 3.3.3(magicast@0.5.1)
       consola: 3.4.2
@@ -12221,11 +12251,12 @@ snapshots:
       - magicast
       - vue
 
-  nuxt-twemoji@3.8.1(magicast@0.5.1):
+  nuxt-twemoji@4.0.0(magicast@0.5.1):
     dependencies:
-      '@nuxt/kit': 4.2.2(magicast@0.5.1)
+      '@nuxt/kit': 4.3.0(magicast@0.5.1)
       '@twemoji/api': 17.0.2
       '@twemoji/parser': 17.0.1
+      defu: 6.1.4
     transitivePeerDependencies:
       - magicast
 
