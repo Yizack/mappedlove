@@ -93,8 +93,8 @@ importers:
         specifier: ^1.97.3
         version: 1.97.3
       vitepress:
-        specifier: ^2.0.0-alpha.15
-        version: 2.0.0-alpha.15(@types/node@25.1.0)(change-case@5.4.4)(fuse.js@7.1.0)(jiti@2.6.1)(oxc-minify@0.110.0)(postcss@8.5.6)(sass@1.97.3)(terser@5.46.0)(typescript@5.9.3)(yaml@2.8.2)
+        specifier: ^2.0.0-alpha.16
+        version: 2.0.0-alpha.16(@types/node@25.1.0)(change-case@5.4.4)(fuse.js@7.1.0)(jiti@2.6.1)(oxc-minify@0.110.0)(postcss@8.5.6)(sass@1.97.3)(terser@5.46.0)(typescript@5.9.3)(yaml@2.8.2)
       vue-draggable-plus:
         specifier: ^0.6.1
         version: 0.6.1(@types/sortablejs@1.15.9)
@@ -406,6 +406,9 @@ packages:
 
   '@docsearch/js@4.5.3':
     resolution: {integrity: sha512-rcBiUMCXbZLqrLIT6F6FDcrG/tyvM2WM0zum6NPbIiQNDQxbSgmNc+/bToS0rxBsXaxiU64esiWoS02WqrWLsg==}
+
+  '@docsearch/sidepanel-js@4.5.3':
+    resolution: {integrity: sha512-DmcZYc1ZMMcabtKrCU2RIf1z09LwazKCyoPFU/ijJiBg2LdqMLmkyDKHGy1OIYEyUx4ok5RIbkVGaRfD55BqZQ==}
 
   '@drizzle-team/brocli@0.10.2':
     resolution: {integrity: sha512-z33Il7l5dKjUgGULTqBsQBQwckHh5AbIuxhdsIxDDiZAzBOrZO6q9ogcWC65kU382AfynTfgNumVcNIjuIua6w==}
@@ -6768,8 +6771,8 @@ packages:
       yaml:
         optional: true
 
-  vitepress@2.0.0-alpha.15:
-    resolution: {integrity: sha512-jhjSYd10Z6RZiKOa7jy0xMVf5NB5oSc/lS3bD/QoUc6V8PrvQR5JhC9104NEt6+oTGY/ftieVWxY9v7YI+1IjA==}
+  vitepress@2.0.0-alpha.16:
+    resolution: {integrity: sha512-w1nwsefDVIsje7BZr2tsKxkZutDGjG0YoQ2yxO7+a9tvYVqfljYbwj5LMYkPy8Tb7YbPwa22HtIhk62jbrvuEQ==}
     hasBin: true
     peerDependencies:
       markdown-it-mathjax3: ^4
@@ -7337,6 +7340,8 @@ snapshots:
   '@docsearch/css@4.5.3': {}
 
   '@docsearch/js@4.5.3': {}
+
+  '@docsearch/sidepanel-js@4.5.3': {}
 
   '@drizzle-team/brocli@0.10.2': {}
 
@@ -14225,10 +14230,11 @@ snapshots:
       terser: 5.46.0
       yaml: 2.8.2
 
-  vitepress@2.0.0-alpha.15(@types/node@25.1.0)(change-case@5.4.4)(fuse.js@7.1.0)(jiti@2.6.1)(oxc-minify@0.110.0)(postcss@8.5.6)(sass@1.97.3)(terser@5.46.0)(typescript@5.9.3)(yaml@2.8.2):
+  vitepress@2.0.0-alpha.16(@types/node@25.1.0)(change-case@5.4.4)(fuse.js@7.1.0)(jiti@2.6.1)(oxc-minify@0.110.0)(postcss@8.5.6)(sass@1.97.3)(terser@5.46.0)(typescript@5.9.3)(yaml@2.8.2):
     dependencies:
       '@docsearch/css': 4.5.3
       '@docsearch/js': 4.5.3
+      '@docsearch/sidepanel-js': 4.5.3
       '@iconify-json/simple-icons': 1.2.68
       '@shikijs/core': 3.21.0
       '@shikijs/transformers': 3.21.0
