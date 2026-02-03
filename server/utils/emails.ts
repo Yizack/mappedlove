@@ -26,7 +26,7 @@ export const renderEmail = async <T extends keyof EmailTemplates>(
   templateName: T,
   props?: ExtractComponentProps<EmailTemplates[T]>
 ) => {
-  const html: string = await renderEmailComponent(templateName, props);
+  const html = await renderEmailComponent(templateName, props) as string;
 
   const text: string = convert(html, {
     selectors: [
