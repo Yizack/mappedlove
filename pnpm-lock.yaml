@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@dargmuesli/nuxt-cookie-control':
-        specifier: ^9.1.15
-        version: 9.1.15(magicast@0.5.1)(webpack@5.105.0(esbuild@0.25.12))
+        specifier: ^9.1.16
+        version: 9.1.16(magicast@0.5.1)(webpack@5.105.0(esbuild@0.25.12))
       '@iconify-json/ion':
         specifier: ^1.2.6
         version: 1.2.6
@@ -78,8 +78,8 @@ importers:
         specifier: ^0.5.28
         version: 0.5.28(magicast@0.5.1)
       nuxt-email-renderer:
-        specifier: ^2.3.0
-        version: 2.3.0(magicast@0.5.1)(vite@7.3.1(@types/node@25.2.0)(jiti@2.6.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))(vue@3.5.27(typescript@5.9.3))
+        specifier: ^2.4.0
+        version: 2.4.0(magicast@0.5.1)(vite@7.3.1(@types/node@25.2.0)(jiti@2.6.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))(vue@3.5.27(typescript@5.9.3))
       nuxt-mailchannels:
         specifier: ^0.3.12
         version: 0.3.12(magicast@0.5.1)
@@ -395,8 +395,8 @@ packages:
     peerDependencies:
       postcss-selector-parser: ^7.1.1
 
-  '@dargmuesli/nuxt-cookie-control@9.1.15':
-    resolution: {integrity: sha512-3V7/OzhKLik/eov4bWG0epAIUTEfiYTX7Dmk7B/6HGuxa1FRGiqnZmMw0goQ009kpO8IiINs+ztswKambAJpkw==}
+  '@dargmuesli/nuxt-cookie-control@9.1.16':
+    resolution: {integrity: sha512-7PL+STjLwzicL+SAdvpwjEC5SKQ/x3UFnQixxJMkUdmEv1J/dSM0UWLGllbO1eC0b5iMs/kehGLtvjUkiYA2YA==}
     engines: {node: '>=16'}
 
   '@date-fns/tz@1.4.1':
@@ -5126,8 +5126,8 @@ packages:
       '@simplewebauthn/server':
         optional: true
 
-  nuxt-email-renderer@2.3.0:
-    resolution: {integrity: sha512-W2vWNLEk4AXeLpR3r8l0DLaYz41hIbjjckUkqatBYM6VqSNq6+8iwjwsV9JUvSAfHoBvn28kPz1oSzG9Keza8w==}
+  nuxt-email-renderer@2.4.0:
+    resolution: {integrity: sha512-cCNTeFLZSvHpFRW8kDrb69+XXa1uQ+r72lbb1ArwIrQZ0h0KQqm5xq6e1eNwf9JC05woDYRmsH6mnJN7VWLTSQ==}
     peerDependencies:
       '@nuxtjs/i18n': '>=10.0.0'
       vue-i18n: '>=11.0.0'
@@ -7147,9 +7147,9 @@ snapshots:
     dependencies:
       postcss-selector-parser: 7.1.1
 
-  '@dargmuesli/nuxt-cookie-control@9.1.15(magicast@0.5.1)(webpack@5.105.0(esbuild@0.25.12))':
+  '@dargmuesli/nuxt-cookie-control@9.1.16(magicast@0.5.1)(webpack@5.105.0(esbuild@0.25.12))':
     dependencies:
-      '@nuxt/kit': 4.3.0(magicast@0.5.1)
+      '@nuxt/kit': 4.3.1(magicast@0.5.1)
       css-vars-ponyfill: 2.4.9
       defu: 6.1.4
       string-replace-loader: 3.3.0(webpack@5.105.0(esbuild@0.25.12))
@@ -12083,10 +12083,10 @@ snapshots:
       - bcrypt
       - magicast
 
-  nuxt-email-renderer@2.3.0(magicast@0.5.1)(vite@7.3.1(@types/node@25.2.0)(jiti@2.6.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))(vue@3.5.27(typescript@5.9.3)):
+  nuxt-email-renderer@2.4.0(magicast@0.5.1)(vite@7.3.1(@types/node@25.2.0)(jiti@2.6.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))(vue@3.5.27(typescript@5.9.3)):
     dependencies:
       '@nuxt/devtools-kit': 3.1.1(magicast@0.5.1)(vite@7.3.1(@types/node@25.2.0)(jiti@2.6.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
-      '@nuxt/kit': 4.3.0(magicast@0.5.1)
+      '@nuxt/kit': 4.3.1(magicast@0.5.1)
       '@vitejs/plugin-vue': 6.0.4(vite@7.3.1(@types/node@25.2.0)(jiti@2.6.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))(vue@3.5.27(typescript@5.9.3))
       html-to-text: 9.0.5
       js-beautify: 1.15.4
