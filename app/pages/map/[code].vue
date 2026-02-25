@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import MasonryWall from "@yeger/vue-masonry-wall";
+import { MasonryWall } from "@yeger/vue-masonry-wall";
 import { VueDatePicker } from "@vuepic/vue-datepicker";
 
 definePageMeta({ layout: "map" });
