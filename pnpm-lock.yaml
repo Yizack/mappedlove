@@ -54,8 +54,8 @@ importers:
         specifier: ^12.1.0
         version: 12.1.0(vue@3.5.28(typescript@5.9.3))
       '@yeger/vue-masonry-wall':
-        specifier: ^5.1.5
-        version: 5.1.5(vue@3.5.28(typescript@5.9.3))
+        specifier: ^6.1.0
+        version: 6.1.0(vue@3.5.28(typescript@5.9.3))
       bootstrap:
         specifier: ^5.3.8
         version: 5.3.8(@popperjs/core@2.11.8)
@@ -2987,14 +2987,8 @@ packages:
   '@yeger/debounce@2.0.17':
     resolution: {integrity: sha512-wz9ARkGnY25yToyaZaCz887aRxsIg96uI/waBLkV/Qfh9/VHP+C6uAFpOg8FPba0KMS2QYo2dhCOqPvCoDigyA==}
 
-  '@yeger/vue-lib-adapter@2.0.16':
-    resolution: {integrity: sha512-fxD0xY5dOy5G/c59gQ/IMbZl1MWw8tPK+moJu2WiUqpFrRQBz2U8bx95k0VSFMZqBCTEhXXomCi93C7FVRQB6A==}
-
-  '@yeger/vue-masonry-wall-core@5.0.22':
-    resolution: {integrity: sha512-mHiIQ/DeGUxhB3VKcvcv/lo1MLsJPjDA8RCQQl04mFtHerlNBPYHE0cBdzQOMSAdpOOO6QQ6vpSwQloYi8h6Mg==}
-
-  '@yeger/vue-masonry-wall@5.1.5':
-    resolution: {integrity: sha512-hxJBwg7fKLALKZuaHatBhbZtQu4FFPQkTSEPiSmhlHuAH2kUAsGEuQcsjvq3sc/xeF0CAwjz7T49QIxCgRBc1Q==}
+  '@yeger/vue-masonry-wall@6.1.0':
+    resolution: {integrity: sha512-7rDZyvCRPSIkR90v1lX0e611LjADrlQ5CqrbcJocw0NxBr36QbzNKz1naXE5EMbVpt6xJaN/CeOQUGXkwGIxng==}
     peerDependencies:
       vue: ^3.0.0
 
@@ -9697,16 +9691,9 @@ snapshots:
 
   '@yeger/debounce@2.0.17': {}
 
-  '@yeger/vue-lib-adapter@2.0.16': {}
-
-  '@yeger/vue-masonry-wall-core@5.0.22':
+  '@yeger/vue-masonry-wall@6.1.0(vue@3.5.28(typescript@5.9.3))':
     dependencies:
       '@yeger/debounce': 2.0.17
-      '@yeger/vue-lib-adapter': 2.0.16
-
-  '@yeger/vue-masonry-wall@5.1.5(vue@3.5.28(typescript@5.9.3))':
-    dependencies:
-      '@yeger/vue-masonry-wall-core': 5.0.22
       vue: 3.5.28(typescript@5.9.3)
 
   abbrev@2.0.0: {}
