@@ -1,10 +1,9 @@
-import icons from "./icons";
 import { SITE } from "../shared/utils/site";
+import icons from "./icons";
 
 export default defineNuxtConfig({
   // future: { compatibilityVersion: 4 },
   modules: [
-    "@nuxt/eslint",
     "@nuxt/icon",
     "@nuxtjs/turnstile",
     "nuxt-twemoji",
@@ -184,12 +183,6 @@ export default defineNuxtConfig({
   cookieControl: {
     isControlButtonEnabled: false,
     locales: ["en", "es"]
-  },
-  eslint: {
-    config: {
-      autoInit: false,
-      stylistic: true
-    }
   },
   icon: {
     mode: "svg",

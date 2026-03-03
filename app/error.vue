@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { destr } from "destr";
-import type { NuxtError } from "#app";
 import type { ZodError } from "zod";
+import type { NuxtError } from "#app";
 
 defineProps<{
   error: NuxtError;

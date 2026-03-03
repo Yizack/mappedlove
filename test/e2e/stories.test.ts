@@ -1,7 +1,7 @@
-import { $fetch } from "@nuxt/test-utils/e2e";
-import { afterAll, describe, expect, test } from "vitest";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
+import { $fetch } from "@nuxt/test-utils/e2e";
+import { afterAll, describe, expect, test } from "vitest";
 
 describe("stories", async () => {
   let createdMarker: MappedLoveMarker;

@@ -46,7 +46,8 @@ export default defineEventHandler(async (event): Promise<MappedLoveStory> => {
   }
 
   const uploaded = await uploadImage(file, {
-    name: storyHash, folder: "stories",
+    name: storyHash,
+    folder: "stories",
     customMetadata: {
       bondId: user.bond.id.toString(),
       userId: user.id.toString(),

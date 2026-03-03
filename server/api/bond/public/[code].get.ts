@@ -32,7 +32,7 @@ export default defineEventHandler(async (event): Promise<MappedLovePublicMap> =>
 
   const { secure } = useRuntimeConfig(event);
 
-  const storiesHashed = stories.map((story) => ({
+  const storiesHashed = stories.map(story => ({
     ...story,
     hash: hash([story.id, bond.code].join(), secure.salt)
   }));
