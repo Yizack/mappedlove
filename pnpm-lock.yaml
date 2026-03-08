@@ -78,8 +78,8 @@ importers:
         specifier: ^0.5.29
         version: 0.5.29(magicast@0.5.2)
       nuxt-email-renderer:
-        specifier: ^2.5.3
-        version: 2.5.3(magicast@0.5.2)(vite@7.3.1(@types/node@25.3.0)(jiti@2.6.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))(vue@3.5.29(typescript@5.9.3))
+        specifier: ^2.5.4
+        version: 2.5.4(magicast@0.5.2)(vite@7.3.1(@types/node@25.3.0)(jiti@2.6.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))(vue@3.5.29(typescript@5.9.3))
       nuxt-mailchannels:
         specifier: ^0.3.13
         version: 0.3.13(magicast@0.5.2)
@@ -4959,8 +4959,8 @@ packages:
       '@simplewebauthn/server':
         optional: true
 
-  nuxt-email-renderer@2.5.3:
-    resolution: {integrity: sha512-ngtBlCkc3632dEYpXirBRNIckqL68bty9lOvh8AmoQn5S5yoEF6zhdKkR80fgd2SIaAmYT0Y4jE7DcZasb/jig==}
+  nuxt-email-renderer@2.5.4:
+    resolution: {integrity: sha512-2Ik6C4m62Bdvkbw1sglj11TX1oW474LJNIW859hV9ic92G9cMyndGg3sDA08xwOLJR8/vcIZOLMNb4SgSV1RPQ==}
     peerDependencies:
       '@nuxtjs/i18n': '>=10.0.0'
       vue-i18n: '>=11.0.0'
@@ -8913,7 +8913,7 @@ snapshots:
       '@typescript-eslint/types': 8.56.1
       '@typescript-eslint/visitor-keys': 8.56.1
       debug: 4.4.3
-      minimatch: 10.2.3
+      minimatch: 10.2.4
       semver: 7.7.4
       tinyglobby: 0.2.15
       ts-api-utils: 2.4.0(typescript@5.9.3)
@@ -10432,7 +10432,7 @@ snapshots:
 
   glob@13.0.6:
     dependencies:
-      minimatch: 10.2.3
+      minimatch: 10.2.4
       minipass: 7.1.3
       path-scurry: 2.0.2
 
@@ -11634,7 +11634,7 @@ snapshots:
       - bcrypt
       - magicast
 
-  nuxt-email-renderer@2.5.3(magicast@0.5.2)(vite@7.3.1(@types/node@25.3.0)(jiti@2.6.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))(vue@3.5.29(typescript@5.9.3)):
+  nuxt-email-renderer@2.5.4(magicast@0.5.2)(vite@7.3.1(@types/node@25.3.0)(jiti@2.6.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))(vue@3.5.29(typescript@5.9.3)):
     dependencies:
       '@nuxt/devtools-kit': 3.2.2(magicast@0.5.2)(vite@7.3.1(@types/node@25.3.0)(jiti@2.6.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
       '@nuxt/kit': 4.3.1(magicast@0.5.2)
