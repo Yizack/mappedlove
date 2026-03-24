@@ -6,7 +6,7 @@ export const createThumbnail = async (event: H3Event, file: File, options: { nam
   const formData = new FormData();
   formData.append("file", file);
 
-  const stream = file.stream() as ReadableStream<Uint8Array>;
+  const stream = file.stream() as unknown as ReadableStream<Uint8Array>;
 
   const imageBinding = await event.context.cloudflare.env.IMAGES.input(stream)
     .transform({
@@ -20,7 +20,7 @@ export const createThumbnail = async (event: H3Event, file: File, options: { nam
 
   if (!imageBinding) return;
 
-  const blob = await imageBinding.response().blob() as Blob;
+  const blob = await imageBinding.response().blob() as unknown as Blob;
 
   return uploadImage(blob, {
     name: options.name,
