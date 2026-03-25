@@ -39,8 +39,8 @@ importers:
         specifier: ^0.20.2
         version: 0.20.2(magicast@0.5.2)
       '@nuxtjs/sitemap':
-        specifier: ^8.0.1
-        version: 8.0.1(dd4c3b998453f96eb7d80c503416ad69)
+        specifier: ^8.0.3
+        version: 8.0.3(dd4c3b998453f96eb7d80c503416ad69)
       '@nuxtjs/turnstile':
         specifier: ^1.1.2
         version: 1.1.2(@nuxt/scripts@0.13.2(@unhead/vue@2.1.12(vue@3.5.31(typescript@6.0.2)))(db0@0.3.4(@libsql/client@0.17.2)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260317.1)(@libsql/client@0.17.2)))(ioredis@5.10.1)(magicast@0.5.2)(typescript@6.0.2)(vue@3.5.31(typescript@6.0.2)))(magicast@0.5.2)
@@ -1661,8 +1661,8 @@ packages:
   '@nuxtjs/mdc@0.20.2':
     resolution: {integrity: sha512-afAJKnXKdvDtoNOGARQMpZoGprL1T3OGnj+K9edJjX+WdhCwvVabBijhi8BAlpx+YzA/DpcZx8bDFZk/aoSJmA==}
 
-  '@nuxtjs/sitemap@8.0.1':
-    resolution: {integrity: sha512-6Tq/WJlfRW8SvD4Y9nhFNOZ4NN4yaU/2SV+4lqEfqldSMnRyhxsgKGnaTtaJxTQAUJnj5f4Q9qn5w+u/J1Rrow==}
+  '@nuxtjs/sitemap@8.0.3':
+    resolution: {integrity: sha512-kVMnyR9i7WhAl0dMGpvIgNjceVrcK6vXXRuygtshg2AQVj5gkogoc/G5bqOxZwKwqqqKPSlcZCmOyZHU8deD9A==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       zod: '>=3'
@@ -5779,11 +5779,11 @@ packages:
   nuxt-mailchannels@0.3.13:
     resolution: {integrity: sha512-6TKreAfkabIltAz1Lm96V03umA8tyGw81ZP/ex/+NsHd3sesmEdAd1QnHLx6U8czmZzRzyLBz2ADPvc3ImciuQ==}
 
-  nuxt-site-config-kit@4.0.1:
-    resolution: {integrity: sha512-O22z/7h9gcSHAYVDuZ0wqzHuaWAOvaD9MSk8pcO8Y0tSzrkVYqatt2wOO1XCnINac2Gp+b3PORI/rLgMHF4toQ==}
+  nuxt-site-config-kit@4.0.6:
+    resolution: {integrity: sha512-bHujE3nPW/hnTpz6JBnYYcumxLDyVW8dkhpXw4okNWw1Yapmm4dwEXn7sI34Gji0nJu8T0bC0m2uRogXbigIUA==}
 
-  nuxt-site-config@4.0.1:
-    resolution: {integrity: sha512-NQyo4B/SAZ/ImkaUdW3wSxoESwtaPuKQjIc1pdIt53sGr1+qyJGlKVgAdhSw9Bul9z58giUgnMlXQdcGJBzHfg==}
+  nuxt-site-config@4.0.6:
+    resolution: {integrity: sha512-l7Ov3yc2uwCK4aVaN/nXaI1uPye5e2t3/QePaguJYzaFW5PGoCYOcGqnf4Gf+kMdOzk3TkPSOPianm38AHWmaQ==}
 
   nuxt-twemoji@4.0.2:
     resolution: {integrity: sha512-q29CbU45n6QeHj3gD7bWOCW1oxs63fed63z+XHHhDm7tVeUiraf7kj0pR0nfwOLmVw2kqzHHrDkmFGpdt0FZ3Q==}
@@ -5804,11 +5804,11 @@ packages:
       '@types/node':
         optional: true
 
-  nuxtseo-layer-devtools@0.3.0:
-    resolution: {integrity: sha512-2psHl2sn9mudMqW66Qp88aG3Q3iayPS2gWNo/e8PxVpXULhkudwIAM9t8q8PPzzWaP+ZKqbzclXiRQcIVw0k6w==}
+  nuxtseo-layer-devtools@0.3.8:
+    resolution: {integrity: sha512-T7UoHv3rkXZIKkGJcLPfNH+SkiRqNV5KVfGCXAC37Fi3Nj++dNrM5BYws+dc0Zyir+Q5pNI53vH2kse1mP7i1w==}
 
-  nuxtseo-shared@0.7.0:
-    resolution: {integrity: sha512-NnodlRn2YMtiw2oxp44+6khaE98CaCWtDIYKcXktJ3g6Kzi8+ryD6Ro/5vr98gWigsogJLPSm+Yz+JoZfG8clw==}
+  nuxtseo-shared@0.7.1:
+    resolution: {integrity: sha512-1AN1yx5T6RhJL1pWiEAh2qHtJqQaWRi8CgT7DMfABgyNO2Pz2aAcb6Gn8SPX0Z8hH1lSmBkxTQ2QP88lJJe7+Q==}
     peerDependencies:
       '@nuxt/schema': ^3.16.0 || ^4.0.0
       nuxt: ^3.16.0 || ^4.0.0
@@ -6591,8 +6591,8 @@ packages:
   sisteransi@1.0.5:
     resolution: {integrity: sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==}
 
-  site-config-stack@4.0.1:
-    resolution: {integrity: sha512-1H3UwRz/tx0XQQlRhDsNItAVDBTdpIkkYQ0nn7sF7erDAKzmbm2DCDC0Qbn+dlhLidpXsnxDds3dEPf+Jfs6WA==}
+  site-config-stack@4.0.6:
+    resolution: {integrity: sha512-DwJtM6bOdN59PppS09mO65lYfh4LuM5splDySaAPGatwUg4NkqXpdNfZ0yagYnftOxeYVFK5hGw4RxPjALy8hA==}
     peerDependencies:
       vue: ^3.5.30
 
@@ -9365,16 +9365,16 @@ snapshots:
       - magicast
       - supports-color
 
-  '@nuxtjs/sitemap@8.0.1(dd4c3b998453f96eb7d80c503416ad69)':
+  '@nuxtjs/sitemap@8.0.3(dd4c3b998453f96eb7d80c503416ad69)':
     dependencies:
       '@nuxt/devtools-kit': 4.0.0-alpha.3(magicast@0.5.2)(vite@7.3.1(@types/node@25.5.0)(jiti@2.6.1)(lightningcss@1.32.0)(sass@1.98.0)(terser@5.46.1)(tsx@4.21.0)(yaml@2.8.3))
       '@nuxt/kit': 4.4.2(magicast@0.5.2)
       consola: 3.4.2
       defu: 6.1.4
       fast-xml-parser: 5.5.9
-      nuxt-site-config: 4.0.1(daaa3383d296a314876fec7e81d2b547)
-      nuxtseo-layer-devtools: 0.3.0(2714bbc5cf08cad77c6e09ae49f16211)
-      nuxtseo-shared: 0.7.0(3e088e25f6f7343fdbffa2318f317bb9)
+      nuxt-site-config: 4.0.6(daaa3383d296a314876fec7e81d2b547)
+      nuxtseo-layer-devtools: 0.3.8(2714bbc5cf08cad77c6e09ae49f16211)
+      nuxtseo-shared: 0.7.1(c977811e13eed00f718700c9abcaf545)
       ofetch: 1.5.1
       pathe: 2.0.3
       pkg-types: 2.3.0
@@ -13552,25 +13552,25 @@ snapshots:
     transitivePeerDependencies:
       - magicast
 
-  nuxt-site-config-kit@4.0.1(magicast@0.5.2)(vue@3.5.31(typescript@6.0.2)):
+  nuxt-site-config-kit@4.0.6(magicast@0.5.2)(vue@3.5.31(typescript@6.0.2)):
     dependencies:
       '@nuxt/kit': 4.4.2(magicast@0.5.2)
-      site-config-stack: 4.0.1(vue@3.5.31(typescript@6.0.2))
+      site-config-stack: 4.0.6(vue@3.5.31(typescript@6.0.2))
       std-env: 4.0.0
       ufo: 1.6.3
     transitivePeerDependencies:
       - magicast
       - vue
 
-  nuxt-site-config@4.0.1(daaa3383d296a314876fec7e81d2b547):
+  nuxt-site-config@4.0.6(daaa3383d296a314876fec7e81d2b547):
     dependencies:
       '@nuxt/kit': 4.4.2(magicast@0.5.2)
       h3: 1.15.10
-      nuxt-site-config-kit: 4.0.1(magicast@0.5.2)(vue@3.5.31(typescript@6.0.2))
-      nuxtseo-shared: 0.7.0(3e088e25f6f7343fdbffa2318f317bb9)
+      nuxt-site-config-kit: 4.0.6(magicast@0.5.2)(vue@3.5.31(typescript@6.0.2))
+      nuxtseo-shared: 0.7.1(c977811e13eed00f718700c9abcaf545)
       pathe: 2.0.3
       pkg-types: 2.3.0
-      site-config-stack: 4.0.1(vue@3.5.31(typescript@6.0.2))
+      site-config-stack: 4.0.6(vue@3.5.31(typescript@6.0.2))
       ufo: 1.6.3
     transitivePeerDependencies:
       - '@nuxt/schema'
@@ -13727,7 +13727,7 @@ snapshots:
       - xml2js
       - yaml
 
-  nuxtseo-layer-devtools@0.3.0(2714bbc5cf08cad77c6e09ae49f16211):
+  nuxtseo-layer-devtools@0.3.8(2714bbc5cf08cad77c6e09ae49f16211):
     dependencies:
       '@nuxt/devtools-kit': 4.0.0-alpha.3(magicast@0.5.2)(vite@7.3.1(@types/node@25.5.0)(jiti@2.6.1)(lightningcss@1.32.0)(sass@1.98.0)(terser@5.46.1)(tsx@4.21.0)(yaml@2.8.3))
       '@nuxt/fonts': 0.14.0(db0@0.3.4(@libsql/client@0.17.2)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260317.1)(@libsql/client@0.17.2)))(ioredis@5.10.1)(magicast@0.5.2)(vite@7.3.1(@types/node@25.5.0)(jiti@2.6.1)(lightningcss@1.32.0)(sass@1.98.0)(terser@5.46.1)(tsx@4.21.0)(yaml@2.8.3))
@@ -13792,7 +13792,7 @@ snapshots:
       - yup
       - zod
 
-  nuxtseo-shared@0.7.0(3e088e25f6f7343fdbffa2318f317bb9):
+  nuxtseo-shared@0.7.1(c977811e13eed00f718700c9abcaf545):
     dependencies:
       '@clack/prompts': 1.1.0
       '@nuxt/devtools-kit': 4.0.0-alpha.3(magicast@0.5.2)(vite@7.3.1(@types/node@25.5.0)(jiti@2.6.1)(lightningcss@1.32.0)(sass@1.98.0)(terser@5.46.1)(tsx@4.21.0)(yaml@2.8.3))
@@ -13811,7 +13811,7 @@ snapshots:
       ufo: 1.6.3
       vue: 3.5.31(typescript@6.0.2)
     optionalDependencies:
-      nuxt-site-config: 4.0.1(daaa3383d296a314876fec7e81d2b547)
+      nuxt-site-config: 4.0.6(daaa3383d296a314876fec7e81d2b547)
       zod: 4.3.6
     transitivePeerDependencies:
       - magicast
@@ -14839,7 +14839,7 @@ snapshots:
 
   sisteransi@1.0.5: {}
 
-  site-config-stack@4.0.1(vue@3.5.31(typescript@6.0.2)):
+  site-config-stack@4.0.6(vue@3.5.31(typescript@6.0.2)):
     dependencies:
       ufo: 1.6.3
       vue: 3.5.31(typescript@6.0.2)
