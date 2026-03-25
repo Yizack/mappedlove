@@ -40,7 +40,7 @@
     "test:types": "vue-tsc -b --noEmit"
   },
   "dependencies": {
-    "@dargmuesli/nuxt-cookie-control": "^9.1.18",
+    "@dargmuesli/nuxt-cookie-control": "^9.1.19",
     "@iconify-json/ion": "^1.2.7",
     "@iconify-json/logos": "^1.2.10",
     "@iconify-json/solar": "^1.2.5",
@@ -50,7 +50,7 @@
     "@nuxthub/core": "^0.10.7",
     "@nuxtjs/color-mode": "^4.0.0",
     "@nuxtjs/mdc": "^0.20.2",
-    "@nuxtjs/sitemap": "^8.0.0",
+    "@nuxtjs/sitemap": "^8.0.1",
     "@nuxtjs/turnstile": "^1.1.2",
     "@paddle/paddle-js": "^1.6.2",
     "@paddle/paddle-node-sdk": "^3.6.0",
@@ -78,13 +78,13 @@
     "@types/leaflet": "^1.9.21",
     "@yizack/eslint-config": "^0.0.5",
     "eslint": "^10.1.0",
-    "happy-dom": "^20.8.7",
+    "happy-dom": "^20.8.8",
     "stylelint": "^17.5.0",
     "stylelint-config-standard-scss": "^17.0.0",
     "typescript": "^6.0.2",
     "vitest": "^4.1.1",
     "vue-tsc": "^3.2.6",
-    "wrangler": "^4.76.0"
+    "wrangler": "^4.77.0"
   },
-  "packageManager": "pnpm@10.32.1"
+  "packageManager": "pnpm@10.33.0"
 }
