@@ -4,10 +4,10 @@ strictPeerDependencies: false
 packages:
   - .
 
-ignoredBuiltDependencies:
-  - '@parcel/watcher'
-  - esbuild
-  - sharp
-  - unrs-resolver
-  - vue-demi
-  - workerd
+allowBuilds:
+  '@parcel/watcher': false
+  esbuild: false
+  sharp: false
+  unrs-resolver: false
+  vue-demi: false
+  workerd: false
