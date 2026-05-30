@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@dargmuesli/nuxt-cookie-control':
-        specifier: ^9.1.26
-        version: 9.1.26(magicast@0.5.3)(webpack@5.107.1(postcss@8.5.15))
+        specifier: ^9.1.27
+        version: 9.1.27(magicast@0.5.3)(webpack@5.107.1(postcss@8.5.15))
       '@iconify-json/ion':
         specifier: ^1.2.7
         version: 1.2.7
@@ -433,8 +433,8 @@ packages:
     peerDependencies:
       postcss-selector-parser: ^7.1.1
 
-  '@dargmuesli/nuxt-cookie-control@9.1.26':
-    resolution: {integrity: sha512-eA06lZzFgwW5OUYzf8P8obUWaj8tQMPKVPjKP15mu7qQ1WZEFVglqI6AYHk4c0hu8kl6U0L3WF1GTBnwsysn2w==}
+  '@dargmuesli/nuxt-cookie-control@9.1.27':
+    resolution: {integrity: sha512-hxV4MtUGpQ79ktOWa2DPh6z7L4JTglFI7z8Oeha0tHBoNfyncKMboT93J6Gs3yEXdKm4orDJYD5QpxeiVSd7cg==}
     engines: {node: '>=16'}
 
   '@date-fns/tz@1.5.0':
@@ -7748,7 +7748,7 @@ snapshots:
     dependencies:
       postcss-selector-parser: 7.1.1
 
-  '@dargmuesli/nuxt-cookie-control@9.1.26(magicast@0.5.3)(webpack@5.107.1(postcss@8.5.15))':
+  '@dargmuesli/nuxt-cookie-control@9.1.27(magicast@0.5.3)(webpack@5.107.1(postcss@8.5.15))':
     dependencies:
       '@nuxt/kit': 4.4.6(magicast@0.5.3)
       css-vars-ponyfill: 2.4.9
