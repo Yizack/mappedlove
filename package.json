@@ -40,13 +40,13 @@
     "test:types": "vue-tsc -b --noEmit"
   },
   "dependencies": {
-    "@dargmuesli/nuxt-cookie-control": "^9.1.27",
+    "@dargmuesli/nuxt-cookie-control": "^9.1.28",
     "@iconify-json/ion": "^1.2.7",
     "@iconify-json/logos": "^1.2.11",
     "@iconify-json/solar": "^1.2.5",
     "@iconify-json/tabler": "^1.2.35",
     "@libsql/client": "^0.17.3",
-    "@nuxt/icon": "^2.2.2",
+    "@nuxt/icon": "^2.2.3",
     "@nuxthub/core": "^0.10.7",
     "@nuxtjs/color-mode": "^4.0.0",
     "@nuxtjs/mdc": "^0.22.0",
@@ -61,11 +61,11 @@
     "drizzle-orm": "^0.45.2",
     "leaflet": "^2.0.0-alpha.1",
     "leaflet-geosearch": "^4.4.0",
-    "nuxt": "^4.4.6",
+    "nuxt": "^4.4.7",
     "nuxt-auth-utils": "^0.5.29",
     "nuxt-email-renderer": "^2.8.0",
     "nuxt-mailchannels": "^0.4.1",
-    "nuxt-twemoji": "^4.0.3",
+    "nuxt-twemoji": "^4.0.4",
     "nuxt-webhook-validators": "^0.2.8",
     "sass-embedded": "^1.100.0",
     "vitepress": "^2.0.0-alpha.17",
@@ -74,7 +74,7 @@
   },
   "devDependencies": {
     "@nuxt/test-utils": "^4.0.3",
-    "@types/bootstrap": "^5.2.10",
+    "@types/bootstrap": "^5.2.11",
     "@types/leaflet": "^1.9.21",
     "@yizack/eslint-config": "^0.0.5",
     "eslint": "^10.4.1",
@@ -82,9 +82,9 @@
     "stylelint": "^17.12.0",
     "stylelint-config-standard-scss": "^17.0.0",
     "typescript": "^6.0.3",
-    "vitest": "^4.1.7",
+    "vitest": "^4.1.8",
     "vue-tsc": "^3.3.3",
-    "wrangler": "^4.95.0"
+    "wrangler": "^4.97.0"
   },
-  "packageManager": "pnpm@11.5.0"
+  "packageManager": "pnpm@11.5.1"
 }
