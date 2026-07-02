@@ -40,13 +40,13 @@
     "test:types": "vue-tsc -b --noEmit"
   },
   "dependencies": {
-    "@dargmuesli/nuxt-cookie-control": "^9.1.30",
+    "@dargmuesli/nuxt-cookie-control": "^9.2.0",
     "@iconify-json/ion": "^1.2.7",
     "@iconify-json/logos": "^1.2.11",
     "@iconify-json/solar": "^1.2.5",
     "@iconify-json/tabler": "^1.2.35",
     "@libsql/client": "^0.17.4",
-    "@nuxt/icon": "^2.2.4",
+    "@nuxt/icon": "^2.2.5",
     "@nuxthub/core": "^0.10.7",
     "@nuxtjs/color-mode": "^4.0.1",
     "@nuxtjs/mdc": "^0.22.0",
@@ -83,8 +83,8 @@
     "stylelint-config-standard-scss": "^17.0.0",
     "typescript": "^6.0.3",
     "vitest": "^4.1.9",
-    "vue-tsc": "^3.3.5",
-    "wrangler": "^4.105.0"
+    "vue-tsc": "^3.3.6",
+    "wrangler": "^4.106.0"
   },
   "packageManager": "pnpm@11.9.0"
 }
