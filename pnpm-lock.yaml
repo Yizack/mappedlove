@@ -27,8 +27,8 @@ importers:
         specifier: ^0.17.4
         version: 0.17.4
       '@nuxt/icon':
-        specifier: ^2.2.5
-        version: 2.2.5(magicast@0.5.3)(vite@7.3.5(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass-embedded@1.100.0)(sass@1.100.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0))(vue@3.5.35(typescript@6.0.3))
+        specifier: ^2.3.1
+        version: 2.3.1(magicast@0.5.3)(vite@7.3.5(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass-embedded@1.100.0)(sass@1.100.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0))(vue@3.5.35(typescript@6.0.3))
       '@nuxthub/core':
         specifier: ^0.10.7
         version: 0.10.7(@emnapi/core@1.10.0)(@emnapi/runtime@1.11.0)(db0@0.3.4(@libsql/client@0.17.4)(drizzle-orm@0.45.2(@cloudflare/workers-types@4.20260609.1)(@libsql/client@0.17.4)))(ioredis@5.11.1)(magicast@0.5.3)(typescript@6.0.3)(vue-tsc@3.3.6(typescript@6.0.3))
@@ -1541,8 +1541,8 @@ packages:
     peerDependencies:
       eslint: ^9.0.0 || ^10.0.0
 
-  '@nuxt/icon@2.2.5':
-    resolution: {integrity: sha512-ZDzo5qMATn2T9x2BdgupOU7zT71m8+QPgVtIRJ+LRI2Vy+o3Ensvj3qkMaPt3r7aP2qvPVwxvaSJs7cl3a94fA==}
+  '@nuxt/icon@2.3.1':
+    resolution: {integrity: sha512-ebx7Zp08eR0Mw3zFAh3aT+t5zC4RoI0Xf0wLEfbv23LIPUQ9fvxYpofNiNZdG9m96Fvc3pQu6v+NaCRbRYRRog==}
 
   '@nuxt/kit@3.21.8':
     resolution: {integrity: sha512-kg63DUPY5AHPn+9XM7u8rYcdWHXjzwfUscgRDuiC5YUciQ+xdLRhdwXelYFxEAx2nxJHossliiQXbMm/Fleivw==}
@@ -8528,7 +8528,7 @@ snapshots:
       - supports-color
       - typescript
 
-  '@nuxt/icon@2.2.5(magicast@0.5.3)(vite@7.3.5(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass-embedded@1.100.0)(sass@1.100.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0))(vue@3.5.35(typescript@6.0.3))':
+  '@nuxt/icon@2.3.1(magicast@0.5.3)(vite@7.3.5(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass-embedded@1.100.0)(sass@1.100.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0))(vue@3.5.35(typescript@6.0.3))':
     dependencies:
       '@iconify/collections': 1.0.703
       '@iconify/types': 2.0.0
