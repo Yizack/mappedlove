@@ -5,15 +5,15 @@
   --dp-font-family: fredoka;
 }
 
-.dp__theme_dark {
+.dp--theme-dark {
   --dp-primary-color: var(--bs-primary);
   --dp-primary-text-color: var(--bs-body-bg);
 }
 
-.dp__theme_light {
+.dp--theme-light {
   --dp-primary-color: var(--bs-primary);
 }
 
-.dp__action_button {
+.dp--action-button {
   font-weight: bold;
 }
