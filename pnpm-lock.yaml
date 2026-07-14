@@ -30,8 +30,8 @@ importers:
         specifier: ^2.3.1
         version: 2.3.1(magicast@0.5.3)(vite@8.1.4(@types/node@26.1.1)(esbuild@0.28.1)(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0)(terser@5.49.0)(tsx@4.23.0)(yaml@2.9.0))(vue@3.5.39(typescript@6.0.3))
       '@nuxthub/core':
-        specifier: ^0.10.7
-        version: 0.10.7(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(db0@0.3.4(@libsql/client@0.17.4)(drizzle-orm@0.45.2(@libsql/client@0.17.4)))(ioredis@5.11.1)(magicast@0.5.3)(typescript@6.0.3)(vue-tsc@3.3.7(typescript@6.0.3))
+        specifier: ^0.10.8
+        version: 0.10.8(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(db0@0.3.4(@libsql/client@0.17.4)(drizzle-orm@0.45.2(@libsql/client@0.17.4)))(ioredis@5.11.1)(magicast@0.5.3)(typescript@6.0.3)(vue-tsc@3.3.7(typescript@6.0.3))
       '@nuxtjs/color-mode':
         specifier: ^4.0.1
         version: 4.0.1(magicast@0.5.3)
@@ -81,8 +81,8 @@ importers:
         specifier: ^2.8.0
         version: 2.8.0(magicast@0.5.3)(vite@8.1.4(@types/node@26.1.1)(esbuild@0.28.1)(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0)(terser@5.49.0)(tsx@4.23.0)(yaml@2.9.0))(vue@3.5.39(typescript@6.0.3))
       nuxt-mailchannels:
-        specifier: ^0.4.2
-        version: 0.4.2(magicast@0.5.3)
+        specifier: ^0.4.3
+        version: 0.4.3(magicast@0.5.3)
       nuxt-twemoji:
         specifier: ^4.0.4
         version: 4.0.4(magicast@0.5.3)
@@ -1511,9 +1511,14 @@ packages:
       rollup-plugin-visualizer:
         optional: true
 
-  '@nuxthub/core@0.10.7':
-    resolution: {integrity: sha512-L8GNzGE081udFIPyy3v8xlr8Cv6fijkEkvguB+Cg+0bMQiJSlzyay8FQyPDggXmn2ZcZLLCN3Z+VbTa9Vt93eQ==}
+  '@nuxthub/core@0.10.8':
+    resolution: {integrity: sha512-5FdvRleN8gqd/9wKnuYzcA3KXnyQ/wVwS+4ZJYCBKxI8XmGC/J3R98qgsRF3ATDYoViL625viPpACEhfcaQrDQ==}
     hasBin: true
+    peerDependencies:
+      '@vercel/blob': '>=0.27.0'
+    peerDependenciesMeta:
+      '@vercel/blob':
+        optional: true
 
   '@nuxtjs/color-mode@4.0.1':
     resolution: {integrity: sha512-eiA7hWXi5zNHaYKyJFCGF6i0wFZtuvR7KDXZ6jiSvwxjCpRFwphrw0MOSmNfArTSSsT1wpW+/2H92cejeVfUlg==}
@@ -5421,8 +5426,8 @@ packages:
       vue-i18n:
         optional: true
 
-  nuxt-mailchannels@0.4.2:
-    resolution: {integrity: sha512-mJDFvGBZ+fM30/QQsvylt49OfyhHLtXxrmLHUPVHPCLX5bK0CWExtda4VYnfw9w9BLDzPRhmapxx0XSrKm/57Q==}
+  nuxt-mailchannels@0.4.3:
+    resolution: {integrity: sha512-EEoj+RVOjnPB3tF6QKZ8Q203U/ekoDSeodIjc1vIM0eVwXZaGK39v0DaIxQoK041FRRKIz633vEAqn+zxSw0PA==}
 
   nuxt-site-config-kit@4.1.1:
     resolution: {integrity: sha512-xa341q3+RbpfNNKTwQ2Nsn980WZqF3zZPIR4PlF0xsm2M8Qfxtuaa1I7wMq6/fg/E2J9IyUm0DQ+B4mnKtMs4Q==}
@@ -8761,7 +8766,7 @@ snapshots:
       - vue-tsc
       - yaml
 
-  '@nuxthub/core@0.10.7(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(db0@0.3.4(@libsql/client@0.17.4)(drizzle-orm@0.45.2(@libsql/client@0.17.4)))(ioredis@5.11.1)(magicast@0.5.3)(typescript@6.0.3)(vue-tsc@3.3.7(typescript@6.0.3))':
+  '@nuxthub/core@0.10.8(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(db0@0.3.4(@libsql/client@0.17.4)(drizzle-orm@0.45.2(@libsql/client@0.17.4)))(ioredis@5.11.1)(magicast@0.5.3)(typescript@6.0.3)(vue-tsc@3.3.7(typescript@6.0.3))':
     dependencies:
       '@cloudflare/workers-types': 4.20260702.1
       '@nuxt/kit': 4.4.8(magicast@0.5.3)
@@ -8805,7 +8810,6 @@ snapshots:
       - '@ts-macro/tsc'
       - '@typescript/native-preview'
       - '@upstash/redis'
-      - '@vercel/blob'
       - '@vercel/functions'
       - '@vercel/kv'
       - '@vitejs/devtools'
@@ -12625,7 +12629,7 @@ snapshots:
       - vite
       - vue
 
-  nuxt-mailchannels@0.4.2(magicast@0.5.3):
+  nuxt-mailchannels@0.4.3(magicast@0.5.3):
     dependencies:
       '@nuxt/kit': 4.4.8(magicast@0.5.3)
       defu: 6.1.7
@@ -14239,7 +14243,7 @@ snapshots:
       cac: 6.7.14
       defu: 6.1.7
       empathic: 2.0.1
-      hookable: 6.0.1
+      hookable: 6.1.1
       import-without-cache: 0.2.5
       obug: 2.1.3
       picomatch: 4.0.5
