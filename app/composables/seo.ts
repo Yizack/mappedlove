@@ -28,7 +28,7 @@ export const useSeo = (options: MappedLoveSeoOptions) => {
       { rel: "canonical", href: SITE.host + path },
       { rel: "alternate", hreflang: "x-default", href: SITE.host + path },
       ...localization.getLocales().map(locale => ({
-        rel: "alternate"  as const,
+        rel: "alternate" as const,
         hreflang: locale.code,
         href: SITE.host + (path || "/") + `?lang=${locale.code}`
       }))
