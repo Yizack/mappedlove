@@ -4,7 +4,7 @@ import { $fetch } from "@nuxt/test-utils/e2e";
 import { describe, expect, test } from "vitest";
 
 describe("account", async () => {
-  test.sequential("should upload user avatar image", async () => {
+  test("should upload user avatar image", { concurrent: false }, async () => {
     const formData = new FormData();
     const avatarBuffer = await readFile(join(process.cwd(), "public/images/defaults/avatar-5.jpg"));
     const avatarFile = new File([new Uint8Array(avatarBuffer)], "avatar-5.jpg", { type: "image/jpeg" });
@@ -21,7 +21,7 @@ describe("account", async () => {
     });
   });
 
-  test.sequential("should delete user avatar image", async () => {
+  test("should delete user avatar image", { concurrent: false }, async () => {
     await $fetch<MappedLoveUser>("/api/account/avatar", {
       method: "DELETE",
       headers: { cookie: global.cookie }

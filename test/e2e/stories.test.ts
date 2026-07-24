@@ -3,11 +3,11 @@ import { join } from "node:path";
 import { $fetch } from "@nuxt/test-utils/e2e";
 import { afterAll, describe, expect, test } from "vitest";
 
-describe("stories", async () => {
+describe("stories", { concurrent: false }, async () => {
   let createdMarker: MappedLoveMarker;
   let createdStory: MappedLoveStory;
 
-  test.sequential("should create a story from a marker", async () => {
+  test("should create a story from a marker", async () => {
     const marker = await $fetch<MappedLoveMarker>("/api/markers", {
       method: "POST",
       headers: { cookie: global.cookie },
@@ -53,7 +53,7 @@ describe("stories", async () => {
     });
   });
 
-  test.sequential("should update a story", async () => {
+  test("should update a story", async () => {
     const formData = new FormData();
     const avatarBuffer = await readFile(join(process.cwd(), "public/images/defaults/avatar-4.jpg"));
     const avatarFile = new File([new Uint8Array(avatarBuffer)], "avatar-4.jpg", { type: "image/jpeg" });
@@ -83,7 +83,7 @@ describe("stories", async () => {
     });
   });
 
-  test.sequential("should exist story image upload", async () => {
+  test("should exist story image upload", async () => {
     const response = await $fetch<Blob>(`/uploads/stories/${createdStory.hash}`, {
       headers: { cookie: global.cookie }
     });
@@ -94,7 +94,7 @@ describe("stories", async () => {
     });
   });
 
-  test.sequential("should delete a story", async () => {
+  test("should delete a story", async () => {
     await $fetch<MappedLoveStory>(`/api/stories/${createdStory.id}`, {
       method: "DELETE",
       headers: { cookie: global.cookie },

@@ -1,10 +1,10 @@
 import { $fetch } from "@nuxt/test-utils/e2e";
 import { describe, expect, test } from "vitest";
 
-describe("markers", async () => {
+describe("markers", { concurrent: false }, async () => {
   let createdMarker: MappedLoveMarker;
 
-  test.sequential("should create a marker", async () => {
+  test("should create a marker", async () => {
     const marker = await $fetch<MappedLoveMarker>("/api/markers", {
       method: "POST",
       headers: { cookie: global.cookie },
@@ -33,7 +33,7 @@ describe("markers", async () => {
     });
   });
 
-  test.sequential("should update a marker", async () => {
+  test("should update a marker", async () => {
     const marker = await $fetch<MappedLoveMarker>(`/api/markers/${createdMarker.id}`, {
       method: "PUT",
       headers: { cookie: global.cookie },
@@ -60,7 +60,7 @@ describe("markers", async () => {
     });
   });
 
-  test.sequential("should delete a marker", async () => {
+  test("should delete a marker", async () => {
     await $fetch<MappedLoveMarker>(`/api/markers/${createdMarker.id}`, {
       method: "DELETE",
       headers: { cookie: global.cookie },

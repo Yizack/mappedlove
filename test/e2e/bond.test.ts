@@ -20,7 +20,7 @@ describe("bond", async () => {
     });
   });
 
-  test.sequential("should patch bond data", async () => {
+  test("should patch bond data", { concurrent: false }, async () => {
     const coupleDate = Date.now();
     await $fetch<MappedLoveBond>("/api/bond", {
       method: "PATCH",
@@ -41,7 +41,7 @@ describe("bond", async () => {
     });
   });
 
-  test.sequential("should fetch bond public map", async () => {
+  test("should fetch bond public map", { concurrent: false }, async () => {
     const map = await $fetch<MappedLovePublicMap>("/api/bond/public/QDZV1", {
       headers: { cookie: global.cookie }
     });
