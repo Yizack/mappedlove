@@ -11,3 +11,10 @@ allowBuilds:
   unrs-resolver: false
   vue-demi: false
   workerd: false
+
+minimumReleaseAgeExclude:
+  - '@nuxt/icon@2.5.0'
+  - '@nuxtjs/mdc@0.23.1'
+  - miniflare@5.20260804.0-alpha
+  - nuxt-email-renderer@2.11.0
+  - wrangler@4.120.1
