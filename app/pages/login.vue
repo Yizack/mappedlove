@@ -95,7 +95,7 @@ useSeo({
               <span v-else>{{ t("signin") }}</span>
             </Transition>
           </button>
-          <NuxtLink external :to="{ path: '/auth/google', query: { state: googleState } }" class="btn btn-outline-dark btn-lg rounded-pill d-flex align-items-center justify-content-center gap-2">
+          <NuxtLink external :to="withQuery('/auth/google', { state: googleState })" class="btn btn-outline-dark btn-lg rounded-pill d-flex align-items-center justify-content-center gap-2">
             <Icon name="logos:google-icon" />
             <span>{{ t("signin_google") }}</span>
           </NuxtLink>
