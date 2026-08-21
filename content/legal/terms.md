@@ -11,7 +11,7 @@ description: seo_terms_description
 
 We operate the website [mappedlove.com](/) (the "**Site**"), as well as any other related products and services that refer or link to these legal terms (the "**Legal Terms**") (collectively, the "**Services**").
 
-You can contact us by email at legal@mappedlove.com.
+You can contact us by email at <legal@mappedlove.com>.
 
 These Legal Terms constitute a legally binding agreement made between you, whether personally or on behalf of an entity ("**you**"), and MappedLove, concerning your access to and use of the Services. You agree that by accessing the Services, you have read, understood, and agreed to be bound by all of these Legal Terms. IF YOU DO NOT AGREE WITH ALL OF THESE LEGAL TERMS, THEN YOU ARE EXPRESSLY PROHIBITED FROM USING THE SERVICES AND YOU MUST DISCONTINUE USE IMMEDIATELY.
 
@@ -29,13 +29,13 @@ The Services are not tailored to comply with industry-specific regulations (Heal
 
 ## 2. INTELLECTUAL PROPERTY RIGHTS
 
-##### Our intellectual property
+### Our intellectual property
 
 All content within our Services, including source code, databases, functionality, software, website designs, audio, video, text, photographs, and graphics (collectively referred to as the "Content"), is owned by us.
 
 The Content are provided in or through the Services "AS IS" for your personal, non-commercial use only.
 
-##### Your use of our Services
+### Your use of our Services
 
 Subject to your compliance with these Legal Terms, including the "[PROHIBITED ACTIVITIES](#prohibited-activities)" section below, we grant you a non-exclusive, non-transferable, revocable license to:
 
@@ -45,13 +45,13 @@ Subject to your compliance with these Legal Terms, including the "[PROHIBITED AC
 
 Except as set out in this section or elsewhere in our Legal Terms, no part of the Services and no Content or Marks may be copied, reproduced, aggregated, republished, uploaded, posted, publicly displayed, encoded, translated, transmitted, distributed, sold, licensed, or otherwise exploited for any commercial purpose whatsoever, without our express prior written permission.
 
-If you wish to make any use of the Services, Content, or Marks other than as set out in this section or elsewhere in our Legal Terms, please address your request to: legal@mappedlove.com. If we ever grant you the permission to post, reproduce, or publicly display any part of our Services or Content, you must identify us as the owners or licensors of the Services or Content and ensure that any copyright or proprietary notice appears or is visible on posting, reproducing, or displaying our Content.
+If you wish to make any use of the Services, Content, or Marks other than as set out in this section or elsewhere in our Legal Terms, please address your request to: <legal@mappedlove.com>. If we ever grant you the permission to post, reproduce, or publicly display any part of our Services or Content, you must identify us as the owners or licensors of the Services or Content and ensure that any copyright or proprietary notice appears or is visible on posting, reproducing, or displaying our Content.
 
 We reserve all rights not expressly granted to you in and to the Services, and Content.
 
 Any breach of these Intellectual Property Rights will constitute a material breach of our Legal Terms and your right to use our Services will terminate immediately.
 
-##### Your submissions and contributions
+### Your submissions and contributions
 
 Please review this section and the "[PROHIBITED ACTIVITIES](#prohibited-activities)" section carefully prior to using our Services to understand the (a) rights you give us and (b) obligations you have when you post or upload any content through the Services.
 
@@ -77,14 +77,17 @@ You are solely responsible for your Submissions and/or Contributions and you exp
 **We may remove or edit your Content**: Although we have no obligation to monitor any Contributions, we shall have the right to remove or edit any Contributions at any time without notice if in our reasonable opinion we consider such Contributions harmful or in breach of these Legal Terms. If we remove or edit any such Contributions, we may also suspend or disable your account and report you to the authorities.
 
 ## 3. USER REPRESENTATIONS
+
 By using the Services, you represent and warrant that: (1) all registration information you submit will be true, accurate, current, and complete; (2) you will maintain the accuracy of such information and promptly update such registration information as necessary; (3) you have the legal capacity and you agree to comply with these Legal Terms; (4) you are not a minor in the jurisdiction in which you reside; (5) you will not access the Services through automated or non-human means, whether through a bot, script or otherwise; (6) you will not use the Services for any illegal or unauthorized purpose; and (7) your use of the Services will not violate any applicable law or regulation.
 
 If you provide any information that is untrue, inaccurate, not current, or incomplete, we have the right to suspend or terminate your account and refuse any and all current or future use of the Services (or any portion thereof).
 
 ## 4. USER REGISTRATION
+
 You may be required to register to use the Services. You agree to keep your password confidential and will be responsible for all use of your account and password. We reserve the right to remove, reclaim, or change a username you select if we determine, in our sole discretion, that such username is inappropriate, obscene, or otherwise objectionable.
 
 ## 5. PURCHASES AND PAYMENT
+
 We accept the following forms of payment powered by [Paddle.com](https://www.paddle.com/):
 
 - Cards (including Mastercard, Visa, Maestro, American Express, Discover, Diners Club, JCB, UnionPay, and Mada)
@@ -100,15 +103,15 @@ We reserve the right to refuse any order placed through the Services. We may, in
 
 ## 6. SUBSCRIPTIONS
 
-##### Billing and Renewal
+### Billing and Renewal
 
 Your subscription will continue and automatically renew unless canceled. You consent to our charging your payment method on a recurring basis without requiring your prior approval for each recurring charge, until such time as you cancel the applicable order. The length of your billing cycle is monthly.
 
-##### Cancellation
+### Cancellation
 
-To cancel your subscription, simply log in to your account, navigate to your [account billing settings](/app/premium/billing), and select the "Cancel subscription" option. New subscriptions are eligible for a refund within 14 days of the initial purchase date. After this period, refunds may not be possible. Your cancellation will take effect at the end of the current paid term. Please review our [Refund Policy](/legal/refund). If you have any questions or are unsatisfied with our Services, please email us at legal@mappedlove.com.
+To cancel your subscription, simply log in to your account, navigate to your [account billing settings](/app/premium/billing), and select the "Cancel subscription" option. New subscriptions are eligible for a refund within 14 days of the initial purchase date. After this period, refunds may not be possible. Your cancellation will take effect at the end of the current paid term. Please review our [Refund Policy](/legal/refund). If you have any questions or are unsatisfied with our Services, please email us at <legal@mappedlove.com>.
 
-##### Fee Changes
+### Fee Changes
 
 We may, from time to time, make changes to the subscription fee and will communicate any price changes to you in accordance with applicable law.
 
@@ -244,4 +247,4 @@ These Legal Terms and any policies or operating rules posted by us on the Servic
 
 ## 26. CONTACT US
 
-In order to resolve a complaint regarding the Services or to receive further information regarding use of the Services, please contact us at: legal@mappedlove.com.
+In order to resolve a complaint regarding the Services or to receive further information regarding use of the Services, please contact us at: <legal@mappedlove.com>.

@@ -1,30 +1,25 @@
 <script setup lang="ts">
-import type { MDCParserResult } from "@nuxtjs/mdc";
-import { parseMarkdown } from "@nuxtjs/mdc/runtime";
+import type { MarkdownDocument } from "comark";
 
 definePageMeta({ layout: "utils" });
 
 const route = useRoute("legal-slug");
 const slug = route.params.slug;
-const ast = ref<MDCParserResult>();
 
-try {
-  const { default: content } = await import(`./${slug}.md?raw`);
-  const { data } = await useAsyncData(`md:legal-${slug}`, () => parseMarkdown(content));
-  ast.value = data.value;
+const { data: md } = await useFetch<MarkdownDocument>(`/api/legal/${slug}`);
 
-  useSeo({
-    title: `${t(ast.value?.data.title as LocaleKeys)} | ${SITE.name}`,
-    name: t(ast.value?.data.title as LocaleKeys),
-    description: t(ast.value?.data.description as LocaleKeys)
-  });
-}
-catch {
+if (!md.value) {
   throw createError({
     status: ErrorCode.NOT_FOUND,
     message: `Page not found: ${route.path}`
   });
 }
+
+useSeo({
+  title: `${t(md.value?.frontmatter.title)} | ${SITE.name}`,
+  name: t(md.value?.frontmatter.title),
+  description: t(md.value?.frontmatter.description)
+});
 
 if (slug === "cookies") {
   onMounted(() => {
@@ -47,8 +42,17 @@ if (slug === "cookies") {
 
 <template>
   <main>
-    <div v-if="ast" class="col-lg-8 col-xl-9 mx-auto bg-body rounded-3 p-4 p-lg-5 mb-2">
-      <MDCRenderer :body="ast.body" :data="ast.data" />
+    <div v-if="md" class="col-lg-8 col-xl-9 mx-auto bg-body rounded-3 p-4 p-lg-5 mb-2">
+      <MarkdownDocument
+        :value="md"
+        :components="{
+          prose: false,
+          map: {
+            h2: 'ProseH2',
+            table: 'ProseTable',
+          },
+        }"
+      />
     </div>
   </main>
 </template>

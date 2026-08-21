@@ -7,9 +7,9 @@ description: seo_refund_description
 
 <small>Last updated March 09, 2024</small>
 
-##### Refund eligibility
+## Refund eligibility
 
-You are elegible to request a refund if you meet the following conditions:
+You are eligible to request a refund if you meet the following conditions:
 
 - you have purchased the product or service within the last 14 days;
 - you have not requested a refund before; and
@@ -25,7 +25,7 @@ There is generally no obligation to provide a refund or credit in situations lik
 
 If you are only after cancelling your MappedLove Premium subscription, you can go ahead, cancel it and use MappedLove Premium features until the subscription expires automatically at the end of the billing period.
 
-##### How can I request a refund?
+## How can I request a refund?
 
 Before requesting a refund, please cancel your subscription by accessing your [account billing settings](/app/premium/billing) and clicking on the "Cancel subscription" button.
 
@@ -33,7 +33,7 @@ To request a refund, please go to your [account billing settings](/app/premium/b
 
 Once we receive your refund request, we will review it and notify you that we have received your request. We will immediately notify you on the status of your refund after reviewing your request.
 
-##### How will I receive it?
+## How will I receive it?
 
 Once your refund request is approved, we will process the refund through our payment processor ([Paddle](https://www.paddle.com/)). The time it takes for the refund to appear in your account may vary depending on the payment method used.
 

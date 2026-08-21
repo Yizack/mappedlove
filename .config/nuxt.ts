@@ -14,7 +14,7 @@ export default defineNuxtConfig({
     "nuxt-webhook-validators",
     "@nuxthub/core",
     "nuxt-mailchannels",
-    "@nuxtjs/mdc",
+    "@comark/nuxt",
     "nuxt-email-renderer",
     "@nuxt/test-utils"
   ],
@@ -72,18 +72,6 @@ export default defineNuxtConfig({
     dataValue: "bs-theme",
     storageKey: "nuxt-color-mode"
   },
-  mdc: {
-    components: {
-      prose: false,
-      map: {
-        h2: "ProseH2",
-        table: "ProseTable"
-      }
-    },
-    remarkPlugins: {
-      "remark-emoji": false
-    }
-  },
   runtimeConfig: {
     secure: {
       salt: "",
@@ -136,7 +124,10 @@ export default defineNuxtConfig({
   compatibilityDate: "2025-07-16",
   nitro: {
     prerender: {
-      routes: ["/sitemap.xml"]
+      routes: [
+        "/sitemap.xml",
+        "/legal/cookies", "/legal/privacy", "/legal/refund", "/legal/terms"
+      ]
     },
     cloudflare: {
       pages: {

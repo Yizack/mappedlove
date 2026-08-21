@@ -9,12 +9,12 @@ description: seo_privacy_description
 
 This privacy notice for MappedLove ("**we**," "**us**," or "**our**"), describes how and why we might collect, store, use, and/or share ("**process**") your information when you use our services ("**Services**"), such as when you:
 
-- Visit our website at https://mappedlove.com, or any website of ours that links to this privacy notice.
+- Visit our website at <https://mappedlove.com>, or any website of ours that links to this privacy notice.
 - Engage with us in other related ways, including any sales, marketing, or events.
 
-**Questions or concerns?** Reading this privacy notice will help you understand your privacy rights and choices. If you do not agree with our policies and practices, please do not use our Services. If you still have any questions or concerns, please contact us at legal@mappedlove.com.
+**Questions or concerns?** Reading this privacy notice will help you understand your privacy rights and choices. If you do not agree with our policies and practices, please do not use our Services. If you still have any questions or concerns, please contact us at <legal@mappedlove.com>.
 
-##### Summary of Key Points
+## Summary of Key Points
 
 This summary provides key points from our privacy notice, but you can find out more details about any of these topics by clicking the link following each key point or by using our [table of contents](#table-of-contents) below to find the section you are looking for.
 
@@ -46,7 +46,7 @@ This summary provides key points from our privacy notice, but you can find out m
 
 ## 1. WHAT INFORMATION DO WE COLLECT?
 
-##### Personal information you disclose to us
+### Personal information you disclose to us
 
 **In Short**: We collect personal information that you provide to us.
 
@@ -61,17 +61,17 @@ We collect personal information that you voluntarily provide to us when you regi
 
 **Sensitive Information**. We do not process sensitive information.
 
-**Payment Data**. We may collect data necessary to process your payment if you make purchases, such as your payment instrument number, and the security code associated with your payment instrument. All payment data is stored by Paddle. You may find their privacy notice link(s) here: https://www.paddle.com/legal/privacy.
+**Payment Data**. We may collect data necessary to process your payment if you make purchases, such as your payment instrument number, and the security code associated with your payment instrument. All payment data is stored by Paddle. You may find their privacy notice link(s) here: <https://www.paddle.com/legal/privacy>.
 
 All personal information that you provide to us must be true, complete, and accurate, and you must notify us of any changes to such personal information.
 
-##### Information automatically collected
+### Information automatically collected
 
 **In Short**: Some information — such as your Internet Protocol (IP) address and/or browser and device characteristics — is collected automatically when you visit our Services.
 
 We automatically collect certain information when you visit, use, or navigate the Services. This information does not reveal your specific identity (like your name or contact information) but may include device and usage information, such as your IP address, browser and device characteristics, operating system, language preferences, referring URLs, device name, country, location, information about how and when you use our Services, and other technical information. This information is primarily needed to maintain the security and operation of our Services, and for our internal analytics and reporting purposes
 
-Like many businesses, we also collect information through cookies and similar technologies. You can find out more about this in our Cookie Notice: https://mappedlove.com/legal/cookies.
+Like many businesses, we also collect information through cookies and similar technologies. You can find out more about this in our Cookie Notice: <https://mappedlove.com/legal/cookies>.
 
 The information we collect includes:
 
@@ -128,7 +128,7 @@ We may need to share your personal information in the following situations:
 
 **In Short**: We may use cookies and other tracking technologies to collect and store your information.
 
-We may use cookies and similar tracking technologies (like web beacons and pixels) to access or store information. Specific information about how we use such technologies and how you can refuse certain cookies is set out in our Cookie Notice: https://mappedlove.com/legal/cookies.
+We may use cookies and similar tracking technologies (like web beacons and pixels) to access or store information. Specific information about how we use such technologies and how you can refuse certain cookies is set out in our Cookie Notice: <https://mappedlove.com/legal/cookies>.
 
 ## 6. HOW LONG DO WE KEEP YOUR INFORMATION?
 
@@ -148,7 +148,7 @@ We have implemented appropriate and reasonable technical and organizational secu
 
 **In Short**: We do not knowingly collect data from or market to children under 18 years of age.
 
-We do not knowingly solicit data from or market to children under 18 years of age. By using the Services, you represent that you are at least 18 or that you are the parent or guardian of such a minor and consent to such minor dependent's use of the Services. If we learn that personal information from users less than 18 years of age has been collected, we will deactivate the account and take reasonable measures to promptly delete such data from our records. If you become aware of any data we may have collected from children under age 18, please contact us at legal@mappedlove.com.
+We do not knowingly solicit data from or market to children under 18 years of age. By using the Services, you represent that you are at least 18 or that you are the parent or guardian of such a minor and consent to such minor dependent's use of the Services. If we learn that personal information from users less than 18 years of age has been collected, we will deactivate the account and take reasonable measures to promptly delete such data from our records. If you become aware of any data we may have collected from children under age 18, please contact us at <legal@mappedlove.com>.
 
 ## 9. WHAT ARE YOUR PRIVACY RIGHTS?
 
@@ -167,16 +167,16 @@ If you are located in Switzerland, you may contact the Federal Data Protection a
 
 However, please note that this will not affect the lawfulness of the processing before its withdrawal nor, when applicable law allows, will it affect the processing of your personal information conducted in reliance on lawful processing grounds other than consent.
 
-##### Account Information
+### Account Information
 
 If you would at any time like to review or change the information in your account or terminate your account, you can:
 
 - Log in to your account settings and update your user account.
 - Upon your request to terminate your account, we will deactivate or delete your account and information from our active databases. However, we may retain some information in our files to prevent fraud, troubleshoot problems, assist with any investigations, enforce our legal terms and/or comply with applicable legal requirements.
 
-**Cookies and similar technologies**: Most Web browsers are set to accept cookies by default. If you prefer, you can usually choose to set your browser to remove cookies and to reject cookies. If you choose to remove cookies or reject cookies, this could affect certain features or services of our Services. For further information, please see our Cookie Notice: https://mappedlove.com/legal/cookies.
+**Cookies and similar technologies**: Most Web browsers are set to accept cookies by default. If you prefer, you can usually choose to set your browser to remove cookies and to reject cookies. If you choose to remove cookies or reject cookies, this could affect certain features or services of our Services. For further information, please see our Cookie Notice: <https://mappedlove.com/legal/cookies>.
 
-If you have questions or comments about your privacy rights, you may email us at legal@mappedlove.com.
+If you have questions or comments about your privacy rights, you may email us at <legal@mappedlove.com>.
 
 ## 10. CONTROLS FOR DO-NOT-TRACK FEATURES
 
@@ -203,7 +203,7 @@ We have collected the following categories of personal information in the past t
 | I. Professional or employment-related information | Business contact details in order to provide you our Services at a business level or job title, work history, and professional qualifications if you apply for a job with us | NO |
 | J. Education Information | Student records and directory information | NO |
 | K. Inferences drawn from collected personal information | Inferences drawn from any of the collected personal information listed above to create a profile or summary about, for example, an individual's preferences and characteristics | NO |
-| L. Sensitive personal Information |  | NO |
+| L. Sensitive personal Information | | NO |
 
 We will use and retain the collected personal information as needed to provide the Services or for:
 
@@ -227,7 +227,7 @@ We may use your personal information for our own business purposes, such as for 
 
 We have not disclosed, sold, or shared any personal information to third parties for a business or commercial purpose in the preceding twelve (12) months. We will not sell or share personal information in the future belonging to website visitors, users, and other consumers.
 
-##### California Residents
+### California Residents
 
 California Civil Code Section 1798.83, also known as the "Shine The Light" law permits our users who are California residents to request and obtain from us, once a year and free of charge, information about categories of personal information (if any) we disclosed to third parties for direct marketing purposes and the names and addresses of all third parties with which we shared personal information in the immediately preceding calendar year. If you are a California resident and would like to make such a request, please submit your request in writing to us using the contact information provided below.
 
@@ -286,9 +286,9 @@ You can designate an authorized agent to make a request under the CCPA on your b
 
 You may request to opt-out from future selling of your personal information to third parties. Upon receiving a request to opt-out, we will act upon the request as soon as feasibly possible, but no later than 15 days from the date of the request submission.
 
-To exercise these rights, you can contact us by at legal@mappedlove.com, or by referring to the contact details at the bottom of this document. If you have a complaint about how we handle your data, we would like to hear from you.
+To exercise these rights, you can contact us by at <legal@mappedlove.com>, or by referring to the contact details at the bottom of this document. If you have a complaint about how we handle your data, we would like to hear from you.
 
-##### Colorado Residents
+### Colorado Residents
 
 This section applies only to Colorado residents. Under the Colorado Privacy Act (CPA), you have the rights listed below. However, these rights are not absolute, and in certain cases, we may decline your request as permitted by law.
 
@@ -299,11 +299,11 @@ This section applies only to Colorado residents. Under the Colorado Privacy Act 
 - Right to obtain a copy of the personal data you previously shared with us
 - Right to opt out of the processing of your personal data if it is used for targeted advertising, the sale of personal data, or profiling in furtherance of decisions that produce legal or similarly significant effects ("profiling")
 
-To submit a request to exercise these rights described above, please email legal@mappedlove.com.
+To submit a request to exercise these rights described above, please email <legal@mappedlove.com>.
 
-If we decline to take action regarding your request and you wish to appeal our decision, please email us at legal@mappedlove.com. Within forty-five (45) days of receipt of an appeal, we will inform you in writing of any action taken or not taken in response to the appeal, including a written explanation of the reasons for the decisions.
+If we decline to take action regarding your request and you wish to appeal our decision, please email us at <legal@mappedlove.com>. Within forty-five (45) days of receipt of an appeal, we will inform you in writing of any action taken or not taken in response to the appeal, including a written explanation of the reasons for the decisions.
 
-##### Connecticut Residents
+### Connecticut Residents
 
 This section applies only to Connecticut residents. Under the Connecticut Data Privacy Act (CTDPA), you have the rights listed below. However, these rights are not absolute, and in certain cases, we may decline your request as permitted by law.
 
@@ -314,11 +314,11 @@ This section applies only to Connecticut residents. Under the Connecticut Data P
 - Right to obtain a copy of the personal data you previously shared with us
 - Right to opt out of the processing of your personal data if it is used for targeted advertising, the sale of personal data, or profiling in furtherance of decisions that produce legal or similarly significant effects ("profiling")
 
-To submit a request to exercise these rights described above, please email legal@mappedlove.com.
+To submit a request to exercise these rights described above, please email <legal@mappedlove.com>.
 
-If we decline to take action regarding your request and you wish to appeal our decision, please email us at legal@mappedlove.com. Within sixty (60) days of receipt of an appeal, we will inform you in writing of any action taken or not taken in response to the appeal, including a written explanation of the reasons for the decisions.
+If we decline to take action regarding your request and you wish to appeal our decision, please email us at <legal@mappedlove.com>. Within sixty (60) days of receipt of an appeal, we will inform you in writing of any action taken or not taken in response to the appeal, including a written explanation of the reasons for the decisions.
 
-##### Utah Residents
+### Utah Residents
 
 This section applies only to Utah residents. Under the Utah Consumer Privacy Act (UCPA), you have the rights listed below. However, these rights are not absolute, and in certain cases, we may decline your request as permitted by law.
 
@@ -328,9 +328,10 @@ This section applies only to Utah residents. Under the Utah Consumer Privacy Act
 - Right to obtain a copy of the personal data you previously shared with us
 - Right to opt out of the processing of your personal data if it is used for targeted advertising or the sale of personal data
 
-To submit a request to exercise these rights described above, please email legal@mappedlove.com.
+To submit a request to exercise these rights described above, please email <legal@mappedlove.com>.
 
-##### Virginia Residents
+### Virginia Residents
+
 Under the Virginia Consumer Data Protection Act (VCDPA):
 
 "Consumer" means a natural person who is a resident of the Commonwealth acting only in an individual or household context. It does not include a natural person acting in a commercial or employment context.
@@ -358,7 +359,7 @@ Upon receiving your request, we will respond without undue delay, but in all cas
 
 <u>Right to appeal</u>
 
-If we decline to take action regarding your request, we will inform you of our decision and reasoning behind it. If you wish to appeal our decision, please email us at legal@mappedlove.com. Within sixty (60) days of receipt of an appeal, we will inform you in writing of any action taken or not taken in response to the appeal, including a written explanation of the reasons for the decisions. If your appeal is denied, you may contact the [Attorney General to submit a complaint](https://www.oag.state.va.us/consumer-protection/index.php/file-a-complaint).
+If we decline to take action regarding your request, we will inform you of our decision and reasoning behind it. If you wish to appeal our decision, please email us at <legal@mappedlove.com>. Within sixty (60) days of receipt of an appeal, we will inform you in writing of any action taken or not taken in response to the appeal, including a written explanation of the reasons for the decisions. If your appeal is denied, you may contact the [Attorney General to submit a complaint](https://www.oag.state.va.us/consumer-protection/index.php/file-a-complaint).
 
 ## 12. DO WE MAKE UPDATES TO THIS NOTICE?
 
@@ -368,19 +369,22 @@ We may update this privacy notice from time to time. The updated version will be
 
 ## 13. HOW CAN YOU CONTACT US ABOUT THIS NOTICE?
 
-If you have questions or comments about this notice, you may email us at legal@mappedlove.com.
+If you have questions or comments about this notice, you may email us at <legal@mappedlove.com>.
 
 ## 14. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?
 
 You have the right to request access to the personal information we collect from you, change that information, or delete it.
 
-##### Data Deletion
-You can request to delete your account and associated data for this Service using the in-app account settings deletion option or by accessing the web-based deletion resource at https://mappedlove.com/account-data?request=delete.
+### Data Deletion
+
+You can request to delete your account and associated data for this Service using the in-app account settings deletion option or by accessing the web-based deletion resource at <https://mappedlove.com/account-data?request=delete>.
 
 When you delete your account, all your data is deleted from the server. This includes your name, email address, passwords, birth date, avatar, and any additional data related to your account. We do not keep any data from you.
 
-##### Data Review
-You can request to review your account and associated data for this Service using the in-app account settings review option or by accessing the web-based review resource at https://mappedlove.com/account-data?request=download.
+### Data Review
 
-##### Data Update
+You can request to review your account and associated data for this Service using the in-app account settings review option or by accessing the web-based review resource at <https://mappedlove.com/account-data?request=download>.
+
+### Data Update
+
 For updating your data, you should log in to your account and update your user account settings.
