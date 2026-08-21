@@ -3,6 +3,13 @@ import { readFile } from "node:fs/promises";
 import { parseMarkdown } from "comark";
 
 export default defineEventHandler(async (event) => {
+  if (!import.meta.dev) {
+    throw createError({
+      status: ErrorCode.NOT_FOUND,
+      message: "Page not found"
+    });
+  }
+
   const slug = getRouterParam(event, "slug");
   const filePath = join(process.cwd(), "content", "legal", `${slug}.md`);
   try {
