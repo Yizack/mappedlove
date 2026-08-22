@@ -186,6 +186,9 @@ export default defineNuxtConfig({
       name: `${SITE.name} Support`
     }
   },
+  nuxtEmailRenderer: {
+    codeHighlighting: false
+  },
   sitemap: {
     exclude: ["/app/**"],
     defaults: { priority: 0.8, lastmod: new Date().toISOString() },
