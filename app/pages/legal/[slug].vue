@@ -43,16 +43,7 @@ if (slug === "cookies") {
 <template>
   <main>
     <div v-if="md" class="col-lg-8 col-xl-9 mx-auto bg-body rounded-3 p-4 p-lg-5 mb-2">
-      <MarkdownDocument
-        :value="md"
-        :components="{
-          prose: false,
-          map: {
-            h2: 'ProseH2',
-            table: 'ProseTable',
-          },
-        }"
-      />
+      <MarkdownDocument :value="md" />
     </div>
   </main>
 </template>
