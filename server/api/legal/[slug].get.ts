@@ -3,7 +3,7 @@ import { readFile } from "node:fs/promises";
 import { parseMarkdown } from "comark";
 
 export default defineEventHandler(async (event) => {
-  if (!import.meta.dev) {
+  if (!import.meta.dev && !import.meta.prerender) {
     throw createError({
       status: ErrorCode.NOT_FOUND,
       message: "Page not found"
