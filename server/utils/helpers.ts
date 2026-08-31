@@ -3,7 +3,7 @@ import { Buffer } from "node:buffer";
 import { digest } from "ohash";
 import type { H3Event } from "h3";
 
-export { z } from "zod";
+export * as z from "zod";
 
 export const hash = (string: string, salt?: string) => {
   return digest(salt ? string + salt : string);
