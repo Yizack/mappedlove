@@ -3,6 +3,14 @@ export default defineOAuthGoogleEventHandler({
     scope: ["email"]
   },
   async onSuccess (event, { user: _user }) {
+    const today = Date.now();
+    const email = _user.email.toLowerCase();
+
+    const connection = await db.select().from(tables.connections).where(and(
+      eq(tables.connections.provider, "google"),
+      eq(tables.connections.providerId, _user.sub)
+    )).get();
+
     const user = await db.select({
       id: tables.users.id,
       name: tables.users.name,
@@ -19,9 +27,21 @@ export default defineOAuthGoogleEventHandler({
     }).from(tables.users).leftJoin(tables.bonds, or(
       eq(tables.bonds.partner1, tables.users.id),
       eq(tables.bonds.partner2, tables.users.id)
-    )).where(and(eq(tables.users.email, _user.email))).get();
+    )).where(and(
+      connection ? eq(tables.users.id, connection.user) : eq(tables.users.email, email)
+    )).get();
 
     if (!user) return sendRedirect(event, "/login?error=signin_auth_error");
+
+    if (!connection) {
+      await db.insert(tables.connections).values({
+        user: user.id,
+        provider: "google",
+        providerId: _user.sub,
+        createdAt: today,
+        updatedAt: today
+      }).onConflictDoNothing().run();
+    }
 
     if (!user.confirmed) return sendRedirect(event, "/login?error=verify_needed");
 

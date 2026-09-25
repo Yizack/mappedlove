@@ -1,4 +1,4 @@
-import { index, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { index, integer, sqliteTable, text, uniqueIndex } from "drizzle-orm/sqlite-core";
 import { desc } from "drizzle-orm";
 
 export const users = sqliteTable("users", {
@@ -14,6 +14,17 @@ export const users = sqliteTable("users", {
   createdAt: integer().notNull(),
   updatedAt: integer().notNull()
 });
+
+export const connections = sqliteTable("connections", {
+  id: integer().primaryKey(),
+  user: integer().notNull().references(() => users.id, { onDelete: "cascade" }),
+  provider: text().$type<MappedLoveOAuthProvider>().notNull(),
+  providerId: text().notNull(),
+  createdAt: integer().notNull(),
+  updatedAt: integer().notNull()
+}, table => [
+  uniqueIndex("connections_provider_unique_idx").on(table.provider, table.providerId)
+]);
 
 export const bonds = sqliteTable("bonds", {
   id: integer().primaryKey({ autoIncrement: true }),

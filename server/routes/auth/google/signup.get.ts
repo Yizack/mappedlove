@@ -2,18 +2,29 @@ export default defineOAuthGoogleEventHandler({
   config: {
     scope: ["email", "profile"]
   },
-  async onSuccess (event, { user: google }) {
+  async onSuccess (event, { user: _user }) {
     const today = Date.now();
-    const email = google.email.toLowerCase();
+    const email = _user.email.toLowerCase();
+
     const user = await db.insert(tables.users).values({
       email,
       password: null,
-      name: google.given_name,
+      name: _user.given_name,
       createdAt: today,
       updatedAt: today
     }).onConflictDoNothing().returning().get();
 
     if (!user) return sendRedirect(event, "/signup?error=user_exists");
+
+    const connection = await db.insert(tables.connections).values({
+      user: user.id,
+      provider: "google",
+      providerId: _user.sub,
+      createdAt: today,
+      updatedAt: today
+    }).onConflictDoNothing().returning().get();
+
+    if (!connection) return sendRedirect(event, "/signup?error=user_exists");
 
     const token = await generateToken(event, [user.id, user.updatedAt]);
 

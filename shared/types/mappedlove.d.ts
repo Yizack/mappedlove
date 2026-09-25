@@ -13,6 +13,15 @@ declare global {
     createdAt: number;
     updatedAt: number;
   }
+  type MappedLoveOAuthProvider = "google";
+  interface MappedLoveOAuthAccount {
+    id: number;
+    user: number;
+    provider: MappedLoveOAuthProvider;
+    providerId: string;
+    createdAt: number;
+    updatedAt: number;
+  }
   interface MappedLovePartner {
     id: number;
     hash: string;
