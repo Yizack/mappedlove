@@ -112,9 +112,6 @@ export default defineNuxtConfig({
       }
     }
   },
-  routeRules: {
-    "/api/_nuxt_icon/**": { cache: { maxAge: 1.577e+7 } }
-  },
   features: {
     inlineStyles: false
   },
@@ -129,16 +126,8 @@ export default defineNuxtConfig({
         "/legal/cookies", "/legal/privacy", "/legal/refund", "/legal/terms"
       ]
     },
-    cloudflare: {
-      pages: {
-        routes: {
-          exclude: ["/docs/*", "/images/*", "/fonts/*"]
-        }
-      }
-    },
     experimental: {
-      tasks: true,
-      wasm: true
+      tasks: true
     },
     // TODO: remove until windows bug is fixed
     externals: {
