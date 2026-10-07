@@ -139,6 +139,10 @@ export default defineNuxtConfig({
     experimental: {
       tasks: true,
       wasm: true
+    },
+    // TODO: remove until windows bug is fixed
+    externals: {
+      inline: [/[\\/]node_modules[\\/]nuxt[\\/]dist[\\/]/]
     }
   },
   hub: {
