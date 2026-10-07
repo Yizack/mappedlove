@@ -121,7 +121,7 @@ export default defineNuxtConfig({
   experimental: {
     typedPages: true
   },
-  compatibilityDate: "2025-07-16",
+  compatibilityDate: "2026-10-07",
   nitro: {
     prerender: {
       routes: [
