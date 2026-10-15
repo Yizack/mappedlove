@@ -41,16 +41,16 @@
   },
   "dependencies": {
     "@comark/nuxt": "^0.7.0",
-    "@dargmuesli/nuxt-cookie-control": "^9.3.8",
+    "@dargmuesli/nuxt-cookie-control": "^9.3.9",
     "@iconify-json/ion": "^1.2.7",
-    "@iconify-json/logos": "^1.2.15",
+    "@iconify-json/logos": "^1.2.16",
     "@iconify-json/solar": "^1.2.13",
     "@iconify-json/tabler": "^1.2.42",
     "@libsql/client": "^0.18.0",
     "@nuxt/icon": "^2.5.1",
     "@nuxthub/core": "^0.10.8",
     "@nuxtjs/color-mode": "^4.0.1",
-    "@nuxtjs/sitemap": "^8.6.1",
+    "@nuxtjs/sitemap": "^8.6.2",
     "@nuxtjs/turnstile": "^1.1.3",
     "@paddle/paddle-js": "^1.6.5",
     "@paddle/paddle-node-sdk": "^3.10.0",
@@ -58,11 +58,11 @@
     "@yeger/vue-masonry-wall": "^6.1.4",
     "bootstrap": "^5.3.8",
     "drizzle-kit": "^0.31.11",
-    "drizzle-orm": "^0.45.3",
+    "drizzle-orm": "^0.45.4",
     "leaflet": "^2.0.0-alpha.1",
     "leaflet-geosearch": "^4.4.0",
-    "nuxt": "^4.6.0",
-    "nuxt-auth-utils": "^0.5.30",
+    "nuxt": "^4.6.1",
+    "nuxt-auth-utils": "^0.5.31",
     "nuxt-email-renderer": "^2.11.1",
     "nuxt-mailchannels": "^0.4.10",
     "nuxt-twemoji": "^4.0.6",
@@ -70,7 +70,7 @@
     "sass-embedded": "^1.105.1",
     "vitepress": "^2.0.0-alpha.20",
     "vue-draggable-plus": "^0.6.1",
-    "zod": "^4.6.5"
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@nuxt/test-utils": "^4.3.3",
@@ -78,13 +78,13 @@
     "@types/leaflet": "^1.9.22",
     "@yizack/eslint-config": "^0.0.6",
     "eslint": "^10.12.0",
-    "happy-dom": "^20.14.5",
+    "happy-dom": "^20.14.6",
     "stylelint": "^17.16.0",
     "stylelint-config-standard-scss": "^17.0.0",
     "typescript": "^6.0.3",
-    "vitest": "^5.0.3",
-    "vue-tsc": "^3.3.12",
-    "wrangler": "^4.148.0"
+    "vitest": "^5.0.4",
+    "vue-tsc": "^3.3.13",
+    "wrangler": "^4.151.0"
   },
-  "packageManager": "pnpm@12.10.1"
+  "packageManager": "pnpm@12.11.2"
 }
