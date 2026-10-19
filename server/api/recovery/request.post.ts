@@ -20,7 +20,7 @@ export default defineEventHandler(async (event) => {
     recoveryLink: `${SITE.host}/recovery/${toBase64URL(user.email)}/${token}`
   });
 
-  const mailchannels = useMailChannels(event);
+  const mailchannels = useMailChannels();
   const { error } = await mailchannels.send({
     to: { email: user.email, name: user.name },
     subject: "Account recovery",

@@ -28,7 +28,7 @@ export default defineEventHandler(async (event) => {
     request: body.request
   });
 
-  const mailchannels = useMailChannels(event);
+  const mailchannels = useMailChannels();
   const { error } = await mailchannels.send({
     to: { email: body.email, name: user.name },
     subject: "Account data request",

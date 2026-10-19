@@ -45,7 +45,7 @@ export default defineEventHandler(async (event) => {
     const session = { user: { ...user, bond: { ...user.bond, ...update } } };
     await setUserSessionNullish(event, session);
 
-    const mailchannels = useMailChannels(event);
+    const mailchannels = useMailChannels();
     const { error } = await mailchannels.send({
       to: {
         email: user.email,
