@@ -40,14 +40,14 @@
     "test:types": "vue-tsc -b --noEmit"
   },
   "dependencies": {
-    "@comark/nuxt": "^0.7.0",
-    "@dargmuesli/nuxt-cookie-control": "^9.3.10",
+    "@comark/nuxt": "^0.8.1",
+    "@dargmuesli/nuxt-cookie-control": "^9.3.11",
     "@iconify-json/ion": "^1.2.7",
     "@iconify-json/logos": "^1.2.17",
     "@iconify-json/solar": "^1.2.13",
     "@iconify-json/tabler": "^1.2.42",
     "@libsql/client": "^0.18.0",
-    "@nuxt/icon": "^2.5.1",
+    "@nuxt/icon": "^2.6.0",
     "@nuxthub/core": "^0.10.10",
     "@nuxtjs/color-mode": "^4.0.1",
     "@nuxtjs/sitemap": "^9.1.0",
@@ -67,7 +67,7 @@
     "nuxt-mailchannels": "^0.4.12",
     "nuxt-twemoji": "^4.0.6",
     "nuxt-webhook-validators": "^0.2.12",
-    "sass-embedded": "^1.106.0",
+    "sass-embedded": "^1.106.1",
     "vitepress": "^2.0.0-alpha.20",
     "vue-draggable-plus": "^0.6.1",
     "zod": "^4.6.7"
@@ -84,7 +84,7 @@
     "typescript": "^6.0.3",
     "vitest": "^5.0.5",
     "vue-tsc": "^3.3.13",
-    "wrangler": "^4.151.3"
+    "wrangler": "^4.152.0"
   },
-  "packageManager": "pnpm@12.14.0"
+  "packageManager": "pnpm@12.15.0"
 }
