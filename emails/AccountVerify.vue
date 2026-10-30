@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { SITE } from "../shared/utils/site";
 
+const siteDomain = SITE.domain;
+const siteUrl = `https://${siteDomain}`;
+
 defineProps<{
   lang: string;
   verifyLink: string;
@@ -20,7 +23,7 @@ defineProps<{
         <ESection style="max-width: 602px; border-collapse: collapse; border: 0; border-spacing: 0; background-color: #f8f9fa;">
           <ERow style="padding: 1.2rem 0;">
             <EColumn align="center">
-              <EImg :src="`https://${SITE.domain}/images/text-logo.png`" alt="MappedLove Logo" style="width: 180px;" />
+              <EImg :src="`${siteUrl}/images/text-logo.png`" alt="MappedLove Logo" style="width: 180px;" />
             </EColumn>
           </ERow>
           <ERow style="padding: 1rem 0; background-color: #c25050;">
@@ -41,7 +44,7 @@ defineProps<{
           </ESection>
           <ERow style="padding: 15px 30px 15px 30px; background: #e9ecef; color: #443c47; font-size: 14px;">
             <EColumn align="center">
-              <ELink style="color: #443c47; text-decoration: underline;" :href="`https://${SITE.domain}`">{{ SITE.domain }}</ELink>
+              <ELink style="color: #443c47; text-decoration: underline;" :href="siteUrl">{{ siteDomain }}</ELink>
             </EColumn>
           </ERow>
         </ESection>

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { SITE } from "../../../shared/utils/site";
+
 const { loggedIn, user, clear } = useUserSession();
 
 let isLoggingOut = false;
