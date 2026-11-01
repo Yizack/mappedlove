@@ -2,11 +2,13 @@
 
 # MappedLove
 
-Web app made for couples. Mark the places you have visited together, upload images, and, preserve your special moments forever.
+Web app made for couples. Mark the places you have visited together, upload images, and, preserve
+your special moments forever.
 
 ## Map Your Journey
 
-Easily mark the locations you have visited on an interactive map and create a visual representation of your journey together.
+Easily mark the locations you have visited on an interactive map and create a visual representation
+of your journey together.
 
 Place markers on the map and add stories to preserve your memories.
 
@@ -14,29 +16,37 @@ Place markers on the map and add stories to preserve your memories.
 
 ## Share Your Memories
 
-Upload images to your stories and share them with your friends and family by enabling the public map setting.
+Upload images to your stories and share them with your friends and family by enabling the public map
+setting.
 
-Whether it's a memorable vacation, a lovely dinner, a special event, or simply everyday adventures, our app helps you turn these moments into unforgettable experiences.
+Whether it's a memorable vacation, a lovely dinner, a special event, or simply everyday adventures,
+our app helps you turn these moments into unforgettable experiences.
 
 ![Share Your Memories](/public/images/demos/public-map-marker.jpg)
 
 ## Create your Bond
 
-Connect your accounts by inviting your partner to join your bond, and start mapping your life moments together.
+Connect your accounts by inviting your partner to join your bond, and start mapping your life
+moments together.
 
 ![Create your Bond](/public/images/demos/bond.jpg)
 
 <!-- #region credits-license -->
+
 ## Credits
 
-- Special thanks to [Nuxt](https://nuxt.com/), the [Vue](https://vuejs.org/) framework for bringing the best development experience.
-- Serverless hosted on [Cloudflare Workers](https://workers.cloudflare.com/) with [NuxtHub](https://hub.nuxt.com/).
+- Special thanks to [Nuxt](https://nuxt.com/), the [Vue](https://vuejs.org/) framework for bringing
+  the best development experience.
+- Serverless hosted on [Cloudflare Workers](https://workers.cloudflare.com/) with
+  [NuxtHub](https://hub.nuxt.com/).
 - Mapping capabilities with [Leaflet](https://leafletjs.com/).
 - Location searching from [leaflet-geosearch](https://github.com/smeijer/leaflet-geosearch).
-- [Paddle](https://www.paddle.com/), our payment processor, allows us to offer our premium plan seamlessly.
+- [Paddle](https://www.paddle.com/), our payment processor, allows us to offer our premium plan
+  seamlessly.
 - Mailing handled by [MailChannels](https://www.mailchannels.com/).
 - Rendering email templates with [nuxt-email-renderer](https://nuxtemail.com/).
-- Image cropping and resizing by [Cloudflare Images](https://developers.cloudflare.com/images/) for story map thumbnails.
+- Image cropping and resizing by [Cloudflare Images](https://developers.cloudflare.com/images/) for
+  story map thumbnails.
 - Styling with [Bootstrap](https://getbootstrap.com/).
 - Support page generated with [VitePress](https://vitepress.dev/).
 - And more!
@@ -45,5 +55,6 @@ Connect your accounts by inviting your partner to join your bond, and start mapp
 
 Made with ❤️
 
-Open Source app and published under [MIT License](https://github.com/Yizack/mappedlove/blob/main/LICENSE).
+Open Source app and published under
+[MIT License](https://github.com/Yizack/mappedlove/blob/main/LICENSE).
 <!-- #endregion credits-license -->
