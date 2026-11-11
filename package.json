@@ -40,7 +40,7 @@
     "test:types": "vue-tsc -b --noEmit"
   },
   "dependencies": {
-    "@comark/nuxt": "^0.9.0",
+    "@comark/nuxt": "^0.9.1",
     "@dargmuesli/nuxt-cookie-control": "^9.3.12",
     "@iconify-json/ion": "^1.2.7",
     "@iconify-json/logos": "^1.2.19",
@@ -84,7 +84,7 @@
     "typescript": "^6.0.3",
     "vitest": "^5.1.0",
     "vue-tsc": "^3.3.14",
-    "wrangler": "^4.159.0"
+    "wrangler": "^4.160.0"
   },
   "packageManager": "pnpm@12.18.0"
 }
