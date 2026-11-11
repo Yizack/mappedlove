@@ -1,3 +1,5 @@
+import { sendRedirect } from "nuxt/server";
+
 export default defineOAuthGoogleEventHandler({
   config: {
     scope: ["email", "profile"]
@@ -26,7 +28,7 @@ export default defineOAuthGoogleEventHandler({
 
     if (!connection) return sendRedirect(event, "/signup?error=user_exists");
 
-    const token = await generateToken(event, [user.id, user.updatedAt]);
+    const token = await generateToken([user.id, user.updatedAt]);
 
     const { html, text } = await renderEmail("AccountVerify", {
       lang: "en",

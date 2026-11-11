@@ -19,7 +19,7 @@ export default defineEventHandler(async (event) => {
 
   if (user.confirmed) return user;
 
-  const token = await generateToken(event, [user.id, user.updatedAt]);
+  const token = await generateToken([user.id, user.updatedAt]);
 
   if (token !== body.token) throw createError({ status: ErrorCode.UNAUTHORIZED, message: "invalid_token" });
 
