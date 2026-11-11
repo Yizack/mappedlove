@@ -1,6 +1,4 @@
-import type { CfProperties, ExecutionContext, ImagesBinding } from "@cloudflare/workers-types";
-
-export {};
+import type { CfProperties, ExecutionContext, ExecutionContext, ImagesBinding, Request } from "@cloudflare/workers-types";
 
 declare module "h3" {
   interface H3EventContext {
@@ -14,3 +12,17 @@ declare module "h3" {
     };
   }
 }
+
+declare module "nuxt/server" {
+  interface RequestEventContext {
+    cloudflare: {
+      request: Request;
+      env: {
+        IMAGES: ImagesBinding;
+      };
+      context: ExecutionContext;
+    };
+  }
+}
+
+export {};

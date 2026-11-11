@@ -80,9 +80,7 @@ export default defineNuxtConfig({
     turnstile: {
       secretKey: ""
     },
-    session: {
-      password: ""
-    },
+    appSecret: "",
     oauth: {
       google: {
         clientId: "",

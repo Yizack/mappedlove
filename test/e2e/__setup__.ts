@@ -15,7 +15,7 @@ const getSessionCookie = async () => {
   });
 
   const setCookie = loginResponse.headers.getSetCookie();
-  const sessionCookie = setCookie.find(cookie => cookie.startsWith("nuxt-session="));
+  const sessionCookie = setCookie.find(cookie => cookie.startsWith("nuxt-auth-session="));
   if (!sessionCookie) throw new Error("Session cookie not found");
   return sessionCookie;
 };
