@@ -24,7 +24,7 @@ export default defineEventHandler(async (event) => {
     if (!foundUser) throw createError({ status: ErrorCode.NOT_FOUND, message: "user_not_found" });
     user = foundUser;
 
-    const token = await generateToken(event, [user.id, user.updatedAt]);
+    const token = await generateToken([user.id, user.updatedAt]);
 
     if (token !== body.token) throw createError({ status: ErrorCode.FORBIDDEN, message: "code_mismatch" });
     if (isTokenDateExpired(user.updatedAt)) throw createError({ status: ErrorCode.UNAUTHORIZED, message: "account_data_expired" });

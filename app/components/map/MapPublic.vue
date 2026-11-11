@@ -22,10 +22,10 @@ const addMarker = (marker: MappedLoveMarker) => {
       id: marker.id,
       draggable: false
     }
-  }).on("popupopen", (e) => {
+  }).on("popupopen", () => {
     setTimeout(() => $bootstrap.startAllCarousel());
-    if (props.selected === e.target.options.id) return;
-    emit("select", e.target.options.id);
+    if (props.selected === marker.id) return;
+    emit("select", marker.id);
   });
 };
 

@@ -1,7 +1,7 @@
 import { subtle } from "node:crypto";
 import { Buffer } from "node:buffer";
+import { useRuntimeConfig } from "nuxt/server";
 import { digest } from "ohash";
-import type { H3Event } from "h3";
 
 export * as z from "zod";
 
@@ -25,7 +25,7 @@ export const getGracePeriod = (timestamp: number, days: number) => {
   return timestamp + (days * 24 * 60 * 60 * 1000);
 };
 
-export const getPartners = async (event: H3Event, bond: Partial<MappedLoveBond>) => {
+export const getPartners = async (bond: Partial<MappedLoveBond>) => {
   const partners = await db.select({
     id: tables.users.id,
     name: tables.users.name,
@@ -35,7 +35,7 @@ export const getPartners = async (event: H3Event, bond: Partial<MappedLoveBond>)
     updatedAt: tables.users.updatedAt
   }).from(tables.users).where(or(eq(tables.users.id, bond.partner1!), eq(tables.users.id, bond.partner2!))).limit(2).all();
 
-  const { secure } = useRuntimeConfig(event);
+  const { secure } = useRuntimeConfig();
 
   return partners.map(partner => ({
     ...partner,
@@ -50,8 +50,8 @@ export const toBase64URL = (data: string | ArrayBuffer) => {
 const HMAC_SHA256 = { name: "HMAC", hash: "SHA-256" };
 const encoder = new TextEncoder();
 
-export const generateToken = async (event: H3Event, fields: (unknown)[]) => {
-  const config = useRuntimeConfig(event);
+export const generateToken = async (fields: (unknown)[]) => {
+  const config = useRuntimeConfig();
   const signature = await subtle.importKey("raw", encoder.encode(config.secure.secret), HMAC_SHA256, false, ["sign"]);
   const hmac = await subtle.sign(HMAC_SHA256.name, signature, encoder.encode(fields.join()));
   return toBase64URL(hmac);

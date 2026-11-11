@@ -24,7 +24,7 @@ export default defineEventHandler(async (event): Promise<MappedLovePublicMap> =>
     ).orderBy(desc(tables.stories.year), desc(tables.stories.month)).all()
   ]);
 
-  const partners = await getPartners(event, bond);
+  const partners = await getPartners(bond);
 
   if (!partners.length) {
     throw createError({ status: ErrorCode.NOT_FOUND, message: "bond_not_found" });

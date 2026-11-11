@@ -4,6 +4,9 @@ strictPeerDependencies: false
 packages:
   - .
 
+overrides:
+  '@nuxt/cli': 4.0.3
+
 allowBuilds:
   '@parcel/watcher': false
   esbuild: false

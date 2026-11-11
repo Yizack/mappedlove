@@ -32,6 +32,6 @@ export default defineEventHandler(async (event): Promise<MappedLoveBond> => {
 
   return {
     ...bond,
-    partners: await getPartners(event, bond)
+    partners: await getPartners(bond)
   };
 });

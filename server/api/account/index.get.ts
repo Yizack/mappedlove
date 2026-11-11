@@ -25,7 +25,7 @@ export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig(event);
 
   if (!query.id) {
-    const token = await generateToken(event, [user.id, user.updatedAt]);
+    const token = await generateToken([user.id, user.updatedAt]);
     if (token !== query.token) throw createError({ status: ErrorCode.FORBIDDEN, message: "token_mismatch" });
     if (isTokenDateExpired(user.updatedAt)) throw createError({ status: ErrorCode.UNAUTHORIZED, message: "account_data_expired" });
   }
@@ -49,7 +49,7 @@ export default defineEventHandler(async (event) => {
       ...bond,
       nextPayment: bond?.nextPayment || null,
       subscriptionId: bond?.subscriptionId || undefined,
-      partners: await getPartners(event, bond)
+      partners: await getPartners(bond)
     };
 
     const [markers, stories] = await Promise.all([

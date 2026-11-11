@@ -1,3 +1,5 @@
+import { getQuery, sendRedirect, useRuntimeConfig } from "nuxt/server";
+
 export default defineOAuthGoogleEventHandler({
   config: {
     scope: ["email"]
@@ -45,7 +47,7 @@ export default defineOAuthGoogleEventHandler({
 
     if (!user.confirmed) return sendRedirect(event, "/login?error=verify_needed");
 
-    const { secure } = useRuntimeConfig(event);
+    const { secure } = useRuntimeConfig();
     const userHash = hash(user.id.toString(), secure.salt);
     const remember = getQuery(event).state === "remember";
     const maxAge = remember ? 7 * 24 * 60 * 60 : 0; // if remember is true, maxAge is 7 days

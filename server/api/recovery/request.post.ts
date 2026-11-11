@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
 
   if (!user) throw createError({ status: ErrorCode.NOT_FOUND, message: "user_not_found" });
 
-  const token = await generateToken(event, [user.id, user.updatedAt]);
+  const token = await generateToken([user.id, user.updatedAt]);
 
   const { html, text } = await renderEmail("AccountRecovery", {
     lang: "en",

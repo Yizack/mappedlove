@@ -46,7 +46,7 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const token = await generateToken(event, [user.id, user.updatedAt]);
+  const token = await generateToken([user.id, user.updatedAt]);
 
   const { html, text } = await renderEmail("AccountVerify", {
     lang: "en",

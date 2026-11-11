@@ -1,12 +1,11 @@
-import { Browser, Control, DomUtil, Icon, LayerGroup, Map, Marker, type MarkerOptions, Popup, TileLayer } from "leaflet";
+import { DomUtil, Icon, LayerGroup, LayersControl, Map, Marker, type MarkerOptions, Popup, TileLayer, ZoomControl } from "leaflet";
 import { OpenStreetMapProvider } from "leaflet-geosearch";
 import type { SearchResult } from "leaflet-geosearch/dist/providers/provider.js";
 import type { RawResult } from "leaflet-geosearch/dist/providers/openStreetMapProvider.js";
 
-// @ts-expect-error - no types
 Popup.prototype._animateZoom = function (e) {
   if (!this.isOpen()) return; // @ts-expect-error - no types
-  const pos = this._map._latLngToNewLayerPoint(this._latlng, e.zoom, e.center), anchor = this._getAnchor(); // @ts-expect-error - no types
+  const pos = this._map._latLngToNewLayerPoint(this._latlng, e.zoom, e.center), anchor = this._getAnchor();
   DomUtil.setPosition(this._container, pos.add(anchor));
 };
 
@@ -62,17 +61,18 @@ class Leaflet {
     this.map = new Map(element, {
       center: [0, 0],
       zoom: 3,
-      minZoom: Browser.mobile ? 2 : 3,
+      minZoom: matchMedia("(pointer: coarse)").matches ? 2 : 3,
       zoomControl: false,
       maxBounds: [[-90, -Infinity], [90, Infinity]],
       maxBoundsViscosity: 1,
-      layers: [this.tile, ...Object.values(this.groups)]
+      layers: [this.tile, ...Object.values(this.groups)],
+      attributionControl: true
     });
 
-    new Control.Zoom({ position: "bottomright" }).addTo(this.map);
-    new Control.Layers(undefined, this.groups, { position: "bottomleft" }).addTo(this.map);
+    new ZoomControl({ position: "bottomright" }).addTo(this.map);
+    new LayersControl(undefined, this.groups, { position: "bottomleft" }).addTo(this.map);
 
-    this.map.attributionControl.setPrefix("<a target=\"_blank\" href=\"https://leafletjs.com\" title=\"A JavaScript library for interactive maps\">Leaflet</a>");
+    this.map.attributionControl?.setPrefix("<a target=\"_blank\" href=\"https://leafletjs.com\" title=\"A JavaScript library for interactive maps\">Leaflet</a>");
     return this.map;
   }
 

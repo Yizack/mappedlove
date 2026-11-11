@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { LeafletEvent } from "leaflet";
-
 const props = withDefaults(defineProps<{
   id: string;
   markers: MappedLoveMarker[];
@@ -17,7 +15,7 @@ const emit = defineEmits(["moved", "select"]);
 const { $Leaflet, $bootstrap } = useNuxtApp();
 const leaflet = ref<InstanceType<typeof $Leaflet>>();
 const map = ref<HTMLElement>();
-const movedMarker = ref<LeafletEvent>();
+const movedMarker = ref<{ id: number, lat: number, lng: number }>();
 
 const removeMarker = (id: number) => {
   leaflet.value?.removeMarker(id);
@@ -33,21 +31,19 @@ const addMarker = (marker: MappedLoveMarker) => {
       id: marker.id
     }
   }).on("move", (e) => {
-    movedMarker.value = e;
-  }).on("popupopen", (e) => {
+    movedMarker.value = { id: marker.id, lat: e.latlng.lat, lng: e.latlng.lng };
+  }).on("popupopen", () => {
     setTimeout(() => $bootstrap.startAllCarousel());
-    if (props.selected === e.target.options.id) return;
-    emit("select", e.target.options.id);
+    if (props.selected === marker.id) return;
+    emit("select", marker.id);
   });
 };
 
 watchDebounced(movedMarker, async (e) => {
   if (!e) return;
-  const { id } = e.target.options;
-  const { lat, lng } = e.target.getLatLng();
-  const update = await $fetch(`/api/markers/${id}`, {
+  const update = await $fetch(`/api/markers/${e.id}`, {
     method: "PATCH",
-    body: { lat, lng }
+    body: { lat: e.lat, lng: e.lng }
   }).catch(() => null);
   if (!update) return;
   emit("moved", update);

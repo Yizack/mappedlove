@@ -1,5 +1,7 @@
+import { defineEventHandler, readValidatedBody } from "nuxt/server";
+
 export default defineEventHandler(async (event) => {
-  const { secure } = useRuntimeConfig(event);
+  const { secure } = useRuntimeConfig();
 
   const validation = await readValidatedBody(event, z.object({
     email: z.email().transform(v => v.toLowerCase().trim()),
@@ -61,7 +63,8 @@ export default defineEventHandler(async (event) => {
   ).get();
 
   if (logins) {
-    event.waitUntil(
+    const eventContext = event.context.cloudflare.context;
+    eventContext.waitUntil(
       db.delete(tables.logins).where(eq(tables.logins.user, logins.user)).run()
     );
   }
